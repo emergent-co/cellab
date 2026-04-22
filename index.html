@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadfluid 정량펌프 — Cellab | 실험실 펌프·소모품 전문</title>
+<meta name="description" content="Leadfluid 연동펌프·정량펌프 전 라인업. 내 실험 조건에 맞는 모델을 3초 만에 찾아보세요. 수리 가능 엔지니어 스토어 · 1시간 응답.">
+<meta name="keywords" content="Leadfluid, 연동펌프, 정량펌프, 실험실 펌프, BT100, BT300, YZ15, 페리스탈틱펌프, 펌프 튜브, 바이톤 튜브, Tygon, Cellab">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, 'Pretendard', 'Noto Sans KR', sans-serif;
+  color: #1a1a1a;
+  line-height: 1.6;
+  background: #fafaf8;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+header {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e2;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.logo-sub { font-size: 12px; color: #666; margin-left: 8px; font-weight: 400; }
+.header-cta {
+  background: #1a6e56;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #f5f0e6 0%, #fff 100%);
+  padding: 60px 0 40px;
+}
+.hero h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.hero-sub {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 32px;
+}
+.trust-badges {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.badge {
+  background: #fff;
+  border: 1px solid #d5d1c7;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #444;
+}
+
+.selector {
+  background: #fff;
+  border: 1px solid #d5d1c7;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-top: 24px;
+}
+.selector-title { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.selector-sub { font-size: 14px; color: #666; margin-bottom: 24px; }
+
+/* 1차 분기: 의도 선택 카드 */
+.intent-box {
+  background: #fff;
+  border: 1px solid #d5d1c7;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.intent-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin-bottom: 4px;
+}
+.intent-sub {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 18px;
+}
+.intent-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.intent-card {
+  background: #fafaf7;
+  border: 2px solid #e5e5e2;
+  border-radius: 10px;
+  padding: 24px 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.intent-card:hover {
+  border-color: #1a6e56;
+  background: #f5f9f7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26,110,86,0.1);
+}
+.intent-card.active {
+  border-color: #1a6e56;
+  background: #e8f4ef;
+}
+.intent-icon {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.intent-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin-bottom: 6px;
+}
+.intent-desc {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .intent-cards { grid-template-columns: 1fr; }
+  .intent-card { padding: 18px 14px; }
+  .intent-icon { font-size: 30px; margin-bottom: 6px; }
+}
+
+/* 튜브 선택기 결과 */
+.tube-result {
+  background: #f7f5ef;
+  border-left: 3px solid #1a6e56;
+  padding: 18px 20px;
+  border-radius: 6px;
+  margin-top: 16px;
+  animation: fadeInUp 0.3s ease-out;
+}
+.tube-result-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a6e56;
+  margin-bottom: 8px;
+}
+.tube-result-why {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.tube-result-alt {
+  font-size: 13px;
+  color: #666;
+  padding-top: 10px;
+  border-top: 1px dashed #d5d1c7;
+}
+.tube-result-ctas {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* 액세서리 그리드 */
+.accessory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+.accessory-card {
+  background: #fafaf7;
+  border: 1px solid #e5e5e2;
+  border-radius: 10px;
+  padding: 18px 14px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.15s;
+  display: block;
+}
+.accessory-card:hover {
+  border-color: #1a6e56;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+.accessory-card-kakao {
+  background: #fef8e7;
+  border-color: #f5d74f;
+}
+.accessory-card-kakao:hover {
+  border-color: #e6c70c;
+  background: #fdf0c2;
+}
+.accessory-icon {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.accessory-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin-bottom: 5px;
+}
+.accessory-desc {
+  font-size: 11.5px;
+  color: #666;
+  line-height: 1.5;
+}
+.accessory-note {
+  background: #fff;
+  border-left: 3px solid #1a6e56;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+.question-block {
+  margin-bottom: 20px;
+  display: none;
+  animation: fadeInUp 0.3s ease-out;
+}
+.question-block.active { display: block; }
+.question-block.completed {
+  display: block;
+  opacity: 0.55;
+  pointer-events: auto;
+}
+.question-block.completed .question-label::after {
+  content: " ✓";
+  color: #1a6e56;
+  font-weight: 600;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 진행 상태 바 */
+.selector-progress {
+  margin-bottom: 24px;
+}
+.progress-bar {
+  height: 5px;
+  background: #eae6db;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.progress-fill {
+  height: 100%;
+  background: #1a6e56;
+  width: 25%;
+  transition: width 0.35s ease-out;
+  border-radius: 3px;
+}
+.progress-text {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+}
+
+/* 이전 질문으로 버튼 */
+.back-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid #d5d1c7;
+  color: #888;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+.back-btn:hover { color: #1a6e56; border-color: #1a6e56; }
+.question-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+.option-btn {
+  background: #fff;
+  border: 1px solid #d5d1c7;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s;
+  text-align: left;
+}
+.option-btn:hover { border-color: #888; }
+.option-btn.selected {
+  background: #1a6e56;
+  color: #fff;
+  border-color: #1a6e56;
+}
+.submit-btn {
+  width: 100%;
+  background: #1a6e56;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 12px;
+}
+.submit-btn:hover { background: #155a47; }
+.submit-btn:disabled { background: #b5b2a9; cursor: not-allowed; }
+
+.results { margin-top: 32px; display: none; }
+.results.show { display: block; }
+.results-title { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+.result-card {
+  background: #fff;
+  border: 1px solid #d5d1c7;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.result-card.primary { border-color: #1a6e56; border-width: 2px; }
+.result-rank {
+  display: inline-block;
+  background: #1a6e56;
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+.result-rank.alt { background: #888; }
+.result-model { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.result-category { font-size: 13px; color: #888; margin-bottom: 10px; }
+.result-specs { font-size: 14px; color: #555; margin-bottom: 16px; }
+.result-specs li { margin-bottom: 4px; list-style: none; }
+.result-specs li::before { content: "✓ "; color: #1a6e56; font-weight: 600; }
+.result-ctas { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* 호환 튜브 서브카드 */
+.compat-tubes {
+  background: #f7f5ef;
+  border-left: 3px solid #1a6e56;
+  padding: 14px 16px;
+  border-radius: 6px;
+  margin: 14px 0 16px;
+}
+.compat-tubes-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a6e56;
+  margin-bottom: 10px;
+}
+.tube-chips {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+@media (min-width: 600px) {
+  .tube-chips { grid-template-columns: 1fr 1fr; }
+}
+.tube-chip {
+  background: #fff;
+  border: 1px solid #e0dcd0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  transition: border-color 0.15s;
+}
+.tube-chip:hover { border-color: #1a6e56; }
+.tube-chip-name {
+  font-weight: 600;
+  color: #2a2a2a;
+  margin-bottom: 3px;
+}
+.tube-chip-feature {
+  color: #555;
+  font-size: 11.5px;
+  margin-bottom: 3px;
+}
+.tube-chip-fluid {
+  color: #888;
+  font-size: 11px;
+}
+.compat-tubes-note {
+  font-size: 11.5px;
+  color: #777;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed #d5d1c7;
+}
+
+/* 튜브 카테고리 섹션 (6개 그리드) */
+.tube-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+.tube-cat-card {
+  background: #fff;
+  border: 1px solid #e5e5e2;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.tube-cat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.tube-cat-header {
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.tube-cat-body { padding: 16px; }
+.tube-cat-body h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin: 0 0 6px 0;
+}
+.tube-cat-desc {
+  font-size: 13px;
+  color: #555;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+.tube-cat-props {
+  background: #faf8f1;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.tube-cat-props strong { color: #2a2a2a; }
+.tube-cat-warn {
+  font-size: 11.5px;
+  color: #777;
+  padding-top: 8px;
+  border-top: 1px dashed #e5e5e2;
+}
+.tube-size-note {
+  background: #fff;
+  border-left: 3px solid #1a6e56;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 24px;
+}
+.cta-primary, .cta-secondary {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
+.cta-primary { background: #1a6e56; color: #fff; }
+.cta-secondary { background: #fff; color: #1a6e56; border: 1px solid #1a6e56; }
+
+section { padding: 60px 0; }
+section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+section .section-sub {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+.diff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.diff-card {
+  background: #fff;
+  border: 1px solid #e5e5e2;
+  border-radius: 10px;
+  padding: 24px;
+}
+.diff-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.diff-card p { font-size: 14px; color: #555; }
+
+/* 카탈로그 다운로드 박스 */
+.catalog-dl-box {
+  background: linear-gradient(135deg, #f7f5ef 0%, #fff 100%);
+  border: 1px solid #d5d1c7;
+  border-radius: 12px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.catalog-dl-icon {
+  font-size: 52px;
+  line-height: 1;
+}
+.catalog-dl-content h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+.catalog-dl-content p {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+}
+.catalog-dl-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: #777;
+}
+.catalog-dl-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 170px;
+}
+.catalog-dl-btn {
+  text-align: center;
+  font-size: 15px;
+  padding: 12px 18px;
+}
+.catalog-note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #777;
+  text-align: center;
+  line-height: 1.6;
+}
+@media (max-width: 720px) {
+  .catalog-dl-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .catalog-dl-icon { font-size: 42px; }
+  .catalog-dl-content h2 { text-align: center; }
+  .catalog-dl-meta { justify-content: center; }
+}
+
+.catalog-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.catalog-table th, .catalog-table td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e5e2;
+}
+.catalog-table th { background: #f1efe8; font-weight: 600; }
+.catalog-table tr:last-child td { border-bottom: none; }
+.catalog-table td.catalog-subgroup {
+  background: #faf8f1;
+  font-weight: 600;
+  color: #1a6e56;
+  font-size: 13px;
+  padding: 10px 14px;
+}
+.catalog-group-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin: 20px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #1a6e56;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.content-card {
+  background: #fff;
+  border: 1px solid #e5e5e2;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.content-card:hover {
+  border-color: #1a6e56;
+  transform: translateY(-2px);
+}
+.content-card-header { padding: 20px 20px 16px; }
+.content-tag {
+  display: inline-block;
+  background: #f1efe8;
+  color: #555;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.content-tag.guide { background: #e1f5ee; color: #0f6e56; }
+.content-tag.trouble { background: #faeeda; color: #854f0b; }
+.content-tag.case { background: #e6f1fb; color: #0c447c; }
+.content-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.content-card p { font-size: 13px; color: #666; }
+.content-meta {
+  padding: 8px 20px;
+  background: #f9f8f5;
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-detail {
+  display: none;
+  background: #fff;
+  border: 1px solid #d5d1c7;
+  border-radius: 10px;
+  padding: 32px;
+  margin-top: 20px;
+}
+.content-detail.show { display: block; }
+.content-detail h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.content-detail .detail-meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e5e2;
+}
+.content-detail h4 { font-size: 17px; font-weight: 600; margin: 24px 0 10px; }
+.content-detail p { font-size: 15px; color: #333; margin-bottom: 12px; line-height: 1.75; }
+.content-detail ul, .content-detail ol {
+  margin: 12px 0 16px 20px;
+  font-size: 15px;
+  color: #333;
+  line-height: 1.75;
+}
+.content-detail li { margin-bottom: 6px; }
+.content-detail .callout {
+  background: #f5f0e6;
+  border-left: 3px solid #1a6e56;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14px;
+  color: #333;
+}
+.content-detail .close-btn {
+  background: #f1efe8;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.faq-item {
+  background: #fff;
+  border: 1px solid #e5e5e2;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.faq-q {
+  padding: 16px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 15px;
+}
+.faq-q::before { content: "Q. "; color: #1a6e56; font-weight: 600; }
+.faq-a {
+  padding: 0 20px 16px;
+  font-size: 14px;
+  color: #555;
+  display: none;
+}
+.faq-item.open .faq-a { display: block; }
+
+.contact-section {
+  background: #1a6e56;
+  color: #fff;
+  text-align: center;
+  padding: 60px 20px;
+}
+.contact-section h2 { color: #fff; }
+.contact-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.contact-btn {
+  background: #fff;
+  color: #1a6e56;
+  padding: 14px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.contact-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.contact-btn-primary {
+  background: #f5d74f;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 28px;
+}
+.contact-btn-primary:hover {
+  background: #e6c70c;
+}
+.contact-note {
+  margin-top: 24px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+}
+.contact-note a {
+  color: #a8d5c5 !important;
+  text-decoration: none;
+}
+.contact-note a:hover { text-decoration: underline; }
+
+/* 추천 결과 안내 텍스트 (올포랩 검색 유도 메시지) */
+.cta-note {
+  display: inline-block;
+  font-size: 11.5px;
+  color: #888;
+  padding: 6px 10px;
+  background: #faf8f1;
+  border-radius: 4px;
+  align-self: center;
+}
+
+footer {
+  background: #1a1a1a;
+  color: #aaa;
+  padding: 40px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+footer .company-name { font-size: 16px; color: #fff; font-weight: 600; margin-bottom: 12px; }
+footer .info-row { margin-bottom: 4px; }
+footer a { color: #ccc; text-decoration: none; }
+footer a:hover { color: #fff; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 26px; }
+  .selector { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div>
+      <span class="logo">Cellab</span>
+      <span class="logo-sub">실험실 펌프·소모품 전문</span>
+    </div>
+    <a href="#contact" class="header-cta">상담 문의</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>실험실용 정량펌프·튜브·소모품, Cellab에서 한 번에</h1>
+    <p class="hero-sub">Leadfluid 정품 취급 · 수리 가능 엔지니어 운영 · 평일 1시간 응답</p>
+    
+    <div class="trust-badges">
+      <span class="badge">Leadfluid 정품 취급</span>
+      <span class="badge">설치 지원</span>
+      <span class="badge">엔지니어 직접 A/S</span>
+      <span class="badge">카탈로그에 없는 사양도 상담</span>
+    </div>
+
+    <!-- 1차 분기: 어떤 걸 찾으시나요? -->
+    <div class="intent-box">
+      <div class="intent-title">어떤 걸 찾으시나요?</div>
+      <div class="intent-sub">한 가지 선택하시면 맞춤 선택기가 열립니다.</div>
+      <div class="intent-cards">
+        <button class="intent-card" data-intent="pump">
+          <div class="intent-icon">💧</div>
+          <div class="intent-name">정량펌프</div>
+          <div class="intent-desc">연동·시린지·기어<br>전 라인업 60+ 모델</div>
+        </button>
+        <button class="intent-card" data-intent="tube">
+          <div class="intent-icon">🔗</div>
+          <div class="intent-name">튜브</div>
+          <div class="intent-desc">실리콘·PharMed·Viton<br>Chemical·S3 등 9종</div>
+        </button>
+        <button class="intent-card" data-intent="accessory">
+          <div class="intent-icon">🔩</div>
+          <div class="intent-name">피팅·기타</div>
+          <div class="intent-desc">커넥터·니들·댐퍼<br>디스펜서·풋스위치</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 펌프 선택기 (기본 숨김) -->
+    <div class="selector selector-pump" id="selectorPump" style="display:none;">
+      <div class="selector-title">💧 정량펌프 — 스펙 선택기</div>
+      <div class="selector-sub">질문에 답하시면 조건에 맞는 모델을 바로 추천드립니다. <strong>30초면 끝납니다.</strong></div>
+
+      <div class="selector-progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">1 / 4 단계</div>
+      </div>
+
+      <div class="question-block active" data-step="1">
+        <label class="question-label">1. 펌핑할 액체는?</label>
+        <div class="options-grid" data-question="fluid">
+          <button class="option-btn" data-value="aqueous">일반 수용액</button>
+          <button class="option-btn" data-value="solvent">유기용매·부식성</button>
+          <button class="option-btn" data-value="viscous">고점도 (glycerol 등)</button>
+          <button class="option-btn" data-value="food">식품·의료 (FDA)</button>
+          <button class="option-btn" data-value="bio">세포·생물학 시료</button>
+        </div>
+      </div>
+
+      <div class="question-block" data-step="2">
+        <label class="question-label">2. 필요한 유량 범위는?</label>
+        <div class="options-grid" data-question="flow">
+          <button class="option-btn" data-value="micro">1 mL/min 이하 (미세)</button>
+          <button class="option-btn" data-value="standard">1~100 mL/min (표준)</button>
+          <button class="option-btn" data-value="high">100~1000 mL/min (대용량)</button>
+          <button class="option-btn" data-value="industrial">1 L/min 이상 (산업용)</button>
+        </div>
+        <button class="back-btn" data-back-to="1">← 이전 질문</button>
+      </div>
+
+      <div class="question-block" data-step="3">
+        <label class="question-label">3. 사용 빈도는?</label>
+        <div class="options-grid" data-question="usage">
+          <button class="option-btn" data-value="occasional">간헐적 (실험 시만)</button>
+          <button class="option-btn" data-value="daily">매일 수 시간</button>
+          <button class="option-btn" data-value="continuous">24시간 연속 운전</button>
+        </div>
+        <button class="back-btn" data-back-to="2">← 이전 질문</button>
+      </div>
+
+      <div class="question-block" data-step="4">
+        <label class="question-label">4. 제어 방식은?</label>
+        <div class="options-grid" data-question="control">
+          <button class="option-btn" data-value="manual">수동 조작 OK</button>
+          <button class="option-btn" data-value="digital">디지털 정밀 제어</button>
+          <button class="option-btn" data-value="pc">PC·RS485 연동 필요</button>
+        </div>
+        <button class="back-btn" data-back-to="3">← 이전 질문</button>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" disabled>맞춤 모델 추천받기</button>
+    </div>
+
+    <!-- 튜브 선택기 (기본 숨김) -->
+    <div class="selector selector-tube" id="selectorTube" style="display:none;">
+      <div class="selector-title">🔗 튜브 — 스펙 선택기</div>
+      <div class="selector-sub">4가지만 답하시면 정확한 튜브를 추천해 드립니다. <strong>30초면 끝납니다.</strong></div>
+
+      <div class="selector-progress">
+        <div class="progress-bar"><div class="progress-fill" id="tubeProgressFill"></div></div>
+        <div class="progress-text" id="tubeProgressText">1 / 4 단계</div>
+      </div>
+
+      <div class="question-block active" data-tstep="1">
+        <label class="question-label">1. 주로 전송하는 액체는?</label>
+        <div class="options-grid" data-tquestion="fluid">
+          <button class="option-btn" data-value="water">일반 수용액·물·버퍼</button>
+          <button class="option-btn" data-value="bio">세포배양·혈액·미생물</button>
+          <button class="option-btn" data-value="solvent">유기용매·DMSO·에탄올</button>
+          <button class="option-btn" data-value="strong">강산·강염기·농축황산</button>
+          <button class="option-btn" data-value="food">식품·음료·제약용</button>
+          <button class="option-btn" data-value="unknown">잘 모르겠어요</button>
+        </div>
+      </div>
+
+      <div class="question-block" data-tstep="2">
+        <label class="question-label">2. 필요한 유량 범위는?</label>
+        <div class="options-grid" data-tquestion="flow">
+          <button class="option-btn" data-value="micro">초저유량 (1 mL/min 이하)</button>
+          <button class="option-btn" data-value="low">저유량 (1~50 mL/min)</button>
+          <button class="option-btn" data-value="standard">표준 (50~500 mL/min)</button>
+          <button class="option-btn" data-value="high">대유량 (0.5~3 L/min)</button>
+          <button class="option-btn" data-value="industrial">산업용 (3 L/min 이상)</button>
+        </div>
+        <button class="back-btn" data-tback-to="1">← 이전 질문</button>
+      </div>
+
+      <div class="question-block" data-tstep="3">
+        <label class="question-label">3. 특수 요구사항이 있으신가요?</label>
+        <div class="options-grid" data-tquestion="grade">
+          <button class="option-btn" data-value="general">일반 용도 (인증 불필요)</button>
+          <button class="option-btn" data-value="fda">FDA·의료용 (식품 접촉 허용)</button>
+          <button class="option-btn" data-value="usp">USP Class VI·제약용</button>
+          <button class="option-btn" data-value="autoclave">고온·고압 멸균 반복 필요</button>
+          <button class="option-btn" data-value="longlife">초장수명 (교체 최소화)</button>
+        </div>
+        <button class="back-btn" data-tback-to="2">← 이전 질문</button>
+      </div>
+
+      <div class="question-block" data-tstep="4">
+        <label class="question-label">4. 현재 사용 중인 펌프 또는 펌프헤드는?</label>
+        <div class="options-grid" data-tquestion="head">
+          <button class="option-btn" data-value="yz15">YZ15 / YZ15T (가장 흔함)</button>
+          <button class="option-btn" data-value="yt25">YT25 (중간 유량)</button>
+          <button class="option-btn" data-value="dmd15">DMD15 / DMD25-T (이지로드)</button>
+          <button class="option-btn" data-value="kz25">KZ25 시리즈 (고토크)</button>
+          <button class="option-btn" data-value="dt15">DT15 / DT10 (다채널)</button>
+          <button class="option-btn" data-value="unknown">모르겠어요 / 새로 살 거예요</button>
+        </div>
+        <button class="back-btn" data-tback-to="3">← 이전 질문</button>
+      </div>
+
+      <button class="submit-btn" id="tubeSubmitBtn" disabled>맞춤 튜브 추천받기</button>
+
+      <div class="tube-result" id="tubeResult" style="display:none;"></div>
+    </div>
+
+    <!-- 피팅·기타 소모품 (스켈레톤 + 카톡 유도) -->
+    <div class="selector selector-accessory" id="selectorAccessory" style="display:none;">
+      <div class="selector-title">🔩 피팅·기타 소모품 — 스펙 선택기</div>
+      <div class="selector-sub">4가지 질문으로 딱 맞는 액세서리를 추천해 드립니다.</div>
+
+      <div class="selector-progress">
+        <div class="progress-bar"><div class="progress-fill" id="accProgressFill"></div></div>
+        <div class="progress-text" id="accProgressText">1 / 4 단계</div>
+      </div>
+
+      <div class="question-block active" data-astep="1">
+        <label class="question-label">1. 어떤 종류 찾으시나요?</label>
+        <div class="options-grid" data-aquestion="kind">
+          <button class="option-btn" data-value="connector">튜브 커넥터 (Y·T·스트레이트·루어락)</button>
+          <button class="option-btn" data-value="needle">디스펜싱 니들 (ZT 시리즈)</button>
+          <button class="option-btn" data-value="damper">펄스 댐퍼 (ZN 시리즈)</button>
+          <button class="option-btn" data-value="dispenser">핸드 디스펜서·풋스위치</button>
+          <button class="option-btn" data-value="filling">필링 테이블·관련 장비</button>
+        </div>
+      </div>
+
+      <div class="question-block" data-astep="2">
+        <label class="question-label">2. 사용하시는 튜브 사이즈는?</label>
+        <div class="options-grid" data-aquestion="size">
+          <button class="option-btn" data-value="small">13#·14# (ID ≤ 2.4mm, 미세 유량)</button>
+          <button class="option-btn" data-value="medium">16#·25#·15# (ID 3~5mm, 일반)</button>
+          <button class="option-btn" data-value="large">17#·24#·35#·36# (ID 6~10mm, 대유량)</button>
+          <button class="option-btn" data-value="xlarge">73#·82# (ID 10mm 이상, 산업용)</button>
+          <button class="option-btn" data-value="unknown">모르겠어요</button>
+        </div>
+        <button class="back-btn" data-aback-to="1">← 이전 질문</button>
+      </div>
+
+      <div class="question-block" data-astep="3">
+        <label class="question-label">3. 필요한 재질·스펙은?</label>
+        <div class="options-grid" data-aquestion="material">
+          <button class="option-btn" data-value="ss316">스테인리스 316L (화학·의료·고내식)</button>
+          <button class="option-btn" data-value="ss304">스테인리스 304 (일반 용도)</button>
+          <button class="option-btn" data-value="ptfe">PTFE (강산·강염기 대응)</button>
+          <button class="option-btn" data-value="pp">PP·PVDF (저가·범용)</button>
+          <button class="option-btn" data-value="nomatter">재질 상관없음</button>
+        </div>
+        <button class="back-btn" data-aback-to="2">← 이전 질문</button>
+      </div>
+
+      <div class="question-block" data-astep="4">
+        <label class="question-label">4. 주요 용도는?</label>
+        <div class="options-grid" data-aquestion="use">
+          <button class="option-btn" data-value="general">일반 유체 전송</button>
+          <button class="option-btn" data-value="repeat">반복 분주 (자동화)</button>
+          <button class="option-btn" data-value="precision">고정밀 소량 디스펜싱</button>
+          <button class="option-btn" data-value="chemical">화학 내성 필요</button>
+          <button class="option-btn" data-value="pulse">맥동·진동 저감</button>
+        </div>
+        <button class="back-btn" data-aback-to="3">← 이전 질문</button>
+      </div>
+
+      <button class="submit-btn" id="accSubmitBtn" disabled>맞춤 피팅 추천받기</button>
+
+      <div class="tube-result" id="accResult" style="display:none;"></div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="results-title">추천 모델</div>
+      <div id="resultsList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 차별점 섹션 -->
+<section style="background: #fff;">
+  <div class="container">
+    <h2>왜 Cellab에서 사야 하나요?</h2>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <h3>수리 가능한 엔지니어가 운영</h3>
+        <p>단순 판매가 아닙니다. 직접 수리·진단 가능한 엔지니어가 운영합니다. 스펙 문의도, 트러블슈팅도 실무자 수준으로 답변드립니다.</p>
+      </div>
+      <div class="diff-card">
+        <h3>1시간 응답 보증</h3>
+        <p>평일 업무시간 내 1시간 이내 응답. 견적·기술 질문 모두 당일 처리. 대형 판매처 대비 압도적으로 빠릅니다.</p>
+      </div>
+      <div class="diff-card">
+        <h3>설치·셋업 지원 포함</h3>
+        <p>구매만으로 끝나지 않습니다. 원격 설치 지원, 필요시 방문 설치. 첫 구동까지 책임집니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 카탈로그 다운로드 섹션 -->
+<section>
+  <div class="container">
+    <div class="catalog-dl-box">
+      <div class="catalog-dl-icon">📄</div>
+      <div class="catalog-dl-content">
+        <h2>Leadfluid 2025 공식 카탈로그</h2>
+        <p>연동펌프·시린지펌프·기어펌프 전 라인업 · 펌프헤드·튜브·액세서리 전체 사양 · 40페이지 PDF</p>
+        <div class="catalog-dl-meta">
+          <span>📦 전체 라인업 60+ 모델</span>
+          <span>📏 펌프헤드·튜브 호환표</span>
+          <span>🌐 영문 공식 카탈로그</span>
+        </div>
+      </div>
+      <div class="catalog-dl-actions">
+        <a href="Leadfluid-2025-Catalog.pdf" class="cta-primary catalog-dl-btn" download>
+          PDF 다운로드 →
+        </a>
+        <a href="https://www.allforlab.com/search?k=%EC%9D%B4%EB%A8%B8%EC%A0%84%ED%8A%B8#1" class="cta-secondary" target="_blank">
+          Cellab 올포랩 상점 보기
+        </a>
+      </div>
+    </div>
+
+    <p class="catalog-note">
+      💡 주력 모델은 올포랩 Cellab 상점에서 바로 구매하실 수 있습니다. 카탈로그에 있는 특수 사양·커스텀 제품은 <a href="https://leadfluid.com" target="_blank">Leadfluid 공식 웹사이트</a>에서도 확인하실 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<!-- FAQ (구매 직결 3개만) -->
+<section style="background: #fff;">
+  <div class="container">
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-item">
+      <div class="faq-q">견적서·세금계산서 발행 가능한가요?</div>
+      <div class="faq-a">가능합니다. 카톡·이메일로 모델명과 필요 수량 알려주시면 당일 견적 발송. 공공기관·대학·기업 납품용 세금계산서 발행 가능합니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">A/S·설치는 어떻게 받나요?</div>
+      <div class="faq-a">기본 보증 1년 내 무상 A/S. 보증 기간 외라도 Cellab 구매분은 직접 수리 지원. 설치는 원격 가이드 기본, 필요시 방문 지원. 단순 문의·트러블슈팅은 언제든 무료입니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">카탈로그에 있는 다른 모델도 살 수 있나요?</div>
+      <div class="faq-a">네, Leadfluid 전 라인업 주문 가능합니다. 올포랩에 등록된 주력 모델은 클릭 한 번으로 구매하고, 특수 사양(방폭·산업용·커스텀 등)은 카톡으로 문의해 주시면 견적 보내드립니다.</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2>Cellab 올포랩 상점에서 바로 구매하세요</h2>
+    <p>Leadfluid 주력 모델 · 튜브 · 액세서리 전 라인업 등록 중</p>
+    <div class="contact-ctas">
+      <a href="https://www.allforlab.com/search?k=%EC%9D%B4%EB%A8%B8%EC%A0%84%ED%8A%B8#1" class="contact-btn contact-btn-primary" target="_blank">Cellab 올포랩 상점 →</a>
+      <a href="Leadfluid-2025-Catalog.pdf" class="contact-btn" download>카탈로그 PDF 다운로드</a>
+    </div>
+    <p class="contact-note">
+      원하는 모델이 상점에 없거나 특수 사양이 필요하신 경우에만 아래로 연락 주세요.<br>
+      <a href="http://pf.kakao.com/_GCsjX" style="color:#1a6e56;">카톡</a> · 
+      <a href="mailto:emgt.yhlee@gmail.com" style="color:#1a6e56;">emgt.yhlee@gmail.com</a> · 
+      <a href="tel:070-8983-2600" style="color:#1a6e56;">070-8983-2600</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="company-name">Cellab (셀렙)</div>
+    <div class="info-row">대표: 이영현 · 사업자등록번호: 637-05-03629</div>
+    <div class="info-row">통신판매업 신고: 제 2026-부산북구-0037 호</div>
+    <div class="info-row">주소: 부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)</div>
+    <div class="info-row">
+      이메일: <a href="mailto:emgt.yhlee@gmail.com">emgt.yhlee@gmail.com</a> · 
+      전화: <a href="tel:070-8983-2600">070-8983-2600</a>
+    </div>
+    <div class="info-row" style="margin-top: 16px; color: #777;">
+      © 2026 Cellab. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+// ========================================
+// 전역 URL 상수
+// ========================================
+const CELLAB_SELLER_URL = "https://www.allforlab.com/search?k=%EC%9D%B4%EB%A8%B8%EC%A0%84%ED%8A%B8#1"; // Cellab 올포랩 판매자 검색
+const LEADFLUID_OFFICIAL_URL = "https://leadfluid.com"; // 특수 사양·미등록 제품용
+const KAKAO_URL = "http://pf.kakao.com/_GCsjX"; // 예외 상황 전용
+
+// 올포랩 구매 링크 결정 함수
+function getPurchaseUrl(allforlabUrl) {
+  // 유효한 올포랩 URL이 있으면 해당 URL 사용
+  if (allforlabUrl && allforlabUrl.startsWith('https://www.allforlab.com/pdt/')) {
+    return { url: allforlabUrl, label: '올포랩에서 구매 →', type: 'direct' };
+  }
+  // 플레이스홀더거나 없으면 Cellab 판매자 페이지로
+  return { url: CELLAB_SELLER_URL, label: 'Cellab 올포랩 상점 →', type: 'seller' };
+}
+
+// ========================================
+// 제품 데이터 — Leadfluid 전 라인업 카탈로그로 채우기
+// ========================================
+const PRODUCTS = [
+  // ============================================
+  // S 시리즈 — Speed Variable Intelligent (주력 범용)
+  // ============================================
+  {
+    model: "BT100S",
+    series: "S 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 범용",
+    flowRange: "0.00011 ~ 750 mL/min",
+    flowMin: 0.00011,
+    flowMax: 750,
+    fluid: ["aqueous", "solvent", "bio", "viscous"],
+    usage: ["occasional", "daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem", "viton"],
+    price: "문의",
+    allforlabUrl: "https://www.allforlab.com/pdt/PDNN26020600049?keywords=",
+    specs: [
+      "최대 4채널, 0.1rpm 해상도",
+      "±0.2% 고정밀도, WiFi 옵션",
+      "RS485 + DB15 외부 제어",
+      "세포배양·발효·코팅 범용"
+    ]
+  },
+  {
+    model: "BT300S",
+    series: "S 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 범용",
+    flowRange: "0.005 ~ 1750 mL/min",
+    flowMin: 0.005,
+    flowMax: 1750,
+    fluid: ["aqueous", "solvent", "bio", "viscous"],
+    usage: ["occasional", "daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem", "viton"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT300S]",
+    specs: [
+      "중간 유량 범용 모델",
+      "DT15 펌프헤드 지원",
+      "리포석션·코팅 적합",
+      "발효·크로마토그래피 지원"
+    ]
+  },
+  {
+    model: "BT600S",
+    series: "S 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 범용 (대유량)",
+    flowRange: "0.005 ~ 3000 mL/min",
+    flowMin: 0.005,
+    flowMax: 3000,
+    fluid: ["aqueous", "solvent", "bio", "viscous"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem", "viton"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT600S]",
+    specs: [
+      "대유량 최대 3L/min",
+      "산업·파일럿 적합",
+      "연속 운전 가능",
+      "600rpm 고속"
+    ]
+  },
+  {
+    model: "BT100S-1",
+    series: "S 시리즈",
+    type: "peristaltic",
+    category: "다채널 (최대 24채널)",
+    flowRange: "0.00011 ~ 750 mL/min",
+    flowMin: 0.00011,
+    flowMax: 750,
+    fluid: ["aqueous", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT100S1]",
+    specs: [
+      "최대 24채널 동시 분주",
+      "멀티웰 필링·바이오 반응기",
+      "DT10-88 전용 헤드 지원",
+      "대형 파워 5.3kg"
+    ]
+  },
+
+  // ============================================
+  // S 시리즈 기본형 — Speed Variable
+  // ============================================
+  {
+    model: "BT101S",
+    series: "S 시리즈 기본형",
+    type: "peristaltic",
+    category: "기본 속도가변",
+    flowRange: "0.00011 ~ 750 mL/min",
+    flowMin: 0.00011,
+    flowMax: 750,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["occasional", "daily"],
+    control: ["digital"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT101S]",
+    specs: [
+      "가격 합리적 기본 모델",
+      "박테리아·세포배양용",
+      "퀀티테이티브 전송",
+      "RS485 통신"
+    ]
+  },
+  {
+    model: "BT301S",
+    series: "S 시리즈 기본형",
+    type: "peristaltic",
+    category: "기본 속도가변",
+    flowRange: "0.005 ~ 1750 mL/min",
+    flowMin: 0.005,
+    flowMax: 1750,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["occasional", "daily"],
+    control: ["digital"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT301S]",
+    specs: [
+      "중간 유량 기본형",
+      "합성반응·액체 공급",
+      "TFF 한외여과",
+      "350rpm 구동"
+    ]
+  },
+  {
+    model: "BT601S",
+    series: "S 시리즈 기본형",
+    type: "peristaltic",
+    category: "기본 속도가변 (대유량)",
+    flowRange: "0.005 ~ 3000 mL/min",
+    flowMin: 0.005,
+    flowMax: 3000,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT601S]",
+    specs: [
+      "대유량 기본형",
+      "600rpm 고속 운전",
+      "파일럿 규모 적합",
+      "합리적 가격대"
+    ]
+  },
+
+  // ============================================
+  // L 시리즈 — Intelligent Flow (정밀 유량 제어)
+  // ============================================
+  {
+    model: "BT100L",
+    series: "L 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 플로우",
+    flowRange: "0.00011 ~ 750 mL/min",
+    flowMin: 0.00011,
+    flowMax: 750,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT100L]",
+    specs: [
+      "지연 시작·정지 타이머",
+      "분주 횟수·간격 프로그래밍",
+      "코팅·과립화 전용",
+      "파이버글라스 코팅 적합"
+    ]
+  },
+  {
+    model: "BT300L",
+    series: "L 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 플로우",
+    flowRange: "0.005 ~ 1750 mL/min",
+    flowMin: 0.005,
+    flowMax: 1750,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT300L]",
+    specs: [
+      "중간 유량 정밀 플로우",
+      "연속 분주 자동화",
+      "DT15 펌프헤드 지원",
+      "코팅·마감재 공정"
+    ]
+  },
+  {
+    model: "BT600L",
+    series: "L 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 플로우 (대유량)",
+    flowRange: "0.005 ~ 3000 mL/min",
+    flowMin: 0.005,
+    flowMax: 3000,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT600L]",
+    specs: [
+      "대유량 정밀 플로우",
+      "장시간 자동 운전",
+      "산업용 프로덕션 라인",
+      "연속·반복 배치"
+    ]
+  },
+
+  // ============================================
+  // F 시리즈 — Intelligent Dispensing (정밀 분주)
+  // ============================================
+  {
+    model: "BT100F",
+    series: "F 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 분주",
+    flowRange: "0.00016 ~ 750 mL/min",
+    flowMin: 0.00016,
+    flowMax: 750,
+    fluid: ["aqueous", "bio"],
+    usage: ["occasional", "daily"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT100F]",
+    specs: [
+      "50μL ~ 9999L 분주",
+      "4가지 모드 (플로우·볼륨·타임·카피)",
+      "세포배양·시약분주",
+      "±1% 반복성 (5mL 이상)"
+    ]
+  },
+  {
+    model: "BT300F",
+    series: "F 시리즈",
+    type: "peristaltic",
+    category: "인텔리전트 분주",
+    flowRange: "0.005 ~ 1750 mL/min",
+    flowMin: 0.005,
+    flowMax: 1750,
+    fluid: ["aqueous", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT300F]",
+    specs: [
+      "중간 유량 분주",
+      "파라미터 5그룹 저장",
+      "DT15 펌프헤드 호환",
+      "필링 라인 구성 가능"
+    ]
+  },
+  {
+    model: "BT100F-1",
+    series: "F 시리즈",
+    type: "peristaltic",
+    category: "다채널 분주 (최대 24채널)",
+    flowRange: "0.00011 ~ 1650 mL/min",
+    flowMin: 0.00011,
+    flowMax: 1650,
+    fluid: ["aqueous", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT100F1]",
+    specs: [
+      "24채널 동시 분주",
+      "마이크로플루이딕 최적",
+      "시약·배지 대량 분주",
+      "KZ25 헤드 지원"
+    ]
+  },
+
+  // ============================================
+  // WT 시리즈 — Large Torque (고토크)
+  // ============================================
+  {
+    model: "WT300S",
+    series: "WT 시리즈",
+    type: "peristaltic",
+    category: "고토크 범용",
+    flowRange: "0.004 ~ 4200 mL/min",
+    flowMin: 0.004,
+    flowMax: 4200,
+    fluid: ["aqueous", "viscous", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_WT300S]",
+    specs: [
+      "대유량 고토크 4.2L/min",
+      "TFF/DFF 한외여과 특화",
+      "멀티채널 전송",
+      "KZ25 펌프헤드 지원"
+    ]
+  },
+  {
+    model: "WT600S",
+    series: "WT 시리즈",
+    type: "peristaltic",
+    category: "고토크 범용 (최대유량)",
+    flowRange: "0.005 ~ 6600 mL/min",
+    flowMin: 0.005,
+    flowMax: 6600,
+    fluid: ["aqueous", "viscous", "bio"],
+    usage: ["continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_WT600S]",
+    specs: [
+      "최대 6.6L/min 대유량",
+      "플루이다이즈드 베드 적합",
+      "200W 파워 고토크",
+      "연속 산업 운전"
+    ]
+  },
+
+  // ============================================
+  // 특수 모델
+  // ============================================
+  {
+    model: "BT600P",
+    series: "특수 프로그래밍",
+    type: "peristaltic",
+    category: "프로그래밍 (그래디언트)",
+    flowRange: "0.006 ~ 2900 mL/min",
+    flowMin: 0.006,
+    flowMax: 2900,
+    fluid: ["aqueous", "solvent", "bio"],
+    usage: ["daily"],
+    control: ["digital", "pc"],
+    tubeCompat: ["silicone", "pharmed", "tygon-chem"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BT600P]",
+    specs: [
+      "터치스크린 프로그래밍",
+      "그래디언트 실험 특화",
+      "분주볼륨 0.01μL~1000L",
+      "제약·분석 실험실"
+    ]
+  },
+  {
+    model: "BQ80S",
+    series: "소형",
+    type: "peristaltic",
+    category: "소형 범용 (입문기)",
+    flowRange: "0.0035 ~ 34 mL/min",
+    flowMin: 0.0035,
+    flowMax: 34,
+    fluid: ["aqueous", "bio"],
+    usage: ["occasional", "daily"],
+    control: ["digital"],
+    tubeCompat: ["silicone"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_BQ80S]",
+    specs: [
+      "콤팩트 1kg 초소형",
+      "소유량 분주·중화 반응",
+      "입문용·교육용 적합",
+      "가격 부담 최소"
+    ]
+  },
+
+  // ============================================
+  // Syringe Pump (시린지 펌프)
+  // ============================================
+  {
+    model: "TYD01-01",
+    series: "TYD 시리즈",
+    type: "syringe",
+    category: "실험실 시린지 펌프 (1채널)",
+    flowRange: "0.184 nL/min ~ 83.3 mL/min",
+    flowMin: 0.0000002,
+    flowMax: 83.3,
+    fluid: ["aqueous", "bio", "solvent"],
+    usage: ["occasional", "daily"],
+    control: ["digital", "pc"],
+    tubeCompat: ["none-syringe"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_TYD0101]",
+    specs: [
+      "10μL~60mL 시린지 호환",
+      "5종 작동 모드",
+      "마이크로스피어·전기방사",
+      "수평·수직 화면 전환"
+    ]
+  },
+  {
+    model: "TYD02-04",
+    series: "TYD 시리즈",
+    type: "syringe",
+    category: "실험실 시린지 펌프 (4채널)",
+    flowRange: "0.184 nL/min ~ 24.5 mL/min",
+    flowMin: 0.0000002,
+    flowMax: 24.5,
+    fluid: ["aqueous", "bio"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["none-syringe"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_TYD0204]",
+    specs: [
+      "4채널 동시 주입",
+      "10μL~10mL 시린지",
+      "동물실험·질량분석기",
+      "독립 파라미터 제어"
+    ]
+  },
+  {
+    model: "TYS01-02",
+    series: "TYS 시리즈",
+    type: "syringe",
+    category: "듀얼 레이트 시린지 펌프",
+    flowRange: "8 pL/min ~ 150 mL/min",
+    flowMin: 0.000000008,
+    flowMax: 150,
+    fluid: ["aqueous", "bio", "solvent"],
+    usage: ["daily", "continuous"],
+    control: ["digital", "pc"],
+    tubeCompat: ["none-syringe"],
+    price: "문의",
+    allforlabUrl: "[ALLFORLAB_URL_TYS0102]",
+    specs: [
+      "2채널 독립·동기 가능",
+      "0.5μL~100mL 광범위",
+      "마이크로플루이딕 칩",
+      "오르가노이드 배양"
+    ]
+  }
+];
+
+// ========================================
+// 튜브 호환성 데이터 (Leadfluid 2025 카탈로그 기반)
+// ========================================
+const TUBES = {
+  "silicone": {
+    name: "Lead Fluid 실리콘 튜브",
+    description: "백금 가황 공정, 고청정 실리콘. 범용 액체 전송용.",
+    fluidCompat: ["중성 액체", "약산·약염기", "저농도 용매", "식음료"],
+    lifespan: "단기~중기",
+    priceLevel: "저렴",
+    keyFeature: "무독성·무냄새·투명",
+    notFor: "강산·강염기·유기용매"
+  },
+  "pharmed": {
+    name: "Tygon® PharMed BPT",
+    description: "실리콘 대비 30배 긴 수명. 고온·고압 멸균 가능.",
+    fluidCompat: ["세포배양", "발효", "크로마토그래피", "감압·생체 시료"],
+    lifespan: "초장기 (실리콘의 30배)",
+    priceLevel: "고가",
+    keyFeature: "USP Class VI, FDA, ISO 10993 인증",
+    notFor: "강산·강염기"
+  },
+  "tygon-chem": {
+    name: "Tygon® Chemical",
+    description: "케미컬 내성 특화. 소독제·세제 전송 최적.",
+    fluidCompat: ["소독제", "세제", "중강도 화학물질"],
+    lifespan: "장기 (화학 환경에서)",
+    priceLevel: "중간~고가",
+    keyFeature: "-60°C~74°C 광범위 온도",
+    notFor: "고온 환경"
+  },
+  "viton": {
+    name: "Versilon™ F-5500-A (Viton®)",
+    description: "강산·강염기·유기용매 전용. 최대 204°C.",
+    fluidCompat: ["드라이클리닝액", "용매 회수", "고온 화학물질", "오존 환경"],
+    lifespan: "장기",
+    priceLevel: "고가",
+    keyFeature: "불소 고무, 내후성·차광",
+    notFor: "일반 수용액 (과잉 스펙)"
+  },
+  "none-syringe": {
+    name: "시린지 펌프 전용 (튜브 불필요)",
+    description: "시린지 내부가 직접 액체를 담음. 별도 튜빙 없음.",
+    fluidCompat: ["시린지로 담을 수 있는 모든 액체"],
+    lifespan: "시린지 교체 기준",
+    priceLevel: "시린지 가격 별도",
+    keyFeature: "0.5μL~140mL 호환",
+    notFor: null
+  }
+};
+
+// ========================================
+// 콘텐츠 데이터
+// ========================================
+const CONTENTS = {
+  'guide-checklist': {
+    type: 'guide',
+    tagLabel: '구매 가이드',
+    title: '정량펌프 살 때 반드시 체크할 7가지',
+    summary: '유량 말고 진짜 중요한 것들. 설치 후 "아 이거 몰랐네" 하는 리스트.',
+    readTime: '5분',
+    body: `
+      <p>딜러·현장 엔지니어로 다니면서 본 가장 흔한 실수들을 정리합니다. 유량 범위만 보고 사시는 분이 많은데, 정작 문제는 다른 데서 터집니다.</p>
+
+      <h4>1. 튜브 재질이 펌핑할 용액과 호환되는가</h4>
+      <p>가장 많이 놓치는 부분입니다. 실리콘 튜브는 저렴하고 범용적이지만 유기용매·산성 용액에서 부풀어 오르다가 터집니다. 바이톤(Viton)은 유기용매 대응, PharMed BPT는 장시간 연속 운전 대응, Tygon은 식품·의료용입니다.</p>
+
+      <h4>2. 필요 유량의 1.5~2배 범위를 확보</h4>
+      <p>딱 맞는 유량 모델을 사면 나중에 업그레이드 불가합니다. 최소 유량·최대 유량 양쪽에 여유를 두고 선택하세요.</p>
+
+      <h4>3. 설치 공간·전원 환경 사전 체크</h4>
+      <p>대형 펌프는 예상보다 깊이가 깁니다. 후면 배관·전원 커넥터까지 감안한 설치 공간 확보 필요.</p>
+
+      <h4>4. 제어 방식 (수동 vs 디지털 vs PC 연동)</h4>
+      <p>PC나 다른 장비와 연동할 계획이면 RS485, RS232, 4~20mA 중 어떤 통신이 필요한지 미리 결정. 나중에 모듈 추가는 어렵거나 불가능합니다.</p>
+
+      <h4>5. 맥동 문제 대응</h4>
+      <p>연동펌프 특성상 맥동(pulsation)이 있습니다. 분석 장비나 정밀 분주가 필요하면 맥동 댐퍼, 다중 롤러 헤드, 2중 롤러 설계를 고려하세요.</p>
+
+      <h4>6. 소모품 수명·가격·재고</h4>
+      <p>튜브는 소모품입니다. 한국 내 수급 가능한지, 가격은 얼마인지 미리 확인. 특수 재질은 해외 발주로 2~4주 걸릴 수 있습니다.</p>
+
+      <h4>7. A/S 응답 속도와 수리 가능 지역</h4>
+      <p>펌프는 결국 고장납니다. A/S 기간, 지역 커버리지, 부품 공급 기간 확인. 제조사 직접 A/S는 느릴 수 있으니 판매처 A/S 체계도 확인.</p>
+
+      <div class="callout">
+        실험 조건 알려주시면 이 7가지 체크리스트 기준으로 맞춤 모델 추천해 드립니다. 카톡이나 이메일로 문의하세요.
+      </div>
+    `
+  },
+  'guide-compare-bt': {
+    type: 'guide',
+    tagLabel: '모델 비교',
+    title: 'BT100 vs BT300 vs YZ — 한 장 비교',
+    summary: '실험실 규모와 유량별 추천 조합. 업그레이드 경로까지.',
+    readTime: '3분',
+    body: `
+      <p>Leadfluid 라인업이 많아서 선택이 어렵습니다. 가장 많이 팔리는 세 시리즈를 실무 관점에서 비교합니다.</p>
+      <h4>BT100 시리즈 — 기본 중의 기본</h4>
+      <p>유량 0.006~380 mL/min. 디지털 제어 기본. 대학 실험실 80%가 이 범위에 해당합니다. 예산 부담 적고, 튜브 호환성 좋고, 수리·부품 수급 안정적.</p>
+      <h4>BT300 시리즈 — 넓은 유량이 필요할 때</h4>
+      <p>유량 0.006~2900 mL/min. BT100과 달리 펌프헤드 크기·모터 출력 큰 편. 산업용 연속 운전, 대용량 배지 순환 등에 사용.</p>
+      <h4>YZ 시리즈 — 소형·경제형</h4>
+      <p>콤팩트한 크기. 공간 제약 있는 랩, 여러 개 병렬 설치 필요할 때. 제어 기능은 BT 시리즈 대비 단순한 편.</p>
+      <h4>업그레이드 경로</h4>
+      <p>처음부터 크게 사는 것보다, 연구 확장성 고려한 중간급 추천. BT100으로 시작 → 필요시 BT300 추가 구매가 실패 확률 낮습니다.</p>
+      <div class="callout">
+        라인업별 실제 스펙 시트는 카톡으로 요청하세요. 실험 조건 기반으로 비교 시뮬레이션 보내드립니다.
+      </div>
+    `
+  },
+  'guide-mistakes': {
+    type: 'guide',
+    tagLabel: '실패 사례',
+    title: '정량펌프 선택 실패 사례 5가지',
+    summary: '"이거 모르고 샀다가 다시 산 케이스". 현장에서 본 실제 사례.',
+    readTime: '4분',
+    body: `
+      <p>딜러·엔지니어로 다니면서 본 가장 아쉬운 케이스들입니다. 몇 백만원짜리 장비 두 번 사는 건 흔한 일이에요.</p>
+      <h4>사례 1. "유량만 보고 샀는데 튜브가 다 녹았어요"</h4>
+      <p>화학과에서 BT100 구매 후 DMSO 펌핑 시도. 실리콘 튜브 기본 장착이라 며칠 만에 부풀어 터짐. 결국 바이톤 튜브 추가 구매 + 기존 튜브 폐기.</p>
+      <p><strong>교훈:</strong> 용액 호환성부터 확인.</p>
+      <h4>사례 2. "유량 너무 딱 맞게 샀다가 새 실험 못 해요"</h4>
+      <p>박사과정이 특정 실험 유량(50 mL/min)에 맞춰 미니 모델 구매. 졸업 후 후배가 같은 장비로 다른 실험 시도 → 유량 범위 부족.</p>
+      <p><strong>교훈:</strong> 최소 1.5배 여유.</p>
+      <h4>사례 3. "PC 연동 생각도 못 했어요"</h4>
+      <p>기본 모델 구매 후 1년 뒤 데이터 수집 자동화 프로젝트 시작. RS485 통신 모듈 없어서 결국 상위 모델로 교체.</p>
+      <p><strong>교훈:</strong> 2~3년 후 활용 시나리오 미리 고려.</p>
+      <h4>사례 4. "설치 공간 안 맞아서 엉성하게 설치"</h4>
+      <p>실험대 위 설치하려 했는데 펌프 깊이가 랙 깊이보다 큼. 결국 옆으로 뉘어 설치 → 유체 흐름 문제, 소음 증가.</p>
+      <p><strong>교훈:</strong> 실측 치수 확인.</p>
+      <h4>사례 5. "A/S 받으려니 부품 수급 2개월"</h4>
+      <p>단종 직전 모델 저렴하게 구매. 1년 후 펌프 헤드 고장 → 부품 재고 없어 해외 발주. 2개월 대기.</p>
+      <p><strong>교훈:</strong> 현행 라인업 중에서 선택.</p>
+      <div class="callout">
+        이런 실패는 주문 전 30분 상담만으로 대부분 예방됩니다. 모델 고민 중이면 지금 카톡 주세요.
+      </div>
+    `
+  },
+  'case-cell-culture': {
+    type: 'case',
+    tagLabel: '응용 사례',
+    title: '세포 배양에 정량펌프 쓰기 — BT100 셋업',
+    summary: 'Perfusion 배양·배지 순환에 필요한 구성과 주의사항.',
+    readTime: '4분',
+    body: `
+      <p>세포 배양 실험에서 펌프는 단순 주입이 아니라 살아있는 세포를 다룹니다. 여기서 실수하면 실험 몇 달이 날아갑니다.</p>
+      <h4>필수 구성</h4>
+      <ul>
+        <li>펌프 본체: BT100-2J (유량 범위 적당)</li>
+        <li>튜브: PharMed BPT (생체 적합, 장수명)</li>
+        <li>커넥터: Luer lock (멸균·교체 용이)</li>
+        <li>배지 저장소: 별도 멸균 가능한 용기</li>
+      </ul>
+      <h4>설정 권장값</h4>
+      <p>Perfusion 배양 기준 1~5 mL/min 연속 운전. 배지 교환 주기에 따라 유량 조절. PharMed BPT 기준 최소 4주 교체 권장.</p>
+      <h4>주의사항</h4>
+      <ul>
+        <li>멸균: 튜브 전체 오토클레이브 가능 여부 확인</li>
+        <li>오염: 튜브 연결부 이중 멸균</li>
+        <li>맥동: 세포에 스트레스 줄 수 있음 → 댐퍼 고려</li>
+      </ul>
+      <div class="callout">
+        세포주·실험 규모 알려주시면 구체 구성안 설계해 드립니다.
+      </div>
+    `
+  },
+  'case-hplc': {
+    type: 'case',
+    tagLabel: '응용 사례',
+    title: 'HPLC 전처리 자동화 — 정량 분주 시스템',
+    summary: 'HPLC 샘플 전처리용 정밀 분주 구성.',
+    readTime: '3분',
+    body: `
+      <p>HPLC 샘플 전처리는 재현성이 생명. 수동 파이펫팅은 오차 변수 많습니다. 정량펌프 + 다중 채널로 해결.</p>
+      <h4>구성</h4>
+      <ul>
+        <li>펌프: BT100 또는 고정밀 시린지펌프 (용도별)</li>
+        <li>튜브: PEEK 또는 PTFE (비흡착)</li>
+        <li>분배 밸브: 다중 채널 셀렉션</li>
+      </ul>
+      <h4>권장 유량·정밀도</h4>
+      <p>HPLC 주입용 5~50 μL/min 범위. 정밀도 0.5% 이내 요구.</p>
+      <div class="callout">
+        HPLC 연동 사양 알려주시면 펌프·시린지펌프 중 뭐가 맞는지 상담해 드립니다.
+      </div>
+    `
+  },
+  'trouble-flow': {
+    type: 'trouble',
+    tagLabel: '트러블슈팅',
+    title: '유량이 설정값과 달라요 — 5가지 원인',
+    summary: '표시 유량과 실제 유량이 다를 때 확인 순서.',
+    readTime: '3분',
+    body: `
+      <p>A/S 문의에서 가장 많은 증상입니다. 원인 5가지를 순서대로 확인하세요.</p>
+      <h4>1. 튜브 수명 종료</h4>
+      <p>튜브는 소모품. 반복 압축으로 탄성 감소 → 유량 저하.</p>
+      <h4>2. 튜브 사이즈 부적합</h4>
+      <p>펌프헤드 규격과 튜브 내경이 안 맞으면 누설·압축 불량 발생.</p>
+      <h4>3. 롤러 압력 부적절</h4>
+      <p>롤러 조임이 느슨하거나 과도하면 유량 오차.</p>
+      <h4>4. 토출 압력 과다</h4>
+      <p>배출단이 좁거나 막히면 역압으로 유량 감소.</p>
+      <h4>5. 펌프 모터 이상</h4>
+      <p>위 4가지 다 정상인데 안 맞으면 모터·제어부 이상 가능성.</p>
+      <div class="callout">
+        증상 알려주시면 원격 진단해 드립니다. 많은 경우 교체 없이 해결됩니다.
+      </div>
+    `
+  },
+  'trouble-tube': {
+    type: 'trouble',
+    tagLabel: '트러블슈팅',
+    title: '튜브가 자꾸 터져요 — 재질 선택 가이드',
+    summary: '용액별 호환 튜브 재질 정리.',
+    readTime: '3분',
+    body: `
+      <p>튜브 터짐은 재질 미스매치가 90%. 용액별 권장 재질 정리합니다.</p>
+      <h4>실리콘 (기본)</h4>
+      <p>수용액·약한 산·약한 알칼리 OK. 유기용매·농축 산 ✗.</p>
+      <h4>바이톤 (Viton)</h4>
+      <p>유기용매 대부분 OK (DMSO, 톨루엔, 헥산 등). 고온 안정. 케톤류에는 취약.</p>
+      <h4>PharMed BPT</h4>
+      <p>생체 적합. 장시간 연속 운전(500~1000시간).</p>
+      <h4>Tygon</h4>
+      <p>식품·의료용 인증 등급 있음.</p>
+      <h4>Norprene</h4>
+      <p>고압·고온 내성. 산업 공정용.</p>
+      <div class="callout">
+        용매 이름 알려주시면 구체 호환성 확인해 드립니다.
+      </div>
+    `
+  }
+};
+
+// ========================================
+// 1차 분기: 의도 선택 (펌프/튜브/피팅)
+// ========================================
+document.querySelectorAll('.intent-card').forEach(card => {
+  card.addEventListener('click', () => {
+    // 이전 선택 해제
+    document.querySelectorAll('.intent-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+
+    const intent = card.dataset.intent;
+
+    // 모든 선택기 숨기기
+    document.getElementById('selectorPump').style.display = 'none';
+    document.getElementById('selectorTube').style.display = 'none';
+    document.getElementById('selectorAccessory').style.display = 'none';
+    document.getElementById('results').classList.remove('show');
+
+    // 선택한 의도에 맞는 선택기 표시
+    const target = document.getElementById('selector' + intent.charAt(0).toUpperCase() + intent.slice(1));
+    if (target) {
+      target.style.display = 'block';
+      // 부드럽게 스크롤
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  });
+});
+
+// ========================================
+// 튜브 선택기 4단계 로직
+// ========================================
+const TUBE_CANDIDATES = [
+  {
+    id: 'silicone',
+    name: 'Lead Fluid 실리콘 튜브',
+    fluidScore: { water: 10, bio: 5, food: 3, solvent: -10, strong: -20 },
+    gradeScore: { general: 10, fda: 0, usp: -5, autoclave: 5, longlife: -5 },
+    flowScore: { micro: 8, low: 10, standard: 10, high: 8, industrial: 5 },
+    why: '일반 수용액·물·버퍼에 가성비 최고. 백금 가황 공정, 무독성·고청정.',
+    keyFeature: '범용 · 저렴 · 무독성'
+  },
+  {
+    id: 'pharmed',
+    name: 'Tygon® PharMed BPT',
+    fluidScore: { water: 6, bio: 10, food: 8, solvent: 3, strong: -5 },
+    gradeScore: { general: 3, fda: 8, usp: 10, autoclave: 10, longlife: 10 },
+    flowScore: { micro: 8, low: 9, standard: 9, high: 7, industrial: 5 },
+    why: '세포배양·발효·제약용 최적. 실리콘 대비 수명 30배, 고온·고압 멸균 반복 가능.',
+    keyFeature: '장수명 · USP Class VI · FDA'
+  },
+  {
+    id: 'tygon-chem',
+    name: 'Tygon® Chemical',
+    fluidScore: { water: 3, bio: 2, food: 0, solvent: 10, strong: 5 },
+    gradeScore: { general: 5, fda: 5, usp: 0, autoclave: -3, longlife: 7 },
+    flowScore: { micro: 7, low: 9, standard: 10, high: 7, industrial: 5 },
+    why: '유기용매(DMSO·에탄올·아세톤 등)에 안전. 실리콘은 부풀어 터질 수 있으니 절대 금지.',
+    keyFeature: '내화학 · -60~74°C · 장수명'
+  },
+  {
+    id: 'viton',
+    name: 'Versilon™ F-5500-A (Viton®)',
+    fluidScore: { water: 0, bio: -5, food: 0, solvent: 8, strong: 10 },
+    gradeScore: { general: 5, fda: 0, usp: 0, autoclave: 8, longlife: 8 },
+    flowScore: { micro: 5, low: 7, standard: 9, high: 8, industrial: 8 },
+    why: '강산·강염기·농축황산에 유일한 안전 옵션. 최대 204°C, 98% 황산까지 대응.',
+    keyFeature: '극한 화학·고온 · 불소고무'
+  },
+  {
+    id: 'a-60-f',
+    name: 'Tygon® A-60-F',
+    fluidScore: { water: 5, bio: 5, food: 10, solvent: 3, strong: -5 },
+    gradeScore: { general: 3, fda: 10, usp: 5, autoclave: 10, longlife: 8 },
+    flowScore: { micro: 6, low: 9, standard: 10, high: 8, industrial: 6 },
+    why: '식품·음료·제약용 전용. FDA 승인·가소제 없음·증기 멸균 반복 가능.',
+    keyFeature: '식품 등급 · -59~135°C'
+  }
+];
+
+// 펌프헤드별 선호 튜브 (보너스 점수)
+const HEAD_TUBE_BONUS = {
+  yz15: { silicone: 3, pharmed: 3, 'tygon-chem': 3, 'a-60-f': 3 },
+  yt25: { silicone: 3, pharmed: 3, 'tygon-chem': 3, viton: 2 },
+  dmd15: { silicone: 3, 'tygon-chem': 2 },
+  kz25: { silicone: 3, 'tygon-chem': 3, viton: 3, pharmed: 2 },
+  dt15: { silicone: 3, pharmed: 3 },
+  unknown: {}
+};
+
+const tubeSelections = { fluid: null, flow: null, grade: null, head: null };
+const tubeQOrder = ['fluid', 'flow', 'grade', 'head'];
+
+function showTubeStep(stepNum) {
+  document.querySelectorAll('#selectorTube .question-block').forEach(block => {
+    const blockStep = parseInt(block.dataset.tstep);
+    block.classList.remove('active', 'completed');
+    if (blockStep < stepNum) block.classList.add('completed');
+    else if (blockStep === stepNum) block.classList.add('active');
+  });
+  const progress = (Math.min(stepNum, 4) / 4) * 100;
+  document.getElementById('tubeProgressFill').style.width = progress + '%';
+  document.getElementById('tubeProgressText').textContent =
+    stepNum > 4 ? '✓ 모든 질문 완료' : `${stepNum} / 4 단계`;
+  if (stepNum > 4) {
+    document.getElementById('tubeSubmitBtn').disabled = false;
+  }
+}
+
+document.querySelectorAll('#selectorTube .options-grid').forEach(grid => {
+  const question = grid.dataset.tquestion;
+  grid.addEventListener('click', e => {
+    if (e.target.classList.contains('option-btn')) {
+      grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      e.target.classList.add('selected');
+      tubeSelections[question] = e.target.dataset.value;
+
+      const qIndex = tubeQOrder.indexOf(question);
+      if (qIndex < tubeQOrder.length - 1) {
+        setTimeout(() => {
+          showTubeStep(qIndex + 2);
+          const next = document.querySelector(`#selectorTube .question-block[data-tstep="${qIndex + 2}"]`);
+          if (next) next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      } else {
+        setTimeout(() => {
+          showTubeStep(5);
+          document.getElementById('tubeSubmitBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      }
+    }
+  });
+});
+
+document.querySelectorAll('#selectorTube .back-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const backTo = parseInt(btn.dataset.tbackTo);
+    showTubeStep(backTo);
+    document.querySelector(`#selectorTube .question-block[data-tstep="${backTo}"]`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+
+function findBestTube(sel) {
+  // "잘 모르겠어요" 선택 시 범용 실리콘 추천
+  if (sel.fluid === 'unknown') {
+    return [{ ...TUBE_CANDIDATES[0], score: 99, isGuess: true }];
+  }
+  return TUBE_CANDIDATES.map(t => {
+    let score = 0;
+    score += (t.fluidScore[sel.fluid] || 0) * 2; // 액체는 가중치 높음
+    score += (t.gradeScore[sel.grade] || 0);
+    score += (t.flowScore[sel.flow] || 0);
+    score += (HEAD_TUBE_BONUS[sel.head]?.[t.id] || 0);
+    return { ...t, score };
+  })
+  .filter(t => t.score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3);
+}
+
+document.getElementById('tubeSubmitBtn').addEventListener('click', () => {
+  const results = findBestTube(tubeSelections);
+  const resultDiv = document.getElementById('tubeResult');
+
+  if (results.length === 0) {
+    resultDiv.innerHTML = `
+      <div class="tube-result-name">특수 사양 요청이시네요</div>
+      <div class="tube-result-why">입력하신 조건에 정확히 맞는 표준 튜브가 없습니다. Leadfluid 공식 웹사이트에서 전체 튜브 라인업을 확인하실 수 있습니다.</div>
+      <div class="tube-result-ctas">
+        <a href="${LEADFLUID_OFFICIAL_URL}" class="cta-primary" target="_blank">Leadfluid 공식 웹사이트 →</a>
+        <a href="${CELLAB_SELLER_URL}" class="cta-secondary" target="_blank">Cellab 상점에서 검색</a>
+      </div>
+    `;
+  } else {
+    const top = results[0];
+    const alts = results.slice(1, 3);
+    resultDiv.innerHTML = `
+      <div class="tube-result-name">✓ 추천: ${top.name}</div>
+      <div class="tube-result-why">${top.why}</div>
+      <div style="font-size:12.5px; color:#1a6e56; margin-bottom:10px;">
+        <strong>핵심 특징:</strong> ${top.keyFeature}
+      </div>
+      ${alts.length > 0 ? `
+        <div class="tube-result-alt">
+          <strong>대안:</strong> ${alts.map(a => a.name).join(' · ')}
+        </div>
+      ` : ''}
+      <div class="tube-result-ctas">
+        <a href="${CELLAB_SELLER_URL}" class="cta-primary" target="_blank">Cellab 상점에서 구매 →</a>
+        <a href="Leadfluid-2025-Catalog.pdf#page=25" class="cta-secondary" target="_blank">튜브 규격 자세히 보기</a>
+      </div>
+    `;
+  }
+  resultDiv.style.display = 'block';
+  setTimeout(() => resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+});
+
+showTubeStep(1);
+
+// ========================================
+// 피팅 선택기 4단계 로직
+// ========================================
+const ACC_RECOMMEND = {
+  // kind × size × material × use → 추천 제품
+  // 단순화: 종류 기반 매핑
+  connector: {
+    general: 'Straight / Y / T 커넥터',
+    desc: '1/4-28 스레드 또는 루어락 방식. PP·PVDF·316L 재질 선택 가능.',
+    catalogPage: 24
+  },
+  needle: {
+    general: 'ZT 시리즈 디스펜싱 니들',
+    desc: 'ZT-1 (0.7×0.9) ~ ZT-16 (13×16). 304·316L 스테인리스 재질.',
+    catalogPage: 24
+  },
+  damper: {
+    general: 'ZN 시리즈 펄스 댐퍼',
+    desc: 'ZN60 (소형) · ZN90 (중형, 0.3MPa) · ZN100 (대형, 0.23MPa).',
+    catalogPage: 23
+  },
+  dispenser: {
+    general: 'SF01 핸드 디스펜서 + JT101 풋 스위치',
+    desc: 'Lead Fluid 전 제품 호환. IP54 방수·방진.',
+    catalogPage: 24
+  },
+  filling: {
+    general: 'Filling Table 소형 분주대',
+    desc: '1~4채널, 35mm 간격, SS304 재질. 수동·반자동 필링에 적합.',
+    catalogPage: 23
+  }
+};
+
+const accSelections = { kind: null, size: null, material: null, use: null };
+const accQOrder = ['kind', 'size', 'material', 'use'];
+
+function showAccStep(stepNum) {
+  document.querySelectorAll('#selectorAccessory .question-block').forEach(block => {
+    const blockStep = parseInt(block.dataset.astep);
+    block.classList.remove('active', 'completed');
+    if (blockStep < stepNum) block.classList.add('completed');
+    else if (blockStep === stepNum) block.classList.add('active');
+  });
+  const progress = (Math.min(stepNum, 4) / 4) * 100;
+  document.getElementById('accProgressFill').style.width = progress + '%';
+  document.getElementById('accProgressText').textContent =
+    stepNum > 4 ? '✓ 모든 질문 완료' : `${stepNum} / 4 단계`;
+  if (stepNum > 4) {
+    document.getElementById('accSubmitBtn').disabled = false;
+  }
+}
+
+document.querySelectorAll('#selectorAccessory .options-grid').forEach(grid => {
+  const question = grid.dataset.aquestion;
+  grid.addEventListener('click', e => {
+    if (e.target.classList.contains('option-btn')) {
+      grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      e.target.classList.add('selected');
+      accSelections[question] = e.target.dataset.value;
+
+      const qIndex = accQOrder.indexOf(question);
+      if (qIndex < accQOrder.length - 1) {
+        setTimeout(() => {
+          showAccStep(qIndex + 2);
+          const next = document.querySelector(`#selectorAccessory .question-block[data-astep="${qIndex + 2}"]`);
+          if (next) next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      } else {
+        setTimeout(() => {
+          showAccStep(5);
+          document.getElementById('accSubmitBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      }
+    }
+  });
+});
+
+document.querySelectorAll('#selectorAccessory .back-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const backTo = parseInt(btn.dataset.abackTo);
+    showAccStep(backTo);
+    document.querySelector(`#selectorAccessory .question-block[data-astep="${backTo}"]`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+
+document.getElementById('accSubmitBtn').addEventListener('click', () => {
+  const rec = ACC_RECOMMEND[accSelections.kind];
+  const resultDiv = document.getElementById('accResult');
+
+  // 선택 요약
+  const sizeLabels = {
+    small: '13#·14# (소경)', medium: '16#·25#·15# (중경)',
+    large: '17#·24#·35#·36# (대경)', xlarge: '73#·82# (초대경)', unknown: '미지정'
+  };
+  const materialLabels = {
+    ss316: 'SS316L', ss304: 'SS304', ptfe: 'PTFE', pp: 'PP·PVDF', nomatter: '무관'
+  };
+  const useLabels = {
+    general: '일반 전송', repeat: '반복 분주', precision: '고정밀',
+    chemical: '화학 내성', pulse: '맥동 저감'
+  };
+
+  if (!rec) {
+    resultDiv.innerHTML = `
+      <div class="tube-result-name">특수 구성 요청이시네요</div>
+      <div class="tube-result-why">Leadfluid 공식 카탈로그 또는 본사 웹사이트에서 전체 액세서리를 확인하실 수 있습니다.</div>
+      <div class="tube-result-ctas">
+        <a href="${LEADFLUID_OFFICIAL_URL}" class="cta-primary" target="_blank">Leadfluid 공식 웹사이트 →</a>
+      </div>
+    `;
+  } else {
+    resultDiv.innerHTML = `
+      <div class="tube-result-name">✓ 추천: ${rec.general}</div>
+      <div class="tube-result-why">${rec.desc}</div>
+      <div style="font-size:12.5px; color:#666; margin-bottom:10px; padding:8px 10px; background:#fff; border-radius:4px;">
+        <strong>선택 요약:</strong> 튜브 ${sizeLabels[accSelections.size]} · ${materialLabels[accSelections.material]} 재질 · ${useLabels[accSelections.use]}
+      </div>
+      <div class="tube-result-ctas">
+        <a href="${CELLAB_SELLER_URL}" class="cta-primary" target="_blank">Cellab 상점에서 구매 →</a>
+        <a href="Leadfluid-2025-Catalog.pdf#page=${rec.catalogPage}" class="cta-secondary" target="_blank">카탈로그 ${rec.catalogPage}p 자세히 보기</a>
+      </div>
+    `;
+  }
+  resultDiv.style.display = 'block';
+  setTimeout(() => resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+});
+
+showAccStep(1);
+
+// ========================================
+// 펌프 선택기 로직 (순차 공개)
+// ========================================
+const selections = { fluid: null, flow: null, usage: null, control: null };
+const questionOrder = ['fluid', 'flow', 'usage', 'control'];
+let currentStep = 1;
+
+function showStep(stepNum) {
+  // 현재 스텝 이하는 모두 표시, 그 이상은 숨김
+  document.querySelectorAll('#selectorPump .question-block').forEach(block => {
+    const blockStep = parseInt(block.dataset.step);
+    block.classList.remove('active', 'completed');
+    if (blockStep < stepNum) {
+      block.classList.add('completed');
+    } else if (blockStep === stepNum) {
+      block.classList.add('active');
+    }
+  });
+
+  // 진행 상태 바 업데이트
+  const progress = (stepNum / 4) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+  document.getElementById('progressText').textContent = `${Math.min(stepNum, 4)} / 4 단계`;
+
+  // 마지막 스텝 넘어가면 제출 버튼 표시
+  if (stepNum > 4) {
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('progressText').textContent = '✓ 모든 질문 완료';
+  }
+
+  currentStep = stepNum;
+}
+
+document.querySelectorAll('#selectorPump .options-grid').forEach(grid => {
+  const question = grid.dataset.question;
+  // 튜브 선택기의 tubeFluid 질문은 제외
+  if (question === 'tubeFluid') return;
+  grid.addEventListener('click', e => {
+    if (e.target.classList.contains('option-btn')) {
+      grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      e.target.classList.add('selected');
+      selections[question] = e.target.dataset.value;
+
+      // 다음 스텝으로 자동 진행
+      const currentQIndex = questionOrder.indexOf(question);
+      if (currentQIndex < questionOrder.length - 1) {
+        // 아직 마지막 질문이 아니면 다음 질문 표시
+        setTimeout(() => {
+          showStep(currentQIndex + 2);
+          // 다음 질문으로 부드럽게 스크롤
+          const nextBlock = document.querySelector(`#selectorPump .question-block[data-step="${currentQIndex + 2}"]`);
+          if (nextBlock) {
+            nextBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 200);
+      } else {
+        // 마지막 질문까지 답했으면 제출 버튼 활성화
+        setTimeout(() => {
+          showStep(5); // 5는 완료 상태
+          document.getElementById('submitBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      }
+    }
+  });
+});
+
+// 이전 질문으로 돌아가기 (펌프 선택기)
+document.querySelectorAll('#selectorPump .back-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const backTo = parseInt(btn.dataset.backTo);
+    showStep(backTo);
+    const targetBlock = document.querySelector(`#selectorPump .question-block[data-step="${backTo}"]`);
+    if (targetBlock) {
+      targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+});
+
+// 초기화: 펌프 선택기 첫 번째 질문만 표시 (나중에 의도 선택 시 표시됨)
+showStep(1);
+
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const matches = findMatches(selections);
+  renderResults(matches);
+  document.getElementById('results').classList.add('show');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+});
+
+function findMatches(sel) {
+  return PRODUCTS.map(p => {
+    let score = 0;
+    if (p.fluid.includes(sel.fluid)) score += 3;
+    if (matchFlow(p, sel.flow)) score += 3;
+    if (p.usage.includes(sel.usage)) score += 2;
+    if (p.control.includes(sel.control)) score += 2;
+    return { ...p, score };
+  })
+  .filter(p => p.score >= 6)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3);
+}
+
+function matchFlow(product, flowCategory) {
+  const ranges = {
+    micro: [0, 1], standard: [1, 100], high: [100, 1000], industrial: [1000, Infinity]
+  };
+  const [min, max] = ranges[flowCategory];
+  return product.flowMax >= min && product.flowMin <= max;
+}
+
+function renderResults(matches) {
+  const container = document.getElementById('resultsList');
+  if (matches.length === 0) {
+    container.innerHTML = `
+      <div class="result-card">
+        <div class="result-model">특수 사양 요청이시네요</div>
+        <p>입력하신 조건에 정확히 맞는 모델이 없습니다. 특수 사양은 Leadfluid 공식 웹사이트에서 전체 라인업을 확인하실 수 있습니다.</p>
+        <div class="result-ctas" style="margin-top:16px;">
+          <a href="${LEADFLUID_OFFICIAL_URL}" class="cta-primary" target="_blank">Leadfluid 공식 웹사이트 →</a>
+          <a href="${CELLAB_SELLER_URL}" class="cta-secondary" target="_blank">Cellab 상점에서 유사 모델 보기</a>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  container.innerHTML = matches.map((p, i) => {
+    // 호환 튜브 HTML 생성
+    const tubesHtml = p.tubeCompat && p.tubeCompat.length > 0 ? `
+      <div class="compat-tubes">
+        <div class="compat-tubes-title">🔗 이 펌프에 쓸 수 있는 튜브</div>
+        <div class="tube-chips">
+          ${p.tubeCompat.map(tubeId => {
+            const tube = TUBES[tubeId];
+            if (!tube) return '';
+            return `
+              <div class="tube-chip" title="${tube.description}">
+                <div class="tube-chip-name">${tube.name}</div>
+                <div class="tube-chip-feature">${tube.keyFeature}</div>
+                ${tube.fluidCompat.length > 0 ? `<div class="tube-chip-fluid">적용: ${tube.fluidCompat.slice(0,2).join(', ')}</div>` : ''}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    ` : '';
+
+    // 올포랩 구매 링크 결정
+    const purchase = getPurchaseUrl(p.allforlabUrl);
+
+    return `
+      <div class="result-card ${i === 0 ? 'primary' : ''}">
+        <span class="result-rank ${i > 0 ? 'alt' : ''}">${i === 0 ? '1순위 추천' : '대안 ' + i}</span>
+        <div class="result-model">${p.model}</div>
+        <div class="result-category">${p.series || ''} · ${p.category || ''}</div>
+        <ul class="result-specs">
+          <li>유량: ${p.flowRange}</li>
+          ${p.specs.map(s => `<li>${s}</li>`).join('')}
+        </ul>
+        ${tubesHtml}
+        <div class="result-ctas">
+          <a href="${purchase.url}" class="cta-primary" target="_blank">${purchase.label}</a>
+          ${purchase.type === 'seller' ? `<span class="cta-note">이 모델은 Cellab 상점에서 검색 주문 가능</span>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ========================================
+// 콘텐츠 카드 렌더링 (v5에서는 호출하지 않음, 향후 재사용 가능)
+// ========================================
+function renderContentCards(gridId, type) {
+  const container = document.getElementById(gridId);
+  if (!container) return; // 섹션이 제거된 경우 안전하게 종료
+  const items = Object.entries(CONTENTS).filter(([_, c]) => c.type === type);
+  container.innerHTML = items.map(([id, c]) => `
+    <div class="content-card" onclick="showContent('${id}')">
+      <div class="content-card-header">
+        <span class="content-tag ${c.type}">${c.tagLabel}</span>
+        <h3>${c.title}</h3>
+        <p>${c.summary}</p>
+      </div>
+      <div class="content-meta">
+        <span>${c.readTime} 읽기</span>
+        <span>상세 보기 →</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// v5: 콘텐츠 섹션 제거됨. 호출부 주석 처리
+// renderContentCards('guideGrid', 'guide');
+// renderContentCards('caseGrid', 'case');
+// renderContentCards('troubleGrid', 'trouble');
+
+function showContent(id) {
+  const c = CONTENTS[id];
+  if (!c) return;
+  const detail = document.getElementById('contentDetail');
+  if (!detail) return;
+  detail.innerHTML = `
+    <h3>${c.title}</h3>
+    <div class="detail-meta">${c.tagLabel} · ${c.readTime} 읽기</div>
+    ${c.body}
+    <button class="close-btn" onclick="closeContent()">닫기</button>
+  `;
+  detail.classList.add('show');
+  detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeContent() {
+  const detail = document.getElementById('contentDetail');
+  if (detail) detail.classList.remove('show');
+}
+
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+});
+</script>
+
+</body>
+</html>
