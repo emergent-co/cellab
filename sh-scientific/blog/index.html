@@ -12,7 +12,6 @@
 <meta property="og:url" content="https://rndsetup.com/sh-scientific/blog/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
@@ -22,12 +21,18 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Blog","name":"삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그","description":"전기로·튜브퍼니스 설치·A/S·점검 사례와 현장 노하우 기록","url":"https://rndsetup.com/sh-scientific/blog/","publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"blogPost":[
+{"@type":"BlogPosting","headline":"튜브퍼니스 vs 머플로, 뭐가 다를까 — 실험 목적별 선택","url":"https://rndsetup.com/sh-scientific/blog/tube-vs-muffle-furnace/","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)"}},
+{"@type":"BlogPosting","headline":"전기로, 몇 ℃까지 필요할까 — 1,200·1,500·1,700℃ 온도대별 선택","url":"https://rndsetup.com/sh-scientific/blog/furnace-temperature-selection/","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)"}},
+{"@type":"BlogPosting","headline":"열처리 승온 프로파일 잡는 법 — 램프·유지·냉각","url":"https://rndsetup.com/sh-scientific/blog/heating-ramp-profile/","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)"}},
+{"@type":"BlogPosting","headline":"머플로(전기로) 사용법 — 단계별 가이드와 안전수칙","url":"https://rndsetup.com/sh-scientific/blog/muffle-furnace-how-to/","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)"}},
+{"@type":"BlogPosting","headline":"튜브퍼니스 가스 분위기 제어 — N₂·Ar·H₂·진공","url":"https://rndsetup.com/sh-scientific/blog/tube-furnace-atmosphere-control/","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)"}},
+{"@type":"BlogPosting","headline":"전기로 종류 총정리 — 박스·튜브·회전·엘레베이터·진공","url":"https://rndsetup.com/sh-scientific/blog/furnace-types-overview/","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)"}},
 {"@type":"BlogPosting","headline":"전기로·튜브퍼니스 설치 시 확인할 것 — 설치 체크리스트","url":"https://rndsetup.com/sh-scientific/blog/furnace-install-checklist/","author":{"@type":"Organization","name":"실험셋업연구소"}}
 ]}
 </script>
 <style>
-  :root{--ink:#1B1A18;--gray:#6B6560;--gray-2:#9C958D;--line:#E7E3DE;--ember:#C2410C;--ember-2:#9A3412;--ember-bg:#FBF2EC;--panel:#FAF8F5;
-    --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--line:#EAEAEA;--ember:var(--green,#1E3A5F);--ember-2:var(--green-dk,#142A45);--ember-bg:var(--green-bg,#EDF1F8);--panel:var(--soft,#F2F4F6);
+    --serif:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
@@ -42,10 +47,10 @@
   .tab.on{background:var(--ember-bg);border-color:var(--ember);color:var(--ember-2)}
   .list{margin:18px 0 46px;display:grid;gap:14px}
   .post{display:flex;gap:16px;align-items:stretch;border:1px solid var(--line);border-radius:14px;padding:14px;transition:border-color .15s,box-shadow .15s}
-  .post:hover{border-color:var(--ember);box-shadow:0 4px 18px rgba(194,65,12,.06)}
+  .post:hover{border-color:var(--ember);box-shadow:0 4px 18px rgba(30,58,95,.09)}
   .post .thumb{flex:0 0 140px;width:140px;border-radius:10px;overflow:hidden;background:var(--panel);align-self:stretch;min-height:110px}
   .post .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .post .thumb.ph{background:linear-gradient(135deg,#FBF2EC,#f1ddcd);position:relative}
+  .post .thumb.ph{background:linear-gradient(135deg,#EDF1F8,#dbe4f1);position:relative}
   .post .thumb.ph::after{content:attr(data-ic);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;opacity:.55}
   .post .body{flex:1;min-width:0}
   @media(max-width:520px){.post{flex-direction:column}.post .thumb{width:100%;flex-basis:auto;height:150px;min-height:0}}
@@ -71,11 +76,72 @@
 <div class="wrap">
   <div class="tabs">
     <span class="tab on">전체</span>
+    <span class="tab">선택·사용 가이드</span>
     <span class="tab">설치</span>
     <span class="tab">A/S·점검</span>
   </div>
 
   <div class="list">
+    <a class="post" href="/sh-scientific/blog/tube-vs-muffle-furnace/">
+      <div class="thumb ph" data-ic="🔀"></div>
+      <div class="body">
+        <span class="cat">선택가이드</span>
+        <h2>튜브퍼니스 vs 머플로, 뭐가 다를까 — 실험 목적별 선택</h2>
+        <p>구조·분위기·용량·정밀도로 갈리는 두 퍼니스. 목적별 선택과 절대 금지 항목, 근거 수치까지 정리했습니다.</p>
+        <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+      </div>
+    </a>
+
+    <a class="post" href="/sh-scientific/blog/furnace-temperature-selection/">
+      <div class="thumb ph" data-ic="🌡️"></div>
+      <div class="body">
+        <span class="cat">선택가이드</span>
+        <h2>전기로, 몇 ℃까지 필요할까 — 1,200·1,500·1,700℃ 온도대별 선택</h2>
+        <p>발열체(FeCrAl·SiC·MoSi₂)별 온도 한계와 삼흥 123모델 온도 분포·가격으로 고르는 법.</p>
+        <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+      </div>
+    </a>
+
+    <a class="post" href="/sh-scientific/blog/heating-ramp-profile/">
+      <div class="thumb ph" data-ic="📈"></div>
+      <div class="body">
+        <span class="cat">실무가이드</span>
+        <h2>열처리 승온 프로파일 잡는 법 — 램프·유지·냉각</h2>
+        <p>승온 속도(≤5~10℃/min)·MoSi₂ 400~600℃ 주의, 유지·냉각과 가스·온도 PC 통합 제어.</p>
+        <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+      </div>
+    </a>
+
+    <a class="post" href="/sh-scientific/blog/muffle-furnace-how-to/">
+      <div class="thumb ph" data-ic="📋"></div>
+      <div class="body">
+        <span class="cat">사용법</span>
+        <h2>머플로(전기로) 사용법 — 단계별 가이드와 안전수칙</h2>
+        <p>시료 배치부터 운전·취출까지 단계별, 회화 550~600℃ 등 온도별 용도와 절대 금지.</p>
+        <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+      </div>
+    </a>
+
+    <a class="post" href="/sh-scientific/blog/tube-furnace-atmosphere-control/">
+      <div class="thumb ph" data-ic="💨"></div>
+      <div class="body">
+        <span class="cat">실무가이드</span>
+        <h2>튜브퍼니스 가스 분위기 제어 — N₂·Ar·H₂·진공</h2>
+        <p>퍼지·치환, 수소 폭발 범위(4~75%) 안전, MFC 유량 제어로 재현성 확보.</p>
+        <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+      </div>
+    </a>
+
+    <a class="post" href="/sh-scientific/blog/furnace-types-overview/">
+      <div class="thumb ph" data-ic="🗂️"></div>
+      <div class="body">
+        <span class="cat">선택가이드</span>
+        <h2>전기로 종류 총정리 — 박스·튜브·회전·엘레베이터·진공</h2>
+        <p>시료·분위기·처리량·온도대로 고르는 종류별 가이드. 삼흥 123모델 유형 분포.</p>
+        <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+      </div>
+    </a>
+
     <a class="post" href="/sh-scientific/blog/furnace-install-checklist/">
       <div class="thumb" data-ic="🔧"><img src="/img/sh/blog-install.svg" alt="전기로 설치" loading="lazy" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
       <div class="body">
