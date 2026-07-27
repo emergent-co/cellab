@@ -145,6 +145,7 @@ function renderHTML(token) {
 <div id="toast"></div>
 
 <script src="/assets/site.js" defer></script>
+<script>try{localStorage.setItem('rnd_admin','1');}catch(e){}</script>
 <script>
 const AUTH = "Basic ${token}";
 const SIZE = 50;
