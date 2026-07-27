@@ -1,11 +1,11 @@
-# 실험셋업연구소 — 실험용 펌프·유체 제어 셋업 정보 · 소프트웨어 제어 · 국내 A/S
+# 실험셋업연구소 — 실험 장비 시스템 통합·제어 (온도·진공·유량 · 측정 기기 연동) · 국내 A/S
 
-> 판매보다 정보 제공을 우선하는 실험 셋업 정보 사이트. 실험실의 무의미한 반복 노동을 없애고 실험의 반복성·정확성을 높이기 위해 **무료 제어 소프트웨어**를 개발했고, 액체(펌프)·기체(질량유량계 MFC)·진공·자동화 셋업의 노하우와 구매·유지보수 주의사항을 정리해 연구자가 정확한 정보로 효율적인 셋업을 하도록 돕는다. 관류배양·연속배양·flow chemistry처럼 무인·정밀·재현이 성립 조건인 실험에 초점. 운영: 실험셋업연구소(이영현) · 부산.
+> 펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 유량·온도·가스 분위기·진공 조건과 측정 데이터를 Modbus·RS485로 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 관류배양·연속배양·flow chemistry·열처리처럼 무인·정밀·재현이 성립 조건인 실험에 초점. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 취급점으로 정품 공급·국내 직접 A/S까지 함께 해결한다. 운영: 실험셋업연구소(상호 이머전트·이영현) · 부산.
 
 ## 핵심 정보
 
-- **본질**: 실험 셋업 정보를 제공하는 곳. 어떤 펌프·튜브·제어를 어떻게 조합하는지, 논문 셋업 재현법을 정리한다. 소프트웨어 제어(유량·스케줄·다펌프 동기·로그/재현)는 실험셋업연구소 구매 고객에게 무상 제공.
-- **취급 브랜드**: LeadFluid(정량·연동·시린지·기어펌프, 국내 직접 A/S, 글로벌 산업그룹 Ingersoll Rand 계열), Alicat(질량유량계 MFC).
+- **본질**: 서로 다른 실험 기기를 하나의 시스템으로 통합·제어하는 실험 장비 시스템 통합. 온도·진공·유량 제어와 측정 기기 연동, 무료 제어 소프트웨어(유량·스케줄·다장비 동기·로그/재현)를 실험셋업연구소 구매 고객에게 제공한다. 논문 셋업 재현법·구매·유지보수 주의사항도 함께 정리.
+- **취급 브랜드**: 리드플루이드(LeadFluid, 정량·연동·시린지·기어펌프, 공식 대리점·국내 직접 A/S, Ingersoll Rand 계열), 삼흥에너지(SH Scientific, 튜브퍼니스·전기로, 공식 대리점·지역 A/S), Alicat(질량유량계 MFC, 취급).
 - **신뢰 근거**: Nature 계열 논문이 실제 LeadFluid 펌프를 실험 셋업에 사용. 국내 직접 진단·수리, 실험셋업연구소 구매 고객 3년 무상보증. LeadFluid는 CE·RoHS 인증, Ingersoll Rand(NYSE: IR) 계열.
 - **구매 채널**: 실제 판매·결제는 나비엠알오(navimro.com)에서 이뤄짐. 가격·견적은 문의 페이지로 안내.
 - **연락**: info@rndsetup.com
@@ -13,23 +13,16 @@
 ## 주요 페이지 (정확한 URL)
 
 - [홈 = 실험장비 기술자료실](https://rndsetup.com/): 사용법·문제해결·캘리브레이션·제어 자동화 기술자료 허브 + 최신 아티클 + 제어 프로그램 무료 다운로드
-- [리드플루이드(LeadFluid)](https://rndsetup.com/leadfluid/): 리드플루이드 정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어 펌프 종류·모델·구매·A/S·제어)
-  - [BT101L 연동펌프](https://rndsetup.com/leadfluid/bt101l/): 지능형 연동펌프(0.00011~750 mL/min)·RS485 PC 제어·도금/카테터 논문 사례
-  - [BT103S 분주형 연동펌프](https://rndsetup.com/leadfluid/bt103s/): 정량·반복 분주(0.00011~500 mL/min)
-  - [BT301L 지능형 연동펌프](https://rndsetup.com/leadfluid/bt301l/): 지능형 유량(0.005~1750 mL/min)·RS485 제어
-  - [WT600F 대유량 연동펌프](https://rndsetup.com/leadfluid/wt600f/): 분주형 대유량(0.005~6000 mL/min)·4모드 분주
-  - [MF106 고보호 연동펌프](https://rndsetup.com/leadfluid/mf106/): 방진방수 IP66/67(0.005~7700 mL/min)
-  - [TYD01-01 시린지펌프](https://rndsetup.com/leadfluid/tyd01-01/): 나노리터급 정밀 주입(0.184 nL~83 mL/min)·RS485·WiFi·뇌 인터페이싱 논문
-  - [CT3001F PEEK 기어펌프](https://rndsetup.com/leadfluid/ct3001f/): 서보 브러시리스 모터 PEEK 기어 저맥동 연속 이송·CO₂ 포집 논문
-- [삼흥에너지(SH-Scientific)](https://rndsetup.com/sh-scientific/): 국내 열처리 장비(튜브퍼니스·전기로) — 실험셋업연구소가 공식 대리점(지역 A/S)으로 공급하며, 제어 소프트웨어가 온도 스케줄과 MFC 가스 유량을 연동
+- [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/leadfluid/guide/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
+  - [리드플루이드 메뉴얼](https://rndsetup.com/leadfluid/manuals/): 모델별 사용 메뉴얼
+  - [리드플루이드 블로그](https://rndsetup.com/leadfluid/blog/): 실제 도입 셋업·논문 사례
+- [삼흥에너지(SH Scientific) 선택 가이드](https://rndsetup.com/sh-scientific/guide/): 튜브퍼니스·전기로 종류·최고온도별 선택·견적 — 공식 대리점(지역 A/S). 온도컨트롤러에 Alicat MFC 가스 유량 연동한 무인·재현 셋업 지원
+  - [삼흥에너지 메뉴얼](https://rndsetup.com/sh-scientific/manual/): 온도컨트롤러·퍼니스 사용법
+  - [삼흥에너지 설치·A/S 블로그](https://rndsetup.com/sh-scientific/blog/)
 - [온도컨트롤러(SP590·NOVA500E) 사용법 가이드](https://rndsetup.com/temp-controller-guide/): 가상 컨트롤러로 직접 연습하는 인터랙티브 가이드 — 전기로 온도 스케줄(상승·유지·하강)·구간 반복·HOLD·무한반복·RS485 통신 설정. 삼흥에너지 전기로 다수 모델(MoSi₂ 시리즈=SP590, 진공머플·튜브로=SP570)에 적용. 한/영/중 지원
 - [ALICAT](https://rndsetup.com/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
-- [펌프 종류](https://rndsetup.com/pumps/): 연동·시린지·정량·기어펌프 종류별 특성·선택 기준
-  - [연동펌프(페리스탈틱)](https://rndsetup.com/pumps/peristaltic): 무오염 저유량 연속 이송
-  - [시린지펌프](https://rndsetup.com/pumps/syringe): 초저유량 정밀 주입
-  - [정량펌프(연동식·디스펜싱)](https://rndsetup.com/pumps/metering): 정량 분주·pH 제어
-  - [기어펌프](https://rndsetup.com/pumps/gear): 저맥동 고압·대유량 이송
+- [펌프 종류·선택](https://rndsetup.com/leadfluid/guide/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
 - [기체 유량 제어(MFC)](https://rndsetup.com/gas/): 질량유량계(Alicat MC-Series 등) 공급·시스템 연동. 튜브퍼니스 가스 분위기·CVD·촉매·가스 혼합비 제어 셋업 정보
 - [진공 셋업](https://rndsetup.com/vacuum/): 오일 회전식 vs 다이아프램 진공펌프 선택 정보(감압증류·탈기·건조·여과 등 실험 진공)
 - [소프트웨어 제어](https://rndsetup.com/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청

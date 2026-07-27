@@ -114,7 +114,7 @@
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">LeadFluid 공식 대리점 · 정품 공급·국내 직접 A/S<br>나비엠알오 등록 공급사</div>' +
+      '<div class="ch-side-foot">실험 장비 시스템 통합·제어 · 국내 직접 A/S<br>리드플루이드·삼흥 공식 대리점 · 나비엠알오 등록 공급사</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
       '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
@@ -122,7 +122,7 @@
 
   var FOOTER =
     '<section class="cta-band"><div class="cta-band-in">' +
-      '<div class="cta-band-t">리드플루이드 공식 대리점 · 정품 공급 · 국내 직접 A/S</div>' +
+      '<div class="cta-band-t">실험 장비 시스템 통합·제어 · 온도·진공·유량 통합 제어 · 국내 직접 A/S</div>' +
       '<div class="cta-band-btns">' +
         '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="band_navimro">구매 (나비엠알오) →</a>' +
         '<a href="/repair/" data-ga="band_repair">A/S·수리 접수 →</a>' +
@@ -139,7 +139,7 @@
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>LeadFluid 공식 대리점 · 정품 공급·국내 직접 A/S</span><span>실험셋업연구소 구매 고객 3년 무상보증</span></div>' +
+            '<span>실험 장비 시스템 통합·제어 · 온도·진공·유량 통합 제어</span><span>리드플루이드·삼흥 공식 대리점 · 국내 직접 A/S · 3년 무상보증</span></div>' +
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> (이머전트) · 이영현 · 070-8983-2600 · 사업자등록 328-03-02926<br>' +
           '부산광역시 · 서비스·도매/소매업 · 정밀·과학기기 도매, 화학제품 도매, 전기·전자·정밀기기 수리</div>' +
