@@ -542,9 +542,9 @@ ORG_WEBSITE_GRAPH = {
             "@type": "Organization",
             "@id": "https://rndsetup.com/#org",
             "name": "실험셋업연구소",
-            "alternateName": ["정량펌프연구소", "rndsetup", "emergent co."],
-            "legalName": "실험셋업연구소",
-            "taxID": "637-05-03629",
+            "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."],
+            "legalName": "이머전트",
+            "taxID": "328-03-02926",
             "url": "https://rndsetup.com/",
             "email": "info@rndsetup.com",
             "telephone": "+82-70-8983-2600",
@@ -553,7 +553,6 @@ ORG_WEBSITE_GRAPH = {
             "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.",
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)",
                 "addressLocality": "부산광역시",
                 "addressCountry": "KR"
             },
