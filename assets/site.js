@@ -116,6 +116,7 @@
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
       '<div class="ch-side-foot">LeadFluid 공식 대리점 · 정품 공급·국내 직접 A/S<br>나비엠알오 등록 공급사</div>' +
       '<a id="adminNav" href="/admin" style="display:none;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 제품관리 (관리자)</a>' +
+      '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
     '<div class="ch-scrim" id="chScrim"></div>';
 
@@ -226,7 +227,11 @@
   function inject() {
     var h = document.getElementById('pumplab-header');
     if (h) h.outerHTML = HEADER;
-    try { if (localStorage.getItem('rnd_admin') === '1') { var _an = document.getElementById('adminNav'); if (_an) _an.style.display = 'block'; } } catch (e) {}
+    try { if (localStorage.getItem('rnd_admin') === '1') {
+      var _an = document.getElementById('adminNav'); if (_an) _an.style.display = 'block';
+      var _ao = document.getElementById('adminOut');
+      if (_ao) { _ao.style.display = 'block'; _ao.addEventListener('click', function (ev) { ev.preventDefault(); try { localStorage.removeItem('rnd_admin'); } catch (x) {} if (_an) _an.style.display = 'none'; _ao.style.display = 'none'; }); }
+    } } catch (e) {}
     var f = document.getElementById('pumplab-footer');
     if (f) f.outerHTML = FOOTER;
     // 채널톡(Channel Talk) 실시간 상담 위젯 — 우측 하단 (커스텀 CTA_FAB는 중복 방지 위해 미주입)
