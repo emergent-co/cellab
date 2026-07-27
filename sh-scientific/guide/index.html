@@ -262,14 +262,6 @@
       </div><!-- /steps -->
 
       <aside class="side">
-        <div class="stage" id="stage">
-          <img id="pvImg" alt="선택한 퍼니스 미리보기">
-          <div class="ph" id="pvPh">
-            <img src="furnace-preview.png" alt="튜브퍼니스 미리보기" loading="lazy" decoding="async" width="1100" height="718">
-            퍼니스 종류를 고르면<br>여기에 표시됩니다
-          </div>
-          <div class="badges" id="badges"></div>
-        </div>
         <div class="sumcard">
           <h3>선택한 구성</h3>
           <div class="sumrow"><span class="k">종류</span><span class="v empty" id="s-type">미선택</span></div>
@@ -380,7 +372,6 @@
   var sel = { type:'', temp:'', atm:'', opt:[] };
   var img = document.getElementById('pvImg'), ph = document.getElementById('pvPh');
   var badges = document.getElementById('badges');
-  if(!img) return;
 
   // 위저드: 한 단계씩 진행
   var order = ['type','temp','atm','opt','form'];
@@ -420,12 +411,14 @@
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(s);
   }
   function setImage(src, label){
+    if(!img) return;
     ph.style.display='none';
     img.onerror = function(){ img.onerror=null; img.src = placeholderSVG(label); };
     img.classList.remove('show');
     setTimeout(function(){ img.src = src || placeholderSVG(label); img.classList.add('show'); }, 60);
   }
   function renderBadges(){
+    if(!badges) return;
     var items = [];
     var atmOn = document.querySelector('.step[data-step="atm"] .opt.on');
     if(atmOn) items.push(atmOn.getAttribute('data-badge'));

@@ -232,7 +232,6 @@
     </div><!-- /steps -->
 
     <aside class="side">
-      <div class="stage" id="stage"><div class="ph" id="pvPh">펌프 종류를 고르면<br>여기에 표시됩니다</div></div>
       <div class="sumcard">
         <h3>선택한 조건</h3>
         <div class="sumrow"><span class="k">종류</span><span class="v empty" id="s-type">미선택</span></div>
@@ -384,7 +383,7 @@
   wprog.addEventListener('click',function(e){var c=e.target.closest('.wp');if(!c)return;var i=+c.getAttribute('data-i');if(i<=maxReached)show(i);});
   document.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){show(idx-1);});});
   document.getElementById('optNext').addEventListener('click',function(){summary();show(4);});
-  function setStage(t){stage.innerHTML=SVG[t]||'';}
+  function setStage(t){if(stage)stage.innerHTML=SVG[t]||'';}
   function summary(){
     function set(id,v){var el=document.getElementById(id);el.textContent=v||'미선택';el.classList.toggle('empty',!v);}
     set('s-type',sel.type);set('s-flow',sel.flow);set('s-use',sel.use);set('s-opt',sel.opt.length?sel.opt.join('·'):'');
