@@ -1,10 +1,15 @@
-# sync.ps1 — 두 컴퓨터 작업 동기화 (작업 시작 시 실행)
+﻿# sync.ps1 — 두 컴퓨터 작업 동기화 (작업 시작 시 실행)
 # 사용법: 저장소 폴더에서  ->  .\sync.ps1
 # 하는 일: 잠금정리 -> fetch -> 안전 pull -> 빌드 -> HTML 무결성 검증 -> 리포트
 # 원칙: origin/main(새 구조)이 무조건 기준. 커밋 안 된 로컬 변경은 자동으로 버리지 않고 알려줌.
 
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
+
+# 한글 출력 깨짐 방지 (콘솔 UTF-8)
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [Console]::InputEncoding = [System.Text.Encoding]::UTF8 } catch {}
+$OutputEncoding = [System.Text.Encoding]::UTF8
+$env:LC_ALL = "C.UTF-8"
 
 function Line($t){ Write-Host ""; Write-Host "== $t ==" -ForegroundColor Cyan }
 
@@ -18,7 +23,7 @@ git fetch origin
 $local  = (git rev-parse HEAD).Trim()
 $remote = (git rev-parse origin/main).Trim()
 $base   = (git merge-base HEAD origin/main).Trim()
-$dirty  = git status --porcelain
+$dirty  = git status --porcelain --untracked-files=no
 
 if ($local -eq $remote) {
     Write-Host "[OK] 이미 최신 — origin/main과 동일합니다." -ForegroundColor Green
