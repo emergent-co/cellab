@@ -132,6 +132,25 @@
   .wback{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:#9C958D;background:none;border:0;cursor:pointer;margin:0 0 10px;padding:0;font-family:inherit}
   .wback:hover{color:#9A3412}
   .wnext{margin-top:14px;width:100%;background:#C2410C;color:#fff;border:0;border-radius:11px;padding:13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
+  /* 위저드 추천 결과 */
+  .rec-intro{font-size:14px;color:var(--gray);margin:2px 0 12px;line-height:1.6}
+  .rec-intro b{color:#9A3412}
+  .reccard{border:1px solid #E7E3DE;border-radius:14px;padding:15px 16px;margin:0 0 11px;background:#fff}
+  .reccard.top{border-color:#C2410C;box-shadow:0 4px 18px rgba(194,65,12,.08)}
+  .reccard .rc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:5px}
+  .reccard .rc-n{font-family:var(--serif);font-size:15.5px;font-weight:700;color:#9A3412}
+  .reccard .rc-badge{font-size:11px;font-weight:800;color:#fff;background:#C2410C;padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .reccard .rc-tag{font-size:12px;color:var(--gray);font-weight:600;white-space:nowrap}
+  .reccard .rc-d{font-size:13.5px;color:#3a2a20;margin:3px 0 8px;line-height:1.6}
+  .reccard .rc-sku{font-size:12px;color:#5b5148;line-height:1.8;word-break:break-all;background:#FAF8F5;border-radius:8px;padding:8px 11px}
+  .reccard .rc-sku b{color:#9A3412}
+  .reccard .rc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+  .reccard .rc-btns button{font-size:13px;font-weight:700;padding:9px 14px;border-radius:8px;cursor:pointer;font-family:inherit;border:1px solid #E7E3DE;background:#fff;color:var(--ink)}
+  .reccard .rc-btns button.prim{background:#C2410C;border-color:#C2410C;color:#fff}
+  .rec-none{border:1px dashed #E7E3DE;border-radius:12px;padding:16px;font-size:13.5px;color:#3a2a20;background:#FAF8F5;line-height:1.6}
+  .rec-none b{color:#9A3412}
+  .rec-note{font-size:12.5px;color:#4a463f;margin:0 0 12px;background:#F6F7F8;border-radius:8px;padding:9px 12px;line-height:1.6}
+  .rec-toquote{margin-top:6px;width:100%;background:#fff;color:#9A3412;border:1px solid #C2410C;border-radius:11px;padding:12px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer}
   /* 삼흥 furnace 전체 라인 필터 아코디언 */
   .fsec{max-width:900px;margin:8px auto 60px;padding:0 22px}
   .fsec h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:4px}
@@ -158,7 +177,7 @@
   .fbtns a{background:#C2410C;color:#fff;font-weight:700;font-size:13px;padding:9px 15px;border-radius:8px;text-decoration:none}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
-<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
 <body>
 <div id="pumplab-header"></div>
 
@@ -221,10 +240,20 @@
           <button type="button" class="wnext" id="optNext">다음 → 견적 입력</button>
         </div>
 
+        <div class="step wstep" data-step="result" style="border:0;padding:0;background:none">
+          <button type="button" class="wback" data-back>← 이전</button>
+          <h2 style="font-family:var(--serif);font-size:19px;font-weight:700;margin:2px 0 6px;display:block">추천 결과</h2>
+          <div class="rec-intro" id="recIntro"></div>
+          <div class="rec-note" id="recAtmNote" style="display:none"></div>
+          <div id="recCards"></div>
+          <button type="button" class="rec-toquote" id="recToQuote">이 구성 그대로 견적 문의 →</button>
+        </div>
+
         <form class="quote wstep" id="quoteForm">
           <button type="button" class="wback" data-back>← 이전</button>
           <h2>견적서 받기</h2>
           <p class="qsub">정확한 제안을 위해 <b>다루는 시료와 공정</b>은 꼭 적어주세요. 이 두 가지로 퍼니스 종류·최고온도·분위기 사양이 결정됩니다.</p>
+          <div class="rec-note" id="pickedNote" style="display:none"></div>
 
           <label>샘플 시료 <span class="req">*</span></label>
           <textarea name="샘플시료" required placeholder="재질 · 형태 · 양 (예: 알루미나 분말 50g / 실리콘 웨이퍼 2인치 5장 / 리튬 양극재 슬러리 100mL)"></textarea>
@@ -268,6 +297,7 @@
           <div class="sumrow"><span class="k">온도</span><span class="v empty" id="s-temp">미선택</span></div>
           <div class="sumrow"><span class="k">분위기</span><span class="v empty" id="s-atm">미선택</span></div>
           <div class="sumrow"><span class="k">옵션</span><span class="v empty" id="s-opt">미선택</span></div>
+          <div class="sumrow"><span class="k">추천계열</span><span class="v empty" id="s-series">미선택</span></div>
         </div>
       </aside>
     </div>
@@ -369,13 +399,13 @@
 <script src="/assets/site.js" defer></script>
 <script>
 (function(){
-  var sel = { type:'', temp:'', atm:'', opt:[] };
+  var sel = { type:'', temp:'', atm:'', opt:[], series:'' };
   var img = document.getElementById('pvImg'), ph = document.getElementById('pvPh');
   var badges = document.getElementById('badges');
 
-  // 위저드: 한 단계씩 진행
-  var order = ['type','temp','atm','opt','form'];
-  var wlabels = {type:'종류',temp:'온도',atm:'분위기',opt:'옵션',form:'견적'};
+  // 위저드: 한 단계씩 진행 (옵션 → 추천결과 → 견적)
+  var order = ['type','temp','atm','opt','result','form'];
+  var wlabels = {type:'종류',temp:'온도',atm:'분위기',opt:'옵션',result:'추천',form:'견적'};
   var panels = {};
   document.querySelectorAll('.step[data-step]').forEach(function(s){ panels[s.getAttribute('data-step')] = s; });
   panels.form = document.getElementById('quoteForm');
@@ -399,7 +429,88 @@
   });
   document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ show(idx-1); }); });
   var optNext=document.getElementById('optNext');
-  if(optNext) optNext.addEventListener('click', function(){ summary(); show(4); });
+  if(optNext) optNext.addEventListener('click', function(){ summary(); renderRecommend(); show(4); });
+
+  // ===== 위저드 결과 → 추천 (페이지 하단 '전체 라인' 계열을 SSOT로 재사용) =====
+  function mapType(t){ t=t||''; return t.indexOf('관상')>=0?'tube':(t.indexOf('박스')>=0?'box':'special'); }
+  function mapTemp(t){ t=t||''; return t.indexOf('1200')>=0?'t1200':(t.indexOf('1500')>=0?'t1500':'thigh'); }
+  function furnaceRows(){ return Array.prototype.slice.call(document.querySelectorAll('.fsec .frow')); }
+  function rowData(r){
+    var q=function(s){ var e=r.querySelector(s); return e?e:null; };
+    return { el:r, type:r.getAttribute('data-type'), temp:r.getAttribute('data-temp'),
+      name:(q('.fn')?q('.fn').textContent:'').trim(),
+      tag:(q('.ft')?q('.ft').textContent:'').trim(),
+      desc:(q('.fdet p')?q('.fdet p').textContent:'').trim(),
+      sku:(q('.fdet .sku')?q('.fdet .sku').innerHTML:'') };
+  }
+  function recScore(r){
+    var s=0, hay=(r.name+' '+r.tag+' '+r.desc);
+    if(sel.atm){
+      if(sel.atm.indexOf('환원')>=0){ if(/진공|Vacuum|CVD|VQ|MGV|MHV|MSV/i.test(hay))s+=3; if(r.type==='tube')s+=2; }
+      else if(sel.atm.indexOf('불활성')>=0){ if(r.type==='tube')s+=3; if(/진공|Vacuum/i.test(hay))s+=1; }
+      else if(sel.atm.indexOf('대기')>=0){ if(/표준|머플|칸탈|SiC|MoSi/i.test(hay))s+=2; if(r.type==='box')s+=1; }
+    }
+    if(sel.opt && sel.opt.length){
+      if(sel.opt.join().indexOf('진공')>=0 && /진공|Vacuum/i.test(hay))s+=1;
+      if(sel.opt.join().indexOf('MFC')>=0 && r.type==='tube')s+=1;
+    }
+    return s;
+  }
+  function renderRecommend(){
+    var wantType=mapType(sel.type), wantTemp=mapTemp(sel.temp);
+    var rows=furnaceRows().map(rowData);
+    var relaxed='';
+    var list=rows.filter(function(r){return r.type===wantType && r.temp===wantTemp;});
+    if(!list.length){ list=rows.filter(function(r){return r.type===wantType;}); relaxed='type'; }
+    list.sort(function(a,b){ return recScore(b)-recScore(a); });
+    // 같은 온도대의 다른 형식 — 커버리지 보강(1700℃↑ 등 종류를 특수로 골라도 박스/튜브가 함께 보이도록)
+    var primaryNames={}; list.forEach(function(r){primaryNames[r.name]=1;});
+    var secondary=rows.filter(function(r){return r.temp===wantTemp && !primaryNames[r.name];});
+    secondary.sort(function(a,b){ return recScore(b)-recScore(a); });
+
+    var intro=document.getElementById('recIntro');
+    intro.innerHTML='선택하신 <b>'+(sel.type||'-')+' · '+(sel.temp||'-')+'</b> 조건에 맞는 삼흥에너지 계열입니다.'
+      + (relaxed==='temp'?' (같은 온도대에서 근접 계열을 함께 보여드립니다)':(relaxed==='type'?' (같은 종류에서 근접 계열을 보여드립니다)':''));
+
+    var note=document.getElementById('recAtmNote'), atmTxt=[];
+    if(sel.atm && sel.atm.indexOf('환원')>=0) atmTxt.push('환원·진공 분위기 → 진공형(V)·CVD 또는 튜브형+가스 라인 권장');
+    else if(sel.atm && sel.atm.indexOf('불활성')>=0) atmTxt.push('불활성(N₂·Ar) → 튜브형 또는 진공/치환 가능 구성 적합');
+    else if(sel.atm && sel.atm.indexOf('대기')>=0) atmTxt.push('대기(Air) 소성·회화 → 표준 머플로로 충분');
+    if(sel.opt && sel.opt.length) atmTxt.push('옵션('+sel.opt.join(' · ')+')은 상담에서 함께 구성');
+    if(atmTxt.length){ note.innerHTML='💡 '+atmTxt.join(' · '); note.style.display='block'; } else note.style.display='none';
+
+    var box=document.getElementById('recCards');
+    var all=furnaceRows();
+    function cardHTML(r,top){
+      return '<div class="reccard'+(top?' top':'')+'">'
+        +'<div class="rc-h"><span class="rc-n">'+r.name+'</span>'+(top?'<span class="rc-badge">가장 근접</span>':'<span class="rc-tag">'+r.tag+'</span>')+'</div>'
+        +(r.desc?'<div class="rc-d">'+r.desc+'</div>':'')
+        +(r.sku?'<div class="rc-sku">'+r.sku+'</div>':'')
+        +'<div class="rc-btns"><button type="button" class="prim" data-series="'+encodeURIComponent(r.name)+'">이 계열로 견적 →</button>'
+        +'<button type="button" class="detail" data-idx="'+all.indexOf(r.el)+'">전체 라인에서 보기</button></div>'
+        +'</div>';
+    }
+    if(!list.length && !secondary.length){
+      box.innerHTML='<div class="rec-none"><b>딱 맞는 표준 계열이 자동으로 잡히지 않았습니다.</b><br>드물거나 특수한 조건일 수 있어요. 아래 버튼으로 시료·공정만 남겨주시면 맞는 모델을 직접 추천드립니다.</div>';
+      return;
+    }
+    var html=list.map(function(r,i){ return cardHTML(r, i===0); }).join('');
+    if(secondary.length){
+      html+='<div style="font-size:12.5px;font-weight:800;color:#9C958D;margin:16px 0 9px">같은 온도대 · 다른 형식</div>';
+      html+=secondary.map(function(r){ return cardHTML(r,false); }).join('');
+    }
+    box.innerHTML=html;
+  }
+  var recCards=document.getElementById('recCards');
+  if(recCards) recCards.addEventListener('click', function(e){
+    var p=e.target.closest('.prim');
+    if(p){ sel.series=decodeURIComponent(p.getAttribute('data-series')); summary(); show(5); return; }
+    var d=e.target.closest('.detail');
+    if(d){ var el=furnaceRows()[+d.getAttribute('data-idx')]; if(el){ el.setAttribute('open',''); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+      if(typeof gtag==='function') gtag('event','sh_rec_detail'); }
+  });
+  var recToQuote=document.getElementById('recToQuote');
+  if(recToQuote) recToQuote.addEventListener('click', function(){ summary(); show(5); });
 
   function placeholderSVG(label){
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">'
@@ -430,12 +541,16 @@
     function set(id,val){ var el=document.getElementById(id); el.textContent = val||'미선택'; el.classList.toggle('empty', !val); }
     set('s-type', sel.type); set('s-temp', sel.temp); set('s-atm', sel.atm);
     set('s-opt', sel.opt.length ? sel.opt.length+'개 선택' : '');
+    set('s-series', sel.series);
     var parts = [];
+    if(sel.series) parts.push('추천계열:'+sel.series);
     if(sel.type) parts.push('종류:'+sel.type);
     if(sel.temp) parts.push('온도:'+sel.temp);
     if(sel.atm) parts.push('분위기:'+sel.atm);
     if(sel.opt.length) parts.push('옵션:'+sel.opt.join('·'));
     document.getElementById('cfgField').value = parts.join(' / ');
+    var pn=document.getElementById('pickedNote');
+    if(pn){ if(sel.series){ pn.innerHTML='✔ 선택한 추천 계열: <b>'+sel.series+'</b>'; pn.style.display='block'; } else pn.style.display='none'; }
   }
   document.querySelectorAll('.step').forEach(function(step){
     var key = step.getAttribute('data-step');

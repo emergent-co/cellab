@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>머플로(전기로) 사용법 — 단계별 가이드·회화 온도·안전수칙 | 실험셋업연구소(이머전트)</title>
+<meta name="description" content="머플로(박스전기로) 사용법을 시료 배치부터 프로그램·운전·취출까지 단계별로 정리했습니다. 회화 550~600℃ 등 온도별 용도, 절대 금지 안전수칙, 분위기 박스로·PC 통합 제어까지.">
+<link rel="canonical" href="https://rndsetup.com/sh-scientific/blog/muffle-furnace-how-to/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="머플로(전기로) 사용법 — 단계별 가이드와 안전수칙">
+<meta property="og:description" content="머플로(박스전기로) 사용법을 시료 배치부터 프로그램·운전·취출까지 단계별로 정리했습니다. 회화 550~600℃ 등 온도별 용도, 절대 금지 안전수칙, 분위기 박스로·PC 통합 제어까지.">
+<meta property="og:url" content="https://rndsetup.com/sh-scientific/blog/muffle-furnace-how-to/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"삼흥에너지","item":"https://rndsetup.com/sh-scientific/"},
+{"@type":"ListItem","position":3,"name":"설치·A/S 블로그","item":"https://rndsetup.com/sh-scientific/blog/"},
+{"@type":"ListItem","position":4,"name":"머플로 사용법","item":"https://rndsetup.com/sh-scientific/blog/muffle-furnace-how-to/"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"머플로(전기로) 사용법 — 단계별 가이드와 안전수칙","description":"머플로(박스전기로) 사용법을 시료 배치부터 프로그램·운전·취출까지 단계별로 정리했습니다. 회화 550~600℃ 등 온도별 용도, 절대 금지 안전수칙, 분위기 박스로·PC 통합 제어까지.","inLanguage":"ko","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)","url":"https://rndsetup.com/"},"publisher":{"@type":"Organization","name":"실험셋업연구소(이머전트)","url":"https://rndsetup.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/sh-scientific/blog/muffle-furnace-how-to/"},"articleSection":"사용법"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"머플로 회화(애싱) 온도는 몇 ℃인가요?","acceptedAnswer":{"@type":"Answer","text":"유기물 회화는 통상 550~600℃에서 진행합니다. 시료·규격(분석법)에 따라 온도·시간이 달라질 수 있습니다."}},
+{"@type":"Question","name":"도가니는 어떤 재질을 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"사용 온도에 맞춰 알루미나·자기 등 내열 재질을 씁니다. 시료와의 반응성·오염 가능성도 함께 고려합니다."}},
+{"@type":"Question","name":"문은 언제 열어도 되나요?","acceptedAnswer":{"@type":"Answer","text":"고온에서 열면 열충격·화상 위험이 있으므로 안전 온도까지 냉각한 뒤 개방합니다. 정확한 기준은 모델 매뉴얼을 따르세요."}}
+]}
+</script>
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--line:#EAEAEA;--ember:var(--green,#1E3A5F);--ember-2:var(--green-dk,#142A45);--ember-bg:var(--green-bg,#EDF1F8);--panel:var(--soft,#F2F4F6);
+    --serif:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.8;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+  .hero{padding:44px 0 4px}
+  .crumb{font-size:12.5px;color:var(--ember-2);font-weight:700;margin-bottom:12px}
+  .crumb a{color:var(--ember-2);text-decoration:none}
+  .cat{display:inline-block;font-size:11.5px;font-weight:800;color:var(--ember-2);background:var(--ember-bg);padding:3px 10px;border-radius:20px;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.6vw,30px);font-weight:700;line-height:1.32;letter-spacing:-.02em}
+  .meta{font-size:13px;color:var(--gray-2);margin-top:10px}
+  article{padding:20px 0 40px}
+  article h2{font-family:var(--serif);font-size:19.5px;font-weight:700;margin:30px 0 8px}
+  article p{font-size:16px;color:#2b2f36;margin:0 0 13px}
+  article b{color:var(--ink)}
+  .ans{background:var(--ember-bg);border:1px solid #d3deef;border-left:4px solid var(--ember);border-radius:10px;padding:15px 18px;margin:14px 0 8px;font-size:15.5px;color:#2b2f36}
+  .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:15px 18px;margin:16px 0;font-size:15px}
+  .warn b{color:var(--ember-2)}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 6px}
+  .btn{display:inline-block;padding:12px 18px;border-radius:9px;font-weight:700;text-decoration:none;font-size:14.5px}
+  .btn.p{background:var(--ember);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:26px;padding-top:16px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--ember-2);text-decoration:none;font-weight:700}
+  .ctab{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:14.5px}
+  .ctab th,.ctab td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  .ctab th{background:var(--green,#1E3A5F);color:#fff;font-weight:700}
+  .ctab td:first-child{font-weight:700;color:var(--gray);white-space:nowrap;background:var(--panel)}
+  .ctab td b{color:var(--ember-2)}
+  .src{font-size:12.5px;color:var(--gray-2);margin:-4px 0 16px;line-height:1.7}
+  .src a{color:var(--ember-2);text-decoration:none;font-weight:700}
+  .dont{list-style:none;margin:12px 0 16px;padding:0}
+  .dont li{position:relative;padding:9px 0 9px 30px;border-bottom:1px dashed var(--line);font-size:15.5px;color:#2b2f36}
+  .dont li:last-child{border-bottom:0}
+  .dont li::before{content:"\2715";position:absolute;left:0;top:9px;width:20px;height:20px;background:#b91c1c;color:#fff;border-radius:5px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .dont li b{color:#b91c1c}
+  .faq{margin:8px 0}
+  .faq .q{font-weight:800;color:var(--ink);font-size:15.5px;margin:16px 0 4px}
+  .faq .q::before{content:"Q. ";color:var(--ember)}
+  .faq .a{font-size:15px;color:#2b2f36;margin:0}
+  .faq .a::before{content:"A. ";color:var(--gray-2);font-weight:800}
+  .prog{background:var(--ember-bg);border:1px solid #d3deef;border-radius:12px;padding:16px 18px;margin:14px 0;font-size:15px}
+  .prog b{color:var(--ember-2)}
+  .pick{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 18px;margin:14px 0}
+  .pick li{font-size:15.5px;margin:9px 0}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/sh-scientific/">삼흥에너지</a> › <a href="/sh-scientific/blog/">설치·A/S 블로그</a> › 머플로 사용법</div>
+    <span class="cat">사용법</span>
+    <h1>머플로(전기로) 사용법<br>— 단계별 가이드와 안전수칙</h1>
+    <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+    <div class="ans"><b>머플로(박스전기로)</b>는 발열체가 챔버 바깥에 있어 시료가 <b>대기 중에서 복사열로</b> 가열되는 전기로입니다. <b>시료 배치 → 프로그램 설정 → 승온·유지 → 냉각·취출</b> 순서로 씁니다. 유기물 <b>회화(애싱)는 통상 550~600℃</b>, 소성·열처리는 공정에 맞춰 온도를 정합니다.</div>
+
+    <h2>시작 전 점검</h2>
+    <ul class="chk">
+      <li><b>환기</b> — 배열·연기 배출이 되는 환경인지. 밀폐 공간 설치·운전 금지.</li>
+      <li><b>도가니·트레이</b> — 사용 온도에 맞는 재질(알루미나·자기 등). 시료가 발열체·벽에 닿지 않게.</li>
+      <li><b>컨트롤러</b> — 상한온도·과온 알람을 모델 정격에 맞게 설정.</li>
+    </ul>
+
+    <h2>단계별 사용</h2>
+    <ul class="chk">
+      <li><b>① 배치</b> — 시료를 도가니에 담아 챔버 중앙에 고르게. 과적 금지.</li>
+      <li><b>② 프로그램</b> — 램프(≤5~10℃/min 기준)·목표온도·유지시간·냉각을 설정.</li>
+      <li><b>③ 운전</b> — 초기 승온 시 이상음·냄새·연기 관찰. 자리 이탈 시 무인 조건(과온 차단) 확인.</li>
+      <li><b>④ 취출</b> — 안전 온도까지 냉각 후 개방. 내열장갑·집게 사용.</li>
+    </ul>
+
+    <h2>온도별 용도</h2>
+    <table class="ctab">
+      <tr><th>온도</th><th>용도</th></tr>
+      <tr><td>~100~300℃</td><td>건조·수분 제거</td></tr>
+      <tr><td><b>550~600℃</b></td><td>유기물 회화(애싱)</td></tr>
+      <tr><td>~800~1,200℃</td><td>소성·열처리·범용</td></tr>
+      <tr><td>1,300~1,500℃+</td><td>세라믹 소결(SiC·MoSi₂ 로)</td></tr>
+    </table>
+
+    <h2>절대 하면 안 되는 것</h2>
+    <ul class="dont">
+      <li><b>고온에서 문 열기·급냉</b> — 열충격 파손·화상 위험. 안전 온도까지 내린 뒤 개방하세요.</li>
+      <li><b>상한온도 초과 운전</b> — 발열체 최대 소자온도(FeCrAl 1,425 · SiC 1,625 · MoSi₂ 1,850℃) 초과 시 손상. 상한·과온 알람 설정 필수.</li>
+      <li><b>휘발·폭발성 시료를 대기 머플로에</b> — 유증기·가연물은 대기 중 가열 시 위험. 분위기·배기 구성 필요.</li>
+      <li><b>환기 없는 밀폐 공간 운전</b> — 배열·유독가스 정체. 배기·환기 확보 후 운전.</li>
+      <li><b>시료를 발열체·벽에 접촉</b> — 국부 과열·오염·발열체 손상.</li>
+    </ul>
+
+    <h2>분위기가 필요하면 — 진공·분위기 박스로</h2>
+    <p>표준 머플로는 대기 중이 기본입니다. 불활성·환원·진공이 필요하면 <b>진공·분위기형 박스로(삼흥 MGV 등)</b>를 쓰고, 여기에 <b>가스·온도 PC 통합 제어</b>로 분위기까지 재현성 있게 운용할 수 있습니다.</p>
+
+<h2>자주 묻는 질문</h2>
+    <div class="faq">
+      <p class="q">머플로 회화(애싱) 온도는 몇 ℃인가요?</p>
+      <p class="a">유기물 회화는 통상 550~600℃에서 진행합니다. 시료·규격(분석법)에 따라 온도·시간이 달라질 수 있습니다.</p>
+      <p class="q">도가니는 어떤 재질을 쓰나요?</p>
+      <p class="a">사용 온도에 맞춰 알루미나·자기 등 내열 재질을 씁니다. 시료와의 반응성·오염 가능성도 함께 고려합니다.</p>
+      <p class="q">문은 언제 열어도 되나요?</p>
+      <p class="a">고온에서 열면 열충격·화상 위험이 있으므로 안전 온도까지 냉각한 뒤 개방합니다. 정확한 기준은 모델 매뉴얼을 따르세요.</p>
+    </div>
+
+    <div class="cta">
+      <a class="btn p" href="/sh-scientific/guide/">30초 선택 가이드 →</a>
+      <a class="btn s" href="/contact/">견적·A/S 문의</a>
+    </div>
+    <div class="ans" style="margin-top:22px">실험셋업연구소(이머전트)는 <b>삼흥에너지(SH Scientific) 공식 대리점(국내 A/S)</b>으로, 정품 공급·설치·수리와 온도컨트롤러에 Alicat MFC를 연동한 <b>가스·온도 PC 통합 제어</b>까지 지원합니다.</div>
+    <div class="rel">
+      관련: <a href="/sh-scientific/blog/heating-ramp-profile/">승온 프로파일</a> · <a href="/sh-scientific/blog/tube-vs-muffle-furnace/">튜브 vs 머플</a> · <a href="/sh-scientific/manual/">메뉴얼</a>
+    </div>
+    <p class="src" style="margin-top:16px">근거·출처: 발열체 최대 소자온도(FeCrAl 1,425 · SiC 1,625 · MoSi₂ 1,850℃) — <a href="https://www.kanthal.com/en/knowledge-hub/inspiring-stories/heating-elements-explained/" target="_blank" rel="noopener">Kanthal</a> · 승온 속도 권장치 — 제조사(예: Nabertherm) 모델 매뉴얼 · 삼흥에너지 모델수·온도·용량·가격 — 삼흥에너지(SH Scientific) 카탈로그 데이터 기준 · 유기물 회화 550~600℃는 일반 실험(애싱) 조건 기준.</p>
+  </div>
+</article>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 리드플루이드 공식 대리점·실험 펌프·유체제어 셋업</a></li><li><a href="/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
