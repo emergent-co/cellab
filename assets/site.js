@@ -115,7 +115,7 @@
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
       '<div class="ch-side-foot">LeadFluid 공식 대리점 · 정품 공급·국내 직접 A/S<br>나비엠알오 등록 공급사</div>' +
-      '<a id="adminNav" href="/admin" style="display:none;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 제품관리 (관리자)</a>' +
+      '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
       '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
     '<div class="ch-scrim" id="chScrim"></div>';
@@ -228,9 +228,8 @@
     var h = document.getElementById('pumplab-header');
     if (h) h.outerHTML = HEADER;
     try { if (localStorage.getItem('rnd_admin') === '1') {
-      var _an = document.getElementById('adminNav'); if (_an) _an.style.display = 'block';
       var _ao = document.getElementById('adminOut');
-      if (_ao) { _ao.style.display = 'block'; _ao.addEventListener('click', function (ev) { ev.preventDefault(); try { localStorage.removeItem('rnd_admin'); } catch (x) {} if (_an) _an.style.display = 'none'; _ao.style.display = 'none'; }); }
+      if (_ao) { _ao.style.display = 'block'; _ao.addEventListener('click', function (ev) { ev.preventDefault(); try { localStorage.removeItem('rnd_admin'); } catch (x) {} _ao.style.display = 'none'; }); }
     } } catch (e) {}
     var f = document.getElementById('pumplab-footer');
     if (f) f.outerHTML = FOOTER;
