@@ -26,3 +26,6 @@ blog/_preview/
 /Lead Fluid Products MODBUS QBLF-RDB-1015 .docx (1).pdf
 /catalog_text.txt
 /cellab_checklist.pdf
+
+# 삭제 대기(수동 삭제 필요) — 커밋 방지
+/blog/_to_delete/
