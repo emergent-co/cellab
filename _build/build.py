@@ -797,8 +797,17 @@ def main():
         ('alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
         ('sh-scientific/guide/','0.9', 'monthly'),  # 삼흥 허브 = 제품 선택 가이드(견적 funnel)
         ('sh-scientific/manual/','0.7', 'monthly'),  # 삼흥 메뉴얼
+        ('sh-scientific/catalog/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
+        ('sh-scientific/catalog/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
+        ('sh-scientific/catalog/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
         ('sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
         ('sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
+        ('sh-scientific/blog/furnace-temperature-selection/','0.6', 'monthly'),
+        ('sh-scientific/blog/furnace-types-overview/','0.6', 'monthly'),
+        ('sh-scientific/blog/heating-ramp-profile/','0.6', 'monthly'),
+        ('sh-scientific/blog/muffle-furnace-how-to/','0.6', 'monthly'),
+        ('sh-scientific/blog/tube-furnace-atmosphere-control/','0.6', 'monthly'),
+        ('sh-scientific/blog/tube-vs-muffle-furnace/','0.6', 'monthly'),
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터(통합 후 생존)
         ('application/analytical-instrument.html', '0.8', 'monthly'),
         ('application/environmental.html', '0.8', 'monthly'),

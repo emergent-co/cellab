@@ -133,6 +133,24 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/sh-scientific/catalog/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/catalog/gas-flow-package/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/catalog/gas-flow-package-600mm/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/sh-scientific/blog/</loc>
     <lastmod>2026-07-28</lastmod>
     <priority>0.7</priority>
@@ -140,6 +158,42 @@
   </url>
   <url>
     <loc>https://rndsetup.com/sh-scientific/blog/furnace-install-checklist/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/blog/furnace-temperature-selection/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/blog/furnace-types-overview/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/blog/heating-ramp-profile/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/blog/muffle-furnace-how-to/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/blog/tube-furnace-atmosphere-control/</loc>
+    <lastmod>2026-07-28</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/sh-scientific/blog/tube-vs-muffle-furnace/</loc>
     <lastmod>2026-07-28</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
