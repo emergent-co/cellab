@@ -16,6 +16,9 @@
 //   · D1 조회 실패·값 없음 → 원문("견적 문의")을 그대로 남긴다.
 //     틀린 숫자가 노출되는 것보다 숫자가 없는 편이 낫다.
 //   · status 로 거르지 않는다. '이미지대기' 모델도 가격은 유효하다.
+//   · model 이 D1에서 2행 이상이면 그 모델은 주입하지 않는다.
+//     삼흥 일부 모델(SH-FU-4MS/11MS/22MS, 2MSU/4MSU/6MSU)은 온도등급(1700/1800/1900℃)이
+//     같은 model 값을 공유해 가격이 서로 다르다 → 아무거나 고르면 틀린 가격이 노출된다.
 
 const PREFIX = '/sh-scientific/catalog';
 
@@ -142,6 +145,7 @@ async function fetchPrices(env, models) {
   const map = new Map();
   if (!env || !env.DB || !models.length) return map;
 
+  const ambiguous = new Set(); // 같은 model 이 2행 이상 → 어느 가격인지 확정 불가
   const CHUNK = 50; // D1 바인딩 상한 여유
   for (let i = 0; i < models.length; i += CHUNK) {
     const part = models.slice(i, i + CHUNK);
@@ -151,7 +155,14 @@ async function fetchPrices(env, models) {
       .bind(...part)
       .all();
     for (const r of results || []) {
-      if (r && r.model && r.retail_price != null) map.set(r.model, r.retail_price);
+      if (!r || !r.model) continue;
+      if (map.has(r.model) || ambiguous.has(r.model)) {
+        // 두 번째 행이 나온 시점에 그 모델을 통째로 포기한다.
+        ambiguous.add(r.model);
+        map.delete(r.model);
+        continue;
+      }
+      if (r.retail_price != null) map.set(r.model, r.retail_price);
     }
   }
   return map;
