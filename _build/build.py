@@ -800,6 +800,21 @@ def main():
         ('sh-scientific/catalog/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
         ('sh-scientific/catalog/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
         ('sh-scientific/catalog/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
+        ('sh-scientific/catalog/rotary-tube-furnace/','0.8', 'monthly'),
+        ('sh-scientific/catalog/gas-flow-3zone/','0.8', 'monthly'),
+        ('sh-scientific/catalog/tube-1500/','0.8', 'monthly'),
+        ('sh-scientific/catalog/tube-1800/','0.8', 'monthly'),
+        ('sh-scientific/catalog/vacuum-tube-turnkey/','0.8', 'monthly'),
+        ('sh-scientific/catalog/vacuum-muffle-1200/','0.8', 'monthly'),
+        ('sh-scientific/catalog/vacuum-muffle-1200-quartz/','0.8', 'monthly'),
+        ('sh-scientific/catalog/vacuum-muffle-1500/','0.8', 'monthly'),
+        ('sh-scientific/catalog/vacuum-muffle-1900/','0.8', 'monthly'),
+        ('sh-scientific/catalog/muffle-1050/','0.8', 'monthly'),
+        ('sh-scientific/catalog/muffle-1200/','0.8', 'monthly'),
+        ('sh-scientific/catalog/muffle-1500/','0.8', 'monthly'),
+        ('sh-scientific/catalog/muffle-1700/','0.8', 'monthly'),
+        ('sh-scientific/catalog/muffle-1800/','0.8', 'monthly'),
+        ('sh-scientific/catalog/muffle-1900/','0.8', 'monthly'),
         ('sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
         ('sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
         ('sh-scientific/blog/furnace-temperature-selection/','0.6', 'monthly'),
