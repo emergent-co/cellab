@@ -401,3 +401,179 @@
     }
   }, true);
 })();
+
+/* =========================================================================
+   견적 문의 모달 (Quote Modal)
+   -------------------------------------------------------------------------
+   쓰는 법 — 페이지에 버튼만 하나 두면 된다.
+     <button type="button" class="qbtn" data-quote="1200℃ 튜브 전기로 Gas Flow Package · 300mm">
+       견적 문의
+     </button>
+   data-quote 값이 메일의 "문의제품" 필드로 그대로 들어간다.
+   버튼이 없는 페이지에서는 아무것도 실행되지 않는다.
+   전송은 기존 삼흥 견적폼과 같은 Formspree 엔드포인트를 쓴다.
+   ========================================================================= */
+(function () {
+  var ENDPOINT = 'https://formspree.io/f/mnjkzppj';
+  if (!document.querySelector('[data-quote]')) return;
+
+  var CSS = ''
+    + '.qbtn{display:inline-block;font-family:inherit;font-size:14px;font-weight:800;color:#fff;'
+    + 'background:#C2410C;border:0;padding:12px 22px;border-radius:10px;cursor:pointer;line-height:1.2}'
+    + '.qbtn:hover{background:#9A3412}'
+    + '.qm-back{position:fixed;inset:0;background:rgba(20,18,16,.55);display:none;align-items:center;'
+    + 'justify-content:center;z-index:9000;padding:20px}'
+    + '.qm-back.on{display:flex}'
+    + '.qm{background:#fff;border-radius:16px;max-width:520px;width:100%;max-height:88vh;overflow:auto;'
+    + 'padding:26px 26px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.28)}'
+    + '.qm h2{font-family:var(--serif,Georgia);font-size:20px;font-weight:700;margin:0 0 6px;color:#1A1A1A}'
+    + '.qm .qm-sub{font-size:13.5px;color:#6B6B6B;line-height:1.65;margin:0 0 16px}'
+    + '.qm .qm-for{font-size:12.5px;font-weight:700;color:#9A3412;background:#FDF3EC;border-radius:8px;'
+    + 'padding:8px 12px;margin:0 0 16px;line-height:1.5}'
+    + '.qm label{display:block;font-size:12.5px;font-weight:700;color:#3a3a3a;margin:12px 0 5px}'
+    + '.qm label .req{color:#C2410C}'
+    + '.qm input,.qm textarea{width:100%;border:1px solid #E0DCD7;border-radius:9px;padding:10px 12px;'
+    + 'font-size:14px;font-family:inherit;line-height:1.55;background:#fff;color:#1A1A1A}'
+    + '.qm textarea{min-height:74px;resize:vertical}'
+    + '.qm input:focus,.qm textarea:focus{outline:0;border-color:#C2410C}'
+    + '.qm .qm-fx{font-size:11.5px;color:#9C958D;margin-top:4px;line-height:1.5}'
+    + '.qm .qm-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}'
+    + '.qm .qm-send{width:100%;margin-top:18px;font-size:15px;font-weight:800;color:#fff;background:#C2410C;'
+    + 'border:0;padding:13px;border-radius:10px;cursor:pointer;font-family:inherit}'
+    + '.qm .qm-send:hover{background:#9A3412}'
+    + '.qm .qm-send:disabled{opacity:.55;cursor:default}'
+    + '.qm .qm-x{position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:24px;'
+    + 'line-height:1;color:#9C958D;cursor:pointer;padding:4px 8px;font-family:inherit}'
+    + '.qm .qm-x:hover{color:#1A1A1A}'
+    + '.qm .qm-err{display:none;font-size:13px;color:#B4453A;margin-top:10px;line-height:1.6}'
+    + '.qm .qm-err.on{display:block}'
+    + '.qm .qm-priv{font-size:11.5px;color:#9C958D;margin-top:12px;line-height:1.6}'
+    + '.qm-done{display:none;text-align:center;padding:14px 0 6px}'
+    + '.qm-done.on{display:block}'
+    + '.qm-done h2{margin-bottom:8px}'
+    + '.qm-done p{font-size:14px;color:#6B6B6B;line-height:1.7}'
+    + '@media(max-width:520px){.qm .qm-g2{grid-template-columns:1fr}}';
+
+  var st = document.createElement('style');
+  st.textContent = CSS;
+  document.head.appendChild(st);
+
+  var back = document.createElement('div');
+  back.className = 'qm-back';
+  back.setAttribute('role', 'dialog');
+  back.setAttribute('aria-modal', 'true');
+  back.setAttribute('aria-label', '견적 문의');
+  back.innerHTML = ''
+    + '<div class="qm">'
+    +   '<button type="button" class="qm-x" aria-label="닫기">&times;</button>'
+    +   '<form id="qmForm" novalidate>'
+    +     '<h2>견적 문의</h2>'
+    +     '<p class="qm-sub">구성에 따라 사양·금액이 달라집니다. <b>다루는 시료와 공정</b>만 남겨주시면, 맞는 구성과 견적으로 회신드립니다.</p>'
+    +     '<p class="qm-for" id="qmFor"></p>'
+    +     '<label>샘플 시료 <span class="req">*</span></label>'
+    +     '<textarea name="샘플시료" required placeholder="재질 · 형태 · 양 (예: 알루미나 분말 50g / 실리콘 웨이퍼 2인치 5장)"></textarea>'
+    +     '<div class="qm-fx">무엇을 넣고 처리하는지 — 재질, 형태(분말·벌크·박막), 대략의 양</div>'
+    +     '<label>사용 공정 <span class="req">*</span></label>'
+    +     '<textarea name="사용공정" required placeholder="목표 온도 · 분위기 · 승온/유지 조건 (예: Ar 분위기 900℃까지 5℃/min 승온 후 2시간 유지)"></textarea>'
+    +     '<div class="qm-fx">목표 온도 · 분위기(대기/불활성/진공) · 승온·유지 조건 · 처리 목적</div>'
+    +     '<div class="qm-g2">'
+    +       '<div><label>이름 <span class="req">*</span></label>'
+    +         '<input type="text" name="이름" required placeholder="홍길동"></div>'
+    +       '<div><label>소속 <span class="req">*</span></label>'
+    +         '<input type="text" name="소속" required placeholder="OO대학교 OO연구실"></div>'
+    +     '</div>'
+    +     '<label>이메일 <span class="req">*</span></label>'
+    +     '<input type="email" name="이메일" required placeholder="you@lab.ac.kr">'
+    +     '<input type="hidden" name="문의유형" value="삼흥 열처리 견적(카탈로그)">'
+    +     '<input type="hidden" name="문의제품" id="qmProd" value="">'
+    +     '<input type="hidden" name="출처페이지" id="qmPath" value="">'
+    +     '<button type="submit" class="qm-send">견적 요청 보내기 →</button>'
+    +     '<p class="qm-err" id="qmErr"></p>'
+    +     '<p class="qm-priv">보내주신 정보는 견적 회신 목적으로만 사용합니다. 급하시면 <b>info@rndsetup.com</b> · <b>070-8983-2600</b></p>'
+    +   '</form>'
+    +   '<div class="qm-done" id="qmDone">'
+    +     '<h2>문의가 접수되었습니다</h2>'
+    +     '<p>보내주신 시료·공정 조건을 검토해, 맞는 사양과 견적으로 회신드립니다.<br>급하시면 <b>info@rndsetup.com</b> 으로도 연락 주세요.</p>'
+    +   '</div>'
+    + '</div>';
+  document.body.appendChild(back);
+
+  var form = back.querySelector('#qmForm');
+  var done = back.querySelector('#qmDone');
+  var errEl = back.querySelector('#qmErr');
+  var lastFocus = null;
+
+  function open(product) {
+    lastFocus = document.activeElement;
+    back.querySelector('#qmProd').value = product || '';
+    back.querySelector('#qmPath').value = location.pathname;
+    var forEl = back.querySelector('#qmFor');
+    if (product) { forEl.textContent = '문의 제품 · ' + product; forEl.style.display = ''; }
+    else { forEl.style.display = 'none'; }
+    form.style.display = '';
+    done.classList.remove('on');
+    errEl.classList.remove('on');
+    back.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    var t = form.querySelector('textarea');
+    if (t) setTimeout(function () { t.focus(); }, 30);
+    if (typeof window.gtag === 'function') {
+      gtag('event', 'quote_modal_open', { product: product || '', page_path: location.pathname });
+    }
+  }
+
+  function close() {
+    back.classList.remove('on');
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var b = (e.target && e.target.closest) ? e.target.closest('[data-quote]') : null;
+    if (b) { e.preventDefault(); open(b.getAttribute('data-quote')); }
+  });
+  back.querySelector('.qm-x').addEventListener('click', close);
+  back.addEventListener('click', function (e) { if (e.target === back) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && back.classList.contains('on')) close();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errEl.classList.remove('on');
+    var missing = [];
+    ['샘플시료', '사용공정', '이름', '소속', '이메일'].forEach(function (n) {
+      var f = form.querySelector('[name="' + n + '"]');
+      if (f && !f.value.trim()) missing.push(n);
+    });
+    var mail = form.querySelector('[name="이메일"]');
+    if (!missing.length && mail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())) {
+      missing.push('이메일 형식');
+    }
+    if (missing.length) {
+      errEl.textContent = '다음 항목을 확인해 주세요 — ' + missing.join(' · ');
+      errEl.classList.add('on');
+      return;
+    }
+    var btn = form.querySelector('.qm-send'), txt = btn.textContent;
+    btn.disabled = true; btn.textContent = '보내는 중…';
+    fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (!r.ok) throw new Error('bad');
+        if (typeof window.gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            lead_type: 'sh_catalog_quote',
+            product: form.querySelector('#qmProd').value,
+            page_path: location.pathname
+          });
+        }
+        form.style.display = 'none';
+        done.classList.add('on');
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = txt;
+        errEl.textContent = '전송에 실패했습니다. info@rndsetup.com 로 보내주시면 바로 회신드리겠습니다.';
+        errEl.classList.add('on');
+      });
+  });
+})();
