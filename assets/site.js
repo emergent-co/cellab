@@ -63,7 +63,7 @@
   var NAV = [
     { href:'/sh-scientific/guide/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
         ['/sh-scientific/guide/',   '퍼니스 선택 가이드'],
-        ['/sh-scientific/catalog/', '제품보기'],
+        ['/sh-scientific/catalog/', '카탈로그'],
         ['/sh-scientific/manual/',  '메뉴얼'],
         ['/sh-scientific/blog/',    '블로그']
       ] },
