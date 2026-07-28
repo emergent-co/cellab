@@ -70,6 +70,29 @@
   .ds-empty{ padding:44px; text-align:center; color:#9C958D; font-size:14px; }
   .ds-foot{ margin-top:16px; font-size:12px; color:var(--gray-2); line-height:1.8; }
   .ds-back{ display:inline-block; margin-bottom:4px; font-size:13px; font-weight:700; color:#9A3412; text-decoration:none; }
+  /* --- 대표 구성 데이터시트(Gas Flow Package) --- */
+  .pkg{ padding:10px 0 4px; }
+  .pkg-ans{ background:#eef4f1; border:1px solid #cfe3da; border-left:4px solid var(--green); border-radius:10px; padding:14px 16px; font-size:15px; color:#20302a; line-height:1.7; margin:4px 0 18px; }
+  .pkg-ans b{ color:var(--ink); }
+  .pkg-h{ font-family:var(--serif); font-size:21px; font-weight:700; letter-spacing:-.02em; margin:4px 0 14px; }
+  .pkg-h span{ font-size:14px; color:var(--gray-2); font-weight:600; }
+  .pkg-cols{ display:grid; grid-template-columns:1.25fr .9fr; gap:22px; align-items:start; margin-bottom:20px; }
+  .pkg-feat{ list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .pkg-feat li{ font-size:13.5px; color:#3a3a3a; line-height:1.6; padding-left:16px; position:relative; }
+  .pkg-feat li:before{ content:''; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:#C2410C; }
+  .pkg-feat b{ color:var(--ink); }
+  .pkg-fig{ margin:0; border:1px solid #E7E3DE; border-radius:12px; overflow:hidden; background:#FAF8F5; }
+  .pkg-fig img{ width:100%; display:block; }
+  .pkg-fig figcaption{ font-size:11.5px; color:var(--gray-2); padding:7px 10px; text-align:center; }
+  .pkg-tblwrap{ overflow-x:auto; }
+  .pkg-tbl{ width:100%; border-collapse:collapse; font-size:12.5px; min-width:580px; }
+  .pkg-tbl th,.pkg-tbl td{ border:1px solid #E7E3DE; padding:8px 10px; text-align:center; }
+  .pkg-tbl thead th{ background:#9A3412; color:#fff; font-weight:700; }
+  .pkg-tbl th[scope=row]{ background:#FAF8F5; text-align:left; color:#5a5550; font-weight:700; white-space:nowrap; }
+  .pkg-note{ font-size:12px; color:var(--gray-2); margin-top:12px; line-height:1.7; }
+  .pkg-note a{ color:#9A3412; font-weight:700; text-decoration:none; }
+  .pkg-hr{ border:0; border-top:1px solid var(--line); margin:26px 0 4px; }
+  @media(max-width:720px){ .pkg-cols{ grid-template-columns:1fr; } }
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
@@ -83,6 +106,51 @@
     <p class="lead">삼흥에너지(SH Scientific) <b>전기로·튜브퍼니스 전 모델</b>의 최고온도·노내용량·소비전력·<b>소비자가</b>를 한눈에. 온도대·유형으로 좁혀 바로 찾고, 상세 사양은 각 제품 링크에서 확인하세요. 구성·수량별 정확한 견적은 <a href="/sh-scientific/#quoteForm" style="color:#9A3412;font-weight:700">선택 가이드에서 문의</a>해 주세요.</p>
   </div>
 </section>
+
+<!-- 대표 구성 데이터시트: 1200℃ Tube Furnace Gas Flow Package -->
+<section class="pkg">
+  <div class="wrap">
+    <p class="pkg-ans">삼흥에너지 <b>SH-FU-□STG-WG</b> 시리즈는 튜브 전기로에 <b>MFC·BPR·석영튜브·가스라인·압력게이지</b>를 한 대로 묶은 <b>1200℃ 가스플로 패키지</b>입니다. 노내 <b>300mm 항온대(Hot Zone)</b>, 적용 튜브경 <b>50~120Φ</b>, 발열체 Kanthal A-1.</p>
+    <h2 class="pkg-h">1200℃ Tube Furnace Gas Flow Package <span>· 300mm Hot Zone</span></h2>
+    <div class="pkg-cols">
+      <ul class="pkg-feat">
+        <li><b>Mass Flow Controller (MFC)</b> — 가스 종류별 질량을 기준으로 정확한 가스량 투입</li>
+        <li><b>Back Pressure Regulator (BPR)</b> — 튜브 내부 가스 양압 유지(무산소 분위기) 및 튜브 파손 방지</li>
+        <li><b>Safety Cover</b> — 반응가스 응축 방지 및 화상·튜브 파손 방지</li>
+        <li><b>가스 수분제거 컬럼</b> — 투입 가스의 수분을 제거</li>
+        <li><b>Gas Flow Package 구성</b> — 튜브 전기로 + Gas Sealing Mask + 석영튜브 + Gas Flowmeter + Gas Line &amp; Valve + 압력게이지를 한 대의 장비로 구성</li>
+      </ul>
+      <figure class="pkg-fig">
+        <img src="/img/product/삼흥에너지_제품.jpg" alt="삼흥에너지 1200℃ 튜브 전기로 Gas Flow Package — MFC·BPR·석영튜브·가스라인 통합 구성" loading="lazy">
+        <figcaption>MFC·BPR·석영튜브·가스라인을 한 대로 통합한 Gas Flow Package</figcaption>
+      </figure>
+    </div>
+    <div class="pkg-tblwrap">
+      <table class="pkg-tbl">
+        <thead>
+          <tr><th scope="col">Model</th><th scope="col">SH-FU-50STG-WG</th><th scope="col">SH-FU-80STG-WG</th><th scope="col">SH-FU-100STG-WG</th><th scope="col">SH-FU-120STG-WG</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Furnace</th><td>SH-FU-50STG</td><td>SH-FU-80STG</td><td>SH-FU-100STG</td><td>SH-FU-120STG</td></tr>
+          <tr><th scope="row">Max Temp</th><td colspan="4">1200℃ (2192℉)</td></tr>
+          <tr><th scope="row">Temp Controller</th><td colspan="4">Programmable Controller (FC-1000)</td></tr>
+          <tr><th scope="row">Sensor</th><td colspan="4">K type</td></tr>
+          <tr><th scope="row">적용 튜브경 (Tube Ø)</th><td>50 Φ</td><td>80 Φ</td><td>100 Φ</td><td>120 Φ</td></tr>
+          <tr><th scope="row">Heater</th><td>2200 W</td><td>2600 W</td><td>3700 W</td><td>4000 W</td></tr>
+          <tr><th scope="row">Hot Zone</th><td colspan="4">Length 300 mm</td></tr>
+          <tr><th scope="row">External Dim. (W×D×H)</th><td>502×357×517 mm</td><td>502×365×537 mm</td><td>502×397×557 mm</td><td>502×455×630 mm</td></tr>
+          <tr><th scope="row">Weight</th><td>27 kg</td><td>32 kg</td><td>48 kg</td><td>70 kg</td></tr>
+          <tr><th scope="row">Heater Element</th><td colspan="4">Kanthal A-1</td></tr>
+          <tr><th scope="row">전원 (220V, 50/60Hz, 1Φ)</th><td>9.5 A</td><td>11.3 A</td><td>16.0 A</td><td>17.3 A</td></tr>
+          <tr><th scope="row">Components</th><td colspan="4">Gas Flowmeter 1EA · Stainless Steel Pipe &amp; Connector · Gas Sealing Mask · Quartz Tube (Length 1000 mm)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="pkg-note">가격은 소비자가(부가세 별도) 기준이며 구성·수량에 따라 달라질 수 있습니다. 삼흥에너지 공식 대리점 <b>실험셋업연구소</b> — 정품·국내 A/S. 구성·수량별 정확한 견적은 <a href="/sh-scientific/#quoteForm">선택 가이드에서 문의</a>해 주세요.</p>
+    <hr class="pkg-hr">
+  </div>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"삼흥에너지 1200℃ 튜브 전기로 Gas Flow Package (SH-FU-STG-WG)","brand":{"@type":"Brand","name":"SH Scientific","alternateName":"삼흥에너지"},"category":"튜브 전기로(Tube Furnace) 가스플로 패키지","description":"튜브 전기로에 MFC(질량유량제어기)·BPR(백프레셔 레귤레이터)·석영튜브·Gas Sealing Mask·가스라인·압력게이지를 한 대로 통합한 1200℃ 가스플로 패키지. 노내 300mm 항온대, 적용 튜브경 50~120Φ, 발열체 Kanthal A-1, 프로그램 컨트롤러(FC-1000)·K type 센서.","additionalProperty":[{"@type":"PropertyValue","name":"최고온도","value":"1200℃ (2192℉)"},{"@type":"PropertyValue","name":"Hot Zone 길이","value":"300 mm"},{"@type":"PropertyValue","name":"적용 튜브경","value":"50~120 Φ"},{"@type":"PropertyValue","name":"발열체","value":"Kanthal A-1"},{"@type":"PropertyValue","name":"온도컨트롤러","value":"Programmable Controller FC-1000 (K type)"},{"@type":"PropertyValue","name":"전원","value":"220V 50/60Hz 1Φ"}],"model":["SH-FU-50STG-WG","SH-FU-80STG-WG","SH-FU-100STG-WG","SH-FU-120STG-WG"],"manufacturer":{"@type":"Organization","name":"SH Scientific"},"offers":{"@type":"Offer","priceCurrency":"KRW","availability":"https://schema.org/InStock","seller":{"@id":"https://rndsetup.com/#org"}}}</script>
 
 <section class="ds-sec">
   <div class="wrap">
