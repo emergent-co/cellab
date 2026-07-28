@@ -48,7 +48,7 @@
   .dscard{ border:1px solid #E7E3DE; border-radius:14px; overflow:hidden; background:#fff; display:flex; flex-direction:column; transition:border-color .15s,box-shadow .15s; }
   .dscard.hidden{ display:none; }
   .dscard:hover{ border-color:#C2410C; box-shadow:0 6px 22px rgba(194,65,12,.08); }
-  .dscard-im{ aspect-ratio:4/3; background:#FAF8F5; position:relative; overflow:hidden; }
+  .dscard-im{ aspect-ratio:4/3; background:#fff; position:relative; overflow:hidden; }
   .dscard-im img{ width:100%; height:100%; object-fit:cover; display:block; }
   .dscard-bdg{ position:absolute; left:9px; top:9px; display:flex; gap:5px; flex-wrap:wrap; }
   .dscard-bdg .b{ font-size:11px; font-weight:800; padding:3px 8px; border-radius:14px; color:#fff; }
@@ -71,7 +71,7 @@
   .ds-foot{ margin-top:16px; font-size:12px; color:var(--gray-2); line-height:1.8; }
   /* --- 사양 카드(이미지 없는 텍스트형) --- */
   .ds-grid{ grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); }
-  .dscard-im{ aspect-ratio:4/3; background:#FAF8F5; position:relative; overflow:hidden; border-bottom:1px solid #F0ECE7; }
+  .dscard-im{ aspect-ratio:4/3; background:#fff; position:relative; overflow:hidden; border-bottom:1px solid #F0ECE7; }
   .dscard-im img{ width:100%; height:100%; object-fit:contain; display:block; }
   .dscard-bd{ padding:14px 17px 15px; }
   .dscard-bdg2{ display:flex; gap:5px; flex-wrap:wrap; margin-bottom:9px; }
@@ -80,9 +80,16 @@
   .dscard-bdg2 .b.y{ background:#1B1A18; }
   .dscard h3.dscard-mdl{ font-family:var(--serif); font-size:16.5px; font-weight:700; margin:0; letter-spacing:-.01em; }
   .dscard-nm{ min-height:0; margin:4px 0 10px; font-size:12px; }
-  .dscard-feat{ list-style:none; margin:11px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
-  .dscard-feat li{ font-size:12.5px; color:#3a3a3a; line-height:1.6; padding-left:13px; position:relative; }
-  .dscard-feat li:before{ content:''; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background:#C2410C; }
+  .dscard{ position:relative; }
+  .dscard-link{ text-decoration:none; color:inherit; }
+  .dscard-link::after{ content:''; position:absolute; inset:0; z-index:1; }
+  .dscard:hover .dscard-link{ color:#9A3412; }
+  .dscard-sp{ min-height:96px; align-content:start; }
+  .dscard-sp .v{ max-width:62%; }
+  .dscard-use{ margin:11px 0 0; font-size:12.5px; color:#5a5550; line-height:1.55;
+               background:#FAF8F5; border-radius:8px; padding:8px 10px; min-height:44px; }
+  .dscard-ft .ds-detail{ color:#9A3412; }
+  .qbtn-sm{ position:relative; z-index:2; }
   .dscard-ft{ padding-top:13px; margin-top:13px; border-top:1px dashed #ECE7E1; align-items:center; }
   .qbtn-sm{ font-size:12.5px; padding:9px 15px; border-radius:8px; margin-left:auto; }
   .ds-back{ display:inline-block; margin-bottom:4px; font-size:13px; font-weight:700; color:#9A3412; text-decoration:none; }
@@ -194,188 +201,171 @@
 <article class="dscard" data-tier="1200" data-type="회전튜브로" data-use="cvd battery sintering" data-text="1200℃ 회전 튜브로 small scale rotary kiln · sh-fu-100~140rtg-2 / -3 rotary kiln 회전 튜브로 로터리킬른 rtg 연속식 열분해 torrefaction 1200℃ 100~140φ × 1500~2000mm 300mm × 2 또는 × 3">
   <div class="dscard-im"><img src="/img/product/sh/rotary-tube-furnace.jpg" alt="삼흥에너지 1200℃ 회전 튜브로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">회전튜브로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 회전 튜브로</h3>
-    <div class="dscard-nm">Small Scale Rotary Kiln · SH-FU-100~140RTG-2 / -3</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브</span><span class="v">100~140Φ × 1500~2000mm</span></div><div class="r"><span class="k">Hot Zone</span><span class="v">300mm × 2 또는 × 3</span></div></div>
-    <ul class="dscard-feat"><li>튜브 회전 0.7~14 RPM · 경사 0~15° · 투입/회수 베셀 각 2L</li><li>석영 View Port로 튜브 내부 전체 관찰 가능</li><li>발열체 Kanthal A-1 · 프로그램 컨트롤러 SP590 · K type</li><li>분위기 온도 1000℃ 이하 사용에 적합 · 열분해 시 콜드트랩 베스 연결 가능</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/rotary-tube-furnace/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 회전 튜브로 (Small Scale Rotary Kiln · SH-FU-100~140RTG-2 / -3)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/rotary-tube-furnace/">1200℃ 회전 튜브로</a></h3>
+    <div class="dscard-nm">SH-FU-100~140RTG-2 / -3</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">100~140Φ (길이 1500~2000mm)</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · K type</span></div></div>
+    <p class="dscard-use">연속 투입·회수 열처리 · 열분해(Pyrolysis)</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 회전 튜브로 (Small Scale Rotary Kiln · SH-FU-100~140RTG-2 / -3)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="CVD·가스플로" data-use="cvd battery semi vacuum" data-text="1200℃ 튜브로 가스플로 · 300mm gas flow package · sh-fu-50/80/100/120stg-wg gas flow package stg-wg 가스플로 cvd 분위기 석영튜브 mfc bpr 300mm 1200℃ 50~120φ 300mm">
   <div class="dscard-im"><img src="/img/product/sh/gas-flow-package.jpg" alt="삼흥에너지 1200℃ 튜브로 가스플로 · 300mm" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">CVD·가스플로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 튜브로 가스플로 · 300mm</h3>
-    <div class="dscard-nm">Gas Flow Package · SH-FU-50/80/100/120STG-WG</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ</span></div><div class="r"><span class="k">Hot Zone</span><span class="v">300mm</span></div></div>
-    <ul class="dscard-feat"><li>기본 구성 — 튜브로 + Gas Flowmeter + 석영튜브(1000mm) + Sealing Mask + Seamless SUS 316 배관·압력게이지</li><li>발열체 Kanthal A-1 · 프로그램 컨트롤러 FC-1000 · K type</li><li>MFC · BPR · Safety Cover · 가스 수분제거 Column 옵션</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/gas-flow-package/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 튜브로 가스플로 · 300mm (Gas Flow Package · SH-FU-50/80/100/120STG-WG)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/gas-flow-package/">1200℃ 튜브로 가스플로 · 300mm</a></h3>
+    <div class="dscard-nm">SH-FU-50/80/100/120STG-WG</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">FC-1000 · K type</span></div></div>
+    <p class="dscard-use">무산소·가스 분위기 열처리 · CVD</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 튜브로 가스플로 · 300mm (Gas Flow Package · SH-FU-50/80/100/120STG-WG)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="CVD·가스플로" data-use="cvd battery semi vacuum" data-text="1200℃ 튜브로 가스플로 · 600mm gas flow package · sh-fu-50/80/100/120ltg-wg gas flow package ltg-wg 가스플로 600mm cvd 45step 이중케이스 1200℃ 50~120φ (제작 50~500mm) 600mm">
   <div class="dscard-im"><img src="/img/product/sh/gas-flow-package-600mm.jpg" alt="삼흥에너지 1200℃ 튜브로 가스플로 · 600mm" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">CVD·가스플로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 튜브로 가스플로 · 600mm</h3>
-    <div class="dscard-nm">Gas Flow Package · SH-FU-50/80/100/120LTG-WG</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ (제작 50~500mm)</span></div><div class="r"><span class="k">Hot Zone</span><span class="v">600mm</span></div></div>
-    <ul class="dscard-feat"><li>석영튜브 1200mm · 45 Step 온도 프로그램 제어</li><li>이중 케이스 구조로 외부 케이스 표면온도가 낮음</li><li>발열체 Kanthal A-1 · FC-1000 · K type</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/gas-flow-package-600mm/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 튜브로 가스플로 · 600mm (Gas Flow Package · SH-FU-50/80/100/120LTG-WG)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/gas-flow-package-600mm/">1200℃ 튜브로 가스플로 · 600mm</a></h3>
+    <div class="dscard-nm">SH-FU-50/80/100/120LTG-WG</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ (제작 50~500mm)</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">FC-1000 · K type</span></div></div>
+    <p class="dscard-use">긴 항온대가 필요한 가스 분위기 열처리</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 튜브로 가스플로 · 600mm (Gas Flow Package · SH-FU-50/80/100/120LTG-WG)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="CVD·가스플로" data-use="cvd battery semi" data-text="1200℃ 3존 튜브로 가스플로 3 zone gas flow package · sh-fu-50/80/100/120ltg-3-wg 3 zone 3존 다구간 온도구배 ltg-3 가스플로 cvd 1200℃ 50~120φ (제작 50~500mm) 200mm × 3 zone">
   <div class="dscard-im"><img src="/img/product/sh/gas-flow-3zone.jpg" alt="삼흥에너지 1200℃ 3존 튜브로 가스플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">CVD·가스플로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 3존 튜브로 가스플로</h3>
-    <div class="dscard-nm">3 Zone Gas Flow Package · SH-FU-50/80/100/120LTG-3-WG</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ (제작 50~500mm)</span></div><div class="r"><span class="k">Hot Zone</span><span class="v">200mm × 3 Zone</span></div></div>
-    <ul class="dscard-feat"><li>존별 독립 컨트롤러 3개 — 구간별 온도 구배 설정 가능</li><li>45 Step 온도 프로그램 · 이중 케이스 · 석영튜브 1200mm</li><li>발열체 Kanthal A-1 · FC-1000 · K type</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/gas-flow-3zone/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 3존 튜브로 가스플로 (3 Zone Gas Flow Package · SH-FU-50/80/100/120LTG-3-WG)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/gas-flow-3zone/">1200℃ 3존 튜브로 가스플로</a></h3>
+    <div class="dscard-nm">SH-FU-50/80/100/120LTG-3-WG</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ (제작 50~500mm)</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">FC-1000 × 3 · K type</span></div></div>
+    <p class="dscard-use">구간별 온도 구배가 필요한 공정</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 3존 튜브로 가스플로 (3 Zone Gas Flow Package · SH-FU-50/80/100/120LTG-3-WG)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1500" data-type="CVD·가스플로" data-use="cvd sintering semi" data-text="1500℃ 튜브로 가스플로 gas flow package · sh-fu-50/80/100/120th-wg 1500 tube furnace th-wg sic 알루미나튜브 고온 가스플로 소결 1500℃ 알루미나 50~274φ 300mm">
   <div class="dscard-im"><img src="/img/product/sh/tube-1500.jpg" alt="삼흥에너지 1500℃ 튜브로 가스플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1500℃</span><span class="b y">CVD·가스플로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1500℃ 튜브로 가스플로</h3>
-    <div class="dscard-nm">Gas Flow Package · SH-FU-50/80/100/120TH-WG</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1500℃</span></div><div class="r"><span class="k">적용 튜브</span><span class="v">알루미나 50~274Φ</span></div><div class="r"><span class="k">Hot Zone</span><span class="v">300mm</span></div></div>
-    <ul class="dscard-feat"><li>발열체 SiC (Silicon Carbide) · R type 센서 · FC-1000</li><li>알루미나튜브 1000mm 기본 구성</li><li>분위기 온도 1350℃ 이하 사용에 적합</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/tube-1500/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1500℃ 튜브로 가스플로 (Gas Flow Package · SH-FU-50/80/100/120TH-WG)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/tube-1500/">1500℃ 튜브로 가스플로</a></h3>
+    <div class="dscard-nm">SH-FU-50/80/100/120TH-WG</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1500℃</span></div><div class="r"><span class="k">적용 튜브</span><span class="v">알루미나 50~274Φ</span></div><div class="r"><span class="k">발열체</span><span class="v">SiC</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">FC-1000 · R type</span></div></div>
+    <p class="dscard-use">고온 소결 · 세라믹 열처리</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1500℃ 튜브로 가스플로 (Gas Flow Package · SH-FU-50/80/100/120TH-WG)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1800" data-type="CVD·가스플로" data-use="cvd sintering vacuum" data-text="1800℃ 튜브로 가스플로 gas flow package · sh-fu-50/80/100/120ts-wg 1800 tube furnace ts-wg mosi2 초고온 알루미나 가스플로 1800℃ 알루미나 50~274φ 300mm">
   <div class="dscard-im"><img src="/img/product/sh/tube-1800.jpg" alt="삼흥에너지 1800℃ 튜브로 가스플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1800℃</span><span class="b y">CVD·가스플로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1800℃ 튜브로 가스플로</h3>
-    <div class="dscard-nm">Gas Flow Package · SH-FU-50/80/100/120TS-WG</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1800℃</span></div><div class="r"><span class="k">적용 튜브</span><span class="v">알루미나 50~274Φ</span></div><div class="r"><span class="k">Hot Zone</span><span class="v">300mm</span></div></div>
-    <ul class="dscard-feat"><li>발열체 MoSi2 (Molybdenum Disilicide) · B type 센서 · SP590</li><li>알루미나튜브 1000mm 기본 구성</li><li>분위기 온도 1650℃ 이하 사용에 적합</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/tube-1800/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1800℃ 튜브로 가스플로 (Gas Flow Package · SH-FU-50/80/100/120TS-WG)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/tube-1800/">1800℃ 튜브로 가스플로</a></h3>
+    <div class="dscard-nm">SH-FU-50/80/100/120TS-WG</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1800℃</span></div><div class="r"><span class="k">적용 튜브</span><span class="v">알루미나 50~274Φ</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · B type</span></div></div>
+    <p class="dscard-use">초고온 소결 · 고온 상변태</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1800℃ 튜브로 가스플로 (Gas Flow Package · SH-FU-50/80/100/120TS-WG)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="튜브전기로" data-use="vacuum cvd semi" data-text="진공 튜브로 턴키 패키지 vacuum tube furnace turnkey · fu-pk-g / h / s 시리즈 vacuum tube furnace turnkey 진공 튜브로 턴키 fu-pk 칠러 진공펌프 패키지 1200 · 1500 · 1800℃ 퍼니스 + 칠러 + 진공펌프 일체형 스탠드">
   <div class="dscard-im"><img src="/img/product/sh/vacuum-tube-turnkey.jpg" alt="삼흥에너지 진공 튜브로 턴키 패키지" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200 · 1500 · 1800℃</span><span class="b y">튜브전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">진공 튜브로 턴키 패키지</h3>
-    <div class="dscard-nm">Vacuum Tube Furnace Turnkey · FU-PK-G / H / S 시리즈</div>
-    <div class="dscard-sp"><div class="r"><span class="k">구성 온도대</span><span class="v">1200 · 1500 · 1800℃</span></div><div class="r"><span class="k">구성</span><span class="v">퍼니스 + 칠러 + 진공펌프</span></div><div class="r"><span class="k">프레임</span><span class="v">일체형 스탠드</span></div></div>
-    <ul class="dscard-feat"><li>칠러 SH-WB-5CDR + 진공펌프 SH-V10 을 프레임에 일체 구성 — 별도 배치 불필요</li><li>도어·튜브 실링 가스켓에 냉각수 라인 — 고온에서 가스켓 경화·진공 누설 방지</li><li>1200℃ FU-PK-G1~G4 / 3존 G1-3~G4-3 / 1500℃ H1~H4 / 1800℃ S1~S4</li><li>MFC · BPR · 디지털 진공메타 옵션</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/vacuum-tube-turnkey/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="진공 튜브로 턴키 패키지 (Vacuum Tube Furnace Turnkey · FU-PK-G / H / S 시리즈)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/vacuum-tube-turnkey/">진공 튜브로 턴키 패키지</a></h3>
+    <div class="dscard-nm">FU-PK-G / H / S 시리즈</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200 · 1500 · 1800℃</span></div><div class="r"><span class="k">적용 튜브경</span><span class="v">50~120Φ</span></div><div class="r"><span class="k">발열체</span><span class="v">온도대별 상이</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">온도대별 상이</span></div></div>
+    <p class="dscard-use">퍼니스+칠러+진공펌프 일체 구성</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="진공 튜브로 턴키 패키지 (Vacuum Tube Furnace Turnkey · FU-PK-G / H / S 시리즈)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="진공전기로" data-use="vacuum battery semi" data-text="1200℃ 진공 머플로 vacuum muffle furnace · sh-fu-1.5 / 10 / 31mgv vacuum muffle 진공 머플로 mgv 무산소 분위기 사각챔버 과압안전도어 1200℃ 1.5 · 10 · 31 l kanthal a-1">
   <div class="dscard-im"><img src="/img/product/sh/vacuum-muffle-1200.jpg" alt="삼흥에너지 1200℃ 진공 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">진공전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 진공 머플로</h3>
-    <div class="dscard-nm">Vacuum Muffle Furnace · SH-FU-1.5 / 10 / 31MGV</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">내용적</span><span class="v">1.5 · 10 · 31 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div></div>
-    <ul class="dscard-feat"><li>진공 도달 후 가스 투입 — 무산소 분위기에 최적화된 사각 챔버</li><li>진공 · 진공해제 · 가스 In / Out 4개 별도 포트 · 과압 안전도어</li><li>프로그램 컨트롤러 SP590 · 석영선반(QTS-100/200/300)으로 다단 적재 가능</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/vacuum-muffle-1200/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 진공 머플로 (Vacuum Muffle Furnace · SH-FU-1.5 / 10 / 31MGV)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/vacuum-muffle-1200/">1200℃ 진공 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-1.5 / 10 / 31MGV</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">내용적</span><span class="v">1.5 · 10 · 31 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · K type</span></div></div>
+    <p class="dscard-use">진공 후 가스 투입 — 무산소 분위기</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 진공 머플로 (Vacuum Muffle Furnace · SH-FU-1.5 / 10 / 31MGV)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="진공전기로" data-use="vacuum battery semi" data-text="1200℃ 진공 머플로 (석영챔버) with quartz chamber · sh-fu-1.5 / 10 / 31mgvq quartz chamber 석영챔버 진공 머플로 mgvq 오염방지 부식가스 클리닝 1200℃ 1.5 · 10 · 31 l 3~5mm 두께">
   <div class="dscard-im"><img src="/img/product/sh/vacuum-muffle-1200-quartz.jpg" alt="삼흥에너지 1200℃ 진공 머플로 (석영챔버)" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">진공전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 진공 머플로 (석영챔버)</h3>
-    <div class="dscard-nm">with Quartz Chamber · SH-FU-1.5 / 10 / 31MGVQ</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">내용적</span><span class="v">1.5 · 10 · 31 L</span></div><div class="r"><span class="k">석영챔버</span><span class="v">3~5mm 두께</span></div></div>
-    <ul class="dscard-feat"><li>도어부까지 석영으로 커버된 사각 챔버 — 분진에 의한 시료 오염 방지</li><li>실험 중 발생하는 부식성 가스로 인한 열선 손실 방지</li><li>사용 후 오염된 챔버 내부 클리닝이 쉬움</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/vacuum-muffle-1200-quartz/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 진공 머플로 (석영챔버) (with Quartz Chamber · SH-FU-1.5 / 10 / 31MGVQ)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/vacuum-muffle-1200-quartz/">1200℃ 진공 머플로 (석영챔버)</a></h3>
+    <div class="dscard-nm">SH-FU-1.5 / 10 / 31MGVQ</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">내용적</span><span class="v">1.5 · 10 · 31 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · K type</span></div></div>
+    <p class="dscard-use">분진 오염·부식가스 차단이 필요할 때</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 진공 머플로 (석영챔버) (with Quartz Chamber · SH-FU-1.5 / 10 / 31MGVQ)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1500" data-type="진공전기로" data-use="vacuum sintering" data-text="1500℃ 진공 머플로 vacuum muffle furnace · sh-fu-4.5 / 18.7mhv 1500 vacuum muffle mhv sic 진공 머플로 소결 1500℃ 4.5 · 18.7 l sic">
   <div class="dscard-im"><img src="/img/product/sh/vacuum-muffle-1500.jpg" alt="삼흥에너지 1500℃ 진공 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1500℃</span><span class="b y">진공전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1500℃ 진공 머플로</h3>
-    <div class="dscard-nm">Vacuum Muffle Furnace · SH-FU-4.5 / 18.7MHV</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1500℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 18.7 L</span></div><div class="r"><span class="k">발열체</span><span class="v">SiC</span></div></div>
-    <ul class="dscard-feat"><li>진공 도달 후 가스 투입 — 무산소 분위기 최적화</li><li>진공 · 진공해제 · 가스 In / Out 4포트 · 과압 안전도어</li><li>R type 센서 · SP590 · 분위기 온도 1350℃ 이하 사용</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/vacuum-muffle-1500/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1500℃ 진공 머플로 (Vacuum Muffle Furnace · SH-FU-4.5 / 18.7MHV)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/vacuum-muffle-1500/">1500℃ 진공 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-4.5 / 18.7MHV</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1500℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 18.7 L</span></div><div class="r"><span class="k">발열체</span><span class="v">SiC</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · R type</span></div></div>
+    <p class="dscard-use">고온 진공·무산소 소결</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1500℃ 진공 머플로 (Vacuum Muffle Furnace · SH-FU-4.5 / 18.7MHV)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1800" data-type="진공전기로" data-use="vacuum sintering" data-text="1900℃급 진공 머플로 vacuum muffle furnace · sh-fu-4.5 / 10 / 18.7msv 1900 vacuum muffle msv mosi2 초고온 진공 머플로 가스켓 냉각 1700℃ 이하 1400℃ 이하 1700℃ 이하">
   <div class="dscard-im"><img src="/img/product/sh/vacuum-muffle-1900.jpg" alt="삼흥에너지 1900℃급 진공 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1700℃ 이하</span><span class="b y">진공전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1900℃급 진공 머플로</h3>
-    <div class="dscard-nm">Vacuum Muffle Furnace · SH-FU-4.5 / 10 / 18.7MSV</div>
-    <div class="dscard-sp"><div class="r"><span class="k">무진공</span><span class="v">1700℃ 이하</span></div><div class="r"><span class="k">진공</span><span class="v">1400℃ 이하</span></div><div class="r"><span class="k">진공+가스</span><span class="v">1700℃ 이하</span></div></div>
-    <ul class="dscard-feat"><li>운전 조건에 따라 사용 가능 온도가 달라집니다 — 무진공 1700℃ / 진공 1400℃ / 진공+가스 1700℃ 이하</li><li>발열체 MoSi2 1900 · B type 센서 · SP590</li><li>도어부 냉각수 라인으로 진공 가스켓 보호 · 내용적 4.5 · 10 · 20 L</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/vacuum-muffle-1900/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1900℃급 진공 머플로 (Vacuum Muffle Furnace · SH-FU-4.5 / 10 / 18.7MSV)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/vacuum-muffle-1900/">1900℃급 진공 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-4.5 / 10 / 18.7MSV</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1700℃ (진공 시 1400℃)</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 10 · 20 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1900</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · B type</span></div></div>
+    <p class="dscard-use">초고온 진공·무산소 소결 — 조건별 온도 상이</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1900℃급 진공 머플로 (Vacuum Muffle Furnace · SH-FU-4.5 / 10 / 18.7MSV)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1050" data-type="박스전기로" data-use="ashing" data-text="1050℃ 머플로 muffle furnace · sh-fu-3 / 5 / 7 / 11mge 1050 muffle mge 머플로 회화 전기로 보급형 economical 1050℃ 3 · 5.1 · 7.4 · 11.2 l kanthal a-1">
   <div class="dscard-im"><img src="/img/product/sh/muffle-1050.jpg" alt="삼흥에너지 1050℃ 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1050℃</span><span class="b y">박스전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1050℃ 머플로</h3>
-    <div class="dscard-nm">Muffle Furnace · SH-FU-3 / 5 / 7 / 11MGE</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1050℃</span></div><div class="r"><span class="k">내용적</span><span class="v">3 · 5.1 · 7.4 · 11.2 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div></div>
-    <ul class="dscard-feat"><li>심플한 디자인의 경제적인 보급형 · Digital PID 컨트롤러 · K type</li><li>Vent Port를 통한 배기 기능</li><li>분위기 온도 850℃ 이하 사용에 적합 · Gas Port 옵션으로 가스 분위기 사용 가능</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/muffle-1050/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1050℃ 머플로 (Muffle Furnace · SH-FU-3 / 5 / 7 / 11MGE)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/muffle-1050/">1050℃ 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-3 / 5 / 7 / 11MGE</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1050℃</span></div><div class="r"><span class="k">내용적</span><span class="v">3 ~ 11.2 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">Digital PID · K type</span></div></div>
+    <p class="dscard-use">회화·건조·저온 소성 — 보급형</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1050℃ 머플로 (Muffle Furnace · SH-FU-3 / 5 / 7 / 11MGE)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1200" data-type="박스전기로" data-use="ashing sintering battery" data-text="1200℃ 머플로 muffle furnace · sh-fu-3 / 5 / 14 / 27mg · 64 / 125mg 1200 muffle mg 머플로 회화 소성 대용량 125l vent port 1200℃ 3 ~ 125 l kanthal a-1">
   <div class="dscard-im"><img src="/img/product/sh/muffle-1200.jpg" alt="삼흥에너지 1200℃ 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1200℃</span><span class="b y">박스전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1200℃ 머플로</h3>
-    <div class="dscard-nm">Muffle Furnace · SH-FU-3 / 5 / 14 / 27MG · 64 / 125MG</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">내용적</span><span class="v">3 ~ 125 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div></div>
-    <ul class="dscard-feat"><li>많은 양의 가스가 발생하는 샘플의 산화에 적합 · Vent Port 배기</li><li>소형 Digital PID / 프로그램 컨트롤러, 대형(64·125L) SP570</li><li>분위기 온도 1000℃ 이하 사용에 적합 · Gas Port 옵션</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/muffle-1200/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 머플로 (Muffle Furnace · SH-FU-3 / 5 / 14 / 27MG · 64 / 125MG)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/muffle-1200/">1200℃ 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-3 / 5 / 14 / 27MG · 64 / 125MG</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1200℃</span></div><div class="r"><span class="k">내용적</span><span class="v">3 ~ 125 L</span></div><div class="r"><span class="k">발열체</span><span class="v">Kanthal A-1</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">Digital PID / SP570 · K type</span></div></div>
+    <p class="dscard-use">가스 발생 시료 산화 · 대용량 열처리</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1200℃ 머플로 (Muffle Furnace · SH-FU-3 / 5 / 14 / 27MG · 64 / 125MG)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1500" data-type="박스전기로" data-use="sintering" data-text="1500℃ 머플로 muffle furnace · sh-fu-4 / 11 / 22 / 36mh 1500 muffle mh sic 머플로 소결 발열체 교체 1500℃ 4.5 · 11 · 22 · 36 l sic">
   <div class="dscard-im"><img src="/img/product/sh/muffle-1500.jpg" alt="삼흥에너지 1500℃ 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1500℃</span><span class="b y">박스전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1500℃ 머플로</h3>
-    <div class="dscard-nm">Muffle Furnace · SH-FU-4 / 11 / 22 / 36MH</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1500℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 · 36 L</span></div><div class="r"><span class="k">발열체</span><span class="v">SiC</span></div></div>
-    <ul class="dscard-feat"><li>발열체 교체가 쉽도록 설계 — 소모품 교체 부담이 낮음</li><li>프로그램 컨트롤러 FC-1000 · R type · Vent Port 배기</li><li>분위기 온도 1350℃ 이하 사용에 적합</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/muffle-1500/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1500℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22 / 36MH)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/muffle-1500/">1500℃ 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-4 / 11 / 22 / 36MH</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1500℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 ~ 36 L</span></div><div class="r"><span class="k">발열체</span><span class="v">SiC</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">FC-1000 · R type</span></div></div>
+    <p class="dscard-use">세라믹 소결 · 고온 열처리</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1500℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22 / 36MH)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1700" data-type="박스전기로" data-use="sintering" data-text="1700℃ 머플로 muffle furnace · sh-fu-4 / 11 / 22ms 1700 1700 muffle ms 머플로 mosi2 초고온 소결 1700℃ 4.5 · 11 · 22 l mosi2 1700℃ grade">
   <div class="dscard-im"><img src="/img/product/sh/muffle-1700.jpg" alt="삼흥에너지 1700℃ 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1700℃</span><span class="b y">박스전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1700℃ 머플로</h3>
-    <div class="dscard-nm">Muffle Furnace · SH-FU-4 / 11 / 22MS 1700</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1700℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1700℃ Grade</span></div></div>
-    <ul class="dscard-feat"><li>발열체 MoSi2 1700℃ 등급 · R type 센서 · SP590</li><li>발열체 교체가 쉽도록 설계 · Vent Port 배기</li><li>분위기 온도 1550℃ 이하 사용에 적합</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/muffle-1700/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1700℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22MS 1700)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/muffle-1700/">1700℃ 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-4 / 11 / 22MS 1700</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1700℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1700</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · R type</span></div></div>
+    <p class="dscard-use">초고온 소결 — 상시 1550℃ 이하</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1700℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22MS 1700)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1800" data-type="박스전기로" data-use="sintering" data-text="1800℃ 머플로 muffle furnace · sh-fu-4 / 11 / 22ms 1800 1800 muffle ms 머플로 mosi2 초고온 소결 1800℃ 4.5 · 11 · 22 l mosi2 1800℃ grade">
   <div class="dscard-im"><img src="/img/product/sh/muffle-1800.jpg" alt="삼흥에너지 1800℃ 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1800℃</span><span class="b y">박스전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1800℃ 머플로</h3>
-    <div class="dscard-nm">Muffle Furnace · SH-FU-4 / 11 / 22MS 1800</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1800℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1800℃ Grade</span></div></div>
-    <ul class="dscard-feat"><li>발열체 MoSi2 1800℃ 등급 · B type 센서 · SP590</li><li>1700℃ 모델과 용량·치수는 동일하고 발열체 등급·센서가 다릅니다</li><li>분위기 온도 1650℃ 이하 사용에 적합</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/muffle-1800/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1800℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22MS 1800)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/muffle-1800/">1800℃ 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-4 / 11 / 22MS 1800</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1800℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1800</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · B type</span></div></div>
+    <p class="dscard-use">초고온 소결 — 상시 1650℃ 이하</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1800℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22MS 1800)">견적 문의</button></div>
   </div>
 </article>
 <article class="dscard" data-tier="1800" data-type="박스전기로" data-use="sintering" data-text="1900℃ 머플로 muffle furnace · sh-fu-4 / 11 / 22ms 1900 1900 muffle ms 머플로 mosi2 최고온도 소결 1900℃ 4.5 · 11 · 22 l mosi2 1900℃ grade">
   <div class="dscard-im"><img src="/img/product/sh/muffle-1900.jpg" alt="삼흥에너지 1900℃ 머플로" loading="lazy" width="760" height="570"><div class="dscard-bdg"><span class="b t">1900℃</span><span class="b y">박스전기로</span></div></div>
   <div class="dscard-bd">
-    
-    <h3 class="dscard-mdl">1900℃ 머플로</h3>
-    <div class="dscard-nm">Muffle Furnace · SH-FU-4 / 11 / 22MS 1900</div>
-    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1900℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1900℃ Grade</span></div></div>
-    <ul class="dscard-feat"><li>발열체 MoSi2 1900℃ 등급 · B type 센서 · SP590</li><li>삼흥 머플로 라인 중 최고온도 · 발열체 교체 용이 설계</li><li>분위기 온도 1750℃ 이하 사용에 적합</li></ul>
-    <div class="dscard-ft"><a class="ds-detail" href="/sh-scientific/catalog/muffle-1900/">상세 사양 →</a><button type="button" class="qbtn qbtn-sm" data-quote="1900℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22MS 1900)">견적 문의</button></div>
+    <h3 class="dscard-mdl"><a class="dscard-link" href="/sh-scientific/catalog/muffle-1900/">1900℃ 머플로</a></h3>
+    <div class="dscard-nm">SH-FU-4 / 11 / 22MS 1900</div>
+    <div class="dscard-sp"><div class="r"><span class="k">최고온도</span><span class="v">1900℃</span></div><div class="r"><span class="k">내용적</span><span class="v">4.5 · 11 · 22 L</span></div><div class="r"><span class="k">발열체</span><span class="v">MoSi2 1900</span></div><div class="r"><span class="k">컨트롤러</span><span class="v">SP590 · B type</span></div></div>
+    <p class="dscard-use">초고온 소결 — 상시 1750℃ 이하</p>
+    <div class="dscard-ft"><span class="ds-detail">상세 사양 →</span><button type="button" class="qbtn qbtn-sm" data-quote="1900℃ 머플로 (Muffle Furnace · SH-FU-4 / 11 / 22MS 1900)">견적 문의</button></div>
   </div>
 </article>
 </div>
