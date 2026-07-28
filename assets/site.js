@@ -62,9 +62,10 @@
   };
   var NAV = [
     { href:'/sh-scientific/guide/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
-        ['/sh-scientific/guide/', '퍼니스 선택 가이드'],
-        ['/sh-scientific/manual/', '메뉴얼'],
-        ['/sh-scientific/blog/',   '설치·A/S 블로그']
+        ['/sh-scientific/guide/',   '퍼니스 선택 가이드'],
+        ['/sh-scientific/catalog/', '카탈로그'],
+        ['/sh-scientific/manual/',  '메뉴얼'],
+        ['/sh-scientific/blog/',    '블로그']
       ] },
     { href:'/leadfluid/guide/', label:'리드플루이드(LeadFluid)', icon:'wrench', sub:[
         ['/leadfluid/guide/',  '펌프 선택 가이드'],
