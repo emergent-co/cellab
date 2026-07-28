@@ -815,6 +815,13 @@ def main():
         ('sh-scientific/catalog/muffle-1700/','0.8', 'monthly'),
         ('sh-scientific/catalog/muffle-1800/','0.8', 'monthly'),
         ('sh-scientific/catalog/muffle-1900/','0.8', 'monthly'),
+        ('sh-scientific/catalog/rotary-kiln-1200-2zone/','0.8', 'monthly'),
+        ('sh-scientific/catalog/rotary-kiln-1200-3zone/','0.8', 'monthly'),
+        ('sh-scientific/catalog/rotary-batch-300/','0.8', 'monthly'),
+        ('sh-scientific/catalog/rotary-batch-3zone/','0.8', 'monthly'),
+        ('sh-scientific/catalog/elevator-1200/','0.8', 'monthly'),
+        ('sh-scientific/catalog/elevator-1500/','0.8', 'monthly'),
+        ('sh-scientific/catalog/elevator-1800/','0.8', 'monthly'),
         ('sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
         ('sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
         ('sh-scientific/blog/furnace-temperature-selection/','0.6', 'monthly'),
