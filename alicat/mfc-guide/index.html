@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://rndsetup.com/alicat/mfc-guide/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;500;600;800&family=Noto+Serif+KR:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Doto:ROND,wght@100,400;100,500;100,600;100,800&family=Noto+Serif+KR:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Alicat 질량유량계(MFC) 가상 시뮬레이터">
 <meta property="og:description" content="위저드로 SCCM 유량 설정·가스 변경을 한 단계씩 따라하는 Alicat MFC 가상 컨트롤러.">
@@ -24,26 +24,29 @@
   #pgsub{font-size:14px;color:var(--gray);margin-bottom:16px}
   .simrow{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;position:relative}
   .sim{flex:0 0 336px;max-width:336px}
-  .device{background:#0e1114;border-radius:18px;padding:14px 13px 16px}
+  .device{background:#0e1114;border-radius:18px;padding:14px 13px 15px}
+  .brand{text-align:center;margin-top:15px}
+  .alogo{font-family:Arial,var(--sans);font-weight:800;font-style:italic;font-size:27px;letter-spacing:.3px;color:#e2201f;line-height:1;display:inline-block}
+  .asci{display:block;font-family:Arial,var(--sans);font-weight:700;font-size:10.5px;letter-spacing:6px;color:#d6dade;margin-top:3px}
   .brow{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;padding:0 3px}
-  .abtn{height:37px;border-radius:8px;border:2px solid #f1f3f5;background:#171b21;cursor:pointer;transition:transform .1s,box-shadow .1s,background .1s;position:relative}
-  .abtn:hover{background:#232a33;border-color:#8fbcff}
+  .abtn{height:37px;border-radius:8px;border:2px solid #ffffff;background:#12161c;cursor:pointer;transition:transform .1s,box-shadow .1s,background .1s;position:relative}
+  .abtn:hover{background:#20262e;border-color:#bcd6ff}
   .abtn:active{transform:translateY(1px)}
   .abtn .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:17px;height:17px;border-radius:50%;background:#e23a2e;color:#fff;font:400 11px/17px var(--sans);text-align:center;pointer-events:none}
   .abtn.wz{border-color:#e23a2e;background:#3a231f;box-shadow:0 0 0 4px rgba(226,58,46,.5);animation:wzp 1s infinite;transform:scale(1.09);z-index:2}
   .abtn.wz .num{background:#fff;color:#e23a2e;width:21px;height:21px;line-height:21px;font-weight:700}
   @keyframes wzp{50%{box-shadow:0 0 0 10px rgba(226,58,46,.08)}}
   .wline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:4}
-  .lcd{background:#c9cbd7;border-radius:6px;margin:12px 2px;padding:14px 18px 13px;color:#4a4a5b;min-height:236px;font-family:var(--dot);font-weight:500;display:flex;flex-direction:column}
+  .lcd{background:#c9cbd7;border-radius:6px;margin:12px 2px;padding:14px 18px 13px;color:#4a4a5b;min-height:236px;font-family:var(--dot);font-weight:500;font-variation-settings:"ROND" 100;display:flex;flex-direction:column}
   .skrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
   .skc{font-size:12px;line-height:1.15;min-height:30px}
   .skc.l{text-align:left}.skc.c{text-align:center}.skc.r{text-align:right}
   .skc .a{font-size:13px;color:#57576b;font-weight:400}.skc .b{font-size:16.5px;color:#43434f;letter-spacing:1px;font-weight:500}
   .skc.act{cursor:pointer}.skc.act .b,.skc.act .solo{color:#2f4f86}
   .skc .solo{font-size:14px;letter-spacing:.5px}
-  .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 0}
-  .flow{display:flex;align-items:center;justify-content:center;gap:20px}
-  .big{font-size:46px;line-height:.92;letter-spacing:5px;color:#43434f;font-weight:600}
+  .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 6px}
+  .flow{display:flex;align-items:center;justify-content:center;gap:14px}
+  .big{font-size:40px;line-height:.92;letter-spacing:3px;color:#43434f;font-weight:600}
   .ug{text-align:right;line-height:1.15}.ug .u{font-size:19px;letter-spacing:1px;color:#54546a}.ug .g{font-size:16px;color:#54546a}
   .mflab{text-align:center;font-size:15px;letter-spacing:1px;color:#54546a;margin-top:8px}
   .mtitle{text-align:center;font-size:19px;letter-spacing:1px;color:#2f4f86;margin:6px 0 8px}
@@ -84,6 +87,7 @@
           <div class="brow" id="btop"></div>
           <div class="lcd" id="lcd"></div>
           <div class="brow" id="bbot"></div>
+          <div class="brand"><span class="alogo">ALICAT</span><span class="asci">SCIENTIFIC</span></div>
         </div>
       </div>
       <div class="wiz" id="wiz"></div>
