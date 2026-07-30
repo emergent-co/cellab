@@ -109,35 +109,48 @@
   .warn-h{ font-size:14px; font-weight:800; color:#9A3412; margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:#9A3412; }
+  .detail-top .wrap{max-width:960px}
+  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
+  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
+  .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
+  .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:#9A3412}
+  .dt-name{font-family:var(--serif);font-size:clamp(21px,3.8vw,29px);font-weight:800;line-height:1.25;margin:7px 0 0}
+  .dt-sum{margin:14px 0 0;background:#F6F4F1;border-left:3px solid #C2410C;border-radius:4px 12px 12px 4px;padding:14px 16px;font-size:14.5px;color:#3a3330;line-height:1.75}
+  .dt-sum b{color:var(--ink)}
+  .dt-info .qbtn{margin:18px 0 0}
+  .dt-kw{margin:15px 0 0;display:flex;flex-wrap:wrap;gap:7px}
+  .dt-kw a{font-size:12px;font-weight:700;color:#7a6f68;background:#F1EDE9;border-radius:20px;padding:5px 11px;text-decoration:none}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
 <body>
 <div id="pumplab-header"></div>
-<section class="hero">
+<section class="detail-top">
   <div class="wrap">
     <div class="crumb"><a href="/">홈</a> › <a href="/sh-scientific/guide/">삼흥에너지</a> › <a href="/sh-scientific/catalog/">제품 카탈로그</a> › 1200℃ 머플로</div>
-    <h1>1200℃ 머플로 <span style="font-size:.62em;color:#9A9A9A">Muffle Furnace</span></h1>
-    <p class="lead">삼흥에너지 <b>SH-FU-3/5/14/27MG · 64/125MG</b> — 내용적 <b>3L~125L</b>, 가스 발생 시료의 산화에 적합한 1200℃ 박스 전기로.</p>
+    <div class="dt-grid">
+      <div class="dt-img"><img src="/img/product/sh/muffle-1200.jpg" alt="삼흥에너지 1200℃ 머플로 SH-FU-MG" loading="lazy"></div>
+      <div class="dt-info">
+        <div class="dt-brand">삼흥에너지 · SH Scientific</div>
+        <h1 class="dt-name">1200℃ 머플로 <span style="font-size:.62em;color:#9A9A9A">Muffle Furnace</span></h1>
+        <p class="dt-sum">삼흥에너지 <b>1200℃ 머플로</b>는 <b>많은 양의 가스가 발생하는 샘플의 산화</b>에 특히 적합한 박스 전기로입니다. <b>Vent Port</b>로 배기가 되어 시료에서 나오는 가스를 밖으로 뺄 수 있습니다. 내용적이 <b>3L부터 125L</b>까지 폭이 넓어 소량 시료부터 대형 시료·다량 처리까지 대응하며, 64·125L 대형 모델은 <b>SP570</b> 프로그램 컨트롤러를 씁니다. 로 분위기 온도 <b>1000℃ 이하</b> 사용에 적합합니다.</p>
+        <button type="button" class="qbtn" data-quote="1200℃ 머플로 (SH-FU-MG)">견적문의</button>
+        <div class="dt-kw"><a href="/sh-scientific/catalog/">#머플로</a><a href="/sh-scientific/catalog/">#박스전기로</a><a href="/sh-scientific/catalog/">#1200℃</a><a href="/sh-scientific/catalog/">#회화</a><a href="/sh-scientific/catalog/">#소성</a><a href="/sh-scientific/catalog/">#VentPort</a><a href="/sh-scientific/catalog/">#가스배기</a><a href="/sh-scientific/catalog/">#삼흥에너지</a></div>
+      </div>
+    </div>
   </div>
 </section>
 <section class="pkg">
   <div class="wrap">
     <a class="ds-back" href="/sh-scientific/catalog/">← 삼흥 퍼니스 카탈로그</a>
-    <p class="pkg-ans">삼흥에너지 <b>1200℃ 머플로</b>는 <b>많은 양의 가스가 발생하는 샘플의 산화</b>에 특히 적합한 박스 전기로입니다. <b>Vent Port</b>로 배기가 되어 시료에서 나오는 가스를 밖으로 뺄 수 있습니다. 내용적이 <b>3L부터 125L</b>까지 폭이 넓어 소량 시료부터 대형 시료·다량 처리까지 대응하며, 64·125L 대형 모델은 <b>SP570</b> 프로그램 컨트롤러를 씁니다. 로 분위기 온도 <b>1000℃ 이하</b> 사용에 적합합니다.</p>
-    <div class="pkg-cols">
-      <div>
+    <div>
         <h3 style="font-family:var(--serif);font-size:14px;font-weight:700;margin:0 0 8px;color:#1A1A1A">기본 구성 (Standard)</h3>
         <ul class="pkg-feat"><li><b>박스형 머플로 본체</b> — 1200℃ · 내용적 3 ~ 125 L</li><li>발열체 <b>Kanthal A-1</b> · 센서 <b>K type</b> · 컨트롤러 <b>Digital PID / Program</b></li><li><b>Vent Port</b> — 배기 기능</li><li>외부 재질 — Steel plate with powder heating coated</li></ul>
         <h3 style="font-family:var(--serif);font-size:14px;font-weight:700;margin:16px 0 8px;color:#9A3412">옵션 (Option)</h3>
         <ul class="pkg-feat"><li><b>Gas Port</b>가 설치되어 있어 <b>가스 분위기 사용</b> 가능</li><li><b>석영선반(QTS-100/200/300)</b> — 다단 적재</li></ul>
         <h3 style="font-family:var(--serif);font-size:14px;font-weight:700;margin:16px 0 8px;color:#1E3A5F">별도 구성 (패키지 미포함)</h3><ul class="pkg-feat"><li><b>가스 공급 라인·유량계</b> — 가스 분위기로 쓸 경우</li><li><b>배기 덕트·후드</b> — Vent Port 배기를 실내 밖으로 뺄 경우</li></ul><p class="pkg-note" style="margin-top:8px">위 항목은 <b>패키지에 포함되지 않습니다.</b> 필요한 구성을 알려주시면 퍼니스와 함께 셋업해 공급합니다 — <b>온도·가스 유량·진공을 하나로 묶는 통합 제어</b>까지 지원합니다.</p>
       </div>
-      <figure class="pkg-fig">
-        <img src="/img/product/sh/muffle-1200.jpg" alt="삼흥에너지 1200℃ 머플로 SH-FU-MG" loading="lazy">
-        <figcaption>Kanthal A-1 발열체 박스형 챔버 · Vent Port 배기</figcaption>
-      </figure>
-    </div>
     <h2 class="pkg-h">모델별 사양</h2>
     <div class="pkg-tblwrap"><table class="pkg-tbl"><thead><tr><th scope="col">Model</th><th scope="col">SH-FU-3MG</th><th scope="col">SH-FU-5MG</th><th scope="col">SH-FU-14MG</th><th scope="col">SH-FU-27MG</th><th scope="col">SH-FU-64MG</th><th scope="col">SH-FU-125MG</th></tr></thead><tbody><tr><th scope="row">Max Temp</th><td colspan="6">1200℃ (2192℉)</td></tr><tr><th scope="row">Temp Controller</th><td>Digital PID / Program</td><td>Digital PID / Program</td><td>Digital PID / Program</td><td>Digital PID / Program</td><td>SP570</td><td>SP570</td></tr><tr><th scope="row">Sensor</th><td colspan="6">K type</td></tr><tr><th scope="row">Heater</th><td>1400 W</td><td>1670 W</td><td>4000 W</td><td>4600 W</td><td>9000 W</td><td>15000 W</td></tr><tr><th scope="row">Volume</th><td>3 L</td><td>4.5 L</td><td>14 L</td><td>27 L</td><td>64 L</td><td>125 L</td></tr><tr><th scope="row">Internal Dim. (W×D×H)</th><td>130×250×90mm</td><td>150×300×100mm</td><td>250×350×160mm</td><td>300×300×300mm</td><td>400×400×400mm</td><td>500×500×500mm</td></tr><tr><th scope="row">External Dim. (W×D×H)</th><td>370×505×570mm</td><td>390×555×580mm</td><td>500×605×670mm</td><td>580×585×840mm</td><td>1000×730×910mm</td><td>1150×850×1040mm</td></tr><tr><th scope="row">Weight</th><td>34 Kg</td><td>48 Kg</td><td>70 Kg</td><td>114 Kg</td><td>190 Kg</td><td>270 Kg</td></tr><tr><th scope="row">Heater Element</th><td colspan="6">Kanthal A-1 (64·125L은 Ceramic heating)</td></tr><tr><th scope="row">전원 220V 1Φ</th><td>6.1 A</td><td>7.3 A</td><td>17.4 A</td><td>20 A</td><td>39 A</td><td>N/A</td></tr><tr><th scope="row">전원 220V 3Φ</th><td>N/A</td><td>N/A</td><td>N/A</td><td>12.3 A</td><td>22.6 A</td><td>38 A</td></tr><tr><th scope="row">전원 380V 3Φ</th><td>N/A</td><td>N/A</td><td>N/A</td><td>7.5 A</td><td>13.6 A</td><td>23 A</td></tr></tbody></table></div>
     <div class="warn">
