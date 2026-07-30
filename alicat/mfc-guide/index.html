@@ -47,6 +47,9 @@
   .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 6px}
   .flow{display:flex;align-items:center;justify-content:center;gap:14px}
   .big{font-size:40px;line-height:.92;letter-spacing:3px;color:#43434f;font-weight:600}
+  .big .dg,.big .dot{display:inline-block}
+  .big .cur{color:#2f4f86;border-bottom:4px solid #2f4f86;animation:curbl 1s step-end infinite}
+  @keyframes curbl{50%{border-bottom-color:transparent}}
   .ug{text-align:right;line-height:1.15}.ug .u{font-size:19px;letter-spacing:1px;color:#54546a}.ug .g{font-size:16px;color:#54546a}
   .mflab{text-align:center;font-size:15px;letter-spacing:1px;color:#54546a;margin-top:8px}
   .mtitle{text-align:center;font-size:19px;letter-spacing:1px;color:#2f4f86;margin:6px 0 8px}
@@ -113,7 +116,7 @@
   function bl(al){return {align:al};}
   function sk(){switch(S.mode){
     case "run":return {top:[meas("PSIA","+13.63","l"),meas("&deg;C","+25.10","c"),key2("SETPT","+"+fmt(S.setpt),enterSet,"r")],bot:[meas("+16.6700","LPM","l"),meas("+"+fmt(S.val),S.unit,"c"),key("MENU",enterMenu,1,"r")]};
-    case "set":return {top:[key("CANCEL",toRun,0,"l"),key("-10",function(){chg(-10)},0,"c"),key("+10",function(){chg(10)},0,"r")],bot:[key("−",function(){chg(-1)},0,"l"),key("＋",function(){chg(1)},0,"c"),key("SET",doSet,1,"r")]};
+    case "set":return {top:[key("CANCEL",toRun,0,"l"),bl("c"),key("►",moveCur,0,"r")],bot:[key("▼",digDown,0,"l"),key("▲",digUp,0,"c"),key("SET",doSet,1,"r")]};
     case "menu":return {top:[key("CONTROL",function(){info('Control (p.23)')},0,"l"),key("ABOUT",function(){info('About (p.32)')},0,"c"),key("TARES",function(){info('Tares (p.22)')},0,"r")],bot:[key("BASIC CFG",enterCfg,1,"l"),key("ADV SETUP",function(){info('Adv Setup')},0,"c"),key("MAIN",toRun,0,"r")]};
     case "cfg":return {top:[key("BACK",enterMenu,0,"l"),bl("c"),key("MAIN",toRun,0,"r")],bot:[key("GAS",enterGas,1,"l"),key("UNITS",enterUnits,0,"c"),key("STP/NTP",function(){info('STP / NTP')},0,"r")]};
     case "gascat":return {top:[key("BACK",enterCfg,0,"l"),bl("c"),key("MAIN",toRun,0,"r")],bot:[key("▼",function(){mv('ci',CATS,1)},0,"l"),key("▲",function(){mv('ci',CATS,-1)},0,"c"),key("SELECT",openCat,1,"r")]};
@@ -126,8 +129,8 @@
   function bindCells(k){var flat=k.top.concat(k.bot);lcd.querySelectorAll('.skc').forEach(function(el,i){var c=flat[i];if(c&&c.f){el.style.cursor='pointer';el.addEventListener('click',c.f);}});}
   function midHtml(){
     if(S.mode==="run")return '<div class="flow"><div class="big" id="bv">+'+fmt(S.val)+'</div><div class="ug"><div class="u">'+S.unit+'</div><div class="g">'+sub(S.gas)+'</div></div></div><div class="mflab">Mass Flow</div>';
-    if(S.mode==="set")return '<div class="note">SETPOINT ('+S.unit+')</div><div class="setv">'+fmtE(S.edit)+'</div><div class="note">＋/－ 로 조정 후 SET</div>';
-    if(S.mode==="menu")return '<div class="mtitle">Main Menu</div><div class="note">위: CONTROL · ABOUT · TARES<br>아래: BASIC CFG · ADV SETUP · MAIN</div>';
+    if(S.mode==="set")return '<div class="flow"><div class="big">+'+digHtml()+'</div><div class="ug"><div class="u">'+S.unit+'</div><div class="g">'+sub(S.gas)+'</div></div></div><div class="mflab">SETPOINT</div>';
+    if(S.mode==="menu")return '<div class="mtitle">Main Menu</div>';
     if(S.mode==="cfg")return '<div class="mtitle" style="font-size:17px">Basic Config</div><div class="li">GAS  ('+sub(S.gas)+')</div><div class="li">DEVICE UNITS  ('+S.unit+')</div><div class="li">STP / NTP</div>';
     if(S.mode==="gascat"){var hc='<div class="note" style="text-align:left;margin-bottom:2px">GAS SELECT — CATEGORY</div>';CATS.forEach(function(x,i){hc+='<div class="li'+(i===S.ci?' sel':'')+'">'+x+'</div>';});return hc;}
     if(S.mode==="gas"){var h='<div class="note" style="text-align:left;margin-bottom:2px">GAS SELECT</div>';GASES.forEach(function(x,i){h+='<div class="li'+(i===S.gi?' sel':'')+'">'+sub(x)+(x===S.gas?'  (현재)':'')+'</div>';});return h;}
@@ -136,9 +139,14 @@
     return "";
   }
   function render(){ wizTick(); var k=sk(); renderBtns(k); lcd.innerHTML='<div class="skrow">'+cellHtml(k.top[0])+cellHtml(k.top[1])+cellHtml(k.top[2])+'</div><div class="mid">'+midHtml()+'</div><div class="skrow">'+cellHtml(k.bot[0])+cellHtml(k.bot[1])+cellHtml(k.bot[2])+'</div>'; bindCells(k); drawLine(); ph(); }
-  function enterSet(){S.mode="set";S.edit=conv(S.setpt);render();}
-  function chg(step){var s=S.unit==="SCCM"?step*10:step*0.1,mx=conv(50);S.edit=Math.max(0,Math.min(mx,+(S.edit+s).toFixed(S.unit==="SCCM"?0:4)));render();}
-  function doSet(){S.setpt=S.unit==="SCCM"?S.edit/1000:S.edit;S.mode="run";render();}
+  function setupDigs(){if(S.unit==="SLPM"){var v=Math.min(9.9999,S.setpt);S.digs=v.toFixed(4).replace(".","").padStart(5,"0").slice(-5).split("").map(Number);S.dotAfter=1;}else{var vc=Math.min(9999,Math.round(S.setpt*1000));S.digs=vc.toString().padStart(4,"0").split("").map(Number);S.dotAfter=0;}S.cur=0;}
+  function digsToVal(){if(!S.digs)return 0;if(S.unit==="SLPM")return S.digs[0]+S.digs[1]/10+S.digs[2]/100+S.digs[3]/1000+S.digs[4]/10000;return S.digs[0]*1000+S.digs[1]*100+S.digs[2]*10+S.digs[3];}
+  function digHtml(){var p="";for(var i=0;i<S.digs.length;i++){if(S.dotAfter>0&&i===S.dotAfter)p+='<span class="dot">.</span>';p+='<span class="dg'+(i===S.cur?" cur":"")+'">'+S.digs[i]+'</span>';}return p;}
+  function moveCur(){S.cur=(S.cur+1)%S.digs.length;render();}
+  function digUp(){S.digs[S.cur]=(S.digs[S.cur]+1)%10;render();}
+  function digDown(){S.digs[S.cur]=(S.digs[S.cur]+9)%10;render();}
+  function enterSet(){S.mode="set";setupDigs();render();}
+  function doSet(){var v=digsToVal();S.setpt=(S.unit==="SLPM")?v:v/1000;S.mode="run";render();}
   function toRun(){S.mode="run";render();}
   function enterMenu(){S.mode="menu";render();}
   function enterCfg(){S.mode="cfg";render();}
@@ -158,9 +166,9 @@
       {t:'<b>DEVICE UNITS</b>(5번)',btn:5,done:function(){return S.mode==='units';}},
       {t:'<b>▲▼</b>로 SLPM/SCCM 고르고 <b>SET</b>(6번)',btn:6,done:function(){return S.mode==='run';}}],
       done:"완료 — 단위가 전환됐습니다. 1 SLPM = 1000 SCCM."},
-    flow:{name:"SCCM 유량 설정하기",desc:"SETPT로 유량값 입력",steps:[
+    flow:{name:"유량 설정하기",desc:"자릿수를 올려 유량값 입력",steps:[
       {t:'<b>SETPT</b>(3번)을 누르세요',btn:3,done:function(){return S.mode==='set';}},
-      {t:'<b>＋</b>(5번)로 원하는 유량까지 올리세요',btn:5,done:function(){return S.edit>0;}},
+      {t:'<b>▲</b>(5번)로 자릿수 올리고 <b>►</b>(3번)로 자리 이동',btn:5,done:function(){return S.mode==='set'&&digsToVal()>0;}},
       {t:'<b>SET</b>(6번)으로 확정',btn:6,done:function(){return S.mode==='run'&&S.setpt>0;}}],
       done:"완료 — 설정한 유량으로 제어됩니다. (0이면 정지)"},
     gas:{name:"가스 변경하기",desc:"Gas Select로 가스 전환",steps:[
