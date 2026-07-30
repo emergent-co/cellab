@@ -801,6 +801,7 @@ def main():
         ('sh-scientific/catalog/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
         ('sh-scientific/catalog/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
         ('sh-scientific/catalog/rotary-tube-furnace/','0.8', 'monthly'),
+        ('sh-scientific/catalog/rotary-tube-furnace-pro/','0.8', 'monthly'),
         ('sh-scientific/catalog/gas-flow-3zone/','0.8', 'monthly'),
         ('sh-scientific/catalog/tube-1500/','0.8', 'monthly'),
         ('sh-scientific/catalog/tube-1800/','0.8', 'monthly'),
