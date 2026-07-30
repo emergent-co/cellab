@@ -53,6 +53,12 @@
   .rel a{color:var(--ember-2);text-decoration:none;font-weight:700}
   /* 컨트롤러 가이드 iframe을 넓게 빼서 기기(애니메이션)+그래프 2열이 보이게 */
   .tcgwide{position:relative;left:50%;transform:translateX(-50%);width:min(1060px,96vw);margin:10px 0 14px}
+  .dtl{border:1px solid var(--line);border-radius:12px;margin:14px 0;overflow:hidden}
+  .dtl>summary{cursor:pointer;padding:13px 16px;font-weight:700;font-size:14.5px;color:var(--ember-2);list-style:none;background:#faf7f4}
+  .dtl>summary::-webkit-details-marker{display:none}
+  .dtl>summary::after{content:" ▾";float:right;color:var(--gray)}
+  .dtl[open]>summary::after{content:" ▴"}
+  .dtl>.dtl-in{padding:2px 16px 8px}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END-->
@@ -80,6 +86,7 @@
     <p>아래 가상 Alicat MFC를 <b>실제처럼 눌러보세요</b>. <b>SETPT</b>로 유량을 설정하고, <b>MENU → GAS</b>로 가스를 바꿉니다. (전체화면은 <a href="/alicat/mfc-guide/">시뮬레이터 페이지</a>)</p>
     <div class="simwrap"><iframe id="alicatSim" src="/alicat/mfc-guide/?embed=1" title="Alicat MFC 가상 시뮬레이터 — SETPT 유량 설정·Gas Select 가스 변경" loading="lazy" style="width:100%;border:1px solid var(--line);border-radius:14px;height:640px;background:#fff;display:block"></iframe></div>
 
+    <details class="dtl"><summary>자세한 단계별 설명 (SCCM 유량 설정 · 가스 변경 · 주의)</summary><div class="dtl-in">
     <h2>1. SCCM 단위로 유량 설정하기</h2>
     <p><b>SCCM</b>은 표준상태(STP) 기준 cc/min이며 <b>1 SLPM = 1000 SCCM</b>입니다. 단위를 SCCM으로 맞춘 뒤 설정값(SETPT)을 입력합니다.</p>
     <div class="steps">
@@ -90,6 +97,8 @@
       <div class="st"><div class="n"></div><div class="sc"><b>확정</b> — <b>SET</b>을 누르면 컨트롤러가 밸브를 조절해 설정 유량으로 제어합니다. 실측(Mass Flow)과 설정(SETPT)이 함께 표시됩니다.</div></div>
       <div class="st"><div class="n"></div><div class="sc"><b>정지</b> — 설정값을 <b>0</b>으로 하면 밸브를 닫아 흐름을 멈춥니다. 풀스케일(full scale)을 넘는 값은 입력되지 않습니다.</div></div>
     </div>
+
+    <div class="card"><h3>SLPM ↔ SCCM 변환</h3><p style="margin:0"><b>1 SLPM = 1000 SCCM</b> (둘 다 표준상태(STP) 기준 부피유량, cc/min). 단위 전환은 <b>MENU → BASIC CONFIG → DEVICE UNITS → Mass Flow</b>에서 <b>SLPM</b> 또는 <b>SCCM</b>을 고르고 <b>SET</b>. 예: <b>15.44 SLPM = 15,440 SCCM</b>. 저유량(수십~수백 cc/min)은 SCCM이, 대유량(L 단위)은 SLPM이 읽기 편합니다.</p></div>
 
     <h2>2. 가스 변경하기 (Gas Select™)</h2>
     <p>공장 교정은 보통 공기(Air) 기준입니다. 다른 가스를 흘릴 때는 <b>Gas Select™</b>로 가스를 바꾸면 물리적 재교정 없이 정확히 측정·제어됩니다.</p>
@@ -111,6 +120,8 @@
         <li><b>가연성·독성 가스(H₂ 등)</b> — 누설·환기·점화원·인터록 관리 필수.</li>
       </ul>
     </div>
+
+    </div></details>
 
     <div class="cta">
       <a class="btn p" href="/contact/">사용·연동 문의</a>

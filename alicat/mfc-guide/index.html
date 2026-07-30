@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alicat 질량유량계(MFC) 가상 시뮬레이터 — SCCM 유량 설정·가스 변경 따라하기 | 실험셋업연구소</title>
-<meta name="description" content="Alicat MFC를 실제처럼 눌러보는 가상 시뮬레이터. 위저드에서 SCCM 유량 설정·가스 변경·단위 전환을 고르면 한 단계씩 따라할 수 있습니다.">
+<meta name="description" content="Alicat MFC를 실제처럼 눌러보는 가상 시뮬레이터. 위저드에서 단위 전환·SCCM 유량 설정·가스 변경을 고르면 한 단계씩 따라할 수 있습니다.">
 <link rel="canonical" href="https://rndsetup.com/alicat/mfc-guide/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,40 +22,39 @@
   .agp{padding:18px 0 34px}
   #pgtitle{font-family:var(--serif);font-size:clamp(20px,4.6vw,26px);font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
   #pgsub{font-size:14px;color:var(--gray);margin-bottom:16px}
-  .simrow{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
-  .sim{flex:0 0 340px;max-width:340px}
+  .simrow{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;position:relative}
+  .sim{flex:0 0 336px;max-width:336px}
   .device{background:#0e1114;border-radius:18px;padding:14px 13px 16px}
   .brow{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;padding:0 3px}
-  .abtn{height:37px;border-radius:8px;border:2px solid #f1f3f5;background:#171b21;cursor:pointer;transition:.1s;position:relative}
-  .abtn:hover{background:#222932;border-color:#8fbcff}
+  .abtn{height:37px;border-radius:8px;border:2px solid #f1f3f5;background:#171b21;cursor:pointer;transition:transform .1s,box-shadow .1s,background .1s;position:relative}
+  .abtn:hover{background:#232a33;border-color:#8fbcff}
   .abtn:active{transform:translateY(1px)}
-  .abtn .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:17px;height:17px;border-radius:50%;background:#e23a2e;color:#fff;font:400 11px/17px var(--sans);text-align:center}
-  .abtn.wz{border-color:#e23a2e;box-shadow:0 0 0 3px rgba(226,58,46,.35);animation:wzp 1.1s infinite}
-  @keyframes wzp{50%{box-shadow:0 0 0 6px rgba(226,58,46,.12)}}
-  .lcd{background:#f7f8f2;border-radius:6px;margin:12px 2px;padding:12px 14px 13px;color:#141915;min-height:206px;font-family:var(--mono);display:flex;flex-direction:column}
+  .abtn .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:17px;height:17px;border-radius:50%;background:#e23a2e;color:#fff;font:400 11px/17px var(--sans);text-align:center;pointer-events:none}
+  .abtn.wz{border-color:#e23a2e;background:#3a231f;box-shadow:0 0 0 4px rgba(226,58,46,.5);animation:wzp 1s infinite;transform:scale(1.09);z-index:2}
+  .abtn.wz .num{background:#fff;color:#e23a2e;width:21px;height:21px;line-height:21px;font-weight:700}
+  @keyframes wzp{50%{box-shadow:0 0 0 10px rgba(226,58,46,.08)}}
+  .wline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:4}
+  .lcd{background:#d8d9e3;background-image:radial-gradient(rgba(64,64,92,.17) 0.5px,transparent 0.7px);background-size:3px 3px;border-radius:6px;margin:12px 2px;padding:12px 14px 13px;color:#39394a;min-height:206px;font-family:var(--mono);display:flex;flex-direction:column;text-shadow:0 0 1px rgba(60,60,90,.25)}
   .skrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
   .skc{font-size:12px;line-height:1.15;min-height:30px}
   .skc.l{text-align:left}.skc.c{text-align:center}.skc.r{text-align:right}
-  .skc .a{font-size:12.5px;color:#2b322c}.skc .b{font-size:15px;color:#0c110d;letter-spacing:.5px}
-  .skc.act{cursor:pointer}.skc.act .b,.skc.act .solo{color:#0a3fb0}
+  .skc .a{font-size:12.5px;color:#5b5c70}.skc .b{font-size:15px;color:#33343f;letter-spacing:.5px}
+  .skc.act{cursor:pointer}.skc.act .b,.skc.act .solo{color:#294f8c}
   .skc .solo{font-size:14px;letter-spacing:.5px}
   .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:2px 0}
   .flow{display:flex;align-items:center;justify-content:space-between}
-  .big{font-size:48px;line-height:.9;letter-spacing:1px;color:#0b0f0c}
-  .ug{text-align:right;line-height:1.12}.ug .u{font-size:18px;letter-spacing:.5px}.ug .g{font-size:15px}
-  .mflab{text-align:center;font-size:13px;letter-spacing:1px;color:#2b322c;margin-top:2px}
-  .mtitle{text-align:center;font-size:19px;letter-spacing:.5px;color:#0a3fb0;margin:6px 0 8px}
-  .li{font-size:14px;padding:2px 6px;letter-spacing:.5px}.li.sel{background:#0a3fb0;color:#fff;border-radius:3px}
-  .setv{font-size:44px;text-align:center;letter-spacing:1px;color:#0b0f0c;margin:6px 0}
-  .note{text-align:center;font-size:12px;color:#5a635b}
-  /* 위저드 */
-  .wiz{flex:1;min-width:250px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+  .big{font-size:44px;line-height:.9;letter-spacing:2px;color:#2b2c38}
+  .ug{text-align:right;line-height:1.15}.ug .u{font-size:18px;letter-spacing:.5px;color:#4b4c60}.ug .g{font-size:15px;color:#4b4c60}
+  .mflab{text-align:center;font-size:14px;letter-spacing:1px;color:#4b4c60;margin-top:3px}
+  .mtitle{text-align:center;font-size:19px;letter-spacing:.5px;color:#294f8c;margin:6px 0 8px}
+  .li{font-size:14px;padding:2px 6px;letter-spacing:.5px}.li.sel{background:#294f8c;color:#eef3fb;border-radius:3px}
+  .setv{font-size:42px;text-align:center;letter-spacing:2px;color:#2b2c38;margin:6px 0}
+  .note{text-align:center;font-size:12px;color:#6a6b7d}
+  .wiz{flex:1;min-width:250px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;position:relative;z-index:1}
   .wiz h2{font-family:var(--serif);font-size:15px;margin-bottom:10px}
   .wtask{display:block;width:100%;text-align:left;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:14px;font-weight:600;cursor:pointer;background:#fff;margin-bottom:8px;font-family:inherit;color:var(--ink)}
   .wtask:hover{border-color:var(--ember)}
-  .wtask.on{background:var(--ember);color:#fff;border-color:var(--ember)}
   .wtask small{display:block;font-weight:400;font-size:11.5px;color:var(--gray);margin-top:2px}
-  .wtask.on small{color:#f6ddcf}
   .wprog{display:flex;gap:5px;margin:2px 0 12px}
   .wdot{flex:1;height:4px;border-radius:2px;background:var(--line)}.wdot.on{background:var(--ember)}.wdot.cur{background:var(--ember-2)}
   .wstep{display:flex;gap:11px;align-items:flex-start;background:#FBF2EC;border:1px solid #f0dccd;border-radius:10px;padding:12px 13px}
@@ -68,7 +67,7 @@
   .whint{font-size:12px;color:var(--gray);margin-top:10px}
   .foot{margin:22px 0 0;border-top:1px solid var(--line);padding-top:14px;font-size:13.5px;color:var(--gray)}
   .foot a{color:var(--ember-2);font-weight:700;text-decoration:none}
-  @media(max-width:640px){.sim{flex:1 1 100%;max-width:340px;margin:0 auto}.wiz{flex:1 1 100%}}
+  @media(max-width:640px){.sim{flex:1 1 100%;max-width:336px;margin:0 auto}.wiz{flex:1 1 100%}}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},{"@type":"ListItem","position":2,"name":"Alicat MFC","item":"https://rndsetup.com/alicat/"},{"@type":"ListItem","position":3,"name":"메뉴얼","item":"https://rndsetup.com/alicat/manual/"},{"@type":"ListItem","position":4,"name":"가상 시뮬레이터","item":"https://rndsetup.com/alicat/mfc-guide/"}]}</script>
@@ -88,6 +87,7 @@
         </div>
       </div>
       <div class="wiz" id="wiz"></div>
+      <svg class="wline" id="wline"></svg>
     </div>
     <div class="foot">← <a href="/alicat/manual/">Alicat MFC 메뉴얼</a> · <a href="/alicat/">제품 보기</a></div>
   </div>
@@ -100,14 +100,15 @@
   var S={mode:"run",unit:"SCCM",gas:"Air",setpt:0,val:0,edit:0,gi:0,ui:0,ci:0,msg:""};
   var lcd=document.getElementById('lcd'),bt=document.getElementById('btop'),bb=document.getElementById('bbot'),wizEl=document.getElementById('wiz');
   function conv(v){return S.unit==="SCCM"?v*1000:v;}
-  function fmt(v){return S.unit==="SCCM"?Math.round(conv(v)).toString():conv(v).toFixed(1);}
+  function fmt(v){return S.unit==="SCCM"?Math.round(conv(v)).toString():v.toFixed(4);}
+  function fmtE(v){return S.unit==="SCCM"?Math.round(v).toString():v.toFixed(4);}
   function sub(g){return g.replace(/(\d+)/g,'<sub style="font-size:.7em">$1<\/sub>');}
   function meas(a,b,al){return {a:a,b:b,align:al};}
   function key(solo,f,act,al){return {solo:solo,f:f,act:act,align:al};}
   function key2(a,b,f,al){return {a:a,b:b,f:f,act:1,align:al};}
   function bl(al){return {align:al};}
   function sk(){switch(S.mode){
-    case "run":return {top:[meas("PSIA","+13.49","l"),meas("&deg;C","+22.73","c"),key2("SETPT","+"+fmt(S.setpt),enterSet,"r")],bot:[meas("+16.67","LPM","l"),meas("+"+fmt(S.val),S.unit,"c"),key("MENU",enterMenu,1,"r")]};
+    case "run":return {top:[meas("PSIA","+13.63","l"),meas("&deg;C","+25.10","c"),key2("SETPT","+"+fmt(S.setpt),enterSet,"r")],bot:[meas("+16.6700","LPM","l"),meas("+"+fmt(S.val),S.unit,"c"),key("MENU",enterMenu,1,"r")]};
     case "set":return {top:[key("CANCEL",toRun,0,"l"),key("-10",function(){chg(-10)},0,"c"),key("+10",function(){chg(10)},0,"r")],bot:[key("−",function(){chg(-1)},0,"l"),key("＋",function(){chg(1)},0,"c"),key("SET",doSet,1,"r")]};
     case "menu":return {top:[key("CONTROL",function(){info('Control (p.23)')},0,"l"),key("ABOUT",function(){info('About (p.32)')},0,"c"),key("TARES",function(){info('Tares (p.22)')},0,"r")],bot:[key("BASIC CFG",enterCfg,1,"l"),key("ADV SETUP",function(){info('Adv Setup')},0,"c"),key("MAIN",toRun,0,"r")]};
     case "cfg":return {top:[key("BACK",enterMenu,0,"l"),bl("c"),key("MAIN",toRun,0,"r")],bot:[key("GAS",enterGas,1,"l"),key("UNITS",enterUnits,0,"c"),key("STP/NTP",function(){info('STP / NTP')},0,"r")]};
@@ -117,11 +118,11 @@
     case "info":return {top:[key("BACK",enterMenu,0,"l"),bl("c"),key("MAIN",toRun,0,"r")],bot:[bl("l"),bl("c"),bl("r")]};}
   }
   function cellHtml(c){var cls="skc "+(c.align||"c")+(c.f?" act":"");var inner=(c.a!==undefined)?'<div class="a">'+(c.a||"")+'</div><div class="b">'+(c.b||"")+'</div>':(c.solo!==undefined?'<div class="solo">'+c.solo+'</div>':'&nbsp;');return '<div class="'+cls+'">'+inner+'</div>';}
-  function renderBtns(k){var tb=wizTargetBtn();[[bt,k.top],[bb,k.bot]].forEach(function(p,ri){p[0].innerHTML="";p[1].forEach(function(c,i){var num=ri*3+i+1;var e=document.createElement('button');e.className="abtn"+(num===tb?" wz":"");e.innerHTML='<span class="num">'+num+'</span>';e.setAttribute('aria-label',(c.solo||c.a||'button'));if(c.f)e.addEventListener('click',c.f);p[0].appendChild(e);});});}
+  function renderBtns(k){var tb=(WZ.task&&!WZ.fin)?TASKS[WZ.task].steps[WZ.step].btn:0;[[bt,k.top],[bb,k.bot]].forEach(function(p,ri){p[0].innerHTML="";p[1].forEach(function(c,i){var num=ri*3+i+1;var e=document.createElement('button');e.className="abtn"+(num===tb?" wz":"");e.innerHTML='<span class="num">'+num+'</span>';e.setAttribute('aria-label',(c.solo||c.a||'button'));if(c.f)e.addEventListener('click',c.f);p[0].appendChild(e);});});}
   function bindCells(k){var flat=k.top.concat(k.bot);lcd.querySelectorAll('.skc').forEach(function(el,i){var c=flat[i];if(c&&c.f){el.style.cursor='pointer';el.addEventListener('click',c.f);}});}
   function midHtml(){
-    if(S.mode==="run")return '<div class="flow"><div class="big">+'+fmt(S.val)+'</div><div class="ug"><div class="u">'+S.unit+'</div><div class="g">'+sub(S.gas)+'</div></div></div><div class="mflab">Mass Flow</div>';
-    if(S.mode==="set")return '<div class="note">SETPOINT ('+S.unit+')</div><div class="setv">'+(S.unit==="SCCM"?Math.round(S.edit):S.edit.toFixed(1))+'</div><div class="note">＋/－ 로 조정 후 SET</div>';
+    if(S.mode==="run")return '<div class="flow"><div class="big" id="bv">+'+fmt(S.val)+'</div><div class="ug"><div class="u">'+S.unit+'</div><div class="g">'+sub(S.gas)+'</div></div></div><div class="mflab">Mass Flow</div>';
+    if(S.mode==="set")return '<div class="note">SETPOINT ('+S.unit+')</div><div class="setv">'+fmtE(S.edit)+'</div><div class="note">＋/－ 로 조정 후 SET</div>';
     if(S.mode==="menu")return '<div class="mtitle">Main Menu</div><div class="note">위: CONTROL · ABOUT · TARES<br>아래: BASIC CFG · ADV SETUP · MAIN</div>';
     if(S.mode==="cfg")return '<div class="mtitle" style="font-size:17px">Basic Config</div><div class="li">GAS  ('+sub(S.gas)+')</div><div class="li">DEVICE UNITS  ('+S.unit+')</div><div class="li">STP / NTP</div>';
     if(S.mode==="gascat"){var hc='<div class="note" style="text-align:left;margin-bottom:2px">GAS SELECT — CATEGORY</div>';CATS.forEach(function(x,i){hc+='<div class="li'+(i===S.ci?' sel':'')+'">'+x+'</div>';});return hc;}
@@ -130,9 +131,9 @@
     if(S.mode==="info")return '<div class="mtitle" style="font-size:17px">'+S.msg+'</div><div class="note">BACK / MAIN 으로 돌아가세요.</div>';
     return "";
   }
-  function render(){var k=sk();renderBtns(k);lcd.innerHTML='<div class="skrow">'+cellHtml(k.top[0])+cellHtml(k.top[1])+cellHtml(k.top[2])+'</div><div class="mid">'+midHtml()+'</div><div class="skrow">'+cellHtml(k.bot[0])+cellHtml(k.bot[1])+cellHtml(k.bot[2])+'</div>';bindCells(k);wizTick();ph();}
+  function render(){ wizTick(); var k=sk(); renderBtns(k); lcd.innerHTML='<div class="skrow">'+cellHtml(k.top[0])+cellHtml(k.top[1])+cellHtml(k.top[2])+'</div><div class="mid">'+midHtml()+'</div><div class="skrow">'+cellHtml(k.bot[0])+cellHtml(k.bot[1])+cellHtml(k.bot[2])+'</div>'; bindCells(k); drawLine(); ph(); }
   function enterSet(){S.mode="set";S.edit=conv(S.setpt);render();}
-  function chg(step){var s=S.unit==="SCCM"?step*10:step*0.1,mx=conv(50);S.edit=Math.max(0,Math.min(mx,+(S.edit+s).toFixed(S.unit==="SCCM"?0:1)));render();}
+  function chg(step){var s=S.unit==="SCCM"?step*10:step*0.1,mx=conv(50);S.edit=Math.max(0,Math.min(mx,+(S.edit+s).toFixed(S.unit==="SCCM"?0:4)));render();}
   function doSet(){S.setpt=S.unit==="SCCM"?S.edit/1000:S.edit;S.mode="run";render();}
   function toRun(){S.mode="run";render();}
   function enterMenu(){S.mode="menu";render();}
@@ -144,9 +145,15 @@
   function pickGas(){S.gas=GASES[S.gi];S.mode="run";render();}
   function pickUnit(){S.unit=UNITS[S.ui];S.mode="run";render();}
   function info(m){S.mode="info";S.msg=m;render();}
+  function updateFlow(){var b=document.getElementById('bv');if(b)b.innerHTML='+'+fmt(S.val);var rows=lcd.querySelectorAll('.skrow');if(rows[1]){var c=rows[1].children[1],a=c&&c.querySelector('.a');if(a)a.innerHTML='+'+fmt(S.val);}}
 
-  // ===== 위저드 =====
   var TASKS={
+    unit:{name:"SLPM ↔ SCCM 전환",desc:"1 SLPM = 1000 SCCM",steps:[
+      {t:'<b>MENU</b>(6번) 진입',btn:6,done:function(){return S.mode==='menu';}},
+      {t:'<b>BASIC CFG</b>(4번)',btn:4,done:function(){return S.mode==='cfg';}},
+      {t:'<b>DEVICE UNITS</b>(5번)',btn:5,done:function(){return S.mode==='units';}},
+      {t:'<b>▲▼</b>로 SLPM/SCCM 고르고 <b>SET</b>(6번)',btn:6,done:function(){return S.mode==='run';}}],
+      done:"완료 — 단위가 전환됐습니다. 1 SLPM = 1000 SCCM."},
     flow:{name:"SCCM 유량 설정하기",desc:"SETPT로 유량값 입력",steps:[
       {t:'<b>SETPT</b>(3번)을 누르세요',btn:3,done:function(){return S.mode==='set';}},
       {t:'<b>＋</b>(5번)로 원하는 유량까지 올리세요',btn:5,done:function(){return S.edit>0;}},
@@ -158,43 +165,29 @@
       {t:'<b>GAS</b>(4번)',btn:4,done:function(){return S.mode==='gascat';}},
       {t:'<b>SELECT</b>(6번) — Standard',btn:6,done:function(){return S.mode==='gas';}},
       {t:'<b>▲▼</b>로 가스 고르고 <b>SET</b>(6번)',btn:6,done:function(){return S.mode==='run'&&S.gas!=='Air';}}],
-      done:"완료 — 가스가 바뀌었습니다. 재시작 없이 즉시 반영."},
-    unit:{name:"SLPM ↔ SCCM 전환",desc:"1 SLPM = 1000 SCCM",steps:[
-      {t:'<b>MENU</b>(6번) 진입',btn:6,done:function(){return S.mode==='menu';}},
-      {t:'<b>BASIC CFG</b>(4번)',btn:4,done:function(){return S.mode==='cfg';}},
-      {t:'<b>DEVICE UNITS</b>(5번)',btn:5,done:function(){return S.mode==='units';}},
-      {t:'<b>▲▼</b>로 SLPM/SCCM 고르고 <b>SET</b>(6번)',btn:6,done:function(){return S.mode==='run';}}],
-      done:"완료 — 단위가 전환됐습니다. 1 SLPM = 1000 SCCM."}
+      done:"완료 — 가스가 바뀌었습니다. 재시작 없이 즉시 반영."}
   };
   var WZ={task:null,step:0,fin:false};
-  function wizTargetBtn(){ if(!WZ.task||WZ.fin) return 0; return TASKS[WZ.task].steps[WZ.step].btn; }
-  function selectTask(id){ WZ.task=id; WZ.step=0; WZ.fin=false; if(id==='gas')S.gas="Air"; if(id==='flow')S.setpt=0; S.mode="run"; render(); }
-  function wizReset(){ WZ.task=null;WZ.step=0;WZ.fin=false; renderWiz(); }
-  function wizTick(){ if(!WZ.task||WZ.fin) return; var st=TASKS[WZ.task].steps; while(WZ.step<st.length&&st[WZ.step].done())WZ.step++; if(WZ.step>=st.length)WZ.fin=true; renderWiz(); }
+  function selectTask(id){WZ.task=id;WZ.step=0;WZ.fin=false;if(id==='gas')S.gas="Air";if(id==='flow')S.setpt=0;S.mode="run";render();}
+  function wizReset(){WZ.task=null;WZ.step=0;WZ.fin=false;render();}
+  function wizTick(){ if(WZ.task&&!WZ.fin){var st=TASKS[WZ.task].steps;while(WZ.step<st.length&&st[WZ.step].done())WZ.step++;if(WZ.step>=st.length)WZ.fin=true;} renderWiz(); }
   function renderWiz(){
-    if(!WZ.task){
-      var h='<h2>무엇을 해볼까요?</h2>';
-      ["unit","flow","gas"].forEach(function(id){h+='<button class="wtask" onclick="__wz(\''+id+'\')">'+TASKS[id].name+'<small>'+TASKS[id].desc+'</small></button>';});
-      h+='<div class="whint">할 일을 고르면 오른쪽에서 한 단계씩 안내합니다. 왼쪽 기기의 <b>빨갛게 깜빡이는 버튼</b>을 누르세요.</div>';
-      wizEl.innerHTML=h; return;
-    }
-    var T=TASKS[WZ.task],st=T.steps;
-    var prog='<div class="wprog">';for(var i=0;i<st.length;i++){prog+='<div class="wdot'+(WZ.fin||i<WZ.step?' on':(i===WZ.step?' cur':''))+'"></div>';}prog+='</div>';
-    var body;
-    if(WZ.fin){ body='<div class="wdone">✓ '+T.done+'</div>'; }
-    else{ var s=st[WZ.step]; body='<div class="wstep"><div class="n">'+(WZ.step+1)+'</div><div class="tx">'+s.t+'</div></div>'; }
-    wizEl.innerHTML='<h2>'+T.name+'</h2>'+prog+body+'<div class="wact"><button class="wbtn" onclick="__wzr()">← 다른 작업</button>'+(WZ.fin?'<button class="wbtn" onclick="__wz(\''+WZ.task+'\')">다시 하기</button>':'')+'</div>';
+    if(!WZ.task){var h='<h2>무엇을 해볼까요?</h2>';["unit","flow","gas"].forEach(function(id){h+='<button class="wtask" data-wz="'+id+'">'+TASKS[id].name+'<small>'+TASKS[id].desc+'</small></button>';});h+='<div class="whint">고르면 한 단계씩 안내합니다. 왼쪽 기기에서 <b>빨갛게 깜빡이는 버튼</b>을 누르세요.</div>';wizEl.innerHTML=h;return;}
+    var T=TASKS[WZ.task],st=T.steps,prog='<div class="wprog">';for(var i=0;i<st.length;i++){prog+='<div class="wdot'+(WZ.fin||i<WZ.step?' on':(i===WZ.step?' cur':''))+'"></div>';}prog+='</div>';
+    var body=WZ.fin?'<div class="wdone">✓ '+T.done+'</div>':'<div class="wstep"><div class="n">'+(WZ.step+1)+'</div><div class="tx">'+st[WZ.step].t+'</div></div>';
+    wizEl.innerHTML='<h2>'+T.name+'</h2>'+prog+body+'<div class="wact"><button class="wbtn" data-wzr="1">← 다른 작업</button>'+(WZ.fin?'<button class="wbtn" data-wz="'+WZ.task+'">다시 하기</button>':'')+'</div>';
   }
-  window.__wz=selectTask; window.__wzr=wizReset;
+  function drawLine(){var svg=document.getElementById('wline');if(!svg)return;svg.innerHTML='';if(!WZ.task||WZ.fin)return;var btn=document.querySelector('.abtn.wz'),step=document.querySelector('.wstep'),rowEl=document.querySelector('.simrow');if(!btn||!step||!rowEl)return;var row=rowEl.getBoundingClientRect(),b=btn.getBoundingClientRect(),st=step.getBoundingClientRect();var bx=b.right-row.left,by=b.top+b.height/2-row.top,sx=st.left-row.left,sy=st.top+24-row.top,mx=(bx+sx)/2;svg.innerHTML='<path d="M '+sx+' '+sy+' C '+mx+' '+sy+' '+mx+' '+by+' '+(bx+7)+' '+by+'" fill="none" stroke="#e23a2e" stroke-width="2.5" stroke-dasharray="7 5"/><circle cx="'+sx+'" cy="'+sy+'" r="4" fill="#e23a2e"/><polygon points="'+bx+','+by+' '+(bx+9)+','+(by-5)+' '+(bx+9)+','+(by+5)+'" fill="#e23a2e"/>';}
+  wizEl.addEventListener('click',function(e){var a=e.target.closest('[data-wz]');if(a){selectTask(a.getAttribute('data-wz'));return;}if(e.target.closest('[data-wzr]'))wizReset();});
 
-  setInterval(function(){var t=S.setpt+(Math.random()-0.5)*0.03;S.val+=(t-S.val)*0.16;if(Math.abs(S.val)<0.02)S.val=S.setpt;if(S.mode==="run")render();},110);
-  render(); renderWiz();
+  setInterval(function(){var t=S.setpt+(Math.random()-0.5)*0.03;S.val+=(t-S.val)*0.16;if(Math.abs(S.val-S.setpt)<0.005)S.val=S.setpt;if(S.mode==="run")updateFlow();},110);
+  render();
 
   if(/[?&]embed/.test(location.search)){var st=document.createElement('style');st.textContent='#pumplab-header,#pumplab-footer,.ch-side,.ch-scrim,header.ch-top,.navimro-fab{display:none!important}#pgtitle,#pgsub{display:none!important}html,body{overflow:hidden!important;margin:0;padding:0}.agp{padding:10px 0}';document.head.appendChild(st);}
   var last=0,tm=null;
   function ph(){var el=document.querySelector('.agp')||document.body;var h=Math.ceil(el.getBoundingClientRect().height);if(Math.abs(h-last)<=2)return;last=h;try{parent.postMessage({tcHeight:h},'*');}catch(e){}}
-  window.addEventListener('load',ph);[250,800,1600].forEach(function(t){setTimeout(ph,t);});
-  window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(ph,120);});
+  window.addEventListener('load',function(){ph();drawLine();});[300,900,1700].forEach(function(t){setTimeout(function(){ph();drawLine();},t);});
+  window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(function(){ph();drawLine();},120);});
 })();
 </script>
 </body>
