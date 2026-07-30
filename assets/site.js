@@ -580,3 +580,41 @@
       });
   });
 })();
+
+
+/* 구성 선택 → 견적문의 (.cfgq) — 모델 필수, 옵션 선택, 미선택 시 안내 */
+(function () {
+  function init() {
+    var boxes = document.querySelectorAll('.cfgq');
+    if (!boxes.length) return;
+    Array.prototype.forEach.call(boxes, function (box) {
+      var btn = box.querySelector('.cfgq-btn');
+      var msg = box.querySelector('.cfgq-msg');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var radios = box.querySelectorAll('input[type="radio"]');
+        var m = box.querySelector('input[type="radio"]:checked');
+        var opts = Array.prototype.map.call(
+          box.querySelectorAll('input[type="checkbox"]:checked'),
+          function (c) { return c.value; });
+        if (radios.length && !m) {
+          if (msg) { msg.textContent = '구성을 체크하세요 — 먼저 모델을 선택해 주세요.'; msg.classList.add('on'); }
+          var g = box.querySelector('.cfgq-grp');
+          if (g && g.scrollIntoView) g.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        if (msg) { msg.textContent = ''; msg.classList.remove('on'); }
+        var product = box.getAttribute('data-product') || '';
+        var cfg = product + (m ? ' / 선택 모델: ' + m.value : '') + (opts.length ? ' / 옵션: ' + opts.join(', ') : ' / 옵션: 없음');
+        var tmp = document.createElement('button');
+        tmp.setAttribute('data-quote', cfg);
+        tmp.style.display = 'none';
+        document.body.appendChild(tmp);
+        tmp.click();
+        document.body.removeChild(tmp);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
