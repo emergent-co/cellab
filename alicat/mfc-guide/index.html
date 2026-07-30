@@ -8,13 +8,13 @@
 <link rel="canonical" href="https://rndsetup.com/alicat/mfc-guide/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@400;500;600;800&family=Noto+Serif+KR:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Alicat 질량유량계(MFC) 가상 시뮬레이터">
 <meta property="og:description" content="위저드로 SCCM 유량 설정·가스 변경을 한 단계씩 따라하는 Alicat MFC 가상 컨트롤러.">
 <meta property="og:url" content="https://rndsetup.com/alicat/mfc-guide/">
 <style>
-  :root{--ink:#1B1A18;--gray:#6B6560;--line:#E7E3DE;--ember:#C2410C;--ember-2:#9A3412;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;--serif:"Noto Serif KR",Georgia,serif;--mono:"Share Tech Mono","Consolas",monospace}
+  :root{--ink:#1B1A18;--gray:#6B6560;--line:#E7E3DE;--ember:#C2410C;--ember-2:#9A3412;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;--serif:"Noto Serif KR",Georgia,serif;--mono:"Share Tech Mono","Consolas",monospace;--dot:"Doto","Share Tech Mono",monospace}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all}
   a{color:inherit}
@@ -34,21 +34,21 @@
   .abtn.wz .num{background:#fff;color:#e23a2e;width:21px;height:21px;line-height:21px;font-weight:700}
   @keyframes wzp{50%{box-shadow:0 0 0 10px rgba(226,58,46,.08)}}
   .wline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:4}
-  .lcd{background:#d8d9e3;background-image:radial-gradient(rgba(64,64,92,.17) 0.5px,transparent 0.7px);background-size:3px 3px;border-radius:6px;margin:12px 2px;padding:12px 14px 13px;color:#39394a;min-height:206px;font-family:var(--mono);display:flex;flex-direction:column;text-shadow:0 0 1px rgba(60,60,90,.25)}
+  .lcd{background:#c9cbd7;border-radius:6px;margin:12px 2px;padding:13px 15px 12px;color:#4a4a5b;min-height:206px;font-family:var(--dot);font-weight:500;display:flex;flex-direction:column}
   .skrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
   .skc{font-size:12px;line-height:1.15;min-height:30px}
   .skc.l{text-align:left}.skc.c{text-align:center}.skc.r{text-align:right}
-  .skc .a{font-size:12.5px;color:#5b5c70}.skc .b{font-size:15px;color:#33343f;letter-spacing:.5px}
-  .skc.act{cursor:pointer}.skc.act .b,.skc.act .solo{color:#294f8c}
+  .skc .a{font-size:12.5px;color:#57576b;font-weight:400}.skc .b{font-size:16px;color:#43434f;letter-spacing:1px;font-weight:500}
+  .skc.act{cursor:pointer}.skc.act .b,.skc.act .solo{color:#2f4f86}
   .skc .solo{font-size:14px;letter-spacing:.5px}
   .mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:2px 0}
   .flow{display:flex;align-items:center;justify-content:space-between}
-  .big{font-size:44px;line-height:.9;letter-spacing:2px;color:#2b2c38}
-  .ug{text-align:right;line-height:1.15}.ug .u{font-size:18px;letter-spacing:.5px;color:#4b4c60}.ug .g{font-size:15px;color:#4b4c60}
-  .mflab{text-align:center;font-size:14px;letter-spacing:1px;color:#4b4c60;margin-top:3px}
-  .mtitle{text-align:center;font-size:19px;letter-spacing:.5px;color:#294f8c;margin:6px 0 8px}
-  .li{font-size:14px;padding:2px 6px;letter-spacing:.5px}.li.sel{background:#294f8c;color:#eef3fb;border-radius:3px}
-  .setv{font-size:42px;text-align:center;letter-spacing:2px;color:#2b2c38;margin:6px 0}
+  .big{font-size:46px;line-height:.92;letter-spacing:5px;color:#43434f;font-weight:600}
+  .ug{text-align:right;line-height:1.15}.ug .u{font-size:19px;letter-spacing:1px;color:#54546a}.ug .g{font-size:16px;color:#54546a}
+  .mflab{text-align:center;font-size:15px;letter-spacing:1px;color:#54546a;margin-top:4px}
+  .mtitle{text-align:center;font-size:19px;letter-spacing:1px;color:#2f4f86;margin:6px 0 8px}
+  .li{font-size:14px;padding:2px 6px;letter-spacing:.5px}.li.sel{background:#2f4f86;color:#eef3fb;border-radius:3px}
+  .setv{font-size:44px;text-align:center;letter-spacing:5px;color:#43434f;font-weight:600;margin:6px 0}
   .note{text-align:center;font-size:12px;color:#6a6b7d}
   .wiz{flex:1;min-width:250px;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;position:relative;z-index:1}
   .wiz h2{font-family:var(--serif);font-size:15px;margin-bottom:10px}
