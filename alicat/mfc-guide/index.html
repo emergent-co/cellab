@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alicat 질량유량계(MFC) 가상 시뮬레이터 — SCCM 유량 설정·가스 변경 연습 | 실험셋업연구소</title>
+<meta name="description" content="Alicat MFC를 화면에서 실제처럼 눌러보는 가상 시뮬레이터. SETPT로 유량(SCCM/SLPM)을 설정하고 MENU→Basic Config→Gas Select로 가스를 바꾸는 조작을 실제 메뉴 구조 그대로 연습하세요.">
+<link rel="canonical" href="https://rndsetup.com/alicat/mfc-guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alicat 질량유량계(MFC) 가상 시뮬레이터">
+<meta property="og:description" content="SETPT로 유량 설정, MENU로 가스 변경을 실제 메뉴 구조로 연습하는 Alicat MFC 가상 컨트롤러.">
+<meta property="og:url" content="https://rndsetup.com/alicat/mfc-guide/">
+<style>
+  :root{--ink:#1B1A18;--gray:#6B6560;--line:#E7E3DE;--ember:#C2410C;--ember-2:#9A3412;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;--serif:"Noto Serif KR",Georgia,serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  .agp{padding:18px 0 34px}
+  #pgtitle{font-family:var(--serif);font-size:clamp(20px,4.6vw,26px);font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+  #pgsub{font-size:14.5px;color:var(--gray);margin-bottom:16px}
+  .sim{max-width:430px;margin:0 auto}
+  .device{background:linear-gradient(#1c2230,#12161f);border:1px solid #0c0f16;border-radius:20px;padding:14px 15px 16px;box-shadow:0 12px 32px rgba(10,15,30,.28)}
+  .brow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .abtn{height:30px;border-radius:7px;border:1px solid #3a4150;background:linear-gradient(#2a303c,#1d222c);cursor:pointer;font:800 10.5px/1.1 var(--sans);color:#aeb7c4;transition:.1s;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 3px}
+  .abtn:hover{border-color:#5b6577;color:#e6ebf2}
+  .abtn:active{transform:translateY(1px)}
+  .abtn.act{background:linear-gradient(#3b8bf6,#2E7DF6);border-color:#1f6ae0;color:#fff;box-shadow:0 2px 10px rgba(46,125,246,.5)}
+  .abtn.dim{color:#565e6b;cursor:default}.abtn.dim:hover{border-color:#3a4150;color:#565e6b}
+  .lcd{background:#05100b;border-radius:9px;margin:9px 0;padding:13px 14px;color:#dff3e8;min-height:196px;box-shadow:inset 0 2px 12px rgba(0,0,0,.7);font-variant-numeric:tabular-nums;position:relative}
+  .lrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .cell .lb{font-size:10px;letter-spacing:.05em;color:#6fae8d}
+  .cell .vv{font-size:14.5px;font-weight:700;color:#eafaf1}
+  .cell.r{text-align:right}.cell.c{text-align:center}
+  .center{display:flex;align-items:flex-end;justify-content:space-between;margin:9px 0 2px;min-height:56px}
+  .big{font-size:44px;font-weight:800;line-height:1;letter-spacing:-.01em;color:#fff}
+  .unitgas{text-align:right;line-height:1.15}.unitgas .u{font-size:15px;font-weight:800;color:#7df0b6}.unitgas .g{font-size:13.5px;font-weight:700;color:#7df0b6}
+  .mflab{font-size:10.5px;color:#6fae8d;letter-spacing:.05em;margin-bottom:11px}
+  .scr-t{font-family:var(--serif);font-size:19px;font-weight:700;color:#5fc9ff;text-align:center;margin:22px 0 6px}
+  .scr-s{font-size:11px;color:#8bd0a8;text-align:center;letter-spacing:.04em}
+  .lhd{font-size:10.5px;color:#7df0b6;letter-spacing:.08em;margin:2px 0 6px;font-weight:700}
+  .li{font-size:13.5px;padding:3px 8px;border-radius:6px;color:#c4dccf}
+  .li.sel{background:#123a2a;color:#fff;font-weight:700}.li.sel::before{content:"▸ ";color:#7df0b6}
+  .setedit{padding-top:6px}.setedit .se-h{font-size:11px;color:#7df0b6;text-align:center;letter-spacing:.06em;margin-bottom:6px}
+  .setedit .se-v{font-size:42px;font-weight:800;text-align:center;color:#fff}
+  .hint{margin:11px auto 0;max-width:430px;background:#FBF2EC;border:1px solid #f0dccd;border-left:4px solid var(--ember);border-radius:10px;padding:10px 13px;font-size:13px;color:#3a2a20}
+  .hint b{color:var(--ember-2)}
+  .recap{max-width:520px;margin:20px auto 0}
+  .recap h2{font-family:var(--serif);font-size:16px;margin:0 0 8px}
+  .recap ol{margin:0 0 0 18px;font-size:14px;color:#2a2826}.recap li{margin-bottom:5px}
+  .foot{max-width:520px;margin:20px auto 0;border-top:1px solid var(--line);padding-top:14px;font-size:13.5px;color:var(--gray)}
+  .foot a{color:var(--ember-2);font-weight:700;text-decoration:none}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},{"@type":"ListItem","position":2,"name":"Alicat MFC","item":"https://rndsetup.com/alicat/"},{"@type":"ListItem","position":3,"name":"메뉴얼","item":"https://rndsetup.com/alicat/manual/"},{"@type":"ListItem","position":4,"name":"가상 시뮬레이터","item":"https://rndsetup.com/alicat/mfc-guide/"}]}</script>
+</head>
+<body>
+<div id="pumplab-header"></div>
+<div class="agp">
+  <div class="wrap">
+    <h1 id="pgtitle">Alicat MFC 가상 시뮬레이터</h1>
+    <p id="pgsub">실제 메뉴 구조 그대로 눌러보세요 — <b>SETPT</b> 유량 설정, <b>MENU → BASIC CONFIG → GAS</b> 가스 변경.</p>
+    <div class="sim" id="sim">
+      <div class="device">
+        <div class="brow" id="btop"></div>
+        <div class="lcd" id="lcd"></div>
+        <div class="brow" id="bbot"></div>
+      </div>
+      <div class="hint" id="hint"></div>
+    </div>
+    <div class="recap">
+      <h2>이렇게 조작합니다 (실제 메뉴맵과 동일)</h2>
+      <ol>
+        <li><b>유량 설정</b> — <b>SETPT</b> → ＋/－(＋10/－10)로 값 → <b>SET</b>. 단위는 MENU→BASIC CONFIG→<b>DEVICE UNITS</b>에서 SLPM↔SCCM.</li>
+        <li><b>가스 변경</b> — <b>TOTAL/MENU</b> → <b>BASIC CONFIG</b> → <b>GAS</b> → ▲▼로 선택 → <b>SET</b>. 재시작 없이 즉시 반영. 언제든 <b>MAIN</b>으로 메인화면 복귀.</li>
+      </ol>
+    </div>
+    <div class="foot">← <a href="/alicat/manual/">Alicat MFC 메뉴얼로 돌아가기</a> · <a href="/alicat/">제품 보기</a></div>
+  </div>
+</div>
+<div id="pumplab-footer"></div>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+  var GASES=["Air","N2","Ar","H2","He","CO2","CH4","CO"];
+  var UNITS=["SLPM","SCCM"];
+  var S={mode:"run",unit:"SLPM",gas:"Air",setpt:15.44,val:15.44,edit:0,gi:0,ui:0,msg:""};
+  var lcd=document.getElementById('lcd'),bt=document.getElementById('btop'),bb=document.getElementById('bbot'),hint=document.getElementById('hint');
+  function conv(v){return S.unit==="SCCM"?v*1000:v;}
+  function fmt(v){return S.unit==="SCCM"?Math.round(conv(v)).toString():conv(v).toFixed(2);}
+  function sub(g){return g.replace(/(\d+)/g,'<sub style="font-size:.7em">$1<\/sub>');}
+  function _(){return {l:"",dim:1};}
+
+  // per-mode softkeys: {top:[...3], bot:[...3]}
+  function keys(){
+    var MAIN={l:"MAIN",f:toRun};
+    switch(S.mode){
+      case "run": return {top:[_(),_(),{l:"SETPT",f:enterSet}], bot:[_(),_(),{l:"TOTAL/MENU",f:enterMenu,act:1}]};
+      case "set": return {top:[{l:"취소",f:toRun},{l:"－10",f:function(){chg(-10)}},{l:"＋10",f:function(){chg(10)}}], bot:[{l:"－",f:function(){chg(-1)}},{l:"＋",f:function(){chg(1)}},{l:"SET",f:doSet,act:1}]};
+      case "menu": return {top:[{l:"CONTROL",f:function(){info('control')}},{l:"ABOUT",f:function(){info('about')}},{l:"TARES",f:function(){info('tares')}}], bot:[{l:"BASIC CONFIG",f:enterCfg,act:1},{l:"ADV SETUP",f:function(){info('adv')}},MAIN]};
+      case "cfg": return {top:[{l:"BACK",f:enterMenu},_(),MAIN], bot:[{l:"GAS",f:enterGas,act:1},{l:"DEVICE UNITS",f:enterUnits},{l:"STP/NTP",f:function(){info('stp')}}]};
+      case "gas": return {top:[{l:"BACK",f:enterCfg},_(),MAIN], bot:[{l:"▼",f:function(){mv('gi',GASES,1)}},{l:"▲",f:function(){mv('gi',GASES,-1)}},{l:"SET",f:pickGas,act:1}]};
+      case "units": return {top:[{l:"BACK",f:enterCfg},_(),MAIN], bot:[{l:"▼",f:function(){mv('ui',UNITS,1)}},{l:"▲",f:function(){mv('ui',UNITS,-1)}},{l:"SET",f:pickUnit,act:1}]};
+      case "info": return {top:[{l:"BACK",f:enterMenu},_(),MAIN], bot:[_(),_(),_()]};
+    }
+    return {top:[_(),_(),_()],bot:[_(),_(),_()]};
+  }
+  function renderBtns(){
+    var k=keys();
+    [[bt,k.top],[bb,k.bot]].forEach(function(p){p[0].innerHTML="";p[1].forEach(function(b){var e=document.createElement('button');e.className="abtn"+(b.dim?" dim":"")+(b.act?" act":"");e.innerHTML=b.l||"&nbsp;";if(b.f&&!b.dim)e.addEventListener('click',b.f);p[0].appendChild(e);});});
+  }
+  function cell(lb,vv,cls){return '<div class="cell '+(cls||'')+'"><div class="lb">'+lb+'</div><div class="vv">'+vv+'</div></div>';}
+  function mainDisplay(){
+    var u=S.unit,g=sub(S.gas);
+    return '<div class="lrow">'+cell("PSIA","+13.60")+cell("&deg;C","+24.38","c")+cell("SETPT","+"+fmt(S.setpt),"r")+'</div>'
+      +'<div class="center"><div class="big">+'+fmt(S.val)+'</div><div class="unitgas"><div class="u">'+u+'</div><div class="g">'+g+'</div></div></div><div class="mflab">Mass Flow</div>'
+      +'<div class="lrow">'+cell("+16.67","LPM")+cell("+"+fmt(S.val),u,"c")+cell("TOTAL/","MENU","r")+'</div>';
+  }
+  function list(items,idx,cur){var h="";items.forEach(function(x,i){h+='<div class="li'+(i===idx?' sel':'')+'">'+sub(x)+(cur&&x===cur?'  (현재)':'')+'</div>';});return h;}
+  function renderLcd(){
+    if(S.mode==="run") lcd.innerHTML=mainDisplay();
+    else if(S.mode==="set") lcd.innerHTML='<div class="setedit"><div class="se-h">SETPOINT ('+S.unit+')</div><div class="se-v">'+(S.unit==="SCCM"?Math.round(S.edit):S.edit.toFixed(2))+'</div><div class="mflab" style="text-align:center;margin-top:14px">＋/－ 로 조정 후 SET</div></div>';
+    else if(S.mode==="menu") lcd.innerHTML='<div class="scr-t">Main Menu</div><div class="lhd">CONTROL · ABOUT · TARES</div><div class="lhd" style="color:#5fc9ff">BASIC CONFIG · ADV SETUP</div><div class="scr-s">▼ 버튼으로 항목 선택 · MAIN=메인화면</div>';
+    else if(S.mode==="cfg") lcd.innerHTML='<div class="scr-t" style="font-size:17px">Basic Config</div><div class="listwrap"><div class="li">GAS  ('+sub(S.gas)+')</div><div class="li">DEVICE UNITS  ('+S.unit+')</div><div class="li">STP / NTP</div></div><div class="scr-s" style="margin-top:8px">아래 버튼으로 선택</div>';
+    else if(S.mode==="gas") lcd.innerHTML='<div class="lhd">GAS SELECT</div>'+list(GASES,S.gi,S.gas);
+    else if(S.mode==="units") lcd.innerHTML='<div class="lhd">DEVICE UNITS — Mass Flow</div>'+list(UNITS,S.ui,S.unit)+'<div class="scr-s" style="margin-top:6px">1 SLPM = 1000 SCCM</div>';
+    else if(S.mode==="info") lcd.innerHTML='<div class="scr-t" style="font-size:17px">'+S.msg+'</div><div class="scr-s">이 시뮬레이터는 유량 설정·가스 변경 위주입니다.<br>BACK 또는 MAIN을 누르세요.</div>';
+  }
+  var hints={run:"▶ <b>SETPT</b>로 유량 설정, <b>TOTAL/MENU</b>로 메뉴 진입.",
+    set:"＋/－(＋10/－10)로 값 맞추고 <b>SET</b>. <b>0</b>이면 정지.",
+    menu:"<b>BASIC CONFIG</b>에서 가스·단위를 바꿉니다. <b>MAIN</b>=메인화면.",
+    cfg:"<b>GAS</b>=가스 변경, <b>DEVICE UNITS</b>=SLPM↔SCCM, <b>STP/NTP</b>=기준.",
+    gas:"▲▼로 가스 선택 후 <b>SET</b>. 재시작 없이 즉시 재교정.",
+    units:"▲▼로 SLPM/SCCM 선택 후 <b>SET</b>.",
+    info:"<b>BACK</b> 또는 <b>MAIN</b>으로 돌아가세요."};
+  function render(){renderBtns();renderLcd();hint.innerHTML=hints[S.mode]||"";ph();}
+
+  function enterSet(){S.mode="set";S.edit=conv(S.setpt);render();}
+  function chg(step){var s=S.unit==="SCCM"?step*10:step*0.1;var mx=conv(50);S.edit=Math.max(0,Math.min(mx,+(S.edit+s).toFixed(S.unit==="SCCM"?0:2)));renderLcd();}
+  function doSet(){S.setpt=S.unit==="SCCM"?S.edit/1000:S.edit;S.mode="run";render();}
+  function toRun(){S.mode="run";render();}
+  function enterMenu(){S.mode="menu";render();}
+  function enterCfg(){S.mode="cfg";render();}
+  function enterGas(){S.mode="gas";S.gi=Math.max(0,GASES.indexOf(S.gas));render();}
+  function enterUnits(){S.mode="units";S.ui=Math.max(0,UNITS.indexOf(S.unit));render();}
+  function mv(key,arr,d){S[key]=(S[key]+d+arr.length)%arr.length;renderLcd();}
+  function pickGas(){S.gas=GASES[S.gi];S.mode="run";render();}
+  function pickUnit(){S.unit=UNITS[S.ui];S.mode="run";render();}
+  function info(which){S.mode="info";S.msg={control:"Control (page 23)",about:"About (page 32)",tares:"Tares (page 22)",adv:"Adv Setup",stp:"STP / NTP (page 38)"}[which]||which;render();}
+
+  setInterval(function(){var t=S.setpt+(Math.random()-0.5)*0.04;S.val+=(t-S.val)*0.16;if(S.mode==="run")renderLcd();},90);
+  render();
+
+  if(/[?&]embed/.test(location.search)){
+    var st=document.createElement('style');
+    st.textContent='#pumplab-header,#pumplab-footer,.ch-side,.ch-scrim,header.ch-top,.navimro-fab{display:none!important}#pgtitle,#pgsub{display:none!important}html,body{overflow:hidden!important;margin:0;padding:0}.agp{padding:10px 0}';
+    document.head.appendChild(st);
+  }
+  var last=0,tm=null;
+  function ph(){var el=document.querySelector('.agp')||document.body;var h=Math.ceil(el.getBoundingClientRect().height);if(Math.abs(h-last)<=2)return;last=h;try{parent.postMessage({tcHeight:h},'*');}catch(e){}}
+  window.addEventListener('load',ph);[250,800,1600].forEach(function(t){setTimeout(ph,t);});
+  window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(ph,120);});
+})();
+</script>
+</body>
+</html>
