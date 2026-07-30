@@ -121,6 +121,62 @@
   .dt-info .qbtn{margin:18px 0 0}
   .dt-kw{margin:15px 0 0;display:flex;flex-wrap:wrap;gap:7px}
   .dt-kw a{font-size:12px;font-weight:700;color:#7a6f68;background:#F1EDE9;border-radius:20px;padding:5px 11px;text-decoration:none}
+
+
+
+
+
+  /* --- 기본 vs PRO 비교 (화이트) --- */
+  .vs{ margin:30px 0 8px; --ax:78px; --gp:16px; }
+  .vs-eb{ text-align:center; font-family:var(--serif); font-size:12.5px; font-weight:600; letter-spacing:.42em; color:#C2410C; margin:0 0 9px; text-indent:.42em; }
+  .vs-h{ text-align:center; font-family:var(--serif); font-size:27px; font-weight:600; color:#3A342E; letter-spacing:-.02em; margin:0 0 24px; line-height:1.4; }
+  .vs-h b{ font-weight:700; color:#1A1A1A; }
+  .vs-box{ display:grid; grid-template-columns:var(--ax) minmax(0,1fr) minmax(0,1fr); column-gap:var(--gp); }
+  .vs-ax{ display:flex; align-items:center; justify-content:flex-end; padding:0 2px 0 0; }
+  .vs-ax span{ font-size:13px; font-weight:800; color:#B4ADA5; letter-spacing:-.01em; }
+  .vs-c{ background:#fff; padding:0 24px; border-left:1px solid #EAE7E3; border-right:1px solid #EAE7E3; }
+  .vs-c.b{ border-left:1.5px solid #C2410C; border-right:1.5px solid #C2410C; }
+  .vs-r1{ border-top:1px solid #EAE7E3; border-radius:12px 12px 0 0; padding-top:26px; }
+  .vs-c.b.vs-r1{ border-top:1.5px solid #C2410C; }
+  .vs-last{ border-bottom:1px solid #EAE7E3; border-radius:0 0 12px 12px; padding-bottom:28px; }
+  .vs-c.b.vs-last{ border-bottom:1.5px solid #C2410C; }
+  .vs-im{ background:#fff; border-radius:8px; overflow:hidden; margin:0 0 16px; }
+  .vs-im img{ width:100%; aspect-ratio:4/3; object-fit:contain; background:#fff; display:block; }
+  .vs-nm{ display:flex; align-items:center; justify-content:center; gap:8px; margin:0 0 22px; }
+  .vs-chip{ font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:4px 9px; border-radius:5px; background:#F1EEEA; color:#8A837C; }
+  .vs-c.b .vs-chip{ background:#C2410C; color:#fff; }
+  .vs-nm span.t{ font-size:15px; font-weight:800; color:#7C736A; letter-spacing:-.01em; }
+  .vs-c.b .vs-nm span.t{ color:#1A1A1A; }
+  .vs-t{ list-style:none; text-align:left; font-size:13.5px; line-height:1.6; color:#9A948D; margin:0; padding:26px 2px; display:flex; flex-direction:column; gap:9px; }
+  .vs-t li{ position:relative; }
+  .vs-sub{ display:block; margin-top:4px; font-size:12px; font-weight:400; color:#8A837C; line-height:1.55; }
+  .vs-c.b .vs-sub b{ color:#C2410C; font-weight:700; }
+  .vs-c:not(.vs-r1){ display:flex; align-items:center; border-top:1px solid #F0EDE9; }
+  .vs-c.b:not(.vs-r1){ border-top:1px solid #F6E2D5; }
+  .vs-c:not(.vs-r1) .vs-t{ width:100%; }
+  .vs-c.b .vs-t{ color:#3A352F; }
+  .vs-t b{ font-weight:800; color:#6E655C; }
+  .vs-c.b .vs-t b{ color:#C2410C; }
+  .vs-ft{ text-align:center; font-size:12.5px; color:#A8A099; margin:16px 0 0; line-height:1.75; }
+  .vs-ft b{ color:#7C736A; }
+  @media(max-width:760px){
+    .vs{ --ax:0px; --gp:9px; }
+    .vs-h{ font-size:20px; }
+    .vs-eb{ font-size:11px; letter-spacing:.3em; }
+    .vs-box{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+    .vs-ax{ grid-column:1 / -1; justify-content:flex-start; padding:16px 0 6px; }
+    .vs-ax span{ font-size:11.5px; letter-spacing:.05em; }
+    .vs-c{ padding:0 12px; }
+    .vs-r1{ padding-top:18px; }
+    .vs-c:not(.vs-r1){ border-radius:0 !important; }
+    .vs-last{ padding-bottom:20px; }
+    .vs-im{ margin-bottom:12px; }
+    .vs-nm{ flex-direction:column; gap:5px; margin-bottom:14px; }
+    .vs-nm span.t{ font-size:12.5px; }
+    .vs-t{ font-size:12px; padding:12px 0; line-height:1.6; gap:7px; }
+    .vs-c:not(.vs-r1),.vs-c.b:not(.vs-r1){ border-top:0; }
+    .vs-t br{ display:none; }
+  }
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
@@ -144,13 +200,32 @@
 <section class="prosec">
   <div class="wrap">
     <span class="pro-tag">PRO 버전 · PC 제어</span>
-    <h2 class="pro-h">컨트롤러를 넘어, PC로 제어하는 PRO 버전</h2>
-    <p class="pro-sub">표준 장비에 <b>실험셋업연구소 PC 제어 시스템</b>을 통합한 상위 버전입니다. 직관적인 제어, 설정 실수 방지, 실험 재현성을 한 번에 잡습니다.</p>
-    <div class="pro-feat">
-      <div class="pf"><div class="pf-n">01 · PC 제어</div><div class="pf-h">직관적 제어 + 실험 로그</div><p>컨트롤러 제어보다 직관적입니다. 복잡한 <b>승온·유지·하강 스케줄</b>을 화면에서 설계하고, <b>실험 로그</b>를 확인·저장합니다.</p></div>
-      <div class="pf"><div class="pf-n">02 · 안전</div><div class="pf-h">히터 단선 예방</div><p>기존 컨트롤러는 <b>설정 실수로 히터가 단선</b>되는 경우가 잦습니다. 스케줄 설정 시 <b>설정 가이드</b>가 오작동을 예방합니다.</p></div>
-      <div class="pf"><div class="pf-n">03 · 튜토리얼</div><div class="pf-h">인수인계도 문제없이</div><p>사용법 <b>튜토리얼이 내장</b>돼 있어, 담당자가 바뀌는 <b>인수인계 상황에서도 장비 오작동이 없습니다.</b></p></div>
-      <div class="pf"><div class="pf-n">04 · 레시피</div><div class="pf-h">2개 → 20개 저장</div><p>레시피를 <b>20개까지 저장</b>합니다. 매 실험마다 세팅값을 다시 넣을 필요가 없어 <b>세팅 실수로 실험을 망치는 일이 없습니다.</b></p></div>
+    <h2 class="pro-h">컨트롤러 앞에 서 있는 시간을 없앱니다</h2>
+    <p class="pro-sub">노 본체는 그대로, <b>제어 방식만 바꾼 상위 구성</b>입니다. 무엇이 달라지는지 아래에서 항목별로 비교했습니다.</p>
+    <div class="vs">
+      <p class="vs-eb">BASIC vs PRO</p>
+      <h3 class="vs-h">정확한 실험과 장비 안전을 위해<br><b>PRO 버전을 추천드립니다</b></h3>
+      <div class="vs-box">
+      <div class="vs-ax"></div>
+      <div class="vs-c a vs-r1">
+        <div class="vs-im"><img src="/img/product/sh/ctrl-sp590.jpg" alt="기본 버전 — SP590 온도 컨트롤러" loading="lazy" width="800" height="600"></div>
+        <p class="vs-nm"><span class="vs-chip">기본</span><span class="t">SP590 컨트롤러</span></p>
+      </div>
+      <div class="vs-c b vs-r1">
+        <div class="vs-im"><img src="/img/product/sh/ctrl-pc.jpg" alt="PRO 버전 — PC 제어 소프트웨어" loading="lazy" width="800" height="600"></div>
+        <p class="vs-nm"><span class="vs-chip">PRO</span><span class="t">PC 제어 시스템</span></p>
+      </div>
+      <div class="vs-ax"><span>설정</span></div>
+      <div class="vs-c a"><ul class="vs-t"><li>노 앞에서 버튼으로 <b>한 단계씩 입력</b></li><li>저장 가능 레시피 <b>2개</b></li></ul></div>
+      <div class="vs-c b"><ul class="vs-t"><li>화면에서 <b>승온 스케줄 설계</b> 후 실행</li><li>레시피 <b>최대 20개</b><small class="vs-sub">(<b>Alicat MFC</b> 장착 시 <b>가스 유량까지 스케줄링</b> 가능)</small></li></ul></div>
+      <div class="vs-ax"><span>안전</span></div>
+      <div class="vs-c a"><ul class="vs-t"><li>장비 조작 미숙으로 인한 <b>히터 단선 사고</b> 발생</li></ul></div>
+      <div class="vs-c b"><ul class="vs-t"><li><b>온도 상승률 최대값 제한</b> 기능으로 <b>작업자 실수 예방</b></li></ul></div>
+      <div class="vs-ax"><span>기록</span></div>
+      <div class="vs-c a vs-last"><ul class="vs-t"><li>온도 이력 <b>미저장</b></li><li>정상 작동 여부 <b>사후 확인 불가</b></li><li>조작법은 <b>담당자 경험</b>에 의존</li></ul></div>
+      <div class="vs-c b vs-last"><ul class="vs-t"><li><b>실험 로그 저장</b> 후 정상작동 확인 가능</li><li><b>온도 상승률·오버슈팅·유지시간·쿨링속도</b> 분석 가능</li><li><b>튜토리얼 기능</b>으로 인수인계 문제 해결</li></ul></div>
+      </div>
+      <p class="vs-ft">PRO는 장비를 바꾸는 게 아니라 <b>제어 방식을 바꾸는 구성</b>입니다. 노 본체·사양은 기본 버전과 동일합니다.<br>가스 분위기까지 함께 제어하려면 <a href="/alicat/" style="color:#C2410C;font-weight:700;text-decoration:none">Alicat 질량유량계(MFC)</a>를 추가해 <b>온도·유량을 하나의 스케줄</b>로 묶습니다.</p>
     </div>
   </div>
 </section>
@@ -204,11 +279,11 @@
   <div class="wrap">
     <hr class="pkg-hr">
     <h2 class="faq-h">이 제품 FAQ</h2>
-    <div class="faq-item"><p class="faq-q">회전 튜브로는 일반 튜브로와 무엇이 다른가요?</p><p class="faq-a">튜브가 <b>회전</b>하면서 시료를 연속으로 투입·회수합니다. 분말이 뭉치지 않고 고르게 열을 받으며, 회전속도(0.7~14RPM)와 경사각(0~15°)으로 <b>체류시간</b>을 조절합니다. 배치 단위로 넣고 빼는 일반 튜브로와 달리 <b>연속 공정</b>에 가깝습니다.</p></div><div class="faq-item"><p class="faq-q">열분해(Pyrolysis)에 쓸 수 있나요?</p><p class="faq-a">가능합니다. 후단부에 <b>대형 응축장치(콜드트랩 베스, SH-WB-68/100GDR)</b>를 연결해 발생 가스를 포집·회수합니다. 타르 배출용 KF25 Port가 기본 구성되어 있고, 배기 가스 응축 방지용 <b>Heating Jacket(Max 400℃)</b>을 옵션으로 추가할 수 있습니다.</p></div><div class="faq-item"><p class="faq-q">실제로 몇 도까지 쓰는 게 맞나요?</p><p class="faq-a">스펙은 1200℃지만 <b>로 분위기 온도 1000℃ 이하</b> 사용에 적합합니다. 옵션으로 사용온도를 1100℃까지 올릴 수 있습니다.</p></div><div class="faq-item"><p class="faq-q">진공 공정도 되나요?</p><p class="faq-a">튜브 교체가 쉽고 <b>Gas Sealing 구조</b>가 갖춰져 있어 진공 공정 수행이 가능합니다. 진공펌프는 별도 구성이며 함께 셋업해 공급합니다.</p></div>
+    <div class="faq-item"><p class="faq-q">회전 튜브로는 일반 튜브로와 무엇이 다른가요?</p><p class="faq-a">튜브가 <b>회전</b>하면서 시료를 연속으로 투입·회수합니다. 분말이 뭉치지 않고 고르게 열을 받으며, 회전속도(0.7~14RPM)와 경사각(0~15°)으로 <b>체류시간</b>을 조절합니다. 배치 단위로 넣고 빼는 일반 튜브로와 달리 <b>연속 공정</b>에 가깝습니다.</p></div><div class="faq-item"><p class="faq-q">열분해(Pyrolysis)에 쓸 수 있나요?</p><p class="faq-a">가능합니다. 후단부에 <b>대형 응축장치(콜드트랩 베스, SH-WB-68/100GDR)</b>를 연결해 발생 가스를 포집·회수합니다. 타르 배출용 KF25 Port가 기본 구성되어 있고, 배기 가스 응축 방지용 <b>Heating Jacket(Max 400℃)</b>을 옵션으로 추가할 수 있습니다.</p></div><div class="faq-item"><p class="faq-q">실제로 몇 도까지 쓰는 게 맞나요?</p><p class="faq-a">스펙은 1200℃지만 <b>로 분위기 온도 1000℃ 이하</b> 사용에 적합합니다. 옵션으로 사용온도를 1100℃까지 올릴 수 있습니다.</p></div><div class="faq-item"><p class="faq-q">Alicat MFC를 붙이면 가스 유량도 자동으로 제어되나요?</p><p class="faq-a">네. PRO의 PC 제어 시스템에 <b>Alicat 질량유량계(MFC)</b>를 연동하면 <b>승온 프로파일과 가스 유량을 하나의 스케줄</b>로 묶어 운전합니다. 예를 들어 승온 구간에는 불활성 가스를 흘리고, 유지 구간에서 반응가스로 전환하는 식의 시나리오를 미리 설계해두고 시작만 누르면 됩니다. 온도·유량 이력은 함께 로그로 남습니다.</p></div><div class="faq-item"><p class="faq-q">진공 공정도 되나요?</p><p class="faq-a">튜브 교체가 쉽고 <b>Gas Sealing 구조</b>가 갖춰져 있어 진공 공정 수행이 가능합니다. 진공펌프는 별도 구성이며 함께 셋업해 공급합니다.</p></div>
   </div>
 </section>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "삼흥에너지 1200℃ 회전 튜브로 PRO (Small Scale Rotary Kiln, SH-FU-RTG)", "brand": {"@type": "Brand", "name": "SH Scientific", "alternateName": "삼흥에너지"}, "category": "실험용 회전 튜브로(로터리 킬른)", "url": "https://rndsetup.com/sh-scientific/catalog/rotary-tube-furnace-pro/", "description": "삼흥에너지 회전 튜브로(Small Scale Rotary Kiln)는 튜브를 회전시키며 시료를 연속 투입·회수하는 1200℃ 열처리로입니다. Hot Zone 300mm를 2단 또는 3단으로 배치하고, 튜브 회전 0.7~14RPM·경사 0~15°를 조절해 체류시간을 맞춥니다. 석영 View Port로 튜브 내부 전체를 관찰할 수 있고, 열분해용으로 쓸 때는 후단에 대형 응축장치(콜드트랩 베스)를 연결할 수 있습니다. 로 분위기 온도 1000℃ 이하 사용에 적합합니다.", "additionalProperty": [{"@type": "PropertyValue", "name": "최고온도", "value": "1200℃"}, {"@type": "PropertyValue", "name": "Hot Zone", "value": "300mm × 2 또는 × 3"}, {"@type": "PropertyValue", "name": "적용 튜브", "value": "100~140Φ × 1500~2000mm"}, {"@type": "PropertyValue", "name": "튜브 회전속도", "value": "0.7~14 RPM"}, {"@type": "PropertyValue", "name": "튜브 경사각", "value": "0~15°"}, {"@type": "PropertyValue", "name": "발열체", "value": "Kanthal A-1"}, {"@type": "PropertyValue", "name": "온도컨트롤러", "value": "Programmable Controller SP590"}, {"@type": "PropertyValue", "name": "권장 분위기 온도", "value": "1000℃ 이하"}], "model": ["SH-FU-100RTG-2", "SH-FU-120RTG-2", "SH-FU-140RTG-2S", "SH-FU-100RTG-3", "SH-FU-120RTG-3", "SH-FU-140RTG-3S"], "image": "https://rndsetup.com/img/product/sh/rotary-tube-furnace.jpg", "manufacturer": {"@type": "Organization", "name": "SH Scientific"}, "offers": {"@type": "Offer", "availability": "https://schema.org/InStock", "url": "https://rndsetup.com/sh-scientific/guide/#quoteForm", "businessFunction": "http://purl.org/goodrelations/v1#Sell", "seller": {"@id": "https://rndsetup.com/#org"}}, "isRelatedTo": {"@type": "WebPage", "@id": "https://rndsetup.com/sh-scientific/catalog/"}}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "회전 튜브로는 일반 튜브로와 무엇이 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "튜브가 회전하면서 시료를 연속으로 투입·회수합니다. 분말이 뭉치지 않고 고르게 열을 받으며, 회전속도(0.7~14RPM)와 경사각(0~15°)으로 체류시간을 조절합니다. 배치 단위로 넣고 빼는 일반 튜브로와 달리 연속 공정에 가깝습니다."}}, {"@type": "Question", "name": "열분해(Pyrolysis)에 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "가능합니다. 후단부에 대형 응축장치(콜드트랩 베스, SH-WB-68/100GDR)를 연결해 발생 가스를 포집·회수합니다. 타르 배출용 KF25 Port가 기본 구성되어 있고, 배기 가스 응축 방지용 Heating Jacket(Max 400℃)을 옵션으로 추가할 수 있습니다."}}, {"@type": "Question", "name": "실제로 몇 도까지 쓰는 게 맞나요?", "acceptedAnswer": {"@type": "Answer", "text": "스펙은 1200℃지만 로 분위기 온도 1000℃ 이하 사용에 적합합니다. 옵션으로 사용온도를 1100℃까지 올릴 수 있습니다."}}, {"@type": "Question", "name": "진공 공정도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "튜브 교체가 쉽고 Gas Sealing 구조가 갖춰져 있어 진공 공정 수행이 가능합니다. 진공펌프는 별도 구성이며 함께 셋업해 공급합니다."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "삼흥에너지 1200℃ 회전 튜브로 PRO (Small Scale Rotary Kiln, SH-FU-RTG)", "brand": {"@type": "Brand", "name": "SH Scientific", "alternateName": "삼흥에너지"}, "category": "실험용 회전 튜브로(로터리 킬른)", "url": "https://rndsetup.com/sh-scientific/catalog/rotary-tube-furnace-pro/", "description": "삼흥에너지 회전 튜브로(Small Scale Rotary Kiln)는 튜브를 회전시키며 시료를 연속 투입·회수하는 1200℃ 열처리로입니다. Hot Zone 300mm를 2단 또는 3단으로 배치하고, 튜브 회전 0.7~14RPM·경사 0~15°를 조절해 체류시간을 맞춥니다. 석영 View Port로 튜브 내부 전체를 관찰할 수 있고, 열분해용으로 쓸 때는 후단에 대형 응축장치(콜드트랩 베스)를 연결할 수 있습니다. 로 분위기 온도 1000℃ 이하 사용에 적합합니다.", "additionalProperty": [{"@type": "PropertyValue", "name": "최고온도", "value": "1200℃"}, {"@type": "PropertyValue", "name": "Hot Zone", "value": "300mm × 2 또는 × 3"}, {"@type": "PropertyValue", "name": "적용 튜브", "value": "100~140Φ × 1500~2000mm"}, {"@type": "PropertyValue", "name": "튜브 회전속도", "value": "0.7~14 RPM"}, {"@type": "PropertyValue", "name": "튜브 경사각", "value": "0~15°"}, {"@type": "PropertyValue", "name": "발열체", "value": "Kanthal A-1"}, {"@type": "PropertyValue", "name": "권장 분위기 온도", "value": "1000℃ 이하"}, {"@type": "PropertyValue", "name": "가스 유량 스케줄링", "value": "Alicat 질량유량계(MFC) 연동 시 승온 프로파일과 가스 유량을 하나의 스케줄로 통합 제어"}, {"@type": "PropertyValue", "name": "온도컨트롤러", "value": "PC 제어 시스템 (PRO) · 기본형은 Programmable Controller SP590"}], "model": ["SH-FU-100RTG-2", "SH-FU-120RTG-2", "SH-FU-140RTG-2S", "SH-FU-100RTG-3", "SH-FU-120RTG-3", "SH-FU-140RTG-3S"], "image": "https://rndsetup.com/img/product/sh/rotary-tube-furnace-pro.jpg", "manufacturer": {"@type": "Organization", "name": "SH Scientific"}, "offers": {"@type": "Offer", "availability": "https://schema.org/InStock", "url": "https://rndsetup.com/sh-scientific/guide/#quoteForm", "businessFunction": "http://purl.org/goodrelations/v1#Sell", "seller": {"@id": "https://rndsetup.com/#org"}}, "isRelatedTo": {"@type": "WebPage", "@id": "https://rndsetup.com/sh-scientific/catalog/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "회전 튜브로는 일반 튜브로와 무엇이 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "튜브가 회전하면서 시료를 연속으로 투입·회수합니다. 분말이 뭉치지 않고 고르게 열을 받으며, 회전속도(0.7~14RPM)와 경사각(0~15°)으로 체류시간을 조절합니다. 배치 단위로 넣고 빼는 일반 튜브로와 달리 연속 공정에 가깝습니다."}}, {"@type": "Question", "name": "열분해(Pyrolysis)에 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "가능합니다. 후단부에 대형 응축장치(콜드트랩 베스, SH-WB-68/100GDR)를 연결해 발생 가스를 포집·회수합니다. 타르 배출용 KF25 Port가 기본 구성되어 있고, 배기 가스 응축 방지용 Heating Jacket(Max 400℃)을 옵션으로 추가할 수 있습니다."}}, {"@type": "Question", "name": "실제로 몇 도까지 쓰는 게 맞나요?", "acceptedAnswer": {"@type": "Answer", "text": "스펙은 1200℃지만 로 분위기 온도 1000℃ 이하 사용에 적합합니다. 옵션으로 사용온도를 1100℃까지 올릴 수 있습니다."}}, {"@type": "Question", "name": "Alicat MFC를 붙이면 가스 유량도 자동으로 제어되나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. PRO의 PC 제어 시스템에 Alicat 질량유량계(MFC)를 연동하면 승온 프로파일과 가스 유량을 하나의 스케줄로 묶어 운전합니다. 예를 들어 승온 구간에는 불활성 가스를 흘리고, 유지 구간에서 반응가스로 전환하는 식의 시나리오를 미리 설계해두고 시작만 누르면 됩니다. 온도·유량 이력은 함께 로그로 남습니다."}}, {"@type": "Question", "name": "진공 공정도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "튜브 교체가 쉽고 Gas Sealing 구조가 갖춰져 있어 진공 공정 수행이 가능합니다. 진공펌프는 별도 구성이며 함께 셋업해 공급합니다."}}]}</script>
 <div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 리드플루이드 공식 대리점·실험 펌프·유체제어 셋업</a></li><li><a href="/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
 <script src="/assets/site.js" defer></script>
 </body>
