@@ -312,3 +312,8 @@ body.embed-mode .cta-band{ display:none !important; }
   h2{ font-size:clamp(17px,5vw,21px) !important; line-height:1.42; }
   h3{ font-size:16px !important; line-height:1.45; }
 }
+
+/* 삼흥 카탈로그 상세: 상단 여백 + 구성 리스트 가독성 */
+.detail-top{padding-top:26px}
+section.pkg .pkg-feat{margin:6px 0 20px}
+section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
