@@ -72,7 +72,10 @@
         ['/leadfluid/manuals/', '메뉴얼'],
         ['/leadfluid/blog/',    '블로그']
       ] },
-    { href:'/alicat/', label:'Alicat MFC', icon:'gas' },
+    { href:'/alicat/', label:'Alicat MFC', icon:'gas', sub:[
+        ['/alicat/',        'Alicat MFC 소개'],
+        ['/alicat/manual/', '메뉴얼']
+      ] },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact' },
     { href:'/faq/', label:'FAQ', icon:'faq' }
