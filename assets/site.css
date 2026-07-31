@@ -368,7 +368,7 @@ section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
 .cfgq-flash{animation:cfgqFlash 1.3s ease}
 
 /* 삼흥 카탈로그 상세: Max Temp 밑 실사용온도 경고(빨간 한 줄) */
-.pkg-tbl td.tw-note{color:#C0392B;font-size:12px;font-weight:600;text-align:left;background:#FFF6F5;line-height:1.55;padding:9px 12px}
+.pkg-tbl td .tw-note{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed #F0C9C2;color:#C0392B;font-size:12px;font-weight:600;text-align:left;line-height:1.55}
 
 /* 삼흥 카탈로그 PRO 버전 */
 .dt-img{position:relative}
@@ -387,3 +387,23 @@ section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
 .pf-h{font-size:14.5px;font-weight:800;margin:5px 0 6px;color:#17202A}
 .pf p{font-size:13px;color:#4a5560;line-height:1.65}
 .pf p b{color:#17202A}
+
+/* 기본구성 마커 호버 팝업 (영역 hover, 확대 팝업) */
+.bc-fig{overflow:visible}
+.bc-fig img{border-radius:11px}
+.bc-fig .mkzone{position:absolute;cursor:help;z-index:20;border-radius:10px;background:transparent}
+.bc-fig .mkzone:hover{background:rgba(194,65,11,.06)}
+.bc-fig .mkzone:focus{outline:2px solid rgba(194,65,11,.45);outline-offset:2px}
+.bc-fig .mkpop{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);width:min(760px,90vw);max-width:90vw;height:auto;border-radius:12px;border:1px solid #E7E3DE;background:#fff;box-shadow:0 24px 64px rgba(20,30,50,.4);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s ease,transform .15s ease;z-index:9999}
+.bc-fig .zl:hover ~ .pop-f,.bc-fig .zl:focus ~ .pop-f,.bc-fig .zr:hover ~ .pop-v,.bc-fig .zr:focus ~ .pop-v{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+@media(max-width:640px){.bc-fig .mkpop{width:auto}}
+.bc-video{width:min(1400px,95vw);max-width:none;margin:34px 0 12px;margin-left:50%;transform:translateX(-50%);aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid #E7E3DE;background:#000}
+.bc-video iframe{width:100%;height:100%;border:0;display:block}
+
+/* 비교표 줄바꿈 최소화 */
+.prosec .wrap{max-width:1080px}
+.vs-c{padding-left:8px;padding-right:8px}
+.vs-t{font-size:12px;letter-spacing:-.03em;line-height:1.4}
+.vs-t .vs-sub{display:block;font-size:10.5px;letter-spacing:-.03em;line-height:1.35}
+.vs-align .vs-t{gap:2px}
+@media(max-width:640px){.vs-t{font-size:10.5px;letter-spacing:-.04em}.vs-c{padding-left:5px;padding-right:5px}}
