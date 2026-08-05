@@ -10,7 +10,7 @@ export async function onRequest(context) {
   const size = Math.min(200, Math.max(1, parseInt(p.get("size") || "24", 10)));
 
   const cols = `id,sku,brand,maker,origin,daebun,sobun,model,opt_name,opt_value,name,features,
-                unit,supply_price,retail_price,image_url,product_url,lead_time,cert,stock,
+                unit,supply_price,retail_price,list_price,image_url,product_url,lead_time,cert,stock,
                 attr1_n,attr1_v,attr2_n,attr2_v,attr3_n,attr3_v,attr4_n,attr4_v,status`;
 
   // 단일 상세
