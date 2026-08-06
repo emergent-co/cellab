@@ -242,19 +242,6 @@
       window.__channelIOBooted = true;
       (function(){var w=window;if(w.ChannelIO){return;}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(a){ch.q.push(a);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
       window.ChannelIO('boot', { pluginKey: '9ef4232c-59bb-4911-a4c7-363c6b5bc513' });
-      // 자동 인사말 말풍선 — 방문 후 잠시 뒤 노출, 클릭 시 채널톡 상담창 열림
-      window.addEventListener('load', function () {
-        try { if (sessionStorage.getItem('ccGreetX')) return; } catch (e) {}
-        var b = document.createElement('div');
-        b.className = 'cc-greet-pop';
-        b.innerHTML = '<button class="cc-greet-x" type="button" aria-label="닫기">×</button>' +
-          '<div class="cc-greet-tx">안녕하세요, <b>실험셋업연구소</b>입니다 👋<br>정량펌프·질량유량계(MFC)·진공·자동화 셋업과 제어, 수리까지 무엇이든 편하게 물어보세요.</div>';
-        function hide() { b.classList.remove('show'); try { sessionStorage.setItem('ccGreetX', '1'); } catch (e) {} setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 300); }
-        b.querySelector('.cc-greet-x').addEventListener('click', function (ev) { ev.stopPropagation(); hide(); });
-        b.addEventListener('click', function () { if (window.ChannelIO) window.ChannelIO('showMessenger'); hide(); });
-        document.body.appendChild(b);
-        setTimeout(function () { b.classList.add('show'); }, 2500);
-      });
     }
     // 리드플루이드 펌프 보기 — /pump/ 하위 전 페이지 하단 고정 배너(스크롤 따라 진해짐)
     if (window.self === window.top && path.indexOf('/pump/') === 0 && !document.querySelector('.lf-sticky')) {
