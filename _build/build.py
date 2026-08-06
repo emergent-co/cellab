@@ -551,7 +551,7 @@ ORG_WEBSITE_GRAPH = {
             "founder": {"@type": "Person", "name": "이영현"},
             "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"],
             "slogan": "실험 장비 시스템 통합·제어",
-            "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific) 공식 대리점이자 Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.",
+            "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid) 공식 대리점이자 삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "부산광역시",
