@@ -108,7 +108,7 @@
                (sc ? ' aria-current="page"' : '') + '>' + s[1] + '</a>';
       }).join('') + '</div>';
     }
-    return row;
+    return '<div class="s-grp">' + row + '</div>';
   }).join('');
 
   var HEADER =

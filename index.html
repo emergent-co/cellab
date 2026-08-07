@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
 <meta name="naver-site-verification" content="0ecd2bb7278c354a12b988da6454c23d4f745f9a" />
-<title>실험셋업연구소 — 실험 장비 시스템 통합·제어 (펌프·MFC·전기로) | 리드플루이드·삼흥·Alicat 정품·A/S</title>
-<meta name="description" content="실험셋업연구소는 펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문입니다. Modbus·RS485로 PC에서 통합 제어합니다. 그 과정에서 필요한 장비는 리드플루이드(LeadFluid) 공식 대리점이자 삼흥에너지(SH Scientific)·Alicat 취급점으로 정품 공급·국내 직접 A/S(구매 시 3년 무상보증)까지 함께 해결합니다.">
+<title>실험셋업연구소 — 실험 셋업 매거진 · 논문 셋업으로 배우는 실험 장비 구성</title>
+<meta name="description" content="실험셋업연구소 매거진 — 논문이 실제로 쓴 실험 셋업을 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 정리합니다. 온도·가스 분위기·진공·유량 제어 조건과 필요 장비를 셋업 단위로 읽습니다. 필요한 장비는 리드플루이드 공식 대리점·삼흥에너지·Alicat 취급으로 정품 공급·국내 직접 A/S.">
 <link rel="canonical" href="https://rndsetup.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="실험셋업연구소">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:url" content="https://rndsetup.com/">
-<meta property="og:title" content="실험셋업연구소 — 실험 장비 시스템 통합·제어 (펌프·MFC·전기로)">
-<meta property="og:description" content="온도·진공·유량 제어에 측정 기기까지 연동해 실험 기기를 하나의 시스템으로 통합·자동화. 필요한 장비는 리드플루이드 공식 대리점 · 삼흥에너지·Alicat 취급으로 정품·국내 직접 A/S.">
+<meta property="og:title" content="실험셋업연구소 — 실험 셋업 매거진">
+<meta property="og:description" content="논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로. 열처리·증착과 유체·펌프 두 갈래로 정리.">
 <meta property="og:image" content="https://rndsetup.com/img/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,68 +22,60 @@
 <style>
   .home-main{ padding:30px 40px 72px; }
   .hwrap{ max-width:900px; margin:0 auto; }
-  /* 1) 소프트웨어 다운로드 프로모 */
-  .h-promo{ display:block; background:#fff; border:1px solid #e3e8ef; border-radius:20px; padding:34px 36px; color:var(--ink); overflow:hidden; }
-  .h-promo .p-top{ display:flex; align-items:center; justify-content:space-between; gap:22px; }
-  .h-promo .p-compat{ margin-top:26px; padding-top:22px; border-top:1px solid #eef1f5; }
-  .h-promo .p-compat-h{ font-size:14px; font-weight:700; color:var(--ink); margin-bottom:4px; }
-  .h-promo .p-compat-sub{ font-size:13px; color:#5a6470; margin:0 0 14px; line-height:1.6; }
-  .h-promo .p-sub{ font-size:13px; font-weight:700; color:var(--green); margin-bottom:8px; }
-  .h-promo h1{ font-family:var(--serif); font-size:clamp(22px,4.6vw,29px); font-weight:700; color:var(--ink); line-height:1.32; letter-spacing:-.02em; }
-  .h-promo .p-tx p{ font-size:14.5px; color:#5a6470; margin-top:11px; max-width:430px; line-height:1.6; }
-  .h-promo .p-btn{ display:inline-block; margin-top:20px; background:var(--green); color:#fff; font-weight:800; font-size:14.5px; padding:12px 22px; border-radius:10px; }
-  .h-promo .p-ill{ flex:0 0 auto; cursor:zoom-in; text-align:center; }
-  .h-promo .p-ill svg{ width:246px; height:auto; border-radius:11px; filter:drop-shadow(0 6px 18px rgba(8,25,50,.14)); }
-  .h-promo .p-ill-cap{ display:block; margin-top:8px; font-size:12px; font-weight:700; color:#5a6470; }
-  .sw-zoom{ position:fixed; inset:0; background:rgba(8,20,40,.74); display:none; align-items:center; justify-content:center; padding:18px; z-index:200; cursor:zoom-out; }
-  .sw-zoom.on{ display:flex; }
-  .sw-zoom svg, .sw-zoom img{ width:min(94vw,880px); height:auto; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.45); display:block; }
-  .home-pager{ display:flex; justify-content:center; gap:6px; margin:26px 0 8px; flex-wrap:wrap; }
-  .home-pager button{ min-width:34px; height:34px; padding:0 10px; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
-  .home-pager .pg-num.on{ background:var(--green); color:#fff; border-color:var(--green); }
-  .home-pager button:disabled{ opacity:.4; cursor:default; }
-  .h-subcta{ display:flex; gap:18px; flex-wrap:wrap; margin:14px 4px 0; }
-  .h-subcta a{ font-size:13.5px; font-weight:700; color:var(--green); }
-  .trust-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 9px; margin:16px 4px 0; padding:11px 16px; background:#f6f8fb; border:1px solid var(--line); border-radius:10px; font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.5; }
-  .trust-bar span{ color:var(--gray-2); }
-  .trust-bar a{ color:var(--green); font-weight:700; }
-  .paper-strip{ display:block; margin:10px 4px 0; padding:11px 16px; background:var(--green-bg,#eef4ee); border:1px solid #d6e0ee; border-radius:10px; font-size:13px; font-weight:600; color:#26333f; }
-  .paper-strip b{ color:var(--ink); }
-  .paper-strip:hover{ background:#e6efe6; }
+  /* 매거진 리드 */
+  .mag-lead{ margin:6px 2px 0; border-bottom:3px solid var(--ink); padding-bottom:18px; }
+  .mag-lead .ey{ font-size:11px; font-weight:800; letter-spacing:.09em; color:#C8102E; margin-bottom:7px; }
+  .mag-lead h1{ font-family:var(--serif); font-size:clamp(24px,5vw,34px); font-weight:800; color:var(--ink); letter-spacing:-.02em; line-height:1.22; margin:0; }
+  .mag-lead p{ font-size:15px; color:#4a5560; margin:12px 0 0; max-width:660px; line-height:1.7; }
   /* 섹션 제목 */
-  .h-sec-t{ font-family:var(--serif); font-size:clamp(20px,4.2vw,24px); font-weight:700; color:var(--ink); letter-spacing:-.02em; margin:42px 0 18px; }
-  /* 2) 펌프실험 A-Z 타일 */
-  .h-cats{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  .h-cat{ display:block; }
-  .h-cat .tile{ background:linear-gradient(135deg,#33557E,#1E3A5F); border-radius:16px; aspect-ratio:1/.66; display:flex; align-items:center; justify-content:center; transition:transform .15s; }
-  .h-cat:hover .tile{ transform:translateY(-4px); }
-  .h-cat .tile svg{ width:46px; height:46px; stroke:#fff; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-  .h-cat .tile{ overflow:hidden; }
-  .h-cat .tile img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .h-cat b{ display:block; font-size:15px; font-weight:700; color:var(--ink); margin-top:12px; }
-  .h-cat span{ display:block; font-size:12.5px; color:var(--gray-2); margin-top:2px; }
-  /* 3) 최신 아티클 */
-  .h-art{ display:flex; gap:20px; padding:20px 0; border-top:1px solid var(--line); }
-  .h-art:first-child{ padding-top:6px; }
-  .h-art-img{ flex:0 0 188px; width:188px; height:118px; border-radius:12px; overflow:hidden; background:var(--soft-blue); }
+  .h-sec-t{ font-family:var(--serif); font-size:clamp(20px,4.2vw,24px); font-weight:700; color:var(--ink); letter-spacing:-.02em; margin:36px 0 14px; }
+  /* 최신 아티클(리스트) */
+  .h-art{ display:flex; gap:20px; padding:18px 0; border-top:1px solid var(--line); text-decoration:none; color:inherit; }
+  .h-art:first-of-type{ border-top:none; padding-top:4px; }
+  .h-art-img{ flex:0 0 176px; width:176px; height:112px; border-radius:10px; overflow:hidden; background:var(--soft-blue); display:flex; align-items:center; justify-content:center; }
   .h-art-img img{ width:100%; height:100%; object-fit:cover; display:block; }
   .h-art-bd{ min-width:0; display:flex; flex-direction:column; justify-content:center; }
-  .h-art-bd h3{ font-family:var(--sans); font-size:16px; font-weight:700; color:var(--ink); line-height:1.4; }
+  .h-art-bd h3{ font-family:var(--serif); font-size:17px; font-weight:700; color:var(--ink); line-height:1.34; margin:0; }
   .h-art:hover h3{ color:var(--green); }
-  .h-art-bd p{ font-size:13.5px; color:var(--gray); line-height:1.55; margin-top:6px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .h-art-bd p{ font-size:13.5px; color:var(--gray); line-height:1.55; margin-top:6px; }
   .h-art-meta{ font-size:12px; color:var(--gray-2); margin-top:8px; }
-  .h-art-meta b{ color:var(--green); font-weight:700; }
+  .h-art-meta b{ color:#C8102E; font-weight:700; }
+  .h-art-meta b.fl{ color:var(--green); }
+  .h-more{ display:flex; gap:18px; flex-wrap:wrap; margin:16px 2px 0; }
+  .h-more a{ font-size:13.5px; font-weight:800; color:var(--green); }
+  /* 카테고리 2분할 */
+  .h-cats2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:14px; }
+  .h-cat2{ border-top:3px solid var(--line); padding-top:12px; }
+  .h-cat2.heat{ border-top-color:#C8102E; }
+  .h-cat2.fluid{ border-top-color:var(--green); }
+  .h-cat2 .ct{ font-family:var(--serif); font-size:17px; font-weight:700; color:var(--ink); }
+  .h-cat2 .cs{ font-size:12px; color:var(--gray-2); margin:3px 0 9px; }
+  .h-cat2 .cl a{ display:block; font-size:13.5px; color:#3a4550; line-height:2; }
+  .h-cat2 .cl a:hover{ color:var(--green); }
+  /* 브랜드(하단으로 이동) */
+  .brand-head{ display:flex; align-items:baseline; justify-content:space-between; border-bottom:2px solid var(--ink); padding-bottom:11px; margin:44px 0 18px; }
+  .brand-head .t{ font-size:clamp(17px,4vw,20px); font-weight:800; letter-spacing:-.02em; color:var(--ink); }
+  .brand-head .en{ font-size:12px; color:#9aa3ad; font-weight:700; letter-spacing:.08em; }
+  .brand-pick{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .bcard{ display:block; border:1px solid var(--line); border-radius:14px; overflow:hidden; text-decoration:none; color:inherit; background:#fff; transition:transform .15s,box-shadow .15s; }
+  .bcard:hover{ transform:translateY(-4px); box-shadow:0 16px 32px rgba(10,37,64,.14); }
+  .bcard-img{ position:relative; aspect-ratio:16/11; background-size:cover; background-position:center; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .bcard-img::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,20,35,.30),rgba(10,20,35,.74)); }
+  .bcard-nm{ position:relative; z-index:1; color:#fff; font-size:22px; font-weight:800; letter-spacing:-.01em; text-shadow:0 2px 12px rgba(0,0,0,.45); }
+  .bcard-tag{ position:relative; z-index:1; color:#e2e9f2; font-size:10px; font-weight:700; letter-spacing:.15em; margin-top:9px; }
+  .bcard-body{ padding:14px 16px 16px; }
+  .bcard-body .bt{ font-size:15px; font-weight:800; color:var(--ink); }
+  .bcard-body .sub{ font-size:12px; color:#8a929c; font-weight:600; margin-top:2px; }
+  .bcard-body .desc{ font-size:12.5px; color:#2c3742; line-height:1.5; margin-top:7px; }
+  .bcard-body .go{ display:inline-block; margin-top:10px; font-size:12.5px; font-weight:800; color:var(--green); }
+  .home-sub{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin:30px 4px 0; }
+  .home-sub a{ font-size:13.5px; font-weight:700; color:var(--green); }
+  @media(max-width:760px){ .brand-pick{ grid-template-columns:1fr; } .h-cats2{ grid-template-columns:1fr; } }
   @media(max-width:640px){
     .home-main{ padding:24px 20px 56px; }
-    .h-promo{ padding:26px 24px; }
-    .h-promo .p-top{ flex-direction:column; align-items:flex-start; }
-    .h-promo .p-ill{ display:block; width:100%; margin-top:20px; }
-    .h-promo .p-ill svg{ width:100%; }
-    .h-cats{ grid-template-columns:1fr 1fr 1fr; gap:10px; }
-    .h-cat .tile svg{ width:30px; height:30px; }
-    .h-cat b{ font-size:12.5px; }.h-cat span{ display:none; }
     .h-art{ gap:14px; }
-    .h-art-img{ flex-basis:124px; width:124px; height:82px; }
+    .h-art-img{ flex-basis:118px; width:118px; height:80px; }
+    .h-art-bd h3{ font-size:15.5px; }
   }
 </style>
 <link rel="stylesheet" href="/assets/site.css">
@@ -94,47 +86,88 @@
 <main class="home-main">
   <div class="hwrap">
 
-    <style>
-      .lp-hero{text-align:center;margin:14px 4px 0}
-      .lp-hero h1{font-family:var(--serif);font-size:clamp(26px,5.6vw,36px);font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.28}
-      .lp-hero .sub{font-size:15px;color:#4a5560;margin:14px auto 0;max-width:600px;line-height:1.75}
-      .lp-hero .sub b{color:var(--ink)}
-      .lp-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:16px 0 0}
-      .lp-badge{font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:999px;background:#EDF2F8;color:var(--green)}
-      .brand-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:11px;margin:36px 0 20px}
-      .brand-head .t{font-size:clamp(18px,4vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-      .brand-head .t .n{color:#9aa3ad;font-weight:700;margin-right:7px}
-      .brand-head .en{font-size:12px;color:#9aa3ad;font-weight:700;letter-spacing:.08em}
-      .brand-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-      @media(max-width:760px){.brand-pick{grid-template-columns:1fr}}
-      .bcard{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;transition:transform .15s,box-shadow .15s}
-      .bcard:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(10,37,64,.14)}
-      .bcard-img{position:relative;aspect-ratio:16/11;background-size:cover;background-position:center;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-      .bcard-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,35,.30),rgba(10,20,35,.74))}
-      .bcard-nm{position:relative;z-index:1;color:#fff;font-size:23px;font-weight:800;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.45)}
-      .bcard-tag{position:relative;z-index:1;color:#e2e9f2;font-size:10px;font-weight:700;letter-spacing:.15em;margin-top:9px}
-      .bcard-body{padding:15px 17px 18px}
-      .bcard-body .bt{font-size:15.5px;font-weight:800;color:var(--ink)}
-      .bcard-body .sub{font-size:12px;color:#8a929c;font-weight:600;margin-top:2px}
-      .bcard-body .desc{font-size:13px;color:#2c3742;line-height:1.55;margin-top:8px}
-      .bcard-body .go{display:inline-block;margin-top:11px;font-size:12.5px;font-weight:800;color:var(--green)}
-      .home-sub{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:28px 4px 0}
-      .home-sub a{font-size:13.5px;font-weight:700;color:var(--green)}
-    </style>
-
-    <section class="lp-hero">
-      <h1>실험셋업연구소</h1>
-      <p class="sub"><b>온도&middot;진공&middot;유량을 제어하고, 나아가 측정 기기까지 연동</b>해 서로 다른 실험 기기를 하나의 시스템으로 통합&middot;자동화합니다. Modbus&middot;RS485로 PC에서 통합 제어하며, 그 과정에서 필요한 장비는 <b>리드플루이드 공식 대리점, 삼흥에너지&middot;Alicat 취급점</b>으로 정품 공급&middot;국내 직접 A/S까지 함께 해결합니다.</p>
-      <div class="lp-badges">
-        <span class="lp-badge">실험장비 시스템 통합</span>
-        <span class="lp-badge">Modbus·RS485 통합 제어</span>
-        <span class="lp-badge">정품·국내 직접 A/S</span>
-      </div>
+    <section class="mag-lead">
+      <div class="ey">실험 셋업 매거진</div>
+      <h1>논문이 실제로 쓴 실험 셋업을, 공정부터 장비까지</h1>
+      <p>열처리·증착(퍼니스)과 유체·펌프 두 갈래로 정리합니다. 온도·가스 분위기·진공·유량 제어 조건과 필요한 장비를 셋업 단위로 읽어보세요.</p>
     </section>
 
+    <h2 class="h-sec-t">최신 연구 셋업</h2>
+
+    <a class="h-art" href="/magazine/sofc-hcl-syngas/">
+      <div class="h-art-img" style="background:#FAEEDA">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2c0 2-1.5 3-1.5 5.5S9 11 9 13a3 3 0 0 0 6 0c0-2-1.5-3-1.5-5.5S15 4 15 2"/><path d="M7.5 22h9"/></svg>
+      </div>
+      <div class="h-art-bd">
+        <h3>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향</h3>
+        <p>다채널 MFC + 튜브퍼니스 800·900℃ 셋업. 논문 공정 조건·재현 관점·필요 장비 10종.</p>
+        <div class="h-art-meta"><b>열처리·증착</b> · Journal of Power Sources (2007) · 논문 셋업</div>
+      </div>
+    </a>
+
+    <a class="h-art" href="/setups/catheter-heparin-bt101">
+      <div class="h-art-img">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#1E3A5F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 12a6 6 0 1 1-12 0c0-5.5 6-12 6-12z"/></svg>
+      </div>
+      <div class="h-art-bd">
+        <h3>혈관내 카테터 헤파린 코팅 — 연동펌프 BT101 L</h3>
+        <p>실리콘 튜브 폐루프 순환 회로 구성에 연동펌프 사용.</p>
+        <div class="h-art-meta"><b class="fl">유체·펌프</b> · Nature Communications (2024) · 논문 셋업</div>
+      </div>
+    </a>
+
+    <a class="h-art" href="/furnace/setups/alicat-mfc-tubefurnace/">
+      <div class="h-art-img" style="background:#FAEEDA">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#BA7517" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg>
+      </div>
+      <div class="h-art-bd">
+        <h3>1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC</h3>
+        <p>온도 스케줄에 가스 유량을 하나로 묶은 실제 도입 셋업.</p>
+        <div class="h-art-meta"><b>열처리·증착</b> · 도입 사례 · 튜브퍼니스</div>
+      </div>
+    </a>
+
+    <a class="h-art" href="/setups/co2-capture-ct3001f">
+      <div class="h-art-img">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#1E3A5F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+      </div>
+      <div class="h-art-bd">
+        <h3>연속 CO₂ 포집 — PEEK 기어펌프 CT3001F</h3>
+        <p>anolyte·catholyte 전해액 순환 셋업.</p>
+        <div class="h-art-meta"><b class="fl">유체·펌프</b> · Nature Communications (2024) · 논문 셋업</div>
+      </div>
+    </a>
+
+    <div class="h-more">
+      <a href="/magazine/">열처리·증착 매거진 →</a>
+      <a href="/setups/">유체·펌프 논문 셋업 →</a>
+    </div>
+
+    <h2 class="h-sec-t">카테고리</h2>
+    <div class="h-cats2">
+      <div class="h-cat2 heat">
+        <div class="ct">열처리 · 증착 (퍼니스)</div>
+        <div class="cs">소성·소결 · CVD·MOCVD · 가스 분위기 · 진공 · 1200~1800℃급</div>
+        <div class="cl">
+          <a href="/magazine/sofc-hcl-syngas/">SOFC 가스 분위기 셋업</a>
+          <a href="/furnace/setups/alicat-mfc-tubefurnace/">튜브퍼니스 MFC 가스 제어</a>
+          <a href="/magazine/">열처리·증착 전체 보기 →</a>
+        </div>
+      </div>
+      <div class="h-cat2 fluid">
+        <div class="ct">유체 · 펌프</div>
+        <div class="cs">관류·연속배양 · flow chemistry · 분주·정량 이송 · 수처리</div>
+        <div class="cl">
+          <a href="/setups/catheter-heparin-bt101">카테터 코팅 순환 회로</a>
+          <a href="/setups/brain-electrode-tyd01">뇌 전극 시린지 주입</a>
+          <a href="/setups/">유체·펌프 전체 보기 →</a>
+        </div>
+      </div>
+    </div>
+
     <div class="brand-head">
-      <div class="t"><span class="n">01 /</span>어떤 브랜드를 찾으세요?</div>
-      <div class="en">SELECT BRAND</div>
+      <div class="t">장비 공급 · 국내 직접 A/S</div>
+      <div class="en">SUPPLY &amp; SERVICE</div>
     </div>
     <div class="brand-pick">
       <a class="bcard" href="/leadfluid/guide/">
@@ -144,8 +177,8 @@
         </div>
         <div class="bcard-body">
           <div class="bt">리드플루이드</div>
-          <div class="sub">정밀 연동&middot;정량펌프</div>
-          <div class="desc">페리스탈틱&middot;시린지&middot;기어펌프. 고정밀 유체 이송&middot;분주.</div>
+          <div class="sub">공식 대리점 · 정밀 연동·정량펌프</div>
+          <div class="desc">페리스탈틱·시린지·기어펌프. 고정밀 유체 이송·분주.</div>
           <span class="go">펌프 선택 &rarr;</span>
         </div>
       </a>
@@ -156,8 +189,8 @@
         </div>
         <div class="bcard-body">
           <div class="bt">삼흥에너지</div>
-          <div class="sub">튜브퍼니스 &middot; 전기로</div>
-          <div class="desc">전기로&middot;튜브퍼니스. 승온 프로그램&middot;가스 분위기 제어.</div>
+          <div class="sub">전기로·튜브퍼니스 설치·A/S</div>
+          <div class="desc">전기로·튜브퍼니스. 승온 프로그램·가스 분위기 제어.</div>
           <span class="go">열처리로 선택 &rarr;</span>
         </div>
       </a>
@@ -168,53 +201,16 @@
         </div>
         <div class="bcard-body">
           <div class="bt">Alicat Scientific</div>
-          <div class="sub">질량유량계 &middot; MFC</div>
-          <div class="desc">가스 질량유량계&middot;압력 컨트롤러. 정밀 가스 유량 제어.</div>
+          <div class="sub">질량유량계 · MFC 취급</div>
+          <div class="desc">가스 질량유량계·압력 컨트롤러. 정밀 가스 유량 제어.</div>
           <span class="go">MFC 보기 &rarr;</span>
         </div>
       </a>
     </div>
 
-    <style>
-      .mag-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-      @media(max-width:760px){.mag-grid{grid-template-columns:1fr}}
-      .mag-c{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:transform .15s,box-shadow .15s}
-      .mag-c:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(10,37,64,.12)}
-      .mag-k{font-size:10.5px;font-weight:800;letter-spacing:.13em}
-      .mag-c .h{font-size:15.5px;font-weight:800;color:var(--ink);margin-top:7px}
-      .mag-c .d{font-size:12.5px;color:#5a6570;margin-top:6px;line-height:1.55}
-      .mag-c .go{display:inline-block;margin-top:11px;font-size:12.5px;font-weight:800;color:var(--green)}
-      .mag-feat{display:flex;align-items:center;gap:12px;margin-top:14px;border:1px solid var(--line);border-left:4px solid #EF9F27;border-radius:12px;padding:13px 16px;text-decoration:none;color:inherit;background:#fff}
-      .mag-feat:hover{background:#fbfaf7}
-      .mag-feat .lb{font-size:10.5px;font-weight:800;letter-spacing:.12em;color:#854F0B;white-space:nowrap}
-      .mag-feat .tt{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.45}
-    </style>
-    <div class="brand-head">
-      <div class="t"><span class="n">02 /</span>실험 셋업 매거진</div>
-      <div class="en">SETUP MAGAZINE</div>
-    </div>
-    <p style="font-size:14px;color:#4a5560;line-height:1.7;margin:0 0 18px;max-width:640px">논문이 실제로 쓴 실험 셋업을 <b style="color:var(--ink)">공정 &rarr; 조건 &rarr; 필요 장비</b> 순으로 정리합니다. 열처리&middot;증착(퍼니스)과 유체&middot;펌프 두 갈래로 읽어보세요.</p>
-    <div class="mag-grid">
-      <a class="mag-c" href="/magazine/">
-        <div class="mag-k" style="color:#854F0B">열처리 &middot; 증착 (퍼니스)</div>
-        <div class="h">소성&middot;소결&middot;CVD&middot;가스 분위기&middot;진공</div>
-        <div class="d">튜브퍼니스&middot;전기로 셋업을 논문 조건 그대로. 온도&middot;가스 유량을 하나로 묶는 통합 제어.</div>
-        <span class="go">매거진 보기 &rarr;</span>
-      </a>
-      <a class="mag-c" href="/setups/">
-        <div class="mag-k" style="color:var(--green)">유체 &middot; 펌프</div>
-        <div class="h">관류&middot;연속배양&middot;flow chemistry&middot;분주</div>
-        <div class="d">Nature 등 논문이 실제로 쓴 펌프 셋업. 유량 제어&middot;다펌프 동기&middot;재현 기록.</div>
-        <span class="go">논문 셋업 보기 &rarr;</span>
-      </a>
-    </div>
-    <a class="mag-feat" href="/magazine/sofc-hcl-syngas/">
-      <span class="lb">최신 글</span>
-      <span class="tt">석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다채널 MFC &middot; 튜브퍼니스 셋업</span>
-    </a>
-
     <div class="home-sub">
-      <a href="/repair/">A/S &middot; 수리 접수 &rarr;</a>
+      <a href="/about/">회사소개 &rarr;</a>
+      <a href="/repair/">A/S · 수리 접수 &rarr;</a>
       <a href="/contact/">문의하기 &rarr;</a>
       <a href="/trust/">믿고 도입하는 이유 &rarr;</a>
     </div>
