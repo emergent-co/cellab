@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성 | 실험셋업연구소</title>
+<meta name="description" content="실험셋업연구소 매거진 — 논문이 실제로 쓴 실험 셋업을 열처리·증착(퍼니스)과 유체·펌프 두 카테고리로 정리합니다. 온도·가스 분위기·진공·유량 제어 조건과 필요 장비를 셋업 단위로 읽습니다.">
+<link rel="canonical" href="https://rndsetup.com/magazine/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성">
+<meta property="og:description" content="열처리·증착(퍼니스)과 유체·펌프 두 카테고리로 논문 실험 셋업을 정리합니다.">
+<meta property="og:url" content="https://rndsetup.com/magazine/">
+<meta property="og:image" content="https://rndsetup.com/img/rnd-guide.jpg">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.mg-wrap{max-width:920px;margin:0 auto;padding:24px 18px 60px}
+.mg-hero{padding:8px 0 20px;border-bottom:1px solid #e9e7e0;margin-bottom:24px}
+.mg-ey{font-size:12.5px;color:#888}
+.mg-hero h1{font-family:var(--serif);font-size:26px;color:#1E3A5F;margin:6px 0 6px}
+.mg-hero p{font-size:14.5px;color:#555;margin:0;line-height:1.6}
+.mg-cat{display:flex;align-items:center;gap:8px;margin:28px 0 6px}
+.mg-cat .dot{width:10px;height:10px;border-radius:50%}
+.mg-cat h2{font-family:var(--serif);font-size:19px;margin:0;color:#1E3A5F}
+.mg-cat .cnt{font-size:12px;color:#999;margin-left:2px}
+.mg-tax{font-size:12.5px;color:#777;margin:0 0 14px;line-height:1.9}
+.mg-tax span{display:inline-block;background:#f4f2ec;border:1px solid #e7e4db;border-radius:20px;padding:3px 10px;margin:0 4px 4px 0;color:#5a5a54}
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.mg-card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #e5e3dc;border-radius:12px;padding:15px 17px;transition:border-color .15s,transform .15s}
+.mg-card:hover{border-color:#1E3A5F;transform:translateY(-2px)}
+.mg-badge{font-size:11px;font-weight:700;border-radius:4px;padding:3px 8px;display:inline-block;margin-bottom:8px}
+.mg-heat{background:#FAEEDA;color:#854F0B}
+.mg-fluid{background:#eaf0f7;color:#1E3A5F}
+.mg-card h3{font-size:16px;margin:2px 0 6px;line-height:1.4;color:#1a1a18}
+.mg-card p{font-size:13px;color:#666;margin:0;line-height:1.55}
+.mg-card .meta{font-size:12px;color:#999;margin-top:9px}
+.mg-more{display:inline-block;margin-top:14px;font-size:14px;color:#1E3A5F;text-decoration:none;font-weight:700}
+.mg-soon{background:#faf9f5;border:1px dashed #ddd9cd;border-radius:12px;padding:15px 17px;font-size:13px;color:#8a887f}
+</style>
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid) 공식 대리점이자 삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://rndsetup.com/"}, {"@type": "ListItem", "position": 2, "name": "매거진", "item": "https://rndsetup.com/magazine/"}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<main class="mg-wrap">
+  <div class="mg-hero">
+    <div class="mg-ey">실험셋업연구소 · 이머전트 운영</div>
+    <h1>실험 셋업 매거진</h1>
+    <p>논문이 실제로 쓴 실험 셋업을 <b>공정 → 조건 → 필요 장비</b> 순으로 읽습니다. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 정리합니다.</p>
+  </div>
+
+  <div class="mg-cat"><span class="dot" style="background:#EF9F27"></span><h2>열처리 · 증착 (퍼니스)</h2><span class="cnt">2</span></div>
+  <div class="mg-tax">
+    <span>소성·소결</span><span>어닐링</span><span>CVD·MOCVD·ALD</span><span>가스 분위기(MFC)</span><span>진공 등급</span><span>온도 1200·1500·1700·1800℃급</span>
+  </div>
+  <div class="mg-grid">
+    <a class="mg-card" href="/magazine/sofc-hcl-syngas/">
+      <span class="mg-badge mg-heat">가스 분위기 · 연료전지</span>
+      <h3>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향</h3>
+      <p>다채널 MFC + 튜브퍼니스 800·900℃ 셋업. 논문 공정 조건·재현 관점·필요 장비 10종.</p>
+      <div class="meta">Journal of Power Sources (2007) · 논문 셋업</div>
+    </a>
+    <a class="mg-card" href="/furnace/setups/alicat-mfc-tubefurnace/">
+      <span class="mg-badge mg-heat">퍼니스 · 도입 사례</span>
+      <h3>1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC</h3>
+      <p>온도 스케줄에 가스 유량을 묶은 실제 도입 셋업.</p>
+      <div class="meta">도입 사례 · 튜브퍼니스</div>
+    </a>
+  </div>
+
+  <div class="mg-cat"><span class="dot" style="background:#1E3A5F"></span><h2>유체 · 펌프</h2><span class="cnt">논문 셋업 다수</span></div>
+  <div class="mg-tax">
+    <span>관류·연속배양</span><span>flow chemistry</span><span>분주·정량 이송</span><span>수처리</span><span>유량 캘리브레이션</span><span>다펌프 동기</span>
+  </div>
+  <div class="mg-grid">
+    <a class="mg-card" href="/setups/catheter-heparin-bt101">
+      <span class="mg-badge mg-fluid">의료 · 연동펌프</span>
+      <h3>혈관내 카테터 헤파린 코팅 — BT101 L</h3>
+      <p>실리콘 튜브 폐루프 순환 회로 구성에 연동펌프 사용.</p>
+      <div class="meta">Nature Communications (2024) · 논문 셋업</div>
+    </a>
+    <a class="mg-card" href="/setups/co2-capture-ct3001f">
+      <span class="mg-badge mg-fluid">에너지 · 기어펌프</span>
+      <h3>연속 CO₂ 포집 — CT3001F PEEK 기어펌프</h3>
+      <p>anolyte·catholyte 전해액 순환 셋업.</p>
+      <div class="meta">Nature Communications (2024) · 논문 셋업</div>
+    </a>
+    <a class="mg-card" href="/setups/brain-electrode-tyd01">
+      <span class="mg-badge mg-fluid">바이오 · 시린지펌프</span>
+      <h3>뇌 피질 인터페이싱 — TYD01-01 시린지펌프</h3>
+      <p>주입 모듈에서 주입 속도를 정밀 제어.</p>
+      <div class="meta">Nature Electronics (2024) · 논문 셋업</div>
+    </a>
+  </div>
+  <a class="mg-more" href="/setups/">유체·펌프 논문 셋업 전체 보기 →</a>
+</main>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 리드플루이드 공식 대리점·실험 펌프·유체제어 셋업</a></li><li><a href="/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

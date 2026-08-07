@@ -2,6 +2,20 @@
   "_comment": "콘텐츠 메타데이터(SSOT). type=setup|guide. 홈 최신 아티클=전체 날짜순, 셋업사례=/setups/(setup), 실험 가이드=/application/(guide). date는 정렬용이라 편집 가능.",
   "posts": [
     {
+      "type": "magazine",
+      "slug": "sofc-hcl-syngas",
+      "title": "석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다가스 분위기·온도 정밀 제어 셋업",
+      "summary": "다채널 MFC + 튜브퍼니스 800·900℃ 셋업. 미량 HCl의 가역적 열화와 재현 조건 정리.",
+      "date": "2026-08-07",
+      "tags": ["연료전지", "SOFC", "가스분위기", "MFC", "튜브퍼니스"],
+      "url": "/magazine/sofc-hcl-syngas/",
+      "model_focus": "Alicat MFC · 튜브퍼니스",
+      "application": "열처리·증착 · 가스분위기",
+      "image": "/img/rnd-guide.jpg",
+      "journal": "Journal of Power Sources",
+      "doi": "10.1016/j.jpowsour.2007.03.018"
+    },
+    {
       "type": "guide",
       "slug": "flow-chemistry",
       "title": "flow chemistry 연속흐름 반응 — 유량비·체류시간 제어 셋업",

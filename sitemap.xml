@@ -7,6 +7,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/magazine/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/leadfluid/manuals/</loc>
     <lastmod>2026-08-07</lastmod>
     <priority>0.6</priority>
@@ -352,6 +358,12 @@
     <loc>https://rndsetup.com/application/environmental</loc>
     <lastmod>2026-08-07</lastmod>
     <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/magazine/sofc-hcl-syngas/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>

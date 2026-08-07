@@ -61,6 +61,7 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
+    { href:'/magazine/', label:'실험셋업 매거진', icon:'feed' },
     { href:'/sh-scientific/guide/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
         ['/sh-scientific/guide/',   '퍼니스 선택 가이드'],
         ['/sh-scientific/catalog/', '카탈로그'],

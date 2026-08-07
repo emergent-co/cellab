@@ -400,6 +400,8 @@ CRAWLER_LINKS = [
     ('/pump/atoz/flow-calibration/', '연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정'),
     ('/pump/atoz/tube-size-guide/', '연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
+    ('/magazine/', '실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성'),
+    ('/magazine/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
     ('/setups/', '도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업'),
     ('/setups/heart-eshp-bt101l.html', '심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
@@ -418,7 +420,7 @@ CRAWLER_LINKS = [
 
 def _crawler_nav_html():
     def grp(h):
-        if h.startswith('/setups/') or h.startswith('/compare/') or h in ('/', '/trust/', '/faq/', '/contact/'):
+        if h.startswith('/setups/') or h.startswith('/magazine/') or h.startswith('/compare/') or h in ('/', '/trust/', '/faq/', '/contact/'):
             return '사례·신뢰'
         if h.startswith('/pumps/') or h.startswith('/pump/') or h.startswith('/leadfluid/') or h.startswith('/troubleshooting/') or h in ('/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
             return '펌프·제어'
@@ -584,6 +586,7 @@ ORG_WEBSITE_GRAPH = {
 }
 
 BREADCRUMB_SECTIONS = {
+    'magazine': ('매거진', '/magazine/'),
     'application': ('실험 가이드', '/application/'),
     'pumps': ('펌프 종류', '/pumps/'),
     'setups': ('연구별 셋업', '/setups/'),
@@ -776,6 +779,7 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
+        ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
         ('leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
