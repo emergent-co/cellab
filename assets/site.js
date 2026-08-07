@@ -73,8 +73,8 @@
     { href:'/contact/', label:'문의하기', icon:'contact' },
     { href:'/faq/', label:'FAQ', icon:'faq' }
   ];
-  function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
-  function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
+  function matches(href){ if(!href) return false; if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
+  function subOnPage(href){ if(!href) return false; var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
   var navHTML = NAV.map(function (n) {
     // 부모 페이지(예: /pumps/)에 있으면 부모를 활성화하고, 하위 페이지에 있으면 해당 하위탭을 활성화한다.
     var cur = matches(n.href);
