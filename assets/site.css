@@ -445,3 +445,10 @@ section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
   .ch-side .s-sub a:hover{ background:var(--soft); color:var(--green); }
   .ch-side .s-sub a.active{ color:var(--green); font-weight:700; }
 }
+
+/* 헤더 중앙정렬 (데스크톱) — 마스트헤드·상단 네비를 1000px 컬럼으로 */
+@media(min-width:901px){
+  .ch-top{ padding-left:max(22px,calc((100% - 1000px)/2)); padding-right:max(22px,calc((100% - 1000px)/2)); }
+  .ch-side{ padding-left:max(16px,calc((100% - 1000px)/2)); padding-right:max(16px,calc((100% - 1000px)/2)); }
+  .ch-side nav{ justify-content:center; width:100%; }
+}

@@ -62,20 +62,12 @@
   };
   var NAV = [
     { href:'/magazine/', label:'실험셋업 매거진', icon:'feed' },
-    { href:'/sh-scientific/guide/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
-        ['/sh-scientific/guide/',   '퍼니스 선택 가이드'],
-        ['/sh-scientific/catalog/', '카탈로그'],
-        ['/sh-scientific/manual/',  '메뉴얼'],
-        ['/sh-scientific/blog/',    '블로그']
-      ] },
-    { href:'/leadfluid/guide/', label:'리드플루이드(LeadFluid)', icon:'wrench', sub:[
-        ['/leadfluid/guide/',  '펌프 선택 가이드'],
-        ['/leadfluid/manuals/', '메뉴얼'],
-        ['/leadfluid/blog/',    '블로그']
-      ] },
-    { href:'/alicat/', label:'Alicat MFC', icon:'gas', sub:[
-        ['/alicat/',        'Alicat MFC 소개'],
-        ['/alicat/manual/', '메뉴얼']
+    { label:'실험장비', icon:'devices', noclick:true, sub:[
+        ['/sh-scientific/guide/',   '삼흥에너지 · 튜브퍼니스·전기로'],
+        ['/sh-scientific/catalog/', '삼흥 카탈로그'],
+        ['/leadfluid/guide/',       '리드플루이드 · 정량·연동펌프'],
+        ['/leadfluid/manuals/',     '리드플루이드 메뉴얼'],
+        ['/alicat/',                'Alicat · 질량유량계(MFC)']
       ] },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact' },
