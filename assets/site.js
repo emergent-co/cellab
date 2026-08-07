@@ -62,19 +62,27 @@
   };
   var NAV = [
     { href:'/magazine/', label:'실험셋업 매거진', icon:'feed' },
-    { label:'실험장비', icon:'devices', noclick:true, sub:[
-        ['/sh-scientific/guide/',   '삼흥에너지 · 튜브퍼니스·전기로'],
-        ['/sh-scientific/catalog/', '삼흥 카탈로그'],
-        ['/leadfluid/guide/',       '리드플루이드 · 정량·연동펌프'],
-        ['/leadfluid/manuals/',     '리드플루이드 메뉴얼'],
-        ['/alicat/',                'Alicat · 질량유량계(MFC)']
+    { href:'/sh-scientific/guide/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
+        ['/sh-scientific/guide/',   '퍼니스 선택 가이드'],
+        ['/sh-scientific/catalog/', '카탈로그'],
+        ['/sh-scientific/manual/',  '메뉴얼'],
+        ['/sh-scientific/blog/',    '블로그']
+      ] },
+    { href:'/leadfluid/guide/', label:'리드플루이드(LeadFluid)', icon:'wrench', sub:[
+        ['/leadfluid/guide/',  '펌프 선택 가이드'],
+        ['/leadfluid/manuals/', '메뉴얼'],
+        ['/leadfluid/blog/',    '블로그']
+      ] },
+    { href:'/alicat/', label:'Alicat MFC', icon:'gas', sub:[
+        ['/alicat/',        'Alicat MFC 소개'],
+        ['/alicat/manual/', '메뉴얼']
       ] },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact' },
     { href:'/faq/', label:'FAQ', icon:'faq' }
   ];
-  function matches(href){ if(!href) return false; if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
-  function subOnPage(href){ if(!href) return false; var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
+  function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
+  function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
   var navHTML = NAV.map(function (n) {
     // 부모 페이지(예: /pumps/)에 있으면 부모를 활성화하고, 하위 페이지에 있으면 해당 하위탭을 활성화한다.
     var cur = matches(n.href);
@@ -100,7 +108,7 @@
                (sc ? ' aria-current="page"' : '') + '>' + s[1] + '</a>';
       }).join('') + '</div>';
     }
-    return '<div class="s-grp">' + row + '</div>';
+    return row;
   }).join('');
 
   var HEADER =
@@ -597,18 +605,4 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
-})();
-
-/* 스크롤 헤더 동작: 다운 → 메뉴행 숨김 + 반투명 / 업 → 복귀 */
-(function(){
-  var lastY = window.pageYOffset || 0, ticking = false;
-  function upd(){
-    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
-    var root = document.documentElement;
-    if (y > 40) root.classList.add('chrome-dim'); else root.classList.remove('chrome-dim');
-    if (y > lastY && y > 140) root.classList.add('nav-hidden');
-    else if (y < lastY - 4) root.classList.remove('nav-hidden');
-    lastY = y; ticking = false;
-  }
-  window.addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(upd); ticking = true; } }, { passive:true });
 })();

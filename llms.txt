@@ -12,9 +12,7 @@
 
 ## 주요 페이지 (정확한 URL)
 
-- [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 정리하는 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래 + 최신 연구 셋업 + 장비 공급·A/S
-- [실험 셋업 매거진 허브](https://rndsetup.com/magazine/): 열처리·증착·유체·펌프 카테고리별 논문 셋업 글 목록
-  - [석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 다채널 MFC·튜브퍼니스 셋업 (J. Power Sources 2007)](https://rndsetup.com/magazine/sofc-hcl-syngas/): 가스 분위기·온도 정밀 제어, 공정 조건표·필요 장비 10종·문의
+- [홈 = 실험장비 기술자료실](https://rndsetup.com/): 사용법·문제해결·캘리브레이션·제어 자동화 기술자료 허브 + 최신 아티클 + 제어 프로그램 무료 다운로드
 - [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/leadfluid/guide/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
   - [리드플루이드 메뉴얼](https://rndsetup.com/leadfluid/manuals/): 모델별 사용 메뉴얼
   - [리드플루이드 블로그](https://rndsetup.com/leadfluid/blog/): 실제 도입 셋업·논문 사례
