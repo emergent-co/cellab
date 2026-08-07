@@ -123,9 +123,37 @@
     </style>
 
     <section class="lp-hero">
-      <h1>실험셋업연구소</h1>
+      <h1>R&amp;D Setup Lab.</h1>
       <p class="sub"><b>논문이 실제로 쓴 실험 셋업</b>을 공정&middot;조건&middot;필요 장비 순으로 분석해 공유하는 <b>실험 셋업 매거진</b>입니다.</p>
     </section>
+
+    <style>
+      .mag-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+      @media(max-width:900px){.mag-pick{grid-template-columns:repeat(2,1fr)}}
+      @media(max-width:520px){.mag-pick{grid-template-columns:1fr}}
+      .pcard{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;transition:transform .15s,box-shadow .15s}
+      .pcard:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(10,37,64,.14)}
+      .pcard-img{position:relative;aspect-ratio:16/10;display:flex;align-items:flex-end;padding:12px}
+      .pcard-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,35,.10),rgba(10,20,35,.48))}
+      .pcard-cat{position:relative;z-index:1;color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+      .pcard-body{padding:13px 15px 16px}
+      .pcard-body .t2{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4;letter-spacing:-.01em}
+      .pcard:hover .t2{color:var(--green)}
+      .pcard-body .d2{font-size:12px;color:#5a6570;margin-top:6px;line-height:1.5}
+      .pcard-body .go{display:inline-block;margin-top:10px;font-size:12px;font-weight:800;color:var(--green)}
+    </style>
+    <div class="brand-head"><div class="t">실험 셋업 매거진</div><div class="en">SETUP MAGAZINE</div></div>
+    <p style="font-size:14px;color:#4a5560;line-height:1.7;margin:0 0 18px;max-width:660px">공정별로 <b style="color:var(--ink)">실험 셋업을 어떻게 구성하는지</b>를 정리합니다. 대표 공정부터 골라 들어가세요. <span style="color:var(--gray-2)">(글은 순차 공개)</span></p>
+    <div class="mag-pick">
+      <a class="pcard" href="/magazine/"><div class="pcard-img" style="background:linear-gradient(135deg,#E0912E,#8A4E0C)"><span class="pcard-cat">열처리 · 증착</span></div><div class="pcard-body"><div class="t2">가스 분위기 · 증착(CVD) · 히팅</div><div class="d2">튜브퍼니스 가스 분위기와 승온을 함께 잡는 셋업.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/magazine/"><div class="pcard-img" style="background:linear-gradient(135deg,#E0912E,#8A4E0C)"><span class="pcard-cat">열처리 · 증착</span></div><div class="pcard-body"><div class="t2">소결 · 하소 · 어닐링</div><div class="d2">분말·세라믹 고온 처리의 승온 프로파일 구성.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/magazine/"><div class="pcard-img" style="background:linear-gradient(135deg,#E0912E,#8A4E0C)"><span class="pcard-cat">열처리 · 증착</span></div><div class="pcard-body"><div class="t2">진공 · 탈기 · 건조</div><div class="d2">진공 등급 선택과 탈가스·건조 셋업.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/magazine/"><div class="pcard-img" style="background:linear-gradient(135deg,#E0912E,#8A4E0C)"><span class="pcard-cat">열처리 · 증착</span></div><div class="pcard-body"><div class="t2">탄화 · 열분해 · 불활성 분위기</div><div class="d2">Ar·N₂ 분위기 탄화·열분해 셋업.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/setups/"><div class="pcard-img" style="background:linear-gradient(135deg,#33557E,#1E3A5F)"><span class="pcard-cat">유체 · 펌프</span></div><div class="pcard-body"><div class="t2">관류 · 연속배양 · 배지교환</div><div class="d2">무오염 연속 관류 펌프 셋업.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/setups/"><div class="pcard-img" style="background:linear-gradient(135deg,#33557E,#1E3A5F)"><span class="pcard-cat">유체 · 펌프</span></div><div class="pcard-body"><div class="t2">flow chemistry · 유량비 · 체류시간</div><div class="d2">연속흐름 반응의 유량비·체류시간 제어.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/setups/"><div class="pcard-img" style="background:linear-gradient(135deg,#33557E,#1E3A5F)"><span class="pcard-cat">유체 · 펌프</span></div><div class="pcard-body"><div class="t2">정량 분주 · 다펌프 동기 · 캘리브레이션</div><div class="d2">반복 분주와 다펌프 동기·유량 보정.</div><span class="go">보기 &rarr;</span></div></a>
+      <a class="pcard" href="/setups/"><div class="pcard-img" style="background:linear-gradient(135deg,#33557E,#1E3A5F)"><span class="pcard-cat">유체 · 펌프</span></div><div class="pcard-body"><div class="t2">수처리 · pH 제어 · 정량 투입</div><div class="d2">산·염기 정량 투입 자동 제어 셋업.</div><span class="go">보기 &rarr;</span></div></a>
+    </div>
 
     <style>
       .mag-cat-t{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--ink);margin:26px 0 12px;padding-left:11px;border-left:3px solid #EF9F27}
@@ -144,10 +172,10 @@
       .mag-all{display:inline-block;margin-top:14px;font-size:13px;font-weight:800;color:var(--green)}
     </style>
     <div class="brand-head">
-      <div class="t">실험 셋업 매거진</div>
-      <div class="en">SETUP MAGAZINE</div>
+      <div class="t">논문 사례</div>
+      <div class="en">PAPER CASES</div>
     </div>
-    <p style="font-size:14px;color:#4a5560;line-height:1.7;margin:0 0 4px;max-width:640px">논문이 실제로 쓴 실험 셋업을 <b style="color:var(--ink)">공정 &rarr; 조건 &rarr; 필요 장비</b> 순으로 분석합니다.</p>
+    <p style="font-size:14px;color:#4a5560;line-height:1.7;margin:0 0 4px;max-width:640px">논문이 실제로 쓴 실험 셋업을 <b style="color:var(--ink)">공정 &rarr; 조건 &rarr; 필요 장비</b> 순으로 분석한 사례 모음입니다.</p>
 
     <div class="mag-cat-t">열처리 &middot; 증착 (퍼니스)<span class="c">소성·소결 · CVD·MOCVD · 가스 분위기 · 진공</span></div>
     <div class="mag-arts">
