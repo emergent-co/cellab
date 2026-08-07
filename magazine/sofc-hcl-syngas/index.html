@@ -64,6 +64,13 @@
 .msc-ok .ttl{font-size:15px;font-weight:700;margin-top:8px}
 .msc-ok .sub{font-size:12.5px;color:#888;margin-top:3px}
 .msc-ok .lst{margin-top:14px;background:#f6f5f0;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.9;text-align:left}
+.msc-f2{padding:12px 18px 4px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.msc-fld{margin:0}
+.msc-fld.full{grid-column:1 / -1}
+.msc-fld label{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:4px}
+.msc-fld input{width:100%;height:40px;font-size:14px;font-family:inherit;border:1px solid #d8d6cd;border-radius:8px;padding:0 11px;box-sizing:border-box}
+.msc-fld input:focus{outline:none;border-color:#1E3A5F}
+.msc-pick{margin:8px 18px 0;background:#f6f5f0;border-radius:8px;padding:9px 12px;font-size:12px;color:#666;line-height:1.5}
 </style>
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "실험 장비 시스템 통합·제어", "description": "펌프·질량유량계(MFC)·전기로 등으로 온도·진공·유량을 제어하고, 나아가 측정 기기까지 연동해 서로 다른 실험 기기를 하나의 시스템으로 통합·자동화하는 실험 장비 시스템 통합·제어 전문. 온도·진공·유량 조건과 측정 데이터를 Modbus·RS485로 묶어 PC에서 통합 제어하고 무인 운전·로그(CSV)까지 하나의 셋업으로 만든다. 그 과정에서 필요한 개별 장비는 리드플루이드(LeadFluid) 공식 대리점이자 삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 취급점으로 정품 공급하고 국내에서 직접 A/S(구매 시 3년 무상보증)까지 함께 지원한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
 <body>
@@ -151,11 +158,30 @@
 
 <div class="msc-ov" id="msc-ov" role="dialog" aria-modal="true" aria-label="장비 문의">
   <div class="msc-mc">
-    <div class="msc-mh"><div><b>장비 문의</b><div class="s">필요한 사양을 선택하세요 (SOFC 가스 분위기 셋업)</div></div><button class="msc-x" id="msc-close" aria-label="닫기">×</button></div>
-    <div class="msc-cl" id="msc-checks"></div>
-    <div class="msc-nt"><textarea id="msc-note" placeholder="실험 조건·수량·문의 내용을 적어주세요 (예: 6채널 가스, 900℃ 상시운전)"></textarea></div>
-    <div class="msc-fb"><button class="msc-c" id="msc-cancel">취소</button><button class="msc-s" id="msc-submit"><span id="msc-count"></span> 문의 보내기</button></div>
-    <div class="msc-ok" id="msc-ok"><div style="font-size:32px;color:#0F6E56">✓</div><div class="ttl">문의 내용이 준비되었습니다</div><div class="sub">아래 내용을 복사하거나, 문의 페이지에서 보내주세요.</div><div class="lst" id="msc-oklist"></div><a href="/contact/" style="display:inline-block;margin-top:14px;background:#1E3A5F;color:#fff;text-decoration:none;padding:10px 22px;border-radius:8px;font-weight:700">문의 페이지로 →</a></div>
+    <div class="msc-mh"><div><b>장비 문의</b><div class="s" id="msc-sub">1/2 · 필요한 사양을 선택하세요</div></div><button class="msc-x" id="msc-close" aria-label="닫기">×</button></div>
+
+    <div id="msc-step1">
+      <div class="msc-cl" id="msc-checks"></div>
+      <div class="msc-nt"><textarea id="msc-note" placeholder="실험 조건·수량·문의 내용을 적어주세요 (예: 6채널 가스, 900℃ 상시운전)"></textarea></div>
+      <div class="msc-fb"><button class="msc-c" id="msc-cancel">취소</button><button class="msc-s" id="msc-next"><span id="msc-count"></span> 다음 →</button></div>
+    </div>
+
+    <form id="msc-step2" style="display:none">
+      <div class="msc-pick" id="msc-pick"></div>
+      <div class="msc-f2">
+        <div class="msc-fld"><label>이름 *</label><input type="text" name="이름" required autocomplete="name"></div>
+        <div class="msc-fld"><label>소속 *</label><input type="text" name="소속" required autocomplete="organization"></div>
+        <div class="msc-fld"><label>이메일 *</label><input type="email" name="email" required autocomplete="email"></div>
+        <div class="msc-fld"><label>전화 *</label><input type="tel" name="전화" required autocomplete="tel"></div>
+      </div>
+      <input type="hidden" name="선택장비" id="msc-h-eq">
+      <input type="hidden" name="문의내용" id="msc-h-note">
+      <input type="hidden" name="_subject" value="[매거진] 장비 문의 — SOFC 가스분위기 셋업">
+      <input type="hidden" name="문의출처" value="매거진 · SOFC 가스분위기 셋업 (/magazine/sofc-hcl-syngas/)">
+      <div class="msc-fb"><button type="button" class="msc-c" id="msc-back">← 이전</button><button type="submit" class="msc-s" id="msc-send">문의 전송</button></div>
+    </form>
+
+    <div class="msc-ok" id="msc-ok"><div style="font-size:32px;color:#0F6E56">✓</div><div class="ttl">문의가 전송되었습니다</div><div class="sub">보내주신 연락처로 회신드리겠습니다. 감사합니다.</div><div class="lst" id="msc-oklist"></div></div>
   </div>
 </div>
 
@@ -178,23 +204,44 @@
   spec.innerHTML=specs.map(function(s,i){return '<div class="msc-sr"><span class="msc-sn">'+(i+1)+'</span><b>'+s[0]+'</b><span class="d">'+s[1]+'</span></div>';}).join('');
   checks.innerHTML=specs.map(function(s){return '<label><input type="checkbox" class="msc-cb" data-name="'+s[0]+'" checked><span class="n">'+s[0]+'</span><span class="d">'+s[1]+'</span></label>';}).join('');
   var ov=document.getElementById('msc-ov');
+  var step1=document.getElementById('msc-step1'),step2=document.getElementById('msc-step2'),ok=document.getElementById('msc-ok'),sub=document.getElementById('msc-sub');
   var cbs=function(){return Array.prototype.slice.call(document.querySelectorAll('.msc-cb'));};
   var cnt=document.getElementById('msc-count');
   function rf(){cnt.textContent='('+cbs().filter(function(c){return c.checked;}).length+')';}
   rf();checks.addEventListener('change',rf);
-  function open(){ov.classList.add('on');document.getElementById('msc-ok').style.display='none';}
+  function show1(){step1.style.display='';step2.style.display='none';ok.style.display='none';sub.textContent='1/2 · 필요한 사양을 선택하세요';}
+  function open(){ov.classList.add('on');show1();}
   function close(){ov.classList.remove('on');}
   document.getElementById('msc-open').onclick=open;
   document.getElementById('msc-close').onclick=close;
   document.getElementById('msc-cancel').onclick=close;
   ov.addEventListener('click',function(e){if(e.target===ov)close();});
-  document.getElementById('msc-submit').onclick=function(){
+
+  document.getElementById('msc-next').onclick=function(){
     var sel=cbs().filter(function(c){return c.checked;}).map(function(c){return c.getAttribute('data-name');});
     if(sel.length===0){alert('사양을 하나 이상 선택하세요.');return;}
     var note=document.getElementById('msc-note').value.trim();
-    document.getElementById('msc-oklist').innerHTML='<div style="font-weight:700;margin-bottom:4px">선택한 사양 '+sel.length+'개</div>'+sel.map(function(n){return '<div>· '+n+'</div>';}).join('')+(note?'<div style="margin-top:8px;padding-top:8px;border-top:1px solid #e5e3dc">메모: '+note.replace(/</g,'&lt;')+'</div>':'');
-    document.getElementById('msc-ok').style.display='block';
+    document.getElementById('msc-h-eq').value=sel.join(', ');
+    document.getElementById('msc-h-note').value=note;
+    document.getElementById('msc-pick').innerHTML='<b>선택 장비 '+sel.length+'개</b> — '+sel.join(', ')+(note?'<br>메모: '+note.replace(/</g,'&lt;'):'');
+    step1.style.display='none';step2.style.display='';ok.style.display='none';sub.textContent='2/2 · 연락처를 입력하세요';
   };
+  document.getElementById('msc-back').onclick=show1;
+
+  step2.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=document.getElementById('msc-send');btn.disabled=true;btn.textContent='전송 중…';
+    fetch('https://formspree.io/f/mnjkzppj',{method:'POST',body:new FormData(step2),headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){
+          var eq=document.getElementById('msc-h-eq').value;
+          document.getElementById('msc-oklist').innerHTML='<div style="font-weight:700;margin-bottom:4px">문의한 장비</div><div>'+eq+'</div>';
+          step2.style.display='none';ok.style.display='block';sub.textContent='전송 완료';step2.reset();
+        }else{alert('전송에 실패했습니다. 잠시 후 다시 시도하거나 070-8983-2600으로 연락 주세요.');}
+      })
+      .catch(function(){alert('전송에 실패했습니다. 네트워크를 확인하고 다시 시도해 주세요.');})
+      .finally(function(){btn.disabled=false;btn.textContent='문의 전송';});
+  });
 })();
 </script>
 </body>
