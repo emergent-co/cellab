@@ -452,3 +452,14 @@ section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
   .ch-side{ padding-left:max(16px,calc((100% - 1000px)/2)); padding-right:max(16px,calc((100% - 1000px)/2)); }
   .ch-side nav{ justify-content:center; width:100%; }
 }
+
+/* 스크롤 헤더 동작 — 다운: 메뉴행 숨김 + 헤더 반투명 / 업: 복귀 */
+.ch-top{ transition:opacity .25s ease; }
+html.chrome-dim .ch-top{ opacity:.6; }
+.ch-top:hover{ opacity:1; }
+@media(min-width:901px){
+  .ch-side{ transition:transform .28s ease, opacity .25s ease; }
+  html.chrome-dim .ch-side{ opacity:.6; }
+  html.nav-hidden .ch-side{ transform:translateY(-140%); opacity:0; pointer-events:none; }
+  .ch-side:hover{ opacity:1; }
+}

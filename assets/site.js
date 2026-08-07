@@ -598,3 +598,17 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* 스크롤 헤더 동작: 다운 → 메뉴행 숨김 + 반투명 / 업 → 복귀 */
+(function(){
+  var lastY = window.pageYOffset || 0, ticking = false;
+  function upd(){
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var root = document.documentElement;
+    if (y > 40) root.classList.add('chrome-dim'); else root.classList.remove('chrome-dim');
+    if (y > lastY && y > 140) root.classList.add('nav-hidden');
+    else if (y < lastY - 4) root.classList.remove('nav-hidden');
+    lastY = y; ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(upd); ticking = true; } }, { passive:true });
+})();
