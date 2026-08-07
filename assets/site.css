@@ -11,20 +11,20 @@
 /* 1) 색 토큰 — 홈 팔레트로 통일 */
 :root{
   --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
-  --green:#1E3A5F; --green-dk:#142A45; --green-bg:#EDF1F8;
+  --green:#0067C5; --green-dk:#0b4f96; --green-bg:#EDF1F8;
   --line:#EAEAEA; --bg:#FFFFFF;
   --serif:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
 
   /* B 계열 변수 → 홈 팔레트로 재매핑 (네이비/틸 → 잉크/초록, 배경 → 흰색) */
   --navy:#1A1A1A;
-  --teal:#1E3A5F;
+  --teal:#0067C5;
   --text:#1A1A1A;
   --muted:#6B6B6B;
   --border:#EAEAEA;
   --soft:#F2F4F6;
   --soft-blue:#EDF1F8;
-  --accent:#1E3A5F;
+  --accent:#0067C5;
 }
 /* 중요 글자 하이라이트 (마커 스타일) — 전 페이지 공통 */
 .hl{ background:linear-gradient(transparent 60%, #FFE49A 60%); font-weight:700; padding:0 1px; }
@@ -366,18 +366,18 @@ section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
 
 /* 삼흥 카탈로그 PRO 버전 */
 .dt-img{position:relative}
-.dt-img .pro-badge{position:absolute;top:10px;left:10px;background:#1E3A5F;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;padding:4px 11px;border-radius:6px;z-index:2}
-.dt-name .pro-mark{font-size:.5em;font-weight:900;color:#fff;background:#1E3A5F;padding:2px 8px;border-radius:5px;vertical-align:middle}
+.dt-img .pro-badge{position:absolute;top:10px;left:10px;background:#0067C5;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;padding:4px 11px;border-radius:6px;z-index:2}
+.dt-name .pro-mark{font-size:.5em;font-weight:900;color:#fff;background:#0067C5;padding:2px 8px;border-radius:5px;vertical-align:middle}
 .prosec{margin:8px 0 0}
 .prosec .wrap{max-width:960px}
-.pro-tag{display:inline-block;background:#1E3A5F;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;padding:5px 12px;border-radius:6px}
+.pro-tag{display:inline-block;background:#0067C5;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;padding:5px 12px;border-radius:6px}
 .pro-h{font-family:var(--serif);font-size:clamp(19px,3.6vw,24px);font-weight:800;margin:12px 0 8px;color:#17202A;line-height:1.32}
 .pro-sub{font-size:14.5px;color:#4a5560;line-height:1.8;max-width:660px}
 .pro-sub b{color:#17202A}
 .pro-feat{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:20px 0 8px}
 @media(max-width:640px){.pro-feat{grid-template-columns:1fr}}
 .pf{border:1px solid #E1E6EC;border-radius:12px;padding:16px 17px;background:#F7F9FB}
-.pf-n{font-size:11px;font-weight:800;color:#1E3A5F;letter-spacing:.05em}
+.pf-n{font-size:11px;font-weight:800;color:#0067C5;letter-spacing:.05em}
 .pf-h{font-size:14.5px;font-weight:800;margin:5px 0 6px;color:#17202A}
 .pf p{font-size:13px;color:#4a5560;line-height:1.65}
 .pf p b{color:#17202A}
