@@ -124,17 +124,55 @@
 
     <section class="lp-hero">
       <h1>실험셋업연구소</h1>
-      <p class="sub"><b>온도&middot;진공&middot;유량을 제어하고, 나아가 측정 기기까지 연동</b>해 서로 다른 실험 기기를 하나의 시스템으로 통합&middot;자동화합니다. Modbus&middot;RS485로 PC에서 통합 제어하며, 그 과정에서 필요한 장비는 <b>리드플루이드 공식 대리점, 삼흥에너지&middot;Alicat 취급점</b>으로 정품 공급&middot;국내 직접 A/S까지 함께 해결합니다.</p>
+      <p class="sub"><b>논문이 실제로 쓴 실험 셋업</b>을 공정&middot;조건&middot;필요 장비 순으로 분석해 공유하는 <b>실험 셋업 매거진</b>입니다. 분석에 필요한 장비는 <b>리드플루이드 공식 대리점, 삼흥에너지&middot;Alicat 취급점</b>으로 정품 공급&middot;국내 직접 A/S까지 함께 해결합니다.</p>
       <div class="lp-badges">
-        <span class="lp-badge">실험장비 시스템 통합</span>
-        <span class="lp-badge">Modbus·RS485 통합 제어</span>
+        <span class="lp-badge">논문 셋업 분석</span>
+        <span class="lp-badge">열처리·증착 / 유체·펌프</span>
         <span class="lp-badge">정품·국내 직접 A/S</span>
       </div>
     </section>
 
+    <style>
+      .mag-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      @media(max-width:760px){.mag-grid{grid-template-columns:1fr}}
+      .mag-c{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:transform .15s,box-shadow .15s}
+      .mag-c:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(10,37,64,.12)}
+      .mag-k{font-size:10.5px;font-weight:800;letter-spacing:.13em}
+      .mag-c .h{font-size:15.5px;font-weight:800;color:var(--ink);margin-top:7px}
+      .mag-c .d{font-size:12.5px;color:#5a6570;margin-top:6px;line-height:1.55}
+      .mag-c .go{display:inline-block;margin-top:11px;font-size:12.5px;font-weight:800;color:var(--green)}
+      .mag-feat{display:flex;align-items:center;gap:12px;margin-top:14px;border:1px solid var(--line);border-left:4px solid #EF9F27;border-radius:12px;padding:13px 16px;text-decoration:none;color:inherit;background:#fff}
+      .mag-feat:hover{background:#fbfaf7}
+      .mag-feat .lb{font-size:10.5px;font-weight:800;letter-spacing:.12em;color:#854F0B;white-space:nowrap}
+      .mag-feat .tt{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.45}
+    </style>
     <div class="brand-head">
-      <div class="t"><span class="n">01 /</span>어떤 브랜드를 찾으세요?</div>
-      <div class="en">SELECT BRAND</div>
+      <div class="t"><span class="n">01 /</span>실험 셋업 매거진</div>
+      <div class="en">SETUP MAGAZINE</div>
+    </div>
+    <p style="font-size:14px;color:#4a5560;line-height:1.7;margin:0 0 18px;max-width:640px">논문이 실제로 쓴 실험 셋업을 <b style="color:var(--ink)">공정 &rarr; 조건 &rarr; 필요 장비</b> 순으로 정리합니다. 열처리&middot;증착(퍼니스)과 유체&middot;펌프 두 갈래로 읽어보세요.</p>
+    <div class="mag-grid">
+      <a class="mag-c" href="/magazine/">
+        <div class="mag-k" style="color:#854F0B">열처리 &middot; 증착 (퍼니스)</div>
+        <div class="h">소성&middot;소결&middot;CVD&middot;가스 분위기&middot;진공</div>
+        <div class="d">튜브퍼니스&middot;전기로 셋업을 논문 조건 그대로. 온도&middot;가스 유량을 하나로 묶는 통합 제어.</div>
+        <span class="go">매거진 보기 &rarr;</span>
+      </a>
+      <a class="mag-c" href="/setups/">
+        <div class="mag-k" style="color:var(--green)">유체 &middot; 펌프</div>
+        <div class="h">관류&middot;연속배양&middot;flow chemistry&middot;분주</div>
+        <div class="d">Nature 등 논문이 실제로 쓴 펌프 셋업. 유량 제어&middot;다펌프 동기&middot;재현 기록.</div>
+        <span class="go">논문 셋업 보기 &rarr;</span>
+      </a>
+    </div>
+    <a class="mag-feat" href="/magazine/sofc-hcl-syngas/">
+      <span class="lb">최신 글</span>
+      <span class="tt">석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다채널 MFC &middot; 튜브퍼니스 셋업</span>
+    </a>
+
+    <div class="brand-head">
+      <div class="t"><span class="n">02 /</span>실험장비 브랜드</div>
+      <div class="en">EQUIPMENT</div>
     </div>
     <div class="brand-pick">
       <a class="bcard" href="/leadfluid/guide/">
@@ -176,42 +214,37 @@
     </div>
 
     <style>
-      .mag-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-      @media(max-width:760px){.mag-grid{grid-template-columns:1fr}}
-      .mag-c{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:transform .15s,box-shadow .15s}
-      .mag-c:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(10,37,64,.12)}
-      .mag-k{font-size:10.5px;font-weight:800;letter-spacing:.13em}
-      .mag-c .h{font-size:15.5px;font-weight:800;color:var(--ink);margin-top:7px}
-      .mag-c .d{font-size:12.5px;color:#5a6570;margin-top:6px;line-height:1.55}
-      .mag-c .go{display:inline-block;margin-top:11px;font-size:12.5px;font-weight:800;color:var(--green)}
-      .mag-feat{display:flex;align-items:center;gap:12px;margin-top:14px;border:1px solid var(--line);border-left:4px solid #EF9F27;border-radius:12px;padding:13px 16px;text-decoration:none;color:inherit;background:#fff}
-      .mag-feat:hover{background:#fbfaf7}
-      .mag-feat .lb{font-size:10.5px;font-weight:800;letter-spacing:.12em;color:#854F0B;white-space:nowrap}
-      .mag-feat .tt{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.45}
+      .rev-vp{overflow:hidden;position:relative;margin:0 -40px;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+      .rev-track{display:flex;gap:14px;width:max-content;padding:3px 40px;animation:revflow 70s linear infinite}
+      .rev-vp:hover .rev-track{animation-play-state:paused}
+      @keyframes revflow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+      .rev-card{flex:0 0 300px;box-sizing:border-box;background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 17px}
+      .rev-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+      .rev-stars{color:#f5a623;font-size:12px;letter-spacing:1px}
+      .rev-g{font-size:10px;font-weight:800;color:#9aa3ad;letter-spacing:.06em}
+      .rev-txt{font-size:13px;color:#2c3742;line-height:1.6;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+      .rev-who{font-size:12px;color:var(--gray-2);font-weight:700;margin-top:10px}
+      .rev-foot{margin-top:14px}
+      .rev-foot a{font-size:13.5px;font-weight:800;color:var(--green)}
+      @media(max-width:640px){.rev-vp{margin:0 -20px}.rev-track{padding:3px 20px}.rev-card{flex-basis:260px}}
     </style>
     <div class="brand-head">
-      <div class="t"><span class="n">02 /</span>실험 셋업 매거진</div>
-      <div class="en">SETUP MAGAZINE</div>
+      <div class="t"><span class="n">03 /</span>고객 리뷰</div>
+      <div class="en">GOOGLE REVIEWS &middot; 5.0&#9733;</div>
     </div>
-    <p style="font-size:14px;color:#4a5560;line-height:1.7;margin:0 0 18px;max-width:640px">논문이 실제로 쓴 실험 셋업을 <b style="color:var(--ink)">공정 &rarr; 조건 &rarr; 필요 장비</b> 순으로 정리합니다. 열처리&middot;증착(퍼니스)과 유체&middot;펌프 두 갈래로 읽어보세요.</p>
-    <div class="mag-grid">
-      <a class="mag-c" href="/magazine/">
-        <div class="mag-k" style="color:#854F0B">열처리 &middot; 증착 (퍼니스)</div>
-        <div class="h">소성&middot;소결&middot;CVD&middot;가스 분위기&middot;진공</div>
-        <div class="d">튜브퍼니스&middot;전기로 셋업을 논문 조건 그대로. 온도&middot;가스 유량을 하나로 묶는 통합 제어.</div>
-        <span class="go">매거진 보기 &rarr;</span>
-      </a>
-      <a class="mag-c" href="/setups/">
-        <div class="mag-k" style="color:var(--green)">유체 &middot; 펌프</div>
-        <div class="h">관류&middot;연속배양&middot;flow chemistry&middot;분주</div>
-        <div class="d">Nature 등 논문이 실제로 쓴 펌프 셋업. 유량 제어&middot;다펌프 동기&middot;재현 기록.</div>
-        <span class="go">논문 셋업 보기 &rarr;</span>
-      </a>
+    <div class="rev-vp">
+      <div class="rev-track" id="revTrack">
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">2차전지 전해액 극미량 반복 주입에 LeadFluid BT101L 도입. 속도 정확도 0.2% 미만으로 설정 토출량을 그대로 반복하고, 국내 직접 수리·3년 보증으로 A/S 부담이 없어졌습니다.</div><div class="rev-who">— 윤의성</div></div>
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">레독스흐름전지 셀 테스트에 BT101S 3대 도입. 채널 간 유량 편차 없이 안정적이고, 바나듐계 황산 전해액도 튜브만 접액해 장기 운전이 됩니다.</div><div class="rev-who">— 민경욱 (지역 가이드)</div></div>
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">튜브퍼니스 CVD 가스 분위기 제어로 Alicat 질량유량계(MFC) MC-Series 도입. 여러 가스 유량을 PC로 설정·기록하니 실험 재현성이 확실히 좋아졌습니다.</div><div class="rev-who">— 박준석</div></div>
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">MOCVD 캐리어(Ar) 라인 MFC를 Alicat으로 결정. 1~50 sccm 미세조정이 재현되고 라인 압력이 변해도 유량이 바로 보상됩니다. 견적·납기 빠르고 설명이 명확했습니다.</div><div class="rev-who">— 문승현</div></div>
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">ZIF 탄화용으로 도입, 950℃ Ar 분위기에서 밀봉이 확실해 재현성이 좋습니다. 소모품·O-ring·O₂ 트랩 관리 포인트까지 짚어줘 첫 배치부터 시행착오가 거의 없었어요.</div><div class="rev-who">— 조하민</div></div>
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">승온·강온 램프레이트, 흄후드 배기, 퍼지 절차까지 문서로 꼼꼼히 안내해 안심하고 씁니다. 세팅부터 안전까지 챙겨주는 곳이라 다음 장비도 여기서 할 생각입니다.</div><div class="rev-who">— 최범문</div></div>
+        <div class="rev-card"><div class="rev-top"><span class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rev-g">Google</span></div><div class="rev-txt">진공 건조 오븐을 구매했는데 설치·사용법과 중요한 주의사항까지 확실히 설명해 주셨습니다. 믿고 쓸 수 있어 만족합니다.</div><div class="rev-who">— Min Soo Kim</div></div>
+      </div>
     </div>
-    <a class="mag-feat" href="/magazine/sofc-hcl-syngas/">
-      <span class="lb">최신 글</span>
-      <span class="tt">석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다채널 MFC &middot; 튜브퍼니스 셋업</span>
-    </a>
+    <div class="rev-foot"><a href="https://www.google.com/maps?cid=4429951187161412134" target="_blank" rel="noopener">구글 리뷰 전체 보기 &rarr;</a></div>
+    <script>(function(){var t=document.getElementById('revTrack');if(t){t.setAttribute('aria-label','구글 리뷰');t.innerHTML+=t.innerHTML;}})();</script>
 
     <div class="home-sub">
       <a href="/repair/">A/S &middot; 수리 접수 &rarr;</a>
