@@ -10,7 +10,7 @@ param([string]$Message = "")
 
 Set-Location $PSScriptRoot
 try { [Console]::OutputEncoding = [Text.Encoding]::UTF8; [Console]::InputEncoding = [Text.Encoding]::UTF8 } catch {}
-$OutputEncoding = [Text.Encoding]::UTF8
+$OutputEncoding = New-Object System.Text.UTF8Encoding $false  # BOM 없이 — python stdin(`python -`)에 BOM(U+FEFF) 주입 방지
 $env:LC_ALL = "C.UTF-8"
 git config i18n.commitEncoding utf-8 2>$null
 git config i18n.logOutputEncoding utf-8 2>$null
