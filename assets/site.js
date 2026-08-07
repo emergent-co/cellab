@@ -11,7 +11,7 @@
     { t:'리드플루이드(LeadFluid) — 정품·국내 A/S·제어', u:'/leadfluid/guide/', k:'리드플루이드 leadfluid 정품 국내 as 수리 3년보증 연동 시린지 기어 정량펌프 baoding ingersoll rand 나비엠알오 제어 소프트웨어', c:'리드플루이드' },
     { t:'Masterflex·Watson-Marlow 연동펌프 국내 대안', u:'/compare/imported-peristaltic-alternative/', k:'마스터플렉스 masterflex 왓슨말로우 watson-marlow 이즈마텍 ismatec 대안 비교 갈아타기 수입 연동펌프 국내 as 제어', c:'비교' },
     { t:'ALICAT 질량유량계(MFC) 브랜드', u:'/alicat/', k:'alicat 알리캣 질량유량계 mfc mass flow controller 다기체 응답속도 rs485 modbus 소프트웨어 호환 장비', c:'호환 장비' },
-    { t:'삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적', u:'/sh-scientific/guide/', k:'삼흥에너지 sh scientific 튜브퍼니스 관상로 전기로 머플로 열처리 온도 스케줄 가스 연동 공식 대리점 지역 as 제품 선택 가이드 견적문의 구성 종류 온도 분위기 컨트롤러 옵션 시료 공정', c:'호환 장비' },
+    { t:'삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적', u:'/sh-scientific/guide/', k:'삼흥에너지 sh scientific 튜브퍼니스 관상로 전기로 머플로 열처리 온도 스케줄 가스 연동 설치 지역 as 취급 제품 선택 가이드 견적문의 구성 종류 온도 분위기 컨트롤러 옵션 시료 공정', c:'호환 장비' },
     { t:'삼흥에너지 전기로·튜브퍼니스 메뉴얼', u:'/sh-scientific/manual/', k:'삼흥에너지 전기로 튜브퍼니스 메뉴얼 사용법 승온 프로그램 온도컨트롤러 sp590 안전 주의사항 설치 열처리 sh scientific', c:'호환 장비' },
     { t:'삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그', u:'/sh-scientific/blog/', k:'삼흥에너지 전기로 튜브퍼니스 설치 as 점검 사례 블로그 설치 체크리스트 열처리 sh scientific', c:'호환 장비' },
     { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },

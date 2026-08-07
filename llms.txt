@@ -16,7 +16,7 @@
 - [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/leadfluid/guide/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
   - [리드플루이드 메뉴얼](https://rndsetup.com/leadfluid/manuals/): 모델별 사용 메뉴얼
   - [리드플루이드 블로그](https://rndsetup.com/leadfluid/blog/): 실제 도입 셋업·논문 사례
-- [삼흥에너지(SH Scientific) 선택 가이드](https://rndsetup.com/sh-scientific/guide/): 튜브퍼니스·전기로 종류·최고온도별 선택·견적 — 공식 대리점(지역 A/S). 온도컨트롤러에 Alicat MFC 가스 유량 연동한 무인·재현 셋업 지원
+- [삼흥에너지(SH Scientific) 선택 가이드](https://rndsetup.com/sh-scientific/guide/): 튜브퍼니스·전기로 종류·최고온도별 선택·견적 — 설치·지역 A/S. 온도컨트롤러에 Alicat MFC 가스 유량 연동한 무인·재현 셋업 지원
   - [삼흥에너지 메뉴얼](https://rndsetup.com/sh-scientific/manual/): 온도컨트롤러·퍼니스 사용법
   - [삼흥에너지 설치·A/S 블로그](https://rndsetup.com/sh-scientific/blog/)
 - [온도컨트롤러(SP590·NOVA500E) 사용법 가이드](https://rndsetup.com/temp-controller-guide/): 가상 컨트롤러로 직접 연습하는 인터랙티브 가이드 — 전기로 온도 스케줄(상승·유지·하강)·구간 반복·HOLD·무한반복·RS485 통신 설정. 삼흥에너지 전기로 다수 모델(MoSi₂ 시리즈=SP590, 진공머플·튜브로=SP570)에 적용. 한/영/중 지원
