@@ -386,7 +386,6 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
     ('/brands/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
-    ('/manuals/', '메뉴얼 모음 — 전기로·펌프·질량유량계(MFC) 사용 메뉴얼'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
@@ -513,11 +512,14 @@ def build_home_paper_cases():
         )
         parts.append('<div class="mag-arts">')
         for c in g.get('cards', []):
-            chips = ''.join(f'<span class="ma-chip">{escape(k)}</span>' for k in c.get('process', []) if k)
-            chipbox = f'<div class="ma-chips">{chips}</div>' if chips else ''
+            proc = [k for k in c.get('process', []) if k]
+            kws = ''.join(f'<span class="ma-hero-kw">{escape(k)}</span>' for k in proc)
+            img = escape(c.get('img', ''))
+            style = f' style="background-image:url(\'{img}\')"' if img else ''
+            hero = f'<div class="ma-hero"{style}>{kws}</div>' if (kws or img) else ''
             parts.append(
                 f'<a class="m-art{flc}" href="{escape(c.get("url",""))}">'
-                f'{chipbox}'
+                f'{hero}'
                 f'<h3>{escape(c.get("title",""))}</h3>'
                 f'<p>{escape(c.get("desc",""))}</p>'
                 f'<div class="mt">{escape(c.get("meta",""))}</div></a>'
@@ -828,7 +830,6 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
-        ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
         ('brands/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
