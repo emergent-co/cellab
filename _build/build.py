@@ -512,12 +512,11 @@ def build_home_paper_cases():
         )
         parts.append('<div class="mag-arts">')
         for c in g.get('cards', []):
-            proc = ' + '.join(escape(k) for k in c.get('process', []) if k)
-            kline = f'공정 · {proc}' if proc else ''
+            chips = ''.join(f'<span class="ma-chip">{escape(k)}</span>' for k in c.get('process', []) if k)
+            chipbox = f'<div class="ma-chips">{chips}</div>' if chips else ''
             parts.append(
                 f'<a class="m-art{flc}" href="{escape(c.get("url",""))}">'
-                f'<div class="ma-img"><img src="{escape(c.get("img",""))}" alt="{escape(c.get("alt",""))}"></div>'
-                f'<div class="k">{kline}</div>'
+                f'{chipbox}'
                 f'<h3>{escape(c.get("title",""))}</h3>'
                 f'<p>{escape(c.get("desc",""))}</p>'
                 f'<div class="mt">{escape(c.get("meta",""))}</div></a>'
