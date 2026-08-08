@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>메뉴얼 모음 — 전기로·온도컨트롤러·펌프·질량유량계(MFC) | 실험셋업연구소</title>
-<meta name="description" content="실험셋업연구소 메뉴얼 모음 — 퍼니스·온도컨트롤러(SH Scientific·SP590), 펌프(LeadFluid), 질량유량계 MFC(Alicat)의 사용법·시뮬레이터를 한 페이지에서 바로 봅니다.">
-<link rel="canonical" href="https://rndsetup.com/manuals/">
+<title>펌프 메뉴얼 — LeadFluid 대표 모델 사양 | 실험셋업연구소</title>
+<meta name="description" content="LeadFluid 연동·시린지·기어펌프 대표 모델의 유량(mL/min)·채널·RS485(PC 제어) 사양 정리. 상세 매뉴얼·레지스터맵은 문의 시 제공.">
+<link rel="canonical" href="https://rndsetup.com/manuals/pump/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="메뉴얼 모음 — 퍼니스·온도컨트롤러·펌프·MFC">
-<meta property="og:description" content="퍼니스·온도컨트롤러, 펌프(LeadFluid), MFC(Alicat) 메뉴얼·시뮬레이터를 한 페이지에서.">
-<meta property="og:url" content="https://rndsetup.com/manuals/">
+<meta property="og:title" content="펌프 메뉴얼 — LeadFluid 대표 모델 사양">
+<meta property="og:description" content="LeadFluid 연동·시린지·기어펌프 대표 모델 유량·채널·RS485 사양.">
+<meta property="og:url" content="https://rndsetup.com/manuals/pump/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
-{"@type":"ListItem","position":2,"name":"메뉴얼 모음","item":"https://rndsetup.com/manuals/"}
+{"@type":"ListItem","position":2,"name":"메뉴얼 모음","item":"https://rndsetup.com/manuals/"},
+{"@type":"ListItem","position":3,"name":"펌프","item":"https://rndsetup.com/manuals/pump/"}
 ]}
 </script>
 <style>
@@ -21,21 +22,21 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
-  .hero{padding:48px 0 4px}
-  .crumb{font-size:12.5px;color:var(--green-2);font-weight:700;letter-spacing:.03em;margin-bottom:10px}
-  h1{font-family:var(--serif);font-size:clamp(23px,5vw,31px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
-  .lead{font-size:14.5px;color:#5a6570;line-height:1.7;margin:12px 0 0}
-  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:30px 0 64px}
-  @media(max-width:760px){.mgrid{grid-template-columns:1fr}}
-  .mcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:24px 22px;background:#fff;transition:transform .15s,box-shadow .15s,border-color .15s}
-  .mcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,37,64,.10);border-color:var(--green)}
-  .mcard .ic{width:46px;height:46px;border-radius:12px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--green);font-size:16px;margin-bottom:15px}
-  .mcard .b{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:var(--green-2)}
-  .mcard h2{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);margin:5px 0 9px;line-height:1.35}
-  .mcard:hover h2{color:var(--green)}
-  .mcard p{font-size:14px;color:#4a5560;line-height:1.7;margin:0;flex:1}
-  .mcard .go{display:inline-block;margin-top:15px;font-size:13px;font-weight:800;color:var(--green)}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  .hero{padding:44px 0 4px}
+  .back{display:inline-block;font-size:13px;font-weight:700;color:var(--green-2);margin-bottom:12px}
+  .back:hover{color:var(--green)}
+  h1{font-family:var(--serif);font-size:clamp(22px,5vw,29px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+  .sub{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--green-2);margin-bottom:8px}
+  .lead{font-size:14px;color:#5a6570;line-height:1.7;margin:14px 0 0}
+  .lead b{color:var(--ink)}
+  .body{padding:22px 0 64px}
+  .mtbl{width:100%;border-collapse:collapse;font-size:13.5px}
+  .mtbl th,.mtbl td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  .mtbl th{background:var(--green-bg);color:#26333f;font-weight:700;white-space:nowrap}
+  .mtbl td b{color:var(--ink)}
+  .note{font-size:13px;color:var(--gray);line-height:1.7;margin:16px 2px 0}
+  .note a{color:var(--green);font-weight:700}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진", "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
@@ -44,39 +45,26 @@
 
 <section class="hero">
   <div class="wrap">
-    <div class="crumb">메뉴얼 모음</div>
-    <h1>메뉴얼 모음</h1>
-    <p class="lead">퍼니스·온도컨트롤러, 질량유량계(MFC), 펌프의 조작법·시뮬레이터를 항목별 페이지에서 바로 봅니다.</p>
+    <a class="back" href="/manuals/">&larr; 메뉴얼 모음</a>
+    <div class="sub">LEADFLUID</div>
+    <h1>펌프 메뉴얼</h1>
+    <p class="lead">대표 모델 사양입니다. 유량 단위는 mL/min, <b>RS485 ○ = PC 소프트웨어 제어 지원</b>. 상세 매뉴얼·레지스터맵은 문의 시 제공합니다.</p>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="mgrid">
-
-    <a class="mcard" href="/manuals/furnace/">
-      <div class="ic">퍼</div>
-      <div class="b">SH SCIENTIFIC · SP590</div>
-      <h2>퍼니스 · 온도컨트롤러</h2>
-      <p>전기로·튜브퍼니스 조작 = 온도컨트롤러(SP590) 조작. 가상 컨트롤러로 온도 스케줄·반복·RS485를 바로 연습합니다.</p>
-      <span class="go">메뉴얼 보기 &rarr;</span>
-    </a>
-
-    <a class="mcard" href="/manuals/mfc/">
-      <div class="ic">MFC</div>
-      <div class="b">ALICAT</div>
-      <h2>MFC (질량유량계)</h2>
-      <p>SCCM 유량 설정 · Gas Select 가스 변경. 시뮬레이터로 실제 조작을 눌러보며 익힙니다.</p>
-      <span class="go">메뉴얼 보기 &rarr;</span>
-    </a>
-
-    <a class="mcard" href="/manuals/pump/">
-      <div class="ic">펌</div>
-      <div class="b">LEADFLUID</div>
-      <h2>펌프</h2>
-      <p>연동·시린지·기어펌프 대표 모델의 유량·채널·RS485(PC 제어) 사양 정리. 상세 매뉴얼은 문의 시 제공.</p>
-      <span class="go">메뉴얼 보기 &rarr;</span>
-    </a>
-
+  <div class="body">
+    <table class="mtbl">
+      <tr><th>모델</th><th>종류</th><th>유량(mL/min)</th><th>채널</th><th>RS485</th></tr>
+      <tr><td><b>BT101L</b></td><td>지능형 연동</td><td>0.00011–750</td><td>1·2·4</td><td>○</td></tr>
+      <tr><td><b>BT301L</b></td><td>지능형 연동</td><td>0.005–1750</td><td>1·2</td><td>○</td></tr>
+      <tr><td><b>BT103S</b></td><td>분주형 연동</td><td>0.00011–500</td><td>1·2·4</td><td>○</td></tr>
+      <tr><td><b>WT600F</b></td><td>대유량 분주</td><td>0.005–6600</td><td>1·2</td><td>○</td></tr>
+      <tr><td><b>MF106</b></td><td>고방호 연동(IP66/67)</td><td>0.006–7800</td><td>1·2·4</td><td>문의</td></tr>
+      <tr><td><b>TYD01-01</b></td><td>시린지</td><td>0.184 nL–83.3</td><td>1</td><td>○</td></tr>
+      <tr><td><b>CT3001F</b></td><td>PEEK 기어</td><td>15–2700</td><td>—</td><td>○</td></tr>
+    </table>
+    <p class="note">조건을 입력하면 모델·튜브를 추천받을 수 있습니다 &rarr; <a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드</a> · 문제 증상별 해결은 <a href="/pump/atoz/">펌프 문제해결</a></p>
   </div>
 </div>
 

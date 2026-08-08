@@ -892,6 +892,9 @@ def main():
         ('magazine/heat-treatment/', '0.8', 'monthly'),  # 열처리 허브
         ('magazine/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브
         ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
+        ('manuals/furnace/', '0.6', 'monthly'),  # 퍼니스·온도컨트롤러 메뉴얼
+        ('manuals/mfc/',     '0.6', 'monthly'),  # MFC 메뉴얼
+        ('manuals/pump/',    '0.6', 'monthly'),  # 펌프 메뉴얼
         ('brands/',       '0.6', 'monthly'),  # 브랜드 소개 허브
         ('brands/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
