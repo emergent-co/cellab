@@ -1,0 +1,97 @@
+{
+  "_comment": "홈 '논문 사례' 섹션 SSOT. process=공정 변수(2키워드, 불가피하면 1). build.py가 index.html <!--PAPERCASES_START-->~<!--PAPERCASES_END--> 사이에 정적 렌더(GEO: raw HTML). 값만 여기서 고치면 홈 반영.",
+  "groups": [
+    {
+      "id": "heat",
+      "fl": false,
+      "title": "열처리 · 증착 (퍼니스)",
+      "caption": "소성·소결 · CVD·MOCVD · 가스 분위기 · 진공",
+      "all_url": "/magazine/",
+      "all_label": "열처리·증착 매거진 전체",
+      "cards": [
+        {
+          "url": "/magazine/sofc-hcl-syngas/",
+          "img": "/img/product/sh/tube-1500.jpg",
+          "alt": "튜브퍼니스",
+          "process": ["가스 분위기", "수증기 제어"],
+          "title": "석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향",
+          "desc": "다채널 MFC + 튜브퍼니스 800·900℃ 셋업.",
+          "meta": "Journal of Power Sources (2007) · 논문 셋업"
+        },
+        {
+          "url": "/furnace/setups/alicat-mfc-tubefurnace/",
+          "img": "/img/product/sh/muffle-1200.jpg",
+          "alt": "전기로",
+          "process": ["온도 스케줄", "가스 분위기"],
+          "title": "1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC",
+          "desc": "온도 스케줄에 가스 유량을 하나로 묶은 셋업.",
+          "meta": "도입 사례 · 튜브퍼니스"
+        }
+      ]
+    },
+    {
+      "id": "fluid",
+      "fl": true,
+      "title": "유체 · 펌프",
+      "caption": "관류·연속배양 · flow chemistry · 분주·정량 이송",
+      "all_url": "/setups/",
+      "all_label": "유체·펌프 논문 셋업 전체",
+      "cards": [
+        {
+          "url": "/setups/catheter-heparin-bt101",
+          "img": "/img/leadfluid/BT101L.png",
+          "alt": "연동펌프 BT101L",
+          "process": ["폐루프 순환", "코팅"],
+          "title": "혈관내 카테터 헤파린 코팅 — BT101 L",
+          "desc": "실리콘 튜브 폐루프 순환 회로 구성.",
+          "meta": "Nature Communications (2024) · 논문 셋업"
+        },
+        {
+          "url": "/setups/co2-capture-ct3001f",
+          "img": "/img/pump-guide.jpg",
+          "alt": "기어펌프 셋업",
+          "process": ["전해액 순환", "정밀 유량"],
+          "title": "연속 CO₂ 포집 — CT3001F PEEK 기어펌프",
+          "desc": "anolyte·catholyte 전해액 순환 셋업.",
+          "meta": "Nature Communications (2024) · 논문 셋업"
+        },
+        {
+          "url": "/setups/brain-electrode-tyd01",
+          "img": "/img/pump-guide.jpg",
+          "alt": "시린지펌프 셋업",
+          "process": ["정밀 주입", "미량 유량"],
+          "title": "뇌 피질 인터페이싱 — TYD01-01",
+          "desc": "주입 모듈에서 주입 속도를 정밀 제어.",
+          "meta": "Nature Electronics (2024) · 논문 셋업"
+        },
+        {
+          "url": "/setups/heart-eshp-bt101l",
+          "img": "/img/leadfluid/BT101L.png",
+          "alt": "연동펌프 BT101L",
+          "process": ["체외 관류", "정상체온"],
+          "title": "심장 체외 관류(ESHP) — BT101L",
+          "desc": "정상체온 체외 심장 관류 회로 구동.",
+          "meta": "Frontiers (2021) · 논문 셋업"
+        },
+        {
+          "url": "/setups/damo-recirculation-bt600s",
+          "img": "/img/leadfluid/BT600S.png",
+          "alt": "연동펌프 BT600S",
+          "process": ["완전혼합 순환", "연속 배양"],
+          "title": "혐기성 메탄산화 반응기 순환 — BT600S",
+          "desc": "막 바이오필름 반응기 완전혼합 순환.",
+          "meta": "Environ. Sci. Technol. (2021) · 논문 셋업"
+        },
+        {
+          "url": "/setups/nitrification-ph-bq50s",
+          "img": "/img/leadfluid/BQ80S.png",
+          "alt": "정량펌프 BQ80S",
+          "process": ["pH 제어", "정량 투입"],
+          "title": "폐수 질산화 pH 제어 — BQ50S",
+          "desc": "pH 7.5~8.5 자동 유지 산·염기 정량 투입.",
+          "meta": "Bioresource Technology (2017) · 논문 셋업"
+        }
+      ]
+    }
+  ]
+}

@@ -491,6 +491,54 @@ def _setup_card(p):
         f'</div></a>'
     )
 
+def build_home_paper_cases():
+    """_build/paper_cases.json → index.html '논문 사례' 섹션을 정적 렌더(GEO: raw HTML, SSOT).
+    process=공정 변수(2키워드)는 데이터에서만 관리. 마커 <!--PAPERCASES_START/END--> 사이 교체."""
+    data_path = os.path.join(SCRIPT_DIR, 'paper_cases.json')
+    html_path = os.path.join(ROOT_DIR, 'index.html')
+    if not os.path.exists(data_path) or not os.path.exists(html_path):
+        print('  [skip] paper_cases.json 또는 index.html 없음')
+        return
+    with open(data_path, 'r', encoding='utf-8') as f:
+        groups = json.load(f).get('groups', [])
+
+    parts = []
+    total_cards = 0
+    for g in groups:
+        flc = ' fl' if g.get('fl') else ''
+        parts.append(
+            f'<div class="mag-cat-t{flc}">{escape(g.get("title",""))}'
+            f'<span class="c">{escape(g.get("caption",""))}</span></div>'
+        )
+        parts.append('<div class="mag-arts">')
+        for c in g.get('cards', []):
+            proc = ' + '.join(escape(k) for k in c.get('process', []) if k)
+            kline = f'공정 · {proc}' if proc else ''
+            parts.append(
+                f'<a class="m-art{flc}" href="{escape(c.get("url",""))}">'
+                f'<div class="ma-img"><img src="{escape(c.get("img",""))}" alt="{escape(c.get("alt",""))}"></div>'
+                f'<div class="k">{kline}</div>'
+                f'<h3>{escape(c.get("title",""))}</h3>'
+                f'<p>{escape(c.get("desc",""))}</p>'
+                f'<div class="mt">{escape(c.get("meta",""))}</div></a>'
+            )
+            total_cards += 1
+        parts.append('</div>')
+        parts.append(
+            f'<a class="mag-all" href="{escape(g.get("all_url",""))}">'
+            f'{escape(g.get("all_label",""))} &rarr;</a>'
+        )
+    section = '\n    '.join(parts)
+
+    html = read(html_path)
+    html, ok = _inject_between(html, '<!--PAPERCASES_START-->', '<!--PAPERCASES_END-->', section)
+    if ok:
+        write(html_path, html)
+        print(f'  index.html: 논문 사례 {total_cards}개 카드 정적 렌더(paper_cases.json · 공정 변수)')
+    else:
+        print('  [warn] PAPERCASES 마커 못 찾음 — 주입 생략 (index.html 마커 확인)')
+
+
 def build_setups():
     """_build/posts.json → setups/index.html을 연구 분야(바이오/환경/에너지)로 그룹 정적 렌더(크롤러 가시화, SSOT)."""
     posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
@@ -874,6 +922,7 @@ def main():
 
     # GEO: 도입·논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
     build_setups()  # /setups/index.html 논문 셋업 6편 정적 렌더 (posts.json type=setup)
+    build_home_paper_cases()  # 홈 '논문 사례' 카드 정적 렌더 (paper_cases.json · 공정 변수 SSOT)
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()
