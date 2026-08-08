@@ -884,6 +884,8 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
+        ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
+        ('brands/',       '0.6', 'monthly'),  # 브랜드 소개 허브
         ('brands/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)

@@ -66,15 +66,10 @@
         ['/setups/',   '유체·펌프 셋업']
       ] },
     { href:'/setups/', label:'논문 사례', icon:'find', sub:[
-        ['/magazine/sofc-hcl-syngas/', '논문 셋업 분석'],
-        ['/setups/',                   '유체·펌프 논문 셋업'],
-        ['/furnace/setups/',           '퍼니스 도입 사례']
+        ['/setups/',         '유체·펌프 논문 셋업'],
+        ['/furnace/setups/', '퍼니스 도입 사례']
       ] },
-    { href:'/brands/sh-scientific/guide/', label:'실험장비', icon:'devices', sub:[
-        ['/brands/sh-scientific/guide/', '삼흥에너지 전기로·퍼니스'],
-        ['/brands/leadfluid/guide/',     '리드플루이드 펌프'],
-        ['/brands/alicat/',              'Alicat 질량유량계(MFC)']
-      ] },
+    { href:'/brands/', label:'브랜드 소개', icon:'devices' },
     { href:'/manuals/', label:'메뉴얼 모음', icon:'guide' },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact' },
