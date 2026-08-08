@@ -61,10 +61,7 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/magazine/', label:'실험 셋업 매거진', icon:'feed', sub:[
-        ['/magazine/', '열처리·증착 셋업'],
-        ['/setups/',   '유체·펌프 셋업']
-      ] },
+    { href:'/magazine/', label:'실험 셋업 매거진', icon:'feed' },
     { href:'/setups/', label:'논문 사례', icon:'find', sub:[
         ['/setups/',         '유체·펌프 논문 셋업'],
         ['/furnace/setups/', '퍼니스 도입 사례']

@@ -406,3 +406,28 @@ section.pkg .pkg-feat li{margin-bottom:7px;line-height:1.72}
 .m-art .ma-hero{position:relative;margin:-14px -16px 12px;aspect-ratio:16/10;background:#22303f center/cover no-repeat;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;text-align:center;padding:16px;overflow:hidden}
 .m-art .ma-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,30,.34) 0%,rgba(10,18,30,.60) 60%,rgba(10,18,30,.82) 100%)}
 .m-art .ma-hero-kw{position:relative;z-index:1;color:#fff;font-family:var(--sans);font-size:clamp(19px,3.1vw,24px);font-weight:800;letter-spacing:-.01em;line-height:1.25;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+
+/* 홈 매거진 — 피처드 리드 아티클 */
+.feat{display:grid;grid-template-columns:1.05fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;margin:0 0 30px;transition:box-shadow .15s,transform .15s}
+.feat:hover{box-shadow:0 18px 40px rgba(10,37,64,.13);transform:translateY(-2px)}
+@media(max-width:680px){.feat{grid-template-columns:1fr}}
+.feat-img{position:relative;min-height:230px;background:#22303f center/cover no-repeat}
+.feat-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,30,.30),rgba(10,18,30,.72))}
+.feat-badge{position:absolute;left:16px;top:14px;z-index:1;font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#fff;background:rgba(194,65,12,.92);padding:5px 11px;border-radius:20px}
+.feat-kwbox{position:absolute;left:0;right:0;bottom:16px;z-index:1;display:flex;gap:0 9px;justify-content:center;flex-wrap:wrap;padding:0 14px}
+.feat-kw{color:#fff;font-size:clamp(17px,2.6vw,21px);font-weight:800;letter-spacing:-.01em;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.feat-kw+.feat-kw::before{content:"·";margin-right:9px;color:rgba(255,255,255,.6)}
+.feat-bd{padding:24px 26px;display:flex;flex-direction:column;justify-content:center}
+.feat-cat{font-size:11px;font-weight:800;letter-spacing:.06em;color:#9A3412}
+.feat-bd h2{font-family:var(--serif);font-size:clamp(19px,3vw,24px);font-weight:800;line-height:1.32;margin:8px 0 10px;color:var(--ink)}
+.feat-bd p{font-size:13.5px;color:#5a6470;line-height:1.65;margin:0 0 14px}
+.feat-meta{font-size:12px;color:var(--gray-2)}
+.feat-go{margin-top:12px;font-size:13px;font-weight:800;color:var(--green)}
+
+/* 홈 매거진 — 공정 진입 타일(클릭) */
+a.pcat{text-decoration:none;color:inherit}
+.mag-pick .pcat{position:relative;padding-bottom:44px}
+.mag-pick .pcat .go{position:absolute;left:18px;bottom:15px;font-size:12.5px;font-weight:800;color:var(--green)}
+.mag-pick .pcat.dim{opacity:.6}
+.mag-pick .pcat.dim .go{color:var(--gray-2)}
+.mag-pick .pcat.dim:hover{transform:none;box-shadow:none}
