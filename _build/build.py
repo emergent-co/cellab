@@ -401,6 +401,9 @@ CRAWLER_LINKS = [
     ('/pump/atoz/tube-size-guide/', '연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
     ('/magazine/', '실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성'),
+    ('/magazine/deposition/', '증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장'),
+    ('/magazine/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
+    ('/magazine/oxidation/', '산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산'),
     ('/magazine/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
     ('/setups/', '도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업'),
     ('/setups/heart-eshp-bt101l.html', '심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)'),
@@ -884,6 +887,9 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
+        ('magazine/deposition/',     '0.8', 'monthly'),  # 증착 허브
+        ('magazine/heat-treatment/', '0.8', 'monthly'),  # 열처리 허브
+        ('magazine/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브
         ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
         ('brands/',       '0.6', 'monthly'),  # 브랜드 소개 허브
         ('brands/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록

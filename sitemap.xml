@@ -13,6 +13,24 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/magazine/deposition/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/magazine/heat-treatment/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/magazine/oxidation/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/manuals/</loc>
     <lastmod>2026-08-08</lastmod>
     <priority>0.6</priority>
