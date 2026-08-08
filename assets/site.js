@@ -235,6 +235,13 @@
   }
 
   function inject() {
+    // 임베드 모드(?embed=1): iframe 등으로 삽입 시 사이트 헤더·푸터를 넣지 않는다.
+    if (/[?&]embed=1/.test(location.search)) {
+      var eh = document.getElementById('pumplab-header'); if (eh) eh.remove();
+      var ef = document.getElementById('pumplab-footer'); if (ef) ef.remove();
+      document.documentElement.classList.add('embed');
+      return;
+    }
     var h = document.getElementById('pumplab-header');
     if (h) h.outerHTML = HEADER;
     try { if (localStorage.getItem('rnd_admin') === '1') {
