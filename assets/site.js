@@ -110,7 +110,7 @@
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>장비 문의 시 할인가 안내 · 구매·수리·A/S는 이머전트(Emergent co) · 나비엠알오 등록 공급사</div>' +
+      '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>공정 → 조건 → 필요 장비로 읽는 실험 셋업 아카이브</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
       '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
@@ -137,12 +137,11 @@
           '<div class="cf-col"><h4>바로가기</h4>' +
             '<a href="/brands/leadfluid/">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
-            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a>' +
-            '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
+            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진</span><span>장비 문의 시 할인가 안내 · 구매·수리·A/S는 이머전트(Emergent co) · 3년 무상보증</span></div>' +
+            '<span>논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진</span></div>' +
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> (이머전트) · 이영현 · 070-8983-2600 · 사업자등록 328-03-02926<br>' +
           '부산광역시 · 서비스·도매/소매업 · 정밀·과학기기 도매, 화학제품 도매, 전기·전자·정밀기기 수리</div>' +
@@ -306,13 +305,6 @@
         if (first) location.href = first.getAttribute('href');
       });
       document.addEventListener('click', function (e) { if (!sf.contains(e.target)) rbox.classList.remove('open'); });
-    }
-    if (!document.querySelector('.navimro-fab')) {
-      document.body.insertAdjacentHTML('beforeend',
-        '<a class="navimro-fab" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_fab" aria-label="나비엠알오에서 LeadFluid 제품 보기">' +
-          '<span class="nm-brand">NAVI<b>MRO</b></span>' +
-          '<span class="nm-t">LeadFluid<br>제품 바로가기</span>' +
-        '</a>');
     }
   }
 
