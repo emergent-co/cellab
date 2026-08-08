@@ -117,13 +117,6 @@
     '<div class="ch-scrim" id="chScrim"></div>';
 
   var FOOTER =
-    '<section class="cta-band"><div class="cta-band-in">' +
-      '<div class="cta-band-t">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진 · 장비 문의 시 할인가 안내 · 구매·A/S는 이머전트</div>' +
-      '<div class="cta-band-btns">' +
-        '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="band_navimro">구매 (나비엠알오) →</a>' +
-        '<a href="/repair/" data-ga="band_repair">A/S·수리 접수 →</a>' +
-        '<a class="cta-band-main" href="/contact/#quote" data-ga="band_quote">견적·문의 →</a>' +
-      '</div></div></section>' +
     '<section style="background:#0A2540;padding:26px 20px;text-align:center">' +
       '<div style="max-width:560px;margin:0 auto">' +
         '<div style="color:#fff;font-weight:800;font-size:16px;line-height:1.4;margin-bottom:4px">새 논문 셋업이 올라오면 이메일로 알려드립니다</div>' +
