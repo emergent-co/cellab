@@ -61,21 +61,19 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/magazine/', label:'실험셋업 매거진', icon:'feed' },
-    { href:'/sh-scientific/guide/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
-        ['/sh-scientific/guide/',   '퍼니스 선택 가이드'],
-        ['/sh-scientific/catalog/', '카탈로그'],
-        ['/sh-scientific/manual/',  '메뉴얼'],
-        ['/sh-scientific/blog/',    '블로그']
+    { href:'/magazine/', label:'실험 셋업 매거진', icon:'feed', sub:[
+        ['/magazine/', '열처리·증착 셋업'],
+        ['/setups/',   '유체·펌프 셋업']
       ] },
-    { href:'/leadfluid/guide/', label:'리드플루이드(LeadFluid)', icon:'wrench', sub:[
-        ['/leadfluid/guide/',  '펌프 선택 가이드'],
-        ['/leadfluid/manuals/', '메뉴얼'],
-        ['/leadfluid/blog/',    '블로그']
+    { href:'/setups/', label:'논문 사례', icon:'find', sub:[
+        ['/magazine/sofc-hcl-syngas/', '논문 셋업 분석'],
+        ['/setups/',                   '유체·펌프 논문 셋업'],
+        ['/furnace/setups/',           '퍼니스 도입 사례']
       ] },
-    { href:'/alicat/', label:'Alicat MFC', icon:'gas', sub:[
-        ['/alicat/',        'Alicat MFC 소개'],
-        ['/alicat/manual/', '메뉴얼']
+    { href:'/sh-scientific/guide/', label:'실험장비', icon:'devices', sub:[
+        ['/sh-scientific/guide/', '삼흥에너지 전기로·퍼니스'],
+        ['/leadfluid/guide/',     '리드플루이드 펌프'],
+        ['/alicat/',              'Alicat 질량유량계(MFC)']
       ] },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact' },
@@ -119,7 +117,7 @@
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">실험 장비 시스템 통합·제어 · 국내 직접 A/S<br>리드플루이드 공식 대리점 · 삼흥 취급점 · 나비엠알오 등록 공급사</div>' +
+      '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>장비 문의 시 할인가 안내 · 구매·수리·A/S는 이머전트(Emergent co) · 나비엠알오 등록 공급사</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
       '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
@@ -144,7 +142,7 @@
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>실험 장비 시스템 통합·제어 · 온도·진공·유량 통합 제어</span><span>리드플루이드 공식 대리점 · 삼흥 취급점 · 국내 직접 A/S · 3년 무상보증</span></div>' +
+            '<span>논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진</span><span>장비 문의 시 할인가 안내 · 구매·수리·A/S는 이머전트(Emergent co) · 3년 무상보증</span></div>' +
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> (이머전트) · 이영현 · 070-8983-2600 · 사업자등록 328-03-02926<br>' +
           '부산광역시 · 서비스·도매/소매업 · 정밀·과학기기 도매, 화학제품 도매, 전기·전자·정밀기기 수리</div>' +
