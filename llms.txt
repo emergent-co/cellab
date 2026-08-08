@@ -15,16 +15,16 @@
 - [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
 - [실험 셋업 매거진](https://rndsetup.com/magazine/): 논문 셋업을 열처리·증착(퍼니스)/유체·펌프 두 갈래로 정리한 매거진 허브
   - [석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 논문 셋업 분석 (J. Power Sources 2007)](https://rndsetup.com/magazine/sofc-hcl-syngas/): 다채널 MFC + 튜브퍼니스 800·900℃ 가스 분위기 제어 셋업
-- [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/leadfluid/guide/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
-  - [리드플루이드 메뉴얼](https://rndsetup.com/leadfluid/manuals/): 모델별 사용 메뉴얼
-  - [리드플루이드 블로그](https://rndsetup.com/leadfluid/blog/): 실제 도입 셋업·논문 사례
-- [삼흥에너지(SH Scientific) 선택 가이드](https://rndsetup.com/sh-scientific/guide/): 튜브퍼니스·전기로 종류·최고온도별 선택·견적 — 설치·지역 A/S. 온도컨트롤러에 Alicat MFC 가스 유량 연동한 무인·재현 셋업 지원
-  - [삼흥에너지 메뉴얼](https://rndsetup.com/sh-scientific/manual/): 온도컨트롤러·퍼니스 사용법
-  - [삼흥에너지 설치·A/S 블로그](https://rndsetup.com/sh-scientific/blog/)
+- [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/brands/leadfluid/guide/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
+  - [리드플루이드 메뉴얼](https://rndsetup.com/brands/leadfluid/manuals/): 모델별 사용 메뉴얼
+  - [리드플루이드 블로그](https://rndsetup.com/brands/leadfluid/blog/): 실제 도입 셋업·논문 사례
+- [삼흥에너지(SH Scientific) 선택 가이드](https://rndsetup.com/brands/sh-scientific/guide/): 튜브퍼니스·전기로 종류·최고온도별 선택·견적 — 설치·지역 A/S. 온도컨트롤러에 Alicat MFC 가스 유량 연동한 무인·재현 셋업 지원
+  - [삼흥에너지 메뉴얼](https://rndsetup.com/brands/sh-scientific/manual/): 온도컨트롤러·퍼니스 사용법
+  - [삼흥에너지 설치·A/S 블로그](https://rndsetup.com/brands/sh-scientific/blog/)
 - [온도컨트롤러(SP590·NOVA500E) 사용법 가이드](https://rndsetup.com/temp-controller-guide/): 가상 컨트롤러로 직접 연습하는 인터랙티브 가이드 — 전기로 온도 스케줄(상승·유지·하강)·구간 반복·HOLD·무한반복·RS485 통신 설정. 삼흥에너지 전기로 다수 모델(MoSi₂ 시리즈=SP590, 진공머플·튜브로=SP570)에 적용. 한/영/중 지원
-- [ALICAT](https://rndsetup.com/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
+- [ALICAT](https://rndsetup.com/brands/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
-- [펌프 종류·선택](https://rndsetup.com/leadfluid/guide/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
+- [펌프 종류·선택](https://rndsetup.com/brands/leadfluid/guide/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
 - [기체 유량 제어(MFC)](https://rndsetup.com/gas/): 질량유량계(Alicat MC-Series 등) 공급·시스템 연동. 튜브퍼니스 가스 분위기·CVD·촉매·가스 혼합비 제어 셋업 정보
 - [진공 셋업](https://rndsetup.com/vacuum/): 오일 회전식 vs 다이아프램 진공펌프 선택 정보(감압증류·탈기·건조·여과 등 실험 진공)
 - [소프트웨어 제어](https://rndsetup.com/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
@@ -52,7 +52,7 @@
 - 도입 사례(실증): 실험셋업연구소가 실제 납품·구성한 사례
   - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/setups/alicat-mfc-tubefurnace)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/pump/setups/plating-flow-calibration/)
-- 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/leadfluid/)에 통합
+- 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/brands/leadfluid/)에 통합
 - [자주 묻는 질문(FAQ)](https://rndsetup.com/faq/): 수리·A/S·펌프·소프트웨어
 - [문의하기](https://rndsetup.com/contact/): 실험 상담·수리·개발·견적
 - [카탈로그 PDF](https://rndsetup.com/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업 | 실험셋업연구소</title>
+<meta name="description" content="실험셋업연구소가 실제로 구성한 펌프·MFC 도입 셋업 사례 — 모델 선정·다펌프 제어·유량 보정까지 '이렇게 돌렸다'를 공개합니다. 리드플루이드 정품·국내 직접 A/S. 실험셋업연구소.">
+<link rel="canonical" href="https://rndsetup.com/brands/leadfluid/blog/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업">
+<meta property="og:description" content="실험셋업연구소가 실제로 구성한 펌프·MFC 도입 셋업 사례 모음. 리드플루이드 정품·국내 직접 A/S.">
+<meta property="og:url" content="https://rndsetup.com/brands/leadfluid/blog/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"펌프 셋업 사례","item":"https://rndsetup.com/brands/leadfluid/blog/"}
+]}
+</script>
+<style>
+  :root{--ink:#17202A;--gray:#5b6b7a;--gray-2:#93a1b0;--green:#1E3A5F;--green-2:#2a5a8f;--green-bg:#EDF2F8;--line:#E6EAF0;--serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px}
+  .hero{padding:50px 0 6px}
+  .crumb{font-size:12.5px;color:var(--green-2);font-weight:700;letter-spacing:.03em;margin-bottom:12px}
+  h1{font-family:var(--serif);font-size:clamp(25px,5.4vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+  .lead{font-size:16px;color:#3a4650;margin-top:14px;line-height:1.85}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 4px}
+  .tab{background:#f2f5f9;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:700;color:#41505f;cursor:pointer;font-family:inherit}
+  .tab.active{background:var(--green);border-color:var(--green);color:#fff}
+  .count{font-size:13.5px;color:var(--gray-2);margin:18px 0 10px;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;transition:box-shadow .15s,transform .15s;height:100%}
+  .card:hover{box-shadow:0 12px 30px rgba(20,40,70,.10);transform:translateY(-2px)}
+  .card .cat{display:inline-block;align-self:flex-start;font-size:13px;font-weight:800;color:#fff;background:var(--green);padding:5px 13px;border-radius:999px;letter-spacing:.02em}
+  .card .t{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.42;margin:12px 0 4px;color:var(--ink);flex:1}
+  .card .t mark{background:#fff2b8;color:var(--ink);padding:0 3px;border-radius:3px}
+  .card .s{display:none}
+  .card .d{font-size:12px;color:var(--gray-2);margin-top:14px}
+  .empty{grid-column:1/-1;color:var(--gray-2);font-size:14px;padding:24px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+  .band{background:var(--green);color:#fff;border-radius:16px;padding:28px 26px;margin:38px 0 0;text-align:center}
+  .band .bt{font-family:var(--serif);font-size:20px;font-weight:700}
+  .band p{font-size:14px;opacity:.94;margin-top:8px}
+  .band a{display:inline-block;background:#fff;color:var(--green);font-weight:800;padding:13px 24px;border-radius:10px;margin-top:16px;font-size:15px}
+  .foot-links{display:grid;gap:8px;margin:34px 0 64px}
+  .foot-links a{border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:14px;font-weight:600;color:var(--ink)}
+  .foot-links a:hover{background:var(--green-bg)}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진", "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb">펌프 › 셋업 사례</div>
+    <h1>펌프 셋업 사례 — 실제로 이렇게 도입했습니다</h1>
+    <p class="lead">실험셋업연구소가 실제로 구성한 <b>펌프·MFC 도입 셋업</b> — 모델 선정·다펌프 제어·유량 보정까지 '이렇게 돌렸다'를 공개합니다. 증상별 문제해결은 <a href="/pump/faq/" style="color:var(--green-2);font-weight:700">자주 묻는 질문</a>으로 옮겼습니다.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="count" id="count">셋업 사례 <b style="color:var(--green)">9</b>건</div>
+  <div class="grid" id="grid">
+    <a class="card" href="/pump/setups/plating-flow-calibration/"><div class="cat">도금 · 다펌프 제어</div><div class="t"><mark>도금</mark> 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업</div><div class="s"></div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/application/pump-pc-control-modbus-rs485"><div class="cat">자동화 · 제어</div><div class="t">펌프 PC 제어·자동화 — Modbus·RS485로 <mark>유량·스케줄</mark> 제어</div><div class="s"></div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/application/multi-pump-sync-unattended"><div class="cat">자동화 · 무인운전</div><div class="t">무인 장시간 운전·재현 — <mark>다펌프 동기</mark>·운전 로그(CSV)</div><div class="s"></div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/setups/heart-eshp-bt101l"><div class="cat">논문 셋업 · 의료</div><div class="t">심장 체외 관류(ex situ) — 미세연동펌프 <mark>BT101L</mark></div><div class="s"></div><div class="d">Frontiers · 2026-07-07</div></a>
+    <a class="card" href="/setups/damo-recirculation-bt600s"><div class="cat">논문 셋업 · 환경</div><div class="t">혐기성 메탄산화 반응기 액상 순환 — 연동펌프 <mark>BT600S</mark></div><div class="s"></div><div class="d">Environ. Sci. Technol. · 2026-07-06</div></a>
+    <a class="card" href="/setups/nitrification-ph-bq50s"><div class="cat">논문 셋업 · 환경</div><div class="t">폐수 질산화 반응기 pH 제어 — 정량펌프 <mark>BQ50S</mark></div><div class="s"></div><div class="d">Bioresource Technol. · 2026-07-05</div></a>
+    <a class="card" href="/setups/brain-electrode-tyd01"><div class="cat">논문 셋업 · 바이오</div><div class="t">뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 <mark>TYD01-01</mark></div><div class="s"></div><div class="d">Nature Electronics · 2026-07-02</div></a>
+    <a class="card" href="/setups/catheter-heparin-bt101"><div class="cat">논문 셋업 · 의료</div><div class="t">혈관내 카테터 헤파린 코팅 — 연동펌프 <mark>BT101 L</mark></div><div class="s"></div><div class="d">Nature Communications · 2026-06-30</div></a>
+    <a class="card" href="/setups/co2-capture-ct3001f"><div class="cat">논문 셋업 · 에너지</div><div class="t">연속 CO₂ 포집 — PEEK 기어펌프 <mark>CT3001F</mark></div><div class="s"></div><div class="d">Nature Communications · 2026-06-28</div></a>
+  </div>
+  <div class="foot-links">
+    <a href="/pump/faq/">증상별 문제해결·자주 묻는 질문 →</a>
+    <a href="/brands/leadfluid/">리드플루이드 정품·모델·국내 A/S →</a>
+  </div>
+
+
+</div>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+  var CARDS = [
+    {cat:"도금 · 다펌프 제어", title:"<mark>도금</mark> 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업", url:"/pump/setups/plating-flow-calibration/", date:"2026-07-16"},
+    {cat:"자동화 · 제어", title:"펌프 PC 제어·자동화 — Modbus·RS485로 <mark>유량·스케줄</mark> 제어", url:"/application/pump-pc-control-modbus-rs485", date:"2026-07-15"},
+    {cat:"자동화 · 무인운전", title:"무인 장시간 운전·재현 — <mark>다펌프 동기</mark>·운전 로그(CSV)", url:"/application/multi-pump-sync-unattended", date:"2026-07-15"},
+    {cat:"논문 셋업 · 의료", title:"심장 체외 관류(ex situ) — 미세연동펌프 <mark>BT101L</mark>", url:"/setups/heart-eshp-bt101l.html", date:"2026-07-07"},
+    {cat:"논문 셋업 · 환경", title:"혐기성 메탄산화 반응기 액상 순환 — 연동펌프 <mark>BT600S</mark>", url:"/setups/damo-recirculation-bt600s.html", date:"2026-07-06"},
+    {cat:"논문 셋업 · 환경", title:"폐수 질산화 반응기 pH 제어 — 정량펌프 <mark>BQ50S</mark>", url:"/setups/nitrification-ph-bq50s.html", date:"2026-07-05"},
+    {cat:"논문 셋업 · 바이오", title:"뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 <mark>TYD01-01</mark>", url:"/setups/brain-electrode-tyd01.html", date:"2026-07-02"},
+    {cat:"논문 셋업 · 의료", title:"혈관내 카테터 헤파린 코팅 — 연동펌프 <mark>BT101 L</mark>", url:"/setups/catheter-heparin-bt101.html", date:"2026-06-30"},
+    {cat:"논문 셋업 · 에너지", title:"연속 CO₂ 포집 — PEEK 기어펌프 <mark>CT3001F</mark>", url:"/setups/co2-capture-ct3001f.html", date:"2026-06-28"}
+  ];
+  var grid=document.getElementById('grid'), countEl=document.getElementById('count');
+  function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  CARDS.sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+  countEl.innerHTML='셋업 사례 <b style="color:var(--green)">'+CARDS.length+'</b>건';
+  grid.innerHTML=CARDS.map(function(c){
+    return '<a class="card" href="'+c.url+'">'+
+      '<div class="cat">'+esc(c.cat)+'</div>'+
+      '<div class="t">'+c.title+'</div>'+
+      '<div class="s"></div>'+
+      '<div class="d">'+esc(c.date)+'</div>'+
+    '</a>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

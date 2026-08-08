@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리드플루이드(LeadFluid) 펌프 선택·전체 사양·국내 A/S | 실험셋업연구소</title>
+<meta name="description" content="실험셋업연구소는 리드플루이드(LeadFluid)를 정품으로 안내하며(문의 시 할인가), 구매·수리·국내 A/S(3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다. 종류·유량·용도로 맞는 펌프 모델을 추천하고 연동·시린지·기어·방폭 펌프 전체 사양·튜브 규격을 바로 확인·문의할 수 있습니다.">
+<link rel="canonical" href="https://rndsetup.com/brands/leadfluid/guide/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="리드플루이드(LeadFluid) 펌프 선택 가이드 — 정품 안내·국내 A/S">
+<meta property="og:description" content="리드플루이드 정품 안내 · 구매·A/S는 이머전트(3년 보증). 펌프 선택·전체 사양·문의.">
+<meta property="og:url" content="https://rndsetup.com/brands/leadfluid/guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"리드플루이드(LeadFluid)","item":"https://rndsetup.com/brands/leadfluid/"},
+{"@type":"ListItem","position":3,"name":"펌프 선택 가이드","item":"https://rndsetup.com/brands/leadfluid/guide/"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"리드플루이드 펌프, 한국에서 어디서 정품으로 사나요?","acceptedAnswer":{"@type":"Answer","text":"실험셋업연구소(rndsetup.com)는 리드플루이드(LeadFluid)를 정품으로 안내하고, 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다. 나비엠알오(공공·기업 구매몰)에 등록된 공급사로, 나비엠알오에서 'leadfluid'로 검색해 구매할 수 있습니다."}},
+{"@type":"Question","name":"리드플루이드 펌프 A/S는 국내에서 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 실험셋업연구소는 연동·시린지·기어펌프의 유량 계측과 전기·제어 진단·수리를 본사로 보낼 필요 없이 국내에서 직접 처리합니다. 구매 고객에게 3년 무상보증을 제공하고, 타사에서 산 펌프도 무료 진단 후 수리합니다."}}
+]}
+</script>
+<style>
+  :root{--ink:#17202A;--gray:#5b6b7a;--gray-2:#93a1b0;--navy:#1E3A5F;--navy-2:#2a5a8f;--navy-bg:#EDF2F8;--line:#E1E7F0;--panel:#F7F9FC;
+    --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px}
+  .hero{padding:44px 0 4px}
+  .crumb{font-size:12.5px;color:var(--navy-2);font-weight:700;margin-bottom:10px}
+  .crumb a{color:var(--navy-2)}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.8vw,31px);font-weight:700;line-height:1.3;letter-spacing:-.02em}
+
+  .layout{display:grid;grid-template-columns:1fr 420px;gap:26px;margin:20px 0 0;align-items:start}
+  @media(max-width:820px){.layout{grid-template-columns:1fr}}
+  .wprog{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+  .wprog .wp{font-size:12px;font-weight:700;color:var(--gray-2);padding:5px 11px;border:1px solid var(--line);border-radius:20px;background:#fff}
+  .wprog .wp.done{color:var(--navy);border-color:#c9dbee;background:var(--navy-bg);cursor:pointer}
+  .wprog .wp.cur{color:#fff;background:var(--navy);border-color:var(--navy)}
+  .wstep{display:none}
+  .wstep.on{display:block;animation:wfade .25s ease}
+  @keyframes wfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .step{border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;background:#fff}
+  .step h2{font-family:var(--serif);font-size:16.5px;font-weight:700;display:flex;align-items:center;gap:9px;margin:0 0 12px}
+  .step h2 .n{flex:0 0 24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:var(--sans)}
+  .wback{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:var(--gray-2);background:none;border:0;cursor:pointer;margin:0 0 10px;padding:0;font-family:inherit}
+  .wback:hover{color:var(--navy)}
+  .opts{display:grid;grid-template-columns:1fr;gap:9px}
+  .opt{border:1.5px solid var(--line);border-radius:11px;padding:13px 15px;cursor:pointer;background:#fff;text-align:left;font-family:inherit;transition:border-color .15s,background .15s;display:flex;flex-direction:column}
+  .opt:hover{border-color:var(--navy-2)}
+  .opt.on{border-color:var(--navy);background:var(--navy-bg)}
+  .opt .ot{font-size:15px;font-weight:700;color:var(--ink)}
+  .opt .od{font-size:12.5px;color:var(--gray);margin-top:2px;line-height:1.5}
+  .multi .hint{font-size:11.5px;color:var(--gray-2);margin-top:9px}
+  .wnext{margin-top:14px;width:100%;background:var(--navy);color:#fff;border:0;border-radius:11px;padding:13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
+
+  .side{position:sticky;top:16px}
+  .stage{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
+  .stage svg{width:78%;height:78%}
+  .stage .ph{color:var(--gray-2);font-size:13px;text-align:center;padding:16px}
+  .sumcard{border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-top:12px;background:#fff}
+  .sumcard h3{font-size:13px;font-weight:800;color:var(--navy-2);letter-spacing:.02em;margin-bottom:8px}
+  .sumrow{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .sumrow:last-child{border-bottom:0}
+  .sumrow .k{color:var(--gray)}
+  .sumrow .v{font-weight:700;text-align:right}
+  .sumrow .v.empty{color:var(--gray-2);font-weight:500}
+
+  /* 결과 */
+  .rec{margin:2px 0 0}
+  .rec .rt{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:2px}
+  .rec .rs{font-size:13px;color:var(--gray);margin-bottom:12px}
+  .rcard{display:block;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s}
+  .rcard:hover{border-color:var(--navy);box-shadow:0 4px 16px rgba(30,58,95,.08)}
+  .rcard .rn{font-weight:800;font-size:15px;color:var(--navy)}
+  .rcard .rf{font-size:13px;color:#2c3742;margin-top:3px}
+  .rcard .rtags{margin-top:7px;display:flex;flex-wrap:wrap;gap:5px}
+  .rcard .tg{font-size:11px;font-weight:700;color:var(--navy-2);background:var(--navy-bg);padding:3px 8px;border-radius:20px}
+  .rcard .go{font-size:12px;font-weight:800;color:var(--navy-2);margin-top:8px;display:inline-block}
+  .recnote{font-size:12px;color:var(--gray-2);margin:4px 0 14px}
+
+  .quote{border:1px solid var(--navy);border-radius:16px;padding:20px;margin:8px 0 12px;background:linear-gradient(180deg,#fff,var(--navy-bg))}
+  .quote h2{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:4px}
+  .quote .qsub{font-size:13px;color:var(--gray);margin-bottom:12px}
+  .quote label{display:block;font-size:13px;font-weight:700;margin-top:12px}
+  .quote label .req{color:var(--navy-2);margin-left:2px}
+  .quote input,.quote textarea{width:100%;margin-top:6px;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:15px;background:#fff}
+  .quote textarea{min-height:70px;resize:vertical}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr}}
+  .send{margin-top:16px;width:100%;background:var(--navy);color:#fff;border:0;border-radius:11px;padding:14px;font-size:15.5px;font-weight:800;font-family:inherit;cursor:pointer}
+  .send:disabled{opacity:.6}
+  .qdone{display:none;border:1px solid var(--navy);background:var(--navy-bg);border-radius:14px;padding:22px;text-align:center;margin:8px 0 12px}
+  .qdone.show{display:block}
+  .qdone h2{font-family:var(--serif);font-size:19px;margin-bottom:6px}
+
+  /* 전체 사양 아코디언 */
+  .specsec{margin:40px 0 60px}
+  .specsec h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:4px}
+  .specsec p.sd{font-size:13.5px;color:var(--gray);margin-bottom:12px}
+  .mfilter{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .mf-btn{font-size:12.5px;font-weight:700;padding:6px 13px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--gray);cursor:pointer;font-family:inherit}
+  .mf-btn.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .mrow.hide{display:none}
+  .mrow{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff;overflow:hidden}
+  .mrow summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:14.5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .mrow summary::-webkit-details-marker{display:none}
+  .mrow summary .mn{font-weight:800;color:var(--navy)}
+  .mrow summary .mf{color:var(--gray);font-size:13px;font-weight:500}
+  .mrow summary::after{content:"+";color:var(--navy-2);font-weight:800;font-size:18px}
+  .mrow[open] summary::after{content:"\2013"}
+  .mrow[open] summary{border-bottom:1px solid var(--line)}
+  .mdet{padding:14px 16px}
+  .mdet p{font-size:14px;color:#2c3742;margin:0 0 12px}
+  .mbtns{display:flex;gap:10px;flex-wrap:wrap}
+  .mbuy{background:var(--navy);color:#fff;font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:9px}
+  .minq{border:1px solid var(--line);color:var(--navy);font-weight:700;font-size:13.5px;padding:10px 16px;border-radius:9px}
+  .specmore{font-size:13px;color:var(--gray);margin-top:14px}
+  .specmore a{color:var(--navy-2);font-weight:700}
+  .calcbox{border:1px solid var(--line);border-radius:12px;margin:16px 0 0;background:#fff;overflow:hidden}
+  .calcbox>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;color:var(--navy)}
+  .calcbox>summary::-webkit-details-marker{display:none}
+  .calcbox>summary::after{content:" ▾";color:var(--gray-2)}
+  .cbin{padding:0 16px 16px}
+  .cbf{margin:12px 0}
+  .cbf label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+  .cbf select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px}
+  .cbrow{display:flex;align-items:center;gap:12px}
+  .cbrow input[type=range]{flex:1;accent-color:var(--navy)}
+  .cbval{min-width:74px;text-align:right;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  .cbout{background:var(--navy-bg);border:1px solid #cfe0f0;border-radius:10px;padding:14px;text-align:center;margin-top:6px}
+  .cbout .big{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  .cbnote{font-size:11.5px;color:var(--gray-2);margin-top:10px;line-height:1.6}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진", "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/brands/leadfluid/">리드플루이드</a> › 펌프 선택 가이드</div>
+    <h1>펌프 선택 가이드 — 조건부터 골라보세요</h1>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="layout">
+    <div class="steps">
+      <div class="wprog" id="wprog"></div>
+
+      <div class="step wstep on" data-step="type">
+        <h2><span class="n">1</span> 펌프 종류</h2>
+        <div class="opts">
+          <button type="button" class="opt" data-val="연동(페리스탈틱)" data-t="peri"><span class="ot">연동(페리스탈틱)</span><span class="od">튜브로 무오염 이송 — 부식성·생체 유체, 저~대유량</span></button>
+          <button type="button" class="opt" data-val="시린지" data-t="syr"><span class="ot">시린지</span><span class="od">초저유량 정밀 주입 — 나노리터급 미세주입</span></button>
+          <button type="button" class="opt" data-val="기어" data-t="gear"><span class="ot">기어</span><span class="od">고압·고점도 저맥동 연속 이송</span></button>
+          <button type="button" class="opt" data-val="방폭" data-t="ex"><span class="ot">방폭</span><span class="od">인화성·용제·석유화학 방폭 지역용(ATEX)</span></button>
+        </div>
+      </div>
+
+      <div class="step wstep multi" data-step="flow">
+        <button type="button" class="wback" data-back>← 이전</button>
+        <h2><span class="n">2</span> 필요 유량대</h2>
+        <div class="opts">
+          <button type="button" class="opt" data-val="초저유량(<1)" data-g="ultralow"><span class="ot">초저유량</span><span class="od">&lt; 1 mL/min — 미세주입·마이크로 정량</span></button>
+          <button type="button" class="opt" data-val="저~중(1–500)" data-g="lowmid"><span class="ot">저~중유량</span><span class="od">1–500 mL/min — 일반 이송·분주</span></button>
+          <button type="button" class="opt" data-val="중~대(500–3000)" data-g="midbig"><span class="ot">중~대유량</span><span class="od">500–3,000 mL/min</span></button>
+          <button type="button" class="opt" data-val="초대유량(>3000)" data-g="big"><span class="ot">초대유량</span><span class="od">&gt; 3,000 mL/min — 대량 순환·이송</span></button>
+        </div>
+        <div class="hint">가장 가까운 하나를 고르세요.</div>
+      </div>
+
+      <div class="step wstep multi" data-step="use">
+        <button type="button" class="wback" data-back>← 이전</button>
+        <h2><span class="n">3</span> 용도·특성</h2>
+        <div class="opts">
+          <button type="button" class="opt" data-val="무오염 연속 이송" data-u="clean"><span class="ot">무오염 연속 이송</span><span class="od">튜브만 접촉 — 세포배양·관류·부식성 유체</span></button>
+          <button type="button" class="opt" data-val="정밀 미세주입" data-u="inject"><span class="ot">정밀 미세주입</span><span class="od">나노리터급 정밀·재현 주입</span></button>
+          <button type="button" class="opt" data-val="분주·정량 반복" data-u="dispense"><span class="ot">분주·정량 반복</span><span class="od">일정량 반복 디스펜싱</span></button>
+          <button type="button" class="opt" data-val="고압·고점도" data-u="highp"><span class="ot">고압·고점도</span><span class="od">저맥동 연속 — 오일·수지·용제</span></button>
+        </div>
+        <div class="hint">주된 용도 하나를 고르세요.</div>
+      </div>
+
+      <div class="step wstep multi" data-step="opt">
+        <button type="button" class="wback" data-back>← 이전</button>
+        <h2><span class="n">4</span> 옵션 <span style="font-size:11.5px;color:var(--gray-2);font-weight:500;margin-left:4px">(복수 선택)</span></h2>
+        <div class="opts">
+          <button type="button" class="opt" data-val="RS485·PC 제어" data-o="ctrl"><span class="ot">RS485·PC 제어</span><span class="od">유량·스케줄·다펌프 제어, 로그 기록</span></button>
+          <button type="button" class="opt" data-val="다채널" data-o="multi"><span class="ot">다채널</span><span class="od">여러 라인 동시 이송</span></button>
+          <button type="button" class="opt" data-val="방수·고보호(IP)" data-o="ip"><span class="ot">방수·고보호(IP)</span><span class="od">분진·수분 환경 IP66/67</span></button>
+          <button type="button" class="opt" data-val="패널 장착" data-o="panel"><span class="ot">패널 장착</span><span class="od">장비 내장·OEM</span></button>
+        </div>
+        <div class="hint">해당되는 항목을 모두 눌러주세요. 없으면 바로 다음.</div>
+        <button type="button" class="wnext" id="optNext">추천 모델 보기 →</button>
+      </div>
+
+      <div class="step wstep" data-step="result" style="border:0;padding:0">
+        <button type="button" class="wback" data-back>← 이전</button>
+        <div class="rec" id="recArea"></div>
+        <p class="recnote">추천은 참고용입니다. 정확한 모델·튜브·구성은 시료·용도를 알려주시면 확정해 드립니다.</p>
+
+        <form class="quote" id="quoteForm">
+          <h2>이 조건으로 문의</h2>
+          <p class="qsub">다루는 <b>유체와 용도</b>를 적어주시면 조건에 맞는 모델·튜브·구성을 확정해 드립니다.</p>
+          <label>유체·용도 <span class="req">*</span></label>
+          <textarea name="유체용도" required placeholder="예: 세포배양 배지 관류 / 5 mL/min 연속 / 하루 24시간 무인 운전"></textarea>
+          <div class="grid2">
+            <div><label>이름 <span class="req">*</span></label><input type="text" name="이름" required placeholder="홍길동"></div>
+            <div><label>소속 <span class="req">*</span></label><input type="text" name="소속" required placeholder="OO대학교 OO연구실"></div>
+          </div>
+          <label>이메일 <span class="req">*</span></label>
+          <input type="email" name="이메일" required placeholder="you@lab.ac.kr">
+          <input type="hidden" name="문의유형" value="리드플루이드 펌프 선택">
+          <input type="hidden" name="선택조건" id="cfgField" value="">
+          <button class="send" type="submit">문의하기 →</button>
+        </form>
+        <div class="qdone" id="quoteDone">
+          <h2>문의가 접수되었습니다</h2>
+          <p style="font-size:14px;color:var(--gray)">조건을 검토해 맞는 모델·구성과 함께 회신드립니다. 급하시면 <b>info@rndsetup.com</b> · 070-8983-2600.</p>
+        </div>
+      </div>
+
+    </div><!-- /steps -->
+
+    <aside class="side">
+      <div class="sumcard">
+        <h3>선택한 조건</h3>
+        <div class="sumrow"><span class="k">종류</span><span class="v empty" id="s-type">미선택</span></div>
+        <div class="sumrow"><span class="k">유량</span><span class="v empty" id="s-flow">미선택</span></div>
+        <div class="sumrow"><span class="k">용도</span><span class="v empty" id="s-use">미선택</span></div>
+        <div class="sumrow"><span class="k">옵션</span><span class="v empty" id="s-opt">미선택</span></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 전체 모델 사양 (펼치면 상세·구매·문의) -->
+  <section class="specsec">
+    <h2>리드플루이드 펌프 전체 모델</h2>
+    <p class="sd">모델을 펼치면 종류·유량·특징과 구매·문의가 바로 나옵니다.</p>
+    <div class="mfilter" id="lfFilter">
+      <button type="button" class="mf-btn on" data-f="all">전체</button>
+      <button type="button" class="mf-btn" data-f="peri">연동</button>
+      <button type="button" class="mf-btn" data-f="syr">시린지</button>
+      <button type="button" class="mf-btn" data-f="gear">기어</button>
+      <button type="button" class="mf-btn" data-f="ex">방폭</button>
+      <button type="button" class="mf-btn" data-f="tube">튜브</button>
+    </div>
+
+    <details class="mrow" id="m-bt101l" data-t="peri"><summary><span><span class="mn">BT101L</span> <span class="mf">연동 · 0.00011–750 mL/min</span></span></summary>
+      <div class="mdet"><p>지능형 연동펌프. 저~중유량 정밀·RS485 제어. 튜브만 접촉하는 무오염 이송(세포배양·관류·부식성 유체).</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-bt103s" data-t="peri"><summary><span><span class="mn">BT103S</span> <span class="mf">연동(분주) · 0.00011–500 mL/min</span></span></summary>
+      <div class="mdet"><p>분주형 연동펌프. 정해진 양을 반복 분주(디스펜싱)하는 정량 작업에 최적.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-bt301l" data-t="peri"><summary><span><span class="mn">BT301L</span> <span class="mf">연동 · 0.005–1750 mL/min</span></span></summary>
+      <div class="mdet"><p>지능형 유량 연동펌프. 넓은 유량 범위·RS485 제어. 중~대유량 연속 이송.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-wt600f" data-t="peri"><summary><span><span class="mn">WT600F</span> <span class="mf">연동(분주) · 0.005–6000 mL/min</span></span></summary>
+      <div class="mdet"><p>분주형 대유량 연동펌프. 4모드 분주·대량 순환/이송.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-mf106" data-t="peri"><summary><span><span class="mn">MF106</span> <span class="mf">연동 · 0.005–7700 mL/min</span></span></summary>
+      <div class="mdet"><p>고보호(IP66/67) 연동펌프. 분진·수분 환경 방진방수, 대유량.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-bq80s" data-t="peri"><summary><span><span class="mn">BQ80S</span> <span class="mf">연동(마이크로) · 0.0035–34 mL/min</span></span></summary>
+      <div class="mdet"><p>마이크로 정량 연동펌프. 패널 장착·저유량 정밀 투입(OEM·분석기 내장).</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-tyd01-01" data-t="syr"><summary><span><span class="mn">TYD01-01</span> <span class="mf">시린지 · 0.184 nL–83.3 mL/min</span></span></summary>
+      <div class="mdet"><p>시린지펌프. 나노리터급 정밀 주입·RS485. 미세유체·정밀 주입.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-tfd" data-t="syr"><summary><span><span class="mn">TFD</span> <span class="mf">시린지(스플릿) · 미세주입·다채널</span></span></summary>
+      <div class="mdet"><p>스플릿형 시린지펌프. 컨트롤러 분리형·다채널 미세주입(전기방사·마이크로스피어 등).</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-ct3001f" data-t="gear"><summary><span><span class="mn">CT3001F</span> <span class="mf">기어(PEEK) · 15–2700 mL/min</span></span></summary>
+      <div class="mdet"><p>PEEK 기어펌프. 고압·저맥동 연속 이송(오일·수지·용제 등 고점도).</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-explosion-proof" data-t="ex"><summary><span><span class="mn">EF800·EF900</span> <span class="mf">방폭 연동 · ~7,800 / 33,000 mL/min</span></span></summary>
+      <div class="mdet"><p>방폭 연동펌프. ATEX/IECEx 방폭 지역·인화성 유체 무오염 이송.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <details class="mrow" id="m-explosion-proof-gear" data-t="ex"><summary><span><span class="mn">FG601S</span> <span class="mf">방폭 기어 · 1,000–13,000 mL/min</span></span></summary>
+      <div class="mdet"><p>방폭 기어펌프(공압구동). 용제·석유화학 고점도 대유량, 전기 점화원 없음.</p>
+      <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
+
+    <h2 style="font-family:var(--serif);font-size:19px;font-weight:700;margin:28px 0 4px">연동펌프 튜브 — 규격·재질</h2>
+    <p class="sd">펌프헤드가 허용하는 규격(#번호) 안에서 매질에 맞는 재질을 고릅니다. (위 필터에서 <b>튜브</b>만 볼 수 있습니다)</p>
+
+    <details class="mrow" data-t="tube" id="m-tube-size"><summary><span><span class="mn">튜브 규격 — 번호별 내경</span> <span class="mf">13#~18#</span></span></summary>
+      <div class="mdet">
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">
+          <tr style="background:var(--navy);color:#fff"><th style="padding:8px 10px;text-align:left">번호</th><th style="padding:8px 10px;text-align:left">내경</th><th style="padding:8px 10px;text-align:left">유량대</th></tr>
+          <tr><td style="padding:7px 10px;border:1px solid var(--line)">13#</td><td style="padding:7px 10px;border:1px solid var(--line)">0.8 mm</td><td style="padding:7px 10px;border:1px solid var(--line)">초저유량·정밀</td></tr>
+          <tr><td style="padding:7px 10px;border:1px solid var(--line)">14#</td><td style="padding:7px 10px;border:1px solid var(--line)">1.6 mm</td><td style="padding:7px 10px;border:1px solid var(--line)">저유량</td></tr>
+          <tr><td style="padding:7px 10px;border:1px solid var(--line)">16#</td><td style="padding:7px 10px;border:1px solid var(--line)">약 3.1~3.2 mm</td><td style="padding:7px 10px;border:1px solid var(--line)">범용 중저유량</td></tr>
+          <tr><td style="padding:7px 10px;border:1px solid var(--line)">25#</td><td style="padding:7px 10px;border:1px solid var(--line)">4.8 mm</td><td style="padding:7px 10px;border:1px solid var(--line)">중유량</td></tr>
+          <tr><td style="padding:7px 10px;border:1px solid var(--line)">17#</td><td style="padding:7px 10px;border:1px solid var(--line)">6.4 mm</td><td style="padding:7px 10px;border:1px solid var(--line)">대유량</td></tr>
+          <tr><td style="padding:7px 10px;border:1px solid var(--line)">18#</td><td style="padding:7px 10px;border:1px solid var(--line)">7.9 mm</td><td style="padding:7px 10px;border:1px solid var(--line)">대유량</td></tr>
+        </table></div>
+        <p style="font-size:12px;color:var(--gray-2);margin-top:8px">표준 L/S 호환 기준. 실제 치수·유량은 제조사·펌프헤드에 따라 다르니 사양서를 확인하세요.</p>
+        <div class="mbtns" style="margin-top:12px"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">튜브 구매(나비) →</a><a class="minq" href="/contact/">튜브 규격 문의 →</a></div>
+      </div></details>
+
+    <details class="mrow" data-t="tube" id="m-tube-mat"><summary><span><span class="mn">튜브 재질 — 화학 적합성</span> <span class="mf">실리콘·Tygon·PharMed·Viton</span></span></summary>
+      <div class="mdet">
+        <p style="font-size:13.5px">이송 유체의 화학 적합성과 필요한 연속 운전 수명으로 재질을 정합니다.</p>
+        <div style="font-size:13px;line-height:2">
+          <b>실리콘</b> — 범용·생체적합·유연 (내약품·내용제 약함)<br>
+          <b>Tygon</b> — 넓은 화학 적합성, 범용 실험<br>
+          <b>PharMed BPT</b> — 연동 수명 우수, 장시간 연속 운전<br>
+          <b>Norprene</b> — 내화학·장수명<br>
+          <b>Viton 계열</b> — 내화학·내용제, 용제·강산 검토
+        </div>
+        <div class="mbtns" style="margin-top:12px"><a class="minq" href="/contact/">재질 추천 문의 →</a></div>
+      </div></details>
+
+    <p class="specmore">튜브 규격·펌프헤드·화학 적합성 상세는 <a href="/pump/atoz/tube-size-guide/">튜브 규격 가이드 →</a> · 사용 매뉴얼·사양서는 <a href="/brands/leadfluid/manuals/">자료실 →</a></p>
+
+    <details class="calcbox">
+      <summary>유량 계산기 — 튜브·RPM으로 유량 추정</summary>
+      <div class="cbin">
+        <div class="cbf"><label>튜브 규격(내경)</label>
+          <select id="cTube"><option value="0.8">13# · 0.8mm</option><option value="1.6">14# · 1.6mm</option><option value="3.2" selected>16# · 3.2mm</option><option value="4.8">25# · 4.8mm</option><option value="6.4">17# · 6.4mm</option><option value="7.9">18# · 7.9mm</option></select></div>
+        <div class="cbf"><label>회전수(RPM)</label><div class="cbrow"><input type="range" id="cRpm" min="1" max="600" value="100"><span class="cbval"><span id="cRpmv">100</span> rpm</span></div></div>
+        <div class="cbf"><label>펌프 헤드</label>
+          <select id="cHead"><option value="60">저유량 소형</option><option value="95" selected>표준(Easy-Load·YZ)</option><option value="120">대유량 대형</option></select></div>
+        <div class="cbout"><div style="font-size:12px;color:var(--navy-2);font-weight:700">추정 유량</div><div class="big"><span id="cFlow">—</span> <span style="font-size:.5em">mL/min</span></div><div style="font-size:12px;color:#3a5b70">약 <span id="cLhr">—</span> L/h</div></div>
+        <div class="cbnote">추정치입니다 — 실제 유량은 튜브 재질·경도·배압에 따라 달라지니 실측 캘리브레이션으로 보정하세요.</div>
+      </div>
+    </details>
+  </section>
+</div>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+  var MODELS=[
+    {c:'BT101L',u:'/leadfluid/bt101l/',n:'BT101L 지능형 연동펌프',f:'0.00011–750 mL/min',t:'peri',g:['ultralow','lowmid'],tags:['clean','ctrl'],lbl:['무오염','정밀','RS485']},
+    {c:'BT103S',u:'/leadfluid/bt103s/',n:'BT103S 분주형 연동펌프',f:'0.00011–500 mL/min',t:'peri',g:['ultralow','lowmid'],tags:['clean','dispense'],lbl:['분주','정량']},
+    {c:'BT301L',u:'/leadfluid/bt301l/',n:'BT301L 지능형 유량 연동펌프',f:'0.005–1750 mL/min',t:'peri',g:['lowmid','midbig'],tags:['clean','ctrl'],lbl:['지능형','RS485']},
+    {c:'WT600F',u:'/leadfluid/wt600f/',n:'WT600F 분주형 대유량 연동펌프',f:'0.005–6000 mL/min',t:'peri',g:['midbig','big'],tags:['clean','dispense'],lbl:['대유량','분주']},
+    {c:'MF106',u:'/leadfluid/mf106/',n:'MF106 고보호(IP66/67) 연동펌프',f:'0.005–7700 mL/min',t:'peri',g:['midbig','big'],tags:['clean'],lbl:['대유량','방수·IP']},
+    {c:'BQ80S',u:'/leadfluid/bq80s/',n:'BQ80S 마이크로 정량 연동펌프',f:'0.0035–34 mL/min',t:'peri',g:['ultralow','lowmid'],tags:['dispense','clean'],lbl:['마이크로','패널']},
+    {c:'TYD01-01',u:'/leadfluid/tyd01-01/',n:'TYD01-01 시린지펌프',f:'0.184 nL–83.3 mL/min',t:'syr',g:['ultralow','lowmid'],tags:['inject','ctrl'],lbl:['나노리터','정밀']},
+    {c:'TFD',u:'/leadfluid/tfd/',n:'TFD 스플릿형 시린지펌프',f:'미세주입·다채널',t:'syr',g:['ultralow'],tags:['inject'],lbl:['다채널','미세주입']},
+    {c:'CT3001F',u:'/leadfluid/ct3001f/',n:'CT3001F PEEK 기어펌프',f:'15–2700 mL/min',t:'gear',g:['lowmid','midbig'],tags:['highp'],lbl:['고압','저맥동']},
+    {c:'EF800·EF900',u:'/leadfluid/explosion-proof/',n:'EF800·EF900 방폭 연동펌프',f:'~7,800 / 33,000 mL/min',t:'ex',g:['midbig','big'],tags:['clean'],lbl:['방폭','ATEX']},
+    {c:'FG601S',u:'/leadfluid/explosion-proof-gear/',n:'FG601S 방폭 기어펌프(공압)',f:'1,000–13,000 mL/min',t:'ex',g:['midbig','big'],tags:['highp'],lbl:['방폭','고압']}
+  ];
+  var SVG={
+    peri:'<svg viewBox="0 0 100 80" fill="none" stroke="#1E3A5F" stroke-width="3"><circle cx="50" cy="40" r="26"/><circle cx="50" cy="40" r="5" fill="#1E3A5F"/><circle cx="50" cy="20" r="4" fill="#2a5a8f"/><circle cx="67" cy="50" r="4" fill="#2a5a8f"/><circle cx="33" cy="50" r="4" fill="#2a5a8f"/><path d="M6 40h18M76 40h18" stroke="#93a1b0"/></svg>',
+    syr:'<svg viewBox="0 0 100 80" fill="none" stroke="#1E3A5F" stroke-width="3"><rect x="20" y="30" width="52" height="20" rx="3"/><path d="M72 40h18"/><path d="M20 40H8"/><line x1="34" y1="30" x2="34" y2="50"/><line x1="46" y1="30" x2="46" y2="50"/><line x1="58" y1="30" x2="58" y2="50"/></svg>',
+    gear:'<svg viewBox="0 0 100 80" fill="none" stroke="#1E3A5F" stroke-width="3"><circle cx="38" cy="40" r="16"/><circle cx="64" cy="40" r="16"/><circle cx="38" cy="40" r="4" fill="#1E3A5F"/><circle cx="64" cy="40" r="4" fill="#1E3A5F"/></svg>',
+    ex:'<svg viewBox="0 0 100 80" fill="none" stroke="#1E3A5F" stroke-width="3"><path d="M50 10l28 10v18c0 18-12 30-28 34-16-4-28-16-28-34V20z"/><path d="M40 40l7 7 14-14" stroke="#2a5a8f"/></svg>'
+  };
+  var TLABEL={peri:'연동(페리스탈틱)',syr:'시린지',gear:'기어',ex:'방폭'};
+  var sel={type:'',t:'',flow:'',g:'',use:'',u:'',opt:[]};
+  var order=['type','flow','use','opt','result'];
+  var wlabels={type:'종류',flow:'유량',use:'용도',opt:'옵션',result:'추천'};
+  var panels={};
+  document.querySelectorAll('.step[data-step]').forEach(function(s){panels[s.getAttribute('data-step')]=s;});
+  var wprog=document.getElementById('wprog'), stage=document.getElementById('stage');
+  var idx=0,maxReached=0;
+  function renderProg(){wprog.innerHTML=order.map(function(k,i){var cls='wp'+(i===idx?' cur':(i<=maxReached?' done':''));return '<span class="'+cls+'" data-i="'+i+'">'+(i+1)+'. '+wlabels[k]+'</span>';}).join('');}
+  function show(i){if(i<0)i=0;if(i>order.length-1)i=order.length-1;idx=i;if(i>maxReached)maxReached=i;order.forEach(function(k,j){panels[k].classList.toggle('on',j===i);});renderProg();if(i===4)recommend();}
+  wprog.addEventListener('click',function(e){var c=e.target.closest('.wp');if(!c)return;var i=+c.getAttribute('data-i');if(i<=maxReached)show(i);});
+  document.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){show(idx-1);});});
+  document.getElementById('optNext').addEventListener('click',function(){summary();show(4);});
+  function setStage(t){if(stage)stage.innerHTML=SVG[t]||'';}
+  function summary(){
+    function set(id,v){var el=document.getElementById(id);el.textContent=v||'미선택';el.classList.toggle('empty',!v);}
+    set('s-type',sel.type);set('s-flow',sel.flow);set('s-use',sel.use);set('s-opt',sel.opt.length?sel.opt.join('·'):'');
+    var p=[];if(sel.type)p.push('종류:'+sel.type);if(sel.flow)p.push('유량:'+sel.flow);if(sel.use)p.push('용도:'+sel.use);if(sel.opt.length)p.push('옵션:'+sel.opt.join('·'));
+    document.getElementById('cfgField').value=p.join(' / ');
+  }
+  document.querySelectorAll('.step[data-step]').forEach(function(step){
+    var key=step.getAttribute('data-step');
+    if(key==='result'||key==='opt')return;
+    step.addEventListener('click',function(e){
+      var b=e.target.closest('.opt');if(!b)return;
+      Array.prototype.forEach.call(step.querySelectorAll('.opt'),function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      if(key==='type'){sel.type=b.getAttribute('data-val');sel.t=b.getAttribute('data-t');setStage(sel.t);}
+      if(key==='flow'){sel.flow=b.getAttribute('data-val');sel.g=b.getAttribute('data-g');}
+      if(key==='use'){sel.use=b.getAttribute('data-val');sel.u=b.getAttribute('data-u');}
+      summary();
+      setTimeout(function(){show(idx+1);},200);
+    });
+  });
+  // 옵션 스텝은 복수선택 (별도 핸들러)
+  panels.opt.addEventListener('click',function(e){
+    var b=e.target.closest('.opt');if(!b)return;
+    b.classList.toggle('on');
+    var v=b.getAttribute('data-val'),i=sel.opt.indexOf(v);
+    if(i>=0)sel.opt.splice(i,1);else sel.opt.push(v);
+    summary();
+  });
+  function recommend(){
+    var oflags=sel.opt.map(function(v){var m={'RS485·PC 제어':'ctrl','다채널':'multi','방수·고보호(IP)':'ip','패널 장착':'panel'};return m[v];});
+    var cand=MODELS.filter(function(m){return sel.t? m.t===sel.t : true;});
+    cand.forEach(function(m){
+      var sc=0;
+      if(sel.g && m.g.indexOf(sel.g)>=0) sc+=3;
+      if(sel.u && m.tags.indexOf(sel.u)>=0) sc+=3;
+      oflags.forEach(function(o){ if(o && (m.tags.indexOf(o)>=0 || (o==='ip'&&m.lbl.join().indexOf('IP')>=0) || (o==='multi'&&m.lbl.join().indexOf('다채널')>=0) || (o==='panel'&&m.lbl.join().indexOf('패널')>=0))) sc+=1; });
+      m._s=sc;
+    });
+    cand.sort(function(a,b){return b._s-a._s;});
+    var top=cand.slice(0,3);
+    var html='<div class="rt">조건에 맞는 추천 모델</div><div class="rs">'+(sel.type||'')+(sel.flow?' · '+sel.flow:'')+(sel.use?' · '+sel.use:'')+'</div>';
+    if(!top.length){html+='<div class="rcard"><div class="rn">조건에 맞는 표준 모델을 좁히지 못했습니다</div><div class="rf">아래 문의로 조건을 남겨주시면 직접 추천해 드립니다.</div></div>';}
+    top.forEach(function(m){
+      var aid='m-'+m.u.split('/').filter(Boolean).pop();
+      html+='<a class="rcard rjump" href="#'+aid+'"><div class="rn">'+m.c+'</div><div class="rf">'+m.n+' · '+m.f+'</div><div class="rtags">'+m.lbl.map(function(x){return '<span class="tg">'+x+'</span>';}).join('')+'</div><span class="go">사양·구매 보기 →</span></a>';
+    });
+    document.getElementById('recArea').innerHTML=html;
+    summary();
+  }
+  var form=document.getElementById('quoteForm');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();summary();
+    var btn=form.querySelector('.send'),t=btn.textContent;btn.disabled=true;btn.textContent='보내는 중…';
+    fetch('https://formspree.io/f/mnjkzppj',{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+      .then(function(r){if(r.ok){form.style.display='none';document.getElementById('quoteDone').classList.add('show');if(typeof gtag==='function')gtag('event','generate_lead',{lead_type:'leadfluid_pump_select'});}
+        else{btn.disabled=false;btn.textContent=t;alert('전송 실패 — info@rndsetup.com 으로 보내주세요.');}})
+      .catch(function(){btn.disabled=false;btn.textContent=t;alert('전송 실패 — info@rndsetup.com 으로 보내주세요.');});
+  });
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('.rjump'); if(!a) return;
+    e.preventDefault();
+    var d=document.querySelector(a.getAttribute('href'));
+    if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'center'}); }
+  });
+  (function(){
+    var id=document.getElementById('cTube'),rp=document.getElementById('cRpm'),hd=document.getElementById('cHead');
+    if(!id)return;
+    function calc(){var ID=parseFloat(id.value),R=parseFloat(rp.value),L=parseFloat(hd.value);document.getElementById('cRpmv').textContent=R;var mlrev=Math.PI*Math.pow(ID/2,2)*L/1000,q=mlrev*R;document.getElementById('cFlow').textContent=q>=100?q.toFixed(0):q.toFixed(1);document.getElementById('cLhr').textContent=(q*60/1000).toFixed(2);}
+    [id,rp,hd].forEach(function(el){el.addEventListener('input',calc)});calc();
+  })();
+  var lfF=document.getElementById('lfFilter');
+  if(lfF){lfF.addEventListener('click',function(e){var b=e.target.closest('.mf-btn');if(!b)return;
+    Array.prototype.forEach.call(lfF.querySelectorAll('.mf-btn'),function(x){x.classList.remove('on');});b.classList.add('on');
+    var f=b.getAttribute('data-f');
+    Array.prototype.forEach.call(document.querySelectorAll('.specsec .mrow'),function(r){r.classList.toggle('hide', f!=='all' && r.getAttribute('data-t')!==f);});
+  });}
+  renderProg();show(0);
+})();
+</script>
+</body>
+</html>

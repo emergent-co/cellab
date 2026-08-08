@@ -382,19 +382,19 @@ def build_requests():
 CRAWLER_LINKS = [
     ('/', '홈'),
     ('/about/', '실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내'),
-    ('/sh-scientific/guide/', '삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업'),
-    ('/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
-    ('/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
-    ('/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
+    ('/brands/sh-scientific/guide/', '삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업'),
+    ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
+    ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
+    ('/brands/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
     ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
     ('/application/environmental.html', '환경 — 수질·폐수 정량 투입'),
     ('/application/flow-chemistry.html', 'flow chemistry 연속흐름 반응'),
-    ('/leadfluid/blog/', '펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업'),
+    ('/brands/leadfluid/blog/', '펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업'),
     ('/pump/atoz/', '펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결'),
-    ('/leadfluid/guide/', '펌프·튜브 선택 가이드 — 조건 입력하면 추천'),
+    ('/brands/leadfluid/guide/', '펌프·튜브 선택 가이드 — 조건 입력하면 추천'),
     ('/pump/atoz/peristaltic-flow-setpoint-mismatch/', '연동펌프 유량이 설정값과 다른 이유'),
     ('/pump/atoz/tubing-crush-tear-causes/', '연동펌프 튜빙 씹힘·찢어짐 원인·해결'),
     ('/pump/atoz/flow-calibration/', '연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정'),
@@ -422,7 +422,7 @@ def _crawler_nav_html():
     def grp(h):
         if h.startswith('/setups/') or h.startswith('/magazine/') or h.startswith('/compare/') or h in ('/', '/trust/', '/faq/', '/contact/'):
             return '사례·신뢰'
-        if h.startswith('/pumps/') or h.startswith('/pump/') or h.startswith('/leadfluid/') or h.startswith('/troubleshooting/') or h in ('/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
+        if h.startswith('/pumps/') or h.startswith('/pump/') or h.startswith('/brands/leadfluid/') or h.startswith('/troubleshooting/') or h in ('/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
             return '펌프·제어'
         if h in ('/application/cell-culture-perfusion.html', '/application/chemostat-continuous-culture.html', '/application/photobioreactor-microalgae.html', '/application/flow-chemistry.html', '/application/organ-on-chip-perfusion.html'):
             return '실험 기법'
@@ -596,8 +596,8 @@ BREADCRUMB_SECTIONS = {
     'faq': ('자주 묻는 질문(FAQ)', '/faq/'),
     'gas': ('기체', '/gas/'),
     'vacuum': ('진공', '/vacuum/'),
-    'alicat': ('ALICAT', '/alicat/'),
-    'sh-scientific': ('삼흥에너지', '/sh-scientific/guide/'),
+    'alicat': ('ALICAT', '/brands/alicat/'),
+    'sh-scientific': ('삼흥에너지', '/brands/sh-scientific/guide/'),
     'guide': ('실험 셋업 가이드', '/guide/'),
 }
 
@@ -780,7 +780,7 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
-        ('leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
+        ('brands/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
@@ -789,52 +789,52 @@ def main():
         ('pump/setups/plating-flow-calibration/', '0.8', 'monthly'),  # 도입 스토리 (도금 유량 보정)
         ('furnace/setups/', '0.8', 'monthly'),  # 퍼니스 셋업 사례 허브
         ('furnace/setups/alicat-mfc-tubefurnace/', '0.7', 'monthly'),  # 도입 스토리 (튜브퍼니스 MFC)
-        ('leadfluid/blog/', '0.8', 'weekly'),
+        ('brands/leadfluid/blog/', '0.8', 'weekly'),
         ('pump/atoz/', '0.8', 'weekly'),
-        ('leadfluid/guide/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
+        ('brands/leadfluid/guide/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
         ('pump/atoz/peristaltic-flow-setpoint-mismatch/', '0.7', 'monthly'),
         ('pump/atoz/tubing-crush-tear-causes/', '0.7', 'monthly'),
         ('pump/atoz/flow-calibration/', '0.7', 'monthly'),  # 유량 캘리브레이션 (무주공산)
         ('pump/atoz/tube-size-guide/', '0.7', 'monthly'),  # 튜브 규격·펌프헤드 (무주공산)
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
-        ('alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
-        ('sh-scientific/guide/','0.9', 'monthly'),  # 삼흥 허브 = 제품 선택 가이드(견적 funnel)
-        ('sh-scientific/manual/','0.7', 'monthly'),  # 삼흥 메뉴얼
-        ('sh-scientific/catalog/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
-        ('sh-scientific/catalog/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
-        ('sh-scientific/catalog/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
-        ('sh-scientific/catalog/rotary-tube-furnace/','0.8', 'monthly'),
-        ('sh-scientific/catalog/rotary-tube-furnace-pro/','0.8', 'monthly'),
-        ('sh-scientific/catalog/gas-flow-3zone/','0.8', 'monthly'),
-        ('sh-scientific/catalog/tube-1500/','0.8', 'monthly'),
-        ('sh-scientific/catalog/tube-1800/','0.8', 'monthly'),
-        ('sh-scientific/catalog/vacuum-tube-turnkey/','0.8', 'monthly'),
-        ('sh-scientific/catalog/vacuum-muffle-1200/','0.8', 'monthly'),
-        ('sh-scientific/catalog/vacuum-muffle-1200-quartz/','0.8', 'monthly'),
-        ('sh-scientific/catalog/vacuum-muffle-1500/','0.8', 'monthly'),
-        ('sh-scientific/catalog/vacuum-muffle-1900/','0.8', 'monthly'),
-        ('sh-scientific/catalog/muffle-1050/','0.8', 'monthly'),
-        ('sh-scientific/catalog/muffle-1200/','0.8', 'monthly'),
-        ('sh-scientific/catalog/muffle-1500/','0.8', 'monthly'),
-        ('sh-scientific/catalog/muffle-1700/','0.8', 'monthly'),
-        ('sh-scientific/catalog/muffle-1800/','0.8', 'monthly'),
-        ('sh-scientific/catalog/muffle-1900/','0.8', 'monthly'),
-        ('sh-scientific/catalog/rotary-kiln-1200-2zone/','0.8', 'monthly'),
-        ('sh-scientific/catalog/rotary-kiln-1200-3zone/','0.8', 'monthly'),
-        ('sh-scientific/catalog/rotary-batch-300/','0.8', 'monthly'),
-        ('sh-scientific/catalog/rotary-batch-3zone/','0.8', 'monthly'),
-        ('sh-scientific/catalog/elevator-1200/','0.8', 'monthly'),
-        ('sh-scientific/catalog/elevator-1500/','0.8', 'monthly'),
-        ('sh-scientific/catalog/elevator-1800/','0.8', 'monthly'),
-        ('sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
-        ('sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
-        ('sh-scientific/blog/furnace-temperature-selection/','0.6', 'monthly'),
-        ('sh-scientific/blog/furnace-types-overview/','0.6', 'monthly'),
-        ('sh-scientific/blog/heating-ramp-profile/','0.6', 'monthly'),
-        ('sh-scientific/blog/muffle-furnace-how-to/','0.6', 'monthly'),
-        ('sh-scientific/blog/tube-furnace-atmosphere-control/','0.6', 'monthly'),
-        ('sh-scientific/blog/tube-vs-muffle-furnace/','0.6', 'monthly'),
+        ('brands/alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
+        ('brands/sh-scientific/guide/','0.9', 'monthly'),  # 삼흥 허브 = 제품 선택 가이드(견적 funnel)
+        ('brands/sh-scientific/manual/','0.7', 'monthly'),  # 삼흥 메뉴얼
+        ('brands/sh-scientific/catalog/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
+        ('brands/sh-scientific/catalog/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
+        ('brands/sh-scientific/catalog/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
+        ('brands/sh-scientific/catalog/rotary-tube-furnace/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/rotary-tube-furnace-pro/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/gas-flow-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/tube-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/tube-1800/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/vacuum-tube-turnkey/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/vacuum-muffle-1200/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/vacuum-muffle-1200-quartz/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/vacuum-muffle-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/vacuum-muffle-1900/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/muffle-1050/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/muffle-1200/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/muffle-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/muffle-1700/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/muffle-1800/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/muffle-1900/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/rotary-kiln-1200-2zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/rotary-kiln-1200-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/rotary-batch-300/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/rotary-batch-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/elevator-1200/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/elevator-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/catalog/elevator-1800/','0.8', 'monthly'),
+        ('brands/sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
+        ('brands/sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
+        ('brands/sh-scientific/blog/furnace-temperature-selection/','0.6', 'monthly'),
+        ('brands/sh-scientific/blog/furnace-types-overview/','0.6', 'monthly'),
+        ('brands/sh-scientific/blog/heating-ramp-profile/','0.6', 'monthly'),
+        ('brands/sh-scientific/blog/muffle-furnace-how-to/','0.6', 'monthly'),
+        ('brands/sh-scientific/blog/tube-furnace-atmosphere-control/','0.6', 'monthly'),
+        ('brands/sh-scientific/blog/tube-vs-muffle-furnace/','0.6', 'monthly'),
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터(통합 후 생존)
         ('application/analytical-instrument.html', '0.8', 'monthly'),
         ('application/environmental.html', '0.8', 'monthly'),

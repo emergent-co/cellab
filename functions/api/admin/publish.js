@@ -1,7 +1,7 @@
 // functions/api/admin/publish.js — "사이트 반영"(발행) 엔드포인트 · Basic Auth
 //   POST /api/admin/publish   → 현재 등록가능 삼흥 퍼니스로 데이터시트 조각(HTML+JSON-LD) 생성 후 D1 published 테이블에 저장
 //   GET  /api/admin/publish   → 마지막 발행 상태 조회
-// 공개 페이지(/sh-scientific/)의 _middleware 가 이 조각을 읽어 서버측에서 주입(크롤러/GEO 대응).
+// 공개 페이지(/brands/sh-scientific/)의 _middleware 가 이 조각을 읽어 서버측에서 주입(크롤러/GEO 대응).
 
 const REALM = 'rndsetup-admin';
 const KEY = 'sh-datasheet';
@@ -139,7 +139,7 @@ function jsonLd(items) {
     if (p.tmax) props.push({ "@type": "PropertyValue", "name": "최고온도", "value": p.tmax });
     if (p.vol) props.push({ "@type": "PropertyValue", "name": "노내용량", "value": p.vol });
     if (props.length) prod.additionalProperty = props;
-    if (p.price != null) prod.offers = { "@type": "Offer", "price": p.price, "priceCurrency": "KRW", "availability": "https://schema.org/InStock", "url": p.url || "https://rndsetup.com/sh-scientific/catalog/" };
+    if (p.price != null) prod.offers = { "@type": "Offer", "price": p.price, "priceCurrency": "KRW", "availability": "https://schema.org/InStock", "url": p.url || "https://rndsetup.com/brands/sh-scientific/catalog/" };
     return { "@type": "ListItem", "position": i + 1, "item": prod };
   });
   const obj = { "@context": "https://schema.org", "@type": "ItemList", "name": "삼흥에너지(SH Scientific) 퍼니스 데이터시트", "numberOfItems": items.length, "itemListElement": el };

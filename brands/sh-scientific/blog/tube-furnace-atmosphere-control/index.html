@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>튜브퍼니스 가스 분위기 제어 — N₂·Ar·H₂·진공 퍼지·유량·안전 | 실험셋업연구소(이머전트)</title>
+<meta name="description" content="튜브퍼니스 분위기(불활성·환원·진공) 제어의 실무. 퍼지·치환, 수소 폭발 범위(4~75 vol%) 안전, MFC 유량 제어와 가스·온도 PC 통합 제어로 재현성을 확보하는 법.">
+<link rel="canonical" href="https://rndsetup.com/brands/sh-scientific/blog/tube-furnace-atmosphere-control/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="튜브퍼니스 가스 분위기 제어 — N₂·Ar·H₂·진공">
+<meta property="og:description" content="튜브퍼니스 분위기(불활성·환원·진공) 제어의 실무. 퍼지·치환, 수소 폭발 범위(4~75 vol%) 안전, MFC 유량 제어와 가스·온도 PC 통합 제어로 재현성을 확보하는 법.">
+<meta property="og:url" content="https://rndsetup.com/brands/sh-scientific/blog/tube-furnace-atmosphere-control/"><meta property="og:image" content="https://rndsetup.com/blog/furnace2.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://rndsetup.com/blog/furnace2.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"삼흥에너지","item":"https://rndsetup.com/brands/sh-scientific/"},
+{"@type":"ListItem","position":3,"name":"설치·A/S 블로그","item":"https://rndsetup.com/brands/sh-scientific/blog/"},
+{"@type":"ListItem","position":4,"name":"가스 분위기 제어","item":"https://rndsetup.com/brands/sh-scientific/blog/tube-furnace-atmosphere-control/"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","image":"https://rndsetup.com/blog/furnace2.jpg","headline":"튜브퍼니스 가스 분위기 제어 — N₂·Ar·H₂·진공","description":"튜브퍼니스 분위기(불활성·환원·진공) 제어의 실무. 퍼지·치환, 수소 폭발 범위(4~75 vol%) 안전, MFC 유량 제어와 가스·온도 PC 통합 제어로 재현성을 확보하는 법.","image":"https://rndsetup.com/blog/furnace2.jpg","image":"https://rndsetup.com/blog/furnace2.jpg","image":"https://rndsetup.com/blog/furnace2.jpg","inLanguage":"ko","author":{"@type":"Organization","name":"실험셋업연구소(이머전트)","url":"https://rndsetup.com/"},"publisher":{"@type":"Organization","name":"실험셋업연구소(이머전트)","url":"https://rndsetup.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/brands/sh-scientific/blog/tube-furnace-atmosphere-control/"},"articleSection":"실무가이드"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"N₂와 Ar은 뭐가 다른가요?","acceptedAnswer":{"@type":"Answer","text":"둘 다 불활성이지만 Ar은 더 무겁고 반응성이 낮아 고온·민감한 소재에 선호됩니다. N₂는 경제적이나 일부 금속·고온에서 질화 반응이 있을 수 있습니다."}},
+{"@type":"Question","name":"수소(H₂)를 안전하게 쓰려면?","acceptedAnswer":{"@type":"Answer","text":"관을 불활성으로 충분히 퍼지해 잔류 산소를 제거한 뒤 도입하고, 배기 벤트·누설 점검·환기를 확보합니다. 공기 중 4~75 vol%가 폭발 범위입니다."}},
+{"@type":"Question","name":"진공은 어느 정도까지 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"공정 목적에 따라 다릅니다. 산화 차단·탈가스 수준이면 러프 진공으로 충분한 경우가 많고, 정밀 공정은 더 높은 진공이 필요합니다."}}
+]}
+</script>
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--line:#EAEAEA;--ember:var(--green,#1E3A5F);--ember-2:var(--green-dk,#142A45);--ember-bg:var(--green-bg,#EDF1F8);--panel:var(--soft,#F2F4F6);
+    --serif:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;--sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.8;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+  .hero{padding:44px 0 4px}
+  .crumb{font-size:12.5px;color:var(--ember-2);font-weight:700;margin-bottom:12px}
+  .crumb a{color:var(--ember-2);text-decoration:none}
+  .cat{display:inline-block;font-size:11.5px;font-weight:800;color:var(--ember-2);background:var(--ember-bg);padding:3px 10px;border-radius:20px;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.6vw,30px);font-weight:700;line-height:1.32;letter-spacing:-.02em}
+  .meta{font-size:13px;color:var(--gray-2);margin-top:10px}
+  article{padding:20px 0 40px}
+  article h2{font-family:var(--serif);font-size:19.5px;font-weight:700;margin:30px 0 8px}
+  article p{font-size:16px;color:#2b2f36;margin:0 0 13px}
+  article b{color:var(--ink)}
+  .ans{background:var(--ember-bg);border:1px solid #d3deef;border-left:4px solid var(--ember);border-radius:10px;padding:15px 18px;margin:14px 0 8px;font-size:15.5px;color:#2b2f36}
+  .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:15px 18px;margin:16px 0;font-size:15px}
+  .warn b{color:var(--ember-2)}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 6px}
+  .btn{display:inline-block;padding:12px 18px;border-radius:9px;font-weight:700;text-decoration:none;font-size:14.5px}
+  .btn.p{background:var(--ember);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:26px;padding-top:16px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--ember-2);text-decoration:none;font-weight:700}
+  .ctab{width:100%;border-collapse:collapse;margin:12px 0 16px;font-size:14.5px}
+  .ctab th,.ctab td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  .ctab th{background:var(--green,#1E3A5F);color:#fff;font-weight:700}
+  .ctab td:first-child{font-weight:700;color:var(--gray);white-space:nowrap;background:var(--panel)}
+  .ctab td b{color:var(--ember-2)}
+  .src{font-size:12.5px;color:var(--gray-2);margin:-4px 0 16px;line-height:1.7}
+  .src a{color:var(--ember-2);text-decoration:none;font-weight:700}
+  .dont{list-style:none;margin:12px 0 16px;padding:0}
+  .dont li{position:relative;padding:9px 0 9px 30px;border-bottom:1px dashed var(--line);font-size:15.5px;color:#2b2f36}
+  .dont li:last-child{border-bottom:0}
+  .dont li::before{content:"\2715";position:absolute;left:0;top:9px;width:20px;height:20px;background:#b91c1c;color:#fff;border-radius:5px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .dont li b{color:#b91c1c}
+  .faq{margin:8px 0}
+  .faq .q{font-weight:800;color:var(--ink);font-size:15.5px;margin:16px 0 4px}
+  .faq .q::before{content:"Q. ";color:var(--ember)}
+  .faq .a{font-size:15px;color:#2b2f36;margin:0}
+  .faq .a::before{content:"A. ";color:var(--gray-2);font-weight:800}
+  .prog{background:var(--ember-bg);border:1px solid #d3deef;border-radius:12px;padding:16px 18px;margin:14px 0;font-size:15px}
+  .prog b{color:var(--ember-2)}
+  .pick{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 18px;margin:14px 0}
+  .pick li{font-size:15.5px;margin:9px 0}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진", "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/brands/sh-scientific/">삼흥에너지</a> › <a href="/brands/sh-scientific/blog/">설치·A/S 블로그</a> › 가스 분위기 제어</div>
+    <span class="cat">실무가이드</span>
+    <h1>튜브퍼니스 가스 분위기 제어<br>— N₂·Ar·H₂·진공</h1>
+    <div class="meta">실험셋업연구소(이머전트) · 퍼니스 가이드</div>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+    <img src="/blog/furnace2.jpg" alt="furnace setup" style="width:100%;border-radius:12px;margin:2px 0 18px;display:block"><div class="ans"><b>튜브퍼니스 분위기 제어</b>는 관 내부를 <b>불활성(N₂·Ar)로 치환</b>하거나 <b>환원(H₂)·진공</b>으로 만드는 것입니다. 재현성은 <b>유량 제어(MFC)</b>에서 갈립니다. 특히 H₂는 <b>공기 중 약 4~75 vol%에서 폭발</b>하므로 반드시 불활성으로 <b>충분히 퍼지·치환</b>한 뒤 도입해야 합니다.</div>
+
+    <h2>분위기 종류</h2>
+    <table class="ctab">
+      <tr><th>분위기</th><th>가스</th><th>용도</th></tr>
+      <tr><td>불활성</td><td>N₂ · Ar</td><td>산화 방지·치환, 일반 열처리</td></tr>
+      <tr><td>환원</td><td>H₂ · Ar/H₂ 혼합</td><td>산화물 환원·금속 열처리</td></tr>
+      <tr><td>산화</td><td>공기 · O₂</td><td>산화·소성</td></tr>
+      <tr><td>진공</td><td>배기(진공펌프)</td><td>탈가스·산화 완전 차단</td></tr>
+    </table>
+
+    <h2>퍼지·치환 — 잔류 산소를 없애라</h2>
+    <p>분위기 실험의 첫 단계는 <b>관 안의 공기(산소)를 몰아내는 퍼지</b>입니다. 불활성 가스를 충분한 유량·시간으로 흘려 잔류 산소를 낮춘 뒤에야 환원가스 도입·승온이 안전합니다. 퍼지가 부족하면 산화·오염은 물론 <b>H₂ 사용 시 폭발 위험</b>이 생깁니다.</p>
+
+    <div class="warn"><b>⚠ 수소(H₂) 안전</b> — 공기 중 수소의 폭발 범위는 <b>약 4~75 vol%로 매우 넓습니다.</b> H₂는 반드시 불활성으로 치환한 뒤 도입하고, <b>배기 경로(벤트)</b>와 누설 점검, 환기를 확보하세요.</div>
+
+    <h2>유량 제어 = 재현성</h2>
+    <p>분위기의 재현성은 결국 <b>유량과 혼합비</b>에서 결정됩니다. 가스마다 <b>질량유량계(MFC)</b>를 두어 각 유량을 정확히 설정하면, 원하는 분위기·혼합비를 반복 실험에서 동일하게 유지할 수 있습니다.</p>
+
+    <h2>가스·온도를 하나로 — PC 통합 제어</h2>
+    <div class="prog">분위기 실험의 재현성은 <b>온도와 가스를 따로 돌릴 때</b> 무너집니다. 실험셋업연구소(이머전트)는 온도컨트롤러의 <b>승온 프로파일(램프·유지·냉각)에 Alicat MFC 가스 유량·혼합비를 자동 연동</b>하는 <b>가스·온도 PC 통합 제어 프로그램</b>을 제공합니다. 온도와 가스를 하나의 스케줄로 묶어 <b>무인·재현 운전과 데이터 기록</b>이 가능합니다.</div>
+
+    <h2>절대 하면 안 되는 것</h2>
+    <ul class="dont">
+      <li><b>퍼지 없이 H₂ 도입</b> — 잔류 산소와 만나면 폭발(4~75 vol%). 반드시 불활성 치환 후.</li>
+      <li><b>양단 완전 밀폐한 채 가열</b> — 내압 상승 위험. 배기 경로(벤트) 확보.</li>
+      <li><b>배기·환기 없이 유독·가연가스 운전</b> — 가스 정체·중독·폭발 위험.</li>
+      <li><b>급승온·급냉</b> — 세라믹 튜브 열충격 파손. 승온 ≤5~10℃/min 기준, MoSi₂ 로는 400~600℃ 빠르게 통과.</li>
+    </ul>
+
+<h2>자주 묻는 질문</h2>
+    <div class="faq">
+      <p class="q">N₂와 Ar은 뭐가 다른가요?</p>
+      <p class="a">둘 다 불활성이지만 Ar은 더 무겁고 반응성이 낮아 고온·민감한 소재에 선호됩니다. N₂는 경제적이나 일부 금속·고온에서 질화 반응이 있을 수 있습니다.</p>
+      <p class="q">수소(H₂)를 안전하게 쓰려면?</p>
+      <p class="a">관을 불활성으로 충분히 퍼지해 잔류 산소를 제거한 뒤 도입하고, 배기 벤트·누설 점검·환기를 확보합니다. 공기 중 4~75 vol%가 폭발 범위입니다.</p>
+      <p class="q">진공은 어느 정도까지 필요한가요?</p>
+      <p class="a">공정 목적에 따라 다릅니다. 산화 차단·탈가스 수준이면 러프 진공으로 충분한 경우가 많고, 정밀 공정은 더 높은 진공이 필요합니다.</p>
+    </div>
+
+    <div class="cta">
+      <a class="btn p" href="/brands/sh-scientific/guide/">30초 선택 가이드 →</a>
+      <a class="btn s" href="/contact/">견적·A/S 문의</a>
+    </div>
+    <div class="ans" style="margin-top:22px">실험셋업연구소(이머전트)는 <b>삼흥에너지(SH Scientific) 퍼니스 — 구매·국내 A/S는 이머전트</b>으로, 정품 공급·설치·수리와 온도컨트롤러에 Alicat MFC를 연동한 <b>가스·온도 PC 통합 제어</b>까지 지원합니다.</div>
+    <div class="rel">
+      관련: <a href="/brands/sh-scientific/blog/heating-ramp-profile/">승온 프로파일</a> · <a href="/furnace/setups/alicat-mfc-tubefurnace/">MFC 분위기 제어 사례</a> · <a href="/brands/alicat/">Alicat MFC</a>
+    </div>
+    <p class="src" style="margin-top:16px">근거·출처: 수소 폭발 범위(약 4~75 vol%, 공기 중) — <a href="https://www.osti.gov/servlets/purl/1721461" target="_blank" rel="noopener">OSTI</a>·ScienceDirect · MoSi₂ 저온 산화(pesting) 400~600℃ — <a href="https://inis.iaea.org/records/rpnjj-53v53" target="_blank" rel="noopener">IAEA/INIS</a>·ScienceDirect · 발열체 최대 소자온도(FeCrAl 1,425 · SiC 1,625 · MoSi₂ 1,850℃) — <a href="https://www.kanthal.com/en/knowledge-hub/inspiring-stories/heating-elements-explained/" target="_blank" rel="noopener">Kanthal</a>.</p>
+  </div>
+</article>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

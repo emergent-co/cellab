@@ -1,75 +1,84 @@
 # Cloudflare Pages 리다이렉트 — 옛 URL SEO 보존 (query·hash 자동 유지)
 # GitHub Pages에서는 무시됨(HTML 스텁이 대신 처리). CF 전환 후 활성.
 # 체인 금지: 각 옛 URL을 최종 목적지로 1홉 직결.
-/reviews.html      /leadfluid/blog/                  301
-/pump/setups/alicat-mfc-tubefurnace/   /furnace/setups/alicat-mfc-tubefurnace/   301
-/recommend2.html   /leadfluid/guide/   301
-/tubing.html       /leadfluid/guide/   301
+/reviews.html  /brands/leadfluid/blog/  301
+/pump/setups/alicat-mfc-tubefurnace/  /furnace/setups/alicat-mfc-tubefurnace/  301
+/recommend2.html  /brands/leadfluid/guide/  301
+/tubing.html  /brands/leadfluid/guide/  301
 
 # 페이지 통합(2026-07) — 무분별 증식 정리
-/application/pump-pc-control-modbus-rs485      /requests/   301
-/application/pump-flow-schedule-ramp           /requests/   301
-/application/multi-pump-sync-unattended        /requests/   301
-/application/pump-run-log-csv-reproducibility  /requests/   301
-/application/pump-selection    /leadfluid/guide/   301
-/application/tube-selection    /leadfluid/guide/   301
-/pump/faq/                     /faq/           301
-/application/cell-culture-perfusion        /application/biopharmaceutical   301
-/application/chemostat-continuous-culture  /application/biopharmaceutical   301
-/application/organ-on-chip-perfusion       /application/biopharmaceutical   301
-/application/photobioreactor-microalgae    /application/biopharmaceutical   301
-/application/medical-device-ivd            /application/biopharmaceutical   301
-/application/industrial-chemical-material  /application/flow-chemistry      301
-/application/food-beverage                 /application/environmental       301
+/application/pump-pc-control-modbus-rs485  /requests/  301
+/application/pump-flow-schedule-ramp  /requests/  301
+/application/multi-pump-sync-unattended  /requests/  301
+/application/pump-run-log-csv-reproducibility  /requests/  301
+/application/pump-selection  /brands/leadfluid/guide/  301
+/application/tube-selection  /brands/leadfluid/guide/  301
+/pump/faq/  /faq/  301
+/application/cell-culture-perfusion  /application/biopharmaceutical  301
+/application/chemostat-continuous-culture  /application/biopharmaceutical  301
+/application/organ-on-chip-perfusion  /application/biopharmaceutical  301
+/application/photobioreactor-microalgae  /application/biopharmaceutical  301
+/application/medical-device-ivd  /application/biopharmaceutical  301
+/application/industrial-chemical-material  /application/flow-chemistry  301
+/application/food-beverage  /application/environmental  301
 
 # 호환장비 얇은 페이지 통합(2026-07) — 매출·인용 0, LeadFluid 주제 집중. 되돌리려면 이 3줄 삭제 후 sitemap·메뉴 복원.
-/gas/            /alicat/   301
-/vacuum/         /alicat/   301
-/compat/guide/   /alicat/   301
+/gas/  /brands/alicat/  301
+/vacuum/  /brands/alicat/  301
+/compat/guide/  /brands/alicat/  301
 
 # 리드플루이드 허브를 /leadfluid/로 이전(2026-07) — 옛 /pump/leadfluid/* → /leadfluid/*
-/pump/leadfluid/*   /leadfluid/:splat   301
-/pump/leadfluid/    /leadfluid/         301
-/pump/select/       /leadfluid/guide/  301
-/pump/guide/        /leadfluid/blog/    301
-/pump/guide/*       /leadfluid/blog/    301
-/pump/              /leadfluid/         301
-/pumps/             /leadfluid/         301
-/pumps/*            /leadfluid/         301
+/pump/leadfluid/*  /brands/leadfluid/:splat  301
+/pump/leadfluid/  /brands/leadfluid/  301
+/pump/select/  /brands/leadfluid/guide/  301
+/pump/guide/  /brands/leadfluid/blog/  301
+/pump/guide/*  /brands/leadfluid/blog/  301
+/pump/  /brands/leadfluid/  301
+/pumps/  /brands/leadfluid/  301
+/pumps/*  /brands/leadfluid/  301
 
 # 개별 모델 페이지 → 선택가이드(사양 아코디언)로 통합(2026-07)
-/leadfluid/bt101l/*                /leadfluid/guide/   301
-/leadfluid/bt103s/*                /leadfluid/guide/   301
-/leadfluid/bt301l/*                /leadfluid/guide/   301
-/leadfluid/wt600f/*                /leadfluid/guide/   301
-/leadfluid/mf106/*                 /leadfluid/guide/   301
-/leadfluid/bq80s/*                 /leadfluid/guide/   301
-/leadfluid/tyd01-01/*              /leadfluid/guide/   301
-/leadfluid/tfd/*                   /leadfluid/guide/   301
-/leadfluid/ct3001f/*               /leadfluid/guide/   301
-/leadfluid/explosion-proof/*       /leadfluid/guide/   301
-/leadfluid/explosion-proof-gear/*  /leadfluid/guide/   301
-/leadfluid/bt600s/*                /leadfluid/guide/   301
-/leadfluid/select/*                /leadfluid/guide/   301
-/leadfluid/select                  /leadfluid/guide/   301
+/leadfluid/bt101l/*  /brands/leadfluid/guide/  301
+/leadfluid/bt103s/*  /brands/leadfluid/guide/  301
+/leadfluid/bt301l/*  /brands/leadfluid/guide/  301
+/leadfluid/wt600f/*  /brands/leadfluid/guide/  301
+/leadfluid/mf106/*  /brands/leadfluid/guide/  301
+/leadfluid/bq80s/*  /brands/leadfluid/guide/  301
+/leadfluid/tyd01-01/*  /brands/leadfluid/guide/  301
+/leadfluid/tfd/*  /brands/leadfluid/guide/  301
+/leadfluid/ct3001f/*  /brands/leadfluid/guide/  301
+/leadfluid/explosion-proof/*  /brands/leadfluid/guide/  301
+/leadfluid/explosion-proof-gear/*  /brands/leadfluid/guide/  301
+/leadfluid/bt600s/*  /brands/leadfluid/guide/  301
+/leadfluid/select/*  /brands/leadfluid/guide/  301
+/leadfluid/select  /brands/leadfluid/guide/  301
 
 # 브랜드 루트 = 선택 가이드로 통일(2026-07) — 허브 페이지 폐지
-/leadfluid/                        /leadfluid/guide/       301
-/sh-scientific/                    /sh-scientific/guide/   301
+/leadfluid/  /brands/leadfluid/guide/  301
+/sh-scientific/  /brands/sh-scientific/guide/  301
 
 # 스텁 → 서버 301 승격 후 실물 삭제 (2026-07, 관리파일 정리)
-/product/                  /application/            301
-/guide/                    /leadfluid/blog/             301
-/guide-hub/                /                        301
-/quote/                    /contact/                301
-/troubleshooting/*         /pump/atoz/:splat        301
-/pump/troubleshooting/*    /pump/atoz/:splat        301
+/product/  /application/  301
+/guide/  /brands/leadfluid/blog/  301
+/guide-hub/  /  301
+/quote/  /contact/  301
+/troubleshooting/*  /pump/atoz/:splat  301
+/pump/troubleshooting/*  /pump/atoz/:splat  301
 
 # 삼흥 선택가이드를 허브 루트로 통합(2026-07) — /sh-scientific/ 자체가 제품 선택 가이드.
-/sh-scientific/select/     /sh-scientific/   301
-/sh-scientific/select      /sh-scientific/   301
+/sh-scientific/select/  /brands/sh-scientific/  301
+/sh-scientific/select  /brands/sh-scientific/  301
 
 # 무슬래시 안전변형 (검증 중 /pumps·/product 가 홈으로 새던 것 방지)
-/pumps      /leadfluid/   301
-/product    /application/      301
-/leadfluid  /leadfluid/guide/  301
+/pumps  /brands/leadfluid/  301
+/product  /application/  301
+/leadfluid  /brands/leadfluid/guide/  301
+
+
+# brand path consolidation 2026-08
+/sh-scientific/*   /brands/sh-scientific/:splat   301
+/sh-scientific    /brands/sh-scientific/   301
+/leadfluid/*   /brands/leadfluid/:splat   301
+/leadfluid    /brands/leadfluid/   301
+/alicat/*   /brands/alicat/:splat   301
+/alicat    /brands/alicat/   301

@@ -30,8 +30,8 @@
 - `.gitattributes` 삭제·임의수정 금지.
 
 ## 4. 구조 요약 (2026-07 기준)
-- **브랜드 2축**: 리드플루이드 `/leadfluid/{guide,manuals,blog}` + 삼흥에너지 `/sh-scientific/{guide,catalog,manual,blog}`.
-  개별 모델 페이지는 없음 → 전부 `/leadfluid/guide/` **선택 위저드**로 통합(옛 모델 URL은 301).
+- **브랜드 2축**: 리드플루이드 `/brands/leadfluid/{guide,manuals,blog}` + 삼흥에너지 `/brands/sh-scientific/{guide,catalog,manual,blog}`.
+  개별 모델 페이지는 없음 → 전부 `/brands/leadfluid/guide/` **선택 위저드**로 통합(옛 모델 URL은 301).
 - **공유 크롬(SSOT)**: `assets/site.js`(상단바·사이드바 `NAV`·푸터), `assets/site.css`. 색=네이비 `#1E3A5F`, 폰트=Pretendard.
 - **데이터/빌드**: `_build/*.json`(catalog·settings·posts·products·parts·categories) → `_build/build.py`가 `sitemap.xml` 생성(직접 수정 금지).
 - **백엔드**: `functions/`(Cloudflare Functions — `/admin`·`/api`), `rndsetup_products.sql`(D1), `catalog/leadfluid_catalog.py`.

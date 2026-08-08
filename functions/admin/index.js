@@ -102,7 +102,7 @@ function renderHTML(token) {
   <div class="adm-bar">
     <div class="adm-title">제품 관리자</div>
     <div class="adm-actions">
-      <a class="adm-link" href="/sh-scientific/" target="_blank" rel="noopener">삼흥 퍼니스 페이지 ↗</a>
+      <a class="adm-link" href="/brands/sh-scientific/" target="_blank" rel="noopener">삼흥 퍼니스 페이지 ↗</a>
       <button class="adm-publish" id="btnPublish">사이트 반영</button>
     </div>
   </div>
@@ -175,7 +175,7 @@ async function loadPubInfo(){
 function fmt(iso){ try{ return new Date(iso).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}); }catch{ return iso; } }
 async function publish(){
   const b = el('btnPublish'); const t=b.textContent;
-  if(!confirm('현재 등록가능한 삼흥 퍼니스를 사이트(/sh-scientific/)에 반영합니다. 진행할까요?')) return;
+  if(!confirm('현재 등록가능한 삼흥 퍼니스를 사이트(/brands/sh-scientific/)에 반영합니다. 진행할까요?')) return;
   b.disabled=true; b.textContent='반영 중…';
   try{
     const d = await api('/api/admin/publish', { method:'POST' });

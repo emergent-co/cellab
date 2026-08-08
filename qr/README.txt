@@ -16,8 +16,8 @@
   TFD              -> https://rndsetup.com/pump/leadfluid/tfd/
   EF800/900 (Ex)   -> https://rndsetup.com/pump/leadfluid/explosion-proof/
   FG601S (Ex)      -> https://rndsetup.com/pump/leadfluid/explosion-proof-gear/
-  Alicat MFC       -> https://rndsetup.com/alicat/
-  SH Furnace       -> https://rndsetup.com/sh-scientific/
+  Alicat MFC       -> https://rndsetup.com/brands/alicat/
+  SH Furnace       -> https://rndsetup.com/brands/sh-scientific/
   About / Company  -> https://rndsetup.com/about/
   A/S Repair       -> https://rndsetup.com/contact/#repair
   Home             -> https://rndsetup.com/
