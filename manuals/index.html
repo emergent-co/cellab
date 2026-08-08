@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>메뉴얼 모음 — 전기로·펌프·질량유량계(MFC) 사용 메뉴얼 | 실험셋업연구소</title>
-<meta name="description" content="실험셋업연구소 메뉴얼 모음 — 퍼니스(SH Scientific), 펌프(LeadFluid), 질량유량계 MFC(Alicat), 온도컨트롤러(SP590)의 사용법·설정·안전·문제해결을 한 페이지에서 검색하고 펼쳐서 봅니다.">
+<title>메뉴얼 모음 — 전기로·온도컨트롤러·펌프·질량유량계(MFC) | 실험셋업연구소</title>
+<meta name="description" content="실험셋업연구소 메뉴얼 모음 — 퍼니스·온도컨트롤러(SH Scientific·SP590), 펌프(LeadFluid), 질량유량계 MFC(Alicat)의 사용법·시뮬레이터를 한 페이지에서 바로 봅니다.">
 <link rel="canonical" href="https://rndsetup.com/manuals/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="메뉴얼 모음 — 전기로·펌프·질량유량계(MFC) 사용 메뉴얼">
-<meta property="og:description" content="퍼니스(SH Scientific)·펌프(LeadFluid)·MFC(Alicat)·온도컨트롤러 메뉴얼을 한 페이지에서 검색·열람.">
+<meta property="og:title" content="메뉴얼 모음 — 퍼니스·온도컨트롤러·펌프·MFC">
+<meta property="og:description" content="퍼니스·온도컨트롤러, 펌프(LeadFluid), MFC(Alicat) 메뉴얼·시뮬레이터를 한 페이지에서.">
 <meta property="og:url" content="https://rndsetup.com/manuals/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -19,43 +19,35 @@
 <style>
   :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--green:#1E3A5F;--green-2:#2a5a8f;--green-bg:#EDF1F8;--line:#EAEAEA;--serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
-  .hero{padding:52px 0 8px}
-  .crumb{font-size:12.5px;color:var(--green-2);font-weight:700;letter-spacing:.03em;margin-bottom:12px}
-  h1{font-family:var(--serif);font-size:clamp(24px,5vw,33px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
-  .hero p{font-size:15px;color:var(--gray);margin-top:10px}
-  .msearch{position:relative;margin:22px 0 20px}
-  .msearch input{width:100%;height:52px;font-size:15.5px;font-family:inherit;border:1px solid #d6dde6;border-radius:12px;padding:0 46px 0 44px;background:#fff}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px}
+  .hero{padding:48px 0 4px}
+  .crumb{font-size:12.5px;color:var(--green-2);font-weight:700;letter-spacing:.03em;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(23px,5vw,31px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+  .msearch{position:relative;margin:20px 0 18px}
+  .msearch input{width:100%;height:50px;font-size:15.5px;font-family:inherit;border:1px solid #d6dde6;border-radius:12px;padding:0 44px;background:#fff}
   .msearch input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(30,58,95,.08)}
   .msearch svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--gray-2);fill:none;stroke-width:2;stroke-linecap:round}
   .mnohit{display:none;color:var(--gray);font-size:14px;padding:14px 2px}
-  .macc{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
-  .macc>summary{list-style:none;cursor:pointer;padding:18px 20px;display:flex;align-items:center;gap:14px}
+  .macc{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:14px;overflow:hidden}
+  .macc>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:center;gap:13px}
   .macc>summary::-webkit-details-marker{display:none}
-  .macc .ic{flex:0 0 auto;width:42px;height:42px;border-radius:10px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--green);font-size:15px}
+  .macc .ic{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:800;color:var(--green);font-size:14px}
   .macc .tt{flex:1;min-width:0}
-  .macc .tt b{display:block;font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink)}
-  .macc .tt span{font-size:12.5px;font-weight:700;letter-spacing:.04em;color:var(--green-2)}
-  .macc .pl{flex:0 0 auto;font-size:24px;font-weight:300;color:var(--green-2);transition:transform .2s}
+  .macc .tt b{display:block;font-family:var(--serif);font-size:16.5px;font-weight:700;color:var(--ink)}
+  .macc .tt span{font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--green-2)}
+  .macc .pl{flex:0 0 auto;font-size:23px;font-weight:300;color:var(--green-2);transition:transform .2s}
   .macc[open] .pl{transform:rotate(45deg)}
-  .macc .panel{padding:2px 22px 22px;font-size:14px;color:#374350;line-height:1.7}
-  .macc .panel h4{font-family:var(--serif);font-size:14.5px;font-weight:800;color:var(--ink);margin:16px 0 6px}
-  .macc .panel ul{margin:2px 0 0;padding-left:18px}
-  .macc .panel li{margin:5px 0}
-  .macc .panel li b{color:var(--ink)}
-  .macc .mtbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 2px}
-  .macc .mtbl th,.macc .mtbl td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
-  .macc .mtbl th{background:var(--green-bg);color:#26333f;font-weight:700;white-space:nowrap}
-  .macc .mtbl td b{color:var(--ink)}
-  .macc .sim{display:inline-block;margin-top:16px;background:var(--green);color:#fff;font-weight:800;font-size:13px;padding:10px 18px;border-radius:9px}
-  .macc .sim:hover{background:#16304e}
-  .macc .note{font-size:12.5px;color:var(--gray);margin-top:10px}
-  .macc .simframe{margin-top:8px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
-  .macc .simframe iframe{display:block;width:100%;height:560px;border:0}
-  .macc .simframe.tall iframe{height:720px}
-  @media(max-width:520px){.macc .simframe iframe{height:520px}.macc .simframe.tall iframe{height:640px}}
+  .macc .panel{padding:0 16px 16px}
+  .macc .lead{font-size:13.5px;color:#5a6570;line-height:1.6;margin:0 4px 12px}
+  .macc .lead b{color:var(--ink)}
+  .simframe{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .simframe iframe{display:block;width:100%;height:640px;border:0}
+  .mtbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .mtbl th,.mtbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  .mtbl th{background:var(--green-bg);color:#26333f;font-weight:700;white-space:nowrap}
+  .mtbl td b{color:var(--ink)}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진", "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
@@ -66,39 +58,37 @@
   <div class="wrap">
     <div class="crumb">메뉴얼 모음</div>
     <h1>메뉴얼 모음</h1>
-    <p>퍼니스·펌프·질량유량계(MFC)·온도컨트롤러 메뉴얼을 이 페이지에서 검색하고, 카드를 눌러 그대로 펼쳐 보세요.</p>
   </div>
 </section>
 
 <div class="wrap">
   <div class="msearch">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    <input id="mq" type="search" placeholder="메뉴얼 검색 — 예: 승온, Gas Select, SCCM, RS485, 튜브 교체" autocomplete="off">
+    <input id="mq" type="search" placeholder="메뉴얼 검색 — 퍼니스 · 온도컨트롤러 · 펌프 · MFC" autocomplete="off">
   </div>
 
   <div id="mlist">
 
-    <details class="macc">
-      <summary><span class="ic">퍼</span><span class="tt"><b>퍼니스</b><span>SH SCIENTIFIC · 전기로·튜브퍼니스</span></span><span class="pl">+</span></summary>
+    <details class="macc" open>
+      <summary><span class="ic">퍼</span><span class="tt"><b>퍼니스 · 온도컨트롤러</b><span>SH SCIENTIFIC · SP590</span></span><span class="pl">+</span></summary>
       <div class="panel">
-        삼흥에너지 관상형(튜브)·박스형(머플로) 전기로. 대부분 <b>SP590</b> 온도컨트롤러가 탑재됩니다(설정·문제해결은 아래 <b>온도컨트롤러</b> 카드 참고).
-        <h4>⚠ 안전 주의</h4>
-        <ul>
-          <li><b>과열 방지</b> — 과온 알람·차단 확인, 이상 승온 시 즉시 정지.</li>
-          <li><b>가연성·환원 가스(H₂)</b> — 누설·환기·점화원 관리, 배기·인터록 필수.</li>
-          <li><b>고온 표면</b> — 충분히 냉각 후 취급.</li>
-          <li><b>소모품</b> — 발열체·열전대·실링 수명 저하 시 온도 편차·고장의 원인.</li>
-        </ul>
-        <h4>상시 사용 온도</h4>
-        <ul><li>정격 최고온도보다 여유를 두세요(예: 1200℃ 정격 → 상시 1050℃ 이하 권장). 발열체·석영튜브 수명 관리를 위해서입니다.</li></ul>
+        <p class="lead">전기로·튜브퍼니스 조작 = 탑재 온도컨트롤러(SP590) 조작입니다. 아래 가상 컨트롤러로 온도 스케줄·반복·RS485를 바로 연습하세요. <b>안전:</b> 과열 차단·가연성가스 환기·고온 표면 주의.</p>
+        <div class="simframe tall"><iframe src="/temp-controller-guide/?embed=1" title="퍼니스 온도컨트롤러 시뮬레이터" loading="lazy"></iframe></div>
       </div>
     </details>
 
-    <details class="macc">
-      <summary><span class="ic">펌</span><span class="tt"><b>펌프</b><span>LEADFLUID · 연동·시린지·기어·정량</span></span><span class="pl">+</span></summary>
+    <details class="macc" open>
+      <summary><span class="ic">MFC</span><span class="tt"><b>MFC (질량유량계)</b><span>ALICAT</span></span><span class="pl">+</span></summary>
       <div class="panel">
-        리드플루이드 대표 모델과 사용 요령입니다. 유량 단위 <b>mL/min</b>. (모델별 상세 매뉴얼·레지스터맵은 문의 시 제공)
-        <h4>대표 모델</h4>
+        <p class="lead">SCCM 유량 설정 · Gas Select 가스 변경. 아래에서 바로 눌러보세요.</p>
+        <div class="simframe"><iframe src="/brands/alicat/manual/?embed=1" title="Alicat MFC 메뉴얼·시뮬레이터" loading="lazy"></iframe></div>
+      </div>
+    </details>
+
+    <details class="macc" open>
+      <summary><span class="ic">펌</span><span class="tt"><b>펌프</b><span>LEADFLUID</span></span><span class="pl">+</span></summary>
+      <div class="panel">
+        <p class="lead">대표 모델 (유량 mL/min · RS485 ○ = PC 제어 지원). 상세 매뉴얼·레지스터맵은 문의 시 제공.</p>
         <table class="mtbl">
           <tr><th>모델</th><th>종류</th><th>유량(mL/min)</th><th>채널</th><th>RS485</th></tr>
           <tr><td><b>BT101L</b></td><td>지능형 연동</td><td>0.00011–750</td><td>1·2·4</td><td>○</td></tr>
@@ -109,84 +99,46 @@
           <tr><td><b>TYD01-01</b></td><td>시린지</td><td>0.184 nL–83.3</td><td>1</td><td>○</td></tr>
           <tr><td><b>CT3001F</b></td><td>PEEK 기어</td><td>15–2700</td><td>—</td><td>○</td></tr>
         </table>
-        <h4>사용 요령</h4>
-        <ul>
-          <li><b>헤드 장착·튜브 교체</b> — 튜브를 롤러에 균일하게 장착. 눌림이 과하면 튜브 수명·유량 정확도가 떨어집니다.</li>
-          <li><b>PC 제어</b> — RS485(Modbus RTU)로 유량·Start/Stop·시퀀스·다펌프 동기. 지원 모델은 위 표의 RS485 ○.</li>
-          <li><b>정량 분주</b> — 점도·튜브에 따라 실제 토출량이 달라집니다. 정밀 분주는 실제 액체로 캘리브레이션하세요.</li>
-        </ul>
-      </div>
-    </details>
-
-    <details class="macc">
-      <summary><span class="ic">MFC</span><span class="tt"><b>MFC</b><span>ALICAT · 질량유량계</span></span><span class="pl">+</span></summary>
-      <div class="panel">
-        Alicat MFC는 <b>SCCM</b> 등 표준 단위로 setpoint를 설정하고, <b>Gas Select™</b>로 98종 이상 가스를 재교정 없이 바꿉니다. (MC 시리즈 전면 버튼 기준)
-        <h4>1) SCCM 유량 설정</h4>
-        <ul>
-          <li><b>단위 확인</b> — Mass Flow 단위가 SCCM인지 확인. (변경: <b>MENU → Basic Config → DEVICE UNITS → Mass Flow → SCCM → SET</b>)</li>
-          <li><b>설정값 입력</b> — <b>SETPT</b> 소프트키 → 값 입력(예: 100 SCCM) → <b>SET</b>. 실측(Mass Flow)과 설정값이 함께 표시됩니다.</li>
-          <li><b>정지</b> — 설정값을 <b>0</b>으로 하면 밸브를 닫아 정지. 풀스케일 초과값은 입력되지 않습니다.</li>
-          <li><b>단위 변환</b> — <b>1 SLPM = 1000 SCCM</b> (예: 15.44 SLPM = 15,440 SCCM). 저유량은 SCCM, 대유량은 SLPM이 읽기 편합니다.</li>
-        </ul>
-        <h4>2) 가스 변경 (Gas Select™)</h4>
-        <ul>
-          <li>메뉴 진입 — <b>MENU → Basic Configuration → GAS</b>.</li>
-          <li>카테고리 선택 — Standard·Bioreactor·Breathing·Chromatography·Laser·COMPOSER 등 → <b>SELECT</b>.</li>
-          <li>가스 선택 — Air·N₂·Ar·H₂·He·CO₂·CH₄·CO … 이동 후 <b>SET</b>. 재시작 없이 즉시 반영됩니다.</li>
-          <li>혼합가스 — 2종 이상은 <b>COMPOSER™ User Mixes</b>로 조성 정의. 부식성·독성 가스는 내식 시리즈(MCS·MCSS) 사양 확인.</li>
-        </ul>
-        <h4>⚠ 주의</h4>
-        <ul><li>실제 흐르는 가스와 Gas Select 설정을 반드시 일치시키세요(불일치 시 측정·제어 오차).</li></ul>
-        <h4>직접 해보기 — 가상 시뮬레이터</h4>
-        <div class="simframe"><iframe src="/brands/alicat/manual/?embed=1" title="Alicat MFC 가상 시뮬레이터" loading="lazy"></iframe></div>
-      </div>
-    </details>
-
-    <details class="macc">
-      <summary><span class="ic">온도</span><span class="tt"><b>온도컨트롤러</b><span>SP590 · NOVA500E</span></span><span class="pl">+</span></summary>
-      <div class="panel">
-        삼흥에너지 전기로에 탑재되는 온도컨트롤러(삼원테크 NOVA500E 시리즈, SP590 등)의 기본 조작·문제해결입니다.
-        <h4>기본 흐름</h4>
-        <ul>
-          <li><b>온도 스케줄</b> — 세그먼트별 목표온도·시간(램프 상승 / 유지 HOLD / 하강)을 설정.</li>
-          <li><b>운전 시작·정지</b> — RUN / STOP. 시작 조건(STC) 기본은 PV(현재온도), 지정 시작점부터면 <b>STC=SSP</b> + SSP 값 설정.</li>
-          <li><b>구간 반복(사이클)</b> — RPT(횟수)·RST(시작)·REN(종료)을 설정, <b>RST ≤ REN</b>. 패턴 전체 반복은 종료동작(LC)을 자기 패턴으로 지정.</li>
-          <li><b>RS485 통신</b> — COM.P·BAUD·PRTY·S.BIT·D.LEN·ADDR을 상위 프로그램과 일치, ADDR 중복 금지.</li>
-        </ul>
-        <h4>자주 막히는 것 (문제해결)</h4>
-        <ul>
-          <li><b>버튼 무반응</b> — Key 잠금(LOCK). 제어그룹(G.CTL)의 LOCK 해제.</li>
-          <li><b>오토튜닝(AT) 안 됨</b> — RUN 상태에서만 실행. 운전 시작·센서(PV) 정상 확인 후 G.AT에서 AT=ON.</li>
-          <li><b>반복 안 됨</b> — RPT·RST·REN 설정 및 RST ≤ REN 확인.</li>
-          <li><b>세그먼트 멈춤</b> — 대기동작(Wait). PV가 대기범위(W.ZON)에 들 때까지 대기 → 원치 않으면 W.ZON=OFF.</li>
-          <li><b>RS485 불통</b> — 통신옵션 장착·A/B 배선·파라미터 일치·ADDR 중복 확인.</li>
-        </ul>
-        <div class="note">※ 삼원테크 NOVA500E(SP590 등) 사용설명서를 참고한 학습 자료이며, 화면·동작은 실제 제품과 다를 수 있습니다.</div>
-        <h4>직접 해보기 — 가상 컨트롤러</h4>
-        <div class="simframe tall"><iframe src="/temp-controller-guide/?embed=1" title="온도컨트롤러 가상 시뮬레이터" loading="lazy"></iframe></div>
       </div>
     </details>
 
   </div>
-  <div id="mnohit" class="mnohit">검색 결과가 없습니다. 다른 키워드로 시도해 보세요.</div>
+  <div id="mnohit" class="mnohit">검색 결과가 없습니다.</div>
 </div>
 
 <div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
 <script src="/assets/site.js" defer></script>
 <script>
 (function(){
+  // 검색 필터
   var q=document.getElementById('mq'), no=document.getElementById('mnohit');
   var cards=[].slice.call(document.querySelectorAll('.macc'));
-  q.addEventListener('input', function(){
+  if(q) q.addEventListener('input', function(){
     var v=q.value.trim().toLowerCase(), hits=0;
     cards.forEach(function(c){
       var hit = !v || c.textContent.toLowerCase().indexOf(v) > -1;
       c.style.display = hit ? '' : 'none';
-      c.open = !!v && hit;
       if(hit) hits++;
     });
     no.style.display = (v && hits===0) ? 'block' : 'none';
+  });
+
+  // iframe을 내용 높이에 맞춰 자동 확장 (같은 도메인 → 잘림 없음)
+  function fit(fr){
+    try{
+      var d=fr.contentDocument||fr.contentWindow.document;
+      if(!d||!d.body) return;
+      var h=Math.max(d.body.scrollHeight, d.documentElement.scrollHeight);
+      if(h>100) fr.style.height=h+'px';
+    }catch(e){}
+  }
+  [].slice.call(document.querySelectorAll('.simframe iframe')).forEach(function(fr){
+    fr.addEventListener('load', function(){
+      fit(fr);
+      // 시뮬레이터 조작으로 높이가 변할 때 대응
+      try{ new ResizeObserver(function(){fit(fr);}).observe((fr.contentDocument||fr.contentWindow.document).body); }catch(e){}
+      var n=0, t=setInterval(function(){ fit(fr); if(++n>12) clearInterval(t); }, 500);
+    });
   });
 })();
 </script>
