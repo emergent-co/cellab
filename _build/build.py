@@ -386,6 +386,8 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
     ('/brands/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
+    ('/brands/', '브랜드 소개 — 삼흥에너지·리드플루이드·Alicat'),
+    ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
