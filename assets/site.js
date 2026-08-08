@@ -7,7 +7,7 @@
   var path = location.pathname;
 
   var SEARCH_INDEX = [
-    { t:'홈', u:'/', k:'소프트웨어 제어 펌프 시스템 관류', c:'페이지' },
+    { t:'홈 — 실험 셋업 매거진', u:'/', k:'실험 셋업 매거진 논문 셋업 공정 조건 필요 장비 열처리 증착 유체 펌프 분석 공유', c:'페이지' },
     { t:'리드플루이드(LeadFluid) — 정품·국내 A/S·제어', u:'/leadfluid/guide/', k:'리드플루이드 leadfluid 정품 국내 as 수리 3년보증 연동 시린지 기어 정량펌프 baoding ingersoll rand 나비엠알오 제어 소프트웨어', c:'리드플루이드' },
     { t:'Masterflex·Watson-Marlow 연동펌프 국내 대안', u:'/compare/imported-peristaltic-alternative/', k:'마스터플렉스 masterflex 왓슨말로우 watson-marlow 이즈마텍 ismatec 대안 비교 갈아타기 수입 연동펌프 국내 as 제어', c:'비교' },
     { t:'ALICAT 질량유량계(MFC) 브랜드', u:'/alicat/', k:'alicat 알리캣 질량유량계 mfc mass flow controller 다기체 응답속도 rs485 modbus 소프트웨어 호환 장비', c:'호환 장비' },
@@ -32,7 +32,7 @@
     { t:'연동펌프 유량 캘리브레이션 방법', u:'/pump/atoz/flow-calibration/', k:'유량 캘리브레이션 보정 calibration 연동펌프 설정값 실제유량 드리프트 저울 메스실린더 보정계수 재현성', c:'펌프를 고를 때' },
     { t:'연동펌프 튜브 규격·펌프헤드 가이드', u:'/pump/atoz/tube-size-guide/', k:'튜브 규격 번호 내경 mm 13 14 16 25 17 18 펌프헤드 YT25 YZ35 튜브 재질 실리콘 tygon pharmed viton 연동펌프', c:'펌프를 고를 때' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
-    { t:'기술자료 허브 — 사용법·문제해결·제어 자동화', u:'/', k:'기술자료 사용법 가이드 문제해결 캘리브레이션 자동화 허브', c:'페이지' },
+    { t:'실험 셋업 매거진 — 논문 셋업 분석', u:'/magazine/', k:'실험 셋업 매거진 논문 셋업 분석 열처리 증착 퍼니스 유체 펌프 공정 조건 장비 magazine', c:'매거진' },
     { t:'온도컨트롤러(SP590·NOVA500E) 사용법 가이드', u:'/temp-controller-guide/', k:'온도컨트롤러 sp590 sp570 nova500e 삼원테크 사용법 전기로 온도 설정 승온 유지 하강 반복 hold 무한반복 rs485 가상 시뮬레이터 삼흥에너지', c:'호환 장비' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
   ];
@@ -125,7 +125,7 @@
 
   var FOOTER =
     '<section class="cta-band"><div class="cta-band-in">' +
-      '<div class="cta-band-t">실험 장비 시스템 통합·제어 · 온도·진공·유량 통합 제어 · 국내 직접 A/S</div>' +
+      '<div class="cta-band-t">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진 · 장비 문의 시 할인가 안내 · 구매·A/S는 이머전트</div>' +
       '<div class="cta-band-btns">' +
         '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="band_navimro">구매 (나비엠알오) →</a>' +
         '<a href="/repair/" data-ga="band_repair">A/S·수리 접수 →</a>' +
