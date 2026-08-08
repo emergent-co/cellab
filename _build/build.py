@@ -443,6 +443,59 @@ def _crawler_nav_html():
     return '<nav class="crawler-nav" aria-label="사이트 전체 링크">' + groups + '</nav>'
 
 
+def inject_setup_cta():
+    """논문 셋업 글 하단에 '이 셋업 구성 그대로 견적·솔루션' CTA를 정적 주입(마커 기반 idempotent).
+    셋업명을 ?setup=로 문의폼에 전달해 자동 채움. setups/·furnace/setups/·pump/setups/ 개별 글과
+    magazine 논문글만 대상(허브 index·카테고리 허브 제외). </article> 포함 + h1 존재 조건."""
+    from urllib.parse import quote
+    START, END = '<!--SETUPCTA_START-->', '<!--SETUPCTA_END-->'
+    HUB = {'setups/index.html', 'furnace/setups/index.html', 'pump/setups/index.html'}
+    EXTRA = {'magazine/sofc-hcl-syngas/index.html'}  # 매거진 논문글(명시적으로만)
+    count = 0
+    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        if '_build' in dirpath.split(os.sep):
+            continue
+        rel_dir = os.path.relpath(dirpath, ROOT_DIR).replace(os.sep, '/')
+        in_setup_dir = rel_dir in ('setups', 'furnace/setups', 'pump/setups') or \
+            rel_dir.startswith('setups/') or rel_dir.startswith('furnace/setups/') or rel_dir.startswith('pump/setups/')
+        for fn in filenames:
+            if not fn.endswith('.html'):
+                continue
+            rel = (rel_dir + '/' + fn) if rel_dir != '.' else fn
+            if rel in HUB:
+                continue
+            if not (in_setup_dir or rel in EXTRA):
+                continue
+            p = os.path.join(dirpath, fn)
+            html = read(p)
+            if 'http-equiv="refresh"' in html or '</article>' not in html:
+                continue
+            m = re.search(r'<h1[^>]*>(.*?)</h1>', html, re.S)
+            if not m:
+                continue
+            title = re.sub(r'<[^>]+>', '', m.group(1)).strip()
+            if not title:
+                continue
+            block = (
+                '<section class="setup-cta" style="margin:26px 0 8px;border:1px solid #d6e0ee;border-radius:14px;padding:22px 22px;background:#EDF1F8">'
+                '<div style="font-size:12px;font-weight:800;letter-spacing:.04em;color:#1E3A5F;margin-bottom:7px">솔루션 패키지</div>'
+                '<h3 style="font-size:18px;font-weight:700;color:#1E3A5F;margin:0 0 8px;line-height:1.4">이 셋업 구성 그대로 견적·솔루션 문의</h3>'
+                '<p style="font-size:14px;color:#3a4650;line-height:1.75;margin:0 0 14px">위에 정리한 장비·모듈 구성을 기준으로 견적과 통합 셋업(구성·제어·연동·설치)을 안내해 드립니다. 다른 브랜드·조건도 함께 맞춰 드립니다.</p>'
+                '<a href="/contact/?setup=' + quote(title) + '#general" style="display:inline-block;background:#1E3A5F;color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:9px;text-decoration:none">이 셋업으로 문의하기 &rarr;</a>'
+                '</section>'
+            )
+            if START in html:
+                html2, ok = _inject_between(html, START, END, block)
+            else:
+                idx = html.rfind('</article>')
+                html2 = html[:idx] + START + block + END + html[idx:]
+                ok = True
+            if ok and html2 != html:
+                write(p, html2)
+                count += 1
+    print(f'  셋업 CTA 주입: {count}개 페이지')
+
+
 def inject_static_nav():
     """모든 콘텐츠 페이지의 #pumplab-footer div에 정적 링크 nav 주입(크롤러 가시화, 마커 기반 idempotent).
     리다이렉트 페이지(meta refresh)는 건드리지 않음."""
@@ -992,6 +1045,7 @@ def main():
     build_setups()  # /setups/index.html 논문 셋업 6편 정적 렌더 (posts.json type=setup)
     build_home_paper_cases()  # 홈 '논문 사례' 카드 정적 렌더 (paper_cases.json · 공정 변수 SSOT)
     build_rss()  # feed.xml (RSS 2.0) — 매거진 구독·애그리게이터
+    inject_setup_cta()  # 논문 셋업 글 하단 '이 셋업 그대로 견적·솔루션' CTA(?setup= 전달)
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()
