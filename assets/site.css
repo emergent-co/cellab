@@ -431,3 +431,12 @@ a.pcat{text-decoration:none;color:inherit}
 .mag-pick .pcat.dim{opacity:.6}
 .mag-pick .pcat.dim .go{color:var(--gray-2)}
 .mag-pick .pcat.dim:hover{transform:none;box-shadow:none}
+
+/* 임베드 모드(?embed=1): iframe으로 삽입될 때 시뮬레이터·메뉴얼 본문만 남기고 중복 요소 숨김 */
+html.embed .crumb,
+html.embed .sd-crumb{display:none!important}
+html.embed .cta,
+html.embed .rel{display:none!important}
+html.embed .tcg-wrap>h1,
+html.embed .tcg-wrap>p.note{display:none!important}
+html.embed body{padding-top:0!important}
