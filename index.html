@@ -23,68 +23,8 @@
 <style>
   .home-main{ padding:30px 40px 72px; }
   .hwrap{ max-width:900px; margin:0 auto; }
-  /* 1) 소프트웨어 다운로드 프로모 */
-  .h-promo{ display:block; background:#fff; border:1px solid #e3e8ef; border-radius:20px; padding:34px 36px; color:var(--ink); overflow:hidden; }
-  .h-promo .p-top{ display:flex; align-items:center; justify-content:space-between; gap:22px; }
-  .h-promo .p-compat{ margin-top:26px; padding-top:22px; border-top:1px solid #eef1f5; }
-  .h-promo .p-compat-h{ font-size:14px; font-weight:700; color:var(--ink); margin-bottom:4px; }
-  .h-promo .p-compat-sub{ font-size:13px; color:#5a6470; margin:0 0 14px; line-height:1.6; }
-  .h-promo .p-sub{ font-size:13px; font-weight:700; color:var(--green); margin-bottom:8px; }
-  .h-promo h1{ font-family:var(--serif); font-size:clamp(22px,4.6vw,29px); font-weight:700; color:var(--ink); line-height:1.32; letter-spacing:-.02em; }
-  .h-promo .p-tx p{ font-size:14.5px; color:#5a6470; margin-top:11px; max-width:430px; line-height:1.6; }
-  .h-promo .p-btn{ display:inline-block; margin-top:20px; background:var(--green); color:#fff; font-weight:800; font-size:14.5px; padding:12px 22px; border-radius:10px; }
-  .h-promo .p-ill{ flex:0 0 auto; cursor:zoom-in; text-align:center; }
-  .h-promo .p-ill svg{ width:246px; height:auto; border-radius:11px; filter:drop-shadow(0 6px 18px rgba(8,25,50,.14)); }
-  .h-promo .p-ill-cap{ display:block; margin-top:8px; font-size:12px; font-weight:700; color:#5a6470; }
-  .sw-zoom{ position:fixed; inset:0; background:rgba(8,20,40,.74); display:none; align-items:center; justify-content:center; padding:18px; z-index:200; cursor:zoom-out; }
-  .sw-zoom.on{ display:flex; }
-  .sw-zoom svg, .sw-zoom img{ width:min(94vw,880px); height:auto; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.45); display:block; }
-  .home-pager{ display:flex; justify-content:center; gap:6px; margin:26px 0 8px; flex-wrap:wrap; }
-  .home-pager button{ min-width:34px; height:34px; padding:0 10px; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
-  .home-pager .pg-num.on{ background:var(--green); color:#fff; border-color:var(--green); }
-  .home-pager button:disabled{ opacity:.4; cursor:default; }
-  .h-subcta{ display:flex; gap:18px; flex-wrap:wrap; margin:14px 4px 0; }
-  .h-subcta a{ font-size:13.5px; font-weight:700; color:var(--green); }
-  .trust-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 9px; margin:16px 4px 0; padding:11px 16px; background:#f6f8fb; border:1px solid var(--line); border-radius:10px; font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.5; }
-  .trust-bar span{ color:var(--gray-2); }
-  .trust-bar a{ color:var(--green); font-weight:700; }
-  .paper-strip{ display:block; margin:10px 4px 0; padding:11px 16px; background:var(--green-bg,#eef4ee); border:1px solid #d6e0ee; border-radius:10px; font-size:13px; font-weight:600; color:#26333f; }
-  .paper-strip b{ color:var(--ink); }
-  .paper-strip:hover{ background:#e6efe6; }
-  /* 섹션 제목 */
-  .h-sec-t{ font-family:var(--serif); font-size:clamp(20px,4.2vw,24px); font-weight:700; color:var(--ink); letter-spacing:-.02em; margin:42px 0 18px; }
-  /* 2) 펌프실험 A-Z 타일 */
-  .h-cats{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  .h-cat{ display:block; }
-  .h-cat .tile{ background:linear-gradient(135deg,#33557E,#1E3A5F); border-radius:16px; aspect-ratio:1/.66; display:flex; align-items:center; justify-content:center; transition:transform .15s; }
-  .h-cat:hover .tile{ transform:translateY(-4px); }
-  .h-cat .tile svg{ width:46px; height:46px; stroke:#fff; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-  .h-cat .tile{ overflow:hidden; }
-  .h-cat .tile img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .h-cat b{ display:block; font-size:15px; font-weight:700; color:var(--ink); margin-top:12px; }
-  .h-cat span{ display:block; font-size:12.5px; color:var(--gray-2); margin-top:2px; }
-  /* 3) 최신 아티클 */
-  .h-art{ display:flex; gap:20px; padding:20px 0; border-top:1px solid var(--line); }
-  .h-art:first-child{ padding-top:6px; }
-  .h-art-img{ flex:0 0 188px; width:188px; height:118px; border-radius:12px; overflow:hidden; background:var(--soft-blue); }
-  .h-art-img img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .h-art-bd{ min-width:0; display:flex; flex-direction:column; justify-content:center; }
-  .h-art-bd h3{ font-family:var(--sans); font-size:16px; font-weight:700; color:var(--ink); line-height:1.4; }
-  .h-art:hover h3{ color:var(--green); }
-  .h-art-bd p{ font-size:13.5px; color:var(--gray); line-height:1.55; margin-top:6px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .h-art-meta{ font-size:12px; color:var(--gray-2); margin-top:8px; }
-  .h-art-meta b{ color:var(--green); font-weight:700; }
   @media(max-width:640px){
     .home-main{ padding:24px 20px 56px; }
-    .h-promo{ padding:26px 24px; }
-    .h-promo .p-top{ flex-direction:column; align-items:flex-start; }
-    .h-promo .p-ill{ display:block; width:100%; margin-top:20px; }
-    .h-promo .p-ill svg{ width:100%; }
-    .h-cats{ grid-template-columns:1fr 1fr 1fr; gap:10px; }
-    .h-cat .tile svg{ width:30px; height:30px; }
-    .h-cat b{ font-size:12.5px; }.h-cat span{ display:none; }
-    .h-art{ gap:14px; }
-    .h-art-img{ flex-basis:124px; width:124px; height:82px; }
   }
 </style>
 <link rel="stylesheet" href="/assets/site.css">

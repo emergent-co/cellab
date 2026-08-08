@@ -704,7 +704,6 @@ BREADCRUMB_SECTIONS = {
     'contact': ('문의하기', '/contact/'),
     'faq': ('자주 묻는 질문(FAQ)', '/faq/'),
     'gas': ('기체', '/gas/'),
-    'vacuum': ('진공', '/vacuum/'),
     'alicat': ('ALICAT', '/brands/alicat/'),
     'sh-scientific': ('삼흥에너지', '/brands/sh-scientific/guide/'),
     'guide': ('실험 셋업 가이드', '/guide/'),

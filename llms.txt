@@ -26,7 +26,6 @@
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
 - [펌프 종류·선택](https://rndsetup.com/brands/leadfluid/guide/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
 - [기체 유량 제어(MFC)](https://rndsetup.com/gas/): 질량유량계(Alicat MC-Series 등) 공급·시스템 연동. 튜브퍼니스 가스 분위기·CVD·촉매·가스 혼합비 제어 셋업 정보
-- [진공 셋업](https://rndsetup.com/vacuum/): 오일 회전식 vs 다이아프램 진공펌프 선택 정보(감압증류·탈기·건조·여과 등 실험 진공)
 - [소프트웨어 제어](https://rndsetup.com/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
   - [유량 스케줄·ramp 자동화하는 법](https://rndsetup.com/application/pump-flow-schedule-ramp)
   - [다펌프 동기·무인 장시간 운전 구성하는 법](https://rndsetup.com/application/multi-pump-sync-unattended)
