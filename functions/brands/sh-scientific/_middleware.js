@@ -20,7 +20,7 @@
 //     삼흥 일부 모델(SH-FU-4MS/11MS/22MS, 2MSU/4MSU/6MSU)은 온도등급(1700/1800/1900℃)이
 //     같은 model 값을 공유해 가격이 서로 다르다 → 아무거나 고르면 틀린 가격이 노출된다.
 
-const PREFIX = '/brands/sh-scientific/catalog';
+const PREFIX = '/brands/sh-scientific';
 
 export async function onRequest(context) {
   const res = await context.next();

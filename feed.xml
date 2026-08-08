@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>실험셋업연구소 — 실험 셋업 매거진</title>
+    <link>https://rndsetup.com/magazine/</link>
+    <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
+    <language>ko</language>
+    <lastBuildDate>Sat, 08 Aug 2026 18:51:27 +0900</lastBuildDate>
+    <item>
+      <title>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다가스 분위기·온도 정밀 제어 셋업</title>
+      <link>https://rndsetup.com/magazine/sofc-hcl-syngas/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/sofc-hcl-syngas/</guid>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[다채널 MFC + 튜브퍼니스 800·900℃ 셋업. 미량 HCl의 가역적 열화와 재현 조건 정리.]]></description>
+      <category>연료전지</category><category>SOFC</category><category>가스분위기</category><category>MFC</category><category>튜브퍼니스</category>
+    </item>
+    <item>
+      <title>심장 체외 관류(ex situ) — 미세연동펌프 BT101L</title>
+      <link>https://rndsetup.com/setups/heart-eshp-bt101</link>
+      <guid isPermaLink="true">https://rndsetup.com/setups/heart-eshp-bt101</guid>
+      <pubDate>Tue, 07 Jul 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[정상체온 체외 심장 관류(ESHP) 회로 구동에 사용]]></description>
+      <category>심장</category><category>장기관류</category><category>연동펌프</category><category>BT101</category><category>Frontiers</category>
+    </item>
+    <item>
+      <title>혐기성 메탄산화 반응기 액상 순환 — 연동펌프 BT600S</title>
+      <link>https://rndsetup.com/setups/damo-recirculation-bt600s</link>
+      <guid isPermaLink="true">https://rndsetup.com/setups/damo-recirculation-bt600s</guid>
+      <pubDate>Mon, 06 Jul 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[막 바이오필름 반응기(MBfR) 완전혼합 200 mL/min 순환에 사용]]></description>
+      <category>환경</category><category>바이오필름반응기</category><category>메탄산화</category><category>연동펌프</category><category>BT600S</category>
+    </item>
+    <item>
+      <title>폐수 질산화 반응기 pH 제어 — 정량펌프 BQ50S</title>
+      <link>https://rndsetup.com/setups/nitrification-ph-bq50s</link>
+      <guid isPermaLink="true">https://rndsetup.com/setups/nitrification-ph-bq50s</guid>
+      <pubDate>Sun, 05 Jul 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[SBR pH 7.5~8.5 자동 유지 산·염기 정량 투입에 사용]]></description>
+      <category>환경</category><category>수처리</category><category>질산화</category><category>정량펌프</category><category>BQ50S</category>
+    </item>
+    <item>
+      <title>뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 TYD01-01</title>
+      <link>https://rndsetup.com/setups/brain-electrode-tyd01</link>
+      <guid isPermaLink="true">https://rndsetup.com/setups/brain-electrode-tyd01</guid>
+      <pubDate>Thu, 02 Jul 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[주입 모듈에서 주입 속도를 정밀 제어]]></description>
+      <category>바이오</category><category>뇌공학</category><category>시린지펌프</category><category>TYD01-01</category><category>Nature Electronics</category>
+    </item>
+    <item>
+      <title>혈관내 카테터 헤파린 코팅 — 연동펌프 BT101 L</title>
+      <link>https://rndsetup.com/setups/catheter-heparin-bt101</link>
+      <guid isPermaLink="true">https://rndsetup.com/setups/catheter-heparin-bt101</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[실리콘 튜브 폐루프 순환 회로 구성]]></description>
+      <category>의료</category><category>소재</category><category>연동펌프</category><category>BT101</category><category>Nature Communications</category>
+    </item>
+    <item>
+      <title>연속 CO₂ 포집 — CT3001F PEEK 기어펌프</title>
+      <link>https://rndsetup.com/setups/co2-capture-ct3001f</link>
+      <guid isPermaLink="true">https://rndsetup.com/setups/co2-capture-ct3001f</guid>
+      <pubDate>Sun, 28 Jun 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[anolyte·catholyte 전해액 순환]]></description>
+      <category>에너지</category><category>탄소포집</category><category>PEEK 기어펌프</category><category>CT3001F</category><category>Nature Communications</category>
+    </item>
+    <item>
+      <title>flow chemistry 연속흐름 반응 — 유량비·체류시간 제어 셋업</title>
+      <link>https://rndsetup.com/application/flow-chemistry</link>
+      <guid isPermaLink="true">https://rndsetup.com/application/flow-chemistry</guid>
+      <pubDate>Sat, 20 Jun 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[두 개 이상 시약 스트림을 정밀 유량비로 합류·체류시간 제어.]]></description>
+      <category>연속흐름</category><category>flow chemistry</category><category>유량비</category>
+    </item>
+  </channel>
+</rss>

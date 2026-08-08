@@ -139,7 +139,7 @@ function jsonLd(items) {
     if (p.tmax) props.push({ "@type": "PropertyValue", "name": "최고온도", "value": p.tmax });
     if (p.vol) props.push({ "@type": "PropertyValue", "name": "노내용량", "value": p.vol });
     if (props.length) prod.additionalProperty = props;
-    if (p.price != null) prod.offers = { "@type": "Offer", "price": p.price, "priceCurrency": "KRW", "availability": "https://schema.org/InStock", "url": p.url || "https://rndsetup.com/brands/sh-scientific/catalog/" };
+    if (p.price != null) prod.offers = { "@type": "Offer", "price": p.price, "priceCurrency": "KRW", "availability": "https://schema.org/InStock", "url": p.url || "https://rndsetup.com/brands/sh-scientific/" };
     return { "@type": "ListItem", "position": i + 1, "item": prod };
   });
   const obj = { "@context": "https://schema.org", "@type": "ItemList", "name": "삼흥에너지(SH Scientific) 퍼니스 데이터시트", "numberOfItems": items.length, "itemListElement": el };

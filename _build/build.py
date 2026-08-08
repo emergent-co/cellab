@@ -491,6 +491,60 @@ def _setup_card(p):
         f'</div></a>'
     )
 
+def build_rss():
+    """_build/posts.json → feed.xml(RSS 2.0) 생성. 매거진 구독·AI 애그리게이터용.
+    최신순, 최대 30편. 콘텐츠(magazine·setup·guide) 포함."""
+    from datetime import datetime, timezone, timedelta
+    posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
+    if not os.path.exists(posts_path):
+        print('  [skip] rss: posts.json 없음')
+        return
+    with open(posts_path, 'r', encoding='utf-8') as f:
+        posts = [p for p in json.load(f).get('posts', []) if p.get('url') and not p.get('noindex')]
+    posts.sort(key=lambda p: p.get('date', ''), reverse=True)
+    posts = posts[:30]
+    KST = timezone(timedelta(hours=9))
+
+    def rfc822(d):
+        try:
+            return datetime.strptime(d, '%Y-%m-%d').replace(hour=9, tzinfo=KST).strftime('%a, %d %b %Y %H:%M:%S %z')
+        except Exception:
+            return datetime.now(KST).strftime('%a, %d %b %Y %H:%M:%S %z')
+
+    now822 = datetime.now(KST).strftime('%a, %d %b %Y %H:%M:%S %z')
+    items = []
+    for p in posts:
+        link = BASE_URL_LD + p['url'].rstrip('.html') if p['url'].endswith('.html') else BASE_URL_LD + p['url']
+        desc = p.get('summary', '')
+        cats = ''.join(f'<category>{escape(t)}</category>' for t in (p.get('tags') or [])[:5])
+        items.append(
+            '    <item>\n'
+            f'      <title>{escape(p.get("title",""))}</title>\n'
+            f'      <link>{escape(link)}</link>\n'
+            f'      <guid isPermaLink="true">{escape(link)}</guid>\n'
+            f'      <pubDate>{rfc822(p.get("date",""))}</pubDate>\n'
+            f'      <description><![CDATA[{desc}]]></description>\n'
+            f'      {cats}\n'
+            '    </item>'
+        )
+    rss = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+        '  <channel>\n'
+        '    <title>실험셋업연구소 — 실험 셋업 매거진</title>\n'
+        f'    <link>{BASE_URL_LD}/magazine/</link>\n'
+        '    <atom:link href="' + BASE_URL_LD + '/feed.xml" rel="self" type="application/rss+xml"/>\n'
+        '    <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>\n'
+        '    <language>ko</language>\n'
+        f'    <lastBuildDate>{now822}</lastBuildDate>\n'
+        + '\n'.join(items) + '\n'
+        '  </channel>\n'
+        '</rss>\n'
+    )
+    write(os.path.join(ROOT_DIR, 'feed.xml'), rss)
+    print(f'  feed.xml: RSS {len(posts)}편 생성')
+
+
 def build_home_paper_cases():
     """_build/paper_cases.json → index.html '논문 사례' 섹션을 정적 렌더(GEO: raw HTML, SSOT).
     process=공정 변수(2키워드)는 데이터에서만 관리. 마커 <!--PAPERCASES_START/END--> 사이 교체."""
@@ -851,32 +905,32 @@ def main():
         ('brands/alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
         ('brands/sh-scientific/guide/','0.9', 'monthly'),  # 삼흥 허브 = 제품 선택 가이드(견적 funnel)
         ('brands/sh-scientific/manual/','0.7', 'monthly'),  # 삼흥 메뉴얼
-        ('brands/sh-scientific/catalog/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
-        ('brands/sh-scientific/catalog/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
-        ('brands/sh-scientific/catalog/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
-        ('brands/sh-scientific/catalog/rotary-tube-furnace/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/rotary-tube-furnace-pro/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/gas-flow-3zone/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/tube-1500/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/tube-1800/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/vacuum-tube-turnkey/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/vacuum-muffle-1200/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/vacuum-muffle-1200-quartz/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/vacuum-muffle-1500/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/vacuum-muffle-1900/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/muffle-1050/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/muffle-1200/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/muffle-1500/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/muffle-1700/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/muffle-1800/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/muffle-1900/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/rotary-kiln-1200-2zone/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/rotary-kiln-1200-3zone/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/rotary-batch-300/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/rotary-batch-3zone/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/elevator-1200/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/elevator-1500/','0.8', 'monthly'),
-        ('brands/sh-scientific/catalog/elevator-1800/','0.8', 'monthly'),
+        ('brands/sh-scientific/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
+        ('brands/sh-scientific/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
+        ('brands/sh-scientific/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
+        ('brands/sh-scientific/rotary-tube-furnace/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-tube-furnace-pro/','0.8', 'monthly'),
+        ('brands/sh-scientific/gas-flow-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/tube-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/tube-1800/','0.8', 'monthly'),
+        ('brands/sh-scientific/vacuum-tube-turnkey/','0.8', 'monthly'),
+        ('brands/sh-scientific/vacuum-muffle-1200/','0.8', 'monthly'),
+        ('brands/sh-scientific/vacuum-muffle-1200-quartz/','0.8', 'monthly'),
+        ('brands/sh-scientific/vacuum-muffle-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/vacuum-muffle-1900/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1050/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1200/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1700/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1800/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1900/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-kiln-1200-2zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-kiln-1200-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-batch-300/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-batch-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/elevator-1200/','0.8', 'monthly'),
+        ('brands/sh-scientific/elevator-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/elevator-1800/','0.8', 'monthly'),
         ('brands/sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
         ('brands/sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
         ('brands/sh-scientific/blog/furnace-temperature-selection/','0.6', 'monthly'),
@@ -925,6 +979,7 @@ def main():
     # GEO: 도입·논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
     build_setups()  # /setups/index.html 논문 셋업 6편 정적 렌더 (posts.json type=setup)
     build_home_paper_cases()  # 홈 '논문 사례' 카드 정적 렌더 (paper_cases.json · 공정 변수 SSOT)
+    build_rss()  # feed.xml (RSS 2.0) — 매거진 구독·애그리게이터
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()

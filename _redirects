@@ -1,3 +1,6 @@
+# flatten sh catalog 2026-08
+/brands/sh-scientific/catalog/*   /brands/sh-scientific/:splat   301
+/sh-scientific/catalog/*   /brands/sh-scientific/:splat   301
 # Cloudflare Pages 리다이렉트 — 옛 URL SEO 보존 (query·hash 자동 유지)
 # GitHub Pages에서는 무시됨(HTML 스텁이 대신 처리). CF 전환 후 활성.
 # 체인 금지: 각 옛 URL을 최종 목적지로 1홉 직결.
