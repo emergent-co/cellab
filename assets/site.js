@@ -75,11 +75,7 @@
         ['/brands/leadfluid/guide/',     '리드플루이드 펌프'],
         ['/brands/alicat/',              'Alicat 질량유량계(MFC)']
       ] },
-    { href:'/manuals/', label:'메뉴얼 모음', icon:'guide', sub:[
-        ['/brands/sh-scientific/manual/', '삼흥에너지 전기로·퍼니스 메뉴얼'],
-        ['/brands/leadfluid/manuals/',    '리드플루이드 펌프 메뉴얼'],
-        ['/brands/alicat/manual/',        'Alicat 질량유량계(MFC) 메뉴얼']
-      ] },
+    { href:'/manuals/', label:'메뉴얼 모음', icon:'guide' },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact' },
     { href:'/faq/', label:'FAQ', icon:'faq' }
