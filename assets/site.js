@@ -124,6 +124,20 @@
         '<a href="/repair/" data-ga="band_repair">A/S·수리 접수 →</a>' +
         '<a class="cta-band-main" href="/contact/#quote" data-ga="band_quote">견적·문의 →</a>' +
       '</div></div></section>' +
+    '<section style="background:#0A2540;padding:26px 20px;text-align:center">' +
+      '<div style="max-width:560px;margin:0 auto">' +
+        '<div style="color:#fff;font-weight:800;font-size:16px;line-height:1.4;margin-bottom:4px">새 논문 셋업이 올라오면 이메일로 알려드립니다</div>' +
+        '<div style="color:#C9D4E2;font-size:13px;margin-bottom:14px">실험 셋업 매거진 구독 · 새 글 알림만, 스팸 없음</div>' +
+        '<form action="https://formspree.io/f/mnjkzppj" method="POST" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap" data-ga="subscribe">' +
+          '<input type="hidden" name="_subject" value="[매거진 구독] 새 구독 신청">' +
+          '<input type="hidden" name="구분" value="실험 셋업 매거진 구독">' +
+          '<input type="hidden" name="_next" value="https://rndsetup.com/?subscribed=1">' +
+          '<input type="email" name="email" required placeholder="이메일 주소" style="flex:1;min-width:220px;max-width:320px;height:44px;border:none;border-radius:9px;padding:0 14px;font-size:14px;font-family:inherit">' +
+          '<button type="submit" style="height:44px;padding:0 24px;border:none;border-radius:9px;background:#EF9F27;color:#1a1a1a;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit">구독</button>' +
+        '</form>' +
+        '<div style="color:#8fa3ba;font-size:12px;margin-top:10px">RSS로도 구독 가능 · <a href="/feed.xml" style="color:#C9D4E2;text-decoration:underline">feed.xml</a></div>' +
+      '</div>' +
+    '</section>' +
     '<footer class="chrome-footer">' +
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
