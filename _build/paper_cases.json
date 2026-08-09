@@ -5,10 +5,22 @@
       "id": "heat",
       "fl": false,
       "title": "열처리 · 증착 (퍼니스)",
-      "caption": "소성·소결 · CVD·MOCVD · 가스 분위기 · 진공",
+      "caption": "배터리 소재 소성 · 소성·소결 · CVD · 가스 분위기",
       "all_url": "/magazine/",
       "all_label": "열처리·증착 매거진 전체",
       "cards": [
+        {
+          "url": "/magazine/sodium-cathode-atmosphere-dca/",
+          "img": "/img/product/sh/tube-1500.jpg",
+          "alt": "튜브퍼니스 소성",
+          "process": [
+            "소성 분위기",
+            "동적 제어"
+          ],
+          "title": "소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업",
+          "desc": "튜브퍼니스 + 다채널 MFC 동적 분위기(DCA) 소성.",
+          "meta": "Nature Communications (2025) · 논문 셋업"
+        },
         {
           "url": "/magazine/sofc-hcl-syngas/",
           "img": "/img/product/sh/tube-1500.jpg",
@@ -39,10 +51,34 @@
       "id": "fluid",
       "fl": true,
       "title": "유체 · 펌프",
-      "caption": "관류·연속배양 · flow chemistry · 분주·정량 이송",
+      "caption": "전해액 순환 · 전구체 공침 · 정량 투입 · 수처리",
       "all_url": "/setups/",
-      "all_label": "유체·펌프 논문 셋업 전체",
+      "all_label": "에너지·소재 논문 셋업 전체",
       "cards": [
+        {
+          "url": "/magazine/nickel-hydroxide-coprecipitation-cstr/",
+          "img": "/img/pump-guide.jpg",
+          "alt": "연동펌프 정량 공급",
+          "process": [
+            "정량 공급",
+            "체류시간"
+          ],
+          "title": "배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널",
+          "desc": "금속염·NaOH·암모니아 3용액 정량 공급 셋업.",
+          "meta": "Chem. Eng. Technol. (2023) · 논문 셋업"
+        },
+        {
+          "url": "/magazine/aorfb-flowfield-electrolyte-pump/",
+          "img": "/img/leadfluid/BT101L.png",
+          "alt": "연동펌프 전해액 순환",
+          "process": [
+            "전해액 순환",
+            "유로 설계"
+          ],
+          "title": "레독스흐름전지 전해액 순환 — 연동펌프 140 mL/min",
+          "desc": "flow-through 유로 + 연동펌프로 300 mA/cm² 충전.",
+          "meta": "PNAS (2024) · 논문 셋업"
+        },
         {
           "url": "/setups/co2-capture-ct3001f",
           "img": "/img/pump-guide.jpg",
