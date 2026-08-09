@@ -3,6 +3,26 @@
   "posts": [
     {
       "type": "magazine",
+      "slug": "nickel-hydroxide-coprecipitation-cstr",
+      "title": "배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급",
+      "summary": "Ni(OH)₂ 전구체 공침 — 금속염·NaOH·암모니아 3용액을 연동펌프로 정량 공급, N₂ 분위기·40℃·체류시간 ≥2.5h가 품질을 좌우.",
+      "date": "2026-08-09",
+      "tags": [
+        "배터리소재",
+        "양극재전구체",
+        "공침",
+        "CSTR",
+        "연동펌프"
+      ],
+      "url": "/magazine/nickel-hydroxide-coprecipitation-cstr/",
+      "model_focus": "연동펌프 3채널 · CSTR",
+      "application": "유체·펌프 · 전구체 공침",
+      "image": "/img/pump-guide.jpg",
+      "journal": "Chemical Engineering & Technology",
+      "doi": "10.1002/ceat.202300086"
+    },
+    {
+      "type": "magazine",
       "slug": "aorfb-flowfield-electrolyte-pump",
       "title": "레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min",
       "summary": "수계 유기 흐름전지(AORFB)는 전해액 순환·유로 설계가 성능을 좌우. 연동펌프 140 mL/min + flow-through 유로로 300 mA/cm² 충전.",
