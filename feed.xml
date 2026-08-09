@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Mon, 10 Aug 2026 00:39:21 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 00:46:56 +0900</lastBuildDate>
+    <item>
+      <title>구리를 가열하면 나노와이어가 자란다 — CuO 열산화 셋업 (산화·확산)</title>
+      <link>https://rndsetup.com/magazine/cuo-nanowire-thermal-oxidation/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/cuo-nanowire-thermal-oxidation/</guid>
+      <pubDate>Mon, 10 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[공기 중 10℃/min→450℃·2h 열산화로 CuO 나노와이어 성장 — Cu₂O(70~110℃)→CuO(200~270℃) 온도창과 표면 미세구조가 밀도를 좌우. 가스센서·태양전지·촉매·배터리 음극 소재.]]></description>
+      <category>산화확산</category><category>열산화</category><category>나노와이어</category><category>가스센서</category><category>에너지소재</category>
+    </item>
     <item>
       <title>실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업 (2D 실리콘 나노시트)</title>
       <link>https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/</link>
