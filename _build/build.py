@@ -1001,10 +1001,14 @@ def main():
         ('brands/sh-scientific/muffle-1900/','0.8', 'monthly'),
         ('brands/sh-scientific/rotary-kiln-1200-2zone/','0.8', 'monthly'),
         ('brands/sh-scientific/rotary-kiln-1200-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-kiln-1500-2zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/rotary-kiln-1500-3zone/','0.8', 'monthly'),
+        ('brands/sh-scientific/muffle-1200-quartz/','0.8', 'monthly'),
         ('brands/sh-scientific/rotary-batch-300/','0.8', 'monthly'),
         ('brands/sh-scientific/rotary-batch-3zone/','0.8', 'monthly'),
         ('brands/sh-scientific/elevator-1200/','0.8', 'monthly'),
         ('brands/sh-scientific/elevator-1500/','0.8', 'monthly'),
+        ('brands/sh-scientific/elevator-1700/','0.8', 'monthly'),
         ('brands/sh-scientific/elevator-1800/','0.8', 'monthly'),
         ('brands/sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
         ('brands/sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트

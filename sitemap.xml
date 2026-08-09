@@ -313,6 +313,24 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/sh-scientific/rotary-kiln-1500-2zone/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/sh-scientific/rotary-kiln-1500-3zone/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/sh-scientific/muffle-1200-quartz/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/sh-scientific/rotary-batch-300/</loc>
     <lastmod>2026-08-10</lastmod>
     <priority>0.8</priority>
@@ -332,6 +350,12 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/sh-scientific/elevator-1500/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/sh-scientific/elevator-1700/</loc>
     <lastmod>2026-08-10</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
