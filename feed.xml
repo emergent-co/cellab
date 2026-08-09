@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 09 Aug 2026 23:56:01 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 00:24:32 +0900</lastBuildDate>
+    <item>
+      <title>실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업 (2D 실리콘 나노시트)</title>
+      <link>https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/</guid>
+      <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[실란 CVD 550℃·50 sccm으로 만든 50 nm 실리콘 시트에 아세틸렌 900℃·5분으로 탄소 7 wt% 코팅 — 200사이클 유지율 54→95%. 짧은 CVD의 재현은 온도×가스 시퀀스 자동화가 관건.]]></description>
+      <category>리튬배터리</category><category>실리콘음극</category><category>CVD</category><category>탄소코팅</category><category>증착</category>
+    </item>
     <item>
       <title>mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전</title>
       <link>https://rndsetup.com/magazine/glossary-pump-fluid-terms/</link>

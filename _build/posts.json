@@ -3,6 +3,26 @@
   "posts": [
     {
       "type": "magazine",
+      "slug": "si-anode-cvd-carbon-coating",
+      "title": "실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업 (2D 실리콘 나노시트)",
+      "summary": "실란 CVD 550℃·50 sccm으로 만든 50 nm 실리콘 시트에 아세틸렌 900℃·5분으로 탄소 7 wt% 코팅 — 200사이클 유지율 54→95%. 짧은 CVD의 재현은 온도×가스 시퀀스 자동화가 관건.",
+      "date": "2026-08-09",
+      "tags": [
+        "리튬배터리",
+        "실리콘음극",
+        "CVD",
+        "탄소코팅",
+        "증착"
+      ],
+      "url": "/magazine/si-anode-cvd-carbon-coating/",
+      "model_focus": "튜브퍼니스 · MFC",
+      "application": "열처리·증착 · CVD",
+      "image": "/img/rnd-guide.jpg",
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-018-05398-9"
+    },
+    {
+      "type": "magazine",
       "slug": "glossary-pump-fluid-terms",
       "title": "mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전",
       "summary": "연동펌프 유량이 rpm으로 표시되는 이유부터 캘리브레이션·맥동·접액부·튜브 재질·체류시간·다채널 동기·Modbus까지 용어 11개 정리.",

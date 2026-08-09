@@ -20,6 +20,7 @@
   - [전해액·전구체·부식성 유체 펌프 선정 가이드](https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/): 연동 vs 시린지 vs 기어 — 유량·유체 성질·접액 재질·맥동·채널 제어 5축 선정 기준(흐름전지·공침·슬러리·수처리 공통)
   - [mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전](https://rndsetup.com/magazine/glossary-pump-fluid-terms/): 펌프 사양서·논문 용어 11개 — rpm과 유량, 캘리브레이션, 맥동, 접액부, 튜브 재질, 체류시간, 다채널 동기, Modbus·RS-485
   - [소듐 양극재 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)](https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/): 튜브퍼니스 + 다채널 MFC, 승온 2% O₂ → 유지 불활성 전환으로 상순도 확보
+  - [실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 (Nature Communications 2018)](https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/): 실란 550℃·50 sccm 증착 + 아세틸렌 900℃·5분 코팅(탄소 7 wt%) — 200사이클 유지율 54→95%
   - [레독스흐름전지(AORFB) 전해액 순환 셋업 (PNAS 2024)](https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/): 유로 설계 + 연동펌프 140 mL/min 전해액 순환
   - [배터리 양극재 전구체 공침 CSTR 셋업 (Chem. Eng. Technol. 2023)](https://rndsetup.com/magazine/nickel-hydroxide-coprecipitation-cstr/): 연동펌프 3채널 정량 공급 + N₂ 분위기·체류시간 제어
   - [석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 논문 셋업 분석 (J. Power Sources 2007)](https://rndsetup.com/magazine/sofc-hcl-syngas/): 다채널 MFC + 튜브퍼니스 800·900℃ 가스 분위기 제어 셋업
