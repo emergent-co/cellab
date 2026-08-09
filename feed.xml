@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 09 Aug 2026 23:44:10 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 23:49:08 +0900</lastBuildDate>
+    <item>
+      <title>전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어</title>
+      <link>https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/</guid>
+      <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[유량·정밀도, 유체 성질, 접액 재질, 맥동·전단, 채널 수·제어 — 5축으로 공정에 맞는 펌프 유형을 고르는 법. 공정별 일반 선택표 포함.]]></description>
+      <category>가이드</category><category>펌프선정</category><category>전해액순환</category><category>전구체공침</category><category>에너지소재</category>
+    </item>
     <item>
       <title>하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전</title>
       <link>https://rndsetup.com/magazine/glossary-heat-gas-terms/</link>
