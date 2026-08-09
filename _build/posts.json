@@ -3,6 +3,27 @@
   "posts": [
     {
       "type": "magazine",
+      "slug": "sodium-cathode-atmosphere-dca",
+      "title": "소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업 (동적 분위기 제어·DCA)",
+      "summary": "O3 소듐 양극재는 고정 분위기로는 상순도 합성이 안 된다. 승온 2% O₂ → 고온 유지 불활성으로 바꾸는 튜브퍼니스 + 다채널 MFC 셋업.",
+      "date": "2026-08-09",
+      "tags": [
+        "소듐전지",
+        "양극재",
+        "소성",
+        "가스분위기",
+        "MFC",
+        "튜브퍼니스"
+      ],
+      "url": "/magazine/sodium-cathode-atmosphere-dca/",
+      "model_focus": "튜브퍼니스 · 다채널 MFC",
+      "application": "열처리·증착 · 소성·가스분위기",
+      "image": "/img/rnd-guide.jpg",
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-025-57665-1"
+    },
+    {
+      "type": "magazine",
       "slug": "sofc-hcl-syngas",
       "title": "석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다가스 분위기·온도 정밀 제어 셋업",
       "summary": "다채널 MFC + 튜브퍼니스 800·900℃ 셋업. 미량 HCl의 가역적 열화와 재현 조건 정리.",
