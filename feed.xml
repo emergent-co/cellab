@@ -6,7 +6,23 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 09 Aug 2026 23:13:22 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 23:37:58 +0900</lastBuildDate>
+    <item>
+      <title>하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전</title>
+      <link>https://rndsetup.com/magazine/glossary-heat-gas-terms/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/glossary-heat-gas-terms/</guid>
+      <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[에너지·소재 공정 용어 정리 — 하소·소성·소결·어닐링 차이, sccm·slm, MFC vs 로터미터, 산소 분압, 퍼지, 균열구간, DCA까지 한 페이지 사전.]]></description>
+      <category>용어사전</category><category>하소</category><category>소성</category><category>소결</category><category>sccm</category>
+    </item>
+    <item>
+      <title>소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 점검표</title>
+      <link>https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/</guid>
+      <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[승온 편차·균열구간 이탈·적재량·유량 드리프트·분위기 전환 타이밍·흡습·리크 — 배치 간 편차 7항목 점검표와 증상별 우선 의심 원인.]]></description>
+      <category>트러블슈팅</category><category>소성</category><category>배치편차</category><category>재현성</category><category>에너지소재</category>
+    </item>
     <item>
       <title>소성·하소용 튜브퍼니스와 가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</title>
       <link>https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/</link>

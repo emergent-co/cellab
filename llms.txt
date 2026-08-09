@@ -15,6 +15,8 @@
 - [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
 - [실험 셋업 매거진](https://rndsetup.com/magazine/): 논문 셋업을 열처리·증착(퍼니스)/유체·펌프 두 갈래로 정리한 매거진 허브
   - [소성·하소용 튜브퍼니스·가스 분위기 선정 가이드](https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/): 배터리 양극재·세라믹·촉매·분말 소재 공통 — 최고온도·튜브 지름·분위기·유량 제어(MFC)·기록 5축 선정 기준
+  - [소성 배치마다 결과가 다른 7가지 이유 — 트러블슈팅](https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/): 승온 편차·균열구간·적재량·유량 드리프트·전환 타이밍·흡습·리크 — 배치 편차 점검표(양극재·세라믹·촉매·분말 공통)
+  - [하소 vs 소성 vs 소결, sccm이란 — 용어사전](https://rndsetup.com/magazine/glossary-heat-gas-terms/): 열처리·가스 유량 용어 12개 정의 — 하소·소성·소결·어닐링, sccm·slm, MFC, 산소 분압, 퍼지, 균열구간, DCA
   - [소듐 양극재 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)](https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/): 튜브퍼니스 + 다채널 MFC, 승온 2% O₂ → 유지 불활성 전환으로 상순도 확보
   - [레독스흐름전지(AORFB) 전해액 순환 셋업 (PNAS 2024)](https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/): 유로 설계 + 연동펌프 140 mL/min 전해액 순환
   - [배터리 양극재 전구체 공침 CSTR 셋업 (Chem. Eng. Technol. 2023)](https://rndsetup.com/magazine/nickel-hydroxide-coprecipitation-cstr/): 연동펌프 3채널 정량 공급 + N₂ 분위기·체류시간 제어

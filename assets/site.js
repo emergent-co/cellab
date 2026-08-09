@@ -61,16 +61,17 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/magazine/', label:'실험 셋업 매거진', icon:'feed' },
-    { href:'/setups/', label:'논문 사례', icon:'find', sub:[
+    { href:'/magazine/', label:'셋업 매거진', icon:'feed' },
+    { href:'/setups/', label:'논문·도입 사례', icon:'find', sub:[
         ['/setups/',         '에너지·소재 논문 셋업'],
         ['/furnace/setups/', '퍼니스 도입 사례']
       ] },
-    { href:'/brands/', label:'브랜드 소개', icon:'devices' },
-    { href:'/manuals/', label:'메뉴얼 모음', icon:'guide' },
+    { href:'/brands/', label:'브랜드·장비', icon:'devices' },
+    { href:'/manuals/', label:'메뉴얼', icon:'guide' },
     { href:'/about/', label:'회사소개', icon:'shield' },
-    { href:'/contact/', label:'문의하기', icon:'contact' },
-    { href:'/faq/', label:'FAQ', icon:'faq' }
+    { href:'/contact/', label:'문의하기', icon:'contact', sub:[
+        ['/faq/', '자주 묻는 질문(FAQ)']
+      ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
