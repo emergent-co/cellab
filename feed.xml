@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 09 Aug 2026 22:17:58 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 22:32:37 +0900</lastBuildDate>
+    <item>
+      <title>레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min</title>
+      <link>https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/</guid>
+      <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[수계 유기 흐름전지(AORFB)는 전해액 순환·유로 설계가 성능을 좌우. 연동펌프 140 mL/min + flow-through 유로로 300 mA/cm² 충전.]]></description>
+      <category>레독스흐름전지</category><category>AORFB</category><category>ESS</category><category>전해액순환</category><category>연동펌프</category>
+    </item>
     <item>
       <title>소듐 양극재를 상순도로 — 소성 분위기를 &#x27;바꾸는&#x27; 셋업 (동적 분위기 제어·DCA)</title>
       <link>https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/</link>

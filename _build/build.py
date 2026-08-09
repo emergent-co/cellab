@@ -407,6 +407,7 @@ CRAWLER_LINKS = [
     ('/magazine/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
     ('/magazine/oxidation/', '산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산'),
     ('/magazine/sodium-cathode-atmosphere-dca/', '소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)'),
+    ('/magazine/aorfb-flowfield-electrolyte-pump/', '레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)'),
     ('/magazine/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
     ('/setups/', '도입·논문 사례 — 에너지·소재 공정 셋업'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),

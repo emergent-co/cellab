@@ -3,6 +3,26 @@
   "posts": [
     {
       "type": "magazine",
+      "slug": "aorfb-flowfield-electrolyte-pump",
+      "title": "레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min",
+      "summary": "수계 유기 흐름전지(AORFB)는 전해액 순환·유로 설계가 성능을 좌우. 연동펌프 140 mL/min + flow-through 유로로 300 mA/cm² 충전.",
+      "date": "2026-08-09",
+      "tags": [
+        "레독스흐름전지",
+        "AORFB",
+        "ESS",
+        "전해액순환",
+        "연동펌프"
+      ],
+      "url": "/magazine/aorfb-flowfield-electrolyte-pump/",
+      "model_focus": "연동펌프 · 플로우 셀",
+      "application": "유체·펌프 · 전해액 순환",
+      "image": "/img/pump-guide.jpg",
+      "journal": "PNAS",
+      "doi": "10.1073/pnas.2406182121"
+    },
+    {
+      "type": "magazine",
       "slug": "sodium-cathode-atmosphere-dca",
       "title": "소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업 (동적 분위기 제어·DCA)",
       "summary": "O3 소듐 양극재는 고정 분위기로는 상순도 합성이 안 된다. 승온 2% O₂ → 고온 유지 불활성으로 바꾸는 튜브퍼니스 + 다채널 MFC 셋업.",

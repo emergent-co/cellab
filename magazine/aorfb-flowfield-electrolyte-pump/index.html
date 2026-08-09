@@ -3,31 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다가스 분위기·온도 정밀 제어 셋업 (J. Power Sources 2007) | 실험셋업연구소</title>
-<meta name="description" content="Journal of Power Sources(2007) 논문 셋업 분석 — 석탄 합성가스 속 미량 HCl(20·160 ppm)이 800·900℃ SOFC 성능에 미치는 영향. Alicat MFC 다채널 가스 조성 제어 + split tube furnace 셋업, 공정 조건·재현 관점·필요 장비 10종을 정리했습니다.">
-<link rel="canonical" href="https://rndsetup.com/magazine/sofc-hcl-syngas/">
+<title>레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024) | 실험셋업연구소</title>
+<meta name="description" content="PNAS(2024) 논문 셋업 분석 — 수계 유기 레독스흐름전지(AORFB)는 전해액 순환과 유로(flow field) 설계가 성능을 좌우합니다. 연동펌프로 anolyte·catholyte를 140 mL/min 순환, flow-through 유로로 300 mA/cm²까지 충전. 공정 조건·재현 관점·필요 장비 10종을 정리했습니다.">
+<link rel="canonical" href="https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 정밀 제어 셋업">
-<meta property="og:description" content="800·900℃ SOFC에서 미량 HCl의 영향을 정량화한 논문 셋업. 다채널 MFC 가스 조성 제어 + 튜브퍼니스 셋업과 재현 관점을 정리했습니다.">
-<meta property="og:url" content="https://rndsetup.com/magazine/sofc-hcl-syngas/">
-<meta property="og:image" content="https://rndsetup.com/img/rnd-guide.jpg">
+<meta property="og:title" content="레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min">
+<meta property="og:description" content="수계 유기 레독스흐름전지(AORFB) 전해액 순환·유로 설계 셋업. 연동펌프 140 mL/min, flow-through 유로로 300 mA/cm² 충전. 재현 관점과 필요 장비를 정리했습니다.">
+<meta property="og:url" content="https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/">
+<meta property="og:image" content="https://rndsetup.com/img/pump-guide.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
-"headline":"석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다가스 분위기·온도 정밀 제어 셋업",
-"datePublished":"2026-08-07",
-"dateModified":"2026-08-07",
+"headline":"레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min",
+"datePublished":"2026-08-09",
+"dateModified":"2026-08-09",
 "inLanguage":"ko",
-"image":"https://rndsetup.com/img/rnd-guide.jpg",
-"about":{"@type":"Thing","name":"튜브퍼니스 가스 분위기 제어(MFC) 셋업","url":"https://rndsetup.com/brands/alicat/"},
-"citation":{"@type":"ScholarlyArticle","name":"The effect of coal syngas containing HCl on the performance of solid oxide fuel cells: Investigations into the effect of operational temperature and HCl concentration","author":"J.P. Trembly, R.S. Gemmen, D.J. Bayless","isPartOf":{"@type":"Periodical","name":"Journal of Power Sources"},"datePublished":"2007","sameAs":"https://doi.org/10.1016/j.jpowsour.2007.03.018"},
+"image":"https://rndsetup.com/img/pump-guide.jpg",
+"about":{"@type":"Thing","name":"레독스흐름전지 전해액 순환·유로 설계 셋업","url":"https://rndsetup.com/brands/leadfluid/guide/"},
+"citation":{"@type":"ScholarlyArticle","name":"Flow field design and visualization for flow-through type aqueous organic redox flow batteries","author":"Peng, K. et al.","isPartOf":{"@type":"Periodical","name":"Proceedings of the National Academy of Sciences (PNAS)"},"datePublished":"2024","sameAs":"https://doi.org/10.1073/pnas.2406182121"},
 "author":{"@type":"Person","name":"이영현","url":"https://rndsetup.com/about/","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
 "publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
-"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/magazine/sofc-hcl-syngas/"}}
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"석탄 합성가스 속 HCl은 SOFC 성능을 얼마나 떨어뜨리나요?","acceptedAnswer":{"@type":"Answer","text":"Trembly 등(Journal of Power Sources, 2007)에 따르면 20~160 ppm HCl은 800·900℃ SOFC 성능을 100시간 운전 후 13.3~51.8% 떨어뜨렸습니다. 다만 HCl을 제거하면 성능이 회복되는 가역적 열화였습니다(H2S는 비가역)."}},
-{"@type":"Question","name":"이 실험 셋업의 핵심은 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"여러 가스의 vol%를 정확히 맞추고 ppm 단위 HCl을 안정하게 도핑하며 노 온도를 흔들림 없이 유지하는 것입니다. Alicat 다채널 MFC로 조성을 제어하고 split tube furnace로 온도를 유지하며, 인증 프리믹스로 미량 HCl을 공급합니다."}}
+{"@type":"Question","name":"레독스흐름전지에서 전해액 순환 셋업이 왜 중요한가요?","acceptedAnswer":{"@type":"Answer","text":"Peng 등(PNAS, 2024)에 따르면 유기 전해액은 전자전달이 무기 대비 2~3자릿수 빨라 성능이 물질전달(전해액 공급)에 의해 제한됩니다. 따라서 유로(flow field) 설계와 균일한 전해액 순환이 성능을 좌우하며, flow-through형 유로 + 연동펌프 순환으로 기존 serpentine 대비 300 mA/cm²까지 충전할 수 있었습니다."}},
+{"@type":"Question","name":"이 실험 셋업의 핵심 장비는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"anolyte·catholyte를 셀 스택으로 순환시키는 연동펌프가 핵심입니다. 논문은 Masterflex L/S 연동펌프(Cole-Parmer)로 화학내성 FEP 튜빙을 통해 140 mL/min로 순환했고, 7×7cm² 탄소펠트 셀에서 Bio-Logic 워크스테이션으로 충방전을 측정했습니다."}}
 ]}
 </script>
 <link rel="stylesheet" href="/assets/site.css">
@@ -80,59 +80,60 @@
 <div id="pumplab-header"></div>
 
 <article class="sd-wrap">
-  <div class="sd-crumb"><a href="/">홈</a> › <a href="/magazine/">매거진</a> › 열처리·증착 · 가스 분위기</div>
-  <h1>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향<br>— 다가스 분위기·온도를 정밀 제어한 셋업</h1>
-  <div class="sd-meta">2007 · Journal of Power Sources · Trembly, Gemmen, Bayless</div>
-  <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:4px 0 2px">실험셋업연구소 매거진 · 글 이영현 · <time datetime="2026-08-07">2026년 8월 7일</time> 발행 · 읽는 시간 약 6분</div>
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/magazine/">매거진</a> › 유체·펌프 · 전해액 순환</div>
+  <h1>레독스흐름전지 전해액 순환 셋업<br>— 유로 설계 + 연동펌프 140 mL/min</h1>
+  <div class="sd-meta">2024 · PNAS 121(50) e2406182121 · Peng, K. et al. (USTC)</div>
+  <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:4px 0 2px">실험셋업연구소 매거진 · 글 이영현 · <time datetime="2026-08-09">2026년 8월 9일</time> 발행 · 읽는 시간 약 6분</div>
 
   <div class="sd-summary">
     <h3>셋업 요약</h3>
-    <div class="row"><span class="k">논문</span><span>The effect of coal syngas containing HCl on the performance of solid oxide fuel cells</span></div>
-    <div class="row"><span class="k">저널</span><span><b>Journal of Power Sources</b> 169 (2007) 347–354</span></div>
-    <div class="row"><span class="k">핵심 장비</span><span><b>Split tube furnace + Alicat 다채널 MFC</b></span></div>
-    <div class="row"><span class="k">제어</span><span>온도 스케줄 · 다가스 유량 조성 · 가습(이슬점)</span></div>
-    <div class="row"><span class="k">분야</span><span>#연료전지 #가스분위기 #MFC #시스템통합</span></div>
-    <div class="row"><span class="k">DOI</span><a href="https://doi.org/10.1016/j.jpowsour.2007.03.018" target="_blank" rel="noopener">10.1016/j.jpowsour.2007.03.018 ↗</a></div>
+    <div class="row"><span class="k">논문</span><span>Flow field design and visualization for flow-through type aqueous organic redox flow batteries</span></div>
+    <div class="row"><span class="k">저널</span><span><b>PNAS</b> 121(50) e2406182121 (2024)</span></div>
+    <div class="row"><span class="k">핵심 장비</span><span><b>연동펌프(전해액 순환) + 플로우 셀 스택</b></span></div>
+    <div class="row"><span class="k">제어</span><span>anolyte·catholyte 순환 유량 · 충방전(정전류)</span></div>
+    <div class="row"><span class="k">분야</span><span>#레독스흐름전지 #ESS #전해액순환 #연동펌프</span></div>
+    <div class="row"><span class="k">DOI</span><a href="https://doi.org/10.1073/pnas.2406182121" target="_blank" rel="noopener">10.1073/pnas.2406182121 ↗</a></div>
   </div>
 
   <div class="sd-answer">
-    <b>석탄 합성가스 속 미량 HCl(20~160 ppm)은 800·900℃ SOFC 성능을 100시간 운전 후 13~52% 떨어뜨렸지만, HCl을 제거하면 회복되는 가역적 열화였습니다.</b> 이 실험의 재현성은 전적으로 여러 가스의 vol%를 정확히 맞추고, ppm 단위 HCl을 안정하게 도핑하며, 노 온도를 흔들림 없이 유지하는 데 달려 있습니다 — 즉 다채널 MFC와 안정된 튜브퍼니스가 셋업의 본체입니다.
+    <b>수계 유기 레독스흐름전지(AORFB)는 유기 전해액의 전자전달이 매우 빨라 성능이 '전해액을 얼마나 고르게·충분히 공급하느냐(물질전달)'에 걸립니다.</b> 이 논문은 유로(flow field)를 flow-through형으로 바꾸고 anolyte·catholyte를 <b>연동펌프로 140 mL/min 순환</b>시켜, 기존 serpentine 유로로는 불가능한 <b>300 mA/cm² 충전</b>을 달성했습니다. 셋업의 재현성은 펌프의 안정된 유량과 화학내성 배관에 달려 있습니다.
   </div>
 
   <div class="sd-body">
     <h2>논문은 셋업을 어떻게 구성했나</h2>
-    <p>연구진은 버튼형 SOFC를 <b>split tube furnace</b>에 장착해 800·900℃에서 운전하고, <b>Alicat 질량유량계(MFC)</b>로 연료·공기 스트림의 유량과 조성을 제어했습니다. 애노드에 공급하는 H₂·CO·CO₂·N₂와 캐소드 공기에 각각 별도 MFC를 두고, 온도조절 가습기(버블러)로 수분량을 맞췄습니다. 미량 HCl은 직접 계량할 수 없어 <b>인증 혼합가스(H₂ + 557 ppm HCl)</b>를 희석해 20·160 ppm으로 공급했고, 응축을 막기 위해 애노드 라인은 heat trace 처리했습니다.</p>
-    <div class="sd-quote">"…the button cell assembly was mounted in a split tube furnace operated at 800 or 900 °C. <mark>Alicat™ mass flow controllers (MFCs)</mark> were used to control the fuel and air stream flow rates and compositions…"</div>
-    <div class="sd-cite">출처: Trembly, Gemmen, Bayless, <i>Journal of Power Sources</i> 169 (2007) 347–354 · <a href="https://doi.org/10.1016/j.jpowsour.2007.03.018" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+    <p>연구진은 pH 중성 <b>TEMPTMA/MV</b> 산화·환원쌍으로 유기 흐름전지를 구성했습니다. 활성면 <b>7×7 cm²</b>, 두께 <b>3 mm 탄소펠트</b> 전극에 음이온교환막(Selemion AMVN·MTCP-50)을 끼우고, 양·음극 전해액을 셀 스택으로 순환시켰습니다. 전해액 순환에는 <b>Masterflex L/S 연동펌프(Cole-Parmer)</b>와 화학내성 <b>FEP 튜빙·저장조</b>를 썼고, 충방전·임피던스는 Bio-Logic BCS-815로 측정했습니다(글러브박스 O₂<2 ppm). 유로 안 전해액 흐름은 온도지시 액정 + 카메라로 <b>operando 가시화</b>했습니다.</p>
+    <div class="sd-quote">"The electrolytes were pumped through the cell stack at various flow rates using a <mark>Masterflex L/S peristaltic pump (Cole-Parmer)</mark>. All tubing and electrolyte reservoirs were made from chemically resistant fluorinated ethylene propylene (FEP)… The volume inflow rate was optimized and fixed at <mark>140 mL/min</mark>."</div>
+    <div class="sd-cite">출처: Peng, K. et al., <i>PNAS</i> 121(50) e2406182121 (2024) · <a href="https://doi.org/10.1073/pnas.2406182121" target="_blank" rel="noopener">원문 보기 ↗</a></div>
 
     <h2>공정 조건 (논문 실제 수치)</h2>
     <table class="msc-tbl">
-      <thead><tr><th>단계</th><th>온도 / 시간</th><th>가스 · 유량</th></tr></thead>
+      <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
       <tbody>
-        <tr><td>승온</td><td>상온→800℃, 12h</td><td>애노드 N₂ 100 · 캐소드 공기 500 sccm</td></tr>
-        <tr><td>애노드 환원</td><td>800℃</td><td>H₂ +10 sccm/10분(총 100), OCV 안정까지</td></tr>
-        <tr><td>운전 준비</td><td>800℃</td><td>캐소드 공기 2000 · 애노드 H₂ 400 sccm, ASR 확인(설계 0.5 Ω·cm²)</td></tr>
-        <tr><td>900℃ 시험</td><td>+2h 추가 승온</td><td>동일 절차 반복</td></tr>
-        <tr class="hot"><td>본 운전</td><td>800·900℃</td><td>0.7V 정전위, syngas 총 550 sccm, 24h 후 HCl 주입</td></tr>
+        <tr><td>전해액</td><td>TEMPTMA/MV, 0.5·1.5 M (+1.0 M NaCl)</td><td>posolyte 50 mL / negolyte 70 mL</td></tr>
+        <tr class="hot"><td>순환 유량</td><td><b>140 mL/min</b></td><td>연동펌프, 최적화 후 고정</td></tr>
+        <tr><td>셀·전극</td><td>7×7 cm², 탄소펠트 3 mm</td><td>flow-through 유로</td></tr>
+        <tr><td>막</td><td>Selemion AMVN / MTCP-50</td><td>pH 중성 음이온교환막</td></tr>
+        <tr><td>충방전</td><td>60~300 mA/cm², cutoff 1.6 / 0.5 V</td><td>Bio-Logic BCS-815</td></tr>
+        <tr><td>환경</td><td>글러브박스 O₂ &lt; 2 ppm</td><td>배관·저장조 FEP</td></tr>
       </tbody>
     </table>
-    <p class="msc-note">Syngas 조성(vol%): H₂ 29.1 / CO 28.6 / CO₂ 12.0 / N₂ 3.2 / H₂O 27.1 / HCl 20 또는 160 ppm. 코킹 방지 위해 물 추가.</p>
+    <p class="msc-note">operando 가시화: 20℃ 냉수로 채운 유로에 65℃ 온수를 140 mL/min로 주입, 액정 색변화로 유속 분포를 촬영.</p>
 
     <h2>핵심 결과</h2>
     <div class="msc-res">
-      <div><div class="k">800℃ · 100h 후 성능 저하</div><div class="v">20 ppm 17.4% / 160 ppm 26.1%</div></div>
-      <div><div class="k">900℃ · 100h 후 성능 저하</div><div class="v">20 ppm 13.3% / 160 ppm 51.8%</div></div>
+      <div><div class="k">최적 유로(3&amp;S) 최대 출력밀도</div><div class="v">267.3 mW/cm² (1.5 M)</div></div>
+      <div><div class="k">serpentine 대비 (300 mA/cm²)</div><div class="v">용량이용률 +33.5% · 효율 +30.1%</div></div>
     </div>
-    <p>HCl을 제거하면 성능이 회복되는 <b>가역적 열화</b>였고(H₂S는 비가역), 후분석(XRD·SEM·EDS)에서 2차 염화물상이나 Cl 신호가 검출되지 않았습니다. 저자들은 Cl이 Ni 활성점에 흡착해 반응 자리를 막는 기전으로 추정했습니다.</p>
+    <p>기존 serpentine 유로는 고전류에서 즉시 전압 컷오프가 발생했지만, flow-through 유로 + 균일 순환은 <b>300 mA/cm²</b>까지 충전이 가능했습니다. 유기 전해액의 빠른 반응속도에 물질전달을 맞춘 결과입니다.</p>
 
     <h2>파라미터를 왜 그렇게 잡나 — 재현 관점</h2>
-    <p><b>다중 MFC</b>는 각 가스 vol%를 독립적으로 설정합니다. 조성 자체가 실험 변수이므로 유량 정밀도가 곧 결과를 좌우합니다. <b>ppm HCl</b>은 직접 계량이 불가능해 인증 프리믹스를 MFC로 희석하는 것이 표준입니다. <b>버블러 온도</b>는 이슬점을 정해 H₂O vol%를 잡고, <b>heat trace와 물 추가</b>는 각각 라인 응축과 애노드 코킹(탄소 석출)을 막습니다. 실무에서 배치마다 흔들리는 이유는 대개 가스를 손으로 맞추고 온도·유량·가습이 따로 놀기 때문입니다.</p>
+    <p>유기 전해액은 전자전달이 무기 대비 <b>2~3자릿수 빠르기</b> 때문에, 전극 표면에서 반응물이 순식간에 소모돼 농도 과전압이 커집니다. 그래서 <b>전해액을 고르고 충분히 공급</b>하는 것이 성능의 병목이고, 유로 설계와 함께 <b>순환 펌프의 안정된 유량</b>이 곧 재현성입니다. 실무에서 문제가 되는 지점: 맥동(pulsation)으로 인한 유량 흔들림, 유기 전해액·NaCl에 대한 <b>튜브·펌프헤드 화학내성</b>, anolyte/catholyte 두 채널의 유량 균형, 공기 유입(산화). 배치마다 결과가 흔들리면 대개 펌프·배관과 유량 균형 문제입니다.</p>
   </div>
 
   <div class="sd-bridge">
-    <h2>온도·유량·가습을 하나의 시퀀스로</h2>
-    <p>실험셋업연구소는 Alicat 다채널 MFC와 삼흥에너지 튜브퍼니스의 온도 스케줄을 제어 소프트웨어에서 동기화합니다. 승온→환원→가스 스위칭→본 운전 각 구간의 유량 셋포인트를 미리 지정해 버튼 한 번으로 동일 조건을 반복하고, 전 과정을 CSV로 남겨 논문 조건을 그대로 재현합니다.</p>
-    <a href="/brands/alicat/">Alicat 질량유량계(MFC) 보기 →</a>
+    <h2>수입 연동펌프를 국내 대안으로 — 다펌프 순환을 하나로</h2>
+    <p>이 논문은 Masterflex L/S 연동펌프를 썼습니다. 실험셋업연구소는 동급 유량대(수십~수백 mL/min)를 <b>LeadFluid 연동펌프</b>로 대체하고, anolyte·catholyte 두 채널의 유량을 제어 소프트웨어에서 동기화해 <b>순환·충방전을 하나의 시퀀스</b>로 묶습니다. 화학내성 튜브 선정, 맥동 저감, 유량 보정까지 셋업 단위로 맞춰 드리고, 전 과정을 CSV로 남깁니다.</p>
+    <a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 국내 대안 보기 →</a>
   </div>
 
   <h2 style="font-family:var(--serif);font-size:19px;margin:26px 0 4px;color:#1E3A5F">이 셋업에 필요한 장비</h2>
@@ -142,21 +143,21 @@
 
   <div class="sd-sources">
     <h4>출처</h4>
-    J.P. Trembly, R.S. Gemmen, D.J. Bayless, "The effect of coal syngas containing HCl on the performance of solid oxide fuel cells: Investigations into the effect of operational temperature and HCl concentration", <i>Journal of Power Sources</i> 169 (2007) 347–354. DOI: 10.1016/j.jpowsour.2007.03.018<br>
-    ※ 본 페이지는 논문에 명시된 장비·조건 사실을 정리한 것으로, 제조사·저자의 보증이나 제휴를 의미하지 않습니다. 실험셋업연구소는 이머전트가 운영하는 실험 셋업 매거진이며, 다룬 장비의 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다.
+    Peng, K. et al., "Flow field design and visualization for flow-through type aqueous organic redox flow batteries", <i>PNAS</i> 121(50) e2406182121 (2024). DOI: 10.1073/pnas.2406182121<br>
+    ※ 본 페이지는 논문에 명시된 장비·조건 사실을 정리한 것으로, 제조사·저자의 보증이나 제휴를 의미하지 않습니다. 실험셋업연구소는 이머전트가 운영하는 에너지·소재 공정 셋업 매거진이며, 다룬 장비의 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다.
   </div>
 
-  <div class="sd-tags"><span>#연료전지</span><span>#SOFC</span><span>#가스분위기</span><span>#MFC</span><span>#튜브퍼니스</span><span>#논문셋업</span></div>
+  <div class="sd-tags"><span>#레독스흐름전지</span><span>#AORFB</span><span>#ESS</span><span>#전해액순환</span><span>#연동펌프</span><span>#유로설계</span><span>#논문셋업</span></div>
 
   <div class="sd-related">
     <h3>관련 콘텐츠</h3>
     <div class="sd-rel-grid">
-      <a class="sd-rc" href="/furnace/setups/alicat-mfc-tubefurnace/"><div class="cat">퍼니스 셋업 · 도입 사례</div><div class="t">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC</div><div class="d">온도 스케줄에 가스 유량을 묶은 실제 도입 셋업.</div></a>
-      <a class="sd-rc" href="/brands/alicat/"><div class="cat">호환 장비</div><div class="t">ALICAT 질량유량계(MFC)</div><div class="d">다기체 보정·RS485로 다채널 가스 조성을 정밀 제어.</div></a>
-      <a class="sd-rc" href="/brands/sh-scientific/guide/"><div class="cat">삼흥에너지 · 퍼니스</div><div class="t">튜브퍼니스·전기로 선택 가이드</div><div class="d">최고온도·분위기 조건별 퍼니스 선택과 견적.</div></a>
+      <a class="sd-rc" href="/setups/co2-capture-ct3001f"><div class="cat">에너지 · 전해액 순환</div><div class="t">연속 CO₂ 포집 — CT3001F PEEK 기어펌프</div><div class="d">anolyte·catholyte 전해액을 순환한 Nature Communications 셋업.</div></a>
+      <a class="sd-rc" href="/compare/imported-peristaltic-alternative/"><div class="cat">국내 대안</div><div class="t">Masterflex·Watson-Marlow 연동펌프 국내 대안</div><div class="d">수입 연동펌프를 LeadFluid로 대체하는 관점.</div></a>
+      <a class="sd-rc" href="/brands/leadfluid/guide/"><div class="cat">리드플루이드 · 펌프</div><div class="t">펌프·튜브 선택 가이드</div><div class="d">유량·화학내성 조건으로 연동펌프·튜브 선택.</div></a>
     </div>
   </div>
-<!--SETUPCTA_START--><section class="setup-cta" style="margin:26px 0 8px;border:1px solid #d6e0ee;border-radius:14px;padding:22px 22px;background:#EDF1F8"><div style="font-size:12px;font-weight:800;letter-spacing:.04em;color:#1E3A5F;margin-bottom:7px">솔루션 패키지</div><h3 style="font-size:18px;font-weight:700;color:#1E3A5F;margin:0 0 8px;line-height:1.4">이 셋업 구성 그대로 견적·솔루션 문의</h3><p style="font-size:14px;color:#3a4650;line-height:1.75;margin:0 0 14px">위에 정리한 장비·모듈 구성을 기준으로 견적과 통합 셋업(구성·제어·연동·설치)을 안내해 드립니다. 다른 브랜드·조건도 함께 맞춰 드립니다.</p><a href="/contact/?setup=%EC%84%9D%ED%83%84%20%ED%95%A9%EC%84%B1%EA%B0%80%EC%8A%A4%20%EC%86%8D%20HCl%EC%9D%B4%20SOFC%20%EC%84%B1%EB%8A%A5%EC%97%90%20%EB%AF%B8%EC%B9%98%EB%8A%94%20%EC%98%81%ED%96%A5%E2%80%94%20%EB%8B%A4%EA%B0%80%EC%8A%A4%20%EB%B6%84%EC%9C%84%EA%B8%B0%C2%B7%EC%98%A8%EB%8F%84%EB%A5%BC%20%EC%A0%95%EB%B0%80%20%EC%A0%9C%EC%96%B4%ED%95%9C%20%EC%85%8B%EC%97%85#general" style="display:inline-block;background:#1E3A5F;color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:9px;text-decoration:none">이 셋업으로 문의하기 &rarr;</a></section><!--SETUPCTA_END--></article>
+</article>
 
 <div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/brands/">브랜드 소개 — 삼흥에너지·리드플루이드·Alicat</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/magazine/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — 에너지·소재 공정 셋업</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
 
@@ -166,7 +167,7 @@
 
     <div id="msc-step1">
       <div class="msc-cl" id="msc-checks"></div>
-      <div class="msc-nt"><textarea id="msc-note" placeholder="실험 조건·수량·문의 내용을 적어주세요 (예: 6채널 가스, 900℃ 상시운전)"></textarea></div>
+      <div class="msc-nt"><textarea id="msc-note" placeholder="실험 조건·수량·문의 내용을 적어주세요 (예: anolyte/catholyte 2채널, 140 mL/min, 유기 전해액)"></textarea></div>
       <div class="msc-fb"><button class="msc-c" id="msc-cancel">취소</button><button class="msc-s" id="msc-next"><span id="msc-count"></span> 다음 →</button></div>
     </div>
 
@@ -180,8 +181,8 @@
       </div>
       <input type="hidden" name="선택장비" id="msc-h-eq">
       <input type="hidden" name="문의내용" id="msc-h-note">
-      <input type="hidden" name="_subject" value="[매거진] 장비 문의 — SOFC 가스분위기 셋업">
-      <input type="hidden" name="문의출처" value="매거진 · SOFC 가스분위기 셋업 (/magazine/sofc-hcl-syngas/)">
+      <input type="hidden" name="_subject" value="[매거진] 장비 문의 — 레독스흐름전지 전해액 순환 셋업">
+      <input type="hidden" name="문의출처" value="매거진 · 레독스흐름전지 전해액 순환 셋업 (/magazine/aorfb-flowfield-electrolyte-pump/)">
       <div class="msc-fb"><button type="button" class="msc-c" id="msc-back">← 이전</button><button type="submit" class="msc-s" id="msc-send">문의 전송</button></div>
     </form>
 
@@ -193,16 +194,16 @@
 <script>
 (function(){
   var specs=[
-    ["Split tube furnace","버튼셀 장착, 800·900℃ (온도컨트롤러 내장)"],
-    ["MFC — 애노드 연료가스","다채널: H₂·CO·CO₂·N₂ 조성 제어"],
-    ["MFC — 캐소드 공기","공기 공급(최대 2000 sccm)"],
-    ["MFC — HCl 프리믹스","인증 혼합가스 희석, ppm 도핑"],
-    ["온도조절 가습기","버블러, 이슬점으로 H₂O vol% 제어"],
-    ["가스 매니폴드·레귤레이터","혼합 라인·체크밸브"],
-    ["Heat-traced 라인","응축 방지, HCl 하류 주입"],
-    ["배기·안전 설비","CO·HCl 검지, 스크러버/후드"],
-    ["전기화학 계측","전자로드·임피던스 분석기(ASR·OCV)"],
-    ["제어SW + CSV 로그","온도·유량·가습 동기, 운전 기록"]
+    ["연동펌프 — 전해액 순환","anolyte·catholyte, ~140 mL/min급 (Masterflex L/S 대안)"],
+    ["화학내성 튜빙(FEP/PFA)","유기 전해액·NaCl 내성"],
+    ["전해액 저장조","negolyte/posolyte(50·70 mL 규모)"],
+    ["플로우 셀 스택(flow frame)","활성면 7×7cm², 깊이 3mm"],
+    ["다공성 탄소펠트 전극","두께 3mm"],
+    ["이온교환막(AEM)","Selemion AMVN / MTCP-50"],
+    ["전기화학 워크스테이션","충방전·EIS (Bio-Logic급)"],
+    ["글러브박스/불활성 환경","O₂ < 2 ppm"],
+    ["operando 유동 가시화","온도지시 액정·카메라(선택)"],
+    ["제어SW + CSV 로그","다펌프 유량·충방전 동기·기록"]
   ];
   var spec=document.getElementById('msc-spec'),checks=document.getElementById('msc-checks');
   spec.innerHTML=specs.map(function(s,i){return '<div class="msc-sr"><span class="msc-sn">'+(i+1)+'</span><b>'+s[0]+'</b><span class="d">'+s[1]+'</span></div>';}).join('');
