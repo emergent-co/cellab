@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 09 Aug 2026 22:58:30 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 23:13:22 +0900</lastBuildDate>
+    <item>
+      <title>소성·하소용 튜브퍼니스와 가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</title>
+      <link>https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/</guid>
+      <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[최고온도·튜브 지름·분위기 가스·유량 제어(MFC)·기록 — 5가지 축으로 소성·하소 퍼니스 셋업을 고르는 법. 공정별 일반 조건표 포함.]]></description>
+      <category>가이드</category><category>소성</category><category>하소</category><category>에너지소재</category><category>튜브퍼니스</category>
+    </item>
     <item>
       <title>배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급</title>
       <link>https://rndsetup.com/magazine/nickel-hydroxide-coprecipitation-cstr/</link>

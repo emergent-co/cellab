@@ -410,6 +410,7 @@ CRAWLER_LINKS = [
     ('/magazine/aorfb-flowfield-electrolyte-pump/', '레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)'),
     ('/magazine/nickel-hydroxide-coprecipitation-cstr/', '배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)'),
     ('/magazine/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
+    ('/magazine/guide-calcination-furnace-atmosphere/', '소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통'),
     ('/setups/', '도입·논문 사례 — 에너지·소재 공정 셋업'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),

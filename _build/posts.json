@@ -3,6 +3,24 @@
   "posts": [
     {
       "type": "magazine",
+      "slug": "guide-calcination-furnace-atmosphere",
+      "title": "소성·하소용 튜브퍼니스와 가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통",
+      "summary": "최고온도·튜브 지름·분위기 가스·유량 제어(MFC)·기록 — 5가지 축으로 소성·하소 퍼니스 셋업을 고르는 법. 공정별 일반 조건표 포함.",
+      "date": "2026-08-09",
+      "tags": [
+        "가이드",
+        "소성",
+        "하소",
+        "에너지소재",
+        "튜브퍼니스"
+      ],
+      "url": "/magazine/guide-calcination-furnace-atmosphere/",
+      "model_focus": "튜브퍼니스 · MFC",
+      "application": "열처리 · 선정 가이드",
+      "image": "/img/rnd-guide.jpg"
+    },
+    {
+      "type": "magazine",
       "slug": "nickel-hydroxide-coprecipitation-cstr",
       "title": "배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급",
       "summary": "Ni(OH)₂ 전구체 공침 — 금속염·NaOH·암모니아 3용액을 연동펌프로 정량 공급, N₂ 분위기·40℃·체류시간 ≥2.5h가 품질을 좌우.",
