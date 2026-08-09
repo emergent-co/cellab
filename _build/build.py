@@ -414,6 +414,7 @@ CRAWLER_LINKS = [
     ('/magazine/troubleshooting-calcination-batch-variation/', '소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅'),
     ('/magazine/glossary-heat-gas-terms/', '하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)'),
     ('/magazine/guide-pump-selection-energy-fluids/', '전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)'),
+    ('/magazine/glossary-pump-fluid-terms/', 'mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)'),
     ('/setups/', '사례 아카이브 — 에너지·소재 공정 셋업 (신규 글은 매거진에서 발행)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),

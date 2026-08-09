@@ -3,6 +3,24 @@
   "posts": [
     {
       "type": "magazine",
+      "slug": "glossary-pump-fluid-terms",
+      "title": "mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전",
+      "summary": "연동펌프 유량이 rpm으로 표시되는 이유부터 캘리브레이션·맥동·접액부·튜브 재질·체류시간·다채널 동기·Modbus까지 용어 11개 정리.",
+      "date": "2026-08-09",
+      "tags": [
+        "용어사전",
+        "연동펌프",
+        "유량",
+        "맥동",
+        "접액부"
+      ],
+      "url": "/magazine/glossary-pump-fluid-terms/",
+      "model_focus": "연동·시린지·기어 펌프",
+      "application": "유체·펌프 · 용어사전",
+      "image": "/img/pump-guide.jpg"
+    },
+    {
+      "type": "magazine",
       "slug": "guide-pump-selection-energy-fluids",
       "title": "전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어",
       "summary": "유량·정밀도, 유체 성질, 접액 재질, 맥동·전단, 채널 수·제어 — 5축으로 공정에 맞는 펌프 유형을 고르는 법. 공정별 일반 선택표 포함.",
