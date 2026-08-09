@@ -1,91 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>심장 체외 관류(ex situ) 논문은 어떤 펌프를 썼나 — LeadFluid BT101L (Frontiers in Cardiovascular Medicine 2021) | 실험셋업연구소</title>
-<meta name="description" content="Frontiers in Cardiovascular Medicine(2021) 순환사 후 심장 공여(DCD) + 정상체온 체외 심장 관류(ESHP) 모델 연구는 관류 회로 구동에 LeadFluid 미세연동펌프 BT101L을 사용했습니다. 논문 원문 인용·DOI·재현 셋업까지 정리했습니다.">
-<link rel="canonical" href="https://rndsetup.com/setups/heart-eshp-bt101l">
-<meta property="og:type" content="article">
-<meta property="og:title" content="심장 체외 관류(ESHP) 논문의 연동펌프 셋업 — LeadFluid BT101L">
-<meta property="og:description" content="Frontiers in Cardiovascular Medicine(2021) 체외 심장 관류(ESHP) 연구는 관류 회로에 LeadFluid 미세연동펌프 BT101L을 사용했습니다.">
-<meta property="og:url" content="https://rndsetup.com/setups/heart-eshp-bt101l">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TechArticle",
-"headline":"심장 체외 관류(ESHP) 논문의 연동펌프 셋업 — LeadFluid BT101L (Frontiers in Cardiovascular Medicine 2021)",
-"datePublished":"2026-07-07",
-"about":{"@type":"Thing","name":"LeadFluid BT101L 미세연동(페리스탈틱)펌프","url":"https://rndsetup.com/brands/leadfluid/bt101l/"},
-"citation":{"@type":"ScholarlyArticle","name":"A Novel Rat Model of Cardiac Donation After Circulatory Death Combined With Normothermic ex situ Heart Perfusion","author":"Li, Jiale et al.","isPartOf":{"@type":"Periodical","name":"Frontiers in Cardiovascular Medicine"},"datePublished":"2021","sameAs":"https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2021.639701/full"},
-"author":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
-"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
-"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/setups/heart-eshp-bt101l"}}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"체외 심장 관류(ESHP) 연구는 어떤 펌프를 썼나요?","acceptedAnswer":{"@type":"Answer","text":"관류 회로 구동에 LeadFluid 미세연동펌프 BT101L을 사용해 산소화된 관류액을 적출한 심장에 일정 유량으로 순환시켰습니다(Li et al., Frontiers in Cardiovascular Medicine, 2021)."}},
-{"@type":"Question","name":"장기 체외 관류에는 왜 연동(페리스탈틱)펌프를 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"유체가 튜브 안에서만 흐르고 펌프 본체가 관류액에 닿지 않아 오염·혈액 손상 위험이 낮고, 저전단으로 일정 유량을 유지하기 좋기 때문입니다. 장시간 관류라면 유량을 소프트웨어로 고정하고 기록하는 제어가 재현성에 유리합니다."}}
-]}
-</script>
-<link rel="stylesheet" href="/assets/site.css">
-<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진", "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://rndsetup.com/"}, {"@type": "ListItem", "position": 2, "name": "연구별 셋업", "item": "https://rndsetup.com/setups/"}, {"@type": "ListItem", "position": 3, "name": "심장 체외 관류(ex situ) 논문은 어떤 펌프를 썼나", "item": "https://rndsetup.com/setups/heart-eshp-bt101l"}]}</script><!--HEADLD_END--></head>
-<body>
-<div id="pumplab-header"></div>
-
-<article class="sd-wrap">
-  <div class="sd-crumb"><a href="/">홈</a> › <a href="/setups/">도입·논문 사례</a> › 심장 체외 관류 · 연동펌프</div>
-  <h1>심장 체외 관류(ex situ) 논문은 어떤 펌프를 썼나<br>— LeadFluid BT101L (Frontiers in Cardiovascular Medicine 2021)</h1>
-  <div class="sd-meta">2026-07-07 · Frontiers in Cardiovascular Medicine · Li, Jiale et al.</div>
-
-  <div class="sd-summary">
-    <h3>셋업 요약</h3>
-    <div class="row"><span class="k">논문</span><span>A Novel Rat Model of Cardiac Donation After Circulatory Death Combined With Normothermic ex situ Heart Perfusion</span></div>
-    <div class="row"><span class="k">저널</span><span><b>Frontiers in Cardiovascular Medicine</b> · 2021</span></div>
-    <div class="row"><span class="k">사용 펌프</span><span><b>LeadFluid 미세연동펌프 BT101L</b></span></div>
-    <div class="row"><span class="k">용도</span><span>체외 심장 관류(ESHP) 회로 구동 · 산소화 관류액 순환</span></div>
-    <div class="row"><span class="k">분야</span><span>#심장 #장기관류</span></div>
-    <div class="row"><span class="k">DOI</span><a href="https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2021.639701/full" target="_blank" rel="noopener">10.3389/fcvm.2021.639701 ↗</a></div>
-  </div>
-
-  <div class="sd-answer">
-    <b>Frontiers in Cardiovascular Medicine(2021)에 발표된 순환사 후 심장 공여(DCD)·정상체온 체외 심장 관류(ESHP) 모델 연구는 관류 회로를 구동하는 데 LeadFluid 미세연동펌프 BT101L을 사용했습니다.</b> 적출한 쥐 심장에 산소화된 관류액을 일정 유량으로 순환시키는 것이 실험 성립 조건이었고, 본체가 관류액에 닿지 않는 연동(페리스탈틱)펌프가 이 순환을 맡았습니다.
-  </div>
-
-  <div class="sd-body">
-    <h2>논문은 어떤 펌프를 어떻게 썼나</h2>
-    <p>연구진은 적출한 심장을 살아있는 상태로 유지·평가하기 위해 <b>정상체온 체외 심장 관류(ESHP)</b> 시스템을 구성했습니다. 이 관류 회로의 심장(순환 구동)을 담당한 펌프가 <b>Lead Fluid의 BT101L 미세연동펌프</b>입니다. 관류액이 산소화기·저장조·튜브를 거쳐 심장으로 되돌아 순환하는 폐회로에서, 연동펌프는 유체가 튜브 안에서만 흐르고 헤드가 관류액에 직접 닿지 않아 혈액·생체 모사 관류에 적합합니다.</p>
-    <div class="sd-quote">"The perfusion circuit consisted of a <mark>micro-peristaltic pump (BT101L; Lead Fluid; China)</mark>, an oxygenator …, 16# Tygon tubing, a reservoir, an infusion syringe pump … and a home-made water-bath box."</div>
-    <div class="sd-cite">출처: Li et al., <i>Frontiers in Cardiovascular Medicine</i> (2021) · <a href="https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2021.639701/full" target="_blank" rel="noopener">원문 보기 ↗</a></div>
-
-    <h2>같은 셋업을 재현하려면</h2>
-    <p>장기 관류는 몇 시간~며칠에 걸쳐 유량이 흔들리면 장기 손상·평가 오차로 직결됩니다. 재현성 있는 데이터를 얻으려면 목표 유량을 소프트웨어로 고정하고, 튜브 마모에 따른 <b>유량 드리프트</b>를 주기적으로 캘리브레이션하며, 관류 이력을 로그로 남겨 같은 조건을 반복하는 제어가 필요합니다. 관류액 온도·압력 등 다른 변수와 동기화해야 한다면 채널별 독립 유량과 다펌프 동기가 실험 성립 조건이 됩니다.</p>
-  </div>
-
-  <div class="sd-bridge">
-    <h2>관류 유량, 프로그램이 대신 지킵니다</h2>
-    <p>실험셋업연구소는 LeadFluid 연동·정량·시린지펌프에 제어 소프트웨어를 얹어 유량 고정·시퀀스·기록/재현과 다펌프 동기를 구현합니다. 하드웨어를 직접 진단·수리할 만큼 알기에 제어도 실제 구동 특성 위에서 만들어집니다.</p>
-    <a href="/requests/">소프트웨어 제어 시스템 보기 →</a>
-  </div>
-
-  <div class="sd-sources">
-    <h4>출처</h4>
-    Li, Jiale et al., "A Novel Rat Model of Cardiac Donation After Circulatory Death Combined With Normothermic ex situ Heart Perfusion", <i>Frontiers in Cardiovascular Medicine</i>, 2021. DOI: 10.3389/fcvm.2021.639701<br>
-    ※ 본 페이지는 논문에 명시된 펌프 사용 사실만을 정리한 것으로, 제조사·저자의 보증이나 제휴를 의미하지 않습니다.
-  </div>
-
-  <div class="sd-tags"><span>#심장</span><span>#장기관류</span><span>#연동펌프</span><span>#BT101</span><span>#Frontiers</span></div>
-
-  <div class="sd-related">
-    <h3>관련 콘텐츠</h3>
-    <div class="sd-rel-grid">
-      <a class="sd-rc" href="/application/cell-culture-perfusion"><div class="cat">셋업 가이드 · 관류</div><div class="t">세포배양 관류 펌프 셋업</div><div class="d">무오염 연속 관류를 위한 연동펌프 선택과 구성 기준.</div></a>
-      <a class="sd-rc" href="/application/organ-on-chip-perfusion"><div class="cat">셋업 가이드 · 장기칩</div><div class="t">장기칩·오가노이드 관류</div><div class="d">µL/min 저유량으로 미세유체 채널에 배지를 연속 관류.</div></a>
-      <a class="sd-rc" href="/setups/catheter-heparin-bt101"><div class="cat">도입·논문 사례 · 의료</div><div class="t">혈관내 카테터 코팅 — BT101 L</div><div class="d">같은 BT101 계열 연동펌프로 폐루프 순환 회로를 구성한 Nature Communications 셋업.</div></a>
-      <a class="sd-rc" href="/requests/"><div class="cat">소프트웨어</div><div class="t">소프트웨어 제어 펌프 시스템</div><div class="d">유량 고정·기록/재현·다펌프 동기로 관류 셋업을 재현합니다.</div></a>
-    </div>
-  </div>
-<!--SETUPCTA_START--><section class="setup-cta" style="margin:26px 0 8px;border:1px solid #d6e0ee;border-radius:14px;padding:22px 22px;background:#EDF1F8"><div style="font-size:12px;font-weight:800;letter-spacing:.04em;color:#1E3A5F;margin-bottom:7px">솔루션 패키지</div><h3 style="font-size:18px;font-weight:700;color:#1E3A5F;margin:0 0 8px;line-height:1.4">이 셋업 구성 그대로 견적·솔루션 문의</h3><p style="font-size:14px;color:#3a4650;line-height:1.75;margin:0 0 14px">위에 정리한 장비·모듈 구성을 기준으로 견적과 통합 셋업(구성·제어·연동·설치)을 안내해 드립니다. 다른 브랜드·조건도 함께 맞춰 드립니다.</p><a href="/contact/?setup=%EC%8B%AC%EC%9E%A5%20%EC%B2%B4%EC%99%B8%20%EA%B4%80%EB%A5%98%28ex%20situ%29%20%EB%85%BC%EB%AC%B8%EC%9D%80%20%EC%96%B4%EB%96%A4%20%ED%8E%8C%ED%94%84%EB%A5%BC%20%EC%8D%BC%EB%82%98%E2%80%94%20LeadFluid%20BT101L%20%28Frontiers%20in%20Cardiovascular%20Medicine%202021%29#general" style="display:inline-block;background:#1E3A5F;color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:9px;text-decoration:none">이 셋업으로 문의하기 &rarr;</a></section><!--SETUPCTA_END--></article>
-
-<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/brands/">브랜드 소개 — 삼흥에너지·리드플루이드·Alicat</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
-<script src="/assets/site.js" defer></script>
-</body>
-</html>
+<html lang="ko"><head><meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>이동되었습니다 — 논문 사례 | 실험셋업연구소</title>
+<link rel="canonical" href="https://rndsetup.com/setups/">
+<meta http-equiv="refresh" content="0; url=/setups/">
+</head><body>
+<p>이 셋업 사례는 정리되었습니다. <a href="/setups/">논문 사례 목록으로 이동</a>합니다.</p>
+</body></html>

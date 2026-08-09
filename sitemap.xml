@@ -421,12 +421,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/setups/heart-eshp-bt101l</loc>
-    <lastmod>2026-07-07</lastmod>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://rndsetup.com/setups/damo-recirculation-bt600s</loc>
     <lastmod>2026-07-06</lastmod>
     <priority>0.9</priority>
@@ -435,18 +429,6 @@
   <url>
     <loc>https://rndsetup.com/setups/nitrification-ph-bq50s</loc>
     <lastmod>2026-07-05</lastmod>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/setups/brain-electrode-tyd01</loc>
-    <lastmod>2026-07-02</lastmod>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/setups/catheter-heparin-bt101</loc>
-    <lastmod>2026-06-30</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>

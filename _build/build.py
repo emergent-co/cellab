@@ -407,12 +407,9 @@ CRAWLER_LINKS = [
     ('/magazine/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
     ('/magazine/oxidation/', '산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산'),
     ('/magazine/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
-    ('/setups/', '도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업'),
-    ('/setups/heart-eshp-bt101l.html', '심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)'),
+    ('/setups/', '도입·논문 사례 — 에너지·소재 공정 셋업'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
-    ('/setups/brain-electrode-tyd01.html', '뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)'),
-    ('/setups/catheter-heparin-bt101.html', '혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)'),
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)'),
     ('/furnace/setups/', '퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례'),
     ('/furnace/setups/alicat-mfc-tubefurnace/', '1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례'),
@@ -527,9 +524,8 @@ def inject_static_nav():
 
 
 SETUP_SECTIONS = [
-    ('BIO',    {'brain-electrode-tyd01', 'catheter-heparin-bt101', 'heart-eshp-bt101l'}),
-    ('ENV',    {'damo-recirculation-bt600s', 'nitrification-ph-bq50s'}),
     ('ENERGY', {'co2-capture-ct3001f', 'alicat-mfc-tubefurnace', 'leadfluid-bt101l-plating'}),
+    ('ENV',    {'damo-recirculation-bt600s', 'nitrification-ph-bq50s'}),
 ]
 
 def _setup_slug(url):
@@ -674,12 +670,11 @@ def build_setups():
         html, ok = _inject_between(html, f'<!--SEC_{const}_START-->', f'<!--SEC_{const}_END-->', cards_html)
         total_ok = total_ok and ok
 
-    count_html = f'셋업 <b>{len(setups)}</b> · 연구 분야 3'
+    count_html = f'셋업 <b>{len(setups)}</b> · 분야 {len(SETUP_SECTIONS)}'
     parts = ', '.join(f'{escape(p.get("model_focus",""))}({escape(p.get("summary",""))})' for p in papers)
     answer_html = (
-        f'<b>LeadFluid(리드플루이드) 펌프는 Nature 등 국제 학술지 연구 {len(papers)}편의 실험 셋업에 사용됐습니다.</b> '
-        f'바이오·의료, 환경·수처리, 에너지·재료·열처리 분야별로 정리했습니다 — {parts} 등. '
-        f'각 셋업의 논문·저널·펌프 모델·DOI를 아래에서 확인하세요.'
+        f'<b>에너지·재료·수처리 공정 셋업 {len(papers)}편을 공정 → 조건 → 필요 장비 순으로 정리했습니다.</b> '
+        f'{parts} 등. 각 셋업의 논문·저널·펌프 모델·DOI를 아래에서 확인하세요.'
     )
     html, okc = _inject_between(html, '<!--ST_COUNT_START-->', '<!--ST_COUNT_END-->', count_html)
     html, oka = _inject_between(html, '<!--ST_ANSWER_START-->', '<!--ST_ANSWER_END-->', answer_html)
@@ -714,8 +709,8 @@ ORG_WEBSITE_GRAPH = {
             "telephone": "+82-70-8983-2600",
             "founder": {"@type": "Person", "name": "이영현"},
             "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"],
-            "slogan": "논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진",
-            "description": "논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 실험 셋업 매거진. 열처리·증착(퍼니스)과 유체·펌프 두 갈래로 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
+            "slogan": "셋업으로 읽는 에너지·소재 공정 매거진",
+            "description": "논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "부산광역시",
