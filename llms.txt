@@ -47,15 +47,12 @@
 - [펌프 고르기(선택)](https://rndsetup.com/application/pump-selection): 펌프 종류·선택 기준
   - [튜브 선택 가이드](https://rndsetup.com/application/tube-selection): 재질별 특성·화학 적합성
   - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://rndsetup.com/application/pump-pc-control-modbus-rs485)
-- [연구별 셋업 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 바이오·의료 / 환경·수처리 / 에너지·재료·열처리 분야별로, 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
-  - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://rndsetup.com/setups/brain-electrode-tyd01)
-  - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://rndsetup.com/setups/catheter-heparin-bt101)
+- [사례 아카이브 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 에너지·재료 / 환경·수처리 분야별 논문 셋업 아카이브. 신규 셋업 글은 매거진(/magazine/)에서 발행
   - [연속 CO₂ 포집 — PEEK 기어펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
-  - [심장 체외 관류(ESHP) — 연동펌프 BT101L (Frontiers in Cardiovascular Medicine 2021)](https://rndsetup.com/setups/heart-eshp-bt101l)
   - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://rndsetup.com/setups/damo-recirculation-bt600s)
   - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://rndsetup.com/setups/nitrification-ph-bq50s)
 - 도입 사례(실증): 실험셋업연구소가 실제 납품·구성한 사례
-  - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/setups/alicat-mfc-tubefurnace)
+  - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/furnace/setups/alicat-mfc-tubefurnace/)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/pump/setups/plating-flow-calibration/)
 - 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/brands/leadfluid/)에 통합
 - [자주 묻는 질문(FAQ)](https://rndsetup.com/faq/): 수리·A/S·펌프·소프트웨어

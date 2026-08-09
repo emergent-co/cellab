@@ -413,7 +413,7 @@ CRAWLER_LINKS = [
     ('/magazine/guide-calcination-furnace-atmosphere/', '소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통'),
     ('/magazine/troubleshooting-calcination-batch-variation/', '소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅'),
     ('/magazine/glossary-heat-gas-terms/', '하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)'),
-    ('/setups/', '도입·논문 사례 — 에너지·소재 공정 셋업'),
+    ('/setups/', '사례 아카이브 — 에너지·소재 공정 셋업 (신규 글은 매거진에서 발행)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)'),

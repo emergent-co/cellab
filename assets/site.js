@@ -40,7 +40,7 @@
     (d.posts || []).forEach(function (p) {
       SEARCH_INDEX.push({ t: p.title, u: p.url,
         k: (p.tags || []).join(' ') + ' ' + (p.journal || '') + ' ' + (p.model_focus || '') + ' ' + (p.application || ''),
-        c: (p.type === 'setup' ? '도입·논문 사례' : '블로그') });
+        c: (p.type === 'setup' ? '사례 아카이브' : '블로그') });
     });
   }).catch(function () {});
 
@@ -62,8 +62,8 @@
   };
   var NAV = [
     { href:'/magazine/', label:'셋업 매거진', icon:'feed' },
-    { href:'/setups/', label:'논문·도입 사례', icon:'find', sub:[
-        ['/setups/',         '에너지·소재 논문 셋업'],
+    { href:'/setups/', label:'사례 아카이브', icon:'find', sub:[
+        ['/setups/',         '논문 셋업 아카이브'],
         ['/furnace/setups/', '퍼니스 도입 사례']
       ] },
     { href:'/brands/', label:'브랜드·장비', icon:'devices' },
