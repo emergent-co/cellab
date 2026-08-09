@@ -44,18 +44,6 @@
           "title": "석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향",
           "desc": "다채널 MFC + 튜브퍼니스 800·900℃ 셋업.",
           "meta": "Journal of Power Sources (2007) · 논문 셋업"
-        },
-        {
-          "url": "/furnace/setups/alicat-mfc-tubefurnace/",
-          "img": "/img/product/sh/muffle-1200.jpg",
-          "alt": "전기로",
-          "process": [
-            "온도 스케줄",
-            "가스 분위기"
-          ],
-          "title": "1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC",
-          "desc": "온도 스케줄에 가스 유량을 하나로 묶은 셋업.",
-          "meta": "도입 사례 · 튜브퍼니스"
         }
       ]
     },
@@ -102,30 +90,6 @@
           "title": "연속 CO₂ 포집 — CT3001F PEEK 기어펌프",
           "desc": "anolyte·catholyte 전해액 순환 셋업.",
           "meta": "Nature Communications (2024) · 논문 셋업"
-        },
-        {
-          "url": "/setups/damo-recirculation-bt600s",
-          "img": "/img/leadfluid/BT600S.png",
-          "alt": "연동펌프 BT600S",
-          "process": [
-            "완전혼합 순환",
-            "연속 배양"
-          ],
-          "title": "혐기성 메탄산화 반응기 순환 — BT600S",
-          "desc": "막 바이오필름 반응기 완전혼합 순환.",
-          "meta": "Environ. Sci. Technol. (2021) · 논문 셋업"
-        },
-        {
-          "url": "/setups/nitrification-ph-bq50s",
-          "img": "/img/leadfluid/BQ80S.png",
-          "alt": "정량펌프 BQ80S",
-          "process": [
-            "pH 제어",
-            "정량 투입"
-          ],
-          "title": "폐수 질산화 pH 제어 — BQ50S",
-          "desc": "pH 7.5~8.5 자동 유지 산·염기 정량 투입.",
-          "meta": "Bioresource Technology (2017) · 논문 셋업"
         }
       ]
     }
