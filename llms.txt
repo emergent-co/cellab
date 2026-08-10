@@ -52,7 +52,7 @@
 - [펌프 고르기(선택)](https://rndsetup.com/application/pump-selection): 펌프 종류·선택 기준
   - [튜브 선택 가이드](https://rndsetup.com/application/tube-selection): 재질별 특성·화학 적합성
   - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://rndsetup.com/application/pump-pc-control-modbus-rs485)
-- [사례 아카이브 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 에너지·재료 / 환경·수처리 분야별 논문 셋업 아카이브. 신규 셋업 글은 매거진(/magazine/)에서 발행
+- [셋업 사례 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 에너지·재료 / 환경·수처리 분야별 논문 셋업 아카이브. 신규 셋업 글은 매거진(/magazine/)에서 발행
   - [연속 CO₂ 포집 — PEEK 기어펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
   - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://rndsetup.com/setups/damo-recirculation-bt600s)
   - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://rndsetup.com/setups/nitrification-ph-bq50s)

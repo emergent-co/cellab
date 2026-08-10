@@ -61,14 +61,13 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/magazine/', label:'셋업 매거진', icon:'feed' },
-    { href:'/magazine/battery/', label:'배터리 랩 A to Z', icon:'pick' },
-    { href:'/brands/', label:'장비·가격', icon:'devices', sub:[
-        ['/manuals/', '장비 메뉴얼']
-      ] },
-    { href:'/setups/', label:'사례 아카이브', icon:'find', sub:[
-        ['/setups/',         '논문 셋업 아카이브'],
+    { href:'/magazine/', label:'셋업 매거진', icon:'feed', sub:[
+        ['/setups/',         '셋업 사례'],
         ['/furnace/setups/', '퍼니스 도입 사례']
+      ] },
+    { href:'/magazine/battery/', label:'배터리 랩 A to Z', icon:'pick' },
+    { href:'/brands/', label:'장비 카탈로그', icon:'devices', sub:[
+        ['/manuals/', '장비 메뉴얼']
       ] },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact', sub:[
