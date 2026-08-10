@@ -250,17 +250,26 @@
 
 <script>
 (function(){
-  /* 공정 필터탭 — 카드는 정적 HTML, 탭은 표시/숨김만 담당 (GEO 안전) */
+  /* 공정 필터탭 + 2행 제한 — 카드는 정적 HTML 전부 유지(GEO), 표시만 셀 예산 6칸(3열×2행)까지 */
   var tabs = document.getElementById('magTabs');
-  if (tabs) tabs.addEventListener('click', function(e){
-    var btn = e.target.closest('button'); if(!btn) return;
-    tabs.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===btn); });
-    var f = btn.getAttribute('data-f');
+  function applyMagFilter(f){
+    var budget = 6; /* 3열 × 2행 */
     document.querySelectorAll('#magMosaic .m-art').forEach(function(c){
       var p = c.getAttribute('data-proc') || '';
-      c.style.display = (f==='all' || p.split(' ').indexOf(f)>-1) ? '' : 'none';
+      var match = (f==='all' || p.split(' ').indexOf(f)>-1);
+      var cost = c.classList.contains('span-w') || c.classList.contains('span-t') ? 2 : 1;
+      if (match && budget >= cost){ c.style.display=''; budget -= cost; }
+      else { c.style.display='none'; }
     });
-  });
+  }
+  if (tabs){
+    tabs.addEventListener('click', function(e){
+      var btn = e.target.closest('button'); if(!btn) return;
+      tabs.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===btn); });
+      applyMagFilter(btn.getAttribute('data-f'));
+    });
+    applyMagFilter('all');
+  }
   /* 제품 레일 — 스크롤 없음: 좌우 버튼 + 기본 자동 흐름 (호버·터치 시 정지) */
   var rail = document.getElementById('prodRail');
   if (rail){
