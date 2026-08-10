@@ -281,6 +281,45 @@
       window.addEventListener('scroll', lfScroll, { passive: true });
       lfScroll();
     }
+    // 매거진 글 페이지: 우측 '관련 제품' 레일 주입 (article.sd-wrap 페이지 공통)
+    var art = document.querySelector('article.sd-wrap');
+    if (art && !document.querySelector('.art-rail')) {
+      var HEAT_PRODS = [
+        { u:'/brands/sh-scientific/muffle-1050/', i:'/img/product/sh/muffle-1050.jpg', n:'ECO 머플로 1050℃', d:'열처리·회화·소성 입문 표준. 프로그램 PID 제어.', p:'110만 원~' },
+        { u:'/brands/sh-scientific/gas-flow-package/', i:'/img/product/sh/gas-flow-package.jpg', n:'튜브로 가스플로 패키지', d:'석영튜브+가스라인 통합 — CVD·분위기 소성용.', p:'515만 원~' },
+        { u:'/brands/sh-scientific/tube-1500/', i:'/img/product/sh/tube-1500.jpg', n:'튜브전기로 1500℃', d:'고온 소성·소결. 균일 항온대 보증.', p:'780만 원~' },
+        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', p:'1,200만 원~' }
+      ];
+      var FLUID_PRODS = [
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT101S.png', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', p:'97만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT600S.png', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', p:'219만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/CT3001F.png', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', p:'231만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/TYD01-01.png', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', p:'240만 원~' }
+      ];
+      var crumb = art.querySelector('.sd-crumb');
+      var isFluid = crumb && /유체|펌프/.test(crumb.textContent || '');
+      var prods = isFluid ? FLUID_PRODS : HEAT_PRODS;
+      var layout = document.createElement('div');
+      layout.className = 'art-layout';
+      art.parentNode.insertBefore(layout, art);
+      layout.appendChild(art);
+      var rail = document.createElement('aside');
+      rail.className = 'art-rail';
+      rail.setAttribute('aria-label', '관련 제품');
+      rail.innerHTML = '<div class="ar-h">이 셋업에 쓰는 장비</div>' +
+        prods.map(function (p) {
+          return '<a class="ar-card" href="' + p.u + '">' +
+            '<span class="ai" style="background-image:url(\'' + p.i + '\')"></span>' +
+            '<span class="ab"><span class="an">' + p.n + '</span>' +
+            '<span class="ad" style="display:block">' + p.d + '</span>' +
+            '<span class="ap">' + p.p + '<span class="ag">사양 보기 →</span></span></span></a>';
+        }).join('') +
+        '<div class="ar-cta"><div class="ac-t">내 공정에 맞는 구성이 궁금하다면</div>' +
+        '<div class="ac-d">시료·공정 조건만 남기면 맞는 구성과 견적으로 회신드립니다. 매거진 독자 할인가 안내.</div>' +
+        '<a href="/contact/">셋업 상담·견적 →</a></div>';
+      layout.appendChild(rail);
+    }
+
     // 스크롤다운 시 상단바 접기 — 메뉴바만 반투명하게 남김 (데스크톱, CSS가 처리)
     var hdrTick = false;
     function hdrOnScroll() {
