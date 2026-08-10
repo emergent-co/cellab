@@ -285,16 +285,20 @@
     var art = document.querySelector('article.sd-wrap');
     if (art && !document.querySelector('.art-rail')) {
       var HEAT_PRODS = [
-        { u:'/brands/sh-scientific/muffle-1050/', i:'/img/product/sh/muffle-1050.jpg', n:'ECO 머플로 1050℃', d:'열처리·회화·소성 입문 표준. 프로그램 PID 제어.', p:'110만 원~' },
-        { u:'/brands/sh-scientific/gas-flow-package/', i:'/img/product/sh/gas-flow-package.jpg', n:'튜브로 가스플로 패키지', d:'석영튜브+가스라인 통합 — CVD·분위기 소성용.', p:'515만 원~' },
-        { u:'/brands/sh-scientific/tube-1500/', i:'/img/product/sh/tube-1500.jpg', n:'튜브전기로 1500℃', d:'고온 소성·소결. 균일 항온대 보증.', p:'780만 원~' },
-        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', p:'1,200만 원~' }
+        { u:'/brands/sh-scientific/muffle-1050/', i:'/img/product/sh/muffle-1050.jpg', n:'ECO 머플로 1050℃', d:'열처리·회화·소성 입문 표준. 프로그램 PID 제어.', d2:'승온 프로그램 · 균일 온도분포 · 국산 정품', p:'110만 원~' },
+        { u:'/brands/sh-scientific/gas-flow-package/', i:'/img/product/sh/gas-flow-package.jpg', n:'튜브로 가스플로 패키지', d:'석영튜브+가스라인 통합 — CVD·분위기 소성용.', d2:'1200℃ · 불활성/환원 가스 치환 구성', p:'515만 원~' },
+        { u:'/brands/sh-scientific/tube-1500/', i:'/img/product/sh/tube-1500.jpg', n:'튜브전기로 1500℃', d:'고온 소성·소결. 균일 항온대 보증.', d2:'세라믹·양극재 고온 공정 · 3존 옵션', p:'780만 원~' },
+        { u:'/brands/sh-scientific/muffle-1500/', i:'/img/product/sh/muffle-1500.jpg', n:'전기로 1500℃', d:'고온 박스로 — 소결·치밀화 공정용.', d2:'4.5~36L 용량 선택 · 프로그램 제어', p:'589만 원~' },
+        { u:'/brands/sh-scientific/vacuum-muffle-1200/', i:'/img/product/sh/vacuum-muffle-1200.jpg', n:'진공 머플로 1200℃', d:'진공·분위기 겸용 — 산화 민감 소재 열처리.', d2:'감압 열처리 · 진공펌프 연결 구성(별도)', p:'963만 원~' },
+        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:'1,200만 원~' }
       ];
       var FLUID_PRODS = [
-        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT101S.png', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', p:'97만 원~' },
-        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT600S.png', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', p:'219만 원~' },
-        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/CT3001F.png', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', p:'231만 원~' },
-        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/TYD01-01.png', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', p:'240만 원~' }
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT101S.png', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:'97만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT300S.png', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:'171만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/BT600S.png', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:'219만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/CT3001F.png', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:'231만 원~' },
+        { u:'/brands/leadfluid/guide/', i:'/img/leadfluid/TYD01-01.png', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:'240만 원~' },
+        { u:'/brands/alicat/', i:'/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg', n:'Alicat 질량유량계(MFC)', d:'가스 유량 sccm 정밀 제어·기록.', d2:'다기체 대응 · Modbus·RS-485 로그', p:'견적 문의' }
       ];
       var crumb = art.querySelector('.sd-crumb');
       var isFluid = crumb && /유체|펌프/.test(crumb.textContent || '');
@@ -312,6 +316,7 @@
             '<span class="ai" style="background-image:url(\'' + p.i + '\')"></span>' +
             '<span class="ab"><span class="an">' + p.n + '</span>' +
             '<span class="ad" style="display:block">' + p.d + '</span>' +
+            '<span class="ad2" style="display:block">' + (p.d2 || '') + '</span>' +
             '<span class="ap">' + p.p + '<span class="ag">사양 보기 →</span></span></span></a>';
         }).join('') +
         '<div class="ar-cta"><div class="ac-t">내 공정에 맞는 구성이 궁금하다면</div>' +

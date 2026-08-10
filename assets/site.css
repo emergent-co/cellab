@@ -90,7 +90,7 @@ body{ padding-top:106px; }
   body .hwrap, body .hub-wrap, body .mg-wrap, body .stwrap, body .sd-wrap{ max-width:70%; }
 }
 /* 매거진 본문 우측 '관련 제품' 레일 (site.js가 article.sd-wrap 페이지에 주입) */
-.art-layout{ display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:32px; max-width:70%; margin:0 auto; align-items:start; }
+.art-layout{ display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:34px; max-width:74%; margin:0 auto; align-items:start; }
 .art-layout .sd-wrap{ max-width:none !important; margin:0 !important; }
 .art-rail{ position:sticky; top:120px; display:flex; flex-direction:column; gap:12px; padding-top:24px; }
 .art-rail .ar-h{ font-size:13px; font-weight:800; color:var(--ink); border-left:3px solid #C2410C; padding-left:9px; }
@@ -100,6 +100,8 @@ body{ padding-top:106px; }
 .ar-card .ab{ min-width:0; }
 .ar-card .an{ font-size:13px; font-weight:800; color:var(--ink); line-height:1.35; }
 .ar-card .ad{ font-size:11.5px; color:#7a828c; line-height:1.5; margin-top:3px; }
+.ar-card .ad2{ font-size:11px; color:#9aa3ad; line-height:1.5; margin-top:2px; }
+.ar-card .ai{ flex-basis:72px; height:72px; }
 .ar-card .ap{ font-size:12.5px; font-weight:800; color:#9A3412; margin-top:5px; }
 .ar-card .ag{ font-size:11.5px; font-weight:800; color:var(--green); margin-left:7px; }
 .ar-cta{ border:1px solid #E7E3DE; background:#FAF8F5; border-radius:12px; padding:14px 15px; text-align:center; }
