@@ -62,8 +62,7 @@
   };
   var NAV = [
     { href:'/magazine/', label:'셋업 매거진', icon:'feed', sub:[
-        ['/setups/',         '셋업 사례'],
-        ['/furnace/setups/', '퍼니스 도입 사례']
+        ['/setups/', '셋업 사례']
       ] },
     { href:'/magazine/battery/', label:'배터리 랩 A to Z', icon:'pick' },
     { href:'/brands/', label:'장비 카탈로그', icon:'devices', sub:[
