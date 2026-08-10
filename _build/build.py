@@ -633,18 +633,20 @@ def build_home_paper_cases():
     for g in groups:
         flc = ' fl' if g.get('fl') else ''
         parts.append(
-            f'<div class="mag-cat-t{flc}">{escape(g.get("title",""))}'
+            f'<div class="mag-cat-t{flc} mag-group">{escape(g.get("title",""))}'
             f'<span class="c">{escape(g.get("caption",""))}</span></div>'
         )
-        parts.append('<div class="mag-arts">')
+        parts.append('<div class="mag-arts mag-group-arts">')
         for c in g.get('cards', []):
             proc = [k for k in c.get('process', []) if k]
             kws = ''.join(f'<span class="ma-hero-kw">{escape(k)}</span>' for k in proc)
             img = escape(c.get('img', ''))
             style = f' style="background-image:url(\'{img}\')"' if img else ''
             hero = f'<div class="ma-hero"{style}>{kws}</div>' if (kws or img) else ''
+            dproc = escape(c.get('proc', '')) if c.get('proc') else ''
+            dattr = f' data-proc="{dproc}"' if dproc else ''
             parts.append(
-                f'<a class="m-art{flc}" href="{escape(c.get("url",""))}">'
+                f'<a class="m-art{flc}" href="{escape(c.get("url",""))}"{dattr}>'
                 f'{hero}'
                 f'<h3>{escape(c.get("title",""))}</h3>'
                 f'<p>{escape(c.get("desc",""))}</p>'

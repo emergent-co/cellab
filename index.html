@@ -44,11 +44,32 @@
       .brand-head .t{font-size:clamp(18px,4vw,22px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
       .brand-head .t .n{color:#9aa3ad;font-weight:700;margin-right:7px}
       .brand-head .en{font-size:12px;color:#9aa3ad;font-weight:700;letter-spacing:.08em}
-      .brand-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-      @media(max-width:900px){.brand-pick{grid-template-columns:repeat(2,1fr)}}
-      @media(max-width:560px){.brand-pick{grid-template-columns:1fr}}
-      .bcard-body .price{font-size:14.5px;font-weight:800;color:#9A3412;margin-top:9px}
-      .bcard-body .price small{font-size:11px;font-weight:600;color:#8a929c}
+      .prod-rail-wrap{position:relative}
+      .prod-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
+      .prod-rail::-webkit-scrollbar{height:6px}
+      .prod-rail::-webkit-scrollbar-thumb{background:#d8d5cc;border-radius:6px}
+      .prod-card{flex:0 0 185px;scroll-snap-align:start;display:block;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+      .prod-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(10,37,64,.12)}
+      .prod-card .pimg{aspect-ratio:1/1;background:#fff center/contain no-repeat;border-bottom:1px solid #f0eee7}
+      .prod-card .pbd{padding:10px 12px 12px}
+      .prod-card .pn{font-size:13px;font-weight:800;color:var(--ink);line-height:1.35}
+      .prod-card .ps{font-size:11px;color:#8a929c;margin-top:2px}
+      .prod-card .pp{font-size:13.5px;font-weight:800;color:#9A3412;margin-top:7px}
+      .prod-card .pp small{font-size:10.5px;font-weight:600;color:#9aa3ad}
+      .rail-btn{position:absolute;top:38%;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(10,37,64,.12);z-index:2;display:flex;align-items:center;justify-content:center}
+      .rail-btn.prev{left:-10px}.rail-btn.next{right:-10px}
+      @media(max-width:640px){.rail-btn{display:none}}
+      .hl-card{display:flex;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;margin-top:16px;text-decoration:none;color:inherit;transition:box-shadow .15s}
+      .hl-card:hover{box-shadow:0 16px 32px rgba(10,37,64,.12)}
+      .hl-card .him{flex:0 0 42%;background:#fff center/cover no-repeat;min-height:200px}
+      .hl-card .hbd{padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
+      .hl-card .hk{font-size:11px;font-weight:800;letter-spacing:.08em;color:#EF9F27}
+      .hl-card h3{font-family:var(--serif);font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 7px;line-height:1.35}
+      .hl-card p{font-size:13.5px;color:#3a4550;line-height:1.65;margin:0}
+      .hl-card .hp{font-size:15px;font-weight:800;color:#9A3412;margin-top:10px}
+      .hl-card .hp small{font-size:11px;font-weight:600;color:#8a929c}
+      .hl-card .hgo{margin-top:10px;font-size:13px;font-weight:800;color:var(--green)}
+      @media(max-width:680px){.hl-card{flex-direction:column}.hl-card .him{min-height:170px;flex-basis:auto}}
       .bcard{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;transition:transform .15s,box-shadow .15s}
       .bcard:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(10,37,64,.14)}
       .bcard-img{position:relative;aspect-ratio:16/11;background-size:cover;background-position:center;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -118,8 +139,14 @@
       .mag-cat-t{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--ink);margin:26px 0 12px;padding-left:11px;border-left:3px solid #EF9F27}
       .mag-cat-t.fl{border-left-color:var(--green)}
       .mag-cat-t .c{font-size:12px;font-weight:600;color:var(--gray-2);margin-left:8px}
-      .mag-arts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-      @media(max-width:760px){.mag-arts{grid-template-columns:1fr}}
+      .mag-arts{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
+      .mag-arts::-webkit-scrollbar{height:6px}
+      .mag-arts::-webkit-scrollbar-thumb{background:#d8d5cc;border-radius:6px}
+      .mag-arts .m-art{flex:0 0 250px;scroll-snap-align:start}
+      @media(max-width:520px){.mag-arts .m-art{flex-basis:220px}}
+      .mag-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 4px}
+      .mag-tabs button{font:inherit;font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:999px;border:1px solid #e0ddd4;background:#fff;color:#5a5a54;cursor:pointer}
+      .mag-tabs button.on{background:#1E3A5F;border-color:#1E3A5F;color:#fff}
       .m-art{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;overflow:hidden;transition:transform .15s,box-shadow .15s}
       .m-art .ma-img{aspect-ratio:16/9;margin:-14px -16px 12px;overflow:hidden;background:var(--soft-blue)}
       .m-art .ma-img img{width:100%;height:100%;object-fit:cover;display:block}
@@ -134,77 +161,101 @@
       .mag-all{display:inline-block;margin-top:14px;font-size:13px;font-weight:800;color:var(--green)}
     </style>
 
-<!--PAPERCASES_START--><div class="mag-cat-t">열처리 · 증착 (퍼니스)<span class="c">배터리 소재 소성 · 소성·소결 · CVD · 가스 분위기</span></div>
-    <div class="mag-arts">
-    <a class="m-art" href="/magazine/sodium-cathode-atmosphere-dca/"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">소성 분위기</span><span class="ma-hero-kw">동적 제어</span></div><h3>소듐 양극재를 상순도로 — 소성 분위기를 &#x27;바꾸는&#x27; 셋업</h3><p>튜브퍼니스 + 다채널 MFC 동적 분위기(DCA) 소성.</p><div class="mt">Nature Communications (2025) · 논문 셋업</div></a>
-    <a class="m-art" href="/magazine/si-anode-cvd-carbon-coating/"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">탄소 코팅</span><span class="ma-hero-kw">CVD</span></div><h3>실리콘 음극이 부서지지 않게 — CVD 탄소 코팅 셋업</h3><p>실란 550℃ 증착 + 아세틸렌 900℃·5분 코팅.</p><div class="mt">Nature Communications (2018) · 논문 셋업</div></a>
-    <a class="m-art" href="/magazine/sofc-hcl-syngas/"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">가스 분위기</span><span class="ma-hero-kw">수증기 제어</span></div><h3>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향</h3><p>다채널 MFC + 튜브퍼니스 800·900℃ 셋업.</p><div class="mt">Journal of Power Sources (2007) · 논문 셋업</div></a>
+    <div class="mag-tabs" id="magTabs" aria-label="배터리 공정별 필터">
+      <button class="on" data-f="all">전체</button>
+      <button data-f="coprecip">전구체 공침</button>
+      <button data-f="calcine">소성·열처리</button>
+      <button data-f="coat">증착·코팅</button>
+      <button data-f="electrolyte">전해액·순환</button>
+    </div>
+
+<!--PAPERCASES_START--><div class="mag-cat-t mag-group">열처리 · 증착 (퍼니스)<span class="c">배터리 소재 소성 · 소성·소결 · CVD · 가스 분위기</span></div>
+    <div class="mag-arts mag-group-arts">
+    <a class="m-art" href="/magazine/sodium-cathode-atmosphere-dca/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">소성 분위기</span><span class="ma-hero-kw">동적 제어</span></div><h3>소듐 양극재를 상순도로 — 소성 분위기를 &#x27;바꾸는&#x27; 셋업</h3><p>튜브퍼니스 + 다채널 MFC 동적 분위기(DCA) 소성.</p><div class="mt">Nature Communications (2025) · 논문 셋업</div></a>
+    <a class="m-art" href="/magazine/si-anode-cvd-carbon-coating/" data-proc="coat"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">탄소 코팅</span><span class="ma-hero-kw">CVD</span></div><h3>실리콘 음극이 부서지지 않게 — CVD 탄소 코팅 셋업</h3><p>실란 550℃ 증착 + 아세틸렌 900℃·5분 코팅.</p><div class="mt">Nature Communications (2018) · 논문 셋업</div></a>
+    <a class="m-art" href="/magazine/sofc-hcl-syngas/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">가스 분위기</span><span class="ma-hero-kw">수증기 제어</span></div><h3>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향</h3><p>다채널 MFC + 튜브퍼니스 800·900℃ 셋업.</p><div class="mt">Journal of Power Sources (2007) · 논문 셋업</div></a>
+    <a class="m-art" href="/magazine/cuo-nanowire-thermal-oxidation/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/muffle-1050.jpg')"><span class="ma-hero-kw">열산화</span><span class="ma-hero-kw">나노와이어</span></div><h3>구리를 가열하면 나노와이어가 자란다 — CuO 열산화 셋업</h3><p>공기 10℃/min→450℃·2h — 표면 상태가 밀도를 결정.</p><div class="mt">Scientific Reports (2019) · 논문 셋업</div></a>
+    <a class="m-art" href="/magazine/guide-calcination-furnace-atmosphere/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"><span class="ma-hero-kw">장비 선정</span><span class="ma-hero-kw">5가지 축</span></div><h3>소성·하소용 튜브퍼니스와 가스 분위기 고르는 법</h3><p>최고온도·튜브경·분위기·MFC·기록 — 도입 전 체크.</p><div class="mt">가이드 · 양극재·세라믹·촉매 공통</div></a>
+    <a class="m-art" href="/magazine/troubleshooting-calcination-batch-variation/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/muffle-1500.jpg')"><span class="ma-hero-kw">배치 편차</span><span class="ma-hero-kw">점검표</span></div><h3>소성 배치마다 결과가 다른 7가지 이유</h3><p>승온·균열구간·적재량·유량 드리프트 — 증상별 점검.</p><div class="mt">트러블슈팅 · 재현성</div></a>
     </div>
     <a class="mag-all" href="/magazine/">열처리·증착 매거진 전체 &rarr;</a>
-    <div class="mag-cat-t fl">유체 · 펌프<span class="c">전해액 순환 · 전구체 공침 · 정량 투입 · 수처리</span></div>
-    <div class="mag-arts">
-    <a class="m-art fl" href="/magazine/nickel-hydroxide-coprecipitation-cstr/"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">정량 공급</span><span class="ma-hero-kw">체류시간</span></div><h3>배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널</h3><p>금속염·NaOH·암모니아 3용액 정량 공급 셋업.</p><div class="mt">Chem. Eng. Technol. (2023) · 논문 셋업</div></a>
-    <a class="m-art fl" href="/magazine/aorfb-flowfield-electrolyte-pump/"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">유로 설계</span></div><h3>레독스흐름전지 전해액 순환 — 연동펌프 140 mL/min</h3><p>flow-through 유로 + 연동펌프로 300 mA/cm² 충전.</p><div class="mt">PNAS (2024) · 논문 셋업</div></a>
-    <a class="m-art fl" href="/setups/co2-capture-ct3001f"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">정밀 유량</span></div><h3>연속 CO₂ 포집 — CT3001F PEEK 기어펌프</h3><p>anolyte·catholyte 전해액 순환 셋업.</p><div class="mt">Nature Communications (2024) · 논문 셋업</div></a>
+    <div class="mag-cat-t fl mag-group">유체 · 펌프<span class="c">전해액 순환 · 전구체 공침 · 정량 투입 · 수처리</span></div>
+    <div class="mag-arts mag-group-arts">
+    <a class="m-art fl" href="/magazine/nickel-hydroxide-coprecipitation-cstr/" data-proc="coprecip"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">정량 공급</span><span class="ma-hero-kw">체류시간</span></div><h3>배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널</h3><p>금속염·NaOH·암모니아 3용액 정량 공급 셋업.</p><div class="mt">Chem. Eng. Technol. (2023) · 논문 셋업</div></a>
+    <a class="m-art fl" href="/magazine/aorfb-flowfield-electrolyte-pump/" data-proc="electrolyte"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">유로 설계</span></div><h3>레독스흐름전지 전해액 순환 — 연동펌프 140 mL/min</h3><p>flow-through 유로 + 연동펌프로 300 mA/cm² 충전.</p><div class="mt">PNAS (2024) · 논문 셋업</div></a>
+    <a class="m-art fl" href="/setups/co2-capture-ct3001f" data-proc="electrolyte"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">정밀 유량</span></div><h3>연속 CO₂ 포집 — CT3001F PEEK 기어펌프</h3><p>anolyte·catholyte 전해액 순환 셋업.</p><div class="mt">Nature Communications (2024) · 논문 셋업</div></a>
+    <a class="m-art fl" href="/magazine/guide-pump-selection-energy-fluids/" data-proc="coprecip electrolyte"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">펌프 선정</span><span class="ma-hero-kw">5가지 축</span></div><h3>전해액·전구체·부식성 유체 펌프 선정 가이드</h3><p>유량·유체 성질·접액 재질·맥동·채널 제어로 좁히기.</p><div class="mt">가이드 · 연동 vs 시린지 vs 기어</div></a>
+    <a class="m-art fl" href="/magazine/glossary-pump-fluid-terms/" data-proc="coprecip electrolyte"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">rpm vs mL/min</span><span class="ma-hero-kw">용어 11개</span></div><h3>mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전</h3><p>사양서·논문을 읽다 막히는 유체 용어 한 페이지 정리.</p><div class="mt">용어사전 · 기초</div></a>
     </div>
     <a class="mag-all" href="/setups/">사례 아카이브 전체 &rarr;</a><!--PAPERCASES_END-->
 
 
 
     <div class="brand-head">
-      <div class="t">장비 카탈로그 — 가격을 공개합니다</div>
-      <div class="en">EQUIPMENT &amp; PRICES</div>
+      <div class="t">장비 카탈로그</div>
+      <div class="en">EQUIPMENT</div>
     </div>
-    <div class="brand-pick">
-      <a class="bcard" href="/brands/sh-scientific/guide/">
-        <div class="bcard-img" style="background-image:url('/img/product/sh/muffle-1050.jpg')">
-          <div class="bcard-nm" style="font-size:19px">전기로 · 머플로</div>
-          <div class="bcard-tag">SH SCIENTIFIC &middot; KOREA</div>
-        </div>
-        <div class="bcard-body">
-          <div class="bt">박스 전기로 1050~1900℃</div>
-          <div class="sub">열처리 &middot; 소성 &middot; 회화</div>
-          <div class="price">110만 원부터 <small>정가 기준</small></div>
-          <span class="go">모델 고르기 &rarr;</span>
-        </div>
-      </a>
-      <a class="bcard" href="/brands/sh-scientific/guide/">
-        <div class="bcard-img" style="background-image:url('/img/product/sh/gas-flow-package.jpg')">
-          <div class="bcard-nm" style="font-size:19px">튜브퍼니스 · CVD</div>
-          <div class="bcard-tag">SH SCIENTIFIC &middot; KOREA</div>
-        </div>
-        <div class="bcard-body">
-          <div class="bt">튜브전기로 &middot; 가스플로 패키지</div>
-          <div class="sub">가스 분위기 &middot; 증착 &middot; 소성</div>
-          <div class="price">270만 원부터 <small>CVD 패키지 515만~</small></div>
-          <span class="go">모델 고르기 &rarr;</span>
-        </div>
-      </a>
-      <a class="bcard" href="/brands/leadfluid/guide/">
-        <div class="bcard-img" style="background-image:url('/img/product/%EB%A6%AC%EB%93%9C%ED%94%8C%EB%A3%A8%EC%9D%B4%EB%93%9C_%EC%A0%9C%ED%92%88.jpg')">
-          <div class="bcard-nm" style="font-size:19px">정량 · 연동펌프</div>
-          <div class="bcard-tag">LEADFLUID &middot; PERISTALTIC</div>
-        </div>
-        <div class="bcard-body">
-          <div class="bt">연동 &middot; 시린지 &middot; 기어펌프</div>
-          <div class="sub">전해액 순환 &middot; 공침 정량 공급</div>
-          <div class="price">97만 원부터 <small>실험실용 완제품</small></div>
-          <span class="go">펌프 고르기 &rarr;</span>
-        </div>
-      </a>
-      <a class="bcard" href="/brands/alicat/">
-        <div class="bcard-img" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')">
-          <div class="bcard-nm" style="font-size:19px">MFC · 유량 제어</div>
-          <div class="bcard-tag">ALICAT &middot; USA</div>
-        </div>
-        <div class="bcard-body">
-          <div class="bt">질량유량계 &middot; 압력 컨트롤러</div>
-          <div class="sub">가스 분위기 &middot; sccm 정밀 제어</div>
-          <div class="price">견적 문의 <small>구성별 상이</small></div>
-          <span class="go">MFC 보기 &rarr;</span>
-        </div>
-      </a>
+    <div class="prod-rail-wrap">
+      <button class="rail-btn prev" type="button" data-rail="prodRail" aria-label="이전 제품">&#8249;</button>
+      <div class="prod-rail" id="prodRail">
+        <a class="prod-card" href="/brands/sh-scientific/muffle-1050/">
+          <div class="pimg" style="background-image:url('/img/product/sh/muffle-1050.jpg')"></div>
+          <div class="pbd"><div class="pn">ECO 머플로 1050℃</div><div class="ps">열처리 · 회화 · 소성</div><div class="pp">110만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/sh-scientific/gas-flow-package/">
+          <div class="pimg" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"></div>
+          <div class="pbd"><div class="pn">튜브로 가스플로 패키지</div><div class="ps">CVD · 가스 분위기</div><div class="pp">515만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/leadfluid/guide/">
+          <div class="pimg" style="background-image:url('/img/leadfluid/BT101S.png')"></div>
+          <div class="pbd"><div class="pn">BT101S 연동펌프</div><div class="ps">정량 공급 · 공침</div><div class="pp">97만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/sh-scientific/tube-1500/">
+          <div class="pimg" style="background-image:url('/img/product/sh/tube-1500.jpg')"></div>
+          <div class="pbd"><div class="pn">튜브전기로 1500℃</div><div class="ps">소성 · 소결</div><div class="pp">780만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/leadfluid/guide/">
+          <div class="pimg" style="background-image:url('/img/leadfluid/BT600S.png')"></div>
+          <div class="pbd"><div class="pn">BT600S 연동펌프</div><div class="ps">순환 · 대유량</div><div class="pp">219만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/sh-scientific/vacuum-muffle-1200/">
+          <div class="pimg" style="background-image:url('/img/product/sh/vacuum-muffle-1200.jpg')"></div>
+          <div class="pbd"><div class="pn">진공 머플로 1200℃</div><div class="ps">진공 · 분위기 열처리</div><div class="pp">963만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/leadfluid/guide/">
+          <div class="pimg" style="background-image:url('/img/leadfluid/CT3001F.png')"></div>
+          <div class="pbd"><div class="pn">CT3001F 기어펌프</div><div class="ps">무맥동 · PEEK 내화학</div><div class="pp">231만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/sh-scientific/rotary-tube-furnace/">
+          <div class="pimg" style="background-image:url('/img/product/sh/rotary-tube-furnace.jpg')"></div>
+          <div class="pbd"><div class="pn">회전 튜브로 300mm</div><div class="ps">분말 균일 소성</div><div class="pp">1,200만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/leadfluid/guide/">
+          <div class="pimg" style="background-image:url('/img/leadfluid/TYD01-01.png')"></div>
+          <div class="pbd"><div class="pn">TYD01 시린지펌프</div><div class="ps">미량 정밀 주입</div><div class="pp">240만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/sh-scientific/elevator-1200/">
+          <div class="pimg" style="background-image:url('/img/product/sh/elevator-1200.jpg')"></div>
+          <div class="pbd"><div class="pn">엘레베이터로 1200℃</div><div class="ps">대용량 장입 · 자동 도어</div><div class="pp">552만 원~</div></div>
+        </a>
+        <a class="prod-card" href="/brands/alicat/">
+          <div class="pimg" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')"></div>
+          <div class="pbd"><div class="pn">Alicat MFC</div><div class="ps">sccm 정밀 가스 제어</div><div class="pp">견적 문의</div></div>
+        </a>
+      </div>
+      <button class="rail-btn next" type="button" data-rail="prodRail" aria-label="다음 제품">&#8250;</button>
     </div>
+
+    <a class="hl-card" href="/brands/sh-scientific/rotary-tube-furnace-pro/">
+      <div class="him" style="background-image:url('/img/product/sh/rotary-tube-furnace-pro.jpg')"></div>
+      <div class="hbd">
+        <div class="hk">PRODUCT HIGHLIGHT</div>
+        <h3>회전 튜브로 PRO — 분말 소재를 균일하게 굽는 표준</h3>
+        <p>배터리 양극재·분말 원소재 소성에서 정지 소성의 고질병(층별 편차)을 회전으로 해결합니다. 가스 분위기·터치 UI·프로그램 제어까지 통합한 구성.</p>
+        <div class="hp">배치식 1,200만 원~ <small>구성·존 수에 따라 상이 · 문의 시 할인가</small></div>
+        <span class="hgo">자세히 보기 &rarr;</span>
+      </div>
+    </a>
     <p style="font-size:12px;color:#8a929c;margin:10px 2px 0;line-height:1.6">※ 표기 가격은 정가 기준 시작가(부가세·옵션·설치 별도)이며, 매거진에서 다룬 장비는 문의 시 할인가로 안내합니다. 구매·수리·국내 A/S(3년 무상보증)는 이머전트가 맡습니다.</p>
 
     <div class="home-sub">
@@ -215,6 +266,48 @@
 
   </div>
 </main>
+
+<script>
+(function(){
+  /* 공정 필터탭 — 카드는 정적 HTML, 탭은 표시/숨김만 담당 (GEO 안전) */
+  var tabs = document.getElementById('magTabs');
+  if (tabs) tabs.addEventListener('click', function(e){
+    var btn = e.target.closest('button'); if(!btn) return;
+    tabs.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===btn); });
+    var f = btn.getAttribute('data-f');
+    var cards = document.querySelectorAll('.mag-group-arts .m-art');
+    cards.forEach(function(c){
+      var p = c.getAttribute('data-proc') || '';
+      c.style.display = (f==='all' || p.split(' ').indexOf(f)>-1) ? '' : 'none';
+    });
+    /* 그룹 내 보이는 카드가 없으면 그룹 제목·레일 숨김 */
+    document.querySelectorAll('.mag-group-arts').forEach(function(rail){
+      var any = Array.prototype.some.call(rail.children, function(c){ return c.style.display!=='none'; });
+      rail.style.display = any ? '' : 'none';
+      var t = rail.previousElementSibling; if(t && t.classList.contains('mag-group')) t.style.display = any ? '' : 'none';
+      var a = rail.nextElementSibling; if(a && a.classList.contains('mag-all')) a.style.display = any ? '' : 'none';
+    });
+  });
+  /* 제품 레일 화살표 + 자동 슬라이드 (호버·터치 시 정지) */
+  var rail = document.getElementById('prodRail');
+  if (rail){
+    document.querySelectorAll('.rail-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        rail.scrollBy({left: (b.classList.contains('next')?1:-1)*400, behavior:'smooth'});
+      });
+    });
+    var paused = false;
+    ['mouseenter','touchstart','pointerdown'].forEach(function(ev){ rail.addEventListener(ev, function(){ paused=true; }, {passive:true}); });
+    rail.addEventListener('mouseleave', function(){ paused=false; });
+    setInterval(function(){
+      if (paused || document.hidden) return;
+      var max = rail.scrollWidth - rail.clientWidth;
+      if (rail.scrollLeft >= max - 5) rail.scrollTo({left:0, behavior:'smooth'});
+      else rail.scrollBy({left:200, behavior:'smooth'});
+    }, 3500);
+  }
+})();
+</script>
 
 <div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/brands/">브랜드 소개 — 삼흥에너지·리드플루이드·Alicat</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/battery/">배터리 랩 A to Z — 전구체 공침부터 소성·코팅·셀 평가까지 배터리 소재 실험 셋업 커리큘럼</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/magazine/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/magazine/nickel-hydroxide-coprecipitation-cstr/">배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/magazine/guide-calcination-furnace-atmosphere/">소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</a></li><li><a href="/magazine/troubleshooting-calcination-batch-variation/">소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅</a></li><li><a href="/magazine/glossary-heat-gas-terms/">하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/guide-pump-selection-energy-fluids/">전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)</a></li><li><a href="/magazine/glossary-pump-fluid-terms/">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/si-anode-cvd-carbon-coating/">실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)</a></li><li><a href="/magazine/cuo-nanowire-thermal-oxidation/">구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)</a></li><li><a href="/setups/">셋업 사례 — 에너지·소재 공정 셋업 (신규 글은 매거진에서 발행)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
 <script src="/assets/site.js" defer></script>
