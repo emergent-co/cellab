@@ -403,6 +403,7 @@ CRAWLER_LINKS = [
     ('/pump/atoz/tube-size-guide/', '연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
     ('/magazine/', '실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성'),
+    ('/magazine/battery/', '배터리 랩 A to Z — 전구체 공침부터 소성·코팅·셀 평가까지 배터리 소재 실험 셋업 커리큘럼'),
     ('/magazine/deposition/', '증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장'),
     ('/magazine/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
     ('/magazine/oxidation/', '산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산'),
@@ -953,6 +954,7 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
+        ('magazine/battery/',        '0.9', 'weekly'),   # 배터리 랩 A to Z 커리큘럼 허브
         ('magazine/deposition/',     '0.8', 'monthly'),  # 증착 허브
         ('magazine/heat-treatment/', '0.8', 'monthly'),  # 열처리 허브
         ('magazine/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브

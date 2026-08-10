@@ -13,6 +13,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/magazine/battery/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/magazine/deposition/</loc>
     <lastmod>2026-08-10</lastmod>
     <priority>0.8</priority>

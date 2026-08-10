@@ -62,12 +62,14 @@
   };
   var NAV = [
     { href:'/magazine/', label:'셋업 매거진', icon:'feed' },
+    { href:'/magazine/battery/', label:'배터리 랩 A to Z', icon:'pick' },
+    { href:'/brands/', label:'장비·가격', icon:'devices', sub:[
+        ['/manuals/', '장비 메뉴얼']
+      ] },
     { href:'/setups/', label:'사례 아카이브', icon:'find', sub:[
         ['/setups/',         '논문 셋업 아카이브'],
         ['/furnace/setups/', '퍼니스 도입 사례']
       ] },
-    { href:'/brands/', label:'브랜드·장비', icon:'devices' },
-    { href:'/manuals/', label:'메뉴얼', icon:'guide' },
     { href:'/about/', label:'회사소개', icon:'shield' },
     { href:'/contact/', label:'문의하기', icon:'contact', sub:[
         ['/faq/', '자주 묻는 질문(FAQ)']
