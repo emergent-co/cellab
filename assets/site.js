@@ -281,6 +281,19 @@
       window.addEventListener('scroll', lfScroll, { passive: true });
       lfScroll();
     }
+    // 스크롤다운 시 상단바 접기 — 메뉴바만 반투명하게 남김 (데스크톱, CSS가 처리)
+    var hdrTick = false;
+    function hdrOnScroll() {
+      if (hdrTick) return; hdrTick = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY || document.documentElement.scrollTop || 0;
+        document.body.classList.toggle('hdr-collapsed', y > 90);
+        hdrTick = false;
+      });
+    }
+    window.addEventListener('scroll', hdrOnScroll, { passive: true });
+    hdrOnScroll();
+
     var burger = document.querySelector('.ch-burger');
     var side = document.getElementById('chSide');
     var scrim = document.getElementById('chScrim');

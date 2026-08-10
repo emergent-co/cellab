@@ -70,7 +70,12 @@ header,
    ============================================================ */
 body{ padding-top:106px; }
 /* 상단 가로 메뉴바 (구 좌측 사이드바 → Ossila식 top nav) */
-.ch-nav{ position:fixed; top:60px; left:0; right:0; height:46px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:2px; z-index:39; }
+.ch-nav{ position:fixed; top:60px; left:0; right:0; height:46px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:2px; z-index:39; transition:top .25s ease, background .25s ease; }
+/* 스크롤다운 시: 상단바는 접히고 메뉴바만 반투명하게 남음 */
+@media(min-width:901px){
+  body.hdr-collapsed .ch-top{ transform:translateY(-100%); }
+  body.hdr-collapsed .ch-nav{ top:0; background:rgba(255,255,255,.72); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px); border-bottom-color:rgba(224,222,214,.55); }
+}
 .ch-nav .tn-item{ position:relative; height:100%; display:flex; align-items:center; }
 .ch-nav .tn-link{ display:flex; align-items:center; height:100%; padding:0 16px; font-size:14.5px; font-weight:700; color:var(--gray); text-decoration:none; border-bottom:2px solid transparent; }
 .ch-nav .tn-link:hover{ color:var(--ink); background:var(--soft); }
@@ -84,14 +89,15 @@ body{ padding-top:106px; }
 @media(min-width:901px){
   body .hwrap, body .hub-wrap, body .mg-wrap, body .stwrap, body .sd-wrap{ max-width:70%; }
 }
-.ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:14px; padding:0 22px; z-index:40; }
+.ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:18px; padding:0 15%; z-index:40; transition:transform .25s ease; }
+@media(max-width:900px){ .ch-top{ padding:0 16px; } }
 .ch-top .ch-brand{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--ink); text-decoration:none; }
 .ch-top .ch-brand b{ color:var(--green); }
-.ch-search{ margin-left:auto; display:flex; align-items:center; gap:8px; background:var(--soft); border-radius:10px; padding:9px 14px; width:240px; }
+.ch-search{ flex:1; min-width:0; max-width:640px; margin:0 auto; display:flex; align-items:center; gap:8px; background:var(--soft); border-radius:10px; padding:9px 14px; }
 .ch-search svg{ width:16px; height:16px; stroke:var(--gray-2); fill:none; stroke-width:2; flex:0 0 auto; }
 .ch-search{ position:relative; }
 .ch-search input{ border:0; background:none; outline:none; font:inherit; font-size:14px; width:100%; color:var(--ink); }
-.ch-results{ position:absolute; top:calc(100% + 10px); right:0; width:360px; max-width:78vw; max-height:70vh; overflow-y:auto; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 14px 38px rgba(10,37,64,.16); padding:6px; display:none; z-index:60; }
+.ch-results{ position:absolute; top:calc(100% + 10px); left:0; right:0; max-height:70vh; overflow-y:auto; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 14px 38px rgba(10,37,64,.16); padding:6px; display:none; z-index:60; }
 .ch-results.open{ display:block; }
 .ch-results a{ display:block; padding:9px 11px; border-radius:8px; }
 .ch-results a:hover, .ch-results a.sel{ background:var(--soft); }
