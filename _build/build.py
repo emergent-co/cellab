@@ -628,36 +628,39 @@ def build_home_paper_cases():
     with open(data_path, 'r', encoding='utf-8') as f:
         groups = json.load(f).get('groups', [])
 
-    parts = []
+    # 그룹 구분 없이 하나의 뉴스 매거진 모자이크로 — heat/fluid를 교차 배치
+    lists = [list(g.get('cards', [])) for g in groups]
+    fls = [bool(g.get('fl')) for g in groups]
+    merged = []
+    depth = max((len(l) for l in lists), default=0)
+    for i in range(depth):
+        for li, l in enumerate(lists):
+            if i < len(l):
+                merged.append((l[i], fls[li]))
+
+    parts = ['<div class="mag-mosaic" id="magMosaic">']
     total_cards = 0
-    for g in groups:
-        flc = ' fl' if g.get('fl') else ''
+    for c, fl in merged:
+        flc = ' fl' if fl else ''
+        span = c.get('span', '')
+        spanc = ' span-w' if span == 'w' else (' span-t' if span == 't' else '')
+        proc = [k for k in c.get('process', []) if k]
+        kws = ''.join(f'<span class="ma-hero-kw">{escape(k)}</span>' for k in proc)
+        img = escape(c.get('img', ''))
+        style = f' style="background-image:url(\'{img}\')"' if img else ''
+        hero = f'<div class="ma-hero"{style}>{kws}</div>' if (kws or img) else ''
+        dproc = escape(c.get('proc', '')) if c.get('proc') else ''
+        dattr = f' data-proc="{dproc}"' if dproc else ''
         parts.append(
-            f'<div class="mag-cat-t{flc} mag-group">{escape(g.get("title",""))}'
-            f'<span class="c">{escape(g.get("caption",""))}</span></div>'
+            f'<a class="m-art{flc}{spanc}" href="{escape(c.get("url",""))}"{dattr}>'
+            f'{hero}'
+            f'<h3>{escape(c.get("title",""))}</h3>'
+            f'<p>{escape(c.get("desc",""))}</p>'
+            f'<div class="mt">{escape(c.get("meta",""))}</div></a>'
         )
-        parts.append('<div class="mag-arts mag-group-arts">')
-        for c in g.get('cards', []):
-            proc = [k for k in c.get('process', []) if k]
-            kws = ''.join(f'<span class="ma-hero-kw">{escape(k)}</span>' for k in proc)
-            img = escape(c.get('img', ''))
-            style = f' style="background-image:url(\'{img}\')"' if img else ''
-            hero = f'<div class="ma-hero"{style}>{kws}</div>' if (kws or img) else ''
-            dproc = escape(c.get('proc', '')) if c.get('proc') else ''
-            dattr = f' data-proc="{dproc}"' if dproc else ''
-            parts.append(
-                f'<a class="m-art{flc}" href="{escape(c.get("url",""))}"{dattr}>'
-                f'{hero}'
-                f'<h3>{escape(c.get("title",""))}</h3>'
-                f'<p>{escape(c.get("desc",""))}</p>'
-                f'<div class="mt">{escape(c.get("meta",""))}</div></a>'
-            )
-            total_cards += 1
-        parts.append('</div>')
-        parts.append(
-            f'<a class="mag-all" href="{escape(g.get("all_url",""))}">'
-            f'{escape(g.get("all_label",""))} &rarr;</a>'
-        )
+        total_cards += 1
+    parts.append('</div>')
+    parts.append('<a class="mag-all" href="/magazine/">셋업 매거진 전체 &rarr;</a>')
     section = '\n    '.join(parts)
 
     html = read(html_path)

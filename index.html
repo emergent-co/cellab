@@ -45,9 +45,7 @@
       .brand-head .t .n{color:#9aa3ad;font-weight:700;margin-right:7px}
       .brand-head .en{font-size:12px;color:#9aa3ad;font-weight:700;letter-spacing:.08em}
       .prod-rail-wrap{position:relative}
-      .prod-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
-      .prod-rail::-webkit-scrollbar{height:6px}
-      .prod-rail::-webkit-scrollbar-thumb{background:#d8d5cc;border-radius:6px}
+      .prod-rail{display:flex;gap:12px;overflow:hidden;padding:2px}
       .prod-card{flex:0 0 185px;scroll-snap-align:start;display:block;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
       .prod-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(10,37,64,.12)}
       .prod-card .pimg{aspect-ratio:1/1;background:#fff center/contain no-repeat;border-bottom:1px solid #f0eee7}
@@ -58,7 +56,6 @@
       .prod-card .pp small{font-size:10.5px;font-weight:600;color:#9aa3ad}
       .rail-btn{position:absolute;top:38%;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(10,37,64,.12);z-index:2;display:flex;align-items:center;justify-content:center}
       .rail-btn.prev{left:-10px}.rail-btn.next{right:-10px}
-      @media(max-width:640px){.rail-btn{display:none}}
       .hl-card{display:flex;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;margin-top:16px;text-decoration:none;color:inherit;transition:box-shadow .15s}
       .hl-card:hover{box-shadow:0 16px 32px rgba(10,37,64,.12)}
       .hl-card .him{flex:0 0 42%;background:#fff center/cover no-repeat;min-height:200px}
@@ -114,20 +111,6 @@
     </style>
     <div class="brand-head"><div class="t">에너지·소재 셋업 매거진</div><div class="en">SETUP MAGAZINE</div></div>
 
-    <a class="feat" href="/magazine/sodium-cathode-atmosphere-dca/">
-      <div class="feat-img" style="background-image:url('/img/product/sh/tube-1500.jpg')">
-        <span class="feat-badge">FEATURED · 논문 셋업</span>
-        <div class="feat-kwbox"><span class="feat-kw">소성 분위기</span><span class="feat-kw">동적 제어(DCA)</span></div>
-      </div>
-      <div class="feat-bd">
-        <div class="feat-cat">열처리·증착 · 배터리 소재 소성</div>
-        <h2>소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업</h2>
-        <p>튜브퍼니스 + 다채널 MFC로 승온엔 2% O₂, 유지엔 불활성으로 전환한 논문 셋업. 공정 조건과 필요 장비를 셋업 단위로 분석합니다.</p>
-        <div class="feat-meta">Nature Communications (2025) · 논문 셋업</div>
-        <span class="feat-go">셋업 읽기 →</span>
-      </div>
-    </a>
-
     <div style="margin:18px 0 6px;padding:12px 16px;background:#F6F8FB;border:1px solid #e6ecf3;border-radius:10px;font-size:13.5px;color:#3a4550;line-height:1.8">
       <b style="color:var(--ink)">처음이라면</b> —
       <a href="/magazine/glossary-heat-gas-terms/" style="font-weight:700;color:var(--green)">용어사전</a> ·
@@ -139,11 +122,14 @@
       .mag-cat-t{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--ink);margin:26px 0 12px;padding-left:11px;border-left:3px solid #EF9F27}
       .mag-cat-t.fl{border-left-color:var(--green)}
       .mag-cat-t .c{font-size:12px;font-weight:600;color:var(--gray-2);margin-left:8px}
-      .mag-arts{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
-      .mag-arts::-webkit-scrollbar{height:6px}
-      .mag-arts::-webkit-scrollbar-thumb{background:#d8d5cc;border-radius:6px}
-      .mag-arts .m-art{flex:0 0 250px;scroll-snap-align:start}
-      @media(max-width:520px){.mag-arts .m-art{flex-basis:220px}}
+      .mag-mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-flow:dense;gap:12px;margin-top:12px}
+      @media(max-width:760px){.mag-mosaic{grid-template-columns:repeat(2,1fr)}}
+      @media(max-width:520px){.mag-mosaic{grid-template-columns:1fr}.mag-mosaic .m-art{grid-column:auto!important;grid-row:auto!important}}
+      .m-art.span-w{grid-column:span 2}
+      .m-art.span-w h3{font-size:17px}
+      .m-art.span-t{grid-row:span 2;display:flex;flex-direction:column}
+      .m-art.span-t .ma-hero{aspect-ratio:auto;flex:1;min-height:200px}
+      .m-art.span-t h3{font-size:16px}
       .mag-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 4px}
       .mag-tabs button{font:inherit;font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:999px;border:1px solid #e0ddd4;background:#fff;color:#5a5a54;cursor:pointer}
       .mag-tabs button.on{background:#1E3A5F;border-color:#1E3A5F;color:#fff}
@@ -169,25 +155,20 @@
       <button data-f="electrolyte">전해액·순환</button>
     </div>
 
-<!--PAPERCASES_START--><div class="mag-cat-t mag-group">열처리 · 증착 (퍼니스)<span class="c">배터리 소재 소성 · 소성·소결 · CVD · 가스 분위기</span></div>
-    <div class="mag-arts mag-group-arts">
-    <a class="m-art" href="/magazine/sodium-cathode-atmosphere-dca/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">소성 분위기</span><span class="ma-hero-kw">동적 제어</span></div><h3>소듐 양극재를 상순도로 — 소성 분위기를 &#x27;바꾸는&#x27; 셋업</h3><p>튜브퍼니스 + 다채널 MFC 동적 분위기(DCA) 소성.</p><div class="mt">Nature Communications (2025) · 논문 셋업</div></a>
+<!--PAPERCASES_START--><div class="mag-mosaic" id="magMosaic">
+    <a class="m-art span-w" href="/magazine/sodium-cathode-atmosphere-dca/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">소성 분위기</span><span class="ma-hero-kw">동적 제어</span></div><h3>소듐 양극재를 상순도로 — 소성 분위기를 &#x27;바꾸는&#x27; 셋업</h3><p>튜브퍼니스 + 다채널 MFC 동적 분위기(DCA) 소성.</p><div class="mt">Nature Communications (2025) · 논문 셋업</div></a>
+    <a class="m-art fl span-t" href="/magazine/nickel-hydroxide-coprecipitation-cstr/" data-proc="coprecip"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">정량 공급</span><span class="ma-hero-kw">체류시간</span></div><h3>배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널</h3><p>금속염·NaOH·암모니아 3용액 정량 공급 셋업.</p><div class="mt">Chem. Eng. Technol. (2023) · 논문 셋업</div></a>
     <a class="m-art" href="/magazine/si-anode-cvd-carbon-coating/" data-proc="coat"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">탄소 코팅</span><span class="ma-hero-kw">CVD</span></div><h3>실리콘 음극이 부서지지 않게 — CVD 탄소 코팅 셋업</h3><p>실란 550℃ 증착 + 아세틸렌 900℃·5분 코팅.</p><div class="mt">Nature Communications (2018) · 논문 셋업</div></a>
+    <a class="m-art fl" href="/magazine/aorfb-flowfield-electrolyte-pump/" data-proc="electrolyte"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">유로 설계</span></div><h3>레독스흐름전지 전해액 순환 — 연동펌프 140 mL/min</h3><p>flow-through 유로 + 연동펌프로 300 mA/cm² 충전.</p><div class="mt">PNAS (2024) · 논문 셋업</div></a>
     <a class="m-art" href="/magazine/sofc-hcl-syngas/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/tube-1500.jpg')"><span class="ma-hero-kw">가스 분위기</span><span class="ma-hero-kw">수증기 제어</span></div><h3>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향</h3><p>다채널 MFC + 튜브퍼니스 800·900℃ 셋업.</p><div class="mt">Journal of Power Sources (2007) · 논문 셋업</div></a>
+    <a class="m-art fl" href="/setups/co2-capture-ct3001f" data-proc="electrolyte"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">정밀 유량</span></div><h3>연속 CO₂ 포집 — CT3001F PEEK 기어펌프</h3><p>anolyte·catholyte 전해액 순환 셋업.</p><div class="mt">Nature Communications (2024) · 논문 셋업</div></a>
     <a class="m-art" href="/magazine/cuo-nanowire-thermal-oxidation/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/muffle-1050.jpg')"><span class="ma-hero-kw">열산화</span><span class="ma-hero-kw">나노와이어</span></div><h3>구리를 가열하면 나노와이어가 자란다 — CuO 열산화 셋업</h3><p>공기 10℃/min→450℃·2h — 표면 상태가 밀도를 결정.</p><div class="mt">Scientific Reports (2019) · 논문 셋업</div></a>
+    <a class="m-art fl" href="/magazine/guide-pump-selection-energy-fluids/" data-proc="coprecip electrolyte"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">펌프 선정</span><span class="ma-hero-kw">5가지 축</span></div><h3>전해액·전구체·부식성 유체 펌프 선정 가이드</h3><p>유량·유체 성질·접액 재질·맥동·채널 제어로 좁히기.</p><div class="mt">가이드 · 연동 vs 시린지 vs 기어</div></a>
     <a class="m-art" href="/magazine/guide-calcination-furnace-atmosphere/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"><span class="ma-hero-kw">장비 선정</span><span class="ma-hero-kw">5가지 축</span></div><h3>소성·하소용 튜브퍼니스와 가스 분위기 고르는 법</h3><p>최고온도·튜브경·분위기·MFC·기록 — 도입 전 체크.</p><div class="mt">가이드 · 양극재·세라믹·촉매 공통</div></a>
+    <a class="m-art fl" href="/magazine/glossary-pump-fluid-terms/" data-proc="coprecip electrolyte"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">rpm vs mL/min</span><span class="ma-hero-kw">용어 11개</span></div><h3>mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전</h3><p>사양서·논문을 읽다 막히는 유체 용어 한 페이지 정리.</p><div class="mt">용어사전 · 기초</div></a>
     <a class="m-art" href="/magazine/troubleshooting-calcination-batch-variation/" data-proc="calcine"><div class="ma-hero" style="background-image:url('/img/product/sh/muffle-1500.jpg')"><span class="ma-hero-kw">배치 편차</span><span class="ma-hero-kw">점검표</span></div><h3>소성 배치마다 결과가 다른 7가지 이유</h3><p>승온·균열구간·적재량·유량 드리프트 — 증상별 점검.</p><div class="mt">트러블슈팅 · 재현성</div></a>
     </div>
-    <a class="mag-all" href="/magazine/">열처리·증착 매거진 전체 &rarr;</a>
-    <div class="mag-cat-t fl mag-group">유체 · 펌프<span class="c">전해액 순환 · 전구체 공침 · 정량 투입 · 수처리</span></div>
-    <div class="mag-arts mag-group-arts">
-    <a class="m-art fl" href="/magazine/nickel-hydroxide-coprecipitation-cstr/" data-proc="coprecip"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">정량 공급</span><span class="ma-hero-kw">체류시간</span></div><h3>배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널</h3><p>금속염·NaOH·암모니아 3용액 정량 공급 셋업.</p><div class="mt">Chem. Eng. Technol. (2023) · 논문 셋업</div></a>
-    <a class="m-art fl" href="/magazine/aorfb-flowfield-electrolyte-pump/" data-proc="electrolyte"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">유로 설계</span></div><h3>레독스흐름전지 전해액 순환 — 연동펌프 140 mL/min</h3><p>flow-through 유로 + 연동펌프로 300 mA/cm² 충전.</p><div class="mt">PNAS (2024) · 논문 셋업</div></a>
-    <a class="m-art fl" href="/setups/co2-capture-ct3001f" data-proc="electrolyte"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">전해액 순환</span><span class="ma-hero-kw">정밀 유량</span></div><h3>연속 CO₂ 포집 — CT3001F PEEK 기어펌프</h3><p>anolyte·catholyte 전해액 순환 셋업.</p><div class="mt">Nature Communications (2024) · 논문 셋업</div></a>
-    <a class="m-art fl" href="/magazine/guide-pump-selection-energy-fluids/" data-proc="coprecip electrolyte"><div class="ma-hero" style="background-image:url('/img/pump-guide.jpg')"><span class="ma-hero-kw">펌프 선정</span><span class="ma-hero-kw">5가지 축</span></div><h3>전해액·전구체·부식성 유체 펌프 선정 가이드</h3><p>유량·유체 성질·접액 재질·맥동·채널 제어로 좁히기.</p><div class="mt">가이드 · 연동 vs 시린지 vs 기어</div></a>
-    <a class="m-art fl" href="/magazine/glossary-pump-fluid-terms/" data-proc="coprecip electrolyte"><div class="ma-hero" style="background-image:url('/img/leadfluid/BT101L.png')"><span class="ma-hero-kw">rpm vs mL/min</span><span class="ma-hero-kw">용어 11개</span></div><h3>mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전</h3><p>사양서·논문을 읽다 막히는 유체 용어 한 페이지 정리.</p><div class="mt">용어사전 · 기초</div></a>
-    </div>
-    <a class="mag-all" href="/setups/">사례 아카이브 전체 &rarr;</a><!--PAPERCASES_END-->
+    <a class="mag-all" href="/magazine/">셋업 매거진 전체 &rarr;</a><!--PAPERCASES_END-->
 
 
 
@@ -275,36 +256,39 @@
     var btn = e.target.closest('button'); if(!btn) return;
     tabs.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===btn); });
     var f = btn.getAttribute('data-f');
-    var cards = document.querySelectorAll('.mag-group-arts .m-art');
-    cards.forEach(function(c){
+    document.querySelectorAll('#magMosaic .m-art').forEach(function(c){
       var p = c.getAttribute('data-proc') || '';
       c.style.display = (f==='all' || p.split(' ').indexOf(f)>-1) ? '' : 'none';
     });
-    /* 그룹 내 보이는 카드가 없으면 그룹 제목·레일 숨김 */
-    document.querySelectorAll('.mag-group-arts').forEach(function(rail){
-      var any = Array.prototype.some.call(rail.children, function(c){ return c.style.display!=='none'; });
-      rail.style.display = any ? '' : 'none';
-      var t = rail.previousElementSibling; if(t && t.classList.contains('mag-group')) t.style.display = any ? '' : 'none';
-      var a = rail.nextElementSibling; if(a && a.classList.contains('mag-all')) a.style.display = any ? '' : 'none';
-    });
   });
-  /* 제품 레일 화살표 + 자동 슬라이드 (호버·터치 시 정지) */
+  /* 제품 레일 — 스크롤 없음: 좌우 버튼 + 기본 자동 흐름 (호버·터치 시 정지) */
   var rail = document.getElementById('prodRail');
   if (rail){
+    var STEP = 197; /* 카드폭+간격 */
+    function maxLeft(){ return rail.scrollWidth - rail.clientWidth; }
+    function go(dx){
+      var next = rail.scrollLeft + dx;
+      if (next > maxLeft() + 5) next = 0;                 /* 끝 → 처음 */
+      if (next < -5) next = maxLeft();                    /* 처음 → 끝 */
+      rail.scrollTo({left: next, behavior:'smooth'});
+    }
     document.querySelectorAll('.rail-btn').forEach(function(b){
-      b.addEventListener('click', function(){
-        rail.scrollBy({left: (b.classList.contains('next')?1:-1)*400, behavior:'smooth'});
-      });
+      b.addEventListener('click', function(){ go((b.classList.contains('next')?1:-1)*STEP*2); });
     });
-    var paused = false;
-    ['mouseenter','touchstart','pointerdown'].forEach(function(ev){ rail.addEventListener(ev, function(){ paused=true; }, {passive:true}); });
-    rail.addEventListener('mouseleave', function(){ paused=false; });
+    var paused = false, resumeT;
+    function pause(ms){ paused = true; clearTimeout(resumeT); if(ms) resumeT = setTimeout(function(){ paused=false; }, ms); }
+    rail.addEventListener('mouseenter', function(){ pause(0); });
+    rail.addEventListener('mouseleave', function(){ paused = false; });
+    ['touchstart','pointerdown'].forEach(function(ev){
+      rail.addEventListener(ev, function(){ pause(6000); }, {passive:true});
+    });
+    document.querySelectorAll('.rail-btn').forEach(function(b){
+      b.addEventListener('click', function(){ pause(6000); });
+    });
     setInterval(function(){
       if (paused || document.hidden) return;
-      var max = rail.scrollWidth - rail.clientWidth;
-      if (rail.scrollLeft >= max - 5) rail.scrollTo({left:0, behavior:'smooth'});
-      else rail.scrollBy({left:200, behavior:'smooth'});
-    }, 3500);
+      go(STEP);
+    }, 3000);
   }
 })();
 </script>

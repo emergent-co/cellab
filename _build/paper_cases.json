@@ -20,7 +20,8 @@
      "title": "소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업",
      "desc": "튜브퍼니스 + 다채널 MFC 동적 분위기(DCA) 소성.",
      "meta": "Nature Communications (2025) · 논문 셋업",
-     "proc": "calcine"
+     "proc": "calcine",
+     "span": "w"
     },
     {
      "url": "/magazine/si-anode-cvd-carbon-coating/",
@@ -108,7 +109,8 @@
      "title": "배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널",
      "desc": "금속염·NaOH·암모니아 3용액 정량 공급 셋업.",
      "meta": "Chem. Eng. Technol. (2023) · 논문 셋업",
-     "proc": "coprecip"
+     "proc": "coprecip",
+     "span": "t"
     },
     {
      "url": "/magazine/aorfb-flowfield-electrolyte-pump/",
