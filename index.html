@@ -88,11 +88,53 @@
       <p class="lp-ans" style="max-width:780px;margin:16px auto 0;text-align:center;font-size:14px;line-height:1.75;color:#3a4550;background:#F6F8FB;border:1px solid #e6ecf3;border-radius:12px;padding:14px 22px"><b style="color:var(--ink)">실험셋업연구소(rndsetup)</b>는 에너지·소재 공정 셋업을 공정·조건·필요 장비로 분석·공유하는 <b>중립 매거진</b>이자, 배터리 소재 R&amp;D·파일럿 라인 등 제조사가 다루지 않는 <b>통합·특수 셋업</b>을 설계·공급하는 기술 파트너입니다.</p>
     </section>
 
-    <a href="/magazine/battery/" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;margin:18px auto 0;max-width:780px;background:#1E3A5F;border-radius:12px;padding:14px 22px;text-decoration:none">
-      <span style="font-size:11px;font-weight:800;letter-spacing:.08em;color:#EF9F27">NEW 커리큘럼</span>
-      <span style="font-size:14px;font-weight:800;color:#fff">배터리 랩 A to Z — 전구체 공침부터 셀 평가까지 8단계</span>
-      <span style="font-size:12.5px;font-weight:800;color:#cfe0f2">보러 가기 →</span>
-    </a>
+    <style>
+      .cat-hero{position:relative;margin:20px 0 0;border-radius:14px;overflow:hidden;height:clamp(150px,16vw,210px)}
+      .cat-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 clamp(22px,4vw,52px);text-decoration:none;background:#1E3A5F center/cover no-repeat;opacity:0;transition:opacity .5s ease;pointer-events:none}
+      .cat-slide.on{opacity:1;pointer-events:auto}
+      .cat-slide::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,20,35,.82) 0%,rgba(10,20,35,.55) 46%,rgba(10,20,35,.18) 100%)}
+      .cat-slide>*{position:relative;z-index:1}
+      .cat-k{font-size:11px;font-weight:800;letter-spacing:.1em;color:#EF9F27}
+      .cat-t{font-family:var(--serif);font-size:clamp(18px,2.3vw,27px);font-weight:800;color:#fff;line-height:1.3;max-width:640px}
+      .cat-d{font-size:clamp(12px,1.2vw,14px);color:#dbe5f0;max-width:560px;line-height:1.55}
+      .cat-go{margin-top:4px;font-size:13px;font-weight:800;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);border-radius:8px;padding:7px 14px;width:fit-content}
+      .cat-dots{position:absolute;right:16px;bottom:12px;z-index:2;display:flex;gap:6px}
+      .cat-dots button{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.45);cursor:pointer;padding:0}
+      .cat-dots button.on{background:#fff;width:20px;border-radius:5px}
+    </style>
+    <div class="cat-hero" id="catHero" aria-label="카테고리 배너">
+      <a class="cat-slide on" href="/magazine/battery/" style="background-image:url('/img/product/sh/tube-1500.jpg')">
+        <span class="cat-k">커리큘럼</span>
+        <span class="cat-t">배터리 랩 A to Z — 전구체 공침부터 셀 평가까지</span>
+        <span class="cat-d">배터리 소재 실험 전 과정을 8단계 셋업 순서로. 논문 셋업·가이드·트러블슈팅 연결.</span>
+        <span class="cat-go">커리큘럼 보기 →</span>
+      </a>
+      <a class="cat-slide" href="/brands/sh-scientific/guide/" style="background-image:url('/img/product/sh/muffle-1050.jpg')">
+        <span class="cat-k">열처리 · 소성</span>
+        <span class="cat-t">튜브퍼니스 · 전기로 — 110만 원부터</span>
+        <span class="cat-d">소성·소결·회화·열처리. 1050~1900℃, 박스·튜브·진공·회전까지 국산 삼흥에너지 정품.</span>
+        <span class="cat-go">퍼니스 고르기 →</span>
+      </a>
+      <a class="cat-slide" href="/brands/sh-scientific/gas-flow-package/" style="background-image:url('/img/product/sh/gas-flow-package.jpg')">
+        <span class="cat-k">CVD · 가스 분위기</span>
+        <span class="cat-t">가스플로 패키지 — 증착·분위기 소성 셋업</span>
+        <span class="cat-d">석영튜브 + 가스 라인 + MFC 통합 구성 515만 원부터. 탄소 코팅·분위기 제어 실험용.</span>
+        <span class="cat-go">패키지 보기 →</span>
+      </a>
+      <a class="cat-slide" href="/brands/leadfluid/guide/" style="background-image:url('/img/product/%EB%A6%AC%EB%93%9C%ED%94%8C%EB%A3%A8%EC%9D%B4%EB%93%9C_%EC%A0%9C%ED%92%88.jpg')">
+        <span class="cat-k">유체 · 정량 공급</span>
+        <span class="cat-t">정량·연동펌프 — 97만 원부터</span>
+        <span class="cat-d">전해액 순환·전구체 공침·정량 투입. 연동·시린지·기어, 리드플루이드 정품 국내 A/S.</span>
+        <span class="cat-go">펌프 고르기 →</span>
+      </a>
+      <a class="cat-slide" href="/trust/" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')">
+        <span class="cat-k">신뢰 · A/S</span>
+        <span class="cat-t">구매 후가 다릅니다 — 국내 A/S · 3년 무상보증</span>
+        <span class="cat-d">수리 전문 이머전트가 직접 A/S. 매거진에서 다룬 장비는 문의 시 할인가로 안내.</span>
+        <span class="cat-go">보증·정품 안내 →</span>
+      </a>
+      <div class="cat-dots" id="catDots" role="tablist" aria-label="배너 선택"></div>
+    </div>
 
     <style>
       .mag-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -251,6 +293,31 @@
 
 <script>
 (function(){
+  /* 카테고리 배너 캐러셀 — 5장 자동 순환, 호버 시 정지 (슬라이드 전부 정적 HTML) */
+  var hero = document.getElementById('catHero');
+  if (hero){
+    var slides = hero.querySelectorAll('.cat-slide');
+    var dots = document.getElementById('catDots');
+    var idx = 0, hPaused = false;
+    slides.forEach(function(_, i){
+      var b = document.createElement('button');
+      b.setAttribute('aria-label', (i+1) + '번 배너');
+      if (i === 0) b.classList.add('on');
+      b.addEventListener('click', function(){ show(i); });
+      dots.appendChild(b);
+    });
+    function show(i){
+      idx = i;
+      slides.forEach(function(s, j){ s.classList.toggle('on', j===i); });
+      dots.querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===i); });
+    }
+    hero.addEventListener('mouseenter', function(){ hPaused = true; });
+    hero.addEventListener('mouseleave', function(){ hPaused = false; });
+    setInterval(function(){
+      if (hPaused || document.hidden) return;
+      show((idx + 1) % slides.length);
+    }, 4000);
+  }
   /* 공정 필터탭 + 2행 제한 — 카드는 정적 HTML 전부 유지(GEO), 표시만 셀 예산 6칸(3열×2행)까지 */
   var tabs = document.getElementById('magTabs');
   function mosaicCols(){
