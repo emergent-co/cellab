@@ -638,25 +638,26 @@ def build_home_paper_cases():
             if i < len(l):
                 merged.append((l[i], fls[li]))
 
-    parts = ['<div class="mag-mosaic" id="magMosaic">']
+    # 좌측 사진 · 우측 제목·내용의 가로형 카드 리스트 (2열)
+    parts = ['<div class="mag-list" id="magMosaic">']
     total_cards = 0
     for c, fl in merged:
         flc = ' fl' if fl else ''
-        span = c.get('span', '')
-        spanc = ' span-w' if span == 'w' else (' span-t' if span == 't' else '')
         proc = [k for k in c.get('process', []) if k]
-        kws = ''.join(f'<span class="ma-hero-kw">{escape(k)}</span>' for k in proc)
+        chips = ''.join(f'<span class="mr-chip">{escape(k)}</span>' for k in proc)
         img = escape(c.get('img', ''))
         style = f' style="background-image:url(\'{img}\')"' if img else ''
-        hero = f'<div class="ma-hero"{style}>{kws}</div>' if (kws or img) else ''
         dproc = escape(c.get('proc', '')) if c.get('proc') else ''
         dattr = f' data-proc="{dproc}"' if dproc else ''
         parts.append(
-            f'<a class="m-art{flc}{spanc}" href="{escape(c.get("url",""))}"{dattr}>'
-            f'{hero}'
+            f'<a class="m-row{flc}" href="{escape(c.get("url",""))}"{dattr}>'
+            f'<span class="mr-img"{style}></span>'
+            f'<span class="mr-bd">'
+            f'<span class="mr-chips">{chips}</span>'
             f'<h3>{escape(c.get("title",""))}</h3>'
             f'<p>{escape(c.get("desc",""))}</p>'
-            f'<div class="mt">{escape(c.get("meta",""))}</div></a>'
+            f'<span class="mr-mt">{escape(c.get("meta",""))}</span>'
+            f'</span></a>'
         )
         total_cards += 1
     parts.append('</div>')
