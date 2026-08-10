@@ -68,7 +68,22 @@ header,
 /* ============================================================
    6) 공유 상단바 + 좌측 사이드바 (site.js가 주입) — 전 페이지 동일
    ============================================================ */
-body{ padding-top:60px; padding-left:300px; }
+body{ padding-top:106px; }
+/* 상단 가로 메뉴바 (구 좌측 사이드바 → Ossila식 top nav) */
+.ch-nav{ position:fixed; top:60px; left:0; right:0; height:46px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:2px; z-index:39; }
+.ch-nav .tn-item{ position:relative; height:100%; display:flex; align-items:center; }
+.ch-nav .tn-link{ display:flex; align-items:center; height:100%; padding:0 16px; font-size:14.5px; font-weight:700; color:var(--gray); text-decoration:none; border-bottom:2px solid transparent; }
+.ch-nav .tn-link:hover{ color:var(--ink); background:var(--soft); }
+.ch-nav .tn-link.active{ color:var(--green); border-bottom-color:var(--green); }
+.tn-dd{ position:absolute; top:100%; left:0; min-width:200px; background:#fff; border:1px solid var(--line); border-radius:0 0 12px 12px; box-shadow:0 14px 30px rgba(10,37,64,.14); padding:8px; display:none; z-index:41; }
+.tn-item:hover .tn-dd, .tn-item:focus-within .tn-dd{ display:block; }
+.tn-dd a{ display:block; padding:9px 12px; border-radius:8px; font-size:13.5px; color:var(--gray); text-decoration:none; font-weight:600; }
+.tn-dd a:hover{ background:var(--soft); color:var(--ink); }
+.tn-dd a.active{ color:var(--green); font-weight:700; }
+/* 본문 좌우 여백 15% — 주요 콘텐츠 래퍼 폭 70% */
+@media(min-width:901px){
+  body .hwrap, body .hub-wrap, body .mg-wrap, body .stwrap, body .sd-wrap{ max-width:70%; }
+}
 .ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:14px; padding:0 22px; z-index:40; }
 .ch-top .ch-brand{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--ink); text-decoration:none; }
 .ch-top .ch-brand b{ color:var(--green); }
@@ -88,7 +103,7 @@ body{ padding-top:60px; padding-left:300px; }
 .ch-cta:hover{ background:var(--green-dk); }
 .ch-burger{ display:none; width:38px; height:38px; border:0; background:none; cursor:pointer; flex-direction:column; justify-content:center; align-items:center; gap:5px; padding:0; }
 .ch-burger span{ display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; }
-.ch-side{ position:fixed; top:60px; left:0; bottom:0; width:300px; background:#fff; border-right:1px solid var(--line); overflow-y:auto; padding:20px 16px 30px; z-index:38; display:flex; flex-direction:column; }
+.ch-side{ display:none; position:fixed; top:60px; left:0; bottom:0; width:300px; background:#fff; border-right:1px solid var(--line); overflow-y:auto; padding:20px 16px 30px; z-index:38; flex-direction:column; }
 .ch-side nav{ display:flex; flex-direction:column; }
 .ch-side .s-item{ display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:10px; font-size:15.5px; font-weight:600; color:var(--gray); text-decoration:none; }
 .ch-side .s-item svg{ width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto; }
@@ -108,10 +123,11 @@ body.embed-mode .lf-sticky{ display:none !important; }
 .ch-side-foot{ margin-top:24px; padding:14px 14px 4px; font-size:11px; color:var(--gray-2); line-height:1.7; border-top:1px solid var(--line); }
 .ch-scrim{ display:none; }
 @media(max-width:900px){
-  body{ padding-left:0; }
+  body{ padding-top:60px; }
+  .ch-nav{ display:none; }
   .ch-search{ display:none; }
   .ch-burger{ display:flex; }
-  .ch-side{ transform:translateX(-100%); transition:transform .22s ease; box-shadow:0 10px 40px rgba(0,0,0,.12); width:284px; }
+  .ch-side{ display:flex; transform:translateX(-100%); transition:transform .22s ease; box-shadow:0 10px 40px rgba(0,0,0,.12); width:284px; }
   .ch-side.open{ transform:none; }
   .ch-scrim.open{ display:block; position:fixed; inset:60px 0 0 0; background:rgba(0,0,0,.4); z-index:37; }
 }
@@ -172,7 +188,7 @@ body.embed-mode .lf-sticky{ display:none !important; }
 
 /* 임베드(iframe) 모드에서는 공유 상단바·사이드바·여백 해제 */
 body.embed-mode{ padding:0 !important; }
-body.embed-mode .ch-top, body.embed-mode .ch-side, body.embed-mode .ch-scrim,
+body.embed-mode .ch-top, body.embed-mode .ch-side, body.embed-mode .ch-scrim, body.embed-mode .ch-nav,
 body.embed-mode .chrome-footer, body.embed-mode .navimro-fab{ display:none !important; }
 .cta-chat{ position:fixed; right:18px; bottom:18px; z-index:70; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
 .cc-launch{ display:inline-flex; align-items:center; gap:7px; height:52px; padding:0 20px 0 16px; border:0; border-radius:28px; background:var(--green); color:#fff; font-size:15px; font-weight:800; font-family:inherit; cursor:pointer; box-shadow:0 12px 30px rgba(10,60,40,.28); }

@@ -103,6 +103,21 @@
     return row;
   }).join('');
 
+  // 상단 가로 메뉴바 (데스크톱) — 사이드바와 같은 NAV 데이터, 서브는 호버 드롭다운
+  var topNavHTML = NAV.map(function (n) {
+    var cur = matches(n.href);
+    var html = '<div class="tn-item">' +
+      '<a class="tn-link' + (cur ? ' active' : '') + '" href="' + n.href + '"' +
+      (cur ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
+    if (n.sub) {
+      html += '<div class="tn-dd">' + n.sub.map(function (s) {
+        var sc = matches(s[0]);
+        return '<a class="' + (sc ? 'active' : '') + '" href="' + s[0] + '">' + s[1] + '</a>';
+      }).join('') + '</div>';
+    }
+    return html + '</div>';
+  }).join('');
+
   var HEADER =
     '<header class="ch-top">' +
       '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
@@ -110,6 +125,7 @@
       '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색" autocomplete="off"><div class="ch-results" id="chResults"></div></form>' +
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
+    '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
       '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>공정 → 조건 → 필요 장비로 읽는 실험 셋업 아카이브</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
