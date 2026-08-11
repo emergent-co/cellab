@@ -54,19 +54,24 @@
       .prod-card .ps{font-size:11px;color:#8a929c;margin-top:2px}
       .prod-card .pp{font-size:13.5px;font-weight:800;color:#9A3412;margin-top:7px}
       .prod-card .pp small{font-size:10.5px;font-weight:600;color:#9aa3ad}
+      .prod-card.nc{flex-basis:clamp(240px,19vw,300px)}
+      .prod-card.nc .pimg{aspect-ratio:16/9;background-size:cover;background-color:#22303f}
+      .prod-card.nc .ps{color:#9A3412;font-weight:800;margin:0 0 4px}
+      .prod-card.nc .pn{font-family:var(--serif);font-size:14px;line-height:1.4}
+      .prod-card.nc .nd{font-size:11px;color:#9aa3ad;margin-top:6px}
       .rail-btn{position:absolute;top:38%;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(10,37,64,.12);z-index:2;display:flex;align-items:center;justify-content:center}
       .rail-btn.prev{left:-10px}.rail-btn.next{right:-10px}
       .hl-card{display:flex;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;margin-top:16px;text-decoration:none;color:inherit;transition:box-shadow .15s}
       .hl-card:hover{box-shadow:0 16px 32px rgba(10,37,64,.12)}
-      .hl-card .him{flex:0 0 42%;background:#fff center/cover no-repeat;min-height:200px}
-      .hl-card .hbd{padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
+      .hl-card .him{flex:0 0 42%;background:#fff center/cover no-repeat;min-height:300px}
+      .hl-card .hbd{padding:34px 36px;display:flex;flex-direction:column;justify-content:center}
       .hl-card .hk{font-size:11px;font-weight:800;letter-spacing:.08em;color:#EF9F27}
-      .hl-card h3{font-family:var(--serif);font-size:19px;font-weight:800;color:var(--ink);margin:6px 0 7px;line-height:1.35}
-      .hl-card p{font-size:13.5px;color:#3a4550;line-height:1.65;margin:0}
-      .hl-card .hp{font-size:15px;font-weight:800;color:#9A3412;margin-top:10px}
-      .hl-card .hp small{font-size:11px;font-weight:600;color:#8a929c}
-      .hl-card .hgo{margin-top:10px;font-size:13px;font-weight:800;color:var(--green)}
-      @media(max-width:680px){.hl-card{flex-direction:column}.hl-card .him{min-height:170px;flex-basis:auto}}
+      .hl-card h3{font-family:var(--serif);font-size:22px;font-weight:800;color:var(--ink);margin:8px 0 9px;line-height:1.35}
+      .hl-card p{font-size:14px;color:#3a4550;line-height:1.7;margin:0}
+      .hl-card .hp{font-size:16px;font-weight:800;color:#9A3412;margin-top:13px}
+      .hl-card .hp small{font-size:11.5px;font-weight:600;color:#8a929c}
+      .hl-card .hgo{margin-top:12px;font-size:13.5px;font-weight:800;color:var(--green)}
+      @media(max-width:680px){.hl-card{flex-direction:column}.hl-card .him{min-height:220px;flex-basis:auto}}
       .bcard{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;background:#fff;transition:transform .15s,box-shadow .15s}
       .bcard:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(10,37,64,.14)}
       .bcard-img{position:relative;aspect-ratio:16/11;background-size:cover;background-position:center;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -84,18 +89,18 @@
 
     <style>
       .cat-hero{position:relative;margin:6px 0 0;border-radius:14px;overflow:hidden;height:clamp(225px,24vw,315px);border:1px solid var(--line)}
-      .cat-slide{position:absolute;inset:0;display:grid;grid-template-columns:1.15fr .85fr;text-decoration:none;background:linear-gradient(135deg,#152B44 0%,#1E3A5F 100%);opacity:0;transition:opacity .5s ease;pointer-events:none}
+      .cat-slide{position:absolute;inset:0;display:grid;grid-template-columns:1.1fr .9fr;text-decoration:none;background:#fff;opacity:0;transition:opacity .5s ease;pointer-events:none}
       .cat-slide.on{opacity:1;pointer-events:auto}
-      .cat-txt{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:0 clamp(20px,3.4vw,48px)}
+      .cat-txt{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 clamp(22px,3.6vw,52px)}
       .cat-k{font-size:11px;font-weight:800;letter-spacing:.1em;color:#EF9F27}
-      .cat-t{font-family:var(--serif);font-size:clamp(18px,2.3vw,28px);font-weight:800;color:#fff;line-height:1.3}
-      .cat-d{font-size:clamp(12px,1.2vw,14px);color:#dbe5f0;line-height:1.55}
-      .cat-go{margin-top:5px;font-size:13px;font-weight:800;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);border-radius:8px;padding:7px 14px;width:fit-content}
-      .cat-im{background:#fff center/contain no-repeat;margin:14px 14px 14px 0;border-radius:10px;background-origin:content-box;padding:12px}
+      .cat-t{font-family:var(--serif);font-size:clamp(19px,2.3vw,29px);font-weight:800;color:var(--ink);line-height:1.32}
+      .cat-d{font-size:clamp(12px,1.2vw,14px);color:#5a6570;line-height:1.6}
+      .cat-go{margin-top:7px;font-size:13px;font-weight:800;color:#fff;background:var(--green);border-radius:9px;padding:9px 18px;width:fit-content}
+      .cat-im{background:#fff center/contain no-repeat;background-origin:content-box;padding:22px;border-left:1px solid #f0eee7}
       @media(max-width:640px){.cat-slide{grid-template-columns:1fr}.cat-im{display:none}}
-      .cat-dots{position:absolute;right:16px;bottom:12px;z-index:2;display:flex;gap:6px}
-      .cat-dots button{width:8px;height:8px;border-radius:50%;border:0;background:rgba(255,255,255,.45);cursor:pointer;padding:0}
-      .cat-dots button.on{background:#fff;width:20px;border-radius:5px}
+      .cat-dots{position:absolute;right:18px;bottom:14px;z-index:2;display:flex;gap:6px}
+      .cat-dots button{width:8px;height:8px;border-radius:50%;border:0;background:rgba(30,58,95,.25);cursor:pointer;padding:0}
+      .cat-dots button.on{background:#1E3A5F;width:20px;border-radius:5px}
     </style>
     <div class="cat-hero" id="catHero" aria-label="카테고리 배너">
       <a class="cat-slide on" href="/magazine/battery/">
@@ -235,58 +240,38 @@
 
 
     <div class="brand-head">
-      <div class="t">장비 카탈로그</div>
-      <div class="en">EQUIPMENT</div>
+      <div class="t">최신연구</div>
+      <div class="en">NEW RESEARCH</div>
     </div>
     <div class="prod-rail-wrap">
-      <button class="rail-btn prev" type="button" data-rail="prodRail" aria-label="이전 제품">&#8249;</button>
+      <button class="rail-btn prev" type="button" data-rail="prodRail" aria-label="이전 글">&#8249;</button>
       <div class="prod-rail" id="prodRail">
-        <a class="prod-card" href="/brands/sh-scientific/muffle-1050/">
+        <a class="prod-card nc" href="/magazine/cuo-nanowire-thermal-oxidation/">
           <div class="pimg" style="background-image:url('/img/product/sh/muffle-1050.jpg')"></div>
-          <div class="pbd"><div class="pn">ECO 머플로 1050℃</div><div class="ps">열처리 · 회화 · 소성</div><div class="pp">110만 원~</div></div>
+          <div class="pbd"><div class="ps">논문 셋업 · Scientific Reports</div><div class="pn">구리를 가열하면 나노와이어가 자란다 — CuO 열산화 셋업</div><div class="nd">공기 450℃ · 산화·확산</div></div>
         </a>
-        <a class="prod-card" href="/brands/sh-scientific/gas-flow-package/">
-          <div class="pimg" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"></div>
-          <div class="pbd"><div class="pn">튜브로 가스플로 패키지</div><div class="ps">CVD · 가스 분위기</div><div class="pp">515만 원~</div></div>
-        </a>
-        <a class="prod-card" href="/brands/leadfluid/guide/">
-          <div class="pimg" style="background-image:url('/img/leadfluid/BT101S.png')"></div>
-          <div class="pbd"><div class="pn">BT101S 연동펌프</div><div class="ps">정량 공급 · 공침</div><div class="pp">97만 원~</div></div>
-        </a>
-        <a class="prod-card" href="/brands/sh-scientific/tube-1500/">
+        <a class="prod-card nc" href="/magazine/si-anode-cvd-carbon-coating/">
           <div class="pimg" style="background-image:url('/img/product/sh/tube-1500.jpg')"></div>
-          <div class="pbd"><div class="pn">튜브전기로 1500℃</div><div class="ps">소성 · 소결</div><div class="pp">780만 원~</div></div>
+          <div class="pbd"><div class="ps">논문 셋업 · Nature Communications</div><div class="pn">실리콘 음극이 부서지지 않게 — CVD 탄소 코팅 셋업</div><div class="nd">아세틸렌 900℃ · 유지율 54→95%</div></div>
         </a>
-        <a class="prod-card" href="/brands/leadfluid/guide/">
-          <div class="pimg" style="background-image:url('/img/leadfluid/BT600S.png')"></div>
-          <div class="pbd"><div class="pn">BT600S 연동펌프</div><div class="ps">순환 · 대유량</div><div class="pp">219만 원~</div></div>
+        <a class="prod-card nc" href="/magazine/guide-pump-selection-energy-fluids/">
+          <div class="pimg" style="background-image:url('/img/pump-guide.jpg')"></div>
+          <div class="pbd"><div class="ps">가이드 · 유체·펌프</div><div class="pn">전해액·전구체·부식성 유체 펌프 선정 가이드</div><div class="nd">연동 vs 시린지 vs 기어 · 5가지 축</div></div>
         </a>
-        <a class="prod-card" href="/brands/sh-scientific/vacuum-muffle-1200/">
-          <div class="pimg" style="background-image:url('/img/product/sh/vacuum-muffle-1200.jpg')"></div>
-          <div class="pbd"><div class="pn">진공 머플로 1200℃</div><div class="ps">진공 · 분위기 열처리</div><div class="pp">963만 원~</div></div>
+        <a class="prod-card nc" href="/magazine/glossary-pump-fluid-terms/">
+          <div class="pimg" style="background-image:url('/img/leadfluid/BT101L.png')"></div>
+          <div class="pbd"><div class="ps">용어사전 · 유체·펌프</div><div class="pn">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전</div><div class="nd">사양서·논문 읽기용 11개</div></div>
         </a>
-        <a class="prod-card" href="/brands/leadfluid/guide/">
-          <div class="pimg" style="background-image:url('/img/leadfluid/CT3001F.png')"></div>
-          <div class="pbd"><div class="pn">CT3001F 기어펌프</div><div class="ps">무맥동 · PEEK 내화학</div><div class="pp">231만 원~</div></div>
+        <a class="prod-card nc" href="/magazine/guide-calcination-furnace-atmosphere/">
+          <div class="pimg" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"></div>
+          <div class="pbd"><div class="ps">가이드 · 열처리·증착</div><div class="pn">소성·하소용 튜브퍼니스와 가스 분위기 고르는 법</div><div class="nd">최고온도·튜브경·분위기·MFC·기록</div></div>
         </a>
-        <a class="prod-card" href="/brands/sh-scientific/rotary-tube-furnace/">
-          <div class="pimg" style="background-image:url('/img/product/sh/rotary-tube-furnace.jpg')"></div>
-          <div class="pbd"><div class="pn">회전 튜브로 300mm</div><div class="ps">분말 균일 소성</div><div class="pp">1,200만 원~</div></div>
-        </a>
-        <a class="prod-card" href="/brands/leadfluid/guide/">
-          <div class="pimg" style="background-image:url('/img/leadfluid/TYD01-01.png')"></div>
-          <div class="pbd"><div class="pn">TYD01 시린지펌프</div><div class="ps">미량 정밀 주입</div><div class="pp">240만 원~</div></div>
-        </a>
-        <a class="prod-card" href="/brands/sh-scientific/elevator-1200/">
-          <div class="pimg" style="background-image:url('/img/product/sh/elevator-1200.jpg')"></div>
-          <div class="pbd"><div class="pn">엘레베이터로 1200℃</div><div class="ps">대용량 장입 · 자동 도어</div><div class="pp">552만 원~</div></div>
-        </a>
-        <a class="prod-card" href="/brands/alicat/">
-          <div class="pimg" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')"></div>
-          <div class="pbd"><div class="pn">Alicat MFC</div><div class="ps">sccm 정밀 가스 제어</div><div class="pp">견적 문의</div></div>
+        <a class="prod-card nc" href="/magazine/glossary-heat-gas-terms/">
+          <div class="pimg" style="background-image:url('/img/product/sh/muffle-1500.jpg')"></div>
+          <div class="pbd"><div class="ps">용어사전 · 열처리·증착</div><div class="pn">하소 vs 소성 vs 소결, sccm이란 — 열처리 용어사전</div><div class="nd">논문·사양서 읽기용 12개</div></div>
         </a>
       </div>
-      <button class="rail-btn next" type="button" data-rail="prodRail" aria-label="다음 제품">&#8250;</button>
+      <button class="rail-btn next" type="button" data-rail="prodRail" aria-label="다음 글">&#8250;</button>
     </div>
 
     <a class="hl-card" href="/brands/sh-scientific/rotary-tube-furnace-pro/">
@@ -300,6 +285,87 @@
       </div>
     </a>
     <p style="font-size:12px;color:#8a929c;margin:10px 2px 0;line-height:1.6">※ 표기 가격은 정가 기준 시작가(부가세·옵션·설치 별도)이며, 매거진에서 다룬 장비는 문의 시 할인가로 안내합니다. 구매·수리·국내 A/S(3년 무상보증)는 이머전트가 맡습니다.</p>
+
+    <style>
+      .ec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+      @media(max-width:820px){.ec-grid{grid-template-columns:1fr}}
+      .ec-card{display:block;border:1px solid var(--line);border-radius:12px;background:#fff;padding:15px 17px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+      .ec-card:hover{border-color:#1E3A5F;box-shadow:0 10px 22px rgba(10,37,64,.1)}
+      .ec-card .ek{font-size:10.5px;font-weight:800;letter-spacing:.04em;color:#1E3A5F}
+      .ec-card .ek.p{color:#9A3412}
+      .ec-card .et{font-family:var(--serif);font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4;margin:5px 0 4px}
+      .ec-card .ed{font-size:12px;color:#5a6570;line-height:1.55}
+      .ec-card .ep{font-size:12.5px;font-weight:800;color:#9A3412;margin-top:7px}
+      .mat-band{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#152B44,#1E3A5F);border-radius:14px;padding:26px 30px;margin-top:0}
+      .mat-band .mb-bd{flex:1;min-width:260px}
+      .mat-band .mb-k{font-size:11px;font-weight:800;letter-spacing:.1em;color:#EF9F27}
+      .mat-band h3{font-family:var(--serif);font-size:clamp(18px,2vw,23px);font-weight:800;color:#fff;margin:6px 0 8px;line-height:1.35}
+      .mat-band p{font-size:13px;color:#dbe5f0;line-height:1.65;margin:0}
+      .mat-band .mb-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+      .mat-band .mb-chips span{font-size:11.5px;font-weight:700;color:#EDF2F8;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 11px}
+      .mat-band .mb-cta{flex:none;text-align:center}
+      .mat-band .mb-cta a{display:inline-block;background:#EF9F27;color:#1a1a1a;font-size:13.5px;font-weight:800;padding:11px 22px;border-radius:10px;text-decoration:none}
+      .mat-band .mb-cta .mn{font-size:11px;color:#8fa3ba;margin-top:7px}
+    </style>
+
+    <div class="brand-head">
+      <div class="t">전기화학 · 수전해 코너</div>
+      <div class="en">ELECTROCHEMISTRY</div>
+    </div>
+    <div class="ec-grid">
+      <a class="ec-card" href="/magazine/aorfb-flowfield-electrolyte-pump/">
+        <div class="ek">논문 셋업 · PNAS 2024</div>
+        <div class="et">레독스흐름전지 전해액 순환 — 유로 설계 + 연동펌프</div>
+        <div class="ed">flow-through 유로 + 140 mL/min 순환으로 300 mA/cm² 충전.</div>
+      </a>
+      <a class="ec-card" href="/setups/co2-capture-ct3001f">
+        <div class="ek">논문 셋업 · Nature Comms 2024</div>
+        <div class="et">연속 CO₂ 포집 — 전해액 순환 셋업</div>
+        <div class="ed">anolyte·catholyte 순환, 내화학 요구로 PEEK 기어펌프 채택.</div>
+      </a>
+      <a class="ec-card" href="/magazine/guide-pump-selection-energy-fluids/">
+        <div class="ek">가이드</div>
+        <div class="et">전해액·부식성 유체 펌프 선정 가이드</div>
+        <div class="ed">유량·유체 성질·접액 재질·맥동·채널 제어 — 5가지 축.</div>
+      </a>
+      <a class="ec-card" href="/brands/leadfluid/guide/">
+        <div class="ek p">장비 · 무맥동 순환</div>
+        <div class="et">CT3001F PEEK 기어펌프</div>
+        <div class="ed">전해액·유기용매 연속 순환. 논문 검증 모델.</div>
+        <div class="ep">231만 원~</div>
+      </a>
+      <a class="ec-card" href="/brands/leadfluid/guide/">
+        <div class="ek p">장비 · 정밀 주입</div>
+        <div class="et">TYD01 시린지펌프</div>
+        <div class="ed">전해액 정량 주입·미량 공급. 저맥동.</div>
+        <div class="ep">240만 원~</div>
+      </a>
+      <a class="ec-card" href="/brands/alicat/">
+        <div class="ek p">장비 · 가스 제어</div>
+        <div class="et">Alicat 질량유량계(MFC)</div>
+        <div class="ed">수전해·연료전지 가스 유량 sccm 정밀 제어·기록.</div>
+        <div class="ep">견적 문의</div>
+      </a>
+    </div>
+
+    <div class="brand-head">
+      <div class="t">재료 · 시약 <span style="font-size:11px;font-weight:800;color:#EF9F27;vertical-align:2px">준비 중</span></div>
+      <div class="en">MATERIALS</div>
+    </div>
+    <div class="mat-band">
+      <div class="mb-bd">
+        <div class="mb-k">COMING SOON</div>
+        <h3>셋업에 나온 재료, 그대로 주문할 수 있게 준비하고 있습니다</h3>
+        <p>Merck(Sigma-Aldrich) 에너지 R&amp;D 시약을 실험 셋업 단위로 큐레이션합니다 — 논문 셋업에서 쓴 그 재료를 장비와 함께 한곳에서.</p>
+        <div class="mb-chips">
+          <span>NMP 용매</span><span>PVDF 바인더</span><span>도전재 카본블랙</span><span>LiPF₆ 전해질</span><span>EC·DMC 용매</span><span>니켈·코발트 전구체염</span>
+        </div>
+      </div>
+      <div class="mb-cta">
+        <a href="/contact/">입고 알림 신청 →</a>
+        <div class="mn">오픈 시 이메일로 알려드립니다</div>
+      </div>
+    </div>
 
     <div class="home-sub">
       <a href="/magazine/">실험 셋업 매거진 &rarr;</a>
