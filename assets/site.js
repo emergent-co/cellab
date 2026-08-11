@@ -323,6 +323,36 @@
         '<div class="ac-d">시료·공정 조건만 남기면 맞는 구성과 견적으로 회신드립니다. 매거진 독자 할인가 안내.</div>' +
         '<a href="/contact/">셋업 상담·견적 →</a></div>';
       layout.appendChild(rail);
+
+      // 좌측 목차 가이드 — 본문 h2를 수집해 스크롤 스파이 목차 생성
+      var heads = Array.prototype.slice.call(art.querySelectorAll('h2'));
+      if (heads.length >= 2) {
+        var toc = document.createElement('nav');
+        toc.className = 'art-toc';
+        toc.setAttribute('aria-label', '목차');
+        var links = heads.map(function (h, i) {
+          if (!h.id) h.id = 'sec-' + (i + 1);
+          h.style.scrollMarginTop = '120px';
+          return '<a href="#' + h.id + '">' + (h.textContent || '').trim() + '</a>';
+        }).join('');
+        toc.innerHTML = '<div class="at-h">이 글의 목차</div>' + links;
+        layout.insertBefore(toc, art);
+        var tocLinks = toc.querySelectorAll('a');
+        var spyTick = false;
+        function spy() {
+          if (spyTick) return; spyTick = true;
+          requestAnimationFrame(function () {
+            var mid = 140, cur = 0;
+            heads.forEach(function (h, i) {
+              if (h.getBoundingClientRect().top <= mid) cur = i;
+            });
+            tocLinks.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+            spyTick = false;
+          });
+        }
+        window.addEventListener('scroll', spy, { passive: true });
+        spy();
+      }
     }
 
     // 스크롤다운 시 상단바 접기 — 메뉴바만 반투명하게 남김 (데스크톱, CSS가 처리)
