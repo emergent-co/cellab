@@ -287,6 +287,22 @@
     <p style="font-size:12px;color:#8a929c;margin:10px 2px 0;line-height:1.6">※ 표기 가격은 정가 기준 시작가(부가세·옵션·설치 별도)이며, 매거진에서 다룬 장비는 문의 시 할인가로 안내합니다. 구매·수리·국내 A/S(3년 무상보증)는 이머전트가 맡습니다.</p>
 
     <style>
+      .rv-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+      .rv-score{font-size:13px;font-weight:800;color:#1E3A5F}
+      .rv-score .st{color:#F5A623;letter-spacing:1px}
+      .rv-band{overflow:hidden;margin-top:4px;position:relative}
+      .rv-band::before,.rv-band::after{content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+      .rv-band::before{left:0;background:linear-gradient(90deg,#FBFAF7,transparent)}
+      .rv-band::after{right:0;background:linear-gradient(270deg,#FBFAF7,transparent)}
+      .rv-track{display:flex;gap:14px;width:max-content;animation:rvflow 45s linear infinite;padding:4px 0 8px}
+      .rv-band:hover .rv-track{animation-play-state:paused}
+      @keyframes rvflow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+      .rv-card{flex:0 0 360px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px 18px;display:flex;flex-direction:column;gap:7px}
+      @media(max-width:520px){.rv-card{flex-basis:290px}}
+      .rv-stars{color:#F5A623;font-size:13px;letter-spacing:2px}
+      .rv-txt{font-size:12.5px;color:#3a4550;line-height:1.65;margin:0}
+      .rv-nm{font-size:12px;font-weight:800;color:var(--ink);margin-top:auto}
+      .rv-nm small{font-weight:600;color:#9aa3ad;margin-left:6px}
       .oc-sub{font-size:15.5px;font-weight:800;color:var(--ink);margin:22px 0 12px}
       .oc-sub:first-of-type{margin-top:0}
       .oc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -315,60 +331,95 @@
     </style>
 
     <div class="brand-head">
+      <div class="rv-head">
+        <div class="t">이용 후기</div>
+        <a class="rv-score" href="https://www.google.com/maps?cid=4429951187161412134" target="_blank" rel="noopener"><span class="st">★★★★★</span> 5.0 · Google 리뷰 7개 →</a>
+      </div>
+      <div class="en">GOOGLE REVIEWS</div>
+    </div>
+    <div class="rv-band" aria-label="구글 리뷰">
+      <div class="rv-track">
+        <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-txt">2차전지 전해액을 소량으로 정확히 반복 주입해야 하는 실험실입니다. BT101L은 극미량 구간에서도 설정한 토출량을 그대로 반복해줍니다. 국내에서 직접 수리하고 3년 보증을 제공해 A/S 부담이 없어졌습니다.</p><div class="rv-nm">윤의성<small>2차전지 전해액 정량 주입 · BT101L</small></div></div>
+        <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-txt">레독스흐름전지 셀 테스트는 펌프 간 유량 편차가 늘 문제였습니다. BT101S 3대를 도입해 유량을 안정적으로 유지하고, 바나듐계 황산 전해액도 튜브만 접액해 장기 운전이 가능합니다.</p><div class="rv-nm">민경욱<small>지역 가이드 · 흐름전지 순환 · BT101S ×3</small></div></div>
+        <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-txt">튜브퍼니스 CVD 실험에서 가스 분위기를 정밀하게 잡아야 해서 Alicat MFC를 도입했습니다. 여러 가스 유량을 PC로 설정·기록하면서 실험 재현성이 확실히 좋아졌고, 문의에도 국내에서 바로 대응해줘서 편했습니다.</p><div class="rv-nm">박준석<small>CVD 가스 분위기 · Alicat MFC</small></div></div>
+        <div class="rv-card" aria-hidden="true"><div class="rv-stars">★★★★★</div><p class="rv-txt">2차전지 전해액을 소량으로 정확히 반복 주입해야 하는 실험실입니다. BT101L은 극미량 구간에서도 설정한 토출량을 그대로 반복해줍니다. 국내에서 직접 수리하고 3년 보증을 제공해 A/S 부담이 없어졌습니다.</p><div class="rv-nm">윤의성<small>2차전지 전해액 정량 주입 · BT101L</small></div></div>
+        <div class="rv-card" aria-hidden="true"><div class="rv-stars">★★★★★</div><p class="rv-txt">레독스흐름전지 셀 테스트는 펌프 간 유량 편차가 늘 문제였습니다. BT101S 3대를 도입해 유량을 안정적으로 유지하고, 바나듐계 황산 전해액도 튜브만 접액해 장기 운전이 가능합니다.</p><div class="rv-nm">민경욱<small>지역 가이드 · 흐름전지 순환 · BT101S ×3</small></div></div>
+        <div class="rv-card" aria-hidden="true"><div class="rv-stars">★★★★★</div><p class="rv-txt">튜브퍼니스 CVD 실험에서 가스 분위기를 정밀하게 잡아야 해서 Alicat MFC를 도입했습니다. 여러 가스 유량을 PC로 설정·기록하면서 실험 재현성이 확실히 좋아졌고, 문의에도 국내에서 바로 대응해줘서 편했습니다.</p><div class="rv-nm">박준석<small>CVD 가스 분위기 · Alicat MFC</small></div></div>
+      </div>
+    </div>
+
+    <div class="brand-head">
       <div class="t">전기화학 · 수전해 코너</div>
       <div class="en">ELECTROCHEMISTRY</div>
     </div>
-    <div class="oc-sub">전해액 순환 · 정량 장비 모음</div>
+    <div class="oc-sub">전극 컬렉션</div>
     <div class="oc-grid">
-      <a class="oc-card" href="/brands/leadfluid/guide/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/CT3001F.png')"></span><span class="ol">기어펌프</span></div>
-        <div class="oc-t">CT3001F PEEK 기어펌프</div>
-        <div class="oc-d">전해액·유기용매 무맥동 연속 순환. 논문 검증 모델.</div>
-        <div class="oc-p">231만 원~</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 전극">
+        <div class="oc-tile"><span class="ol">전극</span></div>
+        <div class="oc-t">전극</div>
+        <div class="oc-d">다양한 고품질 전극 제품을 살펴보세요.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="oc-card" href="/brands/leadfluid/guide/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/TYD01-01.png')"></span><span class="ol">시린지펌프</span></div>
-        <div class="oc-t">TYD01 시린지펌프</div>
-        <div class="oc-d">전해액 정량 주입·미량 공급. 저맥동 정밀 이송.</div>
-        <div class="oc-p">240만 원~</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 대향 전극">
+        <div class="oc-tile"><span class="ol">대향 전극</span></div>
+        <div class="oc-t">대향 전극</div>
+        <div class="oc-d">셀과 호환되는 다양한 재질, 형태 및 크기.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="oc-card" href="/brands/leadfluid/guide/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/BT600S.png')"></span><span class="ol">연동펌프</span></div>
-        <div class="oc-t">BT600S 연동펌프</div>
-        <div class="oc-d">셀 스택·반응기 대유량 순환. 다채널 헤드 확장.</div>
-        <div class="oc-p">219만 원~</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 기준 전극">
+        <div class="oc-tile"><span class="ol">기준 전극</span></div>
+        <div class="oc-t">기준 전극</div>
+        <div class="oc-d">수용액·비수용액 기준 전극과 교체용 하프 셀 포함.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="oc-card" href="/brands/alicat/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')"></span><span class="ol">질량유량계</span></div>
-        <div class="oc-t">Alicat MFC</div>
-        <div class="oc-d">수전해·연료전지 가스 유량 sccm 정밀 제어·기록.</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 작동 전극">
+        <div class="oc-tile"><span class="ol">작동 전극</span></div>
+        <div class="oc-t">작동 전극</div>
+        <div class="oc-d">셀과 호환되는 다양한 재질, 형태 및 크기.</div>
         <div class="oc-p">견적 문의</div>
       </a>
     </div>
 
-    <div class="oc-sub">전기화학 논문 셋업 모음</div>
+    <div class="oc-sub">전기화학 전지 모음</div>
     <div class="oc-grid">
-      <a class="oc-card" href="/magazine/aorfb-flowfield-electrolyte-pump/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/BT101L.png')"></span><span class="ol">흐름전지</span></div>
-        <div class="oc-t">레독스흐름전지 전해액 순환 셋업</div>
-        <div class="oc-d">flow-through 유로 + 연동펌프 140 mL/min — 300 mA/cm² 충전. PNAS (2024).</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 전기화학 전지">
+        <div class="oc-tile"><span class="ol">전기화학 전지</span></div>
+        <div class="oc-t">전기화학 전지</div>
+        <div class="oc-d">순환 전압전류법(CV), 전기분해 등에 사용하도록 설계.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="oc-card" href="/setups/co2-capture-ct3001f">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/CT3001F.png')"></span><span class="ol">CO₂ 포집</span></div>
-        <div class="oc-t">연속 CO₂ 포집 셋업</div>
-        <div class="oc-d">anolyte·catholyte 전해액 순환 — 내화학 PEEK 기어펌프. Nature Comms (2024).</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 광전기화학 전지">
+        <div class="oc-tile"><span class="ol">광전기화학 전지</span></div>
+        <div class="oc-t">광전기화학 전지</div>
+        <div class="oc-d">광화학 과정을 현장에서 연구하기 위한 통합 광학 창.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="oc-card" href="/magazine/sofc-hcl-syngas/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"></span><span class="ol">연료전지</span></div>
-        <div class="oc-t">SOFC 다가스 분위기 셋업</div>
-        <div class="oc-d">다채널 MFC + 튜브퍼니스 800·900℃ 정밀 제어. J. Power Sources (2007).</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 분광전기화학 전지">
+        <div class="oc-tile"><span class="ol">분광전기화학 전지</span></div>
+        <div class="oc-t">분광전기화학 전지</div>
+        <div class="oc-d">화학적·구조적 전기화학 변화의 실시간 조사.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="oc-card" href="/magazine/guide-pump-selection-energy-fluids/">
-        <div class="oc-tile"><span class="oi" style="background-image:url('/img/product/%EB%A6%AC%EB%93%9C%ED%94%8C%EB%A3%A8%EC%9D%B4%EB%93%9C_%EC%A0%9C%ED%92%88.jpg')"></span><span class="ol">선정 가이드</span></div>
-        <div class="oc-t">전해액·부식성 유체 펌프 선정 가이드</div>
-        <div class="oc-d">유량·유체 성질·접액 재질·맥동·채널 제어 — 5가지 축으로 좁히기.</div>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · GDE 유동 셀">
+        <div class="oc-tile"><span class="ol">GDE 유동 셀</span></div>
+        <div class="oc-t">가스 확산 전극 유동 전지</div>
+        <div class="oc-d">친환경 화학·청정 에너지·산업용 가스 생산을 위한 GDE 유동 셀.</div>
+        <div class="oc-p">견적 문의</div>
+      </a>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · MEA 전해조">
+        <div class="oc-tile"><span class="ol">MEA 전해조</span></div>
+        <div class="oc-t">MEA 전해조</div>
+        <div class="oc-d">적층형 '제로갭' 구조를 갖춘 고성능 전기화학 전지.</div>
+        <div class="oc-p">견적 문의</div>
+      </a>
+      <a class="oc-card" href="/contact/" data-quote="전기화학 코너 · 다공성 고체 전해질(PSE) 반응기">
+        <div class="oc-tile"><span class="ol">PSE 반응기</span></div>
+        <div class="oc-t">다공성 고체 전해질 반응기</div>
+        <div class="oc-d">액체 음극액 없이 액체 화학물질을 직접 합성.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
     </div>
+    <p style="font-size:12px;color:#8a929c;margin:12px 2px 0;line-height:1.6">※ 전극·전기화학 셀 라인업은 입고 준비 중입니다 — 카드를 누르면 품목명이 담긴 견적 문의로 연결되며, 입고 시 우선 안내드립니다.</p>
 
     <div class="brand-head">
       <div class="t">재료 · 시약 <span style="font-size:11px;font-weight:800;color:#EF9F27;vertical-align:2px">준비 중</span></div>
