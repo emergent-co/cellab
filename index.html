@@ -287,15 +287,21 @@
     <p style="font-size:12px;color:#8a929c;margin:10px 2px 0;line-height:1.6">※ 표기 가격은 정가 기준 시작가(부가세·옵션·설치 별도)이며, 매거진에서 다룬 장비는 문의 시 할인가로 안내합니다. 구매·수리·국내 A/S(3년 무상보증)는 이머전트가 맡습니다.</p>
 
     <style>
-      .ec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-      @media(max-width:820px){.ec-grid{grid-template-columns:1fr}}
-      .ec-card{display:block;border:1px solid var(--line);border-radius:12px;background:#fff;padding:15px 17px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
-      .ec-card:hover{border-color:#1E3A5F;box-shadow:0 10px 22px rgba(10,37,64,.1)}
-      .ec-card .ek{font-size:10.5px;font-weight:800;letter-spacing:.04em;color:#1E3A5F}
-      .ec-card .ek.p{color:#9A3412}
-      .ec-card .et{font-family:var(--serif);font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4;margin:5px 0 4px}
-      .ec-card .ed{font-size:12px;color:#5a6570;line-height:1.55}
-      .ec-card .ep{font-size:12.5px;font-weight:800;color:#9A3412;margin-top:7px}
+      .oc-sub{font-size:15.5px;font-weight:800;color:var(--ink);margin:22px 0 12px}
+      .oc-sub:first-of-type{margin-top:0}
+      .oc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+      @media(max-width:1000px){.oc-grid{grid-template-columns:repeat(2,1fr)}}
+      @media(max-width:520px){.oc-grid{grid-template-columns:1fr}}
+      .oc-card{display:block;text-decoration:none;color:inherit}
+      .oc-tile{position:relative;height:112px;border-radius:8px;overflow:hidden;background:linear-gradient(115deg,#22497A 0%,#2E4E80 55%,#5B79AC 100%);display:flex;align-items:center}
+      .oc-tile::after{content:"";position:absolute;right:-30px;top:-40px;width:150px;height:190px;background:rgba(255,255,255,.08);border-radius:50% 40% 55% 45%;transform:rotate(18deg)}
+      .oc-tile .oi{flex:0 0 46%;height:82%;margin-left:8px;background:center/contain no-repeat;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
+      .oc-tile .ol{flex:1;position:relative;z-index:1;text-align:center;color:#fff;font-size:16.5px;font-weight:800;letter-spacing:-.01em;text-shadow:0 2px 8px rgba(0,0,0,.3);padding-right:8px}
+      .oc-card:hover .oc-tile{box-shadow:0 12px 26px rgba(10,37,64,.22)}
+      .oc-t{font-size:13.5px;font-weight:800;color:var(--green);margin:9px 0 4px}
+      .oc-card:hover .oc-t{text-decoration:underline}
+      .oc-d{font-size:12.5px;color:#5a6570;line-height:1.55}
+      .oc-p{font-size:12.5px;font-weight:800;color:#9A3412;margin-top:4px}
       .mat-band{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#152B44,#1E3A5F);border-radius:14px;padding:26px 30px;margin-top:0}
       .mat-band .mb-bd{flex:1;min-width:260px}
       .mat-band .mb-k{font-size:11px;font-weight:800;letter-spacing:.1em;color:#EF9F27}
@@ -312,39 +318,55 @@
       <div class="t">전기화학 · 수전해 코너</div>
       <div class="en">ELECTROCHEMISTRY</div>
     </div>
-    <div class="ec-grid">
-      <a class="ec-card" href="/magazine/aorfb-flowfield-electrolyte-pump/">
-        <div class="ek">논문 셋업 · PNAS 2024</div>
-        <div class="et">레독스흐름전지 전해액 순환 — 유로 설계 + 연동펌프</div>
-        <div class="ed">flow-through 유로 + 140 mL/min 순환으로 300 mA/cm² 충전.</div>
+    <div class="oc-sub">전해액 순환 · 정량 장비 모음</div>
+    <div class="oc-grid">
+      <a class="oc-card" href="/brands/leadfluid/guide/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/CT3001F.png')"></span><span class="ol">기어펌프</span></div>
+        <div class="oc-t">CT3001F PEEK 기어펌프</div>
+        <div class="oc-d">전해액·유기용매 무맥동 연속 순환. 논문 검증 모델.</div>
+        <div class="oc-p">231만 원~</div>
       </a>
-      <a class="ec-card" href="/setups/co2-capture-ct3001f">
-        <div class="ek">논문 셋업 · Nature Comms 2024</div>
-        <div class="et">연속 CO₂ 포집 — 전해액 순환 셋업</div>
-        <div class="ed">anolyte·catholyte 순환, 내화학 요구로 PEEK 기어펌프 채택.</div>
+      <a class="oc-card" href="/brands/leadfluid/guide/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/TYD01-01.png')"></span><span class="ol">시린지펌프</span></div>
+        <div class="oc-t">TYD01 시린지펌프</div>
+        <div class="oc-d">전해액 정량 주입·미량 공급. 저맥동 정밀 이송.</div>
+        <div class="oc-p">240만 원~</div>
       </a>
-      <a class="ec-card" href="/magazine/guide-pump-selection-energy-fluids/">
-        <div class="ek">가이드</div>
-        <div class="et">전해액·부식성 유체 펌프 선정 가이드</div>
-        <div class="ed">유량·유체 성질·접액 재질·맥동·채널 제어 — 5가지 축.</div>
+      <a class="oc-card" href="/brands/leadfluid/guide/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/BT600S.png')"></span><span class="ol">연동펌프</span></div>
+        <div class="oc-t">BT600S 연동펌프</div>
+        <div class="oc-d">셀 스택·반응기 대유량 순환. 다채널 헤드 확장.</div>
+        <div class="oc-p">219만 원~</div>
       </a>
-      <a class="ec-card" href="/brands/leadfluid/guide/">
-        <div class="ek p">장비 · 무맥동 순환</div>
-        <div class="et">CT3001F PEEK 기어펌프</div>
-        <div class="ed">전해액·유기용매 연속 순환. 논문 검증 모델.</div>
-        <div class="ep">231만 원~</div>
+      <a class="oc-card" href="/brands/alicat/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')"></span><span class="ol">질량유량계</span></div>
+        <div class="oc-t">Alicat MFC</div>
+        <div class="oc-d">수전해·연료전지 가스 유량 sccm 정밀 제어·기록.</div>
+        <div class="oc-p">견적 문의</div>
       </a>
-      <a class="ec-card" href="/brands/leadfluid/guide/">
-        <div class="ek p">장비 · 정밀 주입</div>
-        <div class="et">TYD01 시린지펌프</div>
-        <div class="ed">전해액 정량 주입·미량 공급. 저맥동.</div>
-        <div class="ep">240만 원~</div>
+    </div>
+
+    <div class="oc-sub">전기화학 논문 셋업 모음</div>
+    <div class="oc-grid">
+      <a class="oc-card" href="/magazine/aorfb-flowfield-electrolyte-pump/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/BT101L.png')"></span><span class="ol">흐름전지</span></div>
+        <div class="oc-t">레독스흐름전지 전해액 순환 셋업</div>
+        <div class="oc-d">flow-through 유로 + 연동펌프 140 mL/min — 300 mA/cm² 충전. PNAS (2024).</div>
       </a>
-      <a class="ec-card" href="/brands/alicat/">
-        <div class="ek p">장비 · 가스 제어</div>
-        <div class="et">Alicat 질량유량계(MFC)</div>
-        <div class="ed">수전해·연료전지 가스 유량 sccm 정밀 제어·기록.</div>
-        <div class="ep">견적 문의</div>
+      <a class="oc-card" href="/setups/co2-capture-ct3001f">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/leadfluid/CT3001F.png')"></span><span class="ol">CO₂ 포집</span></div>
+        <div class="oc-t">연속 CO₂ 포집 셋업</div>
+        <div class="oc-d">anolyte·catholyte 전해액 순환 — 내화학 PEEK 기어펌프. Nature Comms (2024).</div>
+      </a>
+      <a class="oc-card" href="/magazine/sofc-hcl-syngas/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"></span><span class="ol">연료전지</span></div>
+        <div class="oc-t">SOFC 다가스 분위기 셋업</div>
+        <div class="oc-d">다채널 MFC + 튜브퍼니스 800·900℃ 정밀 제어. J. Power Sources (2007).</div>
+      </a>
+      <a class="oc-card" href="/magazine/guide-pump-selection-energy-fluids/">
+        <div class="oc-tile"><span class="oi" style="background-image:url('/img/product/%EB%A6%AC%EB%93%9C%ED%94%8C%EB%A3%A8%EC%9D%B4%EB%93%9C_%EC%A0%9C%ED%92%88.jpg')"></span><span class="ol">선정 가이드</span></div>
+        <div class="oc-t">전해액·부식성 유체 펌프 선정 가이드</div>
+        <div class="oc-d">유량·유체 성질·접액 재질·맥동·채널 제어 — 5가지 축으로 좁히기.</div>
       </a>
     </div>
 
