@@ -883,6 +883,72 @@ def normalize_html_urls():
     print(f'  URL 정규화(.html 제거): {count}개 페이지')
 
 
+def build_search_index():
+    """전 페이지를 스캔해 사이트 검색 인덱스(/search-index.json)를 생성.
+    site.js가 fetch해 수동 SEARCH_INDEX와 병합한다. 새 페이지는 빌드만 하면 검색에 잡힘."""
+    SKIP_DIRS = {'_build', '.git', 'admin', 'api', 'functions', 'node_modules'}
+    entries = []
+    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and not d.startswith('.')]
+        for fn in filenames:
+            if not fn.endswith('.html'):
+                continue
+            path = os.path.join(dirpath, fn)
+            rel = os.path.relpath(path, ROOT_DIR).replace('\\', '/')
+            if rel in ('404.html', 'inquiry.html', 'recommend.html') or rel.startswith('_'):
+                continue
+            url = '/' + rel
+            if url.endswith('/index.html'):
+                url = url[:-10]
+            elif url.endswith('.html'):
+                url = url[:-5]
+            try:
+                t = read(path)
+            except Exception:
+                continue
+            def _m(pat):
+                m = re.search(pat, t, re.S)
+                return re.sub(r'\s+', ' ', m.group(1)).strip() if m else ''
+            title = _m(r'<title>(.*?)</title>')
+            if not title:
+                continue
+            title = title.split('|')[0].strip()
+            desc = _m(r'<meta name="description" content="([^"]*)"')
+            kw = _m(r'<meta name="keywords" content="([^"]*)"')
+            h1 = re.sub(r'<[^>]+>', ' ', _m(r'<h1[^>]*>(.*?)</h1>'))
+            # 카테고리 라벨
+            if url.startswith('/brands/sh-scientific/'):
+                cat = '삼흥 장비'
+            elif url.startswith('/brands/leadfluid/'):
+                cat = '리드플루이드 펌프'
+            elif url.startswith('/brands/alicat'):
+                cat = 'Alicat MFC'
+            elif url.startswith('/brands'):
+                cat = '장비 카탈로그'
+            elif url.startswith('/magazine/battery'):
+                cat = '배터리 랩 A to Z'
+            elif url.startswith('/magazine'):
+                cat = '매거진'
+            elif url.startswith('/setups') or url.startswith('/furnace/setups') or url.startswith('/pump/setups'):
+                cat = '셋업 사례'
+            elif url.startswith('/pump/atoz'):
+                cat = '펌프 문제해결'
+            elif url.startswith('/manuals') or url.startswith('/temp-controller'):
+                cat = '메뉴얼'
+            elif url.startswith('/application'):
+                cat = '실험 가이드'
+            elif url.startswith('/pumps') or url.startswith('/pump'):
+                cat = '펌프'
+            else:
+                cat = '페이지'
+            k = ' '.join(x for x in (h1, desc, kw) if x)[:400]
+            entries.append({'t': title[:90], 'u': url, 'k': k, 'c': cat})
+    entries.sort(key=lambda e: e['u'])
+    write(os.path.join(ROOT_DIR, 'search-index.json'),
+          json.dumps({'v': 1, 'items': entries}, ensure_ascii=False))
+    print(f'  search-index.json: {len(entries)}개 페이지 인덱싱')
+
+
 def main():
     print('=' * 60)
     print('  실험셋업연구소 카테고리 페이지 빌드')
@@ -1074,6 +1140,7 @@ def main():
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()
+    build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔
 
     print('\n' + '=' * 60)
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')

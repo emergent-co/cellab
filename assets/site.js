@@ -43,6 +43,15 @@
         c: (p.type === 'setup' ? '사례 아카이브' : '블로그') });
     });
   }).catch(function () {});
+  // 전 페이지 자동 인덱스(빌드 생성) 병합 — 제품 상세·허브·메뉴얼 등 전부 검색 가능
+  fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (d) {
+    var seen = {};
+    SEARCH_INDEX.forEach(function (it) { seen[(it.u || '').replace(/\/$/, '')] = 1; });
+    (d.items || []).forEach(function (it) {
+      var key = (it.u || '').replace(/\/$/, '');
+      if (!seen[key]) { seen[key] = 1; SEARCH_INDEX.push(it); }
+    });
+  }).catch(function () {});
 
   var ICONS = {
     home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
@@ -64,7 +73,7 @@
     { href:'/magazine/', label:'셋업 매거진', icon:'feed', sub:[
         ['/setups/', '셋업 사례']
       ] },
-    { href:'/magazine/battery/', label:'배터리 랩 A to Z', icon:'pick' },
+    { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
     { href:'/brands/', label:'장비 카탈로그', icon:'devices', sub:[
         ['/manuals/', '장비 메뉴얼']
       ] },
@@ -460,9 +469,18 @@
       function doSearch() {
         var q = (inp.value || '').trim().toLowerCase();
         if (!q) { rbox.classList.remove('open'); rbox.innerHTML = ''; return; }
+        var terms = q.split(/\s+/).filter(Boolean);
         var hits = SEARCH_INDEX.filter(function (it) {
-          return (it.t + ' ' + (it.k || '') + ' ' + (it.c || '')).toLowerCase().indexOf(q) > -1;
-        }).slice(0, 8);
+          var hay = (it.t + ' ' + (it.k || '') + ' ' + (it.c || '')).toLowerCase();
+          return terms.every(function (tm) { return hay.indexOf(tm) > -1; });
+        });
+        // 제목 일치 우선 정렬
+        hits.sort(function (a, b) {
+          var at = terms.every(function (tm) { return a.t.toLowerCase().indexOf(tm) > -1; }) ? 0 : 1;
+          var bt = terms.every(function (tm) { return b.t.toLowerCase().indexOf(tm) > -1; }) ? 0 : 1;
+          return at - bt;
+        });
+        hits = hits.slice(0, 10);
         if (!hits.length) {
           rbox.innerHTML = '<div class="rempty">"' + esc(inp.value.trim()) + '" 검색 결과가 없습니다.</div>';
         } else {
