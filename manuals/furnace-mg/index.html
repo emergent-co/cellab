@@ -50,23 +50,36 @@
   .simgrid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
   @media(max-width:760px){.simgrid{grid-template-columns:1fr}}
   .ctlbox{border:1px solid var(--line);border-radius:14px;padding:20px 18px;background:#f6f7f9}
-  .ctl{max-width:400px;margin:0 auto;background:#e9eaee;border:1px solid #cfd2d8;border-radius:16px;padding:16px 16px 18px;box-shadow:inset 0 1px 0 #fff,0 6px 16px rgba(10,37,64,.08)}
-  .ctl-title{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#5a6570;text-align:center;margin-bottom:10px}
-  .scr{background:#16181c;border-radius:10px;padding:12px 14px;border:2px solid #3a3d44}
-  .seg{font-family:"Courier New",monospace;font-weight:800;letter-spacing:.14em;text-align:right;line-height:1.15;font-size:30px}
-  .seg.top{color:#ff5a3c}
-  .seg.bot{color:#3ddc6a;font-size:26px}
-  .seg .cur{background:rgba(255,255,255,.22);border-radius:3px}
-  .seg.single{font-size:34px;color:#3ddc6a}
-  .lamps{display:flex;gap:14px;justify-content:center;margin:12px 0 4px}
-  .lamp{font-size:10px;font-weight:800;color:#6b7480;text-align:center}
-  .lamp i{display:block;width:11px;height:11px;border-radius:50%;background:#c8ccd2;margin:0 auto 3px;border:1px solid #aab0b8}
-  .lamp.lit i{background:#ff4d2e;border-color:#d13a20;box-shadow:0 0 7px rgba(255,77,46,.75)}
-  .lamp.dim{opacity:.45}
-  .keys{display:flex;gap:9px;justify-content:center;margin-top:13px;flex-wrap:wrap}
-  .key{min-width:47px;height:44px;padding:0 10px;border-radius:10px;border:1px solid #b9bec6;background:linear-gradient(#fff,#e7e9ed);font-size:14px;font-weight:800;color:#333;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
-  .key:active{background:#d7dade;transform:translateY(1px)}
-  .key.pwr{color:#c0392b}
+  .ctl{max-width:440px;margin:0 auto}
+  .panel{background:#fff;border:2.5px solid #6d7683;border-radius:16px;padding:14px 16px 16px;box-shadow:0 6px 16px rgba(10,37,64,.08)}
+  .panel.round{border-radius:72px;padding:15px 28px 18px}
+  .ctl-title{font-size:10px;font-weight:800;letter-spacing:.05em;color:#333;white-space:nowrap}
+  .mg-top{display:flex;gap:14px;align-items:flex-start}
+  .mg-side{flex:1;display:flex;flex-direction:column;gap:12px;padding-top:2px}
+  .lcd{position:relative;background:#fff;border:2px solid #2b2b2b;border-radius:5px;padding:11px 12px 8px;flex:0 0 158px;text-align:right}
+  .lcd .unit{position:absolute;top:2px;right:5px;font-size:8.5px;font-weight:800;color:#333}
+  .seg{font-family:"Courier New",monospace;font-weight:800;letter-spacing:.1em;color:#111;line-height:1.1;font-size:27px;min-height:30px}
+  .seg.bot{font-size:24px;min-height:27px}
+  .seg.single{font-size:30px;min-height:34px;text-align:center}
+  .seg .cur{background:#bcd8ff;border-radius:3px}
+  .lamps{display:flex;gap:16px;align-items:flex-start}
+  .lamp{font-size:9px;font-weight:800;color:#333;text-align:center;letter-spacing:.03em}
+  .lamp i{display:block;width:10px;height:10px;border-radius:50%;border:1.6px solid #555;background:#fff;margin:4px auto 0}
+  .lamp.h{display:flex;align-items:center;gap:5px;text-align:left}
+  .lamp.h i{margin:0}
+  .lamp.lit i{background:#e03a20;border-color:#b02a14;box-shadow:0 0 6px rgba(224,58,32,.7)}
+  .lamp.dim{opacity:.5}
+  .doorbox{display:flex;gap:12px;border:1.4px solid #999;border-radius:7px;padding:2px 10px 5px;position:relative;margin-top:-2px}
+  .doorbox .cap{position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);background:#fff;padding:0 4px;font-size:7.5px;font-weight:800;color:#777;letter-spacing:.08em}
+  .mge-mid{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:9px}
+  .lampcol{display:flex;flex-direction:column;gap:11px}
+  .keys{display:flex;align-items:center;gap:8px;margin-top:15px}
+  .keys .gap{flex:1}
+  .keys.center{justify-content:center}
+  .key{width:42px;height:42px;border-radius:50%;border:1.8px solid #4a4f57;background:#fff;font-size:11px;font-weight:800;color:#222;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation;display:flex;align-items:center;justify-content:center;padding:0}
+  .key:active{background:#e4e8ee;transform:translateY(1px)}
+  .panel:not(.round) .key[data-k="pwr"]{border-radius:12px}
+  .key[data-k="pwr"]{font-size:15px}
   .statline{margin-top:12px;font-size:12.5px;color:#41525f;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;min-height:38px;line-height:1.55}
   .simnote{font-size:11.5px;color:var(--gray-2);margin-top:9px;line-height:1.6}
   /* 체크리스트 */
@@ -125,15 +138,7 @@
 
     <div class="simgrid">
       <div class="ctlbox">
-        <div class="ctl">
-          <div class="ctl-title">TEMP &amp; TIME CONTROL SYSTEM</div>
-          <div class="scr">
-            <div class="seg top" id="d-top">25</div>
-            <div class="seg bot" id="d-bot">0500</div>
-          </div>
-          <div class="lamps" id="lamps"></div>
-          <div class="keys" id="keys"></div>
-        </div>
+        <div class="ctl" id="ctl"></div>
         <div class="statline" id="stat">전원 대기 — MODE 버튼을 <b>꾹(3초)</b> 누르면 TEMP 설정으로 들어갑니다.</div>
         <p class="simnote">※ 연습용 시뮬레이터라 시간을 압축했습니다 — "3초 꾹"은 여기서 약 1.2초, "5초 꾹"은 약 2초 길게 누르면 되고, 승온·타이머도 가속되어 표시됩니다. 실제 기기는 표기된 시간(3초/5초) 기준입니다.</p>
       </div>
@@ -297,13 +302,9 @@
 <script>
 (function(){
   var V={
-    mg:{ dual:true, lamps:[['ON','on'],['OUT','out'],['A','x1'],['P','x2']],
-         keys:[['pwr','⏻','pwr'],['mode','MODE',''],['left','◀',''],['right','▶',''],['up','▲',''],['at','AT','']],
-         atKey:'at', enterHold:true,
+    mg:{ dual:true, atKey:'at', enterHold:true,
          hint:'MODE <b>꾹(3초)</b> → TEMP 설정 진입. 저장은 MODE 짧게(1초), MODE 꾹 = 저장 후 초기화면.'},
-    mge:{ dual:false, lamps:[['RUN','on'],['OUT1','out'],['TIMER','tmr'],['OUT2','x1']],
-         keys:[['pwr','⏻','pwr'],['mode','MODE',''],['left','◀',''],['down','▼',''],['up','▲','']],
-         atKey:'up', enterHold:false,
+    mge:{ dual:false, atKey:'up', enterHold:false,
          hint:'MODE 짧게 → TEMP 설정 진입. MODE <b>꾹(3초)</b> = BEEP 모드. 저장은 MODE 짧게.'}
   };
   var HOLD=1200, HOLD_AT=2000;
@@ -322,8 +323,6 @@
 
   function render(){
     var v=V[st.v], top=$('d-top'), bot=$('d-bot');
-    if(v.dual){ top.style.display='block'; bot.className='seg bot'; }
-    else{ top.style.display='none'; bot.className='seg single'; }
     var main='', sub='';
     if(st.page==='home'){ sub=digits(st.sv,false).replace(/^0+(?=\d)/,''); main=String(Math.round(st.pv)); }
     else if(st.page==='temp-label'){ main='tEMP'; sub='tEMP'; }
@@ -340,32 +339,65 @@
       else{ sub=digits(st.sv,false).replace(/^0+(?=\d)/,''); }
     }
     else if(st.page==='end'){ main=String(Math.round(st.pv)); sub='End'; }
-    if(v.dual){ top.textContent=''; top.innerHTML=main; bot.innerHTML=sub; }
+    if(v.dual){ top.innerHTML=main; bot.innerHTML=sub; }
     else{ bot.innerHTML=(st.page==='home')?String(Math.round(st.pv)):(st.page==='run'? bot0():sub); }
     function bot0(){ if(st.at)return 'At'; if(st.view===1)return outDisp(); if(st.view===2)return minToDisp(st.remainMin); return String(Math.round(st.pv)); }
     function outDisp(){ var p=Math.round(heatPct()); return p>=100?'0.100':'0.'+(p<10?'0'+p:''+p); }
     // 램프
     var heating = st.run && st.pv < val(st.sv)-2;
-    var lampEls=$('lamps').children;
+    var lampEls=document.querySelectorAll('#ctl .lamp');
     for(var i=0;i<lampEls.length;i++){
       var code=lampEls[i].getAttribute('data-code'), lit=false, dim=false;
       if(code==='on') lit=st.run;
       else if(code==='out') lit=heating&&st.blink;
       else if(code==='tmr') lit=st.run&&(st.pv>=val(st.sv)-2 ? true : st.blink);
       else dim=true;
-      lampEls[i].className='lamp'+(lit?' lit':'')+(dim?' dim':'');
+      var base=lampEls[i].className.indexOf('h')>-1?'lamp h':'lamp';
+      lampEls[i].className=base+(lit?' lit':'')+(dim?' dim':'');
     }
   }
   function heatPct(){ var d=val(st.sv)-st.pv; if(!st.run)return 0; if(d>50)return 100; if(d<=0)return 8; return Math.max(8,Math.round(d*2)); }
   function stat(msg){ $('stat').innerHTML=msg; }
 
   function buildPanel(){
-    var v=V[st.v], lh='', kh='';
-    v.lamps.forEach(function(l){ lh+='<div class="lamp" data-code="'+l[1]+'"><i></i>'+l[0]+'</div>'; });
-    $('lamps').innerHTML=lh;
-    v.keys.forEach(function(k){ kh+='<button class="key '+k[2]+'" data-k="'+k[0]+'">'+k[1]+'</button>'; });
-    $('keys').innerHTML=kh;
-    var keys=$('keys').querySelectorAll('.key');
+    var v=V[st.v], c=$('ctl'), h='';
+    if(st.v==='mg'){
+      h='<div class="panel">'
+       +'<div class="mg-top">'
+       +'<div class="lcd"><span class="unit">&deg;F</span><div class="seg top" id="d-top">25</div><div class="seg bot" id="d-bot">800</div></div>'
+       +'<div class="mg-side">'
+       +'<div class="ctl-title">TEMP &amp; TIME CONTROL SYSTEM</div>'
+       +'<div class="lamps">'
+       +'<div class="lamp" data-code="on">ON<i></i></div>'
+       +'<div class="lamp" data-code="out">OUT<i></i></div>'
+       +'<div class="doorbox"><div class="lamp" data-code="x1">A<i></i></div><div class="lamp" data-code="x2">P<i></i></div><span class="cap">DOOR</span></div>'
+       +'</div></div></div>'
+       +'<div class="keys">'
+       +'<button class="key" data-k="pwr">&#9211;</button><span class="gap"></span>'
+       +'<button class="key" data-k="mode">MODE</button>'
+       +'<button class="key" data-k="left">&#9664;</button>'
+       +'<button class="key" data-k="right">&#9654;</button>'
+       +'<button class="key" data-k="up">&#9650;</button>'
+       +'<span class="gap"></span><button class="key" data-k="at">AT</button>'
+       +'</div></div>';
+    } else {
+      h='<div class="panel round">'
+       +'<div class="ctl-title" style="text-align:center">TEMP &amp; TIME CONTROL SYSTEM</div>'
+       +'<div class="mge-mid">'
+       +'<div class="lampcol"><div class="lamp h" data-code="on">RUN<i></i></div><div class="lamp h" data-code="out">OUT1<i></i></div></div>'
+       +'<div class="lcd"><span class="unit">&deg;F</span><div class="seg single" id="d-bot">25</div></div>'
+       +'<div class="lampcol"><div class="lamp h" data-code="tmr"><i></i>TIMER</div><div class="lamp h" data-code="x1"><i></i>OUT2</div></div>'
+       +'</div>'
+       +'<div class="keys center">'
+       +'<button class="key" data-k="pwr">&#9211;</button>'
+       +'<button class="key" data-k="mode">MODE</button>'
+       +'<button class="key" data-k="left">&#9664;</button>'
+       +'<button class="key" data-k="down">&#9660;</button>'
+       +'<button class="key" data-k="up">&#9650;</button>'
+       +'</div></div>';
+    }
+    c.innerHTML=h;
+    var keys=c.querySelectorAll('.key');
     for(var i=0;i<keys.length;i++) bindKey(keys[i]);
     stat(v.hint);
     render();
