@@ -966,6 +966,7 @@ def main():
         ('magazine/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브
         ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
         ('manuals/furnace/', '0.6', 'monthly'),  # 퍼니스·온도컨트롤러 메뉴얼
+        ('manuals/furnace-mg/', '0.6', 'monthly'),  # 칸탈 머플전기로(MG·MGE) 메뉴얼
         ('manuals/mfc/',     '0.6', 'monthly'),  # MFC 메뉴얼
         ('manuals/pump/',    '0.6', 'monthly'),  # 펌프 메뉴얼
         ('brands/',       '0.6', 'monthly'),  # 브랜드 소개 허브

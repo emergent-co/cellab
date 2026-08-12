@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>칸탈 머플전기로 메뉴얼 — SH Scientific MG·MGE 온도컨트롤러 사용법 | 실험셋업연구소</title>
+<meta name="description" content="SH Scientific 1050·1200℃ 칸탈 머플전기로(SH-FU-MG·MGE) 사용법 — TEMP(목표온도)·TIME(운전시간)·BEEP(종료부저) 설정, 운전 시작/정지, 오토튜닝(AT), 히터 출력 확인을 가상 컨트롤러로 연습하는 메뉴얼.">
+<link rel="canonical" href="https://rndsetup.com/manuals/furnace-mg/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="칸탈 머플전기로 메뉴얼 — SH Scientific MG·MGE 컨트롤러">
+<meta property="og:description" content="TEMP·TIME·BEEP 설정과 오토튜닝(AT)까지, MG·MGE 디지털 컨트롤러 조작을 시뮬레이터로 연습.">
+<meta property="og:url" content="https://rndsetup.com/manuals/furnace-mg/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"메뉴얼 모음","item":"https://rndsetup.com/manuals/"},
+{"@type":"ListItem","position":3,"name":"칸탈 머플전기로 (MG·MGE)","item":"https://rndsetup.com/manuals/furnace-mg/"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"운전이 끝났는데 부저가 안 울려요","acceptedAnswer":{"@type":"Answer","text":"BEEP은 TIME(운전시간)이 설정된 경우에만 동작합니다. TIME이 00.00(연속 운전)이면 BEEP 값을 설정해도 부저가 울리지 않습니다."}},
+{"@type":"Question","name":"온도가 흔들리거나 설정온도에 도달하지 못해요","acceptedAnswer":{"@type":"Answer","text":"운전 중 오토튜닝(AT)을 실행하세요. MG 시리즈는 AT 버튼, MGE 시리즈는 ▲ 버튼을 5초간 누르면 시작됩니다. 기기 상태에 따라 30~40분 이상 걸릴 수 있으며 자동으로 완료됩니다."}},
+{"@type":"Question","name":"운전시간 단위를 hr.min에서 min.sec로 바꿀 수 있나요","acceptedAnswer":{"@type":"Answer","text":"기본 표기는 hr.min(시.분)입니다. min.sec 또는 day.hr로 변경하려면 제조사 C/S팀(cs@samheung21.com)에 문의하세요."}},
+{"@type":"Question","name":"A·P(DOOR) 램프, OUT2 램프가 동작하지 않아요","acceptedAnswer":{"@type":"Answer","text":"MG 컨트롤러의 Lamp A·Lamp P, MGE 컨트롤러의 OUT2 램프는 본 제품(머플전기로)과 관련이 없는 램프입니다. 동작하지 않는 것이 정상입니다."}},
+{"@type":"Question","name":"다단 승온 스케줄(프로그램 운전)을 하고 싶어요","acceptedAnswer":{"@type":"Answer","text":"MG·MGE 기본 컨트롤러는 단일 목표온도+운전시간만 지원하며 다단 스케줄 기능이 없습니다. 스케줄 운전이 필요하면 프로그램 컨트롤러(SP570/SP590) 옵션 모델을 선택하세요. SP590 사용법은 퍼니스·온도컨트롤러 메뉴얼에서 연습할 수 있습니다."}}
+]}
+</script>
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--green:#1E3A5F;--green-2:#2a5a8f;--green-bg:#EDF1F8;--line:#EAEAEA;--serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  .hero{padding:44px 0 4px}
+  .back{display:inline-block;font-size:13px;font-weight:700;color:var(--green-2);margin-bottom:12px}
+  .back:hover{color:var(--green)}
+  h1{font-family:var(--serif);font-size:clamp(22px,5vw,29px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+  .sub{font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--green-2);margin-bottom:8px}
+  .lead{font-size:14px;color:#5a6570;line-height:1.7;margin:14px 0 0}
+  .lead b{color:var(--ink)}
+  .answer{margin:16px 0 0;padding:13px 16px;background:var(--green-bg);border-left:3px solid var(--green);border-radius:0 10px 10px 0;font-size:14px;line-height:1.75}
+  .body{padding:24px 0 64px}
+  /* 탭 */
+  .tabs{display:flex;gap:8px;margin:0 0 16px}
+  .tab{flex:1;padding:11px 10px;border:1.5px solid var(--line);border-radius:11px;background:#fff;font-size:13.5px;font-weight:800;color:#5a6570;text-align:center;cursor:pointer}
+  .tab.on{border-color:var(--green);background:var(--green);color:#fff}
+  .tab small{display:block;font-weight:600;font-size:11px;opacity:.75;margin-top:1px}
+  /* 시뮬레이터 */
+  .simgrid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
+  @media(max-width:760px){.simgrid{grid-template-columns:1fr}}
+  .ctlbox{border:1px solid var(--line);border-radius:14px;padding:20px 18px;background:#f6f7f9}
+  .ctl{max-width:400px;margin:0 auto;background:#e9eaee;border:1px solid #cfd2d8;border-radius:16px;padding:16px 16px 18px;box-shadow:inset 0 1px 0 #fff,0 6px 16px rgba(10,37,64,.08)}
+  .ctl-title{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#5a6570;text-align:center;margin-bottom:10px}
+  .scr{background:#16181c;border-radius:10px;padding:12px 14px;border:2px solid #3a3d44}
+  .seg{font-family:"Courier New",monospace;font-weight:800;letter-spacing:.14em;text-align:right;line-height:1.15;font-size:30px}
+  .seg.top{color:#ff5a3c}
+  .seg.bot{color:#3ddc6a;font-size:26px}
+  .seg .cur{background:rgba(255,255,255,.22);border-radius:3px}
+  .seg.single{font-size:34px;color:#3ddc6a}
+  .lamps{display:flex;gap:14px;justify-content:center;margin:12px 0 4px}
+  .lamp{font-size:10px;font-weight:800;color:#6b7480;text-align:center}
+  .lamp i{display:block;width:11px;height:11px;border-radius:50%;background:#c8ccd2;margin:0 auto 3px;border:1px solid #aab0b8}
+  .lamp.lit i{background:#ff4d2e;border-color:#d13a20;box-shadow:0 0 7px rgba(255,77,46,.75)}
+  .lamp.dim{opacity:.45}
+  .keys{display:flex;gap:9px;justify-content:center;margin-top:13px;flex-wrap:wrap}
+  .key{min-width:47px;height:44px;padding:0 10px;border-radius:10px;border:1px solid #b9bec6;background:linear-gradient(#fff,#e7e9ed);font-size:14px;font-weight:800;color:#333;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+  .key:active{background:#d7dade;transform:translateY(1px)}
+  .key.pwr{color:#c0392b}
+  .statline{margin-top:12px;font-size:12.5px;color:#41525f;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;min-height:38px;line-height:1.55}
+  .simnote{font-size:11.5px;color:var(--gray-2);margin-top:9px;line-height:1.6}
+  /* 체크리스트 */
+  .clist{border:1px solid var(--line);border-radius:14px;padding:18px 18px;background:#fff}
+  .clist h2{font-family:var(--serif);font-size:16px;margin-bottom:4px}
+  .clist .cap{font-size:12px;color:var(--gray);margin-bottom:10px}
+  .clist ol{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .clist li{font-size:13px;color:#4a5560;padding-left:24px;position:relative}
+  .clist li::before{content:"○";position:absolute;left:2px;color:var(--gray-2)}
+  .clist li.done{color:var(--green);font-weight:700}
+  .clist li.done::before{content:"●";color:#1e8f4e}
+  /* 본문 텍스트 */
+  .sec{margin-top:34px}
+  .sec h2{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:6px}
+  .sec .cap{font-size:13px;color:var(--gray);margin-bottom:14px}
+  .sec h3{font-size:15px;font-weight:800;color:var(--green);margin:20px 0 7px}
+  .sec p,.sec li{font-size:14px;color:#3d4852}
+  .sec ol,.sec ul{padding-left:22px;display:flex;flex-direction:column;gap:5px}
+  .sec .tip{margin-top:8px;padding:9px 13px;background:#fff8ee;border-left:3px solid #e8a33d;border-radius:0 8px 8px 0;font-size:13px}
+  .sec table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+  .sec th,.sec td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  .sec th{background:#f6f8fb;font-weight:800;font-size:12.5px}
+  .kbd{display:inline-block;padding:1px 7px;border:1px solid #c9ced6;border-bottom-width:2px;border-radius:6px;background:#f6f7f9;font-size:12px;font-weight:800;color:#333}
+  details.tv{border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:12px}
+  details.tv summary{cursor:pointer;padding:13px 18px;font-size:14px;font-weight:700;color:#41525f}
+  details.tv .tvbody{padding:2px 20px 18px;font-size:14px;color:#3d4852}
+  details.tv h3{font-size:14.5px;font-weight:800;color:var(--green);margin:14px 0 6px}
+  .cta{margin-top:34px;border:1px solid var(--line);border-radius:14px;padding:20px 22px;background:var(--green-bg)}
+  .cta b{color:var(--green)}
+  .cta p{font-size:14px;margin-top:6px}
+  .cta a.btn{display:inline-block;margin-top:12px;padding:9px 18px;background:var(--green);color:#fff;border-radius:9px;font-size:13.5px;font-weight:800}
+  .note{font-size:12px;color:var(--gray-2);line-height:1.7;margin-top:22px}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "셋업으로 읽는 에너지·소재 공정 매거진", "description": "논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <a class="back" href="/manuals/">&larr; 메뉴얼 모음</a>
+    <div class="sub">SH SCIENTIFIC · 칸탈 머플전기로 MG·MGE</div>
+    <h1>칸탈 머플전기로 · 온도컨트롤러 메뉴얼</h1>
+    <p class="lead">1050℃(MGE)·1200℃(MG) 칸탈 머플전기로의 기본 탑재 디지털 컨트롤러(TEMP &amp; TIME CONTROL SYSTEM) 조작법입니다. <b>이 컨트롤러에는 다단 승온 스케줄(프로그램) 기능이 없습니다</b> — 스케줄 운전이 필요하면 SP570/SP590 옵션 모델을 확인하세요(<a href="/manuals/furnace/" style="color:var(--green-2);font-weight:700">SP590 가이드 →</a>). <b>안전:</b> 고온 표면 주의 · 가연물 이격 · 인화성 시료 투입 금지.</p>
+    <p class="answer">SH Scientific 칸탈 머플전기로(MG·MGE)는 <b>TEMP(목표온도) · TIME(운전시간) · BEEP(종료부저)</b> 3가지만 설정합니다. 전원 버튼 3초 = 운전 시작/정지, AT 5초 = 오토튜닝. 다단 스케줄은 SP570/SP590 옵션에서 지원합니다.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="body">
+
+    <div class="tabs" role="tablist">
+      <button class="tab on" id="tab-mg" onclick="setVariant('mg')">MG 시리즈 (1200℃)<small>SH-FU-3·5·7·14·27·64·100MG</small></button>
+      <button class="tab" id="tab-mge" onclick="setVariant('mge')">MGE 시리즈 (1050℃)<small>SH-FU-3·5·7·11MGE</small></button>
+    </div>
+
+    <div class="simgrid">
+      <div class="ctlbox">
+        <div class="ctl">
+          <div class="ctl-title">TEMP &amp; TIME CONTROL SYSTEM</div>
+          <div class="scr">
+            <div class="seg top" id="d-top">25</div>
+            <div class="seg bot" id="d-bot">0500</div>
+          </div>
+          <div class="lamps" id="lamps"></div>
+          <div class="keys" id="keys"></div>
+        </div>
+        <div class="statline" id="stat">전원 대기 — MODE 버튼을 <b>꾹(3초)</b> 누르면 TEMP 설정으로 들어갑니다.</div>
+        <p class="simnote">※ 연습용 시뮬레이터라 시간을 압축했습니다 — "3초 꾹"은 여기서 약 1.2초, "5초 꾹"은 약 2초 길게 누르면 되고, 승온·타이머도 가속되어 표시됩니다. 실제 기기는 표기된 시간(3초/5초) 기준입니다.</p>
+      </div>
+
+      <div class="clist">
+        <h2>연습 체크리스트</h2>
+        <p class="cap">시뮬레이터에서 직접 해보면 자동으로 체크됩니다.</p>
+        <ol>
+          <li id="ck-temp">TEMP — 목표온도 설정·저장</li>
+          <li id="ck-time">TIME — 운전시간 설정 (hr.min)</li>
+          <li id="ck-beep">BEEP — 종료 부저 설정</li>
+          <li id="ck-run">전원 3초 — 운전 시작</li>
+          <li id="ck-at">AT 5초 — 오토튜닝 실행</li>
+          <li id="ck-view">운전 중 출력·남은시간 확인</li>
+          <li id="ck-stop">운전 정지 / 자동 종료(End)</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ===================== MG 텍스트 사용법 ===================== -->
+    <section class="sec" id="sec-mg">
+      <h2>MG 시리즈 사용법 — SH-FU-3MG·5MG·7MG·14MG·27MG·64MG·100MG</h2>
+      <p class="cap">1200℃ 칸탈 머플전기로 기본 컨트롤러. 표시창 2단 — 위 = 현재온도(PV), 아래 = 설정값(SV). 램프: <b>ON</b>(운전 중) · <b>OUT</b>(히터 동작 시 점등/점멸) · A·P(DOOR) 램프는 본 제품과 무관. 버튼: 전원 · MODE · ◀ ▶(자리 이동) · ▲(값 변경) · AT.</p>
+
+      <h3>(1) TEMP 모드 — 목표온도 설정</h3>
+      <ol>
+        <li><span class="kbd">MODE</span> 버튼을 <b>3초간</b> 누르면 표시창에 <code>tEMP</code>가 표시됩니다.</li>
+        <li>이동(<span class="kbd">◀</span><span class="kbd">▶</span>)·변경(<span class="kbd">▲</span>) 버튼으로 목표온도를 입력합니다. (예: 800)</li>
+        <li><span class="kbd">MODE</span> <b>1초</b> = 설정값 저장 / <span class="kbd">MODE</span> <b>3초</b> = 저장 후 초기화면 복귀.</li>
+      </ol>
+
+      <h3>(2) TIME 모드 — 운전시간 설정</h3>
+      <ol>
+        <li>TEMP 설정 후 <span class="kbd">MODE</span>를 눌러 <code>tiME</code>로 진입합니다.</li>
+        <li>이동/변경 버튼으로 시간을 입력합니다 — 표기는 <b>hr.min</b>(시.분), 최대 <b>99시간 59분</b>. (예: 01.30 = 1시간 30분)</li>
+        <li><b><code>00.00</code> 설정 시 = 사용자가 운전을 종료할 때까지 연속 운전</b>합니다.</li>
+        <li><span class="kbd">MODE</span> 1초 저장 / 3초 저장 후 초기화면.</li>
+      </ol>
+      <p class="tip">hr.min을 min.sec 또는 day.hr 단위로 변경해 사용하려면 제조사 C/S팀(cs@samheung21.com)에 문의하세요.</p>
+
+      <h3>(3) BEEP 모드 — 종료 부저 설정</h3>
+      <ol>
+        <li>TIME 설정 후 <span class="kbd">MODE</span>를 눌러 <code>bEEP</code>로 진입합니다.</li>
+        <li>부저가 울릴 시간을 입력합니다. (예: 0030 = 운전시간 종료 후 부저 30초)</li>
+        <li><span class="kbd">MODE</span> 1초 저장 / 3초 저장 후 초기화면.</li>
+      </ol>
+      <p class="tip"><b>BEEP은 TIME이 설정된 경우에만 동작합니다.</b> TIME이 00.00이면 BEEP 값을 설정해도 부저가 울리지 않습니다.</p>
+
+      <h3>(4) 운전 시작</h3>
+      <p><span class="kbd">전원</span> 버튼을 <b>3초간</b> 누르면 <b>ON 램프가 점등</b>되며 운전을 시작합니다. OUT 램프는 히터가 동작할 때 점등/점멸합니다. Lamp A·Lamp P(DOOR)의 동작은 본 제품과 관련이 없습니다.</p>
+
+      <h3>(5) 운전 정지</h3>
+      <table>
+        <tr><th>TIME이 00.00인 경우</th><th>TIME에 시간이 설정된 경우</th></tr>
+        <tr><td><span class="kbd">전원</span> 3초 → ON 램프가 꺼지면서 정지합니다.</td><td>설정 시간 종료 후 <b>자동 정지</b>되고 표시창에 <code>End</code>가 표시됩니다. <span class="kbd">전원</span>을 누르면 초기화면으로 전환됩니다.</td></tr>
+      </table>
+      <p class="tip">운전 직후 노 내부·도어는 매우 뜨겁습니다. 충분히 냉각된 후 도어를 여세요.</p>
+
+      <h3>(6) 오토튜닝 (AT)</h3>
+      <p>다음 2가지 경우에 사용합니다: ① 온도조절기 표시부의 온도 변화가 ±0.1℃ 이상 흔들릴 때 ② 설정온도에 도달하지 못할 때.</p>
+      <ul>
+        <li>제품 <b>운전 중</b> <span class="kbd">AT</span>를 <b>5초간</b> 누르면 AT가 작동합니다(표시 <code>At</code>).</li>
+        <li>AT 작동 중 <span class="kbd">AT</span>를 5초간 누르면 중지됩니다.</li>
+        <li>AT는 장비 운전 중에만 작동시킬 수 있으며, 자동으로 완료됩니다.</li>
+      </ul>
+
+      <h3>(7) 히터 출력·남은 운전시간 확인</h3>
+      <ol>
+        <li>운전 중 <span class="kbd">AT</span>를 <b>1초</b> 누르면 <b>히터 출력%</b>가 표시됩니다. (<code>0.100</code>=100% · <code>0.60</code>=60% · <code>0.30</code>=30%)</li>
+        <li>한 번 더 누르면 <b>남은 운전시간</b>(hr.min)이 표시됩니다.</li>
+        <li>한 번 더 누르면 처음 화면으로 되돌아갑니다.</li>
+      </ol>
+    </section>
+
+    <!-- ===================== MGE 텍스트 사용법 ===================== -->
+    <section class="sec" id="sec-mge">
+      <h2>MGE 시리즈 사용법 — SH-FU-3MGE·5MGE·7MGE·11MGE</h2>
+      <p class="cap">1050℃ 칸탈 머플전기로 기본 컨트롤러. 표시창 1단. 램프: <b>RUN</b>(운전 중) · <b>OUT1</b>(히터 동작 시 점등/점멸) · <b>TIMER</b>(설정온도 도달 전 점멸, 도달 시 점등) · OUT2는 본 제품과 무관. 버튼: 전원 · MODE · ◀(자리 이동) · ▼ ▲(값 변경).</p>
+
+      <h3>(1) Temp 모드 — 목표온도 설정</h3>
+      <ol>
+        <li><span class="kbd">MODE</span> 버튼을 누르면 <code>tEMP</code>가 표시됩니다.</li>
+        <li><span class="kbd">MODE</span>를 한 번 더 누른 후 이동(<span class="kbd">◀</span>)·변경(<span class="kbd">▼</span><span class="kbd">▲</span>) 버튼으로 목표온도를 입력합니다.</li>
+        <li><span class="kbd">MODE</span>를 눌러 설정값을 저장합니다.</li>
+      </ol>
+
+      <h3>(2) Time 모드 — 운전시간 설정</h3>
+      <ol>
+        <li>TEMP 설정 후 <span class="kbd">MODE</span>를 눌러 <code>tiME</code>로 진입합니다.</li>
+        <li>값을 입력합니다 — 표기 <b>hr.min</b>, 최대 99시간 59분, <b>00.00 = 사용자가 종료할 때까지 연속 운전</b>.</li>
+        <li><span class="kbd">MODE</span>를 눌러 저장하고, <span class="kbd">MODE</span>를 한 번 더 눌러 초기화면으로 나옵니다.</li>
+      </ol>
+
+      <h3>(3) Beep 모드 — 종료 부저 설정</h3>
+      <ol>
+        <li><span class="kbd">MODE</span> 버튼을 <b>3초간</b> 눌러 BEEP 모드로 진입합니다(<code>bEEP</code> 표시).</li>
+        <li><span class="kbd">MODE</span>를 한 번 더 눌러 BEEP 설정으로 들어갑니다.</li>
+        <li>이동/변경 버튼으로 부저 시간을 설정한 후 <span class="kbd">MODE</span>를 <b>3초간</b> 눌러 운전화면으로 나옵니다.</li>
+      </ol>
+      <p class="tip">BEEP 값 = 부저 동작시간. 예: 0030 = 운전시간 종료 후 부저 30초. <b>TIME이 00.00이면 BEEP을 설정해도 울리지 않습니다.</b></p>
+
+      <h3>(4) 운전 시작 / 정지</h3>
+      <ul>
+        <li><span class="kbd">전원</span> 3초 → <b>RUN 램프 점등</b>, 운전 시작. / 다시 3초 → RUN 램프 소등, 정지.</li>
+        <li>OUT1 램프 = 히터 동작 시 점등/점멸. TIMER 램프 = 설정온도 도달 전 점멸, 도달 시 점등. OUT2 램프의 동작은 본 제품과 관계가 없습니다.</li>
+      </ul>
+
+      <h3>(5) 오토튜닝 (AT)</h3>
+      <p>사용 조건은 MG와 동일합니다(표시온도 ±0.1℃ 이상 흔들림 · 설정온도 미도달). 제품 <b>운전 중</b> <span class="kbd">▲</span>를 <b>5초간</b> 누르면 AT가 작동하고(표시 <code>At</code>), AT 작동 중 5초간 누르면 중지됩니다. 운전 중에만 작동하며 자동으로 완료됩니다.</p>
+
+      <h3>(6) 히터 출력·남은 운전시간 확인</h3>
+      <ol>
+        <li>운전 중 <span class="kbd">▲</span>를 <b>1초</b> 누르면 히터 출력%가 표시됩니다. (<code>0.100</code>=100% · <code>0.60</code>=60% · <code>0.30</code>=30%)</li>
+        <li>한 번 더 누르면 남은 운전시간(hr.min), 한 번 더 누르면 처음 화면으로 돌아갑니다.</li>
+      </ol>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="sec">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <h3>운전이 끝났는데 부저가 안 울려요</h3>
+      <p>BEEP은 TIME(운전시간)이 설정된 경우에만 동작합니다. TIME이 00.00(연속 운전)이면 BEEP 값을 설정해도 울리지 않습니다.</p>
+      <h3>온도가 흔들리거나 설정온도에 도달하지 못해요</h3>
+      <p>운전 중 오토튜닝(AT)을 실행하세요 — MG는 AT 버튼, MGE는 ▲ 버튼 5초. 기기 상태에 따라 30~40분 이상 걸릴 수 있으며 자동 완료됩니다.</p>
+      <h3>시간 단위를 분.초(min.sec)로 바꾸고 싶어요</h3>
+      <p>기본은 hr.min입니다. min.sec·day.hr 변경은 제조사 C/S팀(cs@samheung21.com) 문의.</p>
+      <h3>A·P(DOOR)/OUT2 램프가 동작하지 않아요</h3>
+      <p>해당 램프들은 본 제품과 관련이 없습니다. 동작하지 않는 것이 정상입니다.</p>
+      <h3>다단 승온 스케줄(프로그램 운전)을 하고 싶어요</h3>
+      <p>MG·MGE 기본 컨트롤러는 미지원입니다. 프로그램 컨트롤러(SP570/SP590) 옵션 모델을 선택하세요 — <a href="/manuals/furnace/" style="color:var(--green-2);font-weight:700">SP590 사용법·시뮬레이터 →</a></p>
+    </section>
+
+    <!-- ===================== 적용 모델 ===================== -->
+    <details class="tv" open>
+      <summary>이 메뉴얼이 적용되는 모델 — SH Scientific 칸탈 머플전기로</summary>
+      <div class="tvbody">
+        <h3>① MG 시리즈 (1200℃ 칸탈 머플) — 위 MG 탭 적용</h3>
+        <p><code>SH-FU-3MG</code> · <code>SH-FU-5MG</code> · <code>SH-FU-7MG</code> · <code>SH-FU-14MG</code> · <code>SH-FU-27MG</code> · <code>SH-FU-64MG</code> · <code>SH-FU-100MG</code></p>
+        <h3>② MGE 시리즈 (1050℃ 칸탈 머플) — 위 MGE 탭 적용</h3>
+        <p><code>SH-FU-3MGE</code> · <code>SH-FU-5MGE</code> · <code>SH-FU-7MGE</code> · <code>SH-FU-11MGE</code></p>
+        <h3>③ 프로그램 컨트롤러(SP570/SP590) 옵션 선택 시</h3>
+        <p>다단 승온 스케줄·반복·RS485가 필요해 SP570/SP590 옵션을 선택한 경우 <a href="/manuals/furnace/" style="color:var(--green-2);font-weight:700">퍼니스·온도컨트롤러(SP590) 메뉴얼</a>을 따르세요.</p>
+        <p style="font-size:12.5px;color:#8a939c;margin-top:10px">사양·옵션은 변경될 수 있으므로 구매 전 확인을 권장합니다. 시리즈 상세·정가는 <a href="/brands/sh-scientific/guide/" style="color:var(--green-2)">전기로 선택 가이드</a> 참고.</p>
+      </div>
+    </details>
+
+    <!-- ===================== CTA ===================== -->
+    <div class="cta">
+      <b>장비·견적 문의 — 정품 안내 · 구매·A/S는 이머전트(Emergent co)</b>
+      <p>실험셋업연구소는 삼흥에너지(SH Scientific) 칸탈 머플전기로를 정품으로 안내합니다(구매·A/S는 이머전트 담당). 모델 선정·견적·소모품(발열체·도가니) 문의를 환영합니다.</p>
+      <a class="btn" href="/contact/">문의하기</a>
+      <p style="font-size:12.5px;color:#5a6570;margin-top:10px">info@rndsetup.com · 070-8983-2600</p>
+    </div>
+
+    <p class="note">제작·운영: 실험셋업연구소 (rndsetup.com) · 최종 수정: 2026-08-12<br>
+    ※ 본 페이지는 삼흥에너지(SH Scientific) 머플전기로 사용설명서(6. SETTING AND OPERATION)를 참고하여 자체 제작한 비공식 학습 자료이며, 화면 표시·동작은 실제 제품과 다를 수 있습니다. 시뮬레이터는 시간을 압축(3초→1.2초, 승온 가속)하여 보여줍니다. 정확한 사양은 제조사의 공식 사용설명서를 참조하세요.</p>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var V={
+    mg:{ dual:true, lamps:[['ON','on'],['OUT','out'],['A','x1'],['P','x2']],
+         keys:[['pwr','⏻','pwr'],['mode','MODE',''],['left','◀',''],['right','▶',''],['up','▲',''],['at','AT','']],
+         atKey:'at', enterHold:true,
+         hint:'MODE <b>꾹(3초)</b> → TEMP 설정 진입. 저장은 MODE 짧게(1초), MODE 꾹 = 저장 후 초기화면.'},
+    mge:{ dual:false, lamps:[['RUN','on'],['OUT1','out'],['TIMER','tmr'],['OUT2','x1']],
+         keys:[['pwr','⏻','pwr'],['mode','MODE',''],['left','◀',''],['down','▼',''],['up','▲','']],
+         atKey:'up', enterHold:false,
+         hint:'MODE 짧게 → TEMP 설정 진입. MODE <b>꾹(3초)</b> = BEEP 모드. 저장은 MODE 짧게.'}
+  };
+  var HOLD=1200, HOLD_AT=2000;
+  var st={v:'mg', page:'home', pv:25, sv:[0,8,0,0], tm:[0,0,0,0], bp:[0,0,3,0], cur:3,
+          run:false, at:false, view:0, remainMin:0, atLeft:0, blink:false, endBeep:0};
+  var $=function(id){return document.getElementById(id)};
+
+  function digits(a,dot){ var s=''; for(var i=0;i<4;i++){ s+=a[i]; if(dot&&i===1)s+='.'; } return s; }
+  function val(a){ return a[0]*1000+a[1]*100+a[2]*10+a[3]*1; }
+  function tmMin(a){ return (a[0]*10+a[1])*60 + (a[2]*10+a[3]); }
+  function minToDisp(m){ if(m<0)m=0; var h=Math.floor(m/60),mm=m%60;
+    return (h<10?'0':'')+h+'.'+(mm<10?'0':'')+mm; }
+  function editHtml(a,dot){ var s=''; for(var i=0;i<4;i++){ s+=(i===st.cur?'<span class="cur">'+a[i]+'</span>':a[i]); if(dot&&i===1)s+='.'; } return s; }
+
+  function ck(id){ var el=$('ck-'+id); if(el) el.className='done'; }
+
+  function render(){
+    var v=V[st.v], top=$('d-top'), bot=$('d-bot');
+    if(v.dual){ top.style.display='block'; bot.className='seg bot'; }
+    else{ top.style.display='none'; bot.className='seg single'; }
+    var main='', sub='';
+    if(st.page==='home'){ sub=digits(st.sv,false).replace(/^0+(?=\d)/,''); main=String(Math.round(st.pv)); }
+    else if(st.page==='temp-label'){ main='tEMP'; sub='tEMP'; }
+    else if(st.page==='temp'){ main='tEMP'; sub=editHtml(st.sv,false); }
+    else if(st.page==='time-label'){ main='tiME'; sub='tiME'; }
+    else if(st.page==='time'){ main='tiME'; sub=editHtml(st.tm,true); }
+    else if(st.page==='beep-label'){ main='bEEP'; sub='bEEP'; }
+    else if(st.page==='beep'){ main='bEEP'; sub=editHtml(st.bp,false); }
+    else if(st.page==='run'){
+      main=String(Math.round(st.pv));
+      if(st.at){ sub='At'; }
+      else if(st.view===1){ sub=outDisp(); }
+      else if(st.view===2){ sub=minToDisp(st.remainMin); }
+      else{ sub=digits(st.sv,false).replace(/^0+(?=\d)/,''); }
+    }
+    else if(st.page==='end'){ main=String(Math.round(st.pv)); sub='End'; }
+    if(v.dual){ top.textContent=''; top.innerHTML=main; bot.innerHTML=sub; }
+    else{ bot.innerHTML=(st.page==='home')?String(Math.round(st.pv)):(st.page==='run'? bot0():sub); }
+    function bot0(){ if(st.at)return 'At'; if(st.view===1)return outDisp(); if(st.view===2)return minToDisp(st.remainMin); return String(Math.round(st.pv)); }
+    function outDisp(){ var p=Math.round(heatPct()); return p>=100?'0.100':'0.'+(p<10?'0'+p:''+p); }
+    // 램프
+    var heating = st.run && st.pv < val(st.sv)-2;
+    var lampEls=$('lamps').children;
+    for(var i=0;i<lampEls.length;i++){
+      var code=lampEls[i].getAttribute('data-code'), lit=false, dim=false;
+      if(code==='on') lit=st.run;
+      else if(code==='out') lit=heating&&st.blink;
+      else if(code==='tmr') lit=st.run&&(st.pv>=val(st.sv)-2 ? true : st.blink);
+      else dim=true;
+      lampEls[i].className='lamp'+(lit?' lit':'')+(dim?' dim':'');
+    }
+  }
+  function heatPct(){ var d=val(st.sv)-st.pv; if(!st.run)return 0; if(d>50)return 100; if(d<=0)return 8; return Math.max(8,Math.round(d*2)); }
+  function stat(msg){ $('stat').innerHTML=msg; }
+
+  function buildPanel(){
+    var v=V[st.v], lh='', kh='';
+    v.lamps.forEach(function(l){ lh+='<div class="lamp" data-code="'+l[1]+'"><i></i>'+l[0]+'</div>'; });
+    $('lamps').innerHTML=lh;
+    v.keys.forEach(function(k){ kh+='<button class="key '+k[2]+'" data-k="'+k[0]+'">'+k[1]+'</button>'; });
+    $('keys').innerHTML=kh;
+    var keys=$('keys').querySelectorAll('.key');
+    for(var i=0;i<keys.length;i++) bindKey(keys[i]);
+    stat(v.hint);
+    render();
+  }
+
+  function bindKey(el){
+    var t0=0;
+    function down(e){ e.preventDefault(); t0=Date.now(); }
+    function up(e){ e.preventDefault(); if(!t0)return; var dur=Date.now()-t0; t0=0; press(el.getAttribute('data-k'), dur); }
+    el.addEventListener('pointerdown',down);
+    el.addEventListener('pointerup',up);
+    el.addEventListener('pointerleave',function(){t0=0;});
+  }
+
+  function press(k,dur){
+    var v=V[st.v], long=dur>=HOLD, longAT=dur>=HOLD_AT;
+    // 전원
+    if(k==='pwr'){
+      if(st.page==='end'){ st.page='home'; st.view=0; stat('초기화면으로 돌아왔습니다.'); render(); return; }
+      if(!long){ stat('전원 버튼은 <b>꾹(3초)</b> 눌러야 합니다.'); return; }
+      if(st.run){ st.run=false; st.at=false; st.view=0; st.page='home'; ck('stop'); stat('운전 정지 — '+(st.v==='mg'?'ON':'RUN')+' 램프가 꺼졌습니다.'); }
+      else{ startRun(); }
+      render(); return;
+    }
+    // AT / 확인 (운전 중, 지정 키)
+    if(st.run && k===v.atKey){
+      if(longAT){ st.at=!st.at; st.view=0;
+        if(st.at){ st.atLeft=60; ck('at'); stat('오토튜닝(AT) 시작 — 표시 <code>At</code>. 자동으로 완료됩니다(실제 30~40분 이상 소요 가능).'); }
+        else stat('오토튜닝 중지.');
+      } else {
+        if(st.at){ stat('AT 동작 중입니다 — 중지는 <b>꾹(5초)</b>.'); render(); return; }
+        st.view=(st.view+1)%3;
+        if(st.view===1){ ck('view'); stat('히터 출력 표시 — <code>0.100</code>=100% · <code>0.60</code>=60% · <code>0.30</code>=30%. 한 번 더 누르면 남은 시간.'); }
+        else if(st.view===2){ stat('남은 운전시간(hr.min) 표시. 한 번 더 누르면 처음 화면.'); }
+        else stat('처음 화면으로 돌아왔습니다.');
+      }
+      render(); return;
+    }
+    // MODE
+    if(k==='mode'){
+      if(st.run){ stat('운전 중에는 설정을 변경할 수 없습니다. 먼저 전원 꾹(3초)으로 정지하세요.'); return; }
+      if(st.page==='home'){
+        if(V[st.v].enterHold){ // MG
+          if(long){ st.page='temp'; st.cur=3; stat('TEMP 설정 — ◀▶로 자리 이동, ▲로 값 변경. MODE 짧게=저장, MODE 꾹=저장 후 초기화면.'); }
+          else stat('TEMP 설정 진입은 MODE <b>꾹(3초)</b>입니다.');
+        } else { // MGE
+          if(long){ st.page='beep'; st.cur=3; stat('BEEP 설정 — 부저 동작시간(예 0030=30초). 저장 후 나가기는 MODE <b>꾹(3초)</b>.'); }
+          else{ st.page='temp'; st.cur=3; stat('TEMP 설정 — ◀로 자리 이동, ▼▲로 값 변경. MODE 짧게=저장 후 TIME으로.'); }
+        }
+        render(); return;
+      }
+      // 편집 중 저장/전환
+      if(st.page==='temp'){ ck('temp');
+        if(long){ st.page='home'; stat('목표온도 '+val(st.sv)+'℃ 저장 — 초기화면.'); }
+        else{ st.page='time'; st.cur=3; stat('목표온도 저장 → TIME 설정. hr.min(시.분), 00.00=연속 운전.'); }
+      }
+      else if(st.page==='time'){ ck('time');
+        if(long||st.v==='mge'){ st.page='home'; stat('운전시간 '+digits(st.tm,true)+' 저장 — 초기화면. (MG는 MODE 짧게로 BEEP 설정 이동 가능)'); if(st.v==='mg'&&!long){st.page='beep';st.cur=3;stat('운전시간 저장 → BEEP 설정. 예: 0030 = 종료 후 부저 30초.');} }
+        else{ st.page='beep'; st.cur=3; stat('운전시간 저장 → BEEP 설정. 예: 0030 = 종료 후 부저 30초.'); }
+      }
+      else if(st.page==='beep'){ ck('beep'); st.page='home'; stat('부저 '+digits(st.bp,false)+' 저장 — 초기화면. 이제 전원 <b>꾹(3초)</b>으로 운전을 시작해 보세요.'); }
+      render(); return;
+    }
+    // 자리/값 (편집 중)
+    var arr = st.page==='temp'?st.sv : st.page==='time'?st.tm : st.page==='beep'?st.bp : null;
+    if(!arr){ if(k==='left'||k==='right'||k==='up'||k==='down') stat('먼저 MODE로 설정 모드에 들어가세요.'); return; }
+    if(k==='left'){ st.cur=(st.cur+3)%4; }
+    else if(k==='right'){ st.cur=(st.cur+1)%4; }
+    else if(k==='up'){ arr[st.cur]=(arr[st.cur]+1)%10; }
+    else if(k==='down'){ arr[st.cur]=(arr[st.cur]+9)%10; }
+    if(st.page==='time'&&st.cur===2&&arr[2]>5) arr[2]=0; // 분 십의자리 0~5
+    render();
+  }
+
+  function startRun(){
+    st.run=true; st.page='run'; st.view=0; st.remainMin=tmMin(st.tm); ck('run');
+    var lamp = st.v==='mg'?'ON':'RUN';
+    stat('운전 시작 — '+lamp+' 램프 점등, OUT'+(st.v==='mge'?'1':'')+' 램프는 히터 동작 시 점멸. '+(st.remainMin>0?'타이머 '+minToDisp(st.remainMin)+' 카운트다운.':'TIME 00.00 — 전원 꾹(3초)으로 정지할 때까지 연속 운전.'));
+  }
+
+  var tick=0;
+  setInterval(function(){
+    st.blink=!st.blink; tick++;
+    if(st.run){
+      var tgt=val(st.sv);
+      st.pv += (tgt-st.pv)*0.03 + (Math.random()-.5)*0.6;
+      if(st.pv>tgt) st.pv=tgt+(Math.random()-.5);
+      if(st.at){ if(--st.atLeft<=0){ st.at=false; stat('오토튜닝 완료 — PID 값이 자동 반영되었습니다.'); } }
+      if(st.remainMin>0 && tick%2===0){
+        st.remainMin--;
+        if(st.remainMin<=0){
+          st.run=false; st.at=false; st.view=0; st.page='end'; ck('stop');
+          var b=val(st.bp);
+          stat('설정 시간 종료 — 자동 정지, 표시 <code>End</code>.'+(b>0?' 🔔 부저 '+b+'초 울림.':' (BEEP 미설정)')+' 전원 버튼을 누르면 초기화면.');
+        }
+      }
+    } else { if(st.pv>25) st.pv += (25-st.pv)*0.01; }
+    render();
+  },350);
+
+  window.setVariant=function(nv){
+    st.v=nv; st.page='home'; st.run=false; st.at=false; st.view=0; st.pv=25;
+    document.getElementById('tab-mg').className='tab'+(nv==='mg'?' on':'');
+    document.getElementById('tab-mge').className='tab'+(nv==='mge'?' on':'');
+    var lis=document.querySelectorAll('.clist li'); for(var i=0;i<lis.length;i++)lis[i].className='';
+    buildPanel();
+  };
+  buildPanel();
+})();
+</script>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/brands/">브랜드 소개 — 삼흥에너지·리드플루이드·Alicat</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/">실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성</a></li><li><a href="/magazine/battery/">배터리 랩 A to Z — 전구체 공침부터 소성·코팅·셀 평가까지 배터리 소재 실험 셋업 커리큘럼</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/magazine/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/magazine/nickel-hydroxide-coprecipitation-cstr/">배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/magazine/guide-calcination-furnace-atmosphere/">소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</a></li><li><a href="/magazine/troubleshooting-calcination-batch-variation/">소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅</a></li><li><a href="/magazine/glossary-heat-gas-terms/">하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/guide-pump-selection-energy-fluids/">전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)</a></li><li><a href="/magazine/glossary-pump-fluid-terms/">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/si-anode-cvd-carbon-coating/">실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)</a></li><li><a href="/magazine/cuo-nanowire-thermal-oxidation/">구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)</a></li><li><a href="/setups/">셋업 사례 — 에너지·소재 공정 셋업 (신규 글은 매거진에서 발행)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

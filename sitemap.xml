@@ -49,6 +49,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/manuals/furnace-mg/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/manuals/mfc/</loc>
     <lastmod>2026-08-12</lastmod>
     <priority>0.6</priority>
