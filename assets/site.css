@@ -115,6 +115,38 @@ body{ padding-top:106px; }
 .ar-cta .ac-t{ font-size:13px; font-weight:800; color:var(--ink); margin-bottom:4px; }
 .ar-cta .ac-d{ font-size:11.5px; color:#7a828c; line-height:1.55; margin-bottom:9px; }
 .ar-cta a{ display:inline-block; background:var(--green); color:#fff; font-size:12.5px; font-weight:800; padding:8px 16px; border-radius:8px; text-decoration:none; }
+/* 부품 주문 카드 + 팝업 */
+.ar-order{ display:flex; gap:12px; align-items:center; width:100%; border:2px dashed #C2410C; border-radius:12px; background:#FDF6F0; padding:14px 13px; cursor:pointer; font-family:inherit; text-align:left; transition:background .15s, box-shadow .15s; }
+.ar-order:hover{ background:#FBEDE2; box-shadow:0 10px 22px rgba(154,52,18,.12); }
+.ar-order .ao-ic{ font-size:22px; flex:none; }
+.ar-order .ao-t{ display:block; font-size:13.5px; font-weight:800; color:#9A3412; line-height:1.35; }
+.ar-order .ao-d{ display:block; font-size:11.5px; color:#7a828c; line-height:1.5; margin-top:3px; }
+.ar-order .ao-go{ flex:none; margin-left:auto; width:26px; height:26px; border-radius:50%; background:#C2410C; color:#fff; font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+.ao-back{ position:fixed; inset:0; background:rgba(20,18,16,.55); display:none; align-items:center; justify-content:center; z-index:9000; padding:20px; }
+.ao-back.on{ display:flex; }
+.ao-modal{ background:#fff; border-radius:16px; max-width:480px; width:100%; max-height:88vh; overflow:auto; padding:26px 26px 24px; position:relative; box-shadow:0 20px 60px rgba(0,0,0,.28); }
+.ao-modal h3{ font-family:var(--serif); font-size:19px; font-weight:800; color:var(--ink); margin:0 0 6px; }
+.ao-modal .ao-sub{ font-size:13px; color:#6B6B6B; line-height:1.6; margin:0 0 14px; }
+.ao-modal .ao-x{ position:absolute; right:14px; top:12px; border:0; background:none; font-size:24px; color:#9C958D; cursor:pointer; padding:4px 8px; }
+.ao-list{ display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+.ao-item{ display:flex; align-items:center; gap:9px; border:1px solid #E5E3DC; border-radius:9px; padding:9px 11px; cursor:pointer; font-size:13px; color:var(--ink); }
+.ao-item:hover{ border-color:#C2410C; background:#FDF9F5; }
+.ao-item input{ accent-color:#C2410C; width:15px; height:15px; flex:none; }
+.ao-item .ao-nm{ font-weight:700; min-width:0; }
+.ao-item .ao-pp{ margin-left:auto; font-size:12px; font-weight:800; color:#9A3412; white-space:nowrap; }
+.ao-modal .ao-lb{ display:block; font-size:12px; font-weight:700; color:#3a3a3a; margin:10px 0 4px; }
+.ao-modal .ao-lb b{ color:#C2410C; }
+.ao-modal input[type=text], .ao-modal input[type=email], .ao-modal textarea{ width:100%; border:1px solid #E0DCD7; border-radius:9px; padding:9px 11px; font-size:13.5px; font-family:inherit; }
+.ao-modal textarea{ min-height:58px; resize:vertical; }
+.ao-modal .ao-g2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:480px){ .ao-modal .ao-g2{ grid-template-columns:1fr; } }
+.ao-modal .ao-send{ width:100%; margin-top:15px; font-size:14.5px; font-weight:800; color:#fff; background:#C2410C; border:0; padding:12px; border-radius:10px; cursor:pointer; font-family:inherit; }
+.ao-modal .ao-send:hover{ background:#9A3412; }
+.ao-modal .ao-send:disabled{ opacity:.55; }
+.ao-modal .ao-err{ display:none; font-size:12.5px; color:#B4453A; margin:9px 0 0; }
+.ao-modal .ao-err.on{ display:block; }
+.ao-done{ display:none; text-align:center; padding:10px 0 4px; }
+.ao-done p{ font-size:13.5px; color:#6B6B6B; line-height:1.7; }
 @media(max-width:1100px){
   .art-layout{ display:block; max-width:none; }
   .art-rail{ position:static; margin:30px auto 0; max-width:70%; padding-top:0; }

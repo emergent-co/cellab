@@ -311,7 +311,7 @@
       rail.className = 'art-rail';
       rail.setAttribute('aria-label', '관련 제품');
       rail.innerHTML = '<div class="ar-h">이 셋업에 쓰는 장비</div>' +
-        prods.map(function (p) {
+        prods.slice(0, 3).map(function (p) {
           return '<a class="ar-card" href="' + p.u + '">' +
             '<span class="ai" style="background-image:url(\'' + p.i + '\')"></span>' +
             '<span class="ab"><span class="an">' + p.n + '</span>' +
@@ -319,10 +319,81 @@
             '<span class="ad2" style="display:block">' + (p.d2 || '') + '</span>' +
             '<span class="ap">' + p.p + '<span class="ag">사양 보기 →</span></span></span></a>';
         }).join('') +
-        '<div class="ar-cta"><div class="ac-t">내 공정에 맞는 구성이 궁금하다면</div>' +
-        '<div class="ac-d">시료·공정 조건만 남기면 맞는 구성과 견적으로 회신드립니다. 매거진 독자 할인가 안내.</div>' +
-        '<a href="/contact/">셋업 상담·견적 →</a></div>';
+        '<button type="button" class="ar-order" id="arOrderBtn">' +
+          '<span class="ao-ic">🛒</span>' +
+          '<span class="ao-bd"><span class="ao-t">셋업 구성에 필요한 부품 주문하기</span>' +
+          '<span class="ao-d">필요한 장비를 골라 견적 문의 — 매거진 독자 할인가</span></span>' +
+          '<span class="ao-go">＋</span>' +
+        '</button>';
       layout.appendChild(rail);
+
+      // 부품 주문 팝업 — 장비 체크리스트 + 연락처 → Formspree
+      var ORDER_EP = 'https://formspree.io/f/mnjkzppj';
+      var om = document.createElement('div');
+      om.className = 'ao-back';
+      om.innerHTML = '<div class="ao-modal">' +
+        '<button type="button" class="ao-x" aria-label="닫기">&times;</button>' +
+        '<form id="aoForm">' +
+        '<h3>셋업 구성 부품·장비 주문 문의</h3>' +
+        '<p class="ao-sub">필요한 장비를 선택하고 연락처를 남기면, 구성·견적(독자 할인가)으로 회신드립니다.</p>' +
+        '<div class="ao-list">' +
+        prods.map(function (p) {
+          return '<label class="ao-item"><input type="checkbox" name="장비" value="' + p.n + ' (' + p.p + ')">' +
+            '<span class="ao-nm">' + p.n + '</span><span class="ao-pp">' + p.p + '</span></label>';
+        }).join('') +
+        '</div>' +
+        '<label class="ao-lb">기타 필요한 부품·구성 (선택)</label>' +
+        '<textarea name="기타요청" placeholder="예: 석영튜브 여분, 튜브 피팅, MFC 2채널, 진공펌프 포함 여부 등"></textarea>' +
+        '<div class="ao-g2">' +
+        '<div><label class="ao-lb">이름 <b>*</b></label><input type="text" name="이름" required placeholder="홍길동"></div>' +
+        '<div><label class="ao-lb">소속 <b>*</b></label><input type="text" name="소속" required placeholder="OO대학교 OO연구실"></div>' +
+        '</div>' +
+        '<label class="ao-lb">이메일 <b>*</b></label>' +
+        '<input type="email" name="이메일" required placeholder="you@lab.ac.kr">' +
+        '<input type="hidden" name="_subject" value="[셋업 부품 주문] 장비 선택 문의">' +
+        '<input type="hidden" name="문의유형" value="셋업 부품·장비 주문">' +
+        '<input type="hidden" name="출처페이지" value="' + location.pathname + '">' +
+        '<button type="submit" class="ao-send">선택한 장비로 문의 보내기 →</button>' +
+        '<p class="ao-err" id="aoErr"></p>' +
+        '</form>' +
+        '<div class="ao-done" id="aoDone"><h3>문의가 접수되었습니다</h3><p>선택하신 장비 구성을 검토해 견적으로 회신드립니다.<br>급하시면 <b>info@rndsetup.com</b> · <b>070-8983-2600</b></p></div>' +
+        '</div>';
+      document.body.appendChild(om);
+      function aoOpen() { om.classList.add('on'); document.body.style.overflow = 'hidden'; }
+      function aoClose() { om.classList.remove('on'); document.body.style.overflow = ''; }
+      document.getElementById('arOrderBtn').addEventListener('click', aoOpen);
+      om.querySelector('.ao-x').addEventListener('click', aoClose);
+      om.addEventListener('click', function (e) { if (e.target === om) aoClose(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && om.classList.contains('on')) aoClose(); });
+      var aoForm = om.querySelector('#aoForm');
+      aoForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var err = om.querySelector('#aoErr');
+        var checked = aoForm.querySelectorAll('input[name="장비"]:checked');
+        var extra = (aoForm.querySelector('[name="기타요청"]').value || '').trim();
+        if (!checked.length && !extra) {
+          err.textContent = '장비를 하나 이상 선택하거나, 기타 요청을 적어주세요.';
+          err.classList.add('on');
+          return;
+        }
+        err.classList.remove('on');
+        var btn = aoForm.querySelector('.ao-send'), txt = btn.textContent;
+        btn.disabled = true; btn.textContent = '보내는 중…';
+        fetch(ORDER_EP, { method: 'POST', body: new FormData(aoForm), headers: { Accept: 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) throw new Error('bad');
+            if (typeof window.gtag === 'function') {
+              gtag('event', 'generate_lead', { lead_type: 'setup_parts_order', page_path: location.pathname });
+            }
+            aoForm.style.display = 'none';
+            om.querySelector('#aoDone').style.display = 'block';
+          })
+          .catch(function () {
+            btn.disabled = false; btn.textContent = txt;
+            err.textContent = '전송에 실패했습니다. info@rndsetup.com 으로 보내주세요.';
+            err.classList.add('on');
+          });
+      });
 
       // 좌측 목차 가이드 — 본문 h2를 수집해 스크롤 스파이 목차 생성
       var heads = Array.prototype.slice.call(art.querySelectorAll('h2'));
