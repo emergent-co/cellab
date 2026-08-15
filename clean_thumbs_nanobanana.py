@@ -19,7 +19,7 @@ SRC = os.path.join("img", "product", "sh-cards")
 DST = os.path.join("img", "product", "sh-cards-clean")
 os.makedirs(DST, exist_ok=True)
 
-MODELS = ["gemini-2.5-flash-image", "gemini-2.5-flash-image-preview"]
+MODELS = ["gemini-3.1-flash-lite-image", "gemini-2.5-flash-image"]
 def url_for(model):
     return f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY}"
 
@@ -68,7 +68,8 @@ def clean(path, out):
                     detail = e.read().decode()[:600]
                 except Exception:
                     pass
-                last_err = f"{model} HTTP {e.code}: {detail}"
+                if e.code == 429 or last_err is None:
+                    last_err = f"{model} HTTP {e.code}: {detail}"
                 if e.code == 429:
                     wait = 25 * (attempt + 1)
                     print(f"    429 쿼터 대기 {wait}s... ({model}, {attempt+1}/3)")
