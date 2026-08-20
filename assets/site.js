@@ -302,11 +302,11 @@
         { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:'1,200만 원~' }
       ];
       var FLUID_PRODS = [
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/BT101S.png', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:'97만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/BT300S.png', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:'171만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/BT600S.png', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:'219만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/CT3001F.png', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:'231만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/TYD01-01.png', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:'240만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt101s-1.jpg', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:'97만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt300s-1.jpg', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:'171만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt600s-1.jpg', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:'219만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/ct3001f-1.jpg', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:'231만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/tyd01-01-1.jpg', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:'240만 원~' },
         { u:'/brands/alicat/', i:'/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg', n:'Alicat 질량유량계(MFC)', d:'가스 유량 sccm 정밀 제어·기록.', d2:'다기체 대응 · Modbus·RS-485 로그', p:'견적 문의' }
       ];
       var crumb = art.querySelector('.sd-crumb');

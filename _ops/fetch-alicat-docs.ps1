@@ -21,6 +21,27 @@ $targets = @(
   @{ d='specs/bioc'; u='https://documents.alicat.com/specifications/DOC-SPECS-BIOC-MID.pdf';  f='BIOC_10SCCM-20SLPM.pdf' }
   @{ d='specs/bioc'; u='https://documents.alicat.com/specifications/DOC-SPECS-BIOC-HIGH.pdf'; f='BIOC_50-500SLPM.pdf' }
 
+  # ---------- 진공 · SEMI (MCV · SFF · MCES · MCVS) ----------
+  @{ d='specs/vacuum'; u='https://documents.alicat.com/specifications/DOC-SPECS-MCV-LOW.pdf';  f='MCV_0.5-5SCCM.pdf' }
+  @{ d='specs/vacuum'; u='https://documents.alicat.com/specifications/DOC-SPECS-MCV-MID.pdf';  f='MCV_10SCCM-20SLPM.pdf' }
+  @{ d='specs/vacuum'; u='https://documents.alicat.com/specifications/DOC-SPECS-SFF-LOW.pdf';  f='SFF_0.5-5SCCM.pdf' }
+  @{ d='specs/vacuum'; u='https://documents.alicat.com/specifications/DOC-SPECS-SFF-MID.pdf';  f='SFF_10SCCM-20SLPM.pdf' }
+  @{ d='specs/vacuum'; u='https://documents.alicat.com/specifications/DOC-SPECS-MCES.pdf';     f='MCES_0.5SCCM-20SLPM.pdf' }
+  @{ d='specs/vacuum'; u='https://documents.alicat.com/specifications/DOC-SPECS-MCVS.pdf';     f='MCVS_0.5SCCM-20SLPM.pdf' }
+  # ---------- BASIS 2 (소형 MEMS 열식) ----------
+  @{ d='specs/basis';  u='https://documents.alicat.com/specifications/DOC-SPECS-BASIS.pdf';    f='BASIS2_100SCCM-100SLPM.pdf' }
+  @{ d='manuals';      u='https://documents.alicat.com/manuals/DOC-MANUAL-BASIS2.pdf';         f='BASIS2_Manual.pdf' }
+  @{ d='brochures';    u='https://documents.alicat.com/cutsheets/BASIS2-Bifold.pdf';           f='BASIS2_Brochure.pdf' }
+  # ---------- 압력 컨트롤러 (PC · PCD · IVC · PCX) ----------
+  @{ d='specs/pressure'; u='https://documents.alicat.com/specifications/DOC-SPECS-PC.pdf';      f='PC_0.07-3000PSI.pdf' }
+  @{ d='specs/pressure'; u='https://documents.alicat.com/specifications/DOC-SPECS-PCD.pdf';     f='PCD_0.07-3000PSI.pdf' }
+  @{ d='specs/pressure'; u='https://documents.alicat.com/specifications/DOC-SPECS-IVC.pdf';     f='IVC_10-1000TorrA.pdf' }
+  @{ d='specs/pressure'; u='https://documents.alicat.com/specifications/DOC-SPECS-PCX-SFF.pdf'; f='PCX_500Torr-100PSIA.pdf' }
+  @{ d='manuals';        u='https://documents.alicat.com/manuals/DOC-MANUAL-9V-PC.pdf';         f='PC_Manual_9v_2021.pdf' }
+  @{ d='manuals';        u='https://documents.alicat.com/manuals/DOC-MANUAL-9V-PCD.pdf';        f='PCD_Manual_9v_2021.pdf' }
+  @{ d='manuals';        u='https://documents.alicat.com/manuals/DOC-MANUAL-EXTSEN.pdf';        f='EXTSEN_Manual.pdf' }
+  @{ d='brochures';      u='https://documents.alicat.com/cutsheets/Pressure-controllers.pdf';   f='PC_PCD_Brochure.pdf' }
+
   # ---------- 매뉴얼 ----------
   @{ d='manuals';    u='https://documents.alicat.com/manuals/DOC-MANUAL-MPL.pdf';        f='MC_Manual_10v_Latest.pdf' }
   @{ d='manuals';    u='https://documents.alicat.com/manuals/DOC-MANUAL-9V-MC.pdf';      f='MC_Manual_9v_2021.pdf' }

@@ -22,7 +22,7 @@
       "sub": "Panel-mount Peristaltic Pump",
       "series": "S",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BQ80S.png",
+      "image": "/img/leadfluid/official/bq80s-1.jpg",
       "flow_display": "0.0035 ~ 34 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -78,7 +78,7 @@
       "sub": "Speed Variable Peristaltic Pump",
       "series": "S",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT103S.png",
+      "image": "/img/leadfluid/official/bt103s-1.jpg",
       "flow_display": "0.00011 ~ 500 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -135,7 +135,7 @@
       "sub": "Speed Variable Peristaltic Pump",
       "series": "S",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT101S.png",
+      "image": "/img/leadfluid/official/bt101s-1.jpg",
       "flow_display": "0.00011 ~ 750 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -216,7 +216,7 @@
       "sub": "Speed Variable Peristaltic Pump",
       "series": "S",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT301S.png",
+      "image": "/img/leadfluid/official/bt301s-1.jpg",
       "flow_display": "0.005 ~ 1750 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -274,7 +274,7 @@
       "sub": "Speed Variable Peristaltic Pump",
       "series": "S",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT601S.png",
+      "image": "/img/leadfluid/official/bt601s-1.jpg",
       "flow_display": "0.005 ~ 3000 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -332,7 +332,7 @@
       "sub": "Intelligent Flow Peristaltic Pump",
       "series": "L",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT101L.png",
+      "image": "/img/leadfluid/official/bt101l-1.jpg",
       "flow_display": "0.00011 ~ 750 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -389,7 +389,7 @@
       "sub": "Intelligent Flow Peristaltic Pump",
       "series": "L",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT301L.png",
+      "image": "/img/leadfluid/official/bt301l-1.jpg",
       "flow_display": "0.005 ~ 1750 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -447,7 +447,7 @@
       "sub": "Intelligent Flow Peristaltic Pump",
       "series": "L",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT601L.png",
+      "image": "/img/leadfluid/official/bt601l-1.jpg",
       "flow_display": "0.005 ~ 3000 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -505,7 +505,7 @@
       "sub": "Intelligent Dispensing Peristaltic Pump",
       "series": "F",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT101F.png",
+      "image": "/img/leadfluid/official/bt101f-1.jpg",
       "flow_display": "0.00011 ~ 750 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -564,7 +564,7 @@
       "sub": "Intelligent Dispensing Peristaltic Pump",
       "series": "F",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT301F.png",
+      "image": "/img/leadfluid/official/bt301f-1.jpg",
       "flow_display": "0.005 ~ 1750 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -624,7 +624,7 @@
       "sub": "Intelligent Dispensing Peristaltic Pump",
       "series": "F",
       "category": "peristaltic",
-      "image": "/img/leadfluid/BT601F.png",
+      "image": "/img/leadfluid/official/bt601f-1.jpg",
       "flow_display": "0.005 ~ 3000 mL/min",
       "comm": "RS485 / MODBUS",
       "matching": {
@@ -1512,7 +1512,7 @@
       "sub": "Air-driven Explosion-proof Gear Pump",
       "series": "EX",
       "category": "gear",
-      "image": "/img/leadfluid/FG601S-A3.png",
+      "image": "/img/leadfluid/official/fg601s-a3-1.jpg",
       "flow_display": "1000 ~ 13000 mL/min",
       "comm": "—",
       "matching": {
@@ -1564,7 +1564,7 @@
       "sub": "Wash-down Explosion-proof Gear Pump",
       "series": "EX",
       "category": "gear",
-      "image": "/img/leadfluid/FG601S-W3.png",
+      "image": "/img/leadfluid/official/fg601s-w3-1.jpg",
       "flow_display": "1800 ~ 13000 mL/min",
       "comm": "—",
       "matching": {

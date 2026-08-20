@@ -242,7 +242,7 @@
       "url": "/setups/damo-recirculation-bt600s.html",
       "model_focus": "BT600S 연동",
       "application": "환경·수처리",
-      "image": "/img/leadfluid/BT600S.png",
+      "image": "/img/leadfluid/official/bt600s-1.jpg",
       "journal": "Environmental Science & Technology",
       "doi": "10.1021/acs.est.0c02664"
     },
@@ -262,7 +262,7 @@
       "url": "/setups/nitrification-ph-bq50s.html",
       "model_focus": "BQ50S 정량",
       "application": "환경·수처리",
-      "image": "/img/leadfluid/BQ80S.png",
+      "image": "/img/leadfluid/official/bq80s-1.jpg",
       "journal": "Bioresource Technology",
       "doi": "10.1016/j.biortech.2017.07.155"
     },
