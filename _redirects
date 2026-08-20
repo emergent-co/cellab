@@ -97,3 +97,7 @@
 # 리드플루이드 재구성(2026-08) — 허브=카드 목록, 상세=/brands/leadfluid/<model>/, 위저드=매거진 글
 /leadfluid/*  /brands/leadfluid/:splat  301
 /brands/leadfluid/guide/  /magazine/pump-selection-wizard/  301
+
+# 리드플루이드 방폭 슬러그 정리(2026-08) — 모델 코드 페이지로 통합
+/brands/leadfluid/explosion-proof/  /brands/leadfluid/ef803/  301
+/brands/leadfluid/explosion-proof-gear/  /brands/leadfluid/fg601s-w3/  301
