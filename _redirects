@@ -93,3 +93,7 @@
 /setups/heart-eshp-bt101l.html  /setups/  301
 /setups/catheter-heparin-bt101  /setups/  301
 /setups/catheter-heparin-bt101.html  /setups/  301
+
+# 리드플루이드 재구성(2026-08) — 허브=카드 목록, 상세=/brands/leadfluid/<model>/, 위저드=매거진 글
+/leadfluid/*  /brands/leadfluid/:splat  301
+/brands/leadfluid/guide/  /magazine/pump-selection-wizard/  301
