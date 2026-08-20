@@ -1050,6 +1050,7 @@ def main():
         ('pump/atoz/', '0.8', 'weekly'),
         ('magazine/pump-selection-wizard/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
         ('brands/leadfluid/','0.9', 'weekly'),
+        ('brands/leadfluid/pump-heads/','0.8', 'monthly'),
         ('brands/leadfluid/bq80s/','0.8', 'monthly'),
         ('brands/leadfluid/bt100f/','0.8', 'monthly'),
         ('brands/leadfluid/bt100f-1/','0.8', 'monthly'),
@@ -1120,11 +1121,8 @@ def main():
         ('brands/leadfluid/fg601s-w3/','0.8', 'monthly'),
         ('brands/leadfluid/fg604s-a/','0.8', 'monthly'),
         ('brands/leadfluid/fp300s-a3/','0.8', 'monthly'),
-        ('brands/leadfluid/gn10/','0.8', 'monthly'),
         ('brands/leadfluid/mc10/','0.8', 'monthly'),
         ('brands/leadfluid/mm10/','0.8', 'monthly'),
-        ('brands/leadfluid/yd1506-13/','0.8', 'monthly'),
-        ('brands/leadfluid/yd1506-16/','0.8', 'monthly'),
         ('pump/atoz/peristaltic-flow-setpoint-mismatch/', '0.7', 'monthly'),
         ('pump/atoz/tubing-crush-tear-causes/', '0.7', 'monthly'),
         ('pump/atoz/flow-calibration/', '0.7', 'monthly'),  # 유량 캘리브레이션 (무주공산)

@@ -53,27 +53,46 @@ $targets = @(
   # ---------- 브로슈어(카탈로그) ----------
   @{ d='brochures';  u='https://documents.alicat.com/cutsheets/M-cut-sheet.pdf';         f='MC_Series_Brochure.pdf' }
 
-  # ---------- 제품 이미지 ----------
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2024/11/mc-model-prod-1200px.webp'; f='mc-group-1200.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2024/10/MC-prod-600px.webp';        f='mc-600.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2024/10/MCS-prod-600px.webp';       f='mcs-600.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2024/11/MCD-prod-600px.webp';       f='mcd-600.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2024/11/MCT-prod-600px.webp';       f='mct-600.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2024/11/BIOC-prod-600px.webp';      f='bioc-600.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2025/06/gas-controller-group-prod-1200px.webp'; f='gas-controller-group-1200.webp' }
-  @{ d='images';     u='https://www.alicat.com/wp-content/uploads/2025/02/logo-alicat.svg';           f='logo-alicat.svg' }
+  # ---------- 제품 이미지 (alicat.com) → 웹 게시 경로 img/product/alicat/ ----------
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/10/MC-prod-600px.webp';                    f='mc.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/10/MCS-prod-600px.webp';                   f='mcs.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/11/MCD-prod-600px.webp';                   f='mcd.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/11/MCT-prod-600px.webp';                   f='mct.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/11/BIOC-prod-600px.webp';                  f='bioc.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/11/MCV-prod-600px.webp';                   f='mcv.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/SFF-prod-600px.webp';                   f='sff.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/MCES-prod-600px.webp';                  f='mces.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/MCVS-prod-600px.webp';                  f='mcvs.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/11/BASIS-controller-prod-600px.webp';      f='basis.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/10/BASIS-Manifold-prod-600px.webp';        f='basis-manifold.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/PC-prod-600px.webp';                    f='pc.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2025/02/PCX-prod-600px.webp';                   f='pcx.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/PC3-prod-600px.webp';                   f='pc3.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/10/PCD-prod-600px.webp';                   f='pcd.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/PCDS-prod-600px.webp';                  f='pcds.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/PCD3-prod-600px.webp';                  f='pcd3.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/IVCD-prod-600px.webp';                  f='ivcd.webp' }
+  # 그룹 컷
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/11/mc-model-prod-1200px.webp';             f='group-mc.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/vaccuum-group-prod-1200px.webp';        f='group-vacuum.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2025/02/PC-group-prod-1200px-b.webp';           f='group-pc.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/PCD-series-prod-900px.webp';            f='group-pcd.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2024/12/basis-bc-series-controller-prod-900px.webp'; f='group-basis.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2025/06/gas-controller-group-prod-1200px.webp'; f='group-all.webp' }
+  @{ w=1; u='https://www.alicat.com/wp-content/uploads/2025/02/logo-alicat.svg';                       f='logo-alicat.svg' }
 )
 
 $ok = 0; $fail = @()
 foreach ($t in $targets) {
-  $dir = Join-Path $root $t.d
+  if ($t.w) { $dir = Join-Path (Split-Path $PSScriptRoot -Parent) 'img\product\alicat' }
+  else      { $dir = Join-Path $root $t.d }
   if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
   $out = Join-Path $dir $t.f
-  if (Test-Path $out) { Write-Host ("  skip  " + $t.d + '/' + $t.f) -ForegroundColor DarkGray; $ok++; continue }
+  if (Test-Path $out) { Write-Host ("  skip  " + $t.f) -ForegroundColor DarkGray; $ok++; continue }
   try {
     Invoke-WebRequest -Uri $t.u -OutFile $out -UseBasicParsing -TimeoutSec 60
     $kb = [math]::Round((Get-Item $out).Length / 1KB, 1)
-    Write-Host ("  ok    " + $t.d + '/' + $t.f + "  (${kb} KB)") -ForegroundColor Green
+    Write-Host ("  ok    " + $t.f + "  (${kb} KB)") -ForegroundColor Green
     $ok++
   } catch {
     Write-Host ("  FAIL  " + $t.u) -ForegroundColor Red
@@ -83,5 +102,6 @@ foreach ($t in $targets) {
 
 Write-Host ""
 Write-Host ("완료: $ok / " + $targets.Count) -ForegroundColor Cyan
-Write-Host ("저장 위치: $root")
+Write-Host ("문서 저장 위치: $root")
+Write-Host ("이미지 저장 위치: " + (Join-Path (Split-Path $PSScriptRoot -Parent) 'img\product\alicat'))
 if ($fail.Count) { Write-Host "실패 목록:" -ForegroundColor Yellow; $fail | ForEach-Object { Write-Host "  $_" } }
