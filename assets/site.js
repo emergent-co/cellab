@@ -617,7 +617,7 @@
     + 'font-size:14px;font-family:inherit;line-height:1.55;background:#fff;color:#1A1A1A}'
     + '.qm textarea{min-height:74px;resize:vertical}'
     + '.qm input:focus,.qm textarea:focus{outline:0;border-color:#C2410C}'
-    + '.qm .qm-fx{font-size:11.5px;color:#9C958D;margin-top:4px;line-height:1.5}'
+    + '.qm .qm-body select{width:100%;font-family:inherit;font-size:14px;padding:11px 12px;border:1px solid #E7E3DE;border-radius:9px;background:#fff;margin-bottom:4px}.qm-fx{font-size:11.5px;color:#9C958D;margin-top:4px;line-height:1.5}'
     + '.qm .qm-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}'
     + '.qm .qm-send{width:100%;margin-top:18px;font-size:15px;font-weight:800;color:#fff;background:#C2410C;'
     + 'border:0;padding:13px;border-radius:10px;cursor:pointer;font-family:inherit}'
@@ -651,12 +651,7 @@
     +     '<h2>견적 문의</h2>'
     +     '<p class="qm-sub">구성에 따라 사양·금액이 달라집니다. <b>다루는 시료와 공정</b>만 남겨주시면, 맞는 구성과 견적으로 회신드립니다.</p>'
     +     '<p class="qm-for" id="qmFor"></p>'
-    +     '<label>샘플 시료 <span class="req">*</span></label>'
-    +     '<textarea name="샘플시료" required placeholder="재질 · 형태 · 양 (예: 알루미나 분말 50g / 실리콘 웨이퍼 2인치 5장)"></textarea>'
-    +     '<div class="qm-fx">무엇을 넣고 처리하는지 — 재질, 형태(분말·벌크·박막), 대략의 양</div>'
-    +     '<label>사용 공정 <span class="req">*</span></label>'
-    +     '<textarea name="사용공정" required placeholder="목표 온도 · 분위기 · 승온/유지 조건 (예: Ar 분위기 900℃까지 5℃/min 승온 후 2시간 유지)"></textarea>'
-    +     '<div class="qm-fx">목표 온도 · 분위기(대기/불활성/진공) · 승온·유지 조건 · 처리 목적</div>'
+    +     '<div id="qmFurn">'+ '<label>샘플 시료 <span class="req">*</span></label>'+ '<textarea name="샘플시료" placeholder="재질 · 형태 · 양 (예: 알루미나 분말 50g / 실리콘 웨이퍼 2인치 5장)"></textarea>'+ '<div class="qm-fx">무엇을 넣고 처리하는지 — 재질, 형태(분말·벌크·박막), 대략의 양</div>'+ '<label>사용 공정 <span class="req">*</span></label>'+ '<textarea name="사용공정" placeholder="목표 온도 · 분위기 · 승온/유지 조건 (예: Ar 분위기 900℃까지 5℃/min 승온 후 2시간 유지)"></textarea>'+ '<div class="qm-fx">목표 온도 · 분위기(대기/불활성/진공) · 승온·유지 조건 · 처리 목적</div>'+ '</div>'+ '<div id="qmPump" style="display:none">'+ '<label><span id="qmHeadLabel">구성 (펌프헤드) </span><span class="req">*</span></label>'+ '<select name="구성헤드" id="qmHead"><option value="">선택해 주세요</option></select>'+ '<div class="qm-fx" id="qmHeadFx">헤드에 따라 유량 범위·채널 수·가격이 달라집니다. 모르시면 <b>추천 요청</b>을 선택하세요.</div>'+ '<label>목표 유량 <span class="req">*</span></label>'+ '<input type="text" name="목표유량" placeholder="예: 50 mL/min 연속 / 200 μL 정량 분주">'+ '<div class="qm-fx">필요한 유량과 운전 방식(연속 이송 · 정량 분주 · 순환)</div>'+ '<label>현재 사용 중인 펌프 <span style="font-weight:600;color:#9C958D">(있으면)</span></label>'+ '<input type="text" name="기존펌프" placeholder="예: Masterflex L/S 07528-10 / 리드플루이드 BT100S">'+ '<div class="qm-fx">교체·증설이면 기존 모델명을 알려주시면 호환 구성으로 잡아드립니다.</div>'+ '<label>요청사항</label>'+ '<textarea name="요청사항" placeholder="유체 종류(점도·부식성) · 채널 수 · 통신 연동 · 납기 등 알려주실 내용"></textarea>'+ '</div>'
     +     '<div class="qm-g2">'
     +       '<div><label>이름 <span class="req">*</span></label>'
     +         '<input type="text" name="이름" required placeholder="홍길동"></div>'
@@ -665,7 +660,7 @@
     +     '</div>'
     +     '<label>이메일 <span class="req">*</span></label>'
     +     '<input type="email" name="이메일" required placeholder="you@lab.ac.kr">'
-    +     '<input type="hidden" name="문의유형" value="삼흥 열처리 견적(카탈로그)">'
+    +     '<input type="hidden" name="문의유형" id="qmType" value="삼흥 열처리 견적(카탈로그)">'
     +     '<input type="hidden" name="문의제품" id="qmProd" value="">'
     +     '<input type="hidden" name="출처페이지" id="qmPath" value="">'
     +     '<button type="submit" class="qm-send">견적 요청 보내기 →</button>'
@@ -674,7 +669,7 @@
     +   '</form>'
     +   '<div class="qm-done" id="qmDone">'
     +     '<h2>문의가 접수되었습니다</h2>'
-    +     '<p>보내주신 시료·공정 조건을 검토해, 맞는 사양과 견적으로 회신드립니다.<br>급하시면 <b>info@rndsetup.com</b> 으로도 연락 주세요.</p>'
+    +     '<p>보내주신 조건을 검토해, 맞는 구성과 견적으로 회신드립니다.<br>급하시면 <b>info@rndsetup.com</b> 으로도 연락 주세요.</p>'
     +   '</div>'
     + '</div>';
   document.body.appendChild(back);
@@ -687,6 +682,33 @@
   function open(product) {
     lastFocus = document.activeElement;
     back.querySelector('#qmProd').value = product || '';
+    var isPump = /leadfluid|리드플루이드|BT\d|WT\d|WG\d|MF\d|MS\d|BQ\d|JP\d|TYD|TFD|TSD|TGD|CT300|EF\d|FG\d|FP\d|AF9|G3030|G6060|MC10|MM10|\ud38c\ud504\ud5e4\ub4dc/i.test((product||'') + ' ' + location.pathname);
+    back.querySelector('#qmFurn').style.display = isPump ? 'none' : '';
+    back.querySelector('#qmPump').style.display = isPump ? '' : 'none';
+    back.querySelector('#qmType').value = isPump ? '리드플루이드 펌프 견적' : '삼흥 열처리 견적(카탈로그)';
+    if (isPump) {
+      var isSyr = /TYD|TFD|TSD|TGD|G3030|G6060|시린지/i.test((product || '') + ' ' + location.pathname);
+      var sel = back.querySelector('#qmHead');
+      var lab = back.querySelector('#qmHeadLabel');
+      var fx  = back.querySelector('#qmHeadFx');
+      var heads = [];
+      document.querySelectorAll('.price-tbl tbody tr').forEach(function (tr) {
+        var td = tr.querySelector('th[scope="row"], td');
+        var t2 = td ? (td.textContent || '').replace(/\s+/g, ' ').trim() : '';
+        if (t2 && t2 !== '—' && !/^\d+$/.test(t2) && heads.indexOf(t2) < 0 && heads.length < 40) heads.push(t2);
+      });
+      if (isSyr) {
+        if (lab) lab.textContent = '시린지 규격 ';
+        if (fx) fx.innerHTML = '사용할 시린지 용량을 알려주세요. 모르시면 <b>추천 요청</b>을 선택하세요.';
+        heads = ['10 μL','50 μL','100 μL','500 μL','1 mL','5 mL','10 mL','20 mL','50 mL','60 mL','140 mL'];
+      } else {
+        if (lab) lab.textContent = '구성 (펌프헤드) ';
+        if (fx) fx.innerHTML = '헤드에 따라 유량 범위·채널 수·가격이 달라집니다. 모르시면 <b>추천 요청</b>을 선택하세요.';
+      }
+      sel.innerHTML = '<option value="">선택해 주세요</option>' +
+        heads.map(function (x) { return '<option>' + x + '</option>'; }).join('') +
+        '<option value="추천 요청">잘 모르겠음 — 추천 요청</option>';
+    }
     back.querySelector('#qmPath').value = location.pathname;
     var forEl = back.querySelector('#qmFor');
     if (product) { forEl.textContent = '문의 제품 · ' + product; forEl.style.display = ''; }
@@ -723,7 +745,7 @@
     e.preventDefault();
     errEl.classList.remove('on');
     var missing = [];
-    ['샘플시료', '사용공정', '이름', '소속', '이메일'].forEach(function (n) {
+    (back.querySelector('#qmPump').style.display !== 'none' ? ['구성헤드','목표유량','이름','소속','이메일'] : ['샘플시료','사용공정','이름','소속','이메일']).forEach(function (n) {
       var f = form.querySelector('[name="' + n + '"]');
       if (f && !f.value.trim()) missing.push(n);
     });
