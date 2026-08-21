@@ -69,17 +69,19 @@
     find:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
+  // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/magazine/', label:'셋업 매거진', icon:'feed', sub:[
-        ['/setups/', '셋업 사례']
+    { href:'/magazine/', label:'셋업 매거진', icon:'feed', noclick:true, sub:[
+        ['/magazine/', '셋업 매거진'],
+        ['/setups/',   '셋업 사례']
       ] },
     { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
-    { href:'/brands/', label:'장비 카탈로그', icon:'devices', sub:[
-        ['/manuals/', '장비 메뉴얼']
-      ] },
+    { href:'/brands/', label:'제품소개', icon:'devices' },
+    { href:'/manuals/', label:'메뉴얼', icon:'guide' },
     { href:'/about/', label:'회사소개', icon:'shield' },
-    { href:'/contact/', label:'문의하기', icon:'contact', sub:[
-        ['/faq/', '자주 묻는 질문(FAQ)']
+    { href:'/contact/', label:'문의하기', icon:'contact', noclick:true, sub:[
+        ['/contact/', '문의하기'],
+        ['/faq/',     '자주 묻는 질문(FAQ)']
       ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
