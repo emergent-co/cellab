@@ -101,3 +101,6 @@
 # 리드플루이드 방폭 슬러그 정리(2026-08) — 모델 코드 페이지로 통합
 /brands/leadfluid/explosion-proof/  /brands/leadfluid/ef803/  301
 /brands/leadfluid/explosion-proof-gear/  /brands/leadfluid/fg601s-w3/  301
+
+# 셋업 사례 통합(2026-08) — /setups/ 인덱스를 /magazine/으로 (상세 글은 유지)
+/setups/  /magazine/  301

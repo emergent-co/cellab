@@ -403,7 +403,7 @@ CRAWLER_LINKS = [
     ('/pump/atoz/flow-calibration/', '연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정'),
     ('/pump/atoz/tube-size-guide/', '연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
-    ('/magazine/', '실험 셋업 매거진 — 논문 셋업으로 배우는 실험 장비 구성'),
+    ('/magazine/', '셋업 사례 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)'),
     ('/magazine/battery/', '배터리 랩 A to Z — 전구체 공침부터 소성·코팅·셀 평가까지 배터리 소재 실험 셋업 커리큘럼'),
     ('/magazine/deposition/', '증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장'),
     ('/magazine/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
@@ -419,7 +419,6 @@ CRAWLER_LINKS = [
     ('/magazine/glossary-pump-fluid-terms/', 'mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)'),
     ('/magazine/si-anode-cvd-carbon-coating/', '실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)'),
     ('/magazine/cuo-nanowire-thermal-oxidation/', '구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)'),
-    ('/setups/', '셋업 사례 — 에너지·소재 공정 셋업 (신규 글은 매거진에서 발행)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)'),
@@ -662,7 +661,7 @@ def build_home_paper_cases():
         )
         total_cards += 1
     parts.append('</div>')
-    parts.append('<a class="mag-all" href="/magazine/">셋업 매거진 전체 &rarr;</a>')
+    parts.append('<a class="mag-all" href="/magazine/">셋업 사례 전체 &rarr;</a>')
     section = '\n    '.join(parts)
 
     html = read(html_path)

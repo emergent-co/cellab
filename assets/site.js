@@ -32,7 +32,7 @@
     { t:'연동펌프 유량 캘리브레이션 방법', u:'/pump/atoz/flow-calibration/', k:'유량 캘리브레이션 보정 calibration 연동펌프 설정값 실제유량 드리프트 저울 메스실린더 보정계수 재현성', c:'펌프를 고를 때' },
     { t:'연동펌프 튜브 규격·펌프헤드 가이드', u:'/pump/atoz/tube-size-guide/', k:'튜브 규격 번호 내경 mm 13 14 16 25 17 18 펌프헤드 YT25 YZ35 튜브 재질 실리콘 tygon pharmed viton 연동펌프', c:'펌프를 고를 때' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
-    { t:'실험 셋업 매거진 — 논문 셋업 분석', u:'/magazine/', k:'실험 셋업 매거진 논문 셋업 분석 열처리 증착 퍼니스 유체 펌프 공정 조건 장비 magazine', c:'매거진' },
+    { t:'셋업 사례 — 논문 셋업·가이드·도입 사례', u:'/magazine/', k:'셋업 사례 매거진 논문 셋업 분석 열처리 증착 퍼니스 유체 펌프 공정 조건 장비 magazine setups', c:'셋업 사례' },
     { t:'온도컨트롤러(SP590·NOVA500E) 사용법 가이드', u:'/temp-controller-guide/', k:'온도컨트롤러 sp590 sp570 nova500e 삼원테크 사용법 전기로 온도 설정 승온 유지 하강 반복 hold 무한반복 rs485 가상 시뮬레이터 삼흥에너지', c:'호환 장비' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
   ];
@@ -71,10 +71,7 @@
   };
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/magazine/', label:'셋업 매거진', icon:'feed', noclick:true, sub:[
-        ['/magazine/', '셋업 매거진'],
-        ['/setups/',   '셋업 사례']
-      ] },
+    { href:'/magazine/', label:'셋업 사례', icon:'feed' },
     { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
     { href:'/brands/', label:'제품소개', icon:'devices' },
     { href:'/manuals/', label:'메뉴얼', icon:'guide' },

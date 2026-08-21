@@ -13,7 +13,7 @@
 ## 주요 페이지 (정확한 URL)
 
 - [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
-- [실험 셋업 매거진](https://rndsetup.com/magazine/): 논문 셋업을 열처리·증착(퍼니스)/유체·펌프 두 갈래로 정리한 매거진 허브
+- [셋업 사례](https://rndsetup.com/magazine/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
   - [배터리 랩 A to Z — 커리큘럼](https://rndsetup.com/magazine/battery/): 배터리 소재 실험 전 과정 8단계(전구체 공침→소성·하소→탄소 코팅→슬러리·전극→건조→코인셀→전해액→화성·평가)를 셋업 순서로 배치한 커리큘럼 허브 — 단계별 논문 셋업·가이드·트러블슈팅 연결
   - [소성·하소용 튜브퍼니스·가스 분위기 선정 가이드](https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/): 배터리 양극재·세라믹·촉매·분말 소재 공통 — 최고온도·튜브 지름·분위기·유량 제어(MFC)·기록 5축 선정 기준
   - [소성 배치마다 결과가 다른 7가지 이유 — 트러블슈팅](https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/): 승온 편차·균열구간·적재량·유량 드리프트·전환 타이밍·흡습·리크 — 배치 편차 점검표(양극재·세라믹·촉매·분말 공통)
@@ -52,7 +52,6 @@
 - [펌프 고르기(선택)](https://rndsetup.com/application/pump-selection): 펌프 종류·선택 기준
   - [튜브 선택 가이드](https://rndsetup.com/application/tube-selection): 재질별 특성·화학 적합성
   - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://rndsetup.com/application/pump-pc-control-modbus-rs485)
-- [셋업 사례 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 에너지·재료 / 환경·수처리 분야별 논문 셋업 아카이브. 신규 셋업 글은 매거진(/magazine/)에서 발행
   - [연속 CO₂ 포집 — PEEK 기어펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
   - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://rndsetup.com/setups/damo-recirculation-bt600s)
   - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://rndsetup.com/setups/nitrification-ph-bq50s)
