@@ -6,16 +6,16 @@
 # 체인 금지: 각 옛 URL을 최종 목적지로 1홉 직결.
 /reviews.html  /brands/leadfluid/blog/  301
 /pump/setups/alicat-mfc-tubefurnace/  /furnace/setups/alicat-mfc-tubefurnace/  301
-/recommend2.html  /brands/leadfluid/guide/  301
-/tubing.html  /brands/leadfluid/guide/  301
+/recommend2.html  /magazine/pump-selection-wizard/  301
+/tubing.html  /magazine/pump-selection-wizard/  301
 
 # 페이지 통합(2026-07) — 무분별 증식 정리
 /application/pump-pc-control-modbus-rs485  /requests/  301
 /application/pump-flow-schedule-ramp  /requests/  301
 /application/multi-pump-sync-unattended  /requests/  301
 /application/pump-run-log-csv-reproducibility  /requests/  301
-/application/pump-selection  /brands/leadfluid/guide/  301
-/application/tube-selection  /brands/leadfluid/guide/  301
+/application/pump-selection  /magazine/pump-selection-wizard/  301
+/application/tube-selection  /magazine/pump-selection-wizard/  301
 /pump/faq/  /faq/  301
 /application/cell-culture-perfusion  /application/biopharmaceutical  301
 /application/chemostat-continuous-culture  /application/biopharmaceutical  301
@@ -33,7 +33,7 @@
 # 리드플루이드 허브를 /leadfluid/로 이전(2026-07) — 옛 /pump/leadfluid/* → /leadfluid/*
 /pump/leadfluid/*  /brands/leadfluid/:splat  301
 /pump/leadfluid/  /brands/leadfluid/  301
-/pump/select/  /brands/leadfluid/guide/  301
+/pump/select/  /magazine/pump-selection-wizard/  301
 /pump/guide/  /brands/leadfluid/blog/  301
 /pump/guide/*  /brands/leadfluid/blog/  301
 /pump/  /brands/leadfluid/  301
@@ -41,23 +41,23 @@
 /pumps/*  /brands/leadfluid/  301
 
 # 개별 모델 페이지 → 선택가이드(사양 아코디언)로 통합(2026-07)
-/leadfluid/bt101l/*  /brands/leadfluid/guide/  301
-/leadfluid/bt103s/*  /brands/leadfluid/guide/  301
-/leadfluid/bt301l/*  /brands/leadfluid/guide/  301
-/leadfluid/wt600f/*  /brands/leadfluid/guide/  301
-/leadfluid/mf106/*  /brands/leadfluid/guide/  301
-/leadfluid/bq80s/*  /brands/leadfluid/guide/  301
-/leadfluid/tyd01-01/*  /brands/leadfluid/guide/  301
-/leadfluid/tfd/*  /brands/leadfluid/guide/  301
-/leadfluid/ct3001f/*  /brands/leadfluid/guide/  301
-/leadfluid/explosion-proof/*  /brands/leadfluid/guide/  301
-/leadfluid/explosion-proof-gear/*  /brands/leadfluid/guide/  301
-/leadfluid/bt600s/*  /brands/leadfluid/guide/  301
-/leadfluid/select/*  /brands/leadfluid/guide/  301
-/leadfluid/select  /brands/leadfluid/guide/  301
+/leadfluid/bt101l/*  /magazine/pump-selection-wizard/  301
+/leadfluid/bt103s/*  /magazine/pump-selection-wizard/  301
+/leadfluid/bt301l/*  /magazine/pump-selection-wizard/  301
+/leadfluid/wt600f/*  /magazine/pump-selection-wizard/  301
+/leadfluid/mf106/*  /magazine/pump-selection-wizard/  301
+/leadfluid/bq80s/*  /magazine/pump-selection-wizard/  301
+/leadfluid/tyd01-01/*  /magazine/pump-selection-wizard/  301
+/leadfluid/tfd/*  /magazine/pump-selection-wizard/  301
+/leadfluid/ct3001f/*  /magazine/pump-selection-wizard/  301
+/leadfluid/explosion-proof/*  /magazine/pump-selection-wizard/  301
+/leadfluid/explosion-proof-gear/*  /magazine/pump-selection-wizard/  301
+/leadfluid/bt600s/*  /magazine/pump-selection-wizard/  301
+/leadfluid/select/*  /magazine/pump-selection-wizard/  301
+/leadfluid/select  /magazine/pump-selection-wizard/  301
 
 # 브랜드 루트 = 선택 가이드로 통일(2026-07) — 허브 페이지 폐지
-/leadfluid/  /brands/leadfluid/guide/  301
+/leadfluid/  /magazine/pump-selection-wizard/  301
 /sh-scientific/  /brands/sh-scientific/guide/  301
 
 # 스텁 → 서버 301 승격 후 실물 삭제 (2026-07, 관리파일 정리)
@@ -75,7 +75,7 @@
 # 무슬래시 안전변형 (검증 중 /pumps·/product 가 홈으로 새던 것 방지)
 /pumps  /brands/leadfluid/  301
 /product  /application/  301
-/leadfluid  /brands/leadfluid/guide/  301
+/leadfluid  /magazine/pump-selection-wizard/  301
 
 
 # brand path consolidation 2026-08
