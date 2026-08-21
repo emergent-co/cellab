@@ -29,11 +29,23 @@
 - 운영 데이터(사양·라벨·옵션·매칭 어휘·경계값)를 HTML/JS에 박지 말 것 → **`_build/*.json`(SSOT)** 에.
 - `.gitattributes` 삭제·임의수정 금지.
 
-## 4. 구조 요약 (2026-07 기준)
-- **브랜드 2축**: 리드플루이드 `/brands/leadfluid/{guide,manuals,blog}` + 삼흥에너지 `/brands/sh-scientific/{guide,catalog,manual,blog}`.
-  개별 모델 페이지는 없음 → 전부 `/brands/leadfluid/guide/` **선택 위저드**로 통합(옛 모델 URL은 301).
-- **공유 크롬(SSOT)**: `assets/site.js`(상단바·사이드바 `NAV`·푸터), `assets/site.css`. 색=네이비 `#1E3A5F`, 폰트=Pretendard.
-- **데이터/빌드**: `_build/*.json`(catalog·settings·posts·products·parts·categories) → `_build/build.py`가 `sitemap.xml` 생성(직접 수정 금지).
+## 4. 구조 요약 (2026-08 기준)
+- **NAV 6개**: 셋업 사례(`/magazine/`) · 에너지 랩 A to Z(`/magazine/battery/`) · 제품소개(`/brands/`) · 메뉴얼(`/manuals/`) · 회사소개 · 문의하기(sub:FAQ). 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어.
+- **콘텐츠 허브 = `/magazine/` "셋업 사례"** — 논문 셋업·가이드·용어사전·트러블슈팅·도입 사례를 3열 카드로 통합. `/setups/` 인덱스는 301→`/magazine/` (세부 사례 글 URL은 유지). 공정 허브: battery(커리큘럼)·deposition·heat-treatment·oxidation.
+- **제품**: 삼흥 상세 `/brands/sh-scientific/<slug>/` 150+, 리드플루이드 모델 페이지 78개 잔존(+`guide` 위저드) — **모델 페이지 정리 여부는 보류 중(유입 있음)**. 전기화학 코너(홈)는 입고 준비 중, 견적 팝업 연결.
+- **공유 크롬(SSOT)**: `assets/site.js`(NAV·헤더·푸터·글 페이지 좌측 목차/우측 관련제품 레일·부품주문 팝업·검색), `assets/site.css`. 색=네이비 `#1E3A5F`.
+- **데이터/빌드 (SSOT·자동 주입)** — `_build/build.py`가 처리. **아래 항목은 절대 손으로 고치지 말 것**:
+  - `sitemap.xml`, `feed.xml`, `search-index.json`(전 페이지 자동 인덱스, 301 소스 제외)
+  - 홈 '셋업 사례' 카드 ← `_build/paper_cases.json`
+  - 홈 '최신연구' 레일 ← `_build/posts.json` 최신 6편 (`<!--NEWRESEARCH-->` 마커)
+  - **가격** ← `rndsetup_products.sql` 최저 정가 → `index.html`의 `data-price="key"` 스팬 + `site.js`의 `/*P:key*/'...'` 마커. **가격 개정 = SQL만 수정.**
+  - 크롤러 nav(CNAV) ← `CRAWLER_LINKS` — 반드시 `#pumplab-footer` div **안**의 마커에 주입돼야 함(밖에 있으면 방문자에게 노출됨).
+- **새 글 발행 절차(고정)**: 글 페이지 작성 → `posts.json` 1건 추가 (+홈 노출 원하면 `paper_cases.json`) → 빌드. 그 외 배선은 전부 자동.
 - **백엔드**: `functions/`(Cloudflare Functions — `/admin`·`/api`), `rndsetup_products.sql`(D1), `catalog/leadfluid_catalog.py`.
-- **배포**: Cloudflare Pages, `main` push 시 자동.
-- 기능 페이지: `about/ trust/ contact/ faq/ repair/ requests/ alicat/ setups/ application/ pump/atoz/`.
+- **배포**: Cloudflare Pages, `main` push 시 자동. 리다이렉트=`_redirects`(체인 금지, 1홉 직결).
+
+## 5. 운영 원칙 (스프롤 방지)
+- **갱신 1곳 원칙**: 새 기능·섹션은 "이게 바뀔 때 수정 지점이 1곳인가?"를 통과해야 추가한다. 통과 못 하면 build.py 자동화부터.
+- **신규 약속 동결**: 배터리 커리큘럼 4~8단계를 채우기 전까지 새 "준비 중" 섹션·코너를 만들지 않는다. (현재 부채: 커리큘럼 5단계, 재료·시약, 전기화학 입고)
+- **페이지 삭제 = 파일 삭제 + `_redirects` 1홉 301** 한 세트. 파일만 남기고 링크만 끊는 좀비 금지 — 검색 인덱스는 _redirects를 자동 반영한다.
+- 보류 중 결정: 리드플루이드 모델 78페이지 유지/통합 (상세페이지 직접 유입 있어 검토 중).

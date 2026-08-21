@@ -87,12 +87,12 @@
 /alicat    /brands/alicat/   301
 
 # bio 셋업 정리 2026-08 → 논문 사례 목록
-/setups/brain-electrode-tyd01  /setups/  301
-/setups/brain-electrode-tyd01.html  /setups/  301
-/setups/heart-eshp-bt101l  /setups/  301
-/setups/heart-eshp-bt101l.html  /setups/  301
-/setups/catheter-heparin-bt101  /setups/  301
-/setups/catheter-heparin-bt101.html  /setups/  301
+/setups/brain-electrode-tyd01  /magazine/  301
+/setups/brain-electrode-tyd01.html  /magazine/  301
+/setups/heart-eshp-bt101l  /magazine/  301
+/setups/heart-eshp-bt101l.html  /magazine/  301
+/setups/catheter-heparin-bt101  /magazine/  301
+/setups/catheter-heparin-bt101.html  /magazine/  301
 
 # 리드플루이드 재구성(2026-08) — 허브=카드 목록, 상세=/brands/leadfluid/<model>/, 위저드=매거진 글
 /leadfluid/*  /brands/leadfluid/:splat  301
@@ -104,3 +104,9 @@
 
 # 셋업 사례 통합(2026-08) — /setups/ 인덱스를 /magazine/으로 (상세 글은 유지)
 /setups/  /magazine/  301
+
+# 중복 사례 정리(2026-08) — 사본 삭제, 정본으로 1홉 직결
+/setups/alicat-mfc-tubefurnace  /furnace/setups/alicat-mfc-tubefurnace/  301
+/setups/alicat-mfc-tubefurnace.html  /furnace/setups/alicat-mfc-tubefurnace/  301
+/setups/leadfluid-bt101l-plating  /pump/setups/plating-flow-calibration/  301
+/setups/leadfluid-bt101l-plating.html  /pump/setups/plating-flow-calibration/  301

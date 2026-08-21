@@ -883,10 +883,131 @@ def normalize_html_urls():
     print(f'  URL 정규화(.html 제거): {count}개 페이지')
 
 
+def _redirect_sources():
+    """_redirects의 소스 경로 집합 — 검색 인덱스·내부 배선에서 제외용."""
+    path = os.path.join(ROOT_DIR, '_redirects')
+    srcs = set()
+    if os.path.exists(path):
+        for line in read(path).splitlines():
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            parts = line.split()
+            if len(parts) >= 2:
+                srcs.add(parts[0].rstrip('/'))
+    return srcs
+
+
+def build_prices():
+    """가격 SSOT: rndsetup_products.sql(정가)에서 카테고리별 최저가를 계산해
+    index.html의 data-price="key" 스팬과 assets/site.js의 /*P:key*/'...' 마커에 주입.
+    가격 개정 = SQL만 갱신하면 사이트 전체 반영."""
+    sql_path = os.path.join(ROOT_DIR, 'rndsetup_products.sql')
+    if not os.path.exists(sql_path):
+        print('  [skip] rndsetup_products.sql 없음 — 가격 주입 생략')
+        return
+    t = read(sql_path)
+    rows = []
+    for line in t.splitlines():
+        if not line.startswith('INSERT INTO products'):
+            continue
+        m = re.search(r"VALUES \('([^']*)',\d+,'[^']*','[^']*','[^']*','([^']*)','([^']*)'", line)
+        p = re.search(r"'ea',(\d+),(\d+),", line)
+        if m and p:
+            rows.append({'sku': m.group(1), 'daebun': m.group(2), 'sobun': m.group(3),
+                         'retail': int(p.group(2)), 'line': line})
+
+    def min_by(pred, floor=0):
+        vals = [r['retail'] for r in rows if r['retail'] > floor and pred(r)]
+        return min(vals) if vals else None
+
+    prices = {
+        'muffle1050': min_by(lambda r: r['sobun'].startswith('ECO 1050')),
+        'cvdpkg': min_by(lambda r: 'Gas Flow Package' in r['sobun'] and '1200' in r['sobun']),
+        'tube1500': min_by(lambda r: '1500' in r['sobun'] and '튜브전기로' in r['sobun']),
+        'muffle1500': min_by(lambda r: r['sobun'].replace(' ', '').startswith('1500℃전기로') and '진공' not in r['sobun']),
+        'vacmuffle1200': min_by(lambda r: '1200' in r['sobun'] and '진공' in r['sobun'] and '석영' not in r['sobun']),
+        'rotary': min_by(lambda r: '회전튜브' in r['sobun'].replace(' ', '')),
+        'elevator1200': min_by(lambda r: '1200' in r['sobun'] and 'Elevator' in r['sobun']),
+        'bt101s': min_by(lambda r: 'BT101S' in r['sku'], floor=800000),
+        'bt300s': min_by(lambda r: 'BT300S' in r['sku'], floor=800000),
+        'bt600s': min_by(lambda r: 'BT600S' in r['sku'], floor=800000),
+        'ct3001': min_by(lambda r: 'CT3001' in r['sku'], floor=800000),
+        'tyd01': min_by(lambda r: 'TYD01' in r['sku'], floor=800000),
+        'pumplab': min_by(lambda r: r['sobun'] == '연동펌프', floor=800000),
+    }
+
+    def fmt(v):
+        man = v // 10000
+        return f'{man:,}만 원'
+
+    # index.html data-price 스팬 주입
+    hp = os.path.join(ROOT_DIR, 'index.html')
+    h = read(hp)
+    n1 = 0
+    for key, v in prices.items():
+        if not v:
+            continue
+        pat = re.compile(r'(data-price="' + key + r'"[^>]*>)[^<]*(</span>)')
+        h, c = pat.subn(lambda m: m.group(1) + fmt(v) + m.group(2), h)
+        n1 += c
+    write(hp, h)
+
+    # site.js /*P:key*/'...' 마커 주입
+    sp = os.path.join(ROOT_DIR, 'assets', 'site.js')
+    s = read(sp)
+    n2 = 0
+    for key, v in prices.items():
+        if not v:
+            continue
+        pat = re.compile(r"(/\*P:" + key + r"\*/)'[^']*'")
+        s, c = pat.subn(lambda m: m.group(1) + f"'{fmt(v)}~'", s)
+        n2 += c
+    write(sp, s)
+    print(f'  가격 SSOT 주입: index.html {n1}곳 · site.js {n2}곳 (SQL 최저 정가 기준)')
+
+
+def build_new_research():
+    """홈 '최신연구' 레일 — posts.json 최신 6편 자동 렌더 (수동 HTML 유지보수 제거)."""
+    posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
+    hp = os.path.join(ROOT_DIR, 'index.html')
+    if not os.path.exists(posts_path) or not os.path.exists(hp):
+        return
+    posts = json.load(open(posts_path, encoding='utf-8')).get('posts', [])
+    posts = sorted(posts, key=lambda p: p.get('date', ''), reverse=True)[:6]
+    TYPE_LABEL = {'magazine': '논문 셋업', 'setup': '논문 셋업', 'blog': '블로그'}
+    cards = []
+    for p in posts:
+        badge = TYPE_LABEL.get(p.get('type', ''), '글')
+        title = p.get('title', '')
+        # 제목에 유형 힌트가 있으면 유지
+        if '가이드' in title:
+            badge = '가이드'
+        elif '용어사전' in title:
+            badge = '용어사전'
+        img = p.get('image') or '/img/product/sh/tube-1500.jpg'
+        sub = ' · '.join(x for x in (p.get('journal', ''), p.get('model_focus', '')) if x)[:46]
+        cards.append(
+            f'<a class="prod-card nc" href="{escape(p.get("url",""))}">'
+            f'<div class="pimg" style="background-image:url(\'{escape(img)}\')"></div>'
+            f'<div class="pbd"><div class="ps">{escape(badge)}{(" · " + escape(p.get("journal",""))) if p.get("journal") else ""}</div>'
+            f'<div class="pn">{escape(title)}</div>'
+            f'<div class="nd">{escape(p.get("date",""))}{(" · " + escape(p.get("model_focus",""))) if p.get("model_focus") else ""}</div></div></a>'
+        )
+    h = read(hp)
+    h, ok = _inject_between(h, '<!--NEWRESEARCH_START-->', '<!--NEWRESEARCH_END-->', '\n        '.join(cards))
+    if ok:
+        write(hp, h)
+        print(f'  최신연구 레일: posts.json 최신 {len(cards)}편 자동 렌더')
+    else:
+        print('  [warn] NEWRESEARCH 마커 못 찾음')
+
+
 def build_search_index():
     """전 페이지를 스캔해 사이트 검색 인덱스(/search-index.json)를 생성.
     site.js가 fetch해 수동 SEARCH_INDEX와 병합한다. 새 페이지는 빌드만 하면 검색에 잡힘."""
     SKIP_DIRS = {'_build', '.git', 'admin', 'api', 'functions', 'node_modules'}
+    redirected = _redirect_sources()
     entries = []
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
         dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and not d.startswith('.')]
@@ -897,6 +1018,9 @@ def build_search_index():
             rel = os.path.relpath(path, ROOT_DIR).replace('\\', '/')
             if rel in ('404.html', 'inquiry.html', 'recommend.html') or rel.startswith('_'):
                 continue
+            _u = ('/' + rel).replace('/index.html', '').replace('.html', '')
+            if _u.rstrip('/') in redirected or (_u + '/').rstrip('/') in redirected:
+                continue  # 301 처리된 URL은 검색 인덱스에서 제외
             url = '/' + rel
             if url.endswith('/index.html'):
                 url = url[:-10]
@@ -1217,7 +1341,9 @@ def main():
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()
-    build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔
+    build_new_research()  # 홈 최신연구 레일 — posts.json 자동 렌더
+    build_prices()        # 가격 SSOT — SQL 최저가를 index.html·site.js 마커에 주입
+    build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔 (301 소스 제외)
 
     print('\n' + '=' * 60)
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
