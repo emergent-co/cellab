@@ -31,10 +31,9 @@
     { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 보증 신뢰 진단 품질', c:'호환 장비' },
     { t:'연동펌프 유량 캘리브레이션 방법', u:'/pump/atoz/flow-calibration/', k:'유량 캘리브레이션 보정 calibration 연동펌프 설정값 실제유량 드리프트 저울 메스실린더 보정계수 재현성', c:'펌프를 고를 때' },
     { t:'연동펌프 튜브 규격·펌프헤드 가이드', u:'/pump/atoz/tube-size-guide/', k:'튜브 규격 번호 내경 mm 13 14 16 25 17 18 펌프헤드 YT25 YZ35 튜브 재질 실리콘 tygon pharmed viton 연동펌프', c:'펌프를 고를 때' },
-    { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'셋업 사례 — 논문 셋업·가이드·도입 사례', u:'/magazine/', k:'셋업 사례 매거진 논문 셋업 분석 열처리 증착 퍼니스 유체 펌프 공정 조건 장비 magazine setups', c:'셋업 사례' },
     { t:'온도컨트롤러(SP590·NOVA500E) 사용법 가이드', u:'/temp-controller-guide/', k:'온도컨트롤러 sp590 sp570 nova500e 삼원테크 사용법 전기로 온도 설정 승온 유지 하강 반복 hold 무한반복 rs485 가상 시뮬레이터 삼흥에너지', c:'호환 장비' },
-    { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
+    { t:'문의하기 · 자주 묻는 질문(FAQ)', u:'/contact/', k:'문의 상담 수리 개발 견적 실험 질문 faq 가격 할인 납기 배송 설치 보증 정량펌프 연동펌프 튜브 채널 제어 소프트웨어', c:'문의하기' }
   ];
   fetch('/_build/posts.json').then(function (r) { return r.json(); }).then(function (d) {
     (d.posts || []).forEach(function (p) {
@@ -73,12 +72,13 @@
   var NAV = [
     { href:'/magazine/', label:'셋업 사례', icon:'feed' },
     { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
-    { href:'/brands/', label:'제품소개', icon:'devices' },
-    { href:'/manuals/', label:'메뉴얼', icon:'guide' },
-    { href:'/about/', label:'회사소개', icon:'shield' },
+    { href:'/brands/', label:'제품소개', icon:'devices', noclick:true, sub:[
+        ['/brands/',  '제품소개'],
+        ['/manuals/', '메뉴얼']
+      ] },
     { href:'/contact/', label:'문의하기', icon:'contact', noclick:true, sub:[
-        ['/contact/', '문의하기'],
-        ['/faq/',     '자주 묻는 질문(FAQ)']
+        ['/contact/', '문의하기 · FAQ'],
+        ['/about/',   '회사소개']
       ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
@@ -160,9 +160,9 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/brands/leadfluid/">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/brands/leadfluid/">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
-            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a></div>' +
+            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a><a href="/contact/#form">자주 묻는 질문(FAQ)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
@@ -293,19 +293,19 @@
     var art = document.querySelector('article.sd-wrap');
     if (art && !document.querySelector('.art-rail')) {
       var HEAT_PRODS = [
-        { u:'/brands/sh-scientific/muffle-1050/', i:'/img/product/sh/muffle-1050.jpg', n:'ECO 머플로 1050℃', d:'열처리·회화·소성 입문 표준. 프로그램 PID 제어.', d2:'승온 프로그램 · 균일 온도분포 · 국산 정품', p:/*P:muffle1050*/'110만 원~' },
-        { u:'/brands/sh-scientific/gas-flow-package/', i:'/img/product/sh/gas-flow-package.jpg', n:'튜브로 가스플로 패키지', d:'석영튜브+가스라인 통합 — CVD·분위기 소성용.', d2:'1200℃ · 불활성/환원 가스 치환 구성', p:/*P:cvdpkg*/'515만 원~' },
-        { u:'/brands/sh-scientific/tube-1500/', i:'/img/product/sh/tube-1500.jpg', n:'튜브전기로 1500℃', d:'고온 소성·소결. 균일 항온대 보증.', d2:'세라믹·양극재 고온 공정 · 3존 옵션', p:/*P:tube1500*/'780만 원~' },
-        { u:'/brands/sh-scientific/muffle-1500/', i:'/img/product/sh/muffle-1500.jpg', n:'전기로 1500℃', d:'고온 박스로 — 소결·치밀화 공정용.', d2:'4.5~36L 용량 선택 · 프로그램 제어', p:/*P:muffle1500*/'589만 원~' },
-        { u:'/brands/sh-scientific/vacuum-muffle-1200/', i:'/img/product/sh/vacuum-muffle-1200.jpg', n:'진공 머플로 1200℃', d:'진공·분위기 겸용 — 산화 민감 소재 열처리.', d2:'감압 열처리 · 진공펌프 연결 구성(별도)', p:/*P:vacmuffle1200*/'963만 원~' },
-        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:/*P:rotary*/'1,200만 원~' }
+        { u:'/brands/sh-scientific/muffle-1050/', i:'/img/product/sh/muffle-1050.jpg', n:'ECO 머플로 1050℃', d:'열처리·회화·소성 입문 표준. 프로그램 PID 제어.', d2:'승온 프로그램 · 균일 온도분포 · 국산 정품', p:/*P:muffle1050*/'106만 원~' },
+        { u:'/brands/sh-scientific/gas-flow-package/', i:'/img/product/sh/gas-flow-package.jpg', n:'튜브로 가스플로 패키지', d:'석영튜브+가스라인 통합 — CVD·분위기 소성용.', d2:'1200℃ · 불활성/환원 가스 치환 구성', p:/*P:cvdpkg*/'499만 원~' },
+        { u:'/brands/sh-scientific/tube-1500/', i:'/img/product/sh/tube-1500.jpg', n:'튜브전기로 1500℃', d:'고온 소성·소결. 균일 항온대 보증.', d2:'세라믹·양극재 고온 공정 · 3존 옵션', p:/*P:tube1500*/'756만 원~' },
+        { u:'/brands/sh-scientific/muffle-1500/', i:'/img/product/sh/muffle-1500.jpg', n:'전기로 1500℃', d:'고온 박스로 — 소결·치밀화 공정용.', d2:'4.5~36L 용량 선택 · 프로그램 제어', p:/*P:muffle1500*/'571만 원~' },
+        { u:'/brands/sh-scientific/vacuum-muffle-1200/', i:'/img/product/sh/vacuum-muffle-1200.jpg', n:'진공 머플로 1200℃', d:'진공·분위기 겸용 — 산화 민감 소재 열처리.', d2:'감압 열처리 · 진공펌프 연결 구성(별도)', p:/*P:vacmuffle1200*/'934만 원~' },
+        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:/*P:rotary*/'1,164만 원~' }
       ];
       var FLUID_PRODS = [
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt101s-1.jpg', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:/*P:bt101s*/'97만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt300s-1.jpg', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:/*P:bt300s*/'171만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt600s-1.jpg', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:/*P:bt600s*/'219만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/ct3001f-1.jpg', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:/*P:ct3001*/'231만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/tyd01-01-1.jpg', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:/*P:tyd01*/'240만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt101s-1.jpg', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:/*P:bt101s*/'94만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt300s-1.jpg', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:/*P:bt300s*/'166만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt600s-1.jpg', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:/*P:bt600s*/'212만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/ct3001f-1.jpg', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:/*P:ct3001*/'224만 원~' },
+        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/tyd01-01-1.jpg', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:/*P:tyd01*/'232만 원~' },
         { u:'/brands/alicat/', i:'/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg', n:'Alicat 질량유량계(MFC)', d:'가스 유량 sccm 정밀 제어·기록.', d2:'다기체 대응 · Modbus·RS-485 로그', p:'견적 문의' }
       ];
       var crumb = art.querySelector('.sd-crumb');

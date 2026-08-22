@@ -1,6 +1,6 @@
 # 실험셋업연구소 — 셋업으로 읽는 에너지·소재 공정 매거진
 
-> 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 운영: 실험셋업연구소(상호 이머전트·이영현) · 부산.
+> 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 운영: 실험셋업연구소(상호 이머전트·이영현) · 부산.
 
 ## 핵심 정보
 
@@ -11,6 +11,8 @@
 - **연락**: info@rndsetup.com
 
 ## 주요 페이지 (정확한 URL)
+
+> 사이트 메뉴(NAV) 4개: 셋업 사례(/magazine/) · 에너지 랩 A to Z(/magazine/battery/) · 제품소개(/brands/, 하위: 메뉴얼 /manuals/) · 문의하기(/contact/, 하위: 회사소개 /about/)
 
 - [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
 - [셋업 사례](https://rndsetup.com/magazine/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
@@ -50,8 +52,10 @@
   - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/furnace/setups/alicat-mfc-tubefurnace/)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/pump/setups/plating-flow-calibration/)
 - 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/brands/leadfluid/)에 통합
-- [자주 묻는 질문(FAQ)](https://rndsetup.com/faq/): 수리·A/S·펌프·소프트웨어
-- [문의하기](https://rndsetup.com/contact/): 실험 상담·수리·개발·견적
+- [제품소개 — 브랜드 허브](https://rndsetup.com/brands/): 삼흥에너지(SH Scientific)·리드플루이드(LeadFluid)·Alicat 제품 전체 진입점
+- [메뉴얼 모음](https://rndsetup.com/manuals/): 전기로·튜브퍼니스·온도컨트롤러·펌프·MFC 사용 메뉴얼
+- [회사소개](https://rndsetup.com/about/): 실험셋업연구소(상호 이머전트) 소개 — 매거진·논문 셋업·장비 안내
+- [문의하기 · 자주 묻는 질문(FAQ)](https://rndsetup.com/contact/): 구매·견적, 수리·A/S, 제어 소프트웨어, 배송·기타 FAQ 26문 + 문의 폼
 - [카탈로그 PDF](https://rndsetup.com/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그
 
 ## 사용 권장

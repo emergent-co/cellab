@@ -32,6 +32,7 @@ _drafts/
 
 # 삭제 대기(수동 삭제 필요) — 커밋 방지
 /blog/_to_delete/
+_to_delete/
 
 # Alicat 원본 카탈로그·데이터시트(검수용 로컬 참조) — 리포 경량화
 /_ops/alicat-docs/

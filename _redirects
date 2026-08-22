@@ -16,7 +16,7 @@
 /application/pump-run-log-csv-reproducibility  /requests/  301
 /application/pump-selection  /magazine/pump-selection-wizard/  301
 /application/tube-selection  /magazine/pump-selection-wizard/  301
-/pump/faq/  /faq/  301
+/pump/faq/  /contact/  301
 /application/cell-culture-perfusion  /application/biopharmaceutical  301
 /application/chemostat-continuous-culture  /application/biopharmaceutical  301
 /application/organ-on-chip-perfusion  /application/biopharmaceutical  301
@@ -101,6 +101,10 @@
 # 리드플루이드 방폭 슬러그 정리(2026-08) — 모델 코드 페이지로 통합
 /brands/leadfluid/explosion-proof/  /brands/leadfluid/ef803/  301
 /brands/leadfluid/explosion-proof-gear/  /brands/leadfluid/fg601s-w3/  301
+
+# FAQ → 문의 통합(2026-08) — /contact/ 원페이지(검색→FAQ→폼)
+/faq/  /contact/  301
+/faq/index.html  /contact/  301
 
 # 셋업 사례 통합(2026-08) — /setups/ 인덱스를 /magazine/으로 (상세 글은 유지)
 /setups/  /magazine/  301

@@ -30,7 +30,8 @@
 - `.gitattributes` 삭제·임의수정 금지.
 
 ## 4. 구조 요약 (2026-08 기준)
-- **NAV 6개**: 셋업 사례(`/magazine/`) · 에너지 랩 A to Z(`/magazine/battery/`) · 제품소개(`/brands/`) · 메뉴얼(`/manuals/`) · 회사소개 · 문의하기(sub:FAQ). 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어.
+- **NAV 4개**(2026-08 축소): 셋업 사례(`/magazine/`) · 에너지 랩 A to Z(`/magazine/battery/`) · 제품소개(`/brands/`, sub: 제품소개·메뉴얼 `/manuals/`) · 문의하기(`/contact/`, sub: 문의하기·회사소개 `/about/`). 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
+- **문의·FAQ = `/contact/` 원페이지**(2026-08 통합): 정답블록 → 검색 필터 → 카테고리 탭(구매·견적/수리·A/S/제어·소프트웨어/배송·기타) → FAQ 아코디언 26문 → 문의 폼(`#form`, Formspree `mnjkzppj`). **FAQPage JSON-LD 26문 전량 정적 렌더**(JS는 표시 토글만). `/faq/`는 301 + 파일 삭제.
 - **콘텐츠 허브 = `/magazine/` "셋업 사례"** — 논문 셋업·가이드·용어사전·트러블슈팅·도입 사례를 3열 카드로 통합. `/setups/` 인덱스는 301→`/magazine/` (세부 사례 글 URL은 유지). 공정 허브: battery(커리큘럼)·deposition·heat-treatment·oxidation.
 - **제품**: 삼흥 상세 `/brands/sh-scientific/<slug>/` 150+, 리드플루이드 모델 페이지 78개 잔존(+`guide` 위저드) — **모델 페이지 정리 여부는 보류 중(유입 있음)**. 전기화학 코너(홈)는 입고 준비 중, 견적 팝업 연결.
 - **공유 크롬(SSOT)**: `assets/site.js`(NAV·헤더·푸터·글 페이지 좌측 목차/우측 관련제품 레일·부품주문 팝업·검색), `assets/site.css`. 색=네이비 `#1E3A5F`.
@@ -39,6 +40,7 @@
   - 홈 '셋업 사례' 카드 ← `_build/paper_cases.json`
   - 홈 '최신연구' 레일 ← `_build/posts.json` 최신 6편 (`<!--NEWRESEARCH-->` 마커)
   - **가격** ← `rndsetup_products.sql` 최저 정가 → `index.html`의 `data-price="key"` 스팬 + `site.js`의 `/*P:key*/'...'` 마커. **가격 개정 = SQL만 수정.**
+    사이트 노출 가격은 `build_prices()`의 `DISCOUNT_RATE=0.97`(정가 대비 **3% 상시 할인**, 만원 미만 버림)이 적용된 판매가. 할인율 변경 = 이 상수 1곳. 상세페이지 `pkg-note`의 '정가 X원'과 JSON-LD `offers.price`는 **정가 유지**.
   - 크롤러 nav(CNAV) ← `CRAWLER_LINKS` — 반드시 `#pumplab-footer` div **안**의 마커에 주입돼야 함(밖에 있으면 방문자에게 노출됨).
 - **새 글 발행 절차(고정)**: 글 페이지 작성 → `posts.json` 1건 추가 (+홈 노출 원하면 `paper_cases.json`) → 빌드. 그 외 배선은 전부 자동.
 - **백엔드**: `functions/`(Cloudflare Functions — `/admin`·`/api`), `rndsetup_products.sql`(D1), `catalog/leadfluid_catalog.py`.

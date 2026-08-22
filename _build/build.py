@@ -426,14 +426,13 @@ CRAWLER_LINKS = [
     ('/furnace/setups/alicat-mfc-tubefurnace/', '1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례'),
     ('/compare/imported-peristaltic-alternative/', 'Masterflex·Watson-Marlow 연동펌프 국내 대안'),
     ('/trust/', '믿고 도입할 때 (국내 A/S·정품·보증)'),
-    ('/faq/', '자주 묻는 질문(FAQ)'),
-    ('/contact/', '문의하기'),
+    ('/contact/', '문의하기 · 자주 묻는 질문(FAQ) — 견적·수리 A/S·제어 소프트웨어'),
 ]
 
 
 def _crawler_nav_html():
     def grp(h):
-        if h.startswith('/setups/') or h.startswith('/magazine/') or h.startswith('/compare/') or h in ('/', '/trust/', '/faq/', '/contact/'):
+        if h.startswith('/setups/') or h.startswith('/magazine/') or h.startswith('/compare/') or h in ('/', '/trust/', '/contact/'):
             return '사례·신뢰'
         if h.startswith('/pumps/') or h.startswith('/pump/') or h.startswith('/brands/leadfluid/') or h.startswith('/troubleshooting/') or h in ('/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
             return '펌프·제어'
@@ -468,7 +467,7 @@ def inject_setup_cta():
     }  # 매거진 논문글(명시적으로만)
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        if '_build' in dirpath.split(os.sep):
+        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         rel_dir = os.path.relpath(dirpath, ROOT_DIR).replace(os.sep, '/')
         in_setup_dir = rel_dir in ('setups', 'furnace/setups', 'pump/setups') or \
@@ -518,7 +517,7 @@ def inject_static_nav():
     START, END = '<!--CNAV_START-->', '<!--CNAV_END-->'
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        if '_build' in dirpath.split(os.sep):
+        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         for fn in filenames:
             if not fn.endswith('.html'):
@@ -734,7 +733,7 @@ ORG_WEBSITE_GRAPH = {
             "founder": {"@type": "Person", "name": "이영현"},
             "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"],
             "slogan": "셋업으로 읽는 에너지·소재 공정 매거진",
-            "description": "논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비가 필요하면 문의 시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
+            "description": "논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "부산광역시",
@@ -767,14 +766,13 @@ ORG_WEBSITE_GRAPH = {
 }
 
 BREADCRUMB_SECTIONS = {
-    'magazine': ('매거진', '/magazine/'),
+    'magazine': ('셋업 사례', '/magazine/'),
     'application': ('실험 가이드', '/application/'),
     'pumps': ('펌프 종류', '/pumps/'),
-    'setups': ('연구별 셋업', '/setups/'),
+    'setups': ('셋업 사례', '/magazine/'),
     'requests': ('소프트웨어 제어', '/requests/'),
     'trust': ('믿고 도입할 때', '/trust/'),
     'contact': ('문의하기', '/contact/'),
-    'faq': ('자주 묻는 질문(FAQ)', '/faq/'),
     'gas': ('기체', '/gas/'),
     'alicat': ('ALICAT', '/brands/alicat/'),
     'sh-scientific': ('삼흥에너지', '/brands/sh-scientific/guide/'),
@@ -801,9 +799,15 @@ def _page_title_short(html):
 def _breadcrumb_ld(rel, html):
     rel = rel.replace(os.sep, '/')
     parts = rel.split('/')
-    if rel == 'index.html' or len(parts) != 2:
+    if rel == 'index.html':
         return None
-    seg, fn = parts[0], parts[1]
+    if len(parts) == 3 and parts[2] == 'index.html':
+        # 클린 URL 글 페이지: <section>/<slug>/index.html (예: magazine/<slug>/)
+        seg, fn = parts[0], parts[1] + '/'
+    elif len(parts) == 2:
+        seg, fn = parts[0], parts[1]
+    else:
+        return None
     if seg == 'application':
         if fn in PUMP_GUIDE_FILES:
             sec_name, sec_url = '펌프 종류', '/pumps/'
@@ -819,9 +823,10 @@ def _breadcrumb_ld(rel, html):
         {"@type": "ListItem", "position": 1, "name": "홈", "item": BASE_URL_LD + "/"},
         {"@type": "ListItem", "position": 2, "name": sec_name, "item": BASE_URL_LD + sec_url},
     ]
-    if fn != 'index.html' and ('/' + rel) != sec_url:
+    rel_url = '/' + (rel[:-len('index.html')] if rel.endswith('/index.html') else rel)
+    if fn != 'index.html' and rel_url != sec_url:
         leaf = _page_title_short(html) or fn
-        items.append({"@type": "ListItem", "position": 3, "name": leaf, "item": BASE_URL_LD + '/' + rel})
+        items.append({"@type": "ListItem", "position": 3, "name": leaf, "item": BASE_URL_LD + rel_url})
     return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items}
 
 
@@ -832,7 +837,7 @@ def inject_head_schema():
     org_json = json.dumps(ORG_WEBSITE_GRAPH, ensure_ascii=False).replace('</', '<\\/')
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        if '_build' in dirpath.split(os.sep):
+        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         for fn in filenames:
             if not fn.endswith('.html'):
@@ -866,7 +871,7 @@ def normalize_html_urls():
     리다이렉트 스텁(meta refresh)은 제외(그 자체가 옛 .html URL을 처리)."""
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        if '_build' in dirpath.split(os.sep):
+        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         for fn in filenames:
             if not fn.endswith('.html'):
@@ -911,11 +916,11 @@ def build_prices():
     for line in t.splitlines():
         if not line.startswith('INSERT INTO products'):
             continue
-        m = re.search(r"VALUES \('([^']*)',\d+,'[^']*','[^']*','[^']*','([^']*)','([^']*)'", line)
+        m = re.search(r"VALUES \('([^']*)',\d+,'[^']*','[^']*','[^']*','([^']*)','([^']*)','([^']*)'", line)
         p = re.search(r"'ea',(\d+),(\d+),", line)
         if m and p:
             rows.append({'sku': m.group(1), 'daebun': m.group(2), 'sobun': m.group(3),
-                         'retail': int(p.group(2)), 'line': line})
+                         'model': m.group(4), 'retail': int(p.group(2)), 'line': line})
 
     def min_by(pred, floor=0):
         vals = [r['retail'] for r in rows if r['retail'] > floor and pred(r)]
@@ -932,13 +937,17 @@ def build_prices():
         'bt101s': min_by(lambda r: 'BT101S' in r['sku'], floor=800000),
         'bt300s': min_by(lambda r: 'BT300S' in r['sku'], floor=800000),
         'bt600s': min_by(lambda r: 'BT600S' in r['sku'], floor=800000),
-        'ct3001': min_by(lambda r: 'CT3001' in r['sku'], floor=800000),
+        'ct3001': min_by(lambda r: 'CT3001' in r['sku'] or 'CT3001' in r['model'], floor=800000),
         'tyd01': min_by(lambda r: 'TYD01' in r['sku'], floor=800000),
         'pumplab': min_by(lambda r: r['sobun'] == '연동펌프', floor=800000),
     }
 
+    # 정가 대비 3% 상시 할인 — 사이트 노출 가격은 모두 할인가 기준(만원 미만 버림)
+    DISCOUNT_RATE = 0.97
+
     def fmt(v):
-        man = v // 10000
+        sale = int(v * DISCOUNT_RATE)
+        man = sale // 10000
         return f'{man:,}만 원'
 
     # index.html data-price 스팬 주입
@@ -1006,7 +1015,7 @@ def build_new_research():
 def build_search_index():
     """전 페이지를 스캔해 사이트 검색 인덱스(/search-index.json)를 생성.
     site.js가 fetch해 수동 SEARCH_INDEX와 병합한다. 새 페이지는 빌드만 하면 검색에 잡힘."""
-    SKIP_DIRS = {'_build', '.git', 'admin', 'api', 'functions', 'node_modules'}
+    SKIP_DIRS = {'_build', '_to_delete', '.git', 'admin', 'api', 'functions', 'node_modules'}
     redirected = _redirect_sources()
     entries = []
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
@@ -1250,7 +1259,6 @@ def main():
         ('pump/atoz/tubing-crush-tear-causes/', '0.7', 'monthly'),
         ('pump/atoz/flow-calibration/', '0.7', 'monthly'),  # 유량 캘리브레이션 (무주공산)
         ('pump/atoz/tube-size-guide/', '0.7', 'monthly'),  # 튜브 규격·펌프헤드 (무주공산)
-        ('faq/',          '0.7', 'monthly'),  # FAQ
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
         ('brands/alicat/',       '0.9', 'weekly'),   # Alicat 제품 카탈로그(카드)
         ('brands/alicat/mc-series/','0.8', 'monthly'),
@@ -1301,7 +1309,34 @@ def main():
         ('application/environmental.html', '0.8', 'monthly'),
         # 응용 가이드 6편(관류·연속배양·광배양·flowchem·장기칩·PC제어)은 posts.json(type=guide) 루프가 추가 — 중복 방지
     ]
-    for path, prio, freq in static_pages:
+    # 브랜드 상세페이지 자동 등재(갱신 1곳 원칙) — brands/<brand>/<slug>/index.html 를 스캔해
+    # static_pages에 없는 것만 추가한다. 새 제품페이지를 만들면 빌드만으로 sitemap에 들어간다.
+    # 제외: 리다이렉트 스텁(meta refresh)·noindex·_redirects 301 소스.
+    _known = {p.rstrip('/') + '/' for p, _, _ in static_pages}
+    _red_srcs = _redirect_sources()
+    _auto = []
+    _bdir = os.path.join(ROOT_DIR, 'brands')
+    if os.path.isdir(_bdir):
+        for brand in sorted(os.listdir(_bdir)):
+            bpath = os.path.join(_bdir, brand)
+            if not os.path.isdir(bpath):
+                continue
+            for slug in sorted(os.listdir(bpath)):
+                idx = os.path.join(bpath, slug, 'index.html')
+                if not os.path.isfile(idx):
+                    continue
+                rel = f'brands/{brand}/{slug}/'
+                if rel in _known:
+                    continue
+                if ('/' + rel) in _red_srcs or ('/' + rel).rstrip('/') in _red_srcs:
+                    continue
+                head = read(idx)[:4000]
+                if 'http-equiv="refresh"' in head or 'noindex' in head:
+                    continue
+                _auto.append((rel, '0.8', 'monthly'))
+    if _auto:
+        print(f'  sitemap 자동 등재(브랜드 상세): {len(_auto)}개')
+    for path, prio, freq in list(static_pages) + _auto:
         loc = (base_url + path).replace('.html', '')  # CF 클린 URL(.html 없이 서빙)에 맞춤
         sitemap_lines.append(
             f'  <url>\n    <loc>{loc}</loc>\n    <lastmod>{build_date}</lastmod>\n    <priority>{prio}</priority>\n    <changefreq>{freq}</changefreq>\n  </url>'
