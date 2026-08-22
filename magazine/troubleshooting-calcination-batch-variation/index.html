@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 트러블슈팅 | 실험셋업연구소</title>
-<meta name="description" content="같은 퍼니스, 같은 레시피인데 소성·하소 결과가 배치마다 다른 이유 7가지 — 승온 편차, 균열구간 이탈, 적재량·분말 층 두께, 가스 유량 드리프트, 분위기 전환 타이밍, 흡습·잔류 수분, 튜브 오염·리크. 배터리 양극재·세라믹·촉매·분말 원소재 공통 점검표.">
+<meta name="description" content="같은 퍼니스, 같은 레시피인데 소성·하소 결과가 배치마다 다른 이유 7가지를 정리했습니다. 승온 편차, 균열구간 이탈, 적재량·분말 층 두께, 가스 유량 드리프트, 분위기 전환 타이밍, 흡습·잔류 수분, 튜브 오염·리크. 배터리 양극재·세라믹·촉매·분말 원소재 공통 점검표.">
 <link rel="canonical" href="https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="소성 배치마다 결과가 다른 7가지 이유 — 에너지·소재 열처리 트러블슈팅">
-<meta property="og:description" content="퍼니스 탓이 아닌 경우가 대부분입니다. 승온·위치·적재·유량·분위기 전환·수분·리크 — 7항목 점검표로 배치 편차를 잡는 법.">
+<meta property="og:description" content="퍼니스 탓이 아닌 경우가 대부분입니다. 승온·위치·적재·유량·분위기 전환·수분·리크, 7항목 점검표로 배치 편차를 잡는 법.">
 <meta property="og:url" content="https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/">
 <meta property="og:image" content="https://rndsetup.com/img/rnd-guide.jpg">
 <script type="application/ld+json">
@@ -25,7 +25,7 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"같은 레시피인데 소성 결과가 배치마다 다른 이유는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"대부분 퍼니스 고장이 아니라 셋업·운영 변수입니다. 7가지를 점검하세요 — ① 승온 편차(PID·오토튜닝), ② 시료가 균열구간(uniform zone)을 벗어남, ③ 적재량·분말 층 두께 변화, ④ 수동 유량계 드리프트, ⑤ 분위기 전환 타이밍 불일치, ⑥ 전구체 흡습·잔류 수분, ⑦ 튜브 오염·씰링 리크. 배터리 양극재·세라믹·촉매·분말 원소재 공통입니다."}},
+{"@type":"Question","name":"같은 레시피인데 소성 결과가 배치마다 다른 이유는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"대부분 퍼니스 고장이 아니라 셋업·운영 변수입니다. 7가지를 점검하세요. ① 승온 편차(PID·오토튜닝), ② 시료가 균열구간(uniform zone)을 벗어남, ③ 적재량·분말 층 두께 변화, ④ 수동 유량계 드리프트, ⑤ 분위기 전환 타이밍 불일치, ⑥ 전구체 흡습·잔류 수분, ⑦ 튜브 오염·씰링 리크입니다. 배터리 양극재·세라믹·촉매·분말 원소재 공통입니다."}},
 {"@type":"Question","name":"배치 편차를 줄이는 가장 효과적인 방법은 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"변수를 '기록되는 자동 제어'로 바꾸는 것입니다. 가스 유량을 로터미터 대신 MFC로, 분위기 전환을 수동 밸브 대신 프로그램으로, 온도·유량을 하나의 CSV 로그로 남기면 배치 간 차이의 원인을 데이터로 추적할 수 있습니다."}}
 ]}
 </script>
@@ -51,12 +51,12 @@
   <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:6px 0 2px">실험셋업연구소 매거진 · 트러블슈팅 · 글 이영현 · <time datetime="2026-08-09">2026년 8월 9일</time> 발행 · 읽는 시간 약 6분</div>
 
   <div class="sd-answer">
-    <b>같은 레시피인데 배치마다 결과가 다르면, 퍼니스 고장보다 셋업·운영 변수부터 점검합니다.</b> 순서는 ① 승온 편차 ② 균열구간 이탈 ③ 적재량·층 두께 ④ 유량 드리프트 ⑤ 분위기 전환 타이밍 ⑥ 흡습·잔류 수분 ⑦ 튜브 오염·리크 — 배터리 양극재·세라믹·촉매·분말 원소재 모두 같은 7항목입니다.
+    <b>같은 레시피인데 배치마다 결과가 다르면, 퍼니스 고장보다 셋업·운영 변수부터 점검합니다.</b> 순서는 ① 승온 편차 ② 균열구간 이탈 ③ 적재량·층 두께 ④ 유량 드리프트 ⑤ 분위기 전환 타이밍 ⑥ 흡습·잔류 수분 ⑦ 튜브 오염·리크이며, 배터리 양극재·세라믹·촉매·분말 원소재 모두 같은 7항목입니다.
   </div>
 
   <div class="sd-body">
     <h2>전제 — "퍼니스 탓"인 경우는 드뭅니다</h2>
-    <p>열처리 결과(상순도·입도·비표면적·색·수율)가 배치마다 흔들릴 때 장비 A/S부터 부르는 경우가 많지만, 발열체·컨트롤러 고장은 보통 "재현되는 오차"를 만듭니다. <b>배치마다 다르게 나오는 편차는 대부분 매 배치 달라지는 변수</b> — 시료를 놓는 위치, 담는 양, 손으로 맞추는 가스, 전구체 보관 상태 — 에서 나옵니다. 아래 7항목을 위에서부터 순서대로 점검하세요.</p>
+    <p>열처리 결과(상순도·입도·비표면적·색·수율)가 배치마다 흔들릴 때 장비 A/S부터 부르는 경우가 많지만, 발열체·컨트롤러 고장은 보통 "재현되는 오차"를 만듭니다. <b>배치마다 다르게 나오는 편차는 대부분 매 배치 달라지는 변수</b>(시료를 놓는 위치, 담는 양, 손으로 맞추는 가스, 전구체 보관 상태)에서 나옵니다. 아래 7항목을 위에서부터 순서대로 점검하세요.</p>
 
     <h2>7항목 점검</h2>
 
@@ -73,7 +73,7 @@
     <p>수동 유량계(로터미터)는 공급압 변동·눈금 읽기에 따라 설정이 흔들리고, 기록이 남지 않아 흔들렸는지조차 알 수 없습니다. 분위기가 결과를 좌우하는 공정에서 가장 흔한 숨은 변수입니다. <b>점검:</b> 봄베 교체·레귤레이터 압력 변경 이력과 결과 편차가 겹치는지 확인. 근본 대책은 <a href="/brands/alicat/">MFC</a>로 바꿔 유량을 로그로 남기는 것.</p></div>
 
     <div class="ts-item"><h3><span class="n">5</span>분위기 전환·퍼지 타이밍이 매번 같은가</h3>
-    <p>승온 전 퍼지 시간, 가스 전환 시점을 손으로 맞추면 배치마다 수 분~수십 분씩 달라집니다. 좁은 산소 분압 창을 쓰는 소재는 이 차이로 상순도가 갈립니다 — <a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 셋업(Nature Comms 2025)</a>이 전환 타이밍 자체를 실험 변수로 다룬 사례입니다. <b>점검:</b> 퍼지 시간·전환 시점을 절차서에 숫자로 박고, 가능하면 다채널 MFC 프로그램으로 자동화.</p></div>
+    <p>승온 전 퍼지 시간, 가스 전환 시점을 손으로 맞추면 배치마다 수 분~수십 분씩 달라집니다. 좁은 산소 분압 창을 쓰는 소재는 이 차이로 상순도가 갈리며, <a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 셋업(Nature Comms 2025)</a>이 전환 타이밍 자체를 실험 변수로 다룬 사례입니다. <b>점검:</b> 퍼지 시간·전환 시점을 절차서에 숫자로 박고, 가능하면 다채널 MFC 프로그램으로 자동화.</p></div>
 
     <div class="ts-item"><h3><span class="n">6</span>전구체가 습기를 먹지 않았는가</h3>
     <p>흡습성 전구체(수산화물·질산염 등)는 보관 기간·계절 습도에 따라 실제 장입되는 유효 성분량과 탈수 거동이 달라집니다. "장마철에만 이상하다", "새 시약병에서만 좋다"면 이것입니다. <b>점검:</b> 데시케이터·건조 보관 표준화, 필요 시 장입 전 건조 스텝을 레시피에 추가.</p></div>
@@ -92,12 +92,12 @@
         <tr><td>불활성 공정인데 산화 흔적</td><td>⑦ 리크 · ④ 유량 부족</td></tr>
       </tbody>
     </table>
-    <p class="msc-note">④·⑤가 의심되면 결론은 같습니다 — 손 관리 변수를 <b>기록되는 자동 제어(MFC + 로그)</b>로 바꾸는 것. 장비 선정 기준은 <a href="/magazine/guide-calcination-furnace-atmosphere/">소성 퍼니스·분위기 선정 가이드</a> 참고.</p>
+    <p class="msc-note">④·⑤가 의심되면 결론은 같습니다. 손 관리 변수를 <b>기록되는 자동 제어(MFC + 로그)</b>로 바꾸는 것입니다. 장비 선정 기준은 <a href="/magazine/guide-calcination-furnace-atmosphere/">소성 퍼니스·분위기 선정 가이드</a> 참고.</p>
   </div>
 
   <div class="sd-bridge">
     <h2>편차 원인을 셋업으로 없애 드립니다</h2>
-    <p>증상 패턴(위 표 기준)과 현재 장비 구성만 알려주시면, 실험셋업연구소가 원인 후보를 좁히고 필요한 부분만 — MFC 유량 자동화, 분위기 전환 프로그램, 온도×유량 통합 로그 — 셋업으로 구성해 견적까지 안내해 드립니다.</p>
+    <p>증상 패턴(위 표 기준)과 현재 장비 구성만 알려주시면, 실험셋업연구소가 원인 후보를 좁히고 필요한 부분만(MFC 유량 자동화, 분위기 전환 프로그램, 온도×유량 통합 로그) 셋업으로 구성해 견적까지 안내해 드립니다.</p>
     <a href="/contact/?setup=%EC%86%8C%EC%84%B1%20%EB%B0%B0%EC%B9%98%20%ED%8E%B8%EC%B0%A8%20%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%20%EC%83%81%EB%8B%B4#general" style="display:inline-block;background:#1E3A5F;color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:9px;text-decoration:none">배치 편차 상담하기 &rarr;</a>
   </div>
 
@@ -111,7 +111,7 @@
   <div class="sd-related">
     <h3>관련 콘텐츠</h3>
     <div class="sd-rel-grid">
-      <a class="sd-rc" href="/magazine/guide-calcination-furnace-atmosphere/"><div class="cat">가이드 · 장비 선정</div><div class="t">소성·하소용 튜브퍼니스·가스 분위기 고르는 법</div><div class="d">편차를 애초에 막는 선정 5축 — 이 글의 예방편.</div></a>
+      <a class="sd-rc" href="/magazine/guide-calcination-furnace-atmosphere/"><div class="cat">가이드 · 장비 선정</div><div class="t">소성·하소용 튜브퍼니스·가스 분위기 고르는 법</div><div class="d">편차를 애초에 막는 선정 5축. 이 글의 예방편.</div></a>
       <a class="sd-rc" href="/magazine/sodium-cathode-atmosphere-dca/"><div class="cat">논문 셋업 · 소성</div><div class="t">소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업</div><div class="d">⑤번 항목(전환 타이밍)이 실험 변수였던 실제 사례.</div></a>
       <a class="sd-rc" href="/furnace/setups/alicat-mfc-tubefurnace/"><div class="cat">도입 사례</div><div class="t">1500℃ 튜브퍼니스 + Alicat MFC 가스 분위기 제어</div><div class="d">④·⑤를 자동 제어로 바꾼 도입 사례.</div></a>
     </div>

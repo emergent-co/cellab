@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정) | 실험셋업연구소</title>
-<meta name="description" content="에너지·소재 공정(배터리 양극재·세라믹·촉매·분말 원소재)에서 쓰는 열처리·가스 유량 용어 정리 — 하소·소성·소결·어닐링 차이, sccm·slm 뜻, MFC와 로터미터 차이, 균열구간(uniform zone), 산소 분압, 퍼지, 동적 분위기 제어(DCA)까지 한 페이지 사전.">
+<meta name="description" content="에너지·소재 공정(배터리 양극재·세라믹·촉매·분말 원소재)에서 쓰는 열처리·가스 유량 용어를 정리했습니다. 하소·소성·소결·어닐링 차이, sccm·slm 뜻, MFC와 로터미터 차이, 균열구간(uniform zone), 산소 분압, 퍼지, 동적 분위기 제어(DCA)까지 한 페이지 사전.">
 <link rel="canonical" href="https://rndsetup.com/magazine/glossary-heat-gas-terms/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전">
@@ -29,8 +29,8 @@
 {"@type":"DefinedTerm","name":"소성(firing)","description":"목표 상(相)·결정 구조를 만들기 위한 고온 열처리의 통칭. 배터리 양극재 합성의 핵심 단계로, 하소·결정화를 포함해 넓게 쓰인다."},
 {"@type":"DefinedTerm","name":"소결(sintering)","description":"녹는점 아래 온도에서 분말 입자를 서로 붙여 치밀한 덩어리로 만드는 열처리. 목적은 치밀화·강도이며 세라믹 공정의 핵심."},
 {"@type":"DefinedTerm","name":"어닐링/소둔(annealing)","description":"가열 후 서서히 식혀 내부 응력·결함을 줄이고 결정성을 높이는 열처리."},
-{"@type":"DefinedTerm","name":"sccm","description":"standard cubic centimeters per minute — 표준상태(기준 온도·압력) 환산 cm³/min 가스 유량 단위. 1000 sccm = 1 slm."},
-{"@type":"DefinedTerm","name":"slm","description":"standard liters per minute — 표준상태 환산 L/min 가스 유량 단위."},
+{"@type":"DefinedTerm","name":"sccm","description":"standard cubic centimeters per minute의 약자로, 표준상태(기준 온도·압력) 환산 cm³/min 가스 유량 단위입니다. 1000 sccm = 1 slm."},
+{"@type":"DefinedTerm","name":"slm","description":"standard liters per minute의 약자로, 표준상태 환산 L/min 가스 유량 단위입니다."},
 {"@type":"DefinedTerm","name":"MFC(질량유량계)","description":"가스의 질량 유량을 측정·자동 제어하는 장치. 압력·온도가 변해도 설정 유량을 유지하고 로그를 남길 수 있어 로터미터를 대체한다."},
 {"@type":"DefinedTerm","name":"로터미터","description":"부유식 수동 유량계. 저렴하지만 공급압·온도에 따라 지시값이 흔들리고 기록이 남지 않는다."},
 {"@type":"DefinedTerm","name":"균열구간(uniform zone)","description":"튜브퍼니스 가열부 중 온도 균일성이 보증되는 중앙 구간. 시료는 이 안에 두어야 한다."},
@@ -76,7 +76,7 @@
     <p>열로 <b>휘발 성분을 분해·제거</b>하는 열처리. 수산화물→산화물, 탄산염→산화물+CO₂처럼 전구체를 분해하는 단계입니다. 녹이는 게 목적이 아니라 "빼내는" 게 목적. 촉매 제조에서 특히 많이 쓰는 표현입니다.</p></div>
 
     <div class="gl-term" id="firing"><h3>소성 <small>firing · 燒成</small></h3>
-    <p><b>목표 상(相)·결정 구조를 만드는 고온 열처리의 통칭.</b> 배터리 양극재 합성의 핵심 단계로, 실무·논문에서는 하소~결정화를 묶어 넓게 "소성"이라 부르는 경우가 많습니다. 분위기(공기·O₂·불활성)와 승온·유지 스케줄이 결과를 좌우합니다 — <a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 소성 셋업</a>이 대표 사례.</p></div>
+    <p><b>목표 상(相)·결정 구조를 만드는 고온 열처리의 통칭.</b> 배터리 양극재 합성의 핵심 단계로, 실무·논문에서는 하소~결정화를 묶어 넓게 "소성"이라 부르는 경우가 많습니다. 분위기(공기·O₂·불활성)와 승온·유지 스케줄이 결과를 좌우하며, <a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 소성 셋업</a>이 대표 사례입니다.</p></div>
 
     <div class="gl-term" id="sintering"><h3>소결 <small>sintering · 燒結</small></h3>
     <p><b>녹는점 아래</b> 온도에서 분말 입자들이 서로 붙어 <b>치밀한 덩어리</b>가 되는 열처리. 목적은 치밀화·강도이며 세라믹 공정의 핵심입니다. 하소·소성보다 높은 온도대(세라믹 기준 대략 1200℃~)를 쓰는 경우가 많습니다.</p></div>
@@ -93,7 +93,7 @@
         <tr><td>어닐링</td><td>응력 제거·결정성 향상</td><td>금속·박막</td></tr>
       </tbody>
     </table>
-    <p class="msc-note">같은 장비(튜브퍼니스·박스로)로 네 공정을 모두 할 수 있습니다 — 다른 것은 온도·분위기·스케줄. 장비 선정 기준은 <a href="/magazine/guide-calcination-furnace-atmosphere/">선정 가이드</a> 참고.</p>
+    <p class="msc-note">같은 장비(튜브퍼니스·박스로)로 네 공정을 모두 할 수 있으며, 다른 것은 온도·분위기·스케줄입니다. 장비 선정 기준은 <a href="/magazine/guide-calcination-furnace-atmosphere/">선정 가이드</a> 참고.</p>
 
     <h2>가스·유량 용어 — 사양서를 읽는 데 필요한 만큼만</h2>
 
@@ -101,7 +101,7 @@
     <p><b>표준상태(기준 온도·압력)로 환산한 가스 유량</b> 단위. 1000 sccm = 1 slm. "표준" 환산이므로 로 안의 실제 부피 유량과는 다르고, 제조사마다 기준 조건(0℃/25℃ 등)이 다를 수 있어 장비 간 비교 시 기준 확인이 필요합니다. 논문의 "50 sccm N₂"는 이 단위입니다.</p></div>
 
     <div class="gl-term" id="mfc"><h3>MFC vs 로터미터 <small>mass flow controller vs rotameter</small></h3>
-    <p><b>로터미터</b>는 부유식 수동 유량계 — 저렴하지만 공급압에 따라 흔들리고 기록이 없습니다. <b>MFC(질량유량계)</b>는 질량 기준으로 측정·자동 제어 — 압력이 변해도 설정 유량을 유지하고 로그를 남깁니다. 혼합비·전환이 변수인 공정이라면 MFC가 사실상 필수입니다(<a href="/magazine/troubleshooting-calcination-batch-variation/">배치 편차 4번 항목</a>).</p></div>
+    <p><b>로터미터</b>는 부유식 수동 유량계로, 저렴하지만 공급압에 따라 흔들리고 기록이 없습니다. <b>MFC(질량유량계)</b>는 질량 기준으로 측정·자동 제어하며, 압력이 변해도 설정 유량을 유지하고 로그를 남깁니다. 혼합비·전환이 변수인 공정이라면 MFC가 사실상 필수입니다(<a href="/magazine/troubleshooting-calcination-batch-variation/">배치 편차 4번 항목</a>).</p></div>
 
     <div class="gl-term" id="po2"><h3>산소 분압 <small>pO₂ · oxygen partial pressure</small></h3>
     <p>분위기 중 산소의 부분압. <b>소재의 산화상태를 결정하는 실질 변수</b>로, "2% O₂"처럼 O₂/불활성 혼합비로 만듭니다. 좁은 분압 창이 필요한 소재(일부 양극재 등)는 MFC 비율 제어가 필요합니다.</p></div>
@@ -127,7 +127,7 @@
   <div class="sd-related">
     <h3>관련 콘텐츠</h3>
     <div class="sd-rel-grid">
-      <a class="sd-rc" href="/magazine/guide-calcination-furnace-atmosphere/"><div class="cat">가이드 · 장비 선정</div><div class="t">소성·하소용 튜브퍼니스·가스 분위기 고르는 법</div><div class="d">용어 다음 단계 — 실제 장비를 고르는 5축 기준.</div></a>
+      <a class="sd-rc" href="/magazine/guide-calcination-furnace-atmosphere/"><div class="cat">가이드 · 장비 선정</div><div class="t">소성·하소용 튜브퍼니스·가스 분위기 고르는 법</div><div class="d">용어 다음 단계로, 실제 장비를 고르는 5축 기준.</div></a>
       <a class="sd-rc" href="/magazine/troubleshooting-calcination-batch-variation/"><div class="cat">트러블슈팅</div><div class="t">소성 배치마다 결과가 다른 7가지 이유</div><div class="d">퍼지·유량·균열구간이 실제로 문제 되는 장면들.</div></a>
       <a class="sd-rc" href="/magazine/sodium-cathode-atmosphere-dca/"><div class="cat">논문 셋업 · 소성</div><div class="t">소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업</div><div class="d">DCA·산소 분압·sccm이 전부 등장하는 실전 사례.</div></a>
     </div>

@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정) | 실험셋업연구소</title>
-<meta name="description" content="에너지·소재 공정(흐름전지 전해액 순환, 양극재 전구체 공침, 슬러리·분산액, 부식성 용액, 수처리 정량 투입)의 펌프 선정 기준 — 유량·정밀도, 유체 성질, 접액 재질, 맥동·전단, 채널 수·제어까지 5가지 축과 공정별 펌프 유형표(연동·시린지·기어)를 정리한 가이드.">
+<meta name="description" content="에너지·소재 공정(흐름전지 전해액 순환, 양극재 전구체 공침, 슬러리·분산액, 부식성 용액, 수처리 정량 투입)의 펌프 선정 기준을 유량·정밀도, 유체 성질, 접액 재질, 맥동·전단, 채널 수·제어까지 5가지 축으로 정리하고 공정별 펌프 유형표(연동·시린지·기어)를 담은 가이드.">
 <link rel="canonical" href="https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어">
-<meta property="og:description" content="유량·유체 성질·접액 재질·맥동·채널 제어 — 5가지 축으로 공정에 맞는 펌프를 고르는 법. 흐름전지·공침·슬러리·수처리까지.">
+<meta property="og:description" content="유량·유체 성질·접액 재질·맥동·채널 제어, 5가지 축으로 공정에 맞는 펌프를 고르는 법. 흐름전지·공침·슬러리·수처리까지.">
 <meta property="og:url" content="https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/">
 <meta property="og:image" content="https://rndsetup.com/img/pump-guide.jpg">
 <script type="application/ld+json">
@@ -25,7 +25,7 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"실험용 펌프는 무엇을 기준으로 고르나요?","acceptedAnswer":{"@type":"Answer","text":"다섯 가지 축으로 좁힙니다 — ① 유량 범위·정밀도(mL/min 단위, 정량 오차 허용치), ② 유체 성질(부식성·점도·입자 유무), ③ 접액 재질(튜브·PEEK 등 화학 적합성), ④ 맥동·전단 민감도, ⑤ 채널 수·제어(다채널 동기, RS-485·Modbus, 로그). 전해액 순환·전구체 공침·수처리 정량 투입 모두 같은 기준입니다."}},
+{"@type":"Question","name":"실험용 펌프는 무엇을 기준으로 고르나요?","acceptedAnswer":{"@type":"Answer","text":"다섯 가지 축으로 좁힙니다. ① 유량 범위·정밀도(mL/min 단위, 정량 오차 허용치), ② 유체 성질(부식성·점도·입자 유무), ③ 접액 재질(튜브·PEEK 등 화학 적합성), ④ 맥동·전단 민감도, ⑤ 채널 수·제어(다채널 동기, RS-485·Modbus, 로그)입니다. 전해액 순환·전구체 공침·수처리 정량 투입 모두 같은 기준입니다."}},
 {"@type":"Question","name":"연동펌프, 시린지펌프, 기어펌프는 언제 각각 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"유체가 펌프 내부에 닿으면 안 되거나(오염·부식) 입자가 있으면 연동펌프, 미량을 매우 정밀하게 넣어야 하면 시린지펌프, 무맥동·고압 연속 이송이 필요하면 기어펌프가 일반적인 출발점입니다. 논문 사례로는 흐름전지 전해액 순환·공침 정량 공급에 연동펌프, 전해액 연속 순환(내화학 요구)에 PEEK 기어펌프가 쓰였습니다."}}
 ]}
 </script>
@@ -50,19 +50,19 @@
   <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:6px 0 2px">실험셋업연구소 매거진 · 가이드 · 글 이영현 · <time datetime="2026-08-09">2026년 8월 9일</time> 발행 · 읽는 시간 약 5분</div>
 
   <div class="sd-answer">
-    <b>펌프는 ① 유량 범위·정밀도 ② 유체 성질 ③ 접액 재질 ④ 맥동·전단 ⑤ 채널 수·제어, 다섯 축으로 고릅니다.</b> 흐름전지 전해액 순환이든 양극재 전구체 공침이든 수처리 정량 투입이든 기준은 같습니다 — 유체가 정하는 조건(부식·입자·점도)을 먼저 확정하고, 펌프 유형(연동·시린지·기어)을 고른 뒤 모델을 정하는 순서.
+    <b>펌프는 ① 유량 범위·정밀도 ② 유체 성질 ③ 접액 재질 ④ 맥동·전단 ⑤ 채널 수·제어, 다섯 축으로 고릅니다.</b> 흐름전지 전해액 순환이든 양극재 전구체 공침이든 수처리 정량 투입이든 기준은 같습니다. 유체가 정하는 조건(부식·입자·점도)을 먼저 확정하고, 펌프 유형(연동·시린지·기어)을 고른 뒤 모델을 정하는 순서입니다.
   </div>
 
   <div class="sd-body">
     <h2>왜 "모델"보다 "유체"를 먼저 봐야 하나</h2>
-    <p>에너지·소재 공정의 유체는 까다로운 쪽이 기본값입니다 — 흐름전지 전해액은 부식성, 전구체 공침 용액은 결정 석출, 슬러리는 입자, 유기 전해질은 재질 침식. 펌프 고장과 실험 실패의 대부분은 유량 스펙이 아니라 <b>유체와 접액부의 궁합</b>에서 나옵니다. 실제로 <a href="/magazine/aorfb-flowfield-electrolyte-pump/">AORFB 셋업(PNAS 2024)</a>은 전해액 순환에 연동펌프를, <a href="/setups/co2-capture-ct3001f">CO₂ 포집 셋업(Nature Comms 2024)</a>은 내화학 요구 때문에 PEEK 기어펌프를 썼습니다. 같은 "순환"인데 유체가 달라 펌프가 달라진 사례입니다.</p>
+    <p>에너지·소재 공정의 유체는 까다로운 쪽이 기본값입니다. 흐름전지 전해액은 부식성, 전구체 공침 용액은 결정 석출, 슬러리는 입자, 유기 전해질은 재질 침식이 문제가 됩니다. 펌프 고장과 실험 실패의 대부분은 유량 스펙이 아니라 <b>유체와 접액부의 궁합</b>에서 나옵니다. 실제로 <a href="/magazine/aorfb-flowfield-electrolyte-pump/">AORFB 셋업(PNAS 2024)</a>은 전해액 순환에 연동펌프를, <a href="/setups/co2-capture-ct3001f">CO₂ 포집 셋업(Nature Comms 2024)</a>은 내화학 요구 때문에 PEEK 기어펌프를 썼습니다. 같은 "순환"인데 유체가 달라 펌프가 달라진 사례입니다.</p>
 
     <h2>선정 5축</h2>
-    <div class="gd-step"><span class="gd-n">1</span><div><b>유량 범위·정밀도.</b> 목표 유량이 범위의 <b>중간대에 오는</b> 펌프를 고릅니다. 범위 양 끝단은 정밀도·수명이 나빠집니다. 정량 공급(공침·투입)은 유량 오차 허용치를 숫자로 정해두고 시작하세요 — <a href="/pump/atoz/flow-calibration/">캘리브레이션</a> 주기가 여기서 정해집니다.</div></div>
+    <div class="gd-step"><span class="gd-n">1</span><div><b>유량 범위·정밀도.</b> 목표 유량이 범위의 <b>중간대에 오는</b> 펌프를 고릅니다. 범위 양 끝단은 정밀도·수명이 나빠집니다. 정량 공급(공침·투입)은 유량 오차 허용치를 숫자로 정해두고 시작하세요. 여기서 <a href="/pump/atoz/flow-calibration/">캘리브레이션</a> 주기가 정해집니다.</div></div>
     <div class="gd-step"><span class="gd-n">2</span><div><b>유체 성질.</b> 부식성(산·알칼리·전해액)인가, 입자·슬러리인가, 점도가 높은가, 석출·굳음이 있는가. <b>입자·오염 민감·부식성 → 유체가 튜브 안에만 닿는 연동펌프</b>가 일반 해법입니다. 펌프 내부 접액이 불가피한 기어·시린지는 재질 확인이 전제.</div></div>
-    <div class="gd-step"><span class="gd-n">3</span><div><b>접액 재질.</b> 연동은 튜브 재질(실리콘·Tygon·Pharmed·Viton), 기어는 헤드 재질(SUS·PEEK)이 유체와 화학적으로 맞아야 합니다. 유기용매·강산은 재질표 확인 없이 돌리면 튜브가 붓거나 갈라집니다 — <a href="/application/tube-selection">튜브 선택 가이드</a> 참고.</div></div>
+    <div class="gd-step"><span class="gd-n">3</span><div><b>접액 재질.</b> 연동은 튜브 재질(실리콘·Tygon·Pharmed·Viton), 기어는 헤드 재질(SUS·PEEK)이 유체와 화학적으로 맞아야 합니다. 유기용매·강산은 재질표 확인 없이 돌리면 튜브가 붓거나 갈라지니 <a href="/application/tube-selection">튜브 선택 가이드</a>를 참고하세요.</div></div>
     <div class="gd-step"><span class="gd-n">4</span><div><b>맥동·전단.</b> 연동펌프는 구조상 맥동이 있습니다. 유량 흔들림이 결과에 영향을 주는 공정(센서 계측·미세 유로)은 맥동 완충(댐퍼·멀티롤러) 또는 무맥동 기어·시린지를 검토. 전단에 약한 유체(고분자·응집 민감)는 저전단인 연동이 유리합니다.</div></div>
-    <div class="gd-step"><span class="gd-n">5</span><div><b>채널 수·제어.</b> 공침처럼 여러 용액을 <b>비율 맞춰 동시에</b> 넣는 공정은 채널별 독립 제어와 동기가 필요합니다. 장시간 무인 운전·재현이 필요하면 RS-485·Modbus 제어와 유량 로그(CSV)까지 처음부터 스펙에 넣으세요 — 열처리의 MFC와 같은 논리입니다.</div></div>
+    <div class="gd-step"><span class="gd-n">5</span><div><b>채널 수·제어.</b> 공침처럼 여러 용액을 <b>비율 맞춰 동시에</b> 넣는 공정은 채널별 독립 제어와 동기가 필요합니다. 장시간 무인 운전·재현이 필요하면 RS-485·Modbus 제어와 유량 로그(CSV)까지 처음부터 스펙에 넣으세요. 열처리의 MFC와 같은 논리입니다.</div></div>
 
     <h2>공정별 일반 선택 (출발점)</h2>
     <table class="msc-tbl">
@@ -78,7 +78,7 @@
     <p class="msc-note">위는 일반적인 출발점이며, 실제 선정은 유량·유체·운전시간으로 확정해야 합니다. 실전 사례는 <a href="/magazine/nickel-hydroxide-coprecipitation-cstr/">공침 3채널 셋업</a>·<a href="/magazine/aorfb-flowfield-electrolyte-pump/">AORFB 순환 셋업</a> 참고. 모델 단위 선택은 <a href="/magazine/pump-selection-wizard/">리드플루이드 선택 가이드(위저드)</a>에서.</p>
 
     <h2>자주 하는 선정 실수</h2>
-    <p><b>① 유량 스펙만 보고 구매</b> — 유체 궁합(재질·입자)을 안 보면 초기엔 돌아가다 몇 주 뒤 고장납니다. <b>② 범위 끝단 사용</b> — 최대 유량의 90%로 상시 운전하면 정밀도·수명이 급락. <b>③ 채널 수를 나중에 생각</b> — 공침처럼 다채널 동기가 본체인 공정에서 단채널 여러 대를 손으로 맞추면 재현이 안 됩니다. <b>④ 제어·로그 생략</b> — 유량을 손 다이얼로 관리하면 배치 편차의 원인을 추적할 수 없습니다. 열처리 편의 <a href="/magazine/troubleshooting-calcination-batch-variation/">배치 편차 점검표</a>와 같은 결론 — 변수는 기록되는 자동 제어로.</p>
+    <p><b>① 유량 스펙만 보고 구매.</b> 유체 궁합(재질·입자)을 안 보면 초기엔 돌아가다 몇 주 뒤 고장납니다. <b>② 범위 끝단 사용.</b> 최대 유량의 90%로 상시 운전하면 정밀도·수명이 급락합니다. <b>③ 채널 수를 나중에 생각.</b> 공침처럼 다채널 동기가 본체인 공정에서 단채널 여러 대를 손으로 맞추면 재현이 안 됩니다. <b>④ 제어·로그 생략.</b> 유량을 손 다이얼로 관리하면 배치 편차의 원인을 추적할 수 없습니다. 열처리 편의 <a href="/magazine/troubleshooting-calcination-batch-variation/">배치 편차 점검표</a>와 같은 결론으로, 변수는 기록되는 자동 제어로 다뤄야 합니다.</p>
   </div>
 
   <div class="sd-bridge">
@@ -99,7 +99,7 @@
     <div class="sd-rel-grid">
       <a class="sd-rc" href="/magazine/nickel-hydroxide-coprecipitation-cstr/"><div class="cat">논문 셋업 · 공침</div><div class="t">배터리 양극재 전구체 공침 — CSTR + 연동펌프 3채널</div><div class="d">5번 축(다채널 동기)이 실제로 쓰인 셋업.</div></a>
       <a class="sd-rc" href="/magazine/aorfb-flowfield-electrolyte-pump/"><div class="cat">논문 셋업 · 순환</div><div class="t">레독스흐름전지 전해액 순환 — 연동펌프 140 mL/min</div><div class="d">부식성 전해액 × 연동펌프 조합의 실전 사례.</div></a>
-      <a class="sd-rc" href="/magazine/pump-selection-wizard/"><div class="cat">리드플루이드 · 펌프</div><div class="t">펌프·튜브 선택 가이드 (위저드)</div><div class="d">유형을 정했다면 — 조건 입력으로 모델까지.</div></a>
+      <a class="sd-rc" href="/magazine/pump-selection-wizard/"><div class="cat">리드플루이드 · 펌프</div><div class="t">펌프·튜브 선택 가이드 (위저드)</div><div class="d">유형을 정했다면, 조건 입력으로 모델까지.</div></a>
     </div>
   </div>
 </article>

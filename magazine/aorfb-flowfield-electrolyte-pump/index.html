@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024) | 실험셋업연구소</title>
-<meta name="description" content="PNAS(2024) 논문 셋업 분석 — 수계 유기 레독스흐름전지(AORFB)는 전해액 순환과 유로(flow field) 설계가 성능을 좌우합니다. 연동펌프로 anolyte·catholyte를 140 mL/min 순환, flow-through 유로로 300 mA/cm²까지 충전. 공정 조건·재현 관점·필요 장비 10종을 정리했습니다.">
+<meta name="description" content="PNAS(2024) 논문 셋업을 분석했습니다. 수계 유기 레독스흐름전지(AORFB)는 전해액 순환과 유로(flow field) 설계가 성능을 좌우합니다. 연동펌프로 anolyte·catholyte를 140 mL/min 순환, flow-through 유로로 300 mA/cm²까지 충전. 공정 조건·재현 관점·필요 장비 10종을 정리했습니다.">
 <link rel="canonical" href="https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min">
@@ -104,6 +104,11 @@
     <p>연구진은 pH 중성 <b>TEMPTMA/MV</b> 산화·환원쌍으로 유기 흐름전지를 구성했습니다. 활성면 <b>7×7 cm²</b>, 두께 <b>3 mm 탄소펠트</b> 전극에 음이온교환막(Selemion AMVN·MTCP-50)을 끼우고, 양·음극 전해액을 셀 스택으로 순환시켰습니다. 전해액 순환에는 <b>Masterflex L/S 연동펌프(Cole-Parmer)</b>와 화학내성 <b>FEP 튜빙·저장조</b>를 썼고, 충방전·임피던스는 Bio-Logic BCS-815로 측정했습니다(글러브박스 O₂<2 ppm). 유로 안 전해액 흐름은 온도지시 액정 + 카메라로 <b>operando 가시화</b>했습니다.</p>
     <div class="sd-quote">"The electrolytes were pumped through the cell stack at various flow rates using a <mark>Masterflex L/S peristaltic pump (Cole-Parmer)</mark>. All tubing and electrolyte reservoirs were made from chemically resistant fluorinated ethylene propylene (FEP)… The volume inflow rate was optimized and fixed at <mark>140 mL/min</mark>."</div>
     <div class="sd-cite">출처: Peng, K. et al., <i>PNAS</i> 121(50) e2406182121 (2024) · <a href="https://doi.org/10.1073/pnas.2406182121" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/aorfb-setup-3d.jpg" alt="AORFB 전해액 순환 셋업 구성도 — Posolyte·Negolyte 저장조가 각각 전용 연동펌프를 거쳐 플로우셀 스택을 통과해 되돌아오는 2개의 독립 폐순환 루프, 스택에는 충방전 사이클러 연결" loading="lazy" style="width:100%;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;margin-top:6px;line-height:1.5">AORFB 순환 셋업 구성도(실험셋업연구소 작성). 양극액·음극액이 <b>서로 섞이지 않는 2개 독립 루프</b>로 돌고, 펌프 유량(논문 140 mL/min)이 스택 내 물질전달을 결정한다.</figcaption>
+    </figure>
 
     <h2>공정 조건 (논문 실제 수치)</h2>
     <table class="msc-tbl">

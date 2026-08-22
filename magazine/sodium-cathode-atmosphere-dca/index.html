@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업 (동적 분위기 제어·DCA) | 실험셋업연구소</title>
-<meta name="description" content="Nature Communications(2025) 논문 셋업 분석 — O3-Na[Li1/3Mn2/3]O2 소듐 양극재는 고정 분위기로는 상순도 합성이 안 되고, 승온엔 2% O2·고온 유지엔 불활성으로 바꾸는 동적 분위기 제어(DCA)가 필요합니다. 튜브퍼니스 + 다채널 MFC 셋업, 공정 조건·재현 관점·필요 장비 10종을 정리했습니다.">
+<meta name="description" content="Nature Communications(2025) 논문 셋업을 분석했습니다. O3-Na[Li1/3Mn2/3]O2 소듐 양극재는 고정 분위기로는 상순도 합성이 안 되고, 승온엔 2% O2·고온 유지엔 불활성으로 바꾸는 동적 분위기 제어(DCA)가 필요합니다. 튜브퍼니스 + 다채널 MFC 셋업, 공정 조건·재현 관점·필요 장비 10종을 정리했습니다.">
 <link rel="canonical" href="https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="소듐 양극재를 상순도로 — 소성 분위기를 '바꾸는' 셋업 (DCA)">
 <meta property="og:description" content="O3 소듐 양극재 상순도 합성은 소성 중 산소 분압을 시간에 따라 바꾸는 동적 분위기 제어(DCA)가 관건. 튜브퍼니스 + 다채널 MFC 셋업과 재현 관점을 정리했습니다.">
 <meta property="og:url" content="https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/">
-<meta property="og:image" content="https://rndsetup.com/img/rnd-guide.jpg">
+<meta property="og:image" content="https://rndsetup.com/img/magazine/dca-setup-diagram-3d.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
 "headline":"소듐 양극재를 상순도로 — 소성 분위기를 바꾸는 셋업 (동적 분위기 제어·DCA)",
 "datePublished":"2026-08-09",
 "dateModified":"2026-08-09",
 "inLanguage":"ko",
-"image":"https://rndsetup.com/img/rnd-guide.jpg",
+"image":"https://rndsetup.com/img/magazine/dca-setup-diagram-3d.jpg",
 "about":{"@type":"Thing","name":"배터리 양극재 소성 가스 분위기 제어(MFC) 셋업","url":"https://rndsetup.com/brands/alicat/"},
 "citation":{"@type":"ScholarlyArticle","name":"Enabling the synthesis of O3-type sodium anion-redox cathodes via atmosphere modulation","author":"Xu, C. et al.","isPartOf":{"@type":"Periodical","name":"Nature Communications"},"datePublished":"2025","sameAs":"https://doi.org/10.1038/s41467-025-57665-1"},
 "author":{"@type":"Person","name":"이영현","url":"https://rndsetup.com/about/","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
@@ -96,14 +96,19 @@
   </div>
 
   <div class="sd-answer">
-    <b>소듐 양극재 O3-Na[Li₁/₃Mn₂/₃]O₂는 순아르곤·공기·순산소 같은 고정 분위기로는 상순도 합성이 안 되고, 승온엔 1~2% O₂·고온 유지엔 불활성으로 산소 분압을 바꾸는 동적 분위기 제어(DCA)가 필요합니다.</b> 이 셋업의 재현성은 튜브퍼니스의 온도 스케줄과 다채널 MFC의 가스 비율을 <b>시간에 맞춰 동기</b>시키는 데 달려 있습니다 — 즉 "무슨 가스를 흘리냐"가 아니라 "언제 바꾸냐"가 관건입니다.
+    <b>소듐 양극재 O3-Na[Li₁/₃Mn₂/₃]O₂는 순아르곤·공기·순산소 같은 고정 분위기로는 상순도 합성이 안 되고, 승온엔 1~2% O₂·고온 유지엔 불활성으로 산소 분압을 바꾸는 동적 분위기 제어(DCA)가 필요합니다.</b> 이 셋업의 재현성은 튜브퍼니스의 온도 스케줄과 다채널 MFC의 가스 비율을 <b>시간에 맞춰 동기</b>시키는 데 달려 있습니다. 즉, "무슨 가스를 흘리냐"가 아니라 "언제 바꾸냐"가 관건입니다.
   </div>
 
   <div class="sd-body">
     <h2>논문은 셋업을 어떻게 구성했나</h2>
-    <p>연구진은 Na₂O₂·Li₂O·MnO₂ 전구체를 아르곤 글러브박스에서 혼합·성형(펠릿, ~380 MPa)한 뒤 <b>튜브퍼니스(Thermo Fisher TF55035C-1)</b>에서 소성했습니다. 퍼니스 앞단에 <b>다채널 MFC(mass flow controller) 세트</b>를 두어 O₂와 Ar/N₂의 비율을 정하고, 배출가스는 <b>operando 가스크로마토그래피(GC·TCD)</b>로 실시간 산소량을 정량했습니다. 핵심은 소성 <b>중간에 분위기를 바꾸는</b> 동적 분위기 제어(DCA) — 승온 구간은 2% O₂, 고온 유지 구간은 순수 N₂/Ar로 <b>MFC가 전환</b>합니다.</p>
+    <p>연구진은 Na₂O₂·Li₂O·MnO₂ 전구체를 아르곤 글러브박스에서 혼합·성형(펠릿, ~380 MPa)한 뒤 <b>튜브퍼니스(Thermo Fisher TF55035C-1)</b>에서 소성했습니다. 퍼니스 앞단에 <b>다채널 MFC(mass flow controller) 세트</b>를 두어 O₂와 Ar/N₂의 비율을 정하고, 배출가스는 <b>operando 가스크로마토그래피(GC·TCD)</b>로 실시간 산소량을 정량했습니다. 핵심은 소성 <b>중간에 분위기를 바꾸는</b> 동적 분위기 제어(DCA)입니다. 승온 구간은 2% O₂, 고온 유지 구간은 순수 N₂/Ar로 <b>MFC가 전환</b>합니다.</p>
     <div class="sd-quote">"…The reactor was purged using a <mark>2% O₂ in N₂ flow at a rate of 50 sccm for 2 h</mark> before the calcination began. The sample was then heated from room temperature to 700 °C at a rate of 1 °C/min and maintained at 700 °C for 8 h… the atmosphere is switched to nitrogen (<mark>controlled by built-in mass flow controllers</mark>)."</div>
     <div class="sd-cite">출처: Xu, C. et al., <i>Nature Communications</i> (2025) · <a href="https://doi.org/10.1038/s41467-025-57665-1" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/dca-setup-diagram-3d.jpg" alt="DCA 소성 셋업 구성도 — O₂·Ar 봄베가 각각 MFC 1·MFC 2를 거쳐 합류한 뒤 튜브퍼니스 석영관으로 들어가고, 배기는 버블러로, PC가 MFC와 퍼니스를 제어·CSV 기록. 우측은 승온 프로파일(0→700℃)과 Phase I/II/III 가스 전환 시점" loading="lazy" style="width:100%;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;margin-top:6px;line-height:1.5">DCA 소성 셋업 구성도(실험셋업연구소 작성). 좌: 가스 봄베 → 채널별 MFC → 튜브퍼니스 → 배기 버블러, PC 통합 제어·로그. 우: 승온 프로파일과 가스 전환(Gas-switch) 시점으로, 논문 조건(2% O₂ 승온, 700℃ 유지 구간 전환) 기준입니다.</figcaption>
+    </figure>
 
     <h2>공정 조건 (논문 실제 수치)</h2>
     <table class="msc-tbl">

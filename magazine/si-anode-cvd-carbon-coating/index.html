@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업 (2D 실리콘 나노시트) | 실험셋업연구소</title>
-<meta name="description" content="Nature Communications(2018) 논문 셋업 분석 — 실란 CVD(550℃, 50 sccm)로 만든 50 nm 실리콘 나노시트에 아세틸렌 분해(900℃, 5분)로 5~10 nm 비정질 탄소를 코팅해, 리튬 배터리 음극의 부피팽창 응력을 리플로 해소한 셋업. 튜브·로터리 퍼니스 + MFC 공정 조건·재현 관점·필요 장비 10종 정리.">
+<meta name="description" content="Nature Communications(2018) 논문 셋업을 분석했습니다. 실란 CVD(550℃, 50 sccm)로 만든 50 nm 실리콘 나노시트에 아세틸렌 분해(900℃, 5분)로 5~10 nm 비정질 탄소를 코팅해, 리튬 배터리 음극의 부피팽창 응력을 리플로 해소한 셋업입니다. 튜브·로터리 퍼니스 + MFC 공정 조건·재현 관점·필요 장비 10종 정리.">
 <link rel="canonical" href="https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업">
-<meta property="og:description" content="900℃·5분 아세틸렌 CVD로 실리콘 시트에 7 wt% 탄소 코팅 — 유지율 54%→95%. 짧은 공정일수록 온도·유량·타이밍 재현이 전부입니다.">
+<meta property="og:description" content="900℃·5분 아세틸렌 CVD로 실리콘 시트에 7 wt% 탄소를 코팅하면 유지율이 54%에서 95%로 올라갑니다. 짧은 공정일수록 온도·유량·타이밍 재현이 전부입니다.">
 <meta property="og:url" content="https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/">
-<meta property="og:image" content="https://rndsetup.com/img/rnd-guide.jpg">
+<meta property="og:image" content="https://rndsetup.com/img/magazine/si-cvd-setup-3d.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
 "headline":"실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업 (2D 실리콘 나노시트)",
 "datePublished":"2026-08-09",
 "dateModified":"2026-08-09",
 "inLanguage":"ko",
-"image":"https://rndsetup.com/img/rnd-guide.jpg",
+"image":"https://rndsetup.com/img/magazine/si-cvd-setup-3d.jpg",
 "about":{"@type":"Thing","name":"CVD 탄소 코팅 가스 유량·온도 제어 셋업","url":"https://rndsetup.com/brands/alicat/"},
 "citation":{"@type":"ScholarlyArticle","name":"Mechanical mismatch-driven rippling in carbon-coated silicon sheets for stress-resilient battery anodes","author":"Ryu, J., Chen, T. et al.","isPartOf":{"@type":"Periodical","name":"Nature Communications"},"datePublished":"2018","sameAs":"https://doi.org/10.1038/s41467-018-05398-9"},
 "author":{"@type":"Person","name":"이영현","url":"https://rndsetup.com/about/","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
@@ -27,7 +27,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"실리콘 음극에 탄소 코팅은 왜 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"실리콘은 리튬을 넣고 빼는 동안 부피가 약 270%까지 변해 입자가 부서지고 용량이 급감합니다. Ryu 등(Nature Communications, 2018)은 50 nm 실리콘 나노시트에 5~10 nm 비정질 탄소를 CVD 코팅하면 탄소층이 면내 팽창을 구속해 두께 방향으로만 팽창시키고, 방전 시 리플(주름)을 만들어 응력을 해소함을 보였습니다. 그 결과 200사이클 용량 유지율이 54.3%에서 94.9%로 올랐습니다."}},
-{"@type":"Question","name":"이 실험 셋업의 핵심 장비는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"두 단계 CVD가 핵심입니다 — ① 실란(SiH4, 99.9999%) 50 sccm을 NaCl 템플릿이 든 로터리 퍼니스에서 550℃ 열분해해 실리콘 시트를 만들고, ② 아세틸렌(C2H2)을 900℃에서 5분 분해해 탄소 7 wt%를 코팅합니다. 5분짜리 짧은 공정이라 퍼니스 온도 안정성과 MFC 유량·가스 도입 타이밍의 재현이 코팅량을 좌우하며, 가연성·자연발화성 가스라 배기·검지 등 안전 설비가 전제입니다."}}
+{"@type":"Question","name":"이 실험 셋업의 핵심 장비는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"핵심은 두 단계 CVD입니다. ① 실란(SiH4, 99.9999%) 50 sccm을 NaCl 템플릿이 든 로터리 퍼니스에서 550℃로 열분해해 실리콘 시트를 만들고, ② 아세틸렌(C2H2)을 900℃에서 5분 분해해 탄소 7 wt%를 코팅합니다. 5분짜리 짧은 공정이라 퍼니스 온도 안정성과 MFC 유량·가스 도입 타이밍의 재현이 코팅량을 좌우하며, 가연성·자연발화성 가스라 배기·검지 등 안전 설비가 전제입니다."}}
 ]}
 </script>
 <link rel="stylesheet" href="/assets/site.css">
@@ -96,14 +96,19 @@
   </div>
 
   <div class="sd-answer">
-    <b>실리콘 음극은 충방전마다 부피가 ~270% 변해 부서지는데, 50 nm 실리콘 나노시트에 아세틸렌 CVD(900℃·5분)로 5~10 nm 탄소를 입히면 팽창이 두께 방향으로만 일어나고 방전 시 리플(주름)로 응력이 풀립니다.</b> 결과는 200사이클 유지율 54.3%→94.9%. 이 셋업의 재현성은 퍼니스 온도 안정성과 MFC 유량·가스 도입 타이밍 — 즉 "5분을 얼마나 똑같이 반복하냐"에 달려 있습니다.
+    <b>실리콘 음극은 충방전마다 부피가 ~270% 변해 부서지는데, 50 nm 실리콘 나노시트에 아세틸렌 CVD(900℃·5분)로 5~10 nm 탄소를 입히면 팽창이 두께 방향으로만 일어나고 방전 시 리플(주름)로 응력이 풀립니다.</b> 결과는 200사이클 유지율 54.3%→94.9%. 이 셋업의 재현성은 퍼니스 온도 안정성과 MFC 유량·가스 도입 타이밍, 즉 "5분을 얼마나 똑같이 반복하냐"에 달려 있습니다.
   </div>
 
   <div class="sd-body">
     <h2>논문은 셋업을 어떻게 구성했나</h2>
-    <p>연구진은 CVD를 <b>두 단계</b>로 썼습니다. 1단계 — NaCl 분말을 템플릿으로 넣은 <b>로터리 퍼니스</b>에서 고순도 실란(SiH₄, 99.9999%)을 <b>550℃·50 sccm</b>으로 열분해해 템플릿 표면에 50 nm 두께 실리콘을 증착하고, DI수 교반으로 NaCl만 녹여내 2D 실리콘 나노시트를 얻습니다. 2단계 — 이 시트에 <b>아세틸렌(C₂H₂)을 900℃에서 5분</b> 분해시켜 비정질 탄소 5~10 nm(7 wt%)를 컨포멀 코팅합니다. 900℃ 고온은 코팅과 동시에 비정질 실리콘을 다결정으로 바꾸는 어닐링 역할도 합니다.</p>
+    <p>연구진은 CVD를 <b>두 단계</b>로 썼습니다. 1단계에서는 NaCl 분말을 템플릿으로 넣은 <b>로터리 퍼니스</b>에서 고순도 실란(SiH₄, 99.9999%)을 <b>550℃·50 sccm</b>으로 열분해해 템플릿 표면에 50 nm 두께 실리콘을 증착하고, DI수 교반으로 NaCl만 녹여내 2D 실리콘 나노시트를 얻습니다. 2단계에서는 이 시트에 <b>아세틸렌(C₂H₂)을 900℃에서 5분</b> 분해시켜 비정질 탄소 5~10 nm(7 wt%)를 컨포멀 코팅합니다. 900℃ 고온은 코팅과 동시에 비정질 실리콘을 다결정으로 바꾸는 어닐링 역할도 합니다.</p>
     <div class="sd-quote">"Silane gas with six nine (99.9999%) purity was thermally decomposed in a rotary furnace which contains NaCl as a template… the CVD process was conducted at <mark>550 °C with a flow rate of silane gas (50 sccm)</mark>… The resulting 2DSi sheet was uniformly coated by amorphous carbon by decomposition of acetylene gas (C2H2) at <mark>900 °C for 5 min, which produced 7 wt% of carbon</mark>."</div>
     <div class="sd-cite">출처: Ryu, J. et al., <i>Nature Communications</i> 9, 2924 (2018) · <a href="https://doi.org/10.1038/s41467-018-05398-9" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/si-cvd-setup-3d.jpg" alt="아세틸렌 CVD 탄소 코팅 셋업 구성도 — C₂H₂·Ar 봄베가 각각 MFC 1·MFC 2를 거쳐 합류한 뒤 튜브퍼니스 석영관(기판 장입)으로 들어가고 배기는 버블러로, PC가 제어·CSV 기록. 우측은 900℃ 승온-5분 아세틸렌 펄스-냉각 온도 프로파일" loading="lazy" style="width:100%;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;margin-top:6px;line-height:1.5">아세틸렌 CVD 셋업 구성도(실험셋업연구소 작성). 좌: C₂H₂·Ar → 채널별 MFC → 튜브퍼니스 → 배기, PC 제어·로그. 우: 900℃ 도달 후 <b>5분 C₂H₂ 펄스</b>만 넣고 나머지는 Ar으로 채웁니다. 이 짧은 시퀀스의 재현이 자동화 포인트입니다.</figcaption>
+    </figure>
 
     <h2>공정 조건 (논문 실제 수치)</h2>
     <table class="msc-tbl">
@@ -126,7 +131,7 @@
     <p>in situ TEM으로 본 메커니즘: 탄소층이 면내 팽창을 <b>~9.7%로 구속</b>하고 두께 방향으로 ~200% 팽창시킨 뒤, 방전(탈리튬화) 때 수축 불일치가 <b>리플(주름)</b>을 만들어 응력을 해소합니다. 20C 고율에서도 73.9% 용량을 유지했습니다.</p>
 
     <h2>파라미터를 왜 그렇게 잡나 — 재현 관점</h2>
-    <p>코팅량 7 wt%·두께 5~10 nm는 <b>온도(900℃)·시간(5분)·아세틸렌 유량</b> 세 변수가 정합니다. 5분짜리 짧은 공정은 온도 도달 상태·가스 도입 타이밍이 조금만 어긋나도 코팅량이 달라지므로, 로터미터 수동 조작이 아니라 <b>MFC + 프로그램 시퀀스</b>(퍼지 → 온도 안정 → C₂H₂ 도입 → 5분 → 차단 → 불활성 냉각)로 돌려야 배치 간 재현이 됩니다. 시료가 분말·시트라면 <b>균열구간 안 배치</b>와 층 두께 관리도 코팅 균일성에 직결됩니다(<a href="/magazine/troubleshooting-calcination-batch-variation/">배치 편차 점검표</a>의 ②·③·⑤항). 안전도 셋업의 일부입니다 — 실란은 자연발화성, 아세틸렌은 가연성 특수가스라 <b>배기·가스검지·퍼지 라인</b>이 전제됩니다. 실란 단계는 특수가스 설비가 필요하지만, <b>아세틸렌 탄소 코팅 단계는 일반 튜브퍼니스 + MFC 셋업으로 재현 가능한 범위</b>입니다.</p>
+    <p>코팅량 7 wt%·두께 5~10 nm는 <b>온도(900℃)·시간(5분)·아세틸렌 유량</b> 세 변수가 정합니다. 5분짜리 짧은 공정은 온도 도달 상태·가스 도입 타이밍이 조금만 어긋나도 코팅량이 달라지므로, 로터미터 수동 조작이 아니라 <b>MFC + 프로그램 시퀀스</b>(퍼지 → 온도 안정 → C₂H₂ 도입 → 5분 → 차단 → 불활성 냉각)로 돌려야 배치 간 재현이 됩니다. 시료가 분말·시트라면 <b>균열구간 안 배치</b>와 층 두께 관리도 코팅 균일성에 직결됩니다(<a href="/magazine/troubleshooting-calcination-batch-variation/">배치 편차 점검표</a>의 ②·③·⑤항). 안전도 셋업의 일부입니다. 실란은 자연발화성, 아세틸렌은 가연성 특수가스라 <b>배기·가스검지·퍼지 라인</b>이 전제됩니다. 실란 단계는 특수가스 설비가 필요하지만, <b>아세틸렌 탄소 코팅 단계는 일반 튜브퍼니스 + MFC 셋업으로 재현 가능한 범위</b>입니다.</p>
   </div>
 
   <div class="sd-bridge">
