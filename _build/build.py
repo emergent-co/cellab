@@ -338,6 +338,92 @@ def build_requests():
     indexed.sort(key=lambda t: t[1].get('date', ''), reverse=True)
     indexed.sort(key=lambda t: REQ_ORDER.get(t[1].get('status'), 9))
 
+
+    # ---- SQL(SSOT) 가격 폴백: 상세페이지에 가격이 없는 카드용 ----
+    def _sql_price_rows():
+        txt = read(os.path.join(ROOT_DIR, 'rndsetup_products.sql'))
+        out = []
+        for mm in re.finditer(r"VALUES \('([^']*)',\d+,'([^']*)','[^']*','[^']*','([^']*)','([^']*)','([^']*)',", txt):
+            sku, brand, daebun, sobun, model = mm.groups()
+            pm = re.search(r"'ea',(?:\d+|NULL),(\d+)", txt[mm.end():mm.end() + 500])
+            if pm:
+                out.append((sku.upper(), brand, sobun, model.upper(), int(pm.group(1))))
+        return out
+
+    SQL_ROWS = _sql_price_rows()
+
+    def _sql_min(pred):
+        vals = [r[4] for r in SQL_ROWS if pred(r) and r[4] >= 10000]
+        return min(vals) if vals else None
+
+    # 슬러그 → SQL 매핑 (SH=sobun 정규식, Alicat=model 프리픽스, Gaoss=sobun 일치)
+    SLUG_SQL = {
+        'rotary-batch-300':      ('SH Scientific', 'sobun', r'회전튜브전기로 300mm \(Rotation'),
+        'rotary-batch-3zone':    ('SH Scientific', 'sobun', r'300mm x 3zone'),
+        'rotary-kiln-1200-2zone':('SH Scientific', 'sobun', r'1200°C 2 zone 연속식'),
+        'rotary-kiln-1200-3zone':('SH Scientific', 'sobun', r'1200°C 3 zone 연속식'),
+        'elevator-1200':         ('SH Scientific', 'sobun', r'1200℃ 전기로 , Elevator'),
+        'elevator-1500':         ('SH Scientific', 'sobun', r'1500℃ 전기로 , Elevator'),
+        'elevator-1800':         ('SH Scientific', 'sobun', r'1800℃ 전기로 , Elevator'),
+        'gas-flow-package':      ('SH Scientific', 'sobun', r'1200°C Gas Flow Package'),
+        'tube-1500':             ('SH Scientific', 'sobun', r'1500°C Gas Flow Package'),
+        'tube-1800':             ('SH Scientific', 'sobun', r'1800°C Gas Flow Package'),
+        'vacuum-muffle-1200-quartz': ('SH Scientific', 'sobun', r'석영챔버'),
+        'vacuum-muffle-1500':    ('SH Scientific', 'sobun', r'1500℃ 전기로 with 진공'),
+        'vacuum-muffle-1900':    ('SH Scientific', 'sobun', r'1900 ?℃ 전기로 with 진공'),
+        'muffle-1050':           ('SH Scientific', 'sobun', r'ECO 1050'),
+        'muffle-1200':           ('SH Scientific', 'sobun', r'^1200℃ 전기로$'),
+        'muffle-1500':           ('SH Scientific', 'sobun', r'^1500 ?℃ 전기로$'),
+        'muffle-1700':           ('SH Scientific', 'sobun', r'^1700 ?℃ 전기로$'),
+        'muffle-1800':           ('SH Scientific', 'sobun', r'^1800 ?℃ 전기로$'),
+        'muffle-1900':           ('SH Scientific', 'sobun', r'^1900 ?℃ 전기로$'),
+        'mc-series':   ('Alicat', 'model', r'^MC\b'),
+        'mcs-series':  ('Alicat', 'model', r'^MCS'),
+        'mcq-series':  ('Alicat', 'model', r'^MCQ'),
+        'mcd-series':  ('Alicat', 'model', r'^MCD'),
+        'mct-series':  ('Alicat', 'model', r'^MCT'),
+        'bioc-series': ('Alicat', 'model', r'^BIOC'),
+        'mcv-sff-series': ('Alicat', 'model', r'^(MCV|MCE)'),
+        'pc-series':   ('Alicat', 'model', r'^PC\b'),
+        'pcd-series':  ('Alicat', 'model', r'^PCD'),
+        'bpr':         ('Alicat', 'model', r'^BPR|BPR'),
+        'basis-series':('Alicat', 'model', r'^BASIS'),
+        'reference-electrode': ('Gaoss Union', 'sobun', r'^기준전극$'),
+        'rhe':                 ('Gaoss Union', 'sobun', r'^가역수소전극$'),
+        'counter-electrode':   ('Gaoss Union', 'sobun', r'^상대전극$'),
+        'working-electrode':   ('Gaoss Union', 'sobun', r'^작업전극$'),
+        'rde-rrde':            ('Gaoss Union', 'sobun', r'^회전전극$'),
+        'electrode-holder':    ('Gaoss Union', 'sobun', r'클램프·홀더'),
+        'electrode-polishing': ('Gaoss Union', 'sobun', r'연마용품'),
+        'echem-materials':     ('Gaoss Union', 'sobun', r'^전기화학 재료$'),
+        'co2rr-catalyst':      ('Gaoss Union', 'sobun', r'^CO2RR 촉매$'),
+        'battery-test-cell':   ('Gaoss Union', 'sobun', r'배터리 테스트 셀'),
+    }
+
+    def sql_price_for(href, model_txt, data_text):
+        seg = [x for x in href.strip('/').split('/') if x]
+        page_slug = seg[-1] if seg else ''
+        rule = SLUG_SQL.get(page_slug)
+        if rule:
+            b, field, rx = rule
+            fi = 2 if field == 'sobun' else 3
+            crx = re.compile(rx)
+            v = _sql_min(lambda r: r[1] == b and crx.search(r[fi]))
+            if v:
+                return v
+        # 코드 프리픽스 매칭 (SH-FU-…, SH-CVD-…, JP300S 등)
+        cand = set()
+        for src in (model_txt or '', data_text or ''):
+            for tok in re.findall(r"[A-Za-z]{1,4}[A-Za-z0-9]*-[A-Za-z0-9.\-]{2,}|[A-Za-z]{2,5}\d{2,4}[A-Za-z]*", src.upper()):
+                if len(tok) >= 5:
+                    cand.add(tok)
+        for c in sorted(cand, key=len, reverse=True):
+            v = _sql_min(lambda r: r[0].startswith(c) or r[3].startswith(c))
+            if v:
+                return v
+        return None
+    # ---- SQL 가격 폴백 끝 ----
+
     cards = []
     for orig_i, r in indexed:
         status = r.get('status', 'req')
@@ -1328,6 +1414,8 @@ def build_all_products():
                         price = _v
                 except ValueError:
                     pass
+            if price is None:
+                price = sql_price_for(href, model, kw_raw.group(1) if kw_raw else '')
             kws = get_keywords(block, title, _sub1 or cat, CAT_LABEL.get(cat, ''))
             # 네거티브 규칙: 제목 기준으로 명백히 다른 유형의 어휘 제거 (원본 data-use/text가 제품군 공통 어휘를 달고 있는 경우)
             _bans = []
@@ -1365,7 +1453,10 @@ def build_all_products():
             sp_html = ''.join(
                 f'<div class="r"><span class="k">{escape(k)}</span><span class="v">{escape(v)}</span></div>'
                 for k, v in (specs + [('사양', '상세 참조')] * 3)[:3])
-            if price:
+            if price and slug == 'gaossunion':
+                pr_html = (f'<div class="pc-pr">'
+                           f'<span class="s">최소 {{:,}}원부터 <i class="vat">VAT 별도</i></span></div>').format(price)
+            elif price:
                 sale = int(price * 0.97) // 10000 * 10000
                 pr_html = (f'<div class="pc-pr"><span class="o">정가 {{:,}}원~</span>'
                            f'<span class="s">최소 {{:,}}원부터 <em>3%↓</em> <i class="vat">VAT 별도</i></span></div>').format(price, sale)
