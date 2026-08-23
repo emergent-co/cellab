@@ -9,7 +9,7 @@
 출력:  img/product/sh-cards-clean/*.jpg
 이미 처리된 파일은 건너뛰므로 중단 후 재실행해도 안전합니다.
 """
-import os, sys, json, base64, glob, time, urllib.request
+import os, sys, io, json, base64, glob, time, urllib.request
 
 KEY = os.environ.get("GEMINI_API_KEY")
 if not KEY:

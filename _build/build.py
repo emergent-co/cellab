@@ -1019,73 +1019,190 @@ def build_all_products():
         return read(p) if os.path.isfile(p) else ''
 
     def get_price(detail):
-        """상세페이지에서 정가 추출(JSON-LD offers.price 우선, 다음 '정가 N원')."""
-        m = re.search(r'"price"\s*:\s*"?([0-9][0-9,]{3,})"?', detail)
-        if not m:
-            m = re.search(r'정가\s*([0-9][0-9,]{3,})\s*원', detail)
-        if not m:
-            return None
+        """상세페이지에서 최저 정가 추출 — JSON-LD offers.price 전부의 최솟값(옵션 다수 대응)."""
+        vals = []
+        for x in re.findall(r'"price"\s*:\s*"?([0-9][0-9,]{3,})"?', detail):
+            try:
+                v = int(x.replace(',', ''))
+                if v >= 10000:
+                    vals.append(v)
+            except ValueError:
+                pass
+        if not vals:
+            mm = re.search(r'정가\s*([0-9][0-9,]{3,})\s*원', detail)
+            if mm:
+                try:
+                    v = int(mm.group(1).replace(',', ''))
+                    if v >= 10000:
+                        vals.append(v)
+                except ValueError:
+                    pass
+        return min(vals) if vals else None
         try:
             v = int(m.group(1).replace(',', ''))
             return v if v >= 10000 else None
         except ValueError:
             return None
 
-    def get_specs(block, detail):
-        rows = []
-        # 1) 카드 원본의 스펙 행
+    # ── 제품군별 표준 스펙 스키마: (표준 라벨, [소스 키 부분일치 토큰]) × 3 ──
+    # 같은 제품군이면 브랜드가 달라도 같은 라벨·같은 순서를 쓴다. 값이 없으면 '상세 참조'.
+    SPEC_SCHEMA = {
+        'furnace':    [('최고온도', ['최고온도', '온도']), ('튜브·챔버', ['튜브경', '튜브', '챔버', '크기']), ('발열체', ['발열체', '히터'])],
+        'drying':     [('온도범위', ['온도']), ('내부크기', ['내부', '크기', '챔버']), ('용량·히터', ['용량', '히터'])],
+        'distill':    [('용량', ['용량']), ('회전', ['회전']), ('진공·온도', ['진공', '온도'])],
+        'incubator':  [('온도범위', ['온도']), ('내부·용량', ['용량', '내부', '크기']), ('CO₂·습도', ['CO', '습도', '센서'])],
+        'waterbath':  [('온도범위', ['온도']), ('용량', ['용량']), ('안정도', ['안정', '균일', '냉각'])],
+        'chamber':    [('온도범위', ['온도']), ('습도범위', ['습도']), ('내부크기', ['내부', '크기', '용량'])],
+        'sterilizer': [('온도', ['온도']), ('용량·챔버', ['용량', '챔버']), ('방식', ['방식', '진공', '멸균', '제어'])],
+        'mixing':     [('회전수', ['회전']), ('용량·용기', ['용량', '용기']), ('방식', ['방식', '분쇄', '믹서', '모터'])],
+        'vacuumpump': [('도달압력', ['도달', '진공도']), ('배기속도', ['배기', '펌핑']), ('구성', ['플랜지', '모터', '소음', '오일'])],
+        'fumehood':   [('크기', ['크기', '폭', '치수']), ('풍속', ['풍속', '배기']), ('구성', ['필터', '구성', '용도', '재질'])],
+        'measuring':  [('측정범위', ['측정', '범위', '최대']), ('정밀도', ['정밀', '분해능', '정확']), ('구성', ['플랫폼', '팬', '크기', '표시'])],
+        'peri':  [('유량', ['유량']), ('회전수', ['회전']), ('채널', ['채널'])],
+        'syr':   [('유량', ['유량']), ('시린지', ['시린지']), ('채널', ['채널'])],
+        'gear':  [('유량', ['유량']), ('압력', ['압력']), ('접액부', ['접액', '재질'])],
+        'ex':    [('유량', ['유량']), ('회전수', ['회전']), ('방폭등급', ['방폭', '등급'])],
+        'pump':  [('유량', ['유량']), ('회전수', ['회전']), ('채널', ['채널'])],
+        'head':  [('적용 튜브', ['튜브']), ('유량', ['유량']), ('채널·롤러', ['채널', '롤러'])],
+        'oem':   [('유량', ['유량']), ('크기', ['크기', '치수']), ('제어', ['제어', '통신'])],
+        'mfc':   [('유량범위', ['유량']), ('가스', ['가스']), ('정확도·응답', ['정확', '응답'])],
+        'std':   [('유량범위', ['유량']), ('가스', ['가스']), ('정확도·응답', ['정확', '응답'])],
+        'hp':    [('유량범위', ['유량']), ('압력', ['압력']), ('가스', ['가스'])],
+        'corr':  [('유량범위', ['유량']), ('가스', ['가스']), ('재질', ['재질', '내부식'])],
+        'dual':  [('유량범위', ['유량']), ('가스', ['가스']), ('제어', ['제어', '방향'])],
+        'press': [('압력범위', ['압력']), ('제어', ['제어', '방향']), ('통신', ['통신', 'RS'])],
+        'vac':   [('압력범위', ['압력', '진공']), ('유량', ['유량']), ('용도', ['용도', '공정'])],
+    }
+    SPEC_LOWVALUE = ('중량', '무게', '전원', '전압', '소비전력', '외형', '외부', '포장', '인증', '옵션', '보증', '납기')
+
+    def get_specs(block, detail, subcat=''):
+        cand = []
         for k, v in re.findall(r'<span class="k">([\s\S]*?)</span>\s*<span class="v">([\s\S]*?)</span>', block):
             k, v = clean(k), clean(v)
             if k and v and len(k) <= 12:
-                rows.append((k, v))
-            if len(rows) >= 3:
-                return rows
-        # 2) 상세페이지 사양표(pkg-tbl)
+                cand.append((k, v))
         tb = re.search(r'<table class="pkg-tbl">([\s\S]*?)</table>', detail)
         if tb:
             for th, td in re.findall(r'<th[^>]*>([\s\S]*?)</th>\s*<td[^>]*>([\s\S]*?)</td>', tb.group(1)):
                 k, v = clean(th), clean(td)
                 if not k or not v or len(k) > 12 or any(h in k for h in ('사양', '품목', '정가', '모델명')):
                     continue
+                if all(k != ek for ek, _ in cand):
+                    cand.append((k, v))
+        schema = SPEC_SCHEMA.get(subcat)
+        if schema and cand:
+            rows, used = [], set()
+            for lab, toks in schema[:3]:
+                val = None
+                for k, v in cand:
+                    if k in used:
+                        continue
+                    if any(tk.lower() in k.lower() for tk in toks):
+                        val = v; used.add(k); break
+                rows.append((lab, val if val else '상세 참조'))
+            return rows
+        # 스키마 없는 군: 저가치 제외 상위 3
+        rows = []
+        for k, v in cand:
+            if len(rows) >= 3:
+                break
+            if any(lv in k for lv in SPEC_LOWVALUE):
+                continue
+            rows.append((k, v))
+        for k, v in cand:
+            if len(rows) >= 3:
+                break
+            if all(k != rk for rk, _ in rows):
                 rows.append((k, v))
-                if len(rows) >= 3:
-                    return rows
-        # 3) 옵션형(가오스유니온): 구성 옵션 수 + 대표 모델
+        # 옵션형(가오스유니온): 구성 옵션 수 + 대표 모델 — 이 군의 표준 라벨
         if len(rows) < 3:
             opts = re.findall(r'<tr>\s*<t[hd][^>]*>([\s\S]*?)</t[hd]>\s*<td[^>]*>([\s\S]*?)</td>', detail)
             opts = [(clean(a), clean(b)) for a, b in opts]
             opts = [(a, b) for a, b in opts if a and b and len(a) <= 14 and not any(h in a for h in ('사양', '품목', '정가', '모델'))]
             if opts:
-                rows.append(('구성 옵션', f'{len(opts)}종'))
+                rows = [('구성 옵션', f'{len(opts)}종')]
                 for a, b in opts:
                     if len(rows) >= 3:
                         break
                     rows.append(('대표 모델', b))
+        # 그룹 표준 라벨로 3행 패딩 (군 내 라벨 통일 보장)
+        if len(rows) < 3:
+            schema2 = SPEC_SCHEMA.get(subcat)
+            if schema2:
+                have = {rk for rk, _ in rows}
+                for lab, _tk in schema2[:3]:
+                    if len(rows) >= 3:
+                        break
+                    if lab not in have:
+                        rows.append((lab, '상세 참조'))
+            elif subcat in ('electrode', 'catalyst', 'material', 'accessory'):
+                pads = [('구성 옵션', '상세 참조'), ('대표 모델', '상세 참조'), ('대표 모델', '상세 참조')]
+                for p in pads[len(rows):3]:
+                    rows.append(p)
         return rows
 
-    KW_STOP = {'및', '또는', '기타', 'the', 'and', 'for', 'with'}
+    KW_STOP = {'및', '또는', '기타', 'the', 'and', 'for', 'with', 'series', 'type'}
+    # 제품군별 GEO 연관검색어 사전 — 실제 검색 어휘(동의어·연관어) 우선 노출
+    KW_BY_SUBCAT = {
+        'furnace':    ['튜브퍼니스', '전기로', '소성로', '열처리로', '관상로', '하소', '소결'],
+        'drying':     ['건조기', '열풍건조기', '드라이오븐', '실험실 오븐', '건조 챔버'],
+        'distill':    ['회전증발농축기', '로터리 evaporator', '감압농축', '증류'],
+        'incubator':  ['인큐베이터', '배양기', 'CO2 배양기', '세포배양', '진탕배양기'],
+        'waterbath':  ['항온수조', '워터배스', '칠러', '순환수조'],
+        'chamber':    ['항온항습기', '환경챔버', '신뢰성시험', '온습도 챔버'],
+        'sterilizer': ['오토클레이브', '멸균기', '고압증기멸균', '실험실 멸균'],
+        'mixing':     ['교반기', '믹서', '볼밀', '분쇄기', '호모게나이저'],
+        'vacuumpump': ['진공펌프', '로터리 펌프', '다이어프램 펌프', '진공도', '실험실 진공'],
+        'fumehood':   ['흄후드', '클린벤치', '무균작업대', '실험실 안전'],
+        'measuring':  ['전자저울', '수분측정기', '측정기기', '정밀저울'],
+        'peri':  ['연동펌프', '페리스탈틱펌프', '정량펌프', '튜빙펌프', '실험실 펌프'],
+        'syr':   ['시린지펌프', '미량주입', '정량주입', '실험실 펌프'],
+        'gear':  ['기어펌프', '정량이송', '무맥동 펌프', '실험실 펌프'],
+        'ex':    ['방폭펌프', '연동펌프', '방폭 인증', '정량펌프'],
+        'head':  ['펌프헤드', '연동펌프 헤드', '튜브 카세트'],
+        'oem':   ['OEM 펌프', '펌프 모듈', '장비 내장 펌프'],
+        'mfc':   ['질량유량계', 'MFC', '유량컨트롤러', '가스 유량 제어', 'sccm'],
+        'std':   ['질량유량계', 'MFC', '유량컨트롤러', '가스 유량 제어', 'sccm'],
+        'hp':    ['고압 MFC', '질량유량계', '가스 유량 제어'],
+        'corr':  ['내부식 MFC', '부식성 가스', '질량유량계'],
+        'dual':  ['양방향 MFC', '질량유량계', '유량 제어'],
+        'press': ['압력 컨트롤러', '배압 레귤레이터', 'BPR', '압력 제어'],
+        'vac':   ['진공 공정', '질량유량계', '반도체 공정 가스'],
+        'electrode': ['전기화학', '기준전극', '수전해', '전극', '전기화학 셀'],
+        'catalyst':  ['CO2 환원', 'CO2RR', '전기화학 촉매', 'GDE'],
+        'material':  ['전기화학 재료', '이온교환막', '카본페이퍼', '수전해'],
+        'accessory': ['전극 홀더', '전극 연마', '전기화학 소모품'],
+    }
 
-    def get_keywords(block, title, cat_label):
+    def get_keywords(block, title, subcat, cat_label):
+        out, seen = [], set()
+        def push(w):
+            wl = w.lower()
+            if wl in seen or len(out) >= 7:
+                return
+            seen.add(wl); out.append(w)
+        # 1) 제품군 연관검색어 사전
+        for w in KW_BY_SUBCAT.get(subcat, []):
+            push(w)
+        if cat_label:
+            push(cat_label)
+        # 2) 카드 데이터 토큰 (한글·의미 있는 영문 단어)
         toks = []
-        for attr in ('data-text', 'data-use'):
+        for attr in ('data-use', 'data-text'):
             mm = re.search(attr + r'="([^"]*)"', block)
             if mm:
                 toks += mm.group(1).split()
-        out, seen = [], set()
-        if cat_label:
-            out.append(cat_label); seen.add(cat_label)
-        tl = title.replace(' ', '').lower()
         for w in toks:
-            w = w.strip('·,()[]/#').strip()
-            if not (2 <= len(w) <= 12):
-                continue
-            if re.search(r'[0-9~×@]|^[a-z\-]+$', w.lower()) and not re.search(r'[가-힣]', w):
-                continue  # 모델코드·영문토큰 제외
-            if w.lower() in KW_STOP or w in seen or w.replace(' ', '').lower() in tl:
-                continue
-            seen.add(w); out.append(w)
             if len(out) >= 7:
                 break
+            w = w.strip('·,()[]/#').strip()
+            if not (2 <= len(w) <= 14) or w.lower() in KW_STOP:
+                continue
+            if re.search(r'\d', w):
+                continue  # 숫자 포함(모델코드·치수) 제외
+            if not re.search(r'[가-힣]', w) and not re.fullmatch(r'[A-Za-z][A-Za-z\- ]{2,13}', w):
+                continue
+            push(w)
         return out
 
     CAT_LABEL = {'heat': '열처리', 'dry': '건조·농축', 'culture': '배양·항온', 'mix': '교반·분쇄',
@@ -1107,8 +1224,16 @@ def build_all_products():
             img = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', block)
             src = img.group(1) if img else ''
             alt = img.group(2) if img else title
+            kw_raw = re.search(r'data-text="([^"]*)"', block)
             nm = re.search(r'<div class="dscard-nm">([\s\S]*?)</div>', block)
             model = clean(nm.group(1)) if nm else ''
+            # 모델명 줄의 가격·요약 표기 정리 (예: "200℃ · 864~3,612L · 정가 11,400,000~25,700,000원")
+            _nm_price = re.search(r'정가\s*([0-9][0-9,]{3,})', model)
+            model = re.sub(r'\s*·?\s*정가[\s0-9,~원]+', '', model).strip(' ·')
+            if not model:
+                _code = re.search(r'\b(sh-[a-z0-9][a-z0-9\-~/]+)\b', (kw_raw.group(1) if kw_raw else '').lower())
+                model = _code.group(1).upper() if _code else ''
+
             cat_raw = re.search(r'data-cat="([^"]*)"', block)
             cat = default_cat
             if cat_raw:
@@ -1131,26 +1256,33 @@ def build_all_products():
                 seg = [x for x in href.strip('/').split('/') if x]
                 if len(seg) >= 3:
                     sub_tokens.append('gu:' + seg[2])
-            kw_raw = re.search(r'data-text="([^"]*)"', block)
             keys = ' '.join([title, model, label, slug, kw_raw.group(1) if kw_raw else '']).lower()
 
             detail = detail_of(href)
-            specs = get_specs(block, detail)
+            _sub1 = (cat_raw.group(1).split()[0] if cat_raw and cat_raw.group(1).split() else '')
+            specs = get_specs(block, detail, _sub1 or cat)
             price = get_price(detail)
-            kws = get_keywords(block, title, CAT_LABEL.get(cat, ''))
+            if price is None and _nm_price:
+                try:
+                    _v = int(_nm_price.group(1).replace(',', ''))
+                    if _v >= 10000:
+                        price = _v
+                except ValueError:
+                    pass
+            kws = get_keywords(block, title, _sub1 or cat, CAT_LABEL.get(cat, ''))
             if not model:
-                mo = re.search(r'대표 모델', str(specs))
-                model = specs[1][1] if mo and len(specs) > 1 else '옵션 구성'
+                _rep = next((v for k, v in specs if k == '대표 모델'), '')
+                model = _rep or '옵션 구성 · 상세 참조'
 
             sp_html = ''.join(
                 f'<div class="r"><span class="k">{escape(k)}</span><span class="v">{escape(v)}</span></div>'
-                for k, v in (specs + [('사양', '상세 페이지 참조')] * 3)[:3])
+                for k, v in (specs + [('사양', '상세 참조')] * 3)[:3])
             if price:
                 sale = int(price * 0.97) // 10000 * 10000
-                pr_html = (f'<div class="pc-pr"><span class="o">정가 {{:,}}원</span>'
-                           f'<span class="s">{{:,}}원 <em>3%↓</em></span></div>').format(price, sale)
+                pr_html = (f'<div class="pc-pr"><span class="o">정가 {{:,}}원~</span>'
+                           f'<span class="s">최소 {{:,}}원부터 <em>3%↓</em> <i class="vat">VAT 별도</i></span></div>').format(price, sale)
             else:
-                pr_html = '<div class="pc-pr"><span class="q">가격 견적 문의</span></div>'
+                pr_html = '<div class="pc-pr"><span class="q">가격 견적 문의 <i class="vat">VAT 별도</i></span></div>'
             kw_html = ('<div class="pc-kw">' + ' '.join('#' + escape(w) for w in kws) + '</div>') if kws else '<div class="pc-kw"></div>'
 
             cards.append(

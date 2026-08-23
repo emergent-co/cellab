@@ -133,9 +133,14 @@
     '<header class="ch-top">' +
       '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
       '<a class="ch-brand" href="/">실험셋업연구소</a>' +
-      '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
-      '<a class="ch-cta" href="/contact/">문의하기</a>' +
+      '<form class="ch-msearch" action="/product/" method="get" role="search">' +
+        '<input type="search" name="q" placeholder="제품명·모델명 검색 — 예: 튜브퍼니스, BT101S, MFC" aria-label="제품 검색" autocomplete="off">' +
+        '<button type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>검색</span></button>' +
+      '</form>' +
+      '<a class="ch-ic" href="/contact/#form" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
+      '<a class="ch-ic" href="/admin" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
     '</header>' +
+    '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
       '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>공정 → 조건 → 필요 장비로 읽는 실험 셋업 아카이브</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
