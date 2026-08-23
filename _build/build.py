@@ -1057,6 +1057,10 @@ def build_all_products():
             # 원본 dscard 마크업을 그대로 이식 + 통합 필터·검색용 data 속성 부여.
             # 브랜드 라벨 배지, 이미지·제목 링크 보강(원본에 없을 때만).
             inner = inner_html
+            # 통합 카탈로그에서는 견적 버튼 제거(상세페이지에서 견적) + '상세 사양'을 실링크로
+            inner = re.sub(r'<button[^>]*class="qbtn[^"]*"[^>]*>.*?</button>', '', inner, flags=re.S)
+            inner = inner.replace('<span class="ds-detail">상세 사양 →</span>',
+                                  f'<a class="ds-detail" href="{href}">상세 사양 →</a>')
             if 'dscard-br' not in inner:
                 inner = inner.replace('<div class="dscard-bd">',
                                       f'<div class="dscard-bd"><div class="dscard-br">{escape(label)}</div>', 1)
