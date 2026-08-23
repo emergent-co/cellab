@@ -68,13 +68,12 @@ header,
 /* ============================================================
    6) 공유 상단바 + 좌측 사이드바 (site.js가 주입) — 전 페이지 동일
    ============================================================ */
-body{ padding-top:106px; }
+body{ padding-top:60px; }
 /* 상단 가로 메뉴바 (구 좌측 사이드바 → Ossila식 top nav) */
-.ch-nav{ position:fixed; top:60px; left:0; right:0; height:46px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:2px; z-index:39; transition:top .25s ease, background .25s ease; }
-/* 스크롤다운 시: 상단바는 접히고 메뉴바만 반투명하게 남음 */
+.ch-nav{ flex:1; min-width:0; height:100%; display:flex; align-items:center; justify-content:center; gap:2px; }
+/* 스크롤다운 시: 헤더 한 줄이 반투명하게 유지 (검색창 제거·메뉴 통합, 2026-08) */
 @media(min-width:901px){
-  body.hdr-collapsed .ch-top{ transform:translateY(-100%); }
-  body.hdr-collapsed .ch-nav{ top:0; background:rgba(255,255,255,.72); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px); border-bottom-color:rgba(224,222,214,.55); }
+  body.hdr-collapsed .ch-top{ background:rgba(255,255,255,.72); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px); border-bottom-color:rgba(224,222,214,.55); }
 }
 .ch-nav .tn-item{ position:relative; height:100%; display:flex; align-items:center; }
 .ch-nav .tn-link{ display:flex; align-items:center; height:100%; padding:0 16px; font-size:14.5px; font-weight:700; color:var(--gray); text-decoration:none; border-bottom:2px solid transparent; }
@@ -93,13 +92,13 @@ body{ padding-top:106px; }
 .art-layout{ display:grid; grid-template-columns:210px minmax(0,1fr) 340px; gap:34px; max-width:82%; margin:0 auto; align-items:start; }
 .art-layout .sd-wrap{ max-width:none !important; margin:0 !important; }
 /* 좌측 목차 가이드 (IBM Think식 스크롤 스파이) */
-.art-toc{ position:sticky; top:120px; padding-top:26px; }
+.art-toc{ position:sticky; top:84px; padding-top:26px; }
 .art-toc .at-h{ font-size:11px; font-weight:800; letter-spacing:.08em; color:#9aa3ad; margin:0 0 10px 13px; }
 .art-toc a{ display:block; padding:8px 12px 8px 13px; border-left:3px solid #e6e4dd; font-size:13px; color:#5a6570; line-height:1.45; text-decoration:none; }
 .art-toc a:hover{ color:var(--ink); background:var(--soft); }
 .art-toc a.on{ border-left-color:var(--green); color:var(--ink); font-weight:700; }
 @media(max-width:1350px){ .art-layout{ grid-template-columns:minmax(0,1fr) 340px; max-width:74%; } .art-toc{ display:none; } }
-.art-rail{ position:sticky; top:120px; display:flex; flex-direction:column; gap:12px; padding-top:24px; }
+.art-rail{ position:sticky; top:84px; display:flex; flex-direction:column; gap:12px; padding-top:24px; }
 .art-rail .ar-h{ font-size:13px; font-weight:800; color:var(--ink); border-left:3px solid #C2410C; padding-left:9px; }
 .ar-card{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--line); border-radius:12px; background:#fff; padding:12px; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s; }
 .ar-card:hover{ border-color:#1E3A5F; box-shadow:0 10px 22px rgba(10,37,64,.1); }
@@ -152,7 +151,7 @@ body{ padding-top:106px; }
   .art-rail{ position:static; margin:30px auto 0; max-width:70%; padding-top:0; }
 }
 @media(max-width:900px){ .art-rail{ max-width:none; padding:0 18px; } }
-.ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:18px; padding:0 15%; z-index:40; transition:transform .25s ease; }
+.ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:18px; padding:0 4%; z-index:40; transition:background .25s ease; }
 @media(max-width:900px){ .ch-top{ padding:0 16px; } }
 .ch-top .ch-brand{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--ink); text-decoration:none; }
 .ch-top .ch-brand b{ color:var(--green); }

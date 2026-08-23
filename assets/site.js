@@ -35,22 +35,25 @@
     { t:'온도컨트롤러(SP590·NOVA500E) 사용법 가이드', u:'/temp-controller-guide/', k:'온도컨트롤러 sp590 sp570 nova500e 삼원테크 사용법 전기로 온도 설정 승온 유지 하강 반복 hold 무한반복 rs485 가상 시뮬레이터 삼흥에너지', c:'호환 장비' },
     { t:'문의하기 · 자주 묻는 질문(FAQ)', u:'/contact/', k:'문의 상담 수리 개발 견적 실험 질문 faq 가격 할인 납기 배송 설치 보증 정량펌프 연동펌프 튜브 채널 제어 소프트웨어', c:'문의하기' }
   ];
-  fetch('/_build/posts.json').then(function (r) { return r.json(); }).then(function (d) {
-    (d.posts || []).forEach(function (p) {
-      SEARCH_INDEX.push({ t: p.title, u: p.url,
-        k: (p.tags || []).join(' ') + ' ' + (p.journal || '') + ' ' + (p.model_focus || '') + ' ' + (p.application || ''),
-        c: (p.type === 'setup' ? '사례 아카이브' : '블로그') });
-    });
-  }).catch(function () {});
-  // 전 페이지 자동 인덱스(빌드 생성) 병합 — 제품 상세·허브·메뉴얼 등 전부 검색 가능
-  fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (d) {
-    var seen = {};
-    SEARCH_INDEX.forEach(function (it) { seen[(it.u || '').replace(/\/$/, '')] = 1; });
-    (d.items || []).forEach(function (it) {
-      var key = (it.u || '').replace(/\/$/, '');
-      if (!seen[key]) { seen[key] = 1; SEARCH_INDEX.push(it); }
-    });
-  }).catch(function () {});
+  // 헤더 검색창 제거(2026-08)로 인덱스 페치는 검색 UI가 있는 페이지에서만 수행
+  function loadSearchIndex() {
+    fetch('/_build/posts.json').then(function (r) { return r.json(); }).then(function (d) {
+      (d.posts || []).forEach(function (p) {
+        SEARCH_INDEX.push({ t: p.title, u: p.url,
+          k: (p.tags || []).join(' ') + ' ' + (p.journal || '') + ' ' + (p.model_focus || '') + ' ' + (p.application || ''),
+          c: (p.type === 'setup' ? '사례 아카이브' : '블로그') });
+      });
+    }).catch(function () {});
+    // 전 페이지 자동 인덱스(빌드 생성) 병합 — 제품 상세·허브·메뉴얼 등 전부 검색 가능
+    fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (d) {
+      var seen = {};
+      SEARCH_INDEX.forEach(function (it) { seen[(it.u || '').replace(/\/$/, '')] = 1; });
+      (d.items || []).forEach(function (it) {
+        var key = (it.u || '').replace(/\/$/, '');
+        if (!seen[key]) { seen[key] = 1; SEARCH_INDEX.push(it); }
+      });
+    }).catch(function () {});
+  }
 
   var ICONS = {
     home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
@@ -130,10 +133,9 @@
     '<header class="ch-top">' +
       '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
       '<a class="ch-brand" href="/">실험셋업연구소</a>' +
-      '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색" autocomplete="off"><div class="ch-results" id="chResults"></div></form>' +
+      '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
-    '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
       '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>공정 → 조건 → 필요 장비로 읽는 실험 셋업 아카이브</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
@@ -463,6 +465,7 @@
     var sf = document.getElementById('chSearch');
     var rbox = document.getElementById('chResults');
     if (sf && rbox) {
+      loadSearchIndex();
       var inp = sf.querySelector('input');
       function esc(s){ return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
       function doSearch() {
