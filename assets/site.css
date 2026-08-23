@@ -70,7 +70,7 @@ header,
    ============================================================ */
 body{ padding-top:106px; }
 /* 상단 가로 메뉴바 (구 좌측 사이드바 → Ossila식 top nav) */
-.ch-nav{ position:fixed; top:60px; left:0; right:0; height:46px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:center; gap:2px; z-index:39; transition:top .25s ease, background .25s ease; }
+.ch-nav{ position:fixed; top:60px; left:0; right:0; height:46px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:flex-start; gap:2px; padding:0 max(16px, calc((100% - 1480px)/2)); z-index:39; transition:top .25s ease, background .25s ease; }
 /* 스크롤다운 시: 상단바는 접히고 메뉴바만 반투명하게 남음 */
 @media(min-width:901px){
   body.hdr-collapsed .ch-top{ transform:translateY(-100%); }
@@ -164,7 +164,7 @@ body{ padding-top:106px; }
   .art-rail{ position:static; margin:30px auto 0; max-width:70%; padding-top:0; }
 }
 @media(max-width:900px){ .art-rail{ max-width:none; padding:0 18px; } }
-.ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:16px; padding:0 4%; z-index:40; transition:transform .25s ease; }
+.ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:0; display:flex; align-items:center; gap:16px; padding:0 max(16px, calc((100% - 1480px)/2)); z-index:40; transition:transform .25s ease; }
 @media(max-width:900px){ .ch-top{ padding:0 16px; } }
 .ch-top .ch-brand{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--ink); text-decoration:none; }
 .ch-top .ch-brand b{ color:var(--green); }
