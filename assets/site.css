@@ -92,7 +92,7 @@ body{ padding-top:106px; }
 .ch-msearch button[type=submit]{ border-radius:0 8px 8px 0; }
 .ch-sug{ position:absolute; top:calc(100% + 8px); left:-2px; right:-2px; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 14px 38px rgba(10,37,64,.16); padding:6px; display:none; z-index:70; }
 .ch-sug.on{ display:block; }
-.ch-sug button{ display:flex; justify-content:space-between; align-items:center; width:100%; padding:9px 12px; border:0; background:none; font:inherit; font-size:13.5px; color:var(--ink); cursor:pointer; border-radius:8px; text-align:left; }
+.ch-sug button{ display:flex; justify-content:space-between; align-items:center; width:100%; padding:18px 12px; border:0; background:none; font:inherit; font-size:13.5px; color:var(--ink); cursor:pointer; border-radius:8px; text-align:left; }
 .ch-sug button:hover{ background:var(--soft); }
 .ch-sug button .n{ font-size:12px; color:var(--gray-2); font-weight:700; }
 .ch-msearch input{ flex:1; min-width:0; border:0; outline:none; font:inherit; font-size:14px; padding:0 14px; color:var(--ink); }
