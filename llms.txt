@@ -12,7 +12,7 @@
 
 ## 주요 페이지 (정확한 URL)
 
-> 사이트 메뉴(NAV) 4개: 셋업 사례(/magazine/) · 에너지 랩 A to Z(/magazine/battery/) · 제품소개(/brands/, 하위: 메뉴얼 /manuals/) · 문의하기(/contact/, 하위: 회사소개 /about/)
+> 사이트 메뉴(NAV) 4개: 제품소개(/product/, 하위: 메뉴얼 /manuals/) · 셋업 사례(/magazine/) · 에너지 랩 A to Z(/magazine/battery/) · 문의하기(/contact/, 하위: 회사소개 /about/)
 
 - [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
 - [셋업 사례](https://rndsetup.com/magazine/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
@@ -53,7 +53,7 @@
   - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/furnace/setups/alicat-mfc-tubefurnace/)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/pump/setups/plating-flow-calibration/)
 - 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/brands/leadfluid/)에 통합
-- [실험장비 통합 카탈로그](https://rndsetup.com/brands/): 취급 제품 241종을 브랜드 구분 없이 장비 종류(열처리·건조·배양·교반·진공·펌프·MFC·전기화학)로 찾는 통합 목록 + 브랜드 소개(삼흥에너지·리드플루이드·Alicat·가오스유니온)
+- [실험장비 통합 카탈로그](https://rndsetup.com/product/): 취급 제품 241종을 브랜드 구분 없이 장비 종류(열처리·건조·배양·교반·진공·펌프·MFC·전기화학)로 찾는 통합 목록 + 브랜드 소개(삼흥에너지·리드플루이드·Alicat·가오스유니온)
 - [메뉴얼 모음](https://rndsetup.com/manuals/): 전기로·튜브퍼니스·온도컨트롤러·펌프·MFC 사용 메뉴얼
 - [회사소개](https://rndsetup.com/about/): 실험셋업연구소(상호 이머전트) 소개 — 매거진·논문 셋업·장비 안내
 - [문의하기 · 자주 묻는 질문(FAQ)](https://rndsetup.com/contact/): 구매·견적, 수리·A/S, 제어 소프트웨어, 배송·기타 FAQ 26문 + 문의 폼

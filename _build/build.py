@@ -386,7 +386,7 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
     ('/brands/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
-    ('/brands/', '브랜드 소개 — 삼흥에너지·리드플루이드·Alicat·가오스유니온'),
+    ('/product/', '제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 241종 (삼흥에너지·리드플루이드·Alicat·가오스유니온)'),
     ('/brands/gaossunion/', '가오스유니온 전기화학 전극·재료·CO₂ 환원 촉매 — 기준·상대·작업전극, RDE, GDE 캐소드'),
     ('/brands/gaossunion/co2rr-catalyst/', 'CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드'),
     ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
@@ -1002,7 +1002,7 @@ ALLPROD_CATMAP = {
 
 def build_all_products():
     START, END = '<!--ALLPROD_START-->', '<!--ALLPROD_END-->'
-    target = os.path.join(ROOT_DIR, 'brands', 'index.html')
+    target = os.path.join(ROOT_DIR, 'product', 'index.html')
     if not os.path.exists(target):
         return
     page = read(target)
@@ -1061,7 +1061,7 @@ def build_all_products():
     page2, ok = _inject_between(page, START, END, payload)
     if ok:
         write(target, page2)
-        print(f'  전 제품 통합 카탈로그: {len(cards)}개 카드 주입 (brands/index.html)')
+        print(f'  전 제품 통합 카탈로그: {len(cards)}개 카드 주입 (product/index.html)')
 
 def build_new_research():
     """홈 '최신연구' 레일 — posts.json 최신 6편 자동 렌더 (수동 HTML 유지보수 제거)."""
@@ -1255,7 +1255,7 @@ def main():
         ('manuals/furnace-mg/', '0.6', 'monthly'),  # 칸탈 머플전기로(MG·MGE) 메뉴얼
         ('manuals/mfc/',     '0.6', 'monthly'),  # MFC 메뉴얼
         ('manuals/pump/',    '0.6', 'monthly'),  # 펌프 메뉴얼
-        ('brands/',       '0.6', 'monthly'),  # 브랜드 소개 허브
+        ('product/',      '0.8', 'weekly'),   # 제품 통합 카탈로그 허브
         ('brands/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)

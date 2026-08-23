@@ -61,7 +61,6 @@
 /sh-scientific/  /brands/sh-scientific/guide/  301
 
 # 스텁 → 서버 301 승격 후 실물 삭제 (2026-07, 관리파일 정리)
-/product/  /application/  301
 /guide/  /brands/leadfluid/blog/  301
 /guide-hub/  /  301
 /quote/  /contact/  301
@@ -74,7 +73,6 @@
 
 # 무슬래시 안전변형 (검증 중 /pumps·/product 가 홈으로 새던 것 방지)
 /pumps  /brands/leadfluid/  301
-/product  /application/  301
 /leadfluid  /magazine/pump-selection-wizard/  301
 
 
@@ -114,3 +112,4 @@
 /setups/alicat-mfc-tubefurnace.html  /furnace/setups/alicat-mfc-tubefurnace/  301
 /setups/leadfluid-bt101l-plating  /pump/setups/plating-flow-calibration/  301
 /setups/leadfluid-bt101l-plating.html  /pump/setups/plating-flow-calibration/  301
+/brands/  /product/  301

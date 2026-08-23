@@ -30,7 +30,7 @@
 - `.gitattributes` 삭제·임의수정 금지.
 
 ## 4. 구조 요약 (2026-08 기준)
-- **NAV 4개**(2026-08 축소): 셋업 사례(`/magazine/`) · 에너지 랩 A to Z(`/magazine/battery/`) · 제품소개(`/brands/`, sub: 제품소개·메뉴얼 `/manuals/`) · 문의하기(`/contact/`, sub: 문의하기·회사소개 `/about/`). 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
+- **NAV 4개**(2026-08 축소): 셋업 사례(`/magazine/`) · 에너지 랩 A to Z(`/magazine/battery/`) · 제품소개(`/product/` 통합 카탈로그, sub: 제품소개·메뉴얼 `/manuals/`) — NAV 1번째 · 문의하기(`/contact/`, sub: 문의하기·회사소개 `/about/`). 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
 - **문의·FAQ = `/contact/` 원페이지**(2026-08 통합): 정답블록 → 검색 필터 → 카테고리 탭(구매·견적/수리·A/S/제어·소프트웨어/배송·기타) → FAQ 아코디언 26문 → 문의 폼(`#form`, Formspree `mnjkzppj`). **FAQPage JSON-LD 26문 전량 정적 렌더**(JS는 표시 토글만). `/faq/`는 301 + 파일 삭제.
 - **콘텐츠 허브 = `/magazine/` "셋업 사례"** — 논문 셋업·가이드·용어사전·트러블슈팅·도입 사례를 3열 카드로 통합. `/setups/` 인덱스는 301→`/magazine/` (세부 사례 글 URL은 유지). 공정 허브: battery(커리큘럼)·deposition·heat-treatment·oxidation.
 - **제품**: 삼흥 상세 `/brands/sh-scientific/<slug>/` 150+, 리드플루이드 모델 페이지 78개 잔존(+`guide` 위저드) — **모델 페이지 정리 여부는 보류 중(유입 있음)**.
@@ -43,7 +43,7 @@
   - `sitemap.xml`, `feed.xml`, `search-index.json`(전 페이지 자동 인덱스, 301 소스 제외)
   - 홈 '셋업 사례' 카드 ← `_build/paper_cases.json`
   - 홈 '최신연구' 레일 ← `_build/posts.json` 최신 6편 (`<!--NEWRESEARCH-->` 마커)
-  - **전 제품 통합 카탈로그** ← `brands/<brand>/index.html`의 `<article class="dscard">` 를 `build_all_products()` 가 수집해 `brands/index.html` 의 `<!--ALLPROD_START-->` 마커에 주입(현재 241장). 브랜드 허브에 카드를 추가하면 **빌드만으로 자동 반영**. 통합 카테고리 매핑은 `ALLPROD_CATMAP`, 매핑 실패 시 `ALLPROD_BRANDS` 의 브랜드 기본값.
+  - **전 제품 통합 카탈로그** ← `brands/<brand>/index.html`의 `<article class="dscard">` 를 `build_all_products()` 가 수집해 `product/index.html` 의 `<!--ALLPROD_START-->` (구 /brands/ 는 301→/product/, 브랜드 하위 경로는 유지) 마커에 주입(현재 241장). 브랜드 허브에 카드를 추가하면 **빌드만으로 자동 반영**. 통합 카테고리 매핑은 `ALLPROD_CATMAP`, 매핑 실패 시 `ALLPROD_BRANDS` 의 브랜드 기본값.
   - **sitemap 브랜드 페이지 자동 등재** ← `brands/<brand>/index.html`·`brands/<brand>/<slug>/index.html` 스캔(리다이렉트 스텁·noindex·301 소스 제외). 새 브랜드·제품 페이지는 빌드만으로 sitemap에 들어간다.
   - **가격** ← `rndsetup_products.sql` 최저 정가 → `index.html`의 `data-price="key"` 스팬 + `site.js`의 `/*P:key*/'...'` 마커. **가격 개정 = SQL만 수정.**
     사이트 노출 가격은 `build_prices()`의 `DISCOUNT_RATE=0.97`(정가 대비 **3% 상시 할인**, 만원 미만 버림)이 적용된 판매가. 할인율 변경 = 이 상수 1곳. 상세페이지 `pkg-note`의 '정가 X원'과 JSON-LD `offers.price`는 **정가 유지**.

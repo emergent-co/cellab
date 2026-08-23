@@ -70,12 +70,12 @@
   };
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/magazine/', label:'셋업 사례', icon:'feed' },
-    { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
-    { href:'/brands/', label:'제품소개', icon:'devices', noclick:true, sub:[
-        ['/brands/',  '제품소개'],
+    { href:'/product/', label:'제품소개', icon:'devices', noclick:true, sub:[
+        ['/product/', '제품소개'],
         ['/manuals/', '메뉴얼']
       ] },
+    { href:'/magazine/', label:'셋업 사례', icon:'feed' },
+    { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
     { href:'/contact/', label:'문의하기', icon:'contact', noclick:true, sub:[
         ['/contact/', '문의하기 · FAQ'],
         ['/about/',   '회사소개']
