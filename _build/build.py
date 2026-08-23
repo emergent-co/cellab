@@ -1061,6 +1061,58 @@ def build_all_products():
             inner = re.sub(r'<button[^>]*class="qbtn[^"]*"[^>]*>.*?</button>', '', inner, flags=re.S)
             inner = inner.replace('<span class="ds-detail">상세 사양 →</span>',
                                   f'<a class="ds-detail" href="{href}">상세 사양 →</a>')
+            # ── 스펙 4행 통일 ──────────────────────────────────
+            def _mk_sp(rows):
+                return ('<div class="dscard-sp">'
+                        + ''.join(f'<div class="r"><span class="k">{escape(k)}</span><span class="v">{escape(v)}</span></div>'
+                                  for k, v in rows[:4]) + '</div>')
+            _existing = re.findall(r'<div class="r"><span class="k">[\s\S]*?</span></div>', inner)
+            if 'dscard-sp' in inner and len(_existing) > 4:
+                # 5행 이상 → 앞 4행만 유지 (리드플루이드 등)
+                for _drop in _existing[4:]:
+                    inner = inner.replace(_drop, '', 1)
+            elif 'dscard-sp' not in inner:
+                # 스펙 없음 → 상세페이지 사양표(pkg-tbl) 상위 4행 수집
+                rows = []
+                _detail = os.path.join(ROOT_DIR, href.strip('/').replace('/', os.sep), 'index.html')
+                if os.path.isfile(_detail):
+                    d = read(_detail)
+                    tb = re.search(r'<table class="pkg-tbl">([\s\S]*?)</table>', d)
+                    if tb:
+                        for th, td in re.findall(r'<t[hd][^>]*class="?k"?[^>]*>([\s\S]*?)</t[hd]>\s*<td[^>]*>([\s\S]*?)</td>', tb.group(1)) or \
+                                      re.findall(r'<th[^>]*>([\s\S]*?)</th>\s*<td[^>]*>([\s\S]*?)</td>', tb.group(1)):
+                            k = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', th)).strip()
+                            v = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', td)).strip()
+                            # 헤더 행(모델 열 나열)·비정상 키 제외
+                            if not k or not v or len(k) > 12 or any(h in k for h in ('사양', '품목', '정가', '모델명')):
+                                continue
+                            rows.append((k, v))
+                            if len(rows) >= 4:
+                                break
+                    if len(rows) < 4:  # 옵션형(가오스유니온 등): 옵션 수 + 대표 모델
+                        opts = re.findall(r'<tr>\s*<t[hd][^>]*>([\s\S]*?)</t[hd]>\s*<td[^>]*>([\s\S]*?)</td>', d)
+                        opts = [(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', a)).strip(),
+                                 re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', b)).strip()) for a, b in opts]
+                        opts = [(a, b) for a, b in opts
+                                if a and b and len(a) <= 14 and not any(h in a for h in ('사양', '품목', '정가', '모델'))][len(rows):]
+                        if opts:
+                            rows.append(('구성 옵션', f'{len(opts)}종'))
+                            for a, b in opts[:4 - len(rows)]:
+                                rows.append((a[:14], b))
+                _fill = [('브랜드', label), ('분류', title[:18]), ('사양', '상세 페이지 참조'), ('견적', '문의 시 할인 안내')]
+                _used = {k for k, _ in rows}
+                for k, v in _fill:
+                    if len(rows) >= 4:
+                        break
+                    if k not in _used:
+                        rows.append((k, v)); _used.add(k)
+                sp_html = _mk_sp(rows)
+                if '<div class="dscard-ft">' in inner:
+                    inner = inner.replace('<div class="dscard-ft">', sp_html + '<div class="dscard-ft">', 1)
+                elif '</article>' not in inner and '<div class="dscard-bd">' in inner:
+                    inner = re.sub(r'(</div>\s*)$', sp_html + r'\1', inner, count=1)
+                else:
+                    inner += sp_html
             if 'dscard-br' not in inner:
                 inner = inner.replace('<div class="dscard-bd">',
                                       f'<div class="dscard-bd"><div class="dscard-br">{escape(label)}</div>', 1)
