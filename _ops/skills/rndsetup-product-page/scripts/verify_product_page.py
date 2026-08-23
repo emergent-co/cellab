@@ -78,7 +78,7 @@ def check(path):
         add(OK if 60 <= n <= 130 else WARN, '정답블록 길이', f'{n}자 (권장 80~100)')
 
     # 8. 사양표
-    add(OK if 'class="pkg-tbl"' in h else NG, '사양표 .pkg-tbl')
+    add(OK if 'class="pkg-tbl' in h else NG, '사양표 .pkg-tbl')
 
     # 9. 정가 표기
     add(OK if re.search(r'정가\s*<b>[\d,]+원</b>', h) or re.search(r'정가\s*[\d,]+\s*원', h) else WARN,

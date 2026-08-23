@@ -386,7 +386,9 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
     ('/brands/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
-    ('/brands/', '브랜드 소개 — 삼흥에너지·리드플루이드·Alicat'),
+    ('/brands/', '브랜드 소개 — 삼흥에너지·리드플루이드·Alicat·가오스유니온'),
+    ('/brands/gaossunion/', '가오스유니온 전기화학 전극·재료·CO₂ 환원 촉매 — 기준·상대·작업전극, RDE, GDE 캐소드'),
+    ('/brands/gaossunion/co2rr-catalyst/', 'CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드'),
     ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
@@ -976,6 +978,75 @@ def build_prices():
     print(f'  가격 SSOT 주입: index.html {n1}곳 · site.js {n2}곳 (SQL 최저 정가 기준)')
 
 
+# 전 제품 통합 카탈로그 — brands/<brand>/index.html 의 dscard를 수집해 brands/index.html에 정적 주입.
+# 갱신 1곳 원칙: 브랜드 허브에 카드를 추가하면 빌드만으로 통합 카탈로그에 자동 반영된다.
+ALLPROD_BRANDS = [
+    ('sh-scientific', '삼흥에너지', ''),
+    ('leadfluid', '리드플루이드', 'pump'),
+    ('alicat', 'Alicat', 'gas'),
+    ('gaossunion', '가오스유니온', 'echem'),
+]  # (슬러그, 표기명, 매핑 실패 시 기본 카테고리)
+# 브랜드별 data-cat 어휘 → 통합 카테고리
+ALLPROD_CATMAP = {
+    'furnace': 'heat',
+    'drying': 'dry', 'distill': 'dry',
+    'incubator': 'culture', 'waterbath': 'culture', 'chamber': 'culture', 'sterilizer': 'culture',
+    'mixing': 'mix',
+    'vacuumpump': 'vacuum', 'vac': 'vacuum',
+    'pump': 'pump', 'peri': 'pump', 'syr': 'pump', 'gear': 'pump', 'ex': 'pump', 'head': 'pump',
+    'mfc': 'gas', 'std': 'gas', 'hp': 'gas', 'bio': 'gas', 'corr': 'gas', 'dual': 'gas', 'press': 'gas',
+    'electrode': 'echem', 'catalyst': 'echem', 'material': 'echem', 'accessory': 'echem',
+    'fumehood': 'safety', 'measuring': 'safety',
+}
+
+
+def build_all_products():
+    START, END = '<!--ALLPROD_START-->', '<!--ALLPROD_END-->'
+    target = os.path.join(ROOT_DIR, 'brands', 'index.html')
+    if not os.path.exists(target):
+        return
+    page = read(target)
+    if START not in page:
+        return
+    cards = []
+    for slug, label, default_cat in ALLPROD_BRANDS:
+        hub = os.path.join(ROOT_DIR, 'brands', slug, 'index.html')
+        if not os.path.exists(hub):
+            continue
+        h = read(hub)
+        for m in re.finditer(r'<article class="dscard"(.*?)</article>', h, re.S):
+            block = m.group(1)
+            a = re.search(r'<a class="dscard-link" href="([^"]+)"[^>]*>(.*?)</a>', block, re.S)
+            if not a:
+                continue
+            href = a.group(1)
+            title = re.sub(r'<[^>]*>', '', a.group(1 + 1)).strip()
+            img = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', block)
+            src = img.group(1) if img else ''
+            alt = img.group(2) if img else title
+            cat_raw = re.search(r'data-cat="([^"]*)"', block)
+            cat = default_cat
+            if cat_raw:
+                for tok in cat_raw.group(1).split():
+                    if tok in ALLPROD_CATMAP:
+                        cat = ALLPROD_CATMAP[tok]
+                        break
+            kw = re.search(r'data-text="([^"]*)"', block)
+            sub = re.search(r'<div class="dscard-nm">(.*?)</div>', block, re.S)
+            subtxt = re.sub(r'<[^>]*>', '', sub.group(1)).strip() if sub else ''
+            keys = ' '.join([title, subtxt, label, slug, kw.group(1) if kw else '']).lower()
+            cards.append(
+                f'<a class="ap-card" href="{href}" data-b="{slug}" data-c="{cat}" data-k="{escape(keys, quote=True)}">'
+                f'<div class="ap-im"><img src="{src}" alt="{escape(alt, quote=True)}" loading="lazy" width="760" height="570" onerror="this.parentElement.style.display=&quot;none&quot;"></div>'
+                f'<div class="ap-bd"><div class="ap-br">{escape(label)}</div>'
+                f'<div class="ap-t">{escape(title)}</div></div></a>'
+            )
+    payload = ''.join(cards)
+    page2, ok = _inject_between(page, START, END, payload)
+    if ok:
+        write(target, page2)
+        print(f'  전 제품 통합 카탈로그: {len(cards)}개 카드 주입 (brands/index.html)')
+
 def build_new_research():
     """홈 '최신연구' 레일 — posts.json 최신 6편 자동 렌더 (수동 HTML 유지보수 제거)."""
     posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
@@ -1321,11 +1392,12 @@ def main():
             bpath = os.path.join(_bdir, brand)
             if not os.path.isdir(bpath):
                 continue
-            for slug in sorted(os.listdir(bpath)):
-                idx = os.path.join(bpath, slug, 'index.html')
+            _cands = [None] + sorted(os.listdir(bpath))  # None = 브랜드 허브 자체
+            for slug in _cands:
+                idx = os.path.join(bpath, 'index.html') if slug is None else os.path.join(bpath, slug, 'index.html')
                 if not os.path.isfile(idx):
                     continue
-                rel = f'brands/{brand}/{slug}/'
+                rel = f'brands/{brand}/' if slug is None else f'brands/{brand}/{slug}/'
                 if rel in _known:
                     continue
                 if ('/' + rel) in _red_srcs or ('/' + rel).rstrip('/') in _red_srcs:
@@ -1373,6 +1445,7 @@ def main():
     build_home_paper_cases()  # 홈 '논문 사례' 카드 정적 렌더 (paper_cases.json · 공정 변수 SSOT)
     build_rss()  # feed.xml (RSS 2.0) — 매거진 구독·애그리게이터
     inject_setup_cta()  # 논문 셋업 글 하단 '이 셋업 그대로 견적·솔루션' CTA(?setup= 전달)
+    build_all_products()  # 전 제품 통합 카탈로그 (브랜드 허브 카드 자동 수집)
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()
