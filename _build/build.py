@@ -420,6 +420,7 @@ CRAWLER_LINKS = [
     ('/magazine/guide-pump-selection-energy-fluids/', '전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)'),
     ('/magazine/glossary-pump-fluid-terms/', 'mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)'),
     ('/magazine/si-anode-cvd-carbon-coating/', '실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)'),
+    ('/magazine/electrode-slurry-mixing-thick-cathode/', '초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)'),
     ('/magazine/cuo-nanowire-thermal-oxidation/', '구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
@@ -466,6 +467,7 @@ def inject_setup_cta():
         'magazine/nickel-hydroxide-coprecipitation-cstr/index.html',
         'magazine/si-anode-cvd-carbon-coating/index.html',
         'magazine/cuo-nanowire-thermal-oxidation/index.html',
+        'magazine/electrode-slurry-mixing-thick-cathode/index.html',
     }  # 매거진 논문글(명시적으로만)
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
