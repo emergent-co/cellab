@@ -1504,26 +1504,36 @@ def build_all_products():
                        r'\g<1>%d\g<2>' % len(cards), page2)
         page2 = re.sub(r'(통합 카탈로그(?: —)? )\d+(종)', r'\g<1>%d\g<2>' % len(cards), page2)
         write(target, page2)
-        # 검색 자동완성 어휘 — 실제 매칭 카드 수와 함께 정적 JSON 생성
-        vocab = set()
-        for _lst in KW_BY_SUBCAT.values():
-            vocab.update(_lst)
-        for _grp in SYN_GROUPS:
-            vocab.update(_grp)
-        vocab.update(CAT_LABEL.values())
-        vocab.update(['삼흥에너지', '리드플루이드', 'LeadFluid', 'Alicat', '가오스유니온', '튜브퍼니스', '머플로'])
-        vocab.update(all_kws)
+        # 검색 자동완성 어휘 — 제품군을 명확히 구분하는 대표 키워드만 (동의어·중복 배제)
+        CANON_TERMS = [
+            # 열처리
+            '튜브퍼니스', '머플로', '진공 전기로', '회전킬른', '엘리베이터 전기로', 'CVD', '스팀 제너레이터',
+            # 건조·농축
+            '열풍건조기', '진공건조기', '회전증발농축기', '숏패스 증류',
+            # 배양·항온·멸균
+            '인큐베이터', 'CO2 배양기', '진탕배양기', '데시케이터', '항온수조', '칠러', '항온항습기', '오토클레이브',
+            # 교반·분쇄
+            '교반기', '핫플레이트', '볼밀', '행성믹서', '3롤밀', '제트밀',
+            # 진공·안전·측정
+            '진공펌프', '흄후드', '클린벤치', '전자저울', '수분측정기',
+            # 펌프
+            '정량펌프', '시린지펌프', '기어펌프', '방폭펌프', '펌프헤드', 'OEM 펌프',
+            # 가스·압력
+            '질량유량계', 'MFC', '압력 컨트롤러', 'BPR',
+            # 전기화학
+            '기준전극', '상대전극', '작업전극', 'RHE', 'RDE', '전해셀', 'CO2RR 촉매', '이온교환막', '카본페이퍼', '배터리 테스트 셀',
+            # 브랜드
+            '삼흥에너지', '리드플루이드', 'Alicat', '가오스유니온',
+        ]
         _sug = []
-        for _w in vocab:
-            _wl = _w.strip().lower()
-            if len(_wl) < 2 or _wl.startswith('sh-'):
-                continue
-            _n = sum(1 for _k in all_keys if _wl in _k)
+        for _w in CANON_TERMS:
+            _ws = _w.lower().split()
+            _n = sum(1 for _k in all_keys if all(x in _k for x in _ws))
             if _n > 0:
-                _sug.append([_w.strip(), _n])
+                _sug.append([_w, _n])
         _sug.sort(key=lambda x: (-x[1], x[0]))
         write(os.path.join(ROOT_DIR, 'assets', 'search-terms.json'),
-              json.dumps(_sug[:200], ensure_ascii=False, separators=(',', ':')))
+              json.dumps(_sug, ensure_ascii=False, separators=(',', ':')))
         print(f'  검색 자동완성 어휘: {{}}개 (assets/search-terms.json)'.format(min(len(_sug), 200)))
         print(f'  전 제품 통합 카탈로그: {{}}개 표준 카드 주입 (product/index.html)'.format(len(cards)))
 
