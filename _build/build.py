@@ -1016,6 +1016,9 @@ def build_all_products():
         h = read(hub)
         for m in re.finditer(r'<article class="dscard"(.*?)</article>', h, re.S):
             block = m.group(1)
+            # 원본 카드 마크업 보존: 속성부와 내부 콘텐츠 분리 (>가 attr 값 안에 없다고 가정 — dscard 표준)
+            _gt = block.find('>')
+            orig_attrs, inner_html = block[:_gt], block[_gt + 1:]
             a = re.search(r'<a class="dscard-link" href="([^"]+)"[^>]*>(.*?)</a>', block, re.S)
             if not a:
                 continue
@@ -1051,11 +1054,18 @@ def build_all_products():
             sub = re.search(r'<div class="dscard-nm">(.*?)</div>', block, re.S)
             subtxt = re.sub(r'<[^>]*>', '', sub.group(1)).strip() if sub else ''
             keys = ' '.join([title, subtxt, label, slug, kw.group(1) if kw else '']).lower()
+            # 원본 dscard 마크업을 그대로 이식 + 통합 필터·검색용 data 속성 부여.
+            # 브랜드 라벨 배지, 이미지·제목 링크 보강(원본에 없을 때만).
+            inner = inner_html
+            if 'dscard-br' not in inner:
+                inner = inner.replace('<div class="dscard-bd">',
+                                      f'<div class="dscard-bd"><div class="dscard-br">{escape(label)}</div>', 1)
+            if '<div class="dscard-im">' in inner and href:
+                inner = inner.replace('<div class="dscard-im">',
+                                      f'<div class="dscard-im"><a href="{href}" aria-label="{escape(title, quote=True)}" style="position:absolute;inset:0;z-index:2"></a>', 1)
             cards.append(
-                f'<a class="ap-card" href="{href}" data-b="{slug}" data-c="{cat}" data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
-                f'<div class="ap-im"><img src="{src}" alt="{escape(alt, quote=True)}" loading="lazy" width="760" height="570" onerror="this.parentElement.classList.add(&quot;noimg&quot;);this.remove()"></div>'
-                f'<div class="ap-bd"><div class="ap-br">{escape(label)}</div>'
-                f'<div class="ap-t">{escape(title)}</div></div></a>'
+                f'<article class="ap-card dscard"{orig_attrs} data-b="{slug}" data-c="{cat}" data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
+                f'{inner}</article>'
             )
     payload = ''.join(cards)
     page2, ok = _inject_between(page, START, END, payload)
