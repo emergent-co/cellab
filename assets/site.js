@@ -468,6 +468,59 @@
       if (scrim) scrim.addEventListener('click', closeSide);
       side.addEventListener('click', function (e) { if (e.target.closest('a')) closeSide(); });
     }
+    // 메인 검색창 자동완성 — 연관검색어(매칭 카드 수) 실시간 제안
+    (function () {
+      var mf = document.querySelector('.ch-msearch');
+      if (!mf) return;
+      var minp = mf.querySelector('input[name="q"]');
+      if (!minp) return;
+      var box = document.createElement('div');
+      box.className = 'ch-sug';
+      mf.appendChild(box);
+      var TERMS = null, loading = false;
+      function load(cb) {
+        if (TERMS) { cb(); return; }
+        if (loading) return;
+        loading = true;
+        fetch('/assets/search-terms.json').then(function (r) { return r.json(); })
+          .then(function (d) { TERMS = d; cb(); }).catch(function () { loading = false; });
+      }
+      function hide() { box.classList.remove('on'); box.innerHTML = ''; }
+      function show() {
+        var v = (minp.value || '').trim().toLowerCase();
+        if (!v) { hide(); return; }
+        load(function () {
+          var starts = [], has = [];
+          for (var i = 0; i < TERMS.length; i++) {
+            var tl = TERMS[i][0].toLowerCase();
+            if (tl === v) continue;
+            if (tl.indexOf(v) === 0) starts.push(TERMS[i]);
+            else if (tl.indexOf(v) > -1) has.push(TERMS[i]);
+          }
+          var list = starts.concat(has).slice(0, 8);
+          if (!list.length) { hide(); return; }
+          box.innerHTML = '';
+          list.forEach(function (t) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            var s1 = document.createElement('span'); s1.textContent = t[0];
+            var s2 = document.createElement('span'); s2.className = 'n'; s2.textContent = t[1] + '개';
+            b.appendChild(s1); b.appendChild(s2);
+            b.addEventListener('mousedown', function (e) {
+              e.preventDefault();
+              location.href = '/product/?q=' + encodeURIComponent(t[0]);
+            });
+            box.appendChild(b);
+          });
+          box.classList.add('on');
+        });
+      }
+      minp.addEventListener('input', show);
+      minp.addEventListener('focus', show);
+      minp.addEventListener('blur', function () { setTimeout(hide, 150); });
+      minp.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+    })();
+
     var sf = document.getElementById('chSearch');
     var rbox = document.getElementById('chResults');
     if (sf && rbox) {

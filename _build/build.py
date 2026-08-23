@@ -1365,6 +1365,7 @@ def build_all_products():
     # ---- SQL 가격 폴백 끝 ----
 
     cards = []
+    all_keys, all_kws = [], set()
     for slug, label, default_cat in ALLPROD_BRANDS:
         hub = os.path.join(ROOT_DIR, 'brands', slug, 'index.html')
         if not os.path.exists(hub):
@@ -1478,6 +1479,8 @@ def build_all_products():
                 pr_html = '<div class="pc-pr"><span class="q">가격 견적 문의 <i class="vat">VAT 별도</i></span></div>'
             kw_html = ('<div class="pc-kw">' + ' '.join('#' + escape(w) for w in kws) + '</div>') if kws else '<div class="pc-kw"></div>'
 
+            all_keys.append(keys)
+            all_kws.update(kws)
             cards.append(
                 f'<article class="ap-card pcard" data-b="{slug}" data-c="{cat}"'
                 f' data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
@@ -1501,6 +1504,27 @@ def build_all_products():
                        r'\g<1>%d\g<2>' % len(cards), page2)
         page2 = re.sub(r'(통합 카탈로그(?: —)? )\d+(종)', r'\g<1>%d\g<2>' % len(cards), page2)
         write(target, page2)
+        # 검색 자동완성 어휘 — 실제 매칭 카드 수와 함께 정적 JSON 생성
+        vocab = set()
+        for _lst in KW_BY_SUBCAT.values():
+            vocab.update(_lst)
+        for _grp in SYN_GROUPS:
+            vocab.update(_grp)
+        vocab.update(CAT_LABEL.values())
+        vocab.update(['삼흥에너지', '리드플루이드', 'LeadFluid', 'Alicat', '가오스유니온', '튜브퍼니스', '머플로'])
+        vocab.update(all_kws)
+        _sug = []
+        for _w in vocab:
+            _wl = _w.strip().lower()
+            if len(_wl) < 2 or _wl.startswith('sh-'):
+                continue
+            _n = sum(1 for _k in all_keys if _wl in _k)
+            if _n > 0:
+                _sug.append([_w.strip(), _n])
+        _sug.sort(key=lambda x: (-x[1], x[0]))
+        write(os.path.join(ROOT_DIR, 'assets', 'search-terms.json'),
+              json.dumps(_sug[:200], ensure_ascii=False, separators=(',', ':')))
+        print(f'  검색 자동완성 어휘: {{}}개 (assets/search-terms.json)'.format(min(len(_sug), 200)))
         print(f'  전 제품 통합 카탈로그: {{}}개 표준 카드 주입 (product/index.html)'.format(len(cards)))
 
 def build_new_research():
