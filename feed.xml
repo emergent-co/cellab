@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 23 Aug 2026 20:27:39 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 20:31:15 +0900</lastBuildDate>
+    <item>
+      <title>초후막 양극, 믹싱만 바꿔 1C 용량 1.67배 — 슬러리 믹싱·전극 코팅 셋업</title>
+      <link>https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/</guid>
+      <pubDate>Sun, 23 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[같은 NCM622 조성·같은 슬롯다이 코터로 믹싱 궤적만 바꿔 초후막 양극(50 mg/cm²)의 굴곡도를 12.5→5.5로 낮추고 1C 면적용량을 67% 올린 파일럿 셋업.]]></description>
+      <category>배터리</category><category>양극</category><category>슬러리</category><category>전극코팅</category><category>정량이송</category>
+    </item>
     <item>
       <title>구리를 가열하면 나노와이어가 자란다 — CuO 열산화 셋업 (산화·확산)</title>
       <link>https://rndsetup.com/magazine/cuo-nanowire-thermal-oxidation/</link>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>초후막 양극, 믹싱만 바꿔 1C 용량 1.67배 — 슬러리 믹싱·전극 코팅 셋업 | 실험셋업연구소</title>
+<meta name="description" content="Energy Technology(2023) 논문 셋업을 분석했습니다. 같은 NCM622 조성·같은 슬롯다이 코터로 믹싱 궤적만 바꿔 초후막 양극(50 mg/cm²)의 굴곡도를 12.5에서 5.5로 낮추고 1C 면적용량을 67% 올렸습니다. 플래니터리 믹서·정량 급액 펌프·4존 건조·캘린더 조건과 재현 관점, 필요 장비 10종을 정리했습니다.">
+<link rel="canonical" href="https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="초후막 양극, 믹싱만 바꿔 1C 용량 1.67배 — 슬러리 믹싱·전극 코팅 셋업">
+<meta property="og:description" content="같은 조성·같은 코터로 믹싱 궤적만 바꿔 초후막 양극의 굴곡도와 율특성이 갈렸습니다. 플래니터리 믹서·정량 급액·4존 건조·캘린더 조건과 재현 관점을 정리했습니다.">
+<meta property="og:url" content="https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/">
+<meta property="og:image" content="https://rndsetup.com/img/og-magazine.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"headline":"초후막 양극, 믹싱만 바꿔 1C 용량 1.67배 — 슬러리 믹싱·전극 코팅 셋업",
+"datePublished":"2026-08-23",
+"dateModified":"2026-08-23",
+"inLanguage":"ko",
+"about":{"@type":"Thing","name":"배터리 전극 슬러리 믹싱·코팅 셋업(정량 급액 펌프·건조·캘린더)","url":"https://rndsetup.com/brands/leadfluid/"},
+"citation":{"@type":"ScholarlyArticle","name":"Influence of the Mixing and Dispersing Process on the Slurry Properties and the Microstructure and Performance of Ultrathick Cathodes for Lithium-Ion Batteries","author":"Hoffmann, A. et al.","isPartOf":{"@type":"Periodical","name":"Energy Technology"},"datePublished":"2023","sameAs":"https://doi.org/10.1002/ente.202200484"},
+"author":{"@type":"Person","@id":"https://rndsetup.com/#yhlee","name":"이영현","url":"https://rndsetup.com/about/#author","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
+"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"배터리 전극 슬러리는 점도만 맞추면 되나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. Hoffmann 등(Energy Technology, 2023)에서 세 가지 믹싱 공정으로 만든 슬러리는 도포 전단속도에서 점도가 11.2~15.6 Pa·s로 거의 같았지만, 전극의 굴곡도는 5.5에서 12.5까지 벌어졌고 1C 면적용량은 최대 67퍼센트 차이가 났습니다. 점도 한 점만으로는 미세구조 차이를 잡아낼 수 없습니다."}},
+{"@type":"Question","name":"초후막 전극에서 고전단 믹싱이 불리한 이유는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"고형분 86.4퍼센트를 175분 유지하는 강한 전단은 탄소-바인더 도메인을 치밀하게 만들어 활물질 표면과 서브마이크론 기공을 덮습니다. 50 mg/cm2 초후막에서는 율특성을 이온 수송이 지배하므로, 기공이 막히면 굴곡도가 12.5까지 올라가 성능이 떨어집니다. 저전단 공정은 스펀지형 다공 구조를 남겨 굴곡도 5.5를 얻었습니다."}},
+{"@type":"Question","name":"이 셋업을 재현하려면 어떤 장비가 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"플래니터리 2축 믹서(진공 탈포 포함), 용매 단계 투입용 정량 펌프, 슬롯다이 급액용 기어펌프, 4존 독립 제어 건조 오븐, 가열 롤 캘린더, 콘/플레이트 레오미터, 진공 건조 오븐과 진공펌프가 기본 구성입니다. 논문 저자도 투입 시점을 육안으로 판단한 점을 한계로 밝혔으므로, rpm·시간·투입량을 레시피로 고정하고 CSV로 기록하는 것이 재현의 핵심입니다."}}
+]}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.msc-tbl{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px;border:1px solid #e5e3dc;border-radius:8px;overflow:hidden}
+.msc-tbl th,.msc-tbl td{padding:9px 12px;text-align:left;border-top:1px solid #eceae3;vertical-align:top}
+.msc-tbl thead th{background:#f6f5f0;color:#555;font-weight:700;font-size:12.5px;border-top:none}
+.msc-tbl .hot{background:#FDF7EC}
+.msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
+.msc-res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 18px}
+.msc-res div{background:#f6f5f0;border-radius:8px;padding:12px 14px}
+.msc-res .k{font-size:12.5px;color:#777}
+.msc-res .v{font-size:15px;font-weight:700;color:#1E3A5F;margin-top:3px}
+.msc-spec{border:1px solid #e5e3dc;border-radius:10px;overflow:hidden;margin:10px 0 0;font-size:14px}
+.msc-sr{display:grid;grid-template-columns:auto 1fr 1.4fr;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #eceae3}
+.msc-sr:first-child{border-top:none}
+.msc-sn{width:20px;height:20px;border-radius:50%;background:#eaf0f7;color:#1E3A5F;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none}
+.msc-sr b{color:#222}.msc-sr span.d{color:#666}
+.msc-cta{width:100%;height:48px;font-size:15px;font-weight:700;background:#1E3A5F;color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:16px}
+.msc-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:flex-start;justify-content:center;padding:24px;overflow:auto}
+.msc-ov.on{display:flex}
+.msc-mc{width:100%;max-width:560px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
+.msc-mh{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid #eceae3}
+.msc-mh b{font-size:15px}.msc-mh .s{font-size:12px;color:#888;margin-top:2px}
+.msc-x{border:none;background:transparent;font-size:22px;line-height:1;color:#888;cursor:pointer}
+.msc-cl{padding:6px 18px;max-height:44vh;overflow:auto}
+.msc-cl label{display:flex;align-items:center;gap:10px;padding:9px 2px;cursor:pointer;border-top:1px solid #f0eee7}
+.msc-cl label:first-child{border-top:none}
+.msc-cl input{width:16px;height:16px;flex:none}
+.msc-cl .n{font-size:13.5px;font-weight:700}.msc-cl .d{font-size:12px;color:#888}
+.msc-nt{padding:12px 18px;border-top:1px solid #eceae3}
+.msc-nt textarea{width:100%;min-height:60px;font-size:13px;font-family:inherit;border:1px solid #d8d6cd;border-radius:8px;padding:8px;box-sizing:border-box}
+.msc-fb{display:flex;gap:8px;padding:12px 18px 16px;border-top:1px solid #eceae3}
+.msc-c{flex:1;height:42px;background:#fff;border:1px solid #cfccc2;border-radius:8px;color:#666;cursor:pointer}
+.msc-s{flex:2;height:42px;font-weight:700;background:#1E3A5F;color:#fff;border:none;border-radius:8px;cursor:pointer}
+.msc-ok{display:none;padding:20px 18px 22px;text-align:center}
+.msc-ok .ttl{font-size:15px;font-weight:700;margin-top:8px}
+.msc-ok .sub{font-size:12.5px;color:#888;margin-top:3px}
+.msc-ok .lst{margin-top:14px;background:#f6f5f0;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.9;text-align:left}
+.msc-f2{padding:12px 18px 4px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.msc-fld{margin:0}
+.msc-fld.full{grid-column:1 / -1}
+.msc-fld label{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:4px}
+.msc-fld input{width:100%;height:40px;font-size:14px;font-family:inherit;border:1px solid #d8d6cd;border-radius:8px;padding:0 11px;box-sizing:border-box}
+.msc-fld input:focus{outline:none;border-color:#1E3A5F}
+.msc-pick{margin:8px 18px 0;background:#f6f5f0;border-radius:8px;padding:9px 12px;font-size:12px;color:#666;line-height:1.5}
+</style>
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "셋업으로 읽는 에너지·소재 공정 매거진", "description": "논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "마그네틱 펌프", "질량유량계(MFC)", "질량유량계 다기체 보정", "sccm·slm 가스 유량 제어", "압력 컨트롤러", "배압 레귤레이터(BPR)", "관류배양", "연속배양(chemostat)", "flow chemistry 연속흐름 반응", "열처리로(전기로·튜브퍼니스)", "튜브퍼니스(관상로)", "머플로(박스형 전기로)", "진공 전기로", "회전 튜브로(로터리 킬른)", "엘리베이터 전기로", "3존 튜브퍼니스", "소성(firing)", "하소(calcination)", "소결(sintering)", "어닐링(소둔)", "가스 분위기 제어", "산소 분압(pO2) 제어", "동적 분위기 제어(DCA)", "CVD 탄소 코팅", "열산화", "배터리 양극재 전구체 공침", "전해액 순환", "수전해·전기화학 셋업", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "실험 셋업 정보"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://rndsetup.com/"}, {"@type": "ListItem", "position": 2, "name": "셋업 사례", "item": "https://rndsetup.com/magazine/"}, {"@type": "ListItem", "position": 3, "name": "초후막 양극, 믹싱만 바꿔 1C 용량 1.67배", "item": "https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/"}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<article class="sd-wrap">
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/magazine/">매거진</a> › 유체·펌프 · 슬러리·전극 코팅</div>
+  <h1>초후막 양극, 믹싱만 바꿔 1C 용량 1.67배<br>— 슬러리 믹싱·전극 코팅 셋업</h1>
+  <div class="sd-meta">2023 · Energy Technology · Hoffmann, A. et al. (ZSW Ulm)</div>
+  <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:4px 0 2px">실험셋업연구소 매거진 · 글 <a href="/about/#author" style="color:inherit;text-decoration:underline;text-underline-offset:2px">이영현</a> · <time datetime="2026-08-23">2026년 8월 23일</time> 발행 · 읽는 시간 약 7분</div>
+
+  <div class="sd-summary">
+    <h3>셋업 요약</h3>
+    <div class="row"><span class="k">논문</span><span>Influence of the Mixing and Dispersing Process on the Slurry Properties and the Microstructure and Performance of Ultrathick Cathodes for Lithium-Ion Batteries</span></div>
+    <div class="row"><span class="k">저널</span><span><b>Energy Technology</b> 11, 2200484 (2023) · CC BY 오픈액세스</span></div>
+    <div class="row"><span class="k">핵심 장비</span><span><b>플래니터리 2축 믹서 + 슬롯다이 코터 + 4존 건조로</b></span></div>
+    <div class="row"><span class="k">제어</span><span>고형분(TSC) × rpm × 투입 시점 × 벨트 속도 동기</span></div>
+    <div class="row"><span class="k">분야</span><span>#배터리 #양극 #슬러리 #코팅 #정량이송</span></div>
+    <div class="row"><span class="k">DOI</span><a href="https://doi.org/10.1002/ente.202200484" target="_blank" rel="noopener">10.1002/ente.202200484 ↗</a></div>
+  </div>
+
+  <div class="sd-answer">
+    <b>같은 NCM622 조성·같은 슬롯다이 코터로 믹싱 궤적만 바꿔 초후막 양극(50 mg/cm²)의 굴곡도를 12.5에서 5.5로 낮추고 1C 면적용량을 67% 끌어올린 파일럿 셋업입니다.</b> 슬러리는 레시피가 아니라 <b>공정 이력</b>입니다. 점도가 같아도 미세구조는 완전히 다를 수 있고, 그 차이는 전극이 두꺼울수록 성능으로 그대로 드러납니다.
+  </div>
+
+  <div class="sd-body">
+    <h2>논문은 셋업을 어떻게 구성했나</h2>
+    <p>ZSW(독일 울름) 연구진은 조성·설비를 고정한 채 <b>믹싱 공정만 세 가지</b>로 나눠 비교했습니다. 전극 조성은 NCM622 : 카본블랙(Super P) : 흑연(SFG6L) : PVdF = <b>93 : 2 : 1 : 4</b> (wt%), 용매는 NMP, 집전체는 Al 20 µm · 폭 150 mm입니다. 믹서는 <b>10 dm³ 플래니터리 믹서(Netzsch)</b>로, 크로스바 교반기(CS)와 축방향 더블버터플라이(BS) 두 축을 독립 제어합니다. 배치당 활물질 6 kg의 파일럿 규모입니다.</p>
+    <p>고전단 공정(HS1·HS2)은 모든 고체를 먼저 넣고 <b>고형분을 극한까지 올린 상태로 니딩</b>합니다. 저전단 공정(LS)은 반대로 PVdF를 미리 NMP에 녹인 <b>바인더 용액</b>에서 출발해 도전재를 충분히 푼 뒤 활물질을 나눠 넣습니다. 코팅·건조·캘린더는 세 공정 모두 동일한 파일럿 라인을 썼습니다.</p>
+    <div class="sd-quote">"…decided during operation based on <mark>optical assessment</mark>."</div>
+    <div class="sd-cite">투입 시점·질량을 작업자 육안으로 정했다는 저자 서술 — 재현성의 최대 변수입니다. 출처: Hoffmann, A. et al., <i>Energy Technology</i> (2023) · <a href="https://doi.org/10.1002/ente.202200484" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+
+    <h2>믹싱 공정 3종 (논문 실제 수치)</h2>
+    <table class="msc-tbl">
+      <thead><tr><th>공정</th><th>건식·초기 혼합</th><th>니딩 (최대 고형분)</th><th>최종 TSC</th></tr></thead>
+      <tbody>
+        <tr><td><b>HS1</b><br>고전단 강</td><td>고체 전량 동시 투입<br>CS/BS 20/200 rpm, 10분</td><td><b>TSC 86.4%를 175분</b><br>CS/BS 70/700 rpm</td><td>73.5%</td></tr>
+        <tr><td><b>HS2</b><br>고전단 완화</td><td>동일</td><td><b>TSC 82.4%를 154분</b></td><td>73.1%</td></tr>
+        <tr class="hot"><td><b>LS</b><br>저전단</td><td>PVdF 7 wt% 바인더 용액 선제조</td><td>카본블랙 55분 → 흑연 65분 → NCM 3회 분할 투입<br>전 구간 CS/BS <b>50/500 rpm</b></td><td>65.0%</td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">세 슬러리 모두 G″ &gt; G′ (액체 거동). 도포 전단속도에서 점도는 HS1 12.0 Pa·s(47.6 s⁻¹) · HS2 15.6 Pa·s(49.0 s⁻¹) · LS 11.2 Pa·s(20.7 s⁻¹)로 큰 차이가 없습니다. 레오미터는 Anton Paar 콘/플레이트 Φ50 mm 1°, 23℃, 0.1~300 s⁻¹.</p>
+
+    <h2>코팅 · 건조 · 캘린더 조건</h2>
+    <table class="msc-tbl">
+      <thead><tr><th>항목</th><th>조건</th></tr></thead>
+      <tbody>
+        <tr><td>코터</td><td>파일럿 슬롯다이 코터(LACOM), Al 포일 20 µm · 폭 150 mm</td></tr>
+        <tr><td>건조로</td><td>총 길이 8 m · 4존 독립 제어 <b>50 / 70 / 90 / 110℃</b></td></tr>
+        <tr><td>벨트 속도</td><td>HS1 1.1 · HS2 0.5 · LS 0.8 m/min</td></tr>
+        <tr><td>코팅 전단속도</td><td>20 ~ 50 s⁻¹ (벨트 속도 ÷ 습막 두께)</td></tr>
+        <tr class="hot"><td>캘린더</td><td>롤 온도 <b>100℃</b>, 목표 밀도 약 3.0 g/cm³</td></tr>
+        <tr><td>면적 로딩</td><td><b>49~50 mg/cm²</b> (초후막) / 20 mg/cm² (비교군)</td></tr>
+        <tr><td>공극률</td><td>28.0 ~ 29.0%</td></tr>
+        <tr><td>셀 평가</td><td>2032 코인셀 · 대극 Li · 1.0 M LiPF₆ in EC:EMC 3:7 + VC 2 wt% · 3~4.3 V<br>C/10 3사이클 화성 후 1·3·6·8·10·12 mA/cm² 각 3사이클</td></tr>
+      </tbody>
+    </table>
+
+    <h2>핵심 결과</h2>
+    <div class="msc-res">
+      <div><div class="k">1C(8 mA/cm²) 면적용량 — LS 기준</div><div class="v">HS1 대비 +67%, HS2 대비 +40%</div></div>
+      <div><div class="k">굴곡도(tortuosity)</div><div class="v">LS 5.5 &lt; HS2 9.9 &lt; HS1 12.5</div></div>
+    </div>
+    <table class="msc-tbl">
+      <thead><tr><th>공정</th><th>이온 저항</th><th>굴곡도</th><th>기공 분포(MIP)</th><th>CBD 형태(SEM)</th><th>권취 Φ80 mm</th></tr></thead>
+      <tbody>
+        <tr><td>HS1</td><td>100.8 Ω</td><td>12.5</td><td>반경 약 1.6 µm에 몰림, 0.6 µm 이하 거의 없음</td><td>두껍고 치밀하게 활물질을 감쌈</td><td>균열</td></tr>
+        <tr><td>HS2</td><td>84.8 Ω</td><td>9.9</td><td>HS1과 유사, 약간 다공</td><td>HS1보다 조금 더 다공</td><td>균열</td></tr>
+        <tr class="hot"><td>LS</td><td><b>45.5 Ω</b></td><td><b>5.5</b></td><td>서브마이크론까지 넓게 분포</td><td>스펀지형 다공 구조</td><td><b>균열 없음</b></td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">인장강도는 반대로 HS2가 HS1·LS 대비 약 40% 높았습니다. 바인더 분포(EDX 불소 맵)는 HS1에서 표면 농화가 뚜렷했고 HS2가 가장 균일했습니다. 1C 면적용량 절대값은 논문에 표로 제시되지 않아 상대 비교로 표기했습니다.</p>
+
+    <h2>파라미터를 왜 그렇게 잡나 — 재현 관점</h2>
+    <p><b>전단이 곧 굴곡도입니다.</b> 고형분 86.4%를 175분 버티는 건 카본블랙 응집을 부수기 위한 전략이지만, 대가로 탄소-바인더 도메인(CBD)이 치밀해져 활물질 표면과 미세기공을 덮습니다. 얇은 전극에서는 이득이던 이 선택이 <b>50 mg/cm² 초후막에서는 손해로 뒤집힙니다.</b> 두꺼운 전극의 율특성을 지배하는 건 전자 전도가 아니라 기공 안의 이온 수송이기 때문입니다. 굴곡도 12.5 → 5.5는 리튬이 전극 두께를 통과하는 유효 거리가 절반 이하로 줄었다는 뜻입니다.</p>
+    <p><b>분할 투입은 고형분 궤적을 설계하는 일입니다.</b> LS의 카본블랙 55분 → 흑연 65분 → 활물질 3분할은 고형분을 서서히 올리며 전단을 낮게 유지하는 경로입니다. 도전재를 먼저 충분히 풀고 활물질은 나중에 넣어, 활물질 입자 파쇄와 CBD 치밀화를 동시에 피합니다.</p>
+    <p><b>점도만 맞추면 된다는 착각을 버려야 합니다.</b> 세 슬러리의 점도는 11.2~15.6 Pa·s로 사실상 같습니다. QC를 점도 한 점으로만 하면 굴곡도 2배 차이를 그대로 통과시킵니다. 가장 값싼 대리 지표는 EIS 이온 저항이고, 여력이 되면 MIP 기공 분포까지 봐야 합니다.</p>
+    <p><b>강도와 유연성은 다른 축입니다.</b> HS2가 인장강도 최고인데 Φ80 mm 코어 권취에서는 깨졌고, LS는 강도가 낮은데 안 깨졌습니다. 롤투롤 라인을 전제한다면 판정 기준은 인장강도가 아니라 <b>굴곡 시험</b>이어야 합니다.</p>
+    <p><b>건조 속도가 바인더를 끌고 올라갑니다.</b> HS1은 벨트 1.1 m/min으로 가장 빨랐고 표면 바인더 농화도 가장 심했습니다. 저자도 믹싱 효과와 건조 효과가 완전히 분리되지 않았음을 인정했습니다. 믹싱을 비교할 때는 <b>건조 프로파일을 반드시 함께 기록</b>해야 합니다.</p>
+
+    <h2>흔한 실패 &amp; 체크포인트</h2>
+    <table class="msc-tbl">
+      <thead><tr><th>증상</th><th>원인</th><th>확인·대응</th></tr></thead>
+      <tbody>
+        <tr><td>점도는 규격인데 율특성이 낮음</td><td>CBD 치밀화로 이온 경로 차단</td><td>EIS 이온 저항·굴곡도 확인, 전단 이력 완화</td></tr>
+        <tr><td>배치마다 결과가 흔들림</td><td>투입 시점·질량을 육안 판단</td><td>rpm·시간·투입량을 레시피로 고정, CSV 기록</td></tr>
+        <tr><td>후막에서만 성능 급락</td><td>박막 레시피를 그대로 적용</td><td>로딩 20 → 50 mg/cm² 구간에서 믹싱 재설계</td></tr>
+        <tr><td>캘린더 후 핀홀·밀도 편차</td><td>탈포 생략, 기포 잔류</td><td>믹싱 종료 후 진공 탈포 단계 고정</td></tr>
+        <tr><td>표면만 바인더가 많음</td><td>건조 속도 과다(바인더 마이그레이션)</td><td>존별 온도와 벨트 속도를 함께 조정·기록</td></tr>
+        <tr><td>권취 시 캐스팅 직교 방향 균열</td><td>인장강도로만 판정</td><td>Φ80 mm급 굴곡 시험 병행</td></tr>
+        <tr><td>장시간 정치 후 조성 편차</td><td>슬러리 침강</td><td>저속 교반 유지, 급액 라인 순환</td></tr>
+      </tbody>
+    </table>
+
+    <h2>논문이 밝힌 한계</h2>
+    <p>저자들은 다음을 명시했습니다. 파일럿 규모(배치당 활물질 6 kg)이며 양산 검증은 하지 않았고, 분할 투입 시점을 육안으로 결정해 작업자 의존 변수가 남아 있으며, EIS가 외부 조건에 민감해 전기전도도 값은 제시하지 않았고, 굴곡도 계산식이 기공 연결성을 무시하며, 침강은 관찰되지 않았으나 정량 평가하지 않았고, 율특성 시험이 각 전류밀도 3사이클뿐이라 수명·캘린더 에이징은 평가하지 않았습니다. 또한 벨트 속도 차이 때문에 믹싱 효과와 건조 효과가 완전히 분리되지 않았고, 완전 습식 공정과의 비교군은 포함하지 않았습니다.</p>
+  </div>
+
+  <div class="sd-bridge">
+    <h2>믹싱 궤적과 급액 유량을 하나의 레시피로</h2>
+    <p>실험셋업연구소는 이런 셋업에서 <b>사람 손이 들어가는 지점을 장비로 대체</b>하는 데 초점을 둡니다. NMP 단계 투입은 연동펌프 다채널로 정량화하고, 슬롯다이 급액은 기어펌프로 맥동 없이 일정 유량을 유지하며, 믹서 rpm·고형분·건조 존 온도·벨트 속도를 한 화면에서 스케줄로 걸고 전 과정을 CSV로 남깁니다. 논문 저자가 한계로 꼽은 육안 판단이 사라지면 배치 간 비교가 비로소 가능해집니다. 배터리 소재 R&amp;D·파일럿 라인에서 반복되는 이런 통합 셋업은 완제품으로 팔지 않는 조합이라, 구성·제어·연동까지 함께 맞춰 드립니다.</p>
+    <a href="/brands/leadfluid/">리드플루이드 정량·기어펌프 보기 →</a>
+  </div>
+
+  <h2 style="font-family:var(--serif);font-size:19px;margin:26px 0 4px;color:#1E3A5F">이 셋업에 필요한 장비</h2>
+  <p class="msc-note">아래 사양에서 필요한 항목을 골라 바로 견적 문의할 수 있습니다.</p>
+  <div class="msc-spec" id="msc-spec"></div>
+  <button class="msc-cta" id="msc-open">필요한 장비 선택해 문의하기</button>
+
+  <div class="sd-sources">
+    <h4>출처</h4>
+    Hoffmann, A., Heider, E. A., Dreer, C., Pfeifer, C., Wohlfahrt-Mehrens, M., "Influence of the Mixing and Dispersing Process on the Slurry Properties and the Microstructure and Performance of Ultrathick Cathodes for Lithium-Ion Batteries", <i>Energy Technology</i> 11, 2200484 (2023). DOI: 10.1002/ente.202200484 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a><br>
+    ※ 본 페이지는 논문에 명시된 장비·조건 사실을 정리한 것으로, 제조사·저자의 보증이나 제휴를 의미하지 않습니다. 실험셋업연구소는 이머전트가 운영하는 에너지·소재 공정 셋업 매거진이며, 다룬 장비의 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다.
+  </div>
+
+  <div class="sd-tags"><span>#배터리</span><span>#양극</span><span>#슬러리</span><span>#전극코팅</span><span>#정량이송</span><span>#기어펌프</span><span>#논문셋업</span></div>
+
+  <div class="sd-related">
+    <h3>관련 콘텐츠</h3>
+    <div class="sd-rel-grid">
+      <a class="sd-rc" href="/magazine/nickel-hydroxide-coprecipitation-cstr/"><div class="cat">배터리 커리큘럼</div><div class="t">양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널</div><div class="d">슬러리 앞단, 전구체를 균일하게 만드는 정량 공급 셋업.</div></a>
+      <a class="sd-rc" href="/magazine/sodium-cathode-atmosphere-dca/"><div class="cat">배터리 커리큘럼</div><div class="t">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA)</div><div class="d">소성 분위기를 시간에 따라 바꾸는 튜브퍼니스 + MFC 셋업.</div></a>
+      <a class="sd-rc" href="/magazine/guide-pump-selection-energy-fluids/"><div class="cat">가이드</div><div class="t">전해액·전구체·부식성 유체 펌프 선정</div><div class="d">연동 vs 시린지 vs 기어 — 점성 슬러리 급액 기준.</div></a>
+    </div>
+  </div>
+<!--SETUPCTA_START--><!--SETUPCTA_END--></article>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/brands/leadfluid/">리드플루이드 펌프 전체 제품 — 연동·시린지·기어·방폭</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/brands/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/product/">제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 241종 (삼흥에너지·리드플루이드·Alicat·가오스유니온)</a></li><li><a href="/brands/gaossunion/">가오스유니온 전기화학 전극·재료·CO₂ 환원 촉매 — 기준·상대·작업전극, RDE, GDE 캐소드</a></li><li><a href="/brands/gaossunion/co2rr-catalyst/">CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/pump-selection-wizard/">펌프 선택 위저드 — 종류·유량·용도로 고르기</a></li><li><a href="/magazine/">셋업 사례 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)</a></li><li><a href="/magazine/battery/">배터리 랩 A to Z — 전구체 공침부터 소성·코팅·셀 평가까지 배터리 소재 실험 셋업 커리큘럼</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/magazine/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/magazine/nickel-hydroxide-coprecipitation-cstr/">배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/magazine/guide-calcination-furnace-atmosphere/">소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</a></li><li><a href="/magazine/troubleshooting-calcination-batch-variation/">소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅</a></li><li><a href="/magazine/glossary-heat-gas-terms/">하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/guide-pump-selection-energy-fluids/">전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)</a></li><li><a href="/magazine/glossary-pump-fluid-terms/">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/si-anode-cvd-carbon-coating/">실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)</a></li><li><a href="/magazine/cuo-nanowire-thermal-oxidation/">구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/contact/">문의하기 · 자주 묻는 질문(FAQ) — 견적·수리 A/S·제어 소프트웨어</a></li></ul></div></nav><!--CNAV_END--></div>
+
+<div class="msc-ov" id="msc-ov" role="dialog" aria-modal="true" aria-label="장비 문의">
+  <div class="msc-mc">
+    <div class="msc-mh"><div><b>장비 문의</b><div class="s" id="msc-sub">1/2 · 필요한 사양을 선택하세요</div></div><button class="msc-x" id="msc-close" aria-label="닫기">×</button></div>
+
+    <div id="msc-step1">
+      <div class="msc-cl" id="msc-checks"></div>
+      <div class="msc-nt"><textarea id="msc-note" placeholder="실험 조건·수량·문의 내용을 적어주세요 (예: NCM622 초후막 50 mg/cm2, 슬롯다이 급액, 4존 건조)"></textarea></div>
+      <div class="msc-fb"><button class="msc-c" id="msc-cancel">취소</button><button class="msc-s" id="msc-next"><span id="msc-count"></span> 다음 →</button></div>
+    </div>
+
+    <form id="msc-step2" style="display:none">
+      <div class="msc-pick" id="msc-pick"></div>
+      <div class="msc-f2">
+        <div class="msc-fld"><label>이름 *</label><input type="text" name="이름" required autocomplete="name"></div>
+        <div class="msc-fld"><label>소속 *</label><input type="text" name="소속" required autocomplete="organization"></div>
+        <div class="msc-fld"><label>이메일 *</label><input type="email" name="email" required autocomplete="email"></div>
+        <div class="msc-fld"><label>전화 *</label><input type="tel" name="전화" required autocomplete="tel"></div>
+      </div>
+      <input type="hidden" name="선택장비" id="msc-h-eq">
+      <input type="hidden" name="문의내용" id="msc-h-note">
+      <input type="hidden" name="_subject" value="[매거진] 장비 문의 — 배터리 전극 슬러리 믹싱·코팅 셋업">
+      <input type="hidden" name="문의출처" value="매거진 · 배터리 전극 슬러리 믹싱·코팅 셋업 (/magazine/electrode-slurry-mixing-thick-cathode/)">
+      <div class="msc-fb"><button type="button" class="msc-c" id="msc-back">← 이전</button><button type="submit" class="msc-s" id="msc-send">문의 전송</button></div>
+    </form>
+
+    <div class="msc-ok" id="msc-ok"><div style="font-size:32px;color:#0F6E56">✓</div><div class="ttl">문의가 전송되었습니다</div><div class="sub">보내주신 연락처로 회신드리겠습니다. 감사합니다.</div><div class="lst" id="msc-oklist"></div></div>
+  </div>
+</div>
+
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+  var specs=[
+    ["플래니터리 2축 믹서","크로스바+버터플라이, 20~700 rpm, 진공 탈포 내장"],
+    ["고전단 디스퍼서·분쇄기","도전재(카본블랙·흑연) 해쇄·분산"],
+    ["기어펌프 — 슬러리 정량 급액","슬롯다이 무맥동 공급, PEEK·SUS 접액부"],
+    ["연동펌프 — 용매 단계 투입","NMP 분할 투입 정량화·다채널 동기"],
+    ["슬롯다이·닥터블레이드 코터","폭 150 mm급, 벨트 0.5~1.1 m/min"],
+    ["다단 건조 오븐","4존 독립 제어(50/70/90/110℃)"],
+    ["진공 건조 오븐","잔류 NMP·수분 제거, 전극·전구체 건조"],
+    ["캘린더 롤프레스","가열 롤 100℃, 목표 밀도 약 3.0 g/cm³"],
+    ["회전 점도계·레오미터","콘/플레이트 Φ50 mm 1°, 0.1~300 s⁻¹"],
+    ["진공펌프 + 제어SW·CSV 로그","슬러리 탈포·오븐 배기, rpm·유량·온도 이력 기록"]
+  ];
+  var spec=document.getElementById('msc-spec'),checks=document.getElementById('msc-checks');
+  spec.innerHTML=specs.map(function(s,i){return '<div class="msc-sr"><span class="msc-sn">'+(i+1)+'</span><b>'+s[0]+'</b><span class="d">'+s[1]+'</span></div>';}).join('');
+  checks.innerHTML=specs.map(function(s){return '<label><input type="checkbox" class="msc-cb" data-name="'+s[0]+'" checked><span class="n">'+s[0]+'</span><span class="d">'+s[1]+'</span></label>';}).join('');
+  var ov=document.getElementById('msc-ov');
+  var step1=document.getElementById('msc-step1'),step2=document.getElementById('msc-step2'),ok=document.getElementById('msc-ok'),sub=document.getElementById('msc-sub');
+  var cbs=function(){return Array.prototype.slice.call(document.querySelectorAll('.msc-cb'));};
+  var cnt=document.getElementById('msc-count');
+  function rf(){cnt.textContent='('+cbs().filter(function(c){return c.checked;}).length+')';}
+  rf();checks.addEventListener('change',rf);
+  function show1(){step1.style.display='';step2.style.display='none';ok.style.display='none';sub.textContent='1/2 · 필요한 사양을 선택하세요';}
+  function open(){ov.classList.add('on');show1();}
+  function close(){ov.classList.remove('on');}
+  document.getElementById('msc-open').onclick=open;
+  document.getElementById('msc-close').onclick=close;
+  document.getElementById('msc-cancel').onclick=close;
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+
+  document.getElementById('msc-next').onclick=function(){
+    var sel=cbs().filter(function(c){return c.checked;}).map(function(c){return c.getAttribute('data-name');});
+    if(sel.length===0){alert('사양을 하나 이상 선택하세요.');return;}
+    var note=document.getElementById('msc-note').value.trim();
+    document.getElementById('msc-h-eq').value=sel.join(', ');
+    document.getElementById('msc-h-note').value=note;
+    document.getElementById('msc-pick').innerHTML='<b>선택 장비 '+sel.length+'개</b> — '+sel.join(', ')+(note?'<br>메모: '+note.replace(/</g,'&lt;'):'');
+    step1.style.display='none';step2.style.display='';ok.style.display='none';sub.textContent='2/2 · 연락처를 입력하세요';
+  };
+  document.getElementById('msc-back').onclick=show1;
+
+  step2.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=document.getElementById('msc-send');btn.disabled=true;btn.textContent='전송 중…';
+    fetch('https://formspree.io/f/mnjkzppj',{method:'POST',body:new FormData(step2),headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){
+          var eq=document.getElementById('msc-h-eq').value;
+          document.getElementById('msc-oklist').innerHTML='<div style="font-weight:700;margin-bottom:4px">문의한 장비</div><div>'+eq+'</div>';
+          step2.style.display='none';ok.style.display='block';sub.textContent='전송 완료';step2.reset();
+        }else{alert('전송에 실패했습니다. 잠시 후 다시 시도하거나 070-8983-2600으로 연락 주세요.');}
+      })
+      .catch(function(){alert('전송에 실패했습니다. 네트워크를 확인하고 다시 시도해 주세요.');})
+      .finally(function(){btn.disabled=false;btn.textContent='문의 전송';});
+  });
+})();
+</script>
+</body>
+</html>
