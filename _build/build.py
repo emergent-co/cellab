@@ -1210,6 +1210,32 @@ def build_all_products():
     CAT_LABEL = {'heat': '열처리', 'dry': '건조·농축', 'culture': '배양·항온', 'mix': '교반·분쇄',
                  'vacuum': '진공', 'pump': '펌프', 'gas': '가스유량 MFC', 'echem': '전기화학', 'safety': '안전·측정'}
 
+    # 검색 동의어 그룹 — 그룹 내 단어가 하나라도 있으면 나머지도 data-k에 추가 (검색 리콜 확대)
+    SYN_GROUPS = [
+        ['퍼니스', '전기로', '소성로', '열처리로', '소결로', '하소로', 'furnace'],
+        ['튜브퍼니스', '관상로'],
+        ['머플로', '박스퍼니스', '박스로'],
+        ['건조기', '오븐', '드라이오븐', 'oven'],
+        ['진공건조기', '진공오븐'],
+        ['항온수조', '워터배스', '순환수조'],
+        ['인큐베이터', '배양기', 'incubator'],
+        ['오토클레이브', '멸균기', 'autoclave', '고압증기멸균'],
+        ['흄후드', '퓸후드', 'fumehood'],
+        ['교반기', '스터러', '믹서', 'stirrer', '오버헤드교반기'],
+        ['핫플레이트', '가열교반기', 'hotplate'],
+        ['연동펌프', '페리스탈틱펌프', '튜빙펌프', '호스펌프', '정량펌프', 'peristaltic'],
+        ['시린지펌프', '주사기펌프', '실린지펌프', 'syringe'],
+        ['기어펌프', '마이크로기어펌프'],
+        ['질량유량계', 'mfc', '유량컨트롤러', '매스플로우', 'mass flow'],
+        ['압력컨트롤러', '배압레귤레이터', 'bpr', '압력제어'],
+        ['회전증발농축기', '로터리증발기', '증발농축기', 'evaporator', '감압농축기'],
+        ['초음파세척기', '소니케이터', 'sonicator'],
+        ['원심분리기', 'centrifuge'],
+        ['기준전극', 'reference electrode'],
+        ['상대전극', 'counter electrode', '백금전극'],
+        ['작업전극', 'working electrode', '유리탄소전극'],
+    ]
+
     cards = []
     for slug, label, default_cat in ALLPROD_BRANDS:
         hub = os.path.join(ROOT_DIR, 'brands', slug, 'index.html')
@@ -1272,6 +1298,19 @@ def build_all_products():
                 except ValueError:
                     pass
             kws = get_keywords(block, title, _sub1 or cat, CAT_LABEL.get(cat, ''))
+            # data-k(검색 텍스트) 전면 보강: #키워드 + 제품군 연관검색어 사전 전체 + 스펙 라벨·값 + 카테고리명
+            keys = ' '.join(
+                [keys]
+                + [w.lower() for w in kws]
+                + [w.lower() for w in KW_BY_SUBCAT.get(_sub1 or cat, [])]
+                + [CAT_LABEL.get(cat, '').lower()]
+                + [(k + ' ' + v).lower() for k, v in specs if v and v != '상세 참조']
+            )
+            # 동의어 그룹 확장: 그룹 단어가 하나라도 있으면 나머지 전부 추가
+            for _grp in SYN_GROUPS:
+                if any(g in keys for g in _grp):
+                    keys += ' ' + ' '.join(g for g in _grp if g not in keys)
+            keys = ' '.join(dict.fromkeys(keys.split()))
             if not model:
                 _rep = next((v for k, v in specs if k == '대표 모델'), '')
                 model = _rep or '옵션 구성 · 상세 참조'
