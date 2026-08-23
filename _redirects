@@ -80,7 +80,6 @@
 /sh-scientific/*   /brands/sh-scientific/:splat   301
 /sh-scientific    /brands/sh-scientific/   301
 /leadfluid/*   /brands/leadfluid/:splat   301
-/leadfluid    /brands/leadfluid/   301
 /alicat/*   /brands/alicat/:splat   301
 /alicat    /brands/alicat/   301
 
@@ -93,7 +92,6 @@
 /setups/catheter-heparin-bt101.html  /magazine/  301
 
 # 리드플루이드 재구성(2026-08) — 허브=카드 목록, 상세=/brands/leadfluid/<model>/, 위저드=매거진 글
-/leadfluid/*  /brands/leadfluid/:splat  301
 /brands/leadfluid/guide/  /magazine/pump-selection-wizard/  301
 
 # 리드플루이드 방폭 슬러그 정리(2026-08) — 모델 코드 페이지로 통합
@@ -105,7 +103,6 @@
 /faq/index.html  /contact/  301
 
 # 셋업 사례 통합(2026-08) — /setups/ 인덱스를 /magazine/으로 (상세 글은 유지)
-/setups/  /magazine/  301
 
 # 중복 사례 정리(2026-08) — 사본 삭제, 정본으로 1홉 직결
 /setups/alicat-mfc-tubefurnace  /furnace/setups/alicat-mfc-tubefurnace/  301
