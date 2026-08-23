@@ -1377,6 +1377,9 @@ def build_all_products():
                 continue
             href = a.group(1)
             title = clean(a.group(2))
+            # 카탈로그 제외 목록 — 중복 카드 (연속식 회전킬른 RKG600/900과 동일 제품군, 구 모델명 페이지)
+            if href in ('/brands/sh-scientific/rotary-tube-furnace/', '/brands/sh-scientific/rotary-tube-furnace-pro/'):
+                continue
             img = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', block)
             src = img.group(1) if img else ''
             alt = img.group(2) if img else title
@@ -1493,6 +1496,10 @@ def build_all_products():
     payload = ''.join(cards)
     page2, ok = _inject_between(page, START, END, payload)
     if ok:
+        # h1 결과 헤드의 정적 카드 수 자동 갱신 (크롤러용 기본값 — JS가 런타임 갱신)
+        page2 = re.sub(r'(실험장비 통합 카탈로그 — 전체 제품 <b>총 )\d+(개</b>)',
+                       r'\g<1>%d\g<2>' % len(cards), page2)
+        page2 = re.sub(r'(통합 카탈로그(?: —)? )\d+(종)', r'\g<1>%d\g<2>' % len(cards), page2)
         write(target, page2)
         print(f'  전 제품 통합 카탈로그: {{}}개 표준 카드 주입 (product/index.html)'.format(len(cards)))
 
