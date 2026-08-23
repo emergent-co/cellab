@@ -1031,13 +1031,29 @@ def build_all_products():
                     if tok in ALLPROD_CATMAP:
                         cat = ALLPROD_CATMAP[tok]
                         break
+            # 2차 상세 필터 토큰 수집 (원본 허브의 세부 속성)
+            sub_tokens = []
+            if cat_raw:
+                sub_tokens += cat_raw.group(1).split()
+            for attr, prefix in (('tier', 'tier:'), ('type', 'ty:')):
+                mm = re.search(r'data-%s="([^"]*)"' % attr, block)
+                if mm and mm.group(1).strip():
+                    sub_tokens.append(prefix + mm.group(1).strip())
+            for attr in ('f2', 'flow', 'proc'):
+                mm = re.search(r'data-%s="([^"]*)"' % attr, block)
+                if mm:
+                    sub_tokens += mm.group(1).split()
+            if slug == 'gaossunion':
+                seg = [x for x in href.strip('/').split('/') if x]
+                if len(seg) >= 3:
+                    sub_tokens.append('gu:' + seg[2])
             kw = re.search(r'data-text="([^"]*)"', block)
             sub = re.search(r'<div class="dscard-nm">(.*?)</div>', block, re.S)
             subtxt = re.sub(r'<[^>]*>', '', sub.group(1)).strip() if sub else ''
             keys = ' '.join([title, subtxt, label, slug, kw.group(1) if kw else '']).lower()
             cards.append(
-                f'<a class="ap-card" href="{href}" data-b="{slug}" data-c="{cat}" data-k="{escape(keys, quote=True)}">'
-                f'<div class="ap-im"><img src="{src}" alt="{escape(alt, quote=True)}" loading="lazy" width="760" height="570" onerror="this.parentElement.style.display=&quot;none&quot;"></div>'
+                f'<a class="ap-card" href="{href}" data-b="{slug}" data-c="{cat}" data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
+                f'<div class="ap-im"><img src="{src}" alt="{escape(alt, quote=True)}" loading="lazy" width="760" height="570" onerror="this.parentElement.classList.add(&quot;noimg&quot;);this.remove()"></div>'
                 f'<div class="ap-bd"><div class="ap-br">{escape(label)}</div>'
                 f'<div class="ap-t">{escape(title)}</div></div></a>'
             )
