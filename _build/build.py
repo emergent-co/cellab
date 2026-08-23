@@ -1001,6 +1001,8 @@ ALLPROD_CATMAP = {
 
 
 def build_all_products():
+    """전 제품 통합 카탈로그 — 브랜드 허브 dscard에서 데이터만 추출해 표준 카드로 정규화 주입.
+    카드 표준(고정): 대표사진 / 브랜드 / 제목 / 모델명 / 스펙3행 / 정가·할인가 / 키워드 해시태그 / 더보기."""
     START, END = '<!--ALLPROD_START-->', '<!--ALLPROD_END-->'
     target = os.path.join(ROOT_DIR, 'product', 'index.html')
     if not os.path.exists(target):
@@ -1008,6 +1010,87 @@ def build_all_products():
     page = read(target)
     if START not in page:
         return
+
+    def clean(s):
+        return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', s or '')).strip()
+
+    def detail_of(href):
+        p = os.path.join(ROOT_DIR, href.strip('/').replace('/', os.sep), 'index.html')
+        return read(p) if os.path.isfile(p) else ''
+
+    def get_price(detail):
+        """상세페이지에서 정가 추출(JSON-LD offers.price 우선, 다음 '정가 N원')."""
+        m = re.search(r'"price"\s*:\s*"?([0-9][0-9,]{3,})"?', detail)
+        if not m:
+            m = re.search(r'정가\s*([0-9][0-9,]{3,})\s*원', detail)
+        if not m:
+            return None
+        try:
+            v = int(m.group(1).replace(',', ''))
+            return v if v >= 10000 else None
+        except ValueError:
+            return None
+
+    def get_specs(block, detail):
+        rows = []
+        # 1) 카드 원본의 스펙 행
+        for k, v in re.findall(r'<span class="k">([\s\S]*?)</span>\s*<span class="v">([\s\S]*?)</span>', block):
+            k, v = clean(k), clean(v)
+            if k and v and len(k) <= 12:
+                rows.append((k, v))
+            if len(rows) >= 3:
+                return rows
+        # 2) 상세페이지 사양표(pkg-tbl)
+        tb = re.search(r'<table class="pkg-tbl">([\s\S]*?)</table>', detail)
+        if tb:
+            for th, td in re.findall(r'<th[^>]*>([\s\S]*?)</th>\s*<td[^>]*>([\s\S]*?)</td>', tb.group(1)):
+                k, v = clean(th), clean(td)
+                if not k or not v or len(k) > 12 or any(h in k for h in ('사양', '품목', '정가', '모델명')):
+                    continue
+                rows.append((k, v))
+                if len(rows) >= 3:
+                    return rows
+        # 3) 옵션형(가오스유니온): 구성 옵션 수 + 대표 모델
+        if len(rows) < 3:
+            opts = re.findall(r'<tr>\s*<t[hd][^>]*>([\s\S]*?)</t[hd]>\s*<td[^>]*>([\s\S]*?)</td>', detail)
+            opts = [(clean(a), clean(b)) for a, b in opts]
+            opts = [(a, b) for a, b in opts if a and b and len(a) <= 14 and not any(h in a for h in ('사양', '품목', '정가', '모델'))]
+            if opts:
+                rows.append(('구성 옵션', f'{len(opts)}종'))
+                for a, b in opts:
+                    if len(rows) >= 3:
+                        break
+                    rows.append(('대표 모델', b))
+        return rows
+
+    KW_STOP = {'및', '또는', '기타', 'the', 'and', 'for', 'with'}
+
+    def get_keywords(block, title, cat_label):
+        toks = []
+        for attr in ('data-text', 'data-use'):
+            mm = re.search(attr + r'="([^"]*)"', block)
+            if mm:
+                toks += mm.group(1).split()
+        out, seen = [], set()
+        if cat_label:
+            out.append(cat_label); seen.add(cat_label)
+        tl = title.replace(' ', '').lower()
+        for w in toks:
+            w = w.strip('·,()[]/#').strip()
+            if not (2 <= len(w) <= 12):
+                continue
+            if re.search(r'[0-9~×@]|^[a-z\-]+$', w.lower()) and not re.search(r'[가-힣]', w):
+                continue  # 모델코드·영문토큰 제외
+            if w.lower() in KW_STOP or w in seen or w.replace(' ', '').lower() in tl:
+                continue
+            seen.add(w); out.append(w)
+            if len(out) >= 7:
+                break
+        return out
+
+    CAT_LABEL = {'heat': '열처리', 'dry': '건조·농축', 'culture': '배양·항온', 'mix': '교반·분쇄',
+                 'vacuum': '진공', 'pump': '펌프', 'gas': '가스유량 MFC', 'echem': '전기화학', 'safety': '안전·측정'}
+
     cards = []
     for slug, label, default_cat in ALLPROD_BRANDS:
         hub = os.path.join(ROOT_DIR, 'brands', slug, 'index.html')
@@ -1016,17 +1099,16 @@ def build_all_products():
         h = read(hub)
         for m in re.finditer(r'<article class="dscard"(.*?)</article>', h, re.S):
             block = m.group(1)
-            # 원본 카드 마크업 보존: 속성부와 내부 콘텐츠 분리 (>가 attr 값 안에 없다고 가정 — dscard 표준)
-            _gt = block.find('>')
-            orig_attrs, inner_html = block[:_gt], block[_gt + 1:]
             a = re.search(r'<a class="dscard-link" href="([^"]+)"[^>]*>(.*?)</a>', block, re.S)
             if not a:
                 continue
             href = a.group(1)
-            title = re.sub(r'<[^>]*>', '', a.group(1 + 1)).strip()
+            title = clean(a.group(2))
             img = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', block)
             src = img.group(1) if img else ''
             alt = img.group(2) if img else title
+            nm = re.search(r'<div class="dscard-nm">([\s\S]*?)</div>', block)
+            model = clean(nm.group(1)) if nm else ''
             cat_raw = re.search(r'data-cat="([^"]*)"', block)
             cat = default_cat
             if cat_raw:
@@ -1034,7 +1116,6 @@ def build_all_products():
                     if tok in ALLPROD_CATMAP:
                         cat = ALLPROD_CATMAP[tok]
                         break
-            # 2차 상세 필터 토큰 수집 (원본 허브의 세부 속성)
             sub_tokens = []
             if cat_raw:
                 sub_tokens += cat_raw.group(1).split()
@@ -1050,84 +1131,48 @@ def build_all_products():
                 seg = [x for x in href.strip('/').split('/') if x]
                 if len(seg) >= 3:
                     sub_tokens.append('gu:' + seg[2])
-            kw = re.search(r'data-text="([^"]*)"', block)
-            sub = re.search(r'<div class="dscard-nm">(.*?)</div>', block, re.S)
-            subtxt = re.sub(r'<[^>]*>', '', sub.group(1)).strip() if sub else ''
-            keys = ' '.join([title, subtxt, label, slug, kw.group(1) if kw else '']).lower()
-            # 원본 dscard 마크업을 그대로 이식 + 통합 필터·검색용 data 속성 부여.
-            # 브랜드 라벨 배지, 이미지·제목 링크 보강(원본에 없을 때만).
-            inner = inner_html
-            # 통합 카탈로그에서는 견적 버튼 제거(상세페이지에서 견적) + '상세 사양'을 실링크로
-            inner = re.sub(r'<button[^>]*class="qbtn[^"]*"[^>]*>.*?</button>', '', inner, flags=re.S)
-            inner = inner.replace('<span class="ds-detail">상세 사양 →</span>',
-                                  f'<a class="ds-detail" href="{href}">상세 사양 →</a>')
-            # ── 스펙 4행 통일 ──────────────────────────────────
-            def _mk_sp(rows):
-                return ('<div class="dscard-sp">'
-                        + ''.join(f'<div class="r"><span class="k">{escape(k)}</span><span class="v">{escape(v)}</span></div>'
-                                  for k, v in rows[:4]) + '</div>')
-            _existing = re.findall(r'<div class="r"><span class="k">[\s\S]*?</span></div>', inner)
-            if 'dscard-sp' in inner and len(_existing) > 4:
-                # 5행 이상 → 앞 4행만 유지 (리드플루이드 등)
-                for _drop in _existing[4:]:
-                    inner = inner.replace(_drop, '', 1)
-            elif 'dscard-sp' not in inner:
-                # 스펙 없음 → 상세페이지 사양표(pkg-tbl) 상위 4행 수집
-                rows = []
-                _detail = os.path.join(ROOT_DIR, href.strip('/').replace('/', os.sep), 'index.html')
-                if os.path.isfile(_detail):
-                    d = read(_detail)
-                    tb = re.search(r'<table class="pkg-tbl">([\s\S]*?)</table>', d)
-                    if tb:
-                        for th, td in re.findall(r'<t[hd][^>]*class="?k"?[^>]*>([\s\S]*?)</t[hd]>\s*<td[^>]*>([\s\S]*?)</td>', tb.group(1)) or \
-                                      re.findall(r'<th[^>]*>([\s\S]*?)</th>\s*<td[^>]*>([\s\S]*?)</td>', tb.group(1)):
-                            k = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', th)).strip()
-                            v = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', td)).strip()
-                            # 헤더 행(모델 열 나열)·비정상 키 제외
-                            if not k or not v or len(k) > 12 or any(h in k for h in ('사양', '품목', '정가', '모델명')):
-                                continue
-                            rows.append((k, v))
-                            if len(rows) >= 4:
-                                break
-                    if len(rows) < 4:  # 옵션형(가오스유니온 등): 옵션 수 + 대표 모델
-                        opts = re.findall(r'<tr>\s*<t[hd][^>]*>([\s\S]*?)</t[hd]>\s*<td[^>]*>([\s\S]*?)</td>', d)
-                        opts = [(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', a)).strip(),
-                                 re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', b)).strip()) for a, b in opts]
-                        opts = [(a, b) for a, b in opts
-                                if a and b and len(a) <= 14 and not any(h in a for h in ('사양', '품목', '정가', '모델'))][len(rows):]
-                        if opts:
-                            rows.append(('구성 옵션', f'{len(opts)}종'))
-                            for a, b in opts[:4 - len(rows)]:
-                                rows.append((a[:14], b))
-                _fill = [('브랜드', label), ('분류', title[:18]), ('사양', '상세 페이지 참조'), ('견적', '문의 시 할인 안내')]
-                _used = {k for k, _ in rows}
-                for k, v in _fill:
-                    if len(rows) >= 4:
-                        break
-                    if k not in _used:
-                        rows.append((k, v)); _used.add(k)
-                sp_html = _mk_sp(rows)
-                if '<div class="dscard-ft">' in inner:
-                    inner = inner.replace('<div class="dscard-ft">', sp_html + '<div class="dscard-ft">', 1)
-                elif '</article>' not in inner and '<div class="dscard-bd">' in inner:
-                    inner = re.sub(r'(</div>\s*)$', sp_html + r'\1', inner, count=1)
-                else:
-                    inner += sp_html
-            if 'dscard-br' not in inner:
-                inner = inner.replace('<div class="dscard-bd">',
-                                      f'<div class="dscard-bd"><div class="dscard-br">{escape(label)}</div>', 1)
-            if '<div class="dscard-im">' in inner and href:
-                inner = inner.replace('<div class="dscard-im">',
-                                      f'<div class="dscard-im"><a href="{href}" aria-label="{escape(title, quote=True)}" style="position:absolute;inset:0;z-index:2"></a>', 1)
+            kw_raw = re.search(r'data-text="([^"]*)"', block)
+            keys = ' '.join([title, model, label, slug, kw_raw.group(1) if kw_raw else '']).lower()
+
+            detail = detail_of(href)
+            specs = get_specs(block, detail)
+            price = get_price(detail)
+            kws = get_keywords(block, title, CAT_LABEL.get(cat, ''))
+            if not model:
+                mo = re.search(r'대표 모델', str(specs))
+                model = specs[1][1] if mo and len(specs) > 1 else '옵션 구성'
+
+            sp_html = ''.join(
+                f'<div class="r"><span class="k">{escape(k)}</span><span class="v">{escape(v)}</span></div>'
+                for k, v in (specs + [('사양', '상세 페이지 참조')] * 3)[:3])
+            if price:
+                sale = int(price * 0.97) // 10000 * 10000
+                pr_html = (f'<div class="pc-pr"><span class="o">정가 {{:,}}원</span>'
+                           f'<span class="s">{{:,}}원 <em>3%↓</em></span></div>').format(price, sale)
+            else:
+                pr_html = '<div class="pc-pr"><span class="q">가격 견적 문의</span></div>'
+            kw_html = ('<div class="pc-kw">' + ' '.join('#' + escape(w) for w in kws) + '</div>') if kws else '<div class="pc-kw"></div>'
+
             cards.append(
-                f'<article class="ap-card dscard"{orig_attrs} data-b="{slug}" data-c="{cat}" data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
-                f'{inner}</article>'
+                f'<article class="ap-card pcard" data-b="{slug}" data-c="{cat}"'
+                f' data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
+                f'<a class="pc-im" href="{href}" aria-label="{escape(title, quote=True)}">'
+                f'<img src="{src}" alt="{escape(alt, quote=True)}" loading="lazy" width="760" height="570"></a>'
+                f'<div class="pc-bd">'
+                f'<div class="pc-br">{escape(label)}</div>'
+                f'<h3 class="pc-t"><a href="{href}">{escape(title)}</a></h3>'
+                f'<div class="pc-nm">{escape(model)}</div>'
+                f'<div class="pc-sp">{sp_html}</div>'
+                f'{pr_html}'
+                f'{kw_html}'
+                f'<a class="pc-more" href="{href}">더보기 →</a>'
+                f'</div></article>'
             )
     payload = ''.join(cards)
     page2, ok = _inject_between(page, START, END, payload)
     if ok:
         write(target, page2)
-        print(f'  전 제품 통합 카탈로그: {len(cards)}개 카드 주입 (product/index.html)')
+        print(f'  전 제품 통합 카탈로그: {{}}개 표준 카드 주입 (product/index.html)'.format(len(cards)))
 
 def build_new_research():
     """홈 '최신연구' 레일 — posts.json 최신 6편 자동 렌더 (수동 HTML 유지보수 제거)."""
