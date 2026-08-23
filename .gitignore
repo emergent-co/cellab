@@ -41,3 +41,10 @@ _to_delete/
 /캐시바이_*.xlsx
 *.xlsx
 _ops/clean_fail.log
+
+# 카탈로그 원본 PDF는 루트에 두지 않는다 — 배포 용량 초과로 Pages 업로드가 막힌다.
+# 압축본을 _ops/gaossunion_pricelist_2026_*.pdf 로 커밋할 것.
+/Battery Products Price Manual-2026 Edition.pdf
+/Electrolytic Cell Quotation Sheet -2026 Edition.pdf
+/Flow, In-situ & MEA Price List – 2026 English Version.pdf
+/Quotation List for Electrodes  Catalysts 2026 Edition.pdf
