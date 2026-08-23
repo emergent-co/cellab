@@ -1303,6 +1303,9 @@ def build_all_products():
         'vacuum-muffle-1500':    ('SH Scientific', 'sobun', r'1500℃ 전기로 with 진공'),
         'vacuum-muffle-1900':    ('SH Scientific', 'sobun', r'1900 ?℃ 전기로 with 진공'),
         'muffle-1050':           ('SH Scientific', 'sobun', r'ECO 1050'),
+        'steam-generator':       ('SH Scientific', 'sobun', r'스팀제너레이터'),
+        'distillation':          ('SH Scientific', 'sobun', r'숏패스'),
+        'gas-flow-3zone':        ('SH Scientific', 'model', r'^SH-CVD-\d+TG200-3'),
         'muffle-1200':           ('SH Scientific', 'sobun', r'^1200℃ 전기로$'),
         'muffle-1500':           ('SH Scientific', 'sobun', r'^1500 ?℃ 전기로$'),
         'muffle-1700':           ('SH Scientific', 'sobun', r'^1700 ?℃ 전기로$'),
@@ -1329,13 +1332,16 @@ def build_all_products():
         'echem-materials':     ('Gaoss Union', 'sobun', r'^전기화학 재료$'),
         'co2rr-catalyst':      ('Gaoss Union', 'sobun', r'^CO2RR 촉매$'),
         'battery-test-cell':   ('Gaoss Union', 'sobun', r'배터리 테스트 셀'),
+        'glass-cell':          ('Gaoss Union', 'sobun', r'^단실 유리 전해셀$'),
+        'membrane-cell':       ('Gaoss Union', 'sobun', r'^격막 교환형 전해셀$'),
+        'quartz-cell':         ('Gaoss Union', 'sobun', r'부식 시험·석영 전해셀'),
     }
 
     def sql_price_for(href, model_txt, data_text):
         seg = [x for x in href.strip('/').split('/') if x]
         page_slug = seg[-1] if seg else ''
         # SQL에 대응 상품이 없는 페이지: 잘못된 근사 매칭 방지 (견적 유지)
-        if page_slug in ('rotary-tube-furnace', 'rotary-tube-furnace-pro', 'gas-flow-3zone', 'vacuum-tube-turnkey'):
+        if page_slug in ('rotary-tube-furnace', 'rotary-tube-furnace-pro', 'vacuum-tube-turnkey'):
             return None
         rule = SLUG_SQL.get(page_slug)
         if rule:
@@ -1464,7 +1470,7 @@ def build_all_products():
             elif price:
                 sale = int(price * 0.97) // 10000 * 10000
                 pr_html = (f'<div class="pc-pr"><span class="o">정가 {{:,}}원~</span>'
-                           f'<span class="s">최소 {{:,}}원부터 <em>3%↓</em> <i class="vat">VAT 별도</i></span></div>').format(price, sale)
+                           f'<span class="s">최소 {{:,}}원부터 <i class="vat">VAT 별도</i></span></div>').format(price, sale)
             else:
                 pr_html = '<div class="pc-pr"><span class="q">가격 견적 문의 <i class="vat">VAT 별도</i></span></div>'
             kw_html = ('<div class="pc-kw">' + ' '.join('#' + escape(w) for w in kws) + '</div>') if kws else '<div class="pc-kw"></div>'

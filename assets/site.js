@@ -306,7 +306,7 @@
         { u:'/brands/sh-scientific/tube-1500/', i:'/img/product/sh/tube-1500.jpg', n:'튜브전기로 1500℃', d:'고온 소성·소결. 균일 항온대 보증.', d2:'세라믹·양극재 고온 공정 · 3존 옵션', p:/*P:tube1500*/'756만 원~' },
         { u:'/brands/sh-scientific/muffle-1500/', i:'/img/product/sh/muffle-1500.jpg', n:'전기로 1500℃', d:'고온 박스로 — 소결·치밀화 공정용.', d2:'4.5~36L 용량 선택 · 프로그램 제어', p:/*P:muffle1500*/'571만 원~' },
         { u:'/brands/sh-scientific/vacuum-muffle-1200/', i:'/img/product/sh/vacuum-muffle-1200.jpg', n:'진공 머플로 1200℃', d:'진공·분위기 겸용 — 산화 민감 소재 열처리.', d2:'감압 열처리 · 진공펌프 연결 구성(별도)', p:/*P:vacmuffle1200*/'934만 원~' },
-        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:/*P:rotary*/'1,164만 원~' }
+        { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:/*P:rotary*/'1,285만 원~' }
       ];
       var FLUID_PRODS = [
         { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt101s-1.jpg', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:/*P:bt101s*/'94만 원~' },
