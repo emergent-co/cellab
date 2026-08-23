@@ -20,6 +20,32 @@ DST = os.path.join("img", "product", "sh-cards-clean")
 os.makedirs(DST, exist_ok=True)
 
 MODELS = ["gemini-3.1-flash-lite-image", "gemini-2.5-flash-image"]
+if os.environ.get("GEMINI_IMAGE_MODEL"):          # 특정 모델 강제
+    MODELS = [os.environ["GEMINI_IMAGE_MODEL"]]
+
+def _live_models():
+    """계정에서 실제로 쓸 수 있는 이미지 모델만 남긴다(없는 모델에 호출해 404 낭비 방지)."""
+    try:
+        u = f"https://generativelanguage.googleapis.com/v1beta/models?key={KEY}&pageSize=200"
+        with urllib.request.urlopen(u, timeout=30) as r:
+            names = {m["name"].split("/")[-1] for m in json.loads(r.read()).get("models", [])}
+        live = [m for m in MODELS if m in names]
+        if live:
+            if live != MODELS:
+                print("사용 가능 모델:", ", ".join(live),
+                      " (제외:", ", ".join(m for m in MODELS if m not in live) + ")")
+            return live
+        print("경고: 지정한 이미지 모델이 계정에 없습니다. 목록에서 자동 탐색합니다.")
+        auto = sorted(n for n in names if "image" in n and "gemini" in n)
+        if auto:
+            print("  →", ", ".join(auto[:5]))
+            return auto[:2]
+    except Exception as e:
+        print("모델 목록 조회 실패(무시하고 진행):", str(e)[:200])
+    return MODELS
+
+MODELS = _live_models()
+
 def url_for(model):
     return f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY}"
 
@@ -79,29 +105,79 @@ def clean(path, out):
     raise RuntimeError(last_err or "unknown")
 
 files = sorted(glob.glob(os.path.join(SRC, "*.jpg")))
-if len(sys.argv) > 1:  # 특정 파일만: python clean_thumbs_nanobanana.py 파일명.jpg
-    files = [f for f in files if os.path.basename(f) in sys.argv[1:]]
-if not files:
-    sys.exit(f"{SRC} 에 이미지가 없습니다. download_cards.ps1 을 먼저 실행하세요.")
 
-ok = fail = skip = 0
-for i, p in enumerate(files, 1):
+# ── 인자 파싱 ──────────────────────────────────────────────
+#   python clean_thumbs_nanobanana.py              → 남은 것 중 5장
+#   python clean_thumbs_nanobanana.py --limit 10   → 10장
+#   python clean_thumbs_nanobanana.py --all        → 전부
+#   python clean_thumbs_nanobanana.py a.jpg b.jpg  → 지정 파일만
+LIMIT = 5
+argv = sys.argv[1:]
+picks = []
+i = 0
+while i < len(argv):
+    a = argv[i]
+    if a == "--all":
+        LIMIT = 0
+    elif a == "--limit":
+        i += 1
+        LIMIT = int(argv[i])
+    elif a.startswith("--limit="):
+        LIMIT = int(a.split("=", 1)[1])
+    else:
+        picks.append(a)
+    i += 1
+
+if picks:
+    files = [f for f in files if os.path.basename(f) in picks]
+    LIMIT = 0
+if not files:
+    sys.exit(f"{SRC} 에 이미지가 없습니다. _ops\\download_sh_cards_v2.ps1 을 먼저 실행하세요.")
+
+todo = [f for f in files if not os.path.exists(os.path.join(DST, os.path.basename(f)))]
+done_all = len(files) - len(todo)
+if not todo:
+    sys.exit(f"남은 이미지가 없습니다. (원본 {len(files)}장 전부 처리 완료)")
+batch = todo if LIMIT <= 0 else todo[:LIMIT]
+
+LOG = os.path.join("_ops", "clean_fail.log")
+os.makedirs("_ops", exist_ok=True)
+
+def logfail(name, msg):
+    with io.open(LOG, "a", encoding="utf-8") as f:
+        f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}\t{name}\t{msg}\n")
+
+print(f"원본 {len(files)}장 · 처리완료 {done_all}장 · 남음 {len(todo)}장 → 이번 실행 {len(batch)}장\n")
+
+ok = fail = 0
+for i, p in enumerate(batch, 1):
     name = os.path.basename(p)
     out = os.path.join(DST, name)
-    if os.path.exists(out):
-        skip += 1
-        continue
     try:
         if clean(p, out):
             ok += 1
-            print(f"[{i}/{len(files)}] OK   {name}")
+            print(f"[{i}/{len(batch)}] OK    {name}")
         else:
             fail += 1
-            print(f"[{i}/{len(files)}] NOIMG {name}")
+            print(f"[{i}/{len(batch)}] NOIMG {name}  (모델이 이미지 대신 텍스트를 반환)")
+            logfail(name, "NOIMG: 응답에 inlineData 없음")
     except Exception as e:
         fail += 1
-        print(f"[{i}/{len(files)}] FAIL {name}\n    -> {str(e)[:500]}")
+        msg = str(e).replace("\n", " ")[:800]
+        print(f"[{i}/{len(batch)}] FAIL  {name}\n    -> {msg[:300]}")
+        logfail(name, msg)
     time.sleep(1.2)  # 무료 티어 분당 요청 제한 대응
 
-print(f"\n완료: {ok}  실패: {fail}  건너뜀: {skip}")
-print("결과 확인 후 클로드에게 '나노바나나 처리 끝'이라고 알려주세요.")
+left = len(todo) - ok
+print(f"\n이번 실행: 성공 {ok}  실패 {fail}   |   전체 남은 장수 {left}")
+if fail:
+    print(f"실패 상세 로그: {LOG}  (마지막 3줄)")
+    try:
+        for ln in io.open(LOG, encoding="utf-8").read().splitlines()[-3:]:
+            print("   " + ln[:240])
+    except Exception:
+        pass
+if left:
+    print("계속하려면 같은 명령을 다시 실행하세요 (이미 만든 파일은 자동으로 건너뜁니다).")
+else:
+    print("전부 완료. 클로드에게 '나노바나나 처리 끝'이라고 알려주세요.")

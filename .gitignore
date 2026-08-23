@@ -40,3 +40,4 @@ _to_delete/
 # 거래처 등록용 엑셀(딜러가 포함) — 공개 배포 금지
 /캐시바이_*.xlsx
 *.xlsx
+_ops/clean_fail.log
