@@ -422,6 +422,7 @@ CRAWLER_LINKS = [
     ('/magazine/glossary-pump-fluid-terms/', 'mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)'),
     ('/magazine/si-anode-cvd-carbon-coating/', '실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)'),
     ('/magazine/electrode-slurry-mixing-thick-cathode/', '초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)'),
+    ('/magazine/electrode-vacuum-post-drying-moisture/', '전극 진공 후건조·잔류 수분 관리 셋업 — 압력 사이클과 노점 (Batteries & Supercaps 2021)'),
     ('/magazine/cuo-nanowire-thermal-oxidation/', '구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
@@ -469,6 +470,7 @@ def inject_setup_cta():
         'magazine/si-anode-cvd-carbon-coating/index.html',
         'magazine/cuo-nanowire-thermal-oxidation/index.html',
         'magazine/electrode-slurry-mixing-thick-cathode/index.html',
+        'magazine/electrode-vacuum-post-drying-moisture/index.html',
     }  # 매거진 논문글(명시적으로만)
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
@@ -1147,17 +1149,17 @@ def build_all_products():
     KW_STOP = {'및', '또는', '기타', 'the', 'and', 'for', 'with', 'series', 'type'}
     # 제품군별 GEO 연관검색어 사전 — 실제 검색 어휘(동의어·연관어) 우선 노출
     KW_BY_SUBCAT = {
-        'furnace':    ['튜브퍼니스', '전기로', '소성로', '열처리로', '관상로', '하소', '소결', '어닐링', '머플로', '고온 전기로', '실험실 퍼니스', '열처리 장비'],
-        'drying':     ['건조기', '열풍건조기', '드라이오븐', '실험실 오븐', '건조 챔버', '강제순환 건조기', '자연대류 건조기', '시료 건조', '산업용 오븐', '열풍 오븐'],
-        'distill':    ['회전증발농축기', '로터리 evaporator', '감압농축', '증류', '에바포레이터', '회전식 증발기', '용매 회수', '농축기', '진공 증류', '증류장치'],
-        'incubator':  ['인큐베이터', '배양기', 'CO2 배양기', '세포배양', '진탕배양기', '미생물 배양', 'BOD 인큐베이터', '항온배양기', '쉐이킹 인큐베이터', '저온 배양기'],
-        'waterbath':  ['항온수조', '워터배스', '칠러', '순환수조', '냉각순환수조', '항온조', '히팅배스', '오일배스', '저온수조', '실험실 수조'],
-        'chamber':    ['항온항습기', '환경챔버', '신뢰성시험', '온습도 챔버', '환경시험기', '열충격 시험', '온도 시험', '습도 시험', '항온항습 챔버', '시험 챔버'],
-        'sterilizer': ['오토클레이브', '멸균기', '고압증기멸균', '실험실 멸균', '소독기', '스팀멸균기', 'autoclave', '배지 멸균', '기구 멸균', '고압 멸균기'],
-        'mixing':     ['교반기', '믹서', '볼밀', '분쇄기', '호모게나이저', '스터러', '오버헤드 교반기', '마그네틱 교반기', '균질기', '임펠러 교반'],
-        'vacuumpump': ['진공펌프', '로터리 펌프', '다이어프램 펌프', '진공도', '실험실 진공', '오일 진공펌프', '무오일 펌프', '로터리베인 펌프', '진공 배기', '도달압력'],
-        'fumehood':   ['흄후드', '클린벤치', '무균작업대', '실험실 안전', '배기 후드', '유해가스 배기', '실험실 후드', '국소배기장치', '흄 배출', '안전 캐비닛'],
-        'measuring':  ['전자저울', '수분측정기', '측정기기', '정밀저울', '분석저울', '수분계', '실험실 저울', '계측기', '시료 계량', '정밀 측정'],
+        'furnace':    ['전기로', '소성로', '열처리로', '하소', '소결', '어닐링', '실험실 퍼니스', '고온로', '열처리 장비', 'furnace'],
+        'drying':     ['건조기', '실험실 오븐', '드라이오븐', '시료 건조', '랩 오븐', '건조 장비', 'oven'],
+        'distill':    ['증류', '농축', '용매 회수', '증류·농축 장비'],
+        'incubator':  ['인큐베이터', '배양기', '항온배양기', '세포배양', '미생물 배양', 'incubator', '배양 장비'],
+        'waterbath':  ['항온수조', '워터배스', '항온조', '실험실 수조', 'bath'],
+        'chamber':    ['항온항습기', '환경챔버', '온습도 챔버', '신뢰성시험', '환경시험기', '시험 챔버'],
+        'sterilizer': ['오토클레이브', '멸균기', '고압증기멸균', '실험실 멸균', '스팀멸균기', 'autoclave', '배지 멸균', '기구 멸균'],
+        'mixing':     ['믹싱', '교반·분쇄', '실험실 교반·분쇄 장비'],
+        'vacuumpump': ['진공펌프', '진공도', '실험실 진공', '진공 배기', '도달압력', 'vacuum pump'],
+        'fumehood':   ['실험실 안전 장비', '실험실 환기·안전'],
+        'measuring':  ['측정기기', '계측기', '실험실 측정', '정밀 측정'],
         'peri':  ['연동펌프', '페리스탈틱펌프', '정량펌프', '튜빙펌프', '실험실 펌프', '호스펌프', '이송펌프', '도징펌프', '유량 펌프', '무오염 이송'],
         'syr':   ['시린지펌프', '미량주입', '정량주입', '실험실 펌프', '주사기펌프', '마이크로 유량', '정밀주입', '미세유체', '인퓨전 펌프', '약액 주입'],
         'gear':  ['기어펌프', '정량이송', '무맥동 펌프', '실험실 펌프', '마이크로 기어펌프', '고점도 이송', '케미컬 이송', '정밀 이송', '연속 이송', '소형 정량펌프'],
@@ -1171,10 +1173,10 @@ def build_all_products():
         'dual':  ['양방향 MFC', '질량유량계', '유량 제어', '매스플로우', '압력 겸용', '유량 압력 동시', 'sccm', '가스 제어', '유량컨트롤러', '듀얼밸브 MFC'],
         'press': ['압력 컨트롤러', '배압 레귤레이터', 'BPR', '압력 제어', '전자식 압력', '압력 조절기', '진공 압력', '레귤레이터', '압력 셋포인트', '가스 압력 제어'],
         'vac':   ['진공 공정', '질량유량계', '반도체 공정 가스', '진공 유량', 'CVD 가스', '공정 가스 제어', '매스플로우', '저압 유량', 'sccm', '유량컨트롤러'],
-        'electrode': ['전기화학', '기준전극', '수전해', '전극', '전기화학 셀', 'Ag/AgCl', 'RHE', '백금 전극', '유리탄소 전극', 'RDE'],
-        'catalyst':  ['CO2 환원', 'CO2RR', '전기화학 촉매', 'GDE', '가스확산전극', '촉매 잉크', '수전해 촉매', '구리 촉매', '은 촉매', '전극 촉매'],
-        'material':  ['전기화학 재료', '이온교환막', '카본페이퍼', '수전해', '나피온', '멤브레인', '가스확산층', 'GDL', '전해질', '카본펠트'],
-        'accessory': ['전극 홀더', '전극 연마', '전기화학 소모품', '알루미나 분말', '연마 패드', '셀 액세서리', '전극 케이블', '전극 클램프', 'O링', '셀 부속'],
+        'electrode': ['전기화학', '전극', '수전해', '전기화학 셀'],
+        'catalyst':  ['CO2 환원', 'CO2RR', '전기화학 촉매', 'GDE', '가스확산전극', '촉매 잉크', '수전해 촉매', '전극 촉매'],
+        'material':  ['전기화학 재료', '수전해', '전해조 소재'],
+        'accessory': ['전기화학 소모품', '셀 부속', '셀 액세서리'],
     }
 
     def get_keywords(block, title, subcat, cat_label):
@@ -1211,30 +1213,58 @@ def build_all_products():
     CAT_LABEL = {'heat': '열처리', 'dry': '건조·농축', 'culture': '배양·항온', 'mix': '교반·분쇄',
                  'vacuum': '진공', 'pump': '펌프', 'gas': '가스유량 MFC', 'echem': '전기화학', 'safety': '안전·측정'}
 
+    # 네거티브 규칙 — 제목이 왼쪽 패턴이면 오른쪽 어휘(소문자 부분일치)를 검색 텍스트·키워드에서 제거
+    NEG_RULES = [
+        (re.compile(r'데시케이터|Desiccator', re.I),
+         ['인큐베이터', '배양', 'incubator', '세포', '미생물']),
+        (re.compile(r'클린벤치|크린벤치|무균|Biosafety|Clean\s*Bench|Laminar', re.I),
+         ['흄후드', '퓸후드', 'fume', '배기', '국소배기']),
+        (re.compile(r'흄\s*후드|흄후드|암후드|Fume\s*Hood|Lab\s*Hood', re.I),
+         ['클린벤치', '크린벤치', '무균', 'bsc', 'laminar']),
+        (re.compile(r'콜로니|Colony|라이트\s*박스|확대경', re.I),
+         ['흄후드', '퓸후드', 'fume', '클린벤치', '크린벤치', '무균', 'bsc', '배기']),
+    ]
+
     # 검색 동의어 그룹 — 그룹 내 단어가 하나라도 있으면 나머지도 data-k에 추가 (검색 리콜 확대)
     SYN_GROUPS = [
         ['퍼니스', '전기로', '소성로', '열처리로', '소결로', '하소로', 'furnace'],
-        ['튜브퍼니스', '관상로'],
-        ['머플로', '박스퍼니스', '박스로'],
+        ['튜브퍼니스', '관상로', '튜브 퍼니스', 'tube furnace'],
+        ['머플로', '박스퍼니스', '박스로', '머플 퍼니스'],
         ['건조기', '오븐', '드라이오븐', 'oven'],
-        ['진공건조기', '진공오븐'],
-        ['항온수조', '워터배스', '순환수조'],
+        ['진공건조기', '진공오븐', '진공 건조'],
+        ['열풍건조기', '열풍 오븐', '강제순환 건조기', '컨벡션 오븐'],
+        ['항온수조', '워터배스', '항온조'],
+        ['칠러', '냉각순환수조', '저온순환수조', 'chiller'],
         ['인큐베이터', '배양기', 'incubator'],
+        ['진탕배양기', '쉐이킹 인큐베이터', '셰이킹 인큐베이터', '진탕 배양'],
         ['오토클레이브', '멸균기', 'autoclave', '고압증기멸균'],
-        ['흄후드', '퓸후드', 'fumehood'],
-        ['교반기', '스터러', '믹서', 'stirrer', '오버헤드교반기'],
+        ['흄후드', '퓸후드', 'fume hood', '배기 후드', '국소배기'],
+        ['클린벤치', '무균작업대', 'BSC', '무균 벤치'],
+        ['교반기', '스터러', 'stirrer'],
+        ['오버헤드 교반기', '임펠러 교반기', 'overhead stirrer'],
+        ['마그네틱 교반기', '자석 교반기', 'magnetic stirrer'],
         ['핫플레이트', '가열교반기', 'hotplate'],
+        ['볼밀', '분쇄기', '밀링', '그라인더', 'ball mill'],
+        ['호모게나이저', '균질기', 'homogenizer'],
+        ['회전증발농축기', '로터리증발기', '에바포레이터', 'evaporator', '감압농축'],
+        ['로터리베인', '유회전 펌프', '오일 진공펌프'],
+        ['다이어프램 펌프', '다이아프램 펌프', '무오일 펌프', '오일프리 펌프'],
         ['연동펌프', '페리스탈틱펌프', '튜빙펌프', '호스펌프', '정량펌프', 'peristaltic'],
         ['시린지펌프', '주사기펌프', '실린지펌프', 'syringe'],
         ['기어펌프', '마이크로기어펌프'],
         ['질량유량계', 'mfc', '유량컨트롤러', '매스플로우', 'mass flow'],
         ['압력컨트롤러', '배압레귤레이터', 'bpr', '압력제어'],
-        ['회전증발농축기', '로터리증발기', '증발농축기', 'evaporator', '감압농축기'],
+        ['전자저울', '분석저울', '정밀저울', '실험실 저울', 'balance'],
+        ['수분측정기', '수분계', '수분 분석'],
         ['초음파세척기', '소니케이터', 'sonicator'],
         ['원심분리기', 'centrifuge'],
         ['기준전극', 'reference electrode'],
         ['상대전극', 'counter electrode', '백금전극'],
         ['작업전극', 'working electrode', '유리탄소전극'],
+        ['이온교환막', '나피온', '멤브레인', 'nafion'],
+        ['카본페이퍼', '가스확산층', 'gdl', '카본펠트'],
+        ['전극 홀더', '전극 클램프'],
+        ['전극 연마', '연마 패드', '알루미나 분말'],
     ]
 
     cards = []
@@ -1299,19 +1329,35 @@ def build_all_products():
                 except ValueError:
                     pass
             kws = get_keywords(block, title, _sub1 or cat, CAT_LABEL.get(cat, ''))
-            # data-k(검색 텍스트) 전면 보강: #키워드 + 제품군 연관검색어 사전 전체 + 스펙 라벨·값 + 카테고리명
-            keys = ' '.join(
+            # 네거티브 규칙: 제목 기준으로 명백히 다른 유형의 어휘 제거 (원본 data-use/text가 제품군 공통 어휘를 달고 있는 경우)
+            _bans = []
+            for _rx, _bl in NEG_RULES:
+                if _rx.search(title):
+                    _bans += _bl
+            if _bans:
+                kws = [w for w in kws if not any(b in w.lower() for b in _bans)]
+            # 동의어 그룹 확장 — 방아쇠는 카드 "원본" 텍스트(제목·모델·data-text·스펙)만.
+            # 사전이 추가한 일반어가 다른 그룹을 연쇄 발화시키는 2차 오염을 막는다.
+            _syn_src = (keys + ' ' + ' '.join((k + ' ' + v) for k, v in specs if v and v != '상세 참조')).lower()
+            _extra = []
+            for _grp in SYN_GROUPS:
+                if any(g.lower() in _syn_src for g in _grp):
+                    _extra += [g for g in _grp if g.lower() not in _syn_src]
+            # data-k(검색 텍스트) 최종 조립: 원본 + #키워드 + 제품군 사전 전체 + 카테고리명 + 스펙 + 동의어
+            _dict_kw = KW_BY_SUBCAT.get(_sub1 or cat, [])
+            if _bans:
+                _dict_kw = [w for w in _dict_kw if not any(b in w.lower() for b in _bans)]
+                _extra = [w for w in _extra if not any(b in w.lower() for b in _bans)]
+            keys = ' '.join(dict.fromkeys(' '.join(
                 [keys]
                 + [w.lower() for w in kws]
-                + [w.lower() for w in KW_BY_SUBCAT.get(_sub1 or cat, [])]
+                + [w.lower() for w in _dict_kw]
                 + [CAT_LABEL.get(cat, '').lower()]
                 + [(k + ' ' + v).lower() for k, v in specs if v and v != '상세 참조']
-            )
-            # 동의어 그룹 확장: 그룹 단어가 하나라도 있으면 나머지 전부 추가
-            for _grp in SYN_GROUPS:
-                if any(g in keys for g in _grp):
-                    keys += ' ' + ' '.join(g for g in _grp if g not in keys)
-            keys = ' '.join(dict.fromkeys(keys.split()))
+                + [w.lower() for w in _extra]
+            ).replace('\u00b7', ' ').split()))
+            if _bans:
+                keys = ' '.join(w for w in keys.split() if not any(b in w for b in _bans))
             if not model:
                 _rep = next((v for k, v in specs if k == '대표 모델'), '')
                 model = _rep or '옵션 구성 · 상세 참조'
@@ -1438,6 +1484,8 @@ def build_search_index():
                 cat = '셋업 사례'
             elif url.startswith('/pump/atoz'):
                 cat = '펌프 문제해결'
+            elif url.startswith('/guides'):
+                cat = '선택 가이드'
             elif url.startswith('/manuals') or url.startswith('/temp-controller'):
                 cat = '메뉴얼'
             elif url.startswith('/application'):
@@ -1535,6 +1583,7 @@ def main():
         ('magazine/deposition/',     '0.8', 'monthly'),  # 증착 허브
         ('magazine/heat-treatment/', '0.8', 'monthly'),  # 열처리 허브
         ('magazine/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브
+        ('guides/',       '0.8', 'monthly'),  # 선택 가이드 허브
         ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
         ('manuals/furnace/', '0.6', 'monthly'),  # 퍼니스·온도컨트롤러 메뉴얼
         ('manuals/furnace-mg/', '0.6', 'monthly'),  # 칸탈 머플전기로(MG·MGE) 메뉴얼

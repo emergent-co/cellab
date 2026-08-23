@@ -37,6 +37,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/guides/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/manuals/</loc>
     <lastmod>2026-08-23</lastmod>
     <priority>0.6</priority>
@@ -1844,6 +1850,12 @@
   </url>
   <url>
     <loc>https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/</loc>
+    <lastmod>2026-08-23</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/magazine/electrode-vacuum-post-drying-moisture/</loc>
     <lastmod>2026-08-23</lastmod>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>

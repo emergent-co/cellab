@@ -305,6 +305,26 @@
       "application": "유체·펌프 · 슬러리·전극 코팅",
       "journal": "Energy Technology",
       "doi": "10.1002/ente.202200484"
+    },
+    {
+      "type": "magazine",
+      "slug": "electrode-vacuum-post-drying-moisture",
+      "title": "전극 잔류 수분, 진공 후건조로 88%까지 — 건조·수분 관리 셋업",
+      "summary": "온도를 올리는 대신 80℃ 고정에 10 mbar 진공·아르곤 퍼지 14회를 붙여 NCM622 양극 잔류 수분을 34 ppm까지 낮춘 후건조 절차. 재흡습은 1시간이면 새 평형에 도달한다.",
+      "date": "2026-08-23",
+      "tags": [
+        "배터리",
+        "전극건조",
+        "잔류수분",
+        "진공건조",
+        "노점",
+        "칼피셔"
+      ],
+      "url": "/magazine/electrode-vacuum-post-drying-moisture/",
+      "model_focus": "진공 건조 오븐 · 진공펌프 · 칼피셔 수분측정",
+      "application": "열처리·증착 · 진공 건조·수분 관리",
+      "journal": "Batteries & Supercaps",
+      "doi": "10.1002/batt.202100088"
     }
   ]
 }
