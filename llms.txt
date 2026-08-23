@@ -12,7 +12,7 @@
 
 ## 주요 페이지 (정확한 URL)
 
-> 사이트 메뉴(NAV) 4개: 제품소개(/product/, 하위: 메뉴얼 /manuals/) · 셋업 사례(/magazine/) · 에너지 랩 A to Z(/magazine/battery/) · 문의하기(/contact/, 하위: 회사소개 /about/)
+> 사이트 메뉴(NAV) 4개: 제품소개(/product/, 하위: 메뉴얼 /manuals/ · 선택 가이드 /guides/) · 셋업 사례(/magazine/) · 에너지 랩 A to Z(/magazine/battery/) · 문의하기(/contact/, 하위: 회사소개 /about/)
 
 - [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
 - [셋업 사례](https://rndsetup.com/magazine/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
@@ -55,6 +55,7 @@
 - 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/brands/leadfluid/)에 통합
 - [실험장비 통합 카탈로그](https://rndsetup.com/product/): 취급 제품 241종을 브랜드 구분 없이 장비 종류(열처리·건조·배양·교반·진공·펌프·MFC·전기화학)로 찾는 통합 목록 + 브랜드 소개(삼흥에너지·리드플루이드·Alicat·가오스유니온)
 - [메뉴얼 모음](https://rndsetup.com/manuals/): 전기로·튜브퍼니스·온도컨트롤러·펌프·MFC 사용 메뉴얼
+- [선택 가이드](https://rndsetup.com/guides/): 퍼니스·펌프·질량유량계(MFC)·전기화학 전극을 조건으로 좁혀가는 선택 가이드 모음 — 장비명으로 검색해 해당 가이드로 바로 이동(개별 가이드는 각 브랜드·매거진 페이지에 있음)
 - [회사소개](https://rndsetup.com/about/): 실험셋업연구소(상호 이머전트) 소개 — 매거진·논문 셋업·장비 안내
 - [문의하기 · 자주 묻는 질문(FAQ)](https://rndsetup.com/contact/): 구매·견적, 수리·A/S, 제어 소프트웨어, 배송·기타 FAQ 26문 + 문의 폼
 - [카탈로그 PDF](https://rndsetup.com/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그

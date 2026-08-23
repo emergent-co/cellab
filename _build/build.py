@@ -390,6 +390,7 @@ CRAWLER_LINKS = [
     ('/brands/gaossunion/', '가오스유니온 전기화학 전극·재료·CO₂ 환원 촉매 — 기준·상대·작업전극, RDE, GDE 캐소드'),
     ('/brands/gaossunion/co2rr-catalyst/', 'CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드'),
     ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
+    ('/guides/', '선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),

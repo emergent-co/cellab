@@ -75,7 +75,8 @@
   var NAV = [
     { href:'/product/', label:'제품소개', icon:'devices', noclick:true, sub:[
         ['/product/', '제품소개'],
-        ['/manuals/', '메뉴얼']
+        ['/manuals/', '메뉴얼'],
+        ['/guides/', '선택 가이드']
       ] },
     { href:'/magazine/', label:'셋업 사례', icon:'feed' },
     { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
