@@ -493,11 +493,14 @@
           var starts = [], has = [];
           for (var i = 0; i < TERMS.length; i++) {
             var tl = TERMS[i][0].toLowerCase();
+            var al = (TERMS[i][2] || '').toLowerCase();
             if (tl === v) continue;
             if (tl.indexOf(v) === 0) starts.push(TERMS[i]);
-            else if (tl.indexOf(v) > -1) has.push(TERMS[i]);
+            else if (tl.indexOf(v) > -1 || al.indexOf(v) > -1) has.push(TERMS[i]);
           }
-          var list = starts.concat(has).slice(0, 8);
+          var list = starts.concat(has);
+          list.sort(function (a, b) { return b[1] - a[1]; });
+          list = list.slice(0, 8);
           if (!list.length) { hide(); return; }
           box.innerHTML = '';
           list.forEach(function (t) {
