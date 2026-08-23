@@ -49,6 +49,11 @@
     사이트 노출 가격은 `build_prices()`의 `DISCOUNT_RATE=0.97`(정가 대비 **3% 상시 할인**, 만원 미만 버림)이 적용된 판매가. 할인율 변경 = 이 상수 1곳. 상세페이지 `pkg-note`의 '정가 X원'과 JSON-LD `offers.price`는 **정가 유지**.
   - 크롤러 nav(CNAV) ← `CRAWLER_LINKS` — 반드시 `#pumplab-footer` div **안**의 마커에 주입돼야 함(밖에 있으면 방문자에게 노출됨).
 - **새 글 발행 절차(고정)**: 글 페이지 작성 → `posts.json` 1건 추가 (+홈 노출 원하면 `paper_cases.json`) → 빌드. 그 외 배선은 전부 자동.
+- **신제품 등록 절차(고정, 2026-08)**: 브랜드 허브(`brands/<brand>/index.html`)에 `dscard` 1장 추가 → 빌드. 그러면 **카탈로그 표준 카드(스펙 3행·#키워드 7)·검색 텍스트(연관검색어+동의어 확장)·가격(상세→SQL 모델코드 자동 매칭)·자동완성 카드 수·카드 총수·sitemap·검색 인덱스**가 전부 자동 반영된다. 수동 작업은 딱 3가지 경우뿐:
+  1. **새 제품군 신설 시** (기존에 없던 장비 유형): `_build/build.py`의 4개 사전에 그 군을 등록 — `KW_BY_SUBCAT`(연관검색어 10개+, 군 전체에 참인 일반어만·세부 유형어 금지), `SPEC_SCHEMA`(표준 스펙 라벨 3슬롯), 필요시 `SYN_GROUPS`(동의어 그룹 — 카드 원본 텍스트가 방아쇠), `CANON_TERMS`(자동완성 대표 키워드 — 동의어 말고 제품군 구분어만).
+  2. **모델코드 없는 시리즈 페이지**: SQL 자동 매칭 불가 → `SLUG_SQL`에 슬러그→SQL 매핑 1줄 추가.
+  3. **SQL에 가격 없는 신제품**: `rndsetup_products.sql`에 행 추가(가격 SSOT). 잘못된 근사 매칭이 우려되면 `sql_price_for`의 deny 목록에 슬러그를 넣어 견적 유지.
+  카탈로그 중복 카드는 `build_all_products` 초입의 **href 제외 목록**으로 숨긴다(페이지 삭제 아님). 검색 품질 검증은 빌드 후 "튜브퍼니스=해당 유형만, 퍼니스=전체"처럼 일반어/유형어가 분리되는지 확인.
 - **백엔드**: `functions/`(Cloudflare Functions — `/admin`·`/api`), `rndsetup_products.sql`(D1), `catalog/leadfluid_catalog.py`.
 - **배포**: Cloudflare Pages, `main` push 시 자동. 리다이렉트=`_redirects`(체인 금지, 1홉 직결).
 
