@@ -386,9 +386,7 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/guide/', '삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업'),
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
-    ('/brands/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
     ('/product/', '제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 241종 (삼흥에너지·리드플루이드·Alicat·가오스유니온)'),
-    ('/brands/gaossunion/', '가오스유니온 전기화학 전극·재료·CO₂ 환원 촉매 — 기준·상대·작업전극, RDE, GDE 캐소드'),
     ('/brands/gaossunion/co2rr-catalyst/', 'CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드'),
     ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
     ('/guides/', '선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법'),
@@ -401,7 +399,6 @@ CRAWLER_LINKS = [
     ('/brands/leadfluid/blog/', '펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업'),
     ('/pump/atoz/', '펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결'),
     ('/magazine/pump-selection-wizard/', '펌프 선택 위저드 — 종류·유량·용도로 고르기'),
-    ('/brands/leadfluid/', '리드플루이드 펌프 전체 제품 — 연동·시린지·기어·방폭'),
     ('/pump/atoz/peristaltic-flow-setpoint-mismatch/', '연동펌프 유량이 설정값과 다른 이유'),
     ('/pump/atoz/tubing-crush-tear-causes/', '연동펌프 튜빙 씹힘·찢어짐 원인·해결'),
     ('/pump/atoz/flow-calibration/', '연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정'),
@@ -1745,7 +1742,6 @@ def main():
         ('brands/leadfluid/blog/', '0.8', 'weekly'),
         ('pump/atoz/', '0.8', 'weekly'),
         ('magazine/pump-selection-wizard/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
-        ('brands/leadfluid/','0.9', 'weekly'),
         ('brands/leadfluid/pump-heads/','0.8', 'monthly'),
         ('brands/leadfluid/bq80s/','0.8', 'monthly'),
         ('brands/leadfluid/bt100f/','0.8', 'monthly'),
@@ -1824,13 +1820,11 @@ def main():
         ('pump/atoz/flow-calibration/', '0.7', 'monthly'),  # 유량 캘리브레이션 (무주공산)
         ('pump/atoz/tube-size-guide/', '0.7', 'monthly'),  # 튜브 규격·펌프헤드 (무주공산)
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
-        ('brands/alicat/',       '0.9', 'weekly'),   # Alicat 제품 카탈로그(카드)
         ('brands/alicat/mc-series/','0.8', 'monthly'),
         ('brands/alicat/mfc-guide/','0.7', 'monthly'),
         ('brands/alicat/manual/','0.7', 'monthly'),
         ('brands/sh-scientific/guide/','0.9', 'monthly'),  # 삼흥 허브 = 제품 선택 가이드(견적 funnel)
         ('brands/sh-scientific/manual/','0.7', 'monthly'),  # 삼흥 메뉴얼
-        ('brands/sh-scientific/','0.9', 'weekly'),  # 삼흥 제품 카탈로그(사양·가격 — D1 주입)
         ('brands/sh-scientific/gas-flow-package/','0.8', 'monthly'),  # 가스플로 패키지 300mm
         ('brands/sh-scientific/gas-flow-package-600mm/','0.8', 'monthly'),  # 가스플로 패키지 600mm
         ('brands/sh-scientific/rotary-tube-furnace/','0.8', 'monthly'),

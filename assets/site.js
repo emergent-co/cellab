@@ -168,7 +168,7 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/brands/leadfluid/">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a></div>' +
+            '<a href="/product/?q=리드플루이드">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a><a href="/contact/#form">자주 묻는 질문(FAQ)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +

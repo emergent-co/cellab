@@ -151,12 +151,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/leadfluid/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
     <loc>https://rndsetup.com/brands/leadfluid/pump-heads/</loc>
     <lastmod>2026-08-24</lastmod>
     <priority>0.8</priority>
@@ -625,12 +619,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/alicat/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
     <loc>https://rndsetup.com/brands/alicat/mc-series/</loc>
     <lastmod>2026-08-24</lastmod>
     <priority>0.8</priority>
@@ -659,12 +647,6 @@
     <lastmod>2026-08-24</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/brands/sh-scientific/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://rndsetup.com/brands/sh-scientific/gas-flow-package/</loc>
@@ -968,12 +950,6 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/alicat/pcd-series/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/brands/gaossunion/</loc>
     <lastmod>2026-08-24</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
