@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Mon, 24 Aug 2026 13:29:07 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2026 17:04:32 +0900</lastBuildDate>
+    <item>
+      <title>실험용 퍼니스는 어떻게 선택해야 할까 — 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준</title>
+      <link>https://rndsetup.com/magazine/guide-furnace-selection-box-vs-tube/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/guide-furnace-selection-box-vs-tube/</guid>
+      <pubDate>Mon, 24 Aug 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[사용 온도(발열체 등급)·시료 처리량·분위기 제어, 세 질문으로 퍼니스를 고르는 법. 칸탈 1200℃·SiC 1500℃·MoSi₂ 1700~1900℃ 등급표와 선택 체크리스트 5·사용 주의 3.]]></description>
+      <category>가이드</category><category>퍼니스</category><category>전기로</category><category>머플로</category><category>튜브퍼니스</category>
+    </item>
     <item>
       <title>초후막 양극, 믹싱만 바꿔 1C 용량 1.67배 — 슬러리 믹싱·전극 코팅 셋업</title>
       <link>https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/</link>
