@@ -13,7 +13,7 @@ export async function onRequestGet({ request, env }) {
   auth.searchParams.set('client_id', key);
   auth.searchParams.set('redirect_uri', redirectUri);
   auth.searchParams.set('response_type', 'code');
-  auth.searchParams.set('scope', 'profile_nickname,account_email');
+  auth.searchParams.set('scope', 'profile_nickname,account_email,name,phone_number');
   auth.searchParams.set('state', state);
   return Response.redirect(auth.toString(), 302);
 }

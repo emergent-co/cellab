@@ -35,17 +35,28 @@ export async function onRequestGet({ request, env }) {
 
   const acc = me.kakao_account || {};
   const nickname = (acc.profile && acc.profile.nickname) || '';
-  const email = acc.email || '';
+  // 실명 동의를 받았으면 실명을, 아니면 닉네임을 담당자명 기본값으로.
+  const name = (acc.name || '').trim() || nickname;
+  const email = (acc.email || '').trim();
+  const phone = normPhone(acc.phone_number);
 
-  const exist = await env.DB.prepare('SELECT id, name, email FROM customers WHERE kakao_id = ?').bind(kakaoId).first();
+  const exist = await env.DB.prepare('SELECT id FROM customers WHERE kakao_id = ?').bind(kakaoId).first();
   let cid;
   if (exist) {
     cid = exist.id;
-    await env.DB.prepare('UPDATE customers SET name=COALESCE(NULLIF(name,\'\'),?), email=COALESCE(NULLIF(email,\'\'),?), updated_at=? WHERE id=?')
-      .bind(nickname, email, kstISO(), cid).run();
+    // 이미 입력한 값은 덮어쓰지 않고, 비어 있는 칸만 카카오 정보로 채운다.
+    await env.DB.prepare(
+      `UPDATE customers SET
+         name  = COALESCE(NULLIF(name,''),  ?),
+         email = COALESCE(NULLIF(email,''), ?),
+         phone = COALESCE(NULLIF(phone,''), ?),
+         updated_at = ?
+       WHERE id = ?`
+    ).bind(name, email, phone, kstISO(), cid).run();
   } else {
-    const r = await env.DB.prepare('INSERT INTO customers (kakao_id, name, email, created_at, updated_at) VALUES (?,?,?,?,?)')
-      .bind(kakaoId, nickname, email, kstISO(), kstISO()).run();
+    const r = await env.DB.prepare(
+      'INSERT INTO customers (kakao_id, name, email, phone, created_at, updated_at) VALUES (?,?,?,?,?,?)'
+    ).bind(kakaoId, name, email, phone, kstISO(), kstISO()).run();
     cid = r.meta.last_row_id;
   }
 
@@ -54,4 +65,12 @@ export async function onRequestGet({ request, env }) {
     status: 302,
     headers: { Location: `${url.origin}${next.startsWith('/') ? next : '/order/'}`, 'Set-Cookie': sessionCookie(token) },
   });
+}
+
+// 카카오는 "+82 10-1234-5678" 형태로 준다 → 국내 표기로 정규화.
+function normPhone(v) {
+  if (!v) return '';
+  let s = String(v).trim();
+  if (s.startsWith('+82')) s = '0' + s.slice(3).replace(/^\s*/, '');
+  return s.replace(/[^0-9]/g, '').replace(/^(01[016789])(\d{3,4})(\d{4})$/, '$1-$2-$3');
 }
