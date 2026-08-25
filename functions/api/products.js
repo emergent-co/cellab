@@ -1,6 +1,11 @@
 // functions/api/products.js — 공개 제품 API
 //   GET /api/products?status=&brand=&sobun=&q=&id=&page=&size=
 //   응답: { page, size, count, items }
+//   q= 는 연관검색어(_syn.js)로 확장해서 찾는다. ("퍼니스" → 전기로/furnace/머플로…)
+import { expandQuery } from './_syn.js';
+
+const BLOB = `(IFNULL(name,'')||' '||IFNULL(model,'')||' '||IFNULL(sku,'')||' '||IFNULL(sobun,'')||' '||IFNULL(daebun,'')||' '||IFNULL(brand,''))`;
+
 export async function onRequest(context) {
   const { request, env } = context;
   const p = new URL(request.url).searchParams;
@@ -23,7 +28,14 @@ export async function onRequest(context) {
   if (brand)  { where.push("brand = ?");  binds.push(brand); }
   if (sobun)  { where.push("sobun = ?");  binds.push(sobun); }
   if (status) { where.push("status = ?"); binds.push(status); }
-  if (q)      { where.push("(name LIKE ? OR model LIKE ?)"); binds.push("%" + q + "%", "%" + q + "%"); }
+  if (q) {
+    // 단어끼리는 AND, 같은 단어의 동의어끼리는 OR
+    for (const alts of expandQuery(q)) {
+      const use = alts.slice(0, 12);
+      where.push("(" + use.map(() => `${BLOB} LIKE ?`).join(" OR ") + ")");
+      for (const a of use) binds.push("%" + a + "%");
+    }
+  }
   const clause = where.length ? "WHERE " + where.join(" AND ") : "";
 
   const sql = `SELECT ${cols} FROM products ${clause} ORDER BY brand, sobun, model LIMIT ? OFFSET ?`;

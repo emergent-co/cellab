@@ -9,7 +9,9 @@ export async function onRequest({ request, env }) {
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(
       `SELECT o.id, o.order_no, o.status, o.title, o.org_name, o.total_amount, o.created_at,
-              (SELECT COUNT(*) FROM order_items i WHERE i.order_id=o.id) AS item_count
+              o.ship_address, o.received_at,
+              (SELECT COUNT(*) FROM order_items i WHERE i.order_id=o.id) AS item_count,
+              (SELECT i.name FROM order_items i WHERE i.order_id=o.id ORDER BY i.id LIMIT 1) AS first_item
          FROM orders o WHERE o.customer_id=? ORDER BY o.id DESC LIMIT 100`
     ).bind(me.id).all();
     return json({ orders: results || [] });
