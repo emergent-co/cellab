@@ -42,6 +42,21 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 .ev{font-size:12.5px;padding:8px 0;border-bottom:1px dashed var(--line);display:flex;gap:9px}
 .ev:last-child{border-bottom:0}
 .ev time{flex:0 0 88px;color:var(--mut);font-variant-numeric:tabular-nums}
+label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:11px 0 5px}
+input,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;background:#fbfcfe}
+.req::after{content:' *';color:#C2410C}
+.warnbox{font-size:13px;color:#92400E;background:#FEF3C7;border-radius:9px;padding:10px 12px;line-height:1.5}
+.okbox{font-size:13px;color:#065F46;background:#D1FAE5;border-radius:9px;padding:10px 12px}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(10,37,64,.5);display:flex;align-items:flex-end;justify-content:center;overflow-y:auto}
+.mbox{background:#fff;width:100%;max-width:560px;border-radius:16px 16px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92vh;overflow-y:auto}
+.mbox h4{font-size:16px;font-weight:800;margin-bottom:4px}
+.mrow{display:flex;gap:8px;margin-top:16px}
+.mrow button{flex:1;border:0;border-radius:11px;padding:14px;font-size:15px;font-weight:800;cursor:pointer}
+.mrow .mghost{background:#eef2f7;color:var(--mut)}
+.mrow .mgo{background:var(--teal);color:#fff}
+.chk{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13.5px;font-weight:700;color:var(--mut)}
+.chk input{width:18px;height:18px;flex:0 0 18px}
+@media(min-width:820px){.modal{align-items:center}.mbox{border-radius:16px}}
 .empty{text-align:center;color:var(--mut);font-size:14px;padding:44px 20px}
 .foot{text-align:center;font-size:12px;color:var(--mut);padding:18px 12px 30px;line-height:1.7}
 </style>
@@ -108,6 +123,7 @@ async function detail(id){
    +'<div class="sec"><h2>품목</h2><table><thead><tr><th>품명</th><th class="n">수량</th><th class="n">단가</th><th class="n">금액</th></tr></thead><tbody>'+rows+'</tbody></table>'
    +(o.total_amount?'<div class="tot"><span>합계 (VAT 포함)</span><span>'+won(o.total_amount)+'원</span></div>':'<p style="font-size:13px;color:var(--mut);margin-top:10px">단가는 견적서 발송 시 확정됩니다.</p>')
    +'</div>'
+   +'<div class="sec"><h2>세금계산서 발행 정보</h2><div id="billBox">'+billBlock(d)+'</div></div>'
    +'<div class="sec"><h2>문서</h2>'
      +((d.documents||[]).length
         ? d.documents.map(x=>'<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)+(x.status==='취소됨'?'':' · <a href="/doc/'+x.id+'" target="_blank">보기</a> · <a href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>')+'</span></div>').join('')
@@ -127,7 +143,62 @@ async function detail(id){
     const r = await fetch('/api/order/'+id,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'approve'})}).then(r=>r.json());
     if (r.ok) detail(id); else { alert(r.message||'실패'); ap.disabled=false; ap.textContent='견적 승인하기'; }
   };
+  bindBill(id);
   window.scrollTo(0,0);
+}
+
+function billBlock(d){
+  const b = d.bill, ps = d.profiles||[];
+  let h = '';
+  if (b) h += '<div class="okbox">이 주문은 <b>'+esc(b.company)+'</b>'+(b.biz_no?' ('+esc(b.biz_no)+')':'')+' 명의로 발행됩니다.</div>';
+  else h += '<div class="warnbox">세금계산서 발행 정보가 아직 없습니다.<br>정산이 필요하시면 아래에서 등록해주세요. 등록 전까지 견적서는 소속 기관명으로 나갑니다.</div>';
+  if (ps.length) h += '<label>발행 정보 선택</label><select id="billSel"><option value="">— 지정 안 함 —</option>'
+    + ps.map(function(p){ return '<option value="'+p.id+'"'+((b&&b.id===p.id)?' selected':'')+'>'
+        +esc(p.label||p.company)+(p.biz_no?' · '+esc(p.biz_no):'')+'</option>'; }).join('') + '</select>';
+  h += '<div style="height:10px"></div><button class="btn ghost" id="addBill">＋ 발행 정보 등록</button>';
+  return h;
+}
+
+function bindBill(id){
+  const sel = document.getElementById('billSel');
+  if (sel) sel.onchange = async function(){
+    const r = await fetch('/api/order/'+id,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({action:'bill', bill_profile_id: sel.value? Number(sel.value):null})}).then(function(r){return r.json();});
+    if (r.ok) detail(id); else alert(r.message||'실패했습니다.');
+  };
+  const add = document.getElementById('addBill');
+  if (add) add.onclick = function(){ billForm(id); };
+}
+
+const BF = [['company','상호 (기관·회사명)',1],['biz_no','사업자등록번호',1],['ceo','대표자명',1],
+            ['tax_email','계산서 수신 이메일',0],['address','주소',0],['biz_type','업태',0],['biz_item','종목',0]];
+
+function billForm(orderId){
+  const wrap = document.createElement('div');
+  wrap.className='modal';
+  wrap.innerHTML = '<div class="mbox"><h4>세금계산서 발행 정보</h4>'
+    +'<p style="font-size:12.5px;color:var(--mut);margin-bottom:6px">사업자등록증에 적힌 그대로 입력해주세요. 한 번 등록하면 다음 주문에서 골라 쓸 수 있습니다.</p>'
+    + BF.map(function(f){ return '<label class="'+(f[2]?'req':'')+'">'+f[1]+'</label><input id="b-'+f[0]+'"'
+        +(f[0]==='tax_email'?' type="email" inputmode="email"':'')
+        +(f[0]==='biz_no'?' inputmode="numeric" placeholder="000-00-00000"':'')+'>'; }).join('')
+    +'<label class="chk"><input type="checkbox" id="b-def" checked> 앞으로 기본으로 사용</label>'
+    +'<div class="mrow"><button class="mghost" id="b-x">닫기</button><button class="mgo" id="b-go">저장</button></div></div>';
+  document.body.appendChild(wrap);
+  document.getElementById('b-x').onclick=function(){ wrap.remove(); };
+  wrap.onclick=function(e){ if(e.target===wrap) wrap.remove(); };
+  document.getElementById('b-go').onclick=async function(){
+    const body={};
+    for (const f of BF) body[f[0]] = document.getElementById('b-'+f[0]).value.trim();
+    for (const f of BF) if (f[2] && !body[f[0]]) return alert(f[1]+'을(를) 입력해주세요.');
+    body.is_default = document.getElementById('b-def').checked;
+    const btn=document.getElementById('b-go'); btn.disabled=true; btn.textContent='저장 중…';
+    const r = await fetch('/api/order/profiles',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify(body)}).then(function(r){return r.json();});
+    if (!r.ok){ btn.disabled=false; btn.textContent='저장'; return alert(r.message||'저장에 실패했습니다.'); }
+    await fetch('/api/order/'+orderId,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({action:'bill', bill_profile_id: r.id})});
+    wrap.remove(); detail(orderId);
+  };
 }
 
 window.onpopstate = boot;

@@ -98,6 +98,7 @@ textarea{min-height:74px;resize:vertical}
 .bar .save:disabled{opacity:.5}
 .bar .doc{background:#eef2f7;color:var(--mut)}
 .tag{display:inline-block;font-size:11px;font-weight:800;background:#FEF3C7;color:#92400E;border-radius:5px;padding:2px 6px;margin-left:6px}
+.warnbox{font-size:13px;color:#92400E;background:#FEF3C7;border-radius:9px;padding:9px 11px}
 .docrow{border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:8px;background:#fbfcfe}
 .dr1{display:flex;align-items:center;gap:8px;font-size:14px}
 .dr1 .dno{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
@@ -184,10 +185,11 @@ function render(){
   const body = document.getElementById('sbody');
   body.innerHTML =
    '<div class="shead"><span class="no">'+esc(o.order_no)+'</span><span class="st s'+(SIDX[o.status]??7)+'">'+esc(o.status)+'</span><button class="x" id="closeBtn">×</button></div>'
-  +'<div class="sec"><h3>거래처</h3>'
-    +kv('상호', c.company)+kv('담당자',(c.name||'')+(c.phone?' · '+c.phone:''))+kv('사업자',c.biz_no)
-    +kv('이메일',c.email)+kv('계산서',c.tax_email||c.email)+kv('납품지',o.ship_address)
+  +'<div class="sec"><h3>고객</h3>'
+    +kv('소속', o.org_name||c.company)+kv('담당자',(c.name||'')+(c.phone?' · '+c.phone:''))
+    +kv('이메일',c.email)+kv('납품지',o.ship_address)
   +'</div>'
+  +'<div class="sec"><h3>세금계산서 발행 정보</h3><div id="billBox">'+billBlock()+'</div></div>'
   +'<div class="sec"><h3>요청내용</h3>'
     +kv('제목',o.title)+kv('희망납기',o.want_date)+kv('요청사항',o.request_note)
   +'</div>'
@@ -207,8 +209,35 @@ function render(){
   document.getElementById('addItem').onclick = ()=>{ items.push({name:'',spec:'',unit:'EA',qty:1,unit_price:0}); renderItems(); };
   document.getElementById('saveBtn').onclick = save;
   bindDocs();
+  bindBill();
   renderItems();
 }
+function billBlock(){
+  const b = cur.bill, ps = cur.profiles||[];
+  let h = '';
+  if (b) h += kv('상호',b.company)+kv('사업자번호',b.biz_no)+kv('대표자명',b.ceo)
+            +kv('계산서 메일',b.tax_email)+kv('주소',b.address);
+  else h += '<div class="warnbox">고객이 아직 등록하지 않았습니다. 견적서는 소속 기관명으로 나갑니다.</div>';
+  if (ps.length) h += '<select id="billSel" style="margin-top:9px"><option value="">— 지정 안 함 —</option>'
+      + ps.map(function(p){ return '<option value="'+p.id+'"'+((b&&b.id===p.id)?' selected':'')+'>'
+          +esc(p.label||p.company)+(p.biz_no?' · '+esc(p.biz_no):'')+'</option>'; }).join('')
+      + '</select>';
+  else h += '<div style="font-size:12.5px;color:var(--mut);margin-top:6px">고객이 저장해 둔 정보가 없습니다.</div>';
+  return h;
+}
+
+function bindBill(){
+  const sel = document.getElementById('billSel');
+  if(!sel) return;
+  sel.onchange = async function(){
+    const r = await fetch('/api/admin/orders/'+cur.order.id,{method:'POST',headers:H,
+      body:JSON.stringify({action:'bill', bill_profile_id: sel.value? Number(sel.value):null})})
+      .then(function(r){return r.json();});
+    if(r.ok){ toast('계산서 정보 지정됨'); openOrder(cur.order.id); }
+    else toast('실패: '+(r.message||r.error||''));
+  };
+}
+
 function kv(k,v){ return '<div class="kv"><span>'+esc(k)+'</span><span>'+esc(v||'-')+'</span></div>'; }
 const DT={quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
 function docBlock(){

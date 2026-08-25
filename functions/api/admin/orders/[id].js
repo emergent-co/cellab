@@ -17,14 +17,18 @@ export async function onRequest({ request, env, params }) {
     const docs = (await env.DB.prepare('SELECT * FROM documents WHERE order_id=? ORDER BY id DESC').bind(order.id).all()).results || [];
     const events = (await env.DB.prepare('SELECT * FROM doc_events WHERE order_id=? ORDER BY id DESC LIMIT 100').bind(order.id).all()).results || [];
     const queued = (await env.DB.prepare("SELECT * FROM outbox WHERE order_id=? AND status='대기' ORDER BY send_at").bind(order.id).all()).results || [];
-    return json({ order, customer, items, documents: docs, events, queued, statuses: STATUSES });
+    const profiles = order.customer_id
+      ? (await env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id DESC').bind(order.customer_id).all()).results || []
+      : [];
+    const bill = order.bill_profile_id ? profiles.find((p) => p.id === order.bill_profile_id) || null : null;
+    return json({ order, customer, items, documents: docs, events, queued, profiles, bill, statuses: STATUSES });
   }
 
   if (request.method === 'PUT') {
     const b = await request.json().catch(() => ({}));
 
     const sets = [], vals = [];
-    for (const f of ['title', 'want_date', 'ship_address', 'request_note', 'admin_memo', 'status']) {
+    for (const f of ['title', 'org_name', 'want_date', 'ship_address', 'request_note', 'admin_memo', 'status']) {
       if (b[f] !== undefined) { sets.push(`${f}=?`); vals.push(String(b[f])); }
     }
     if (sets.length) {
@@ -61,6 +65,13 @@ export async function onRequest({ request, env, params }) {
       await env.DB.prepare('UPDATE orders SET status=?, updated_at=? WHERE id=?').bind(b.status, kstISO(), order.id).run();
       await logEvent(env, { order_id: order.id, action: 'status', actor: 'admin', detail: `${order.status} → ${b.status}` });
       return json({ ok: true, status: b.status });
+    }
+    if (b.action === 'bill') {
+      await env.DB.prepare('UPDATE orders SET bill_profile_id=?, updated_at=? WHERE id=?')
+        .bind(b.bill_profile_id || null, kstISO(), order.id).run();
+      await logEvent(env, { order_id: order.id, action: 'bill_set', actor: 'admin',
+        detail: b.bill_profile_id ? '계산서 발행 정보 지정' : '계산서 발행 정보 해제' });
+      return json({ ok: true });
     }
     if (b.action === 'memo') {
       await env.DB.prepare('UPDATE orders SET admin_memo=?, updated_at=? WHERE id=?').bind(String(b.admin_memo || ''), kstISO(), order.id).run();

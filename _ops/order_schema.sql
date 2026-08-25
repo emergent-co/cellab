@@ -108,3 +108,27 @@ CREATE TABLE IF NOT EXISTS sessions (
   expires_at  TEXT,
   created_at  TEXT
 );
+
+-- 2026-08-25 추가: 세금계산서 발행 정보(고객이 정산 시점에 등록·재사용)
+CREATE TABLE IF NOT EXISTS bill_profiles (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER NOT NULL,
+  label      TEXT,
+  company    TEXT,
+  biz_no     TEXT,
+  ceo        TEXT,
+  biz_type   TEXT,
+  biz_item   TEXT,
+  tax_email  TEXT,
+  address    TEXT,
+  is_default INTEGER DEFAULT 0,
+  created_at TEXT,
+  updated_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_bill_cust ON bill_profiles(customer_id);
+ALTER TABLE orders ADD COLUMN bill_profile_id INTEGER;  -- 이 주문의 계산서 발행 정보
+ALTER TABLE orders ADD COLUMN org_name TEXT;            -- 소속(기관·연구실) — 견적서 공급받는자
+ALTER TABLE documents ADD COLUMN access_token TEXT;
+ALTER TABLE documents ADD COLUMN sent_at TEXT;
+ALTER TABLE documents ADD COLUMN opened_at TEXT;
+ALTER TABLE outbox ADD COLUMN sent_at TEXT;

@@ -18,6 +18,11 @@ export async function onRequestPost({ request, env }) {
     'SELECT name, spec, unit, qty, unit_price, note FROM order_items WHERE order_id=? ORDER BY seq, id'
   ).bind(order.id).all()).results || [];
 
+  // 계산서 발행 정보(고객이 정산 시점에 등록) → 없으면 주문의 소속 기관명으로.
+  const bill = order.bill_profile_id
+    ? await env.DB.prepare('SELECT * FROM bill_profiles WHERE id=?').bind(order.bill_profile_id).first()
+    : null;
+
   if (!items.length) return json({ error: 'no_items', message: '품목이 없습니다.' }, 400);
   const unpriced = items.filter((i) => !Number(i.unit_price));
   if (unpriced.length) {
@@ -33,12 +38,12 @@ export async function onRequestPost({ request, env }) {
     valid_until: b.valid_until || plusDays(issue, 30),
     title: b.title || order.title || '',
     client: {
-      company: customer?.company || '',
-      biz_no: customer?.biz_no || '',
-      ceo: customer?.ceo || '',
+      company: bill?.company || order.org_name || customer?.company || '',
+      biz_no: bill?.biz_no || customer?.biz_no || '',
+      ceo: bill?.ceo || customer?.ceo || '',
       contact: customer?.name || '',
-      email: customer?.email || '',
-      address: order.ship_address || customer?.address || '',
+      email: bill?.tax_email || customer?.email || '',
+      address: bill?.address || order.ship_address || customer?.address || '',
     },
     items: items.map((i) => ({
       name: i.name, spec: i.spec, qty: i.qty, unit_price: i.unit_price, note: i.note,
