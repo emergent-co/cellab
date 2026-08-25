@@ -151,3 +151,14 @@ CREATE TABLE IF NOT EXISTS payments (
   created_by TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_pay_cust ON payments(customer_id, paid_at);
+
+-- 2026-08-25: 납품지(소속+주소) 저장 — 주문 시 라디오로 선택
+CREATE TABLE IF NOT EXISTS sites (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER NOT NULL,
+  org_name TEXT,
+  address  TEXT,
+  is_default INTEGER DEFAULT 0,
+  created_at TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_sites_cust ON sites(customer_id);

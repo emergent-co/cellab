@@ -8,8 +8,9 @@ export async function onRequest({ request, env }) {
 
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(
-      `SELECT id, order_no, status, title, want_date, total_amount, created_at
-         FROM orders WHERE customer_id=? ORDER BY id DESC LIMIT 100`
+      `SELECT o.id, o.order_no, o.status, o.title, o.org_name, o.total_amount, o.created_at,
+              (SELECT COUNT(*) FROM order_items i WHERE i.order_id=o.id) AS item_count
+         FROM orders o WHERE o.customer_id=? ORDER BY o.id DESC LIMIT 100`
     ).bind(me.id).all();
     return json({ orders: results || [] });
   }
@@ -19,8 +20,20 @@ export async function onRequest({ request, env }) {
   const b = await request.json().catch(() => ({}));
   const items = Array.isArray(b.items) ? b.items.filter((i) => (i.name || '').trim()) : [];
   if (!items.length) return json({ error: 'no_items', message: '품목을 1개 이상 입력해주세요.' }, 400);
-  const org = String(b.org_name || '').trim();
-  if (!org) return json({ error: 'no_org', message: '소속(기관·연구실)을 입력해주세요.' }, 400);
+  // 납품지: 저장해 둔 것을 고르거나 직접 입력
+  let org = String(b.org_name || '').trim();
+  let ship = String(b.ship_address || '').trim();
+  if (b.site_id) {
+    const site = await env.DB.prepare('SELECT * FROM sites WHERE id=? AND customer_id=?')
+      .bind(b.site_id, me.id).first();
+    if (site) { org = site.org_name || org; ship = site.address || ship; }
+  }
+  if (!org) return json({ error: 'no_org', message: '소속(기관·연구실)을 선택하거나 입력해주세요.' }, 400);
+
+  // 제목은 받지 않고 품목에서 만든다 — "첫 품목 외 N건"
+  const title = items.length > 1
+    ? `${String(items[0].name).trim()} 외 ${items.length - 1}건`
+    : String(items[0].name).trim();
   // 사업자정보는 정산 시점에 받는다 — 여기서 요구하지 않는다.
 
   const orderNo = await nextOrderNo(env);
@@ -30,11 +43,11 @@ export async function onRequest({ request, env }) {
      VALUES (?,?,?,?,?,?,?,?,?,?)`
   ).bind(
     orderNo, me.id, '요청접수',
-    (b.title || '').trim() || items[0].name,
+    title,
     org,
-    (b.want_date || '').trim(),
-    (b.ship_address || me.address || '').trim(),
-    (b.request_note || '').trim(),
+    '',
+    ship || me.address || '',
+    '',
     now, now
   ).run();
   const orderId = r.meta.last_row_id;
@@ -48,14 +61,27 @@ export async function onRequest({ request, env }) {
     ).bind(
       orderId, seq++, it.product_id || null,
       String(it.name).trim(), String(it.spec || '').trim(),
-      String(it.unit || 'EA').trim(), qty, String(it.note || '').trim(),
+      'EA', qty, String(it.note || '').trim(),
       String(it.link || '').trim() || null
     ).run();
   }
 
   await env.DB.prepare(
     "UPDATE customers SET company=?, address=COALESCE(NULLIF(?,''), address), updated_at=? WHERE id=?"
-  ).bind(org, (b.ship_address || '').trim(), kstISO(), me.id).run();
+  ).bind(org, ship, kstISO(), me.id).run();
+
+  // 직접 입력한 납품지는 다음 주문에서 고를 수 있게 저장
+  if (!b.site_id && org) {
+    const dup = await env.DB.prepare('SELECT id FROM sites WHERE customer_id=? AND org_name=? AND COALESCE(address,\'\')=?')
+      .bind(me.id, org, ship).first();
+    if (!dup) {
+      const n = (await env.DB.prepare('SELECT COUNT(*) AS c FROM sites WHERE customer_id=?').bind(me.id).first())?.c || 0;
+      if (n < 10) {
+        await env.DB.prepare('INSERT INTO sites (customer_id, org_name, address, is_default, created_at) VALUES (?,?,?,?,?)')
+          .bind(me.id, org, ship, n === 0 ? 1 : 0, kstISO()).run();
+      }
+    }
+  }
 
   const def = await env.DB.prepare(
     'SELECT id FROM bill_profiles WHERE customer_id=? AND is_default=1'
