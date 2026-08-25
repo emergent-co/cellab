@@ -221,8 +221,8 @@ function docBlock(){
       +'<div class="dr1"><b>'+esc(DT[x.type]||x.type)+'</b><span class="dno">'+esc(x.doc_no||'')+'</span>'
         +'<span class="dst'+(x.status==='취소됨'?' off':'')+'">'+esc(x.status)+'</span></div>'
       +'<div class="dr2">'
-        +'<a href="/doc/'+x.id+'" target="_blank">미리보기</a>'
-        +'<a href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>'
+        +'<button class="lnk open" data-id="'+x.id+'">미리보기</button>'
+        +'<button class="lnk open pdf" data-id="'+x.id+'">PDF</button>'
         +(x.status==='취소됨'?'':'<button class="lnk send" data-id="'+x.id+'">이메일 발송</button>')
       +'</div></div>';
   }).join('');
@@ -239,8 +239,30 @@ function bindDocs(){
   const box = document.getElementById('docBox');
   if(!box) return;
   box.querySelectorAll('.mk').forEach(function(b){ b.onclick=function(){ makeDoc(b.dataset.t); }; });
+  box.querySelectorAll('.open').forEach(function(b){ b.onclick=function(){ openDoc(b.dataset.id, b.classList.contains('pdf')); }; });
   box.querySelectorAll('.send').forEach(function(b){ b.onclick=function(){ sendSheet(b.dataset.id); }; });
   box.querySelectorAll('.qcancel').forEach(function(b){ b.onclick=function(){ cancelSchedule(b.dataset.id); }; });
+}
+
+// 관리자 Basic Auth 헤더는 /doc/ 경로로 자동 전송되지 않는다.
+// 그래서 헤더를 붙여 직접 가져온 뒤 blob으로 새 탭에 띄운다. (열람 이력에 고객 열람으로 안 찍힘)
+function openDoc(id, pdf){
+  const w = window.open('', '_blank');
+  if(w) w.document.write('<p style="font-family:sans-serif;padding:24px;color:#5a6779">불러오는 중…</p>');
+  fetch('/doc/'+id+(pdf?'?f=pdf':''), { headers: { 'Authorization': 'Basic ' + TOKEN } })
+    .then(function(r){
+      if(!r.ok) return r.text().then(function(t){ throw new Error(t || ('HTTP '+r.status)); });
+      return r.blob();
+    })
+    .then(function(b){
+      const u = URL.createObjectURL(b);
+      if(w) w.location.href = u; else location.href = u;
+      setTimeout(function(){ URL.revokeObjectURL(u); }, 120000);
+    })
+    .catch(function(e){
+      if(w) w.close();
+      toast('열기 실패: ' + String(e && e.message || e).slice(0,90));
+    });
 }
 
 async function makeDoc(type){
