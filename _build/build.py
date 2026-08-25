@@ -1608,6 +1608,8 @@ def build_search_index():
                 t = read(path)
             except Exception:
                 continue
+            if 'noindex' in t[:2000] or 'http-equiv="refresh"' in t[:2000]:
+                continue  # noindex·리다이렉트 스텁은 검색 인덱스 제외
             def _m(pat):
                 m = re.search(pat, t, re.S)
                 return re.sub(r'\s+', ' ', m.group(1)).strip() if m else ''
