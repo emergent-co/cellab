@@ -516,6 +516,7 @@
           box.classList.add('on');
         });
       }
+      if (window.innerWidth <= 640) { minp.placeholder = '제품명·모델명 검색'; }
       minp.addEventListener('input', show);
       minp.addEventListener('focus', show);
       minp.addEventListener('blur', function () { setTimeout(hide, 150); });
