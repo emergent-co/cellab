@@ -48,7 +48,7 @@ export async function deliver(env, { doc, payload, to, cc, subject, html, actor 
     await env.DB.prepare("UPDATE orders SET status='견적발송', updated_at=? WHERE id=? AND status IN ('요청접수','보류')")
       .bind(now, doc.order_id).run();
   } else if (doc.type === 'statement') {
-    await env.DB.prepare("UPDATE orders SET status='납품완료', updated_at=? WHERE id=? AND status IN ('발주확정','견적승인')")
+    await env.DB.prepare("UPDATE orders SET status='배송중', updated_at=? WHERE id=? AND status IN ('발주확정','견적승인')")
       .bind(now, doc.order_id).run();
   }
 

@@ -46,8 +46,31 @@ export async function onRequest({ request, env, params }) {
     return json({ ok: true });
   }
 
+  // 수령 확인 — 배송중일 때만
+  if (b.action === 'received') {
+    if (order.status !== '배송중') return json({ error: 'bad_status', message: '배송중인 주문만 수령 확인할 수 있습니다.' }, 400);
+    const now = kstISO();
+    await env.DB.prepare('UPDATE orders SET status=?, received_at=?, updated_at=? WHERE id=?')
+      .bind('수령확인', now, now, order.id).run();
+    await logEvent(env, { order_id: order.id, action: 'received', actor: 'customer', detail: '고객이 수령을 확인함' });
+    return json({ ok: true, status: '수령확인' });
+  }
+
+  // 아직 못 받음 — 상태는 배송중으로 두고 사유만 남긴다(우리가 확인해야 하므로)
+  if (b.action === 'not_received') {
+    if (order.status !== '배송중') return json({ error: 'bad_status' }, 400);
+    const note = String(b.note || '').trim();
+    await env.DB.prepare('UPDATE orders SET receive_note=?, updated_at=? WHERE id=?')
+      .bind(note, kstISO(), order.id).run();
+    await logEvent(env, {
+      order_id: order.id, action: 'not_received', actor: 'customer', result: 'fail',
+      detail: '고객이 미수령을 알림' + (note ? ' — ' + note : ''),
+    });
+    return json({ ok: true });
+  }
+
   if (b.action === 'cancel') {
-    if (['납품완료', '계산서발행', '완료'].includes(order.status)) return json({ error: 'bad_status', message: '진행된 주문은 취소할 수 없습니다. 담당자에게 연락해주세요.' }, 400);
+    if (['배송중', '수령확인', '계산서발행', '완료'].includes(order.status)) return json({ error: 'bad_status', message: '진행된 주문은 취소할 수 없습니다. 담당자에게 연락해주세요.' }, 400);
     await env.DB.prepare('UPDATE orders SET status=?, updated_at=? WHERE id=?').bind('취소', kstISO(), order.id).run();
     await logEvent(env, { order_id: order.id, action: 'cancelled', actor: 'customer', detail: (b.reason || '고객 취소') });
     return json({ ok: true, status: '취소' });

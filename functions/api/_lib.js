@@ -147,7 +147,8 @@ export async function recalcOrder(env, orderId) {
   return { supply, vat, total: supply + vat };
 }
 
-export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주확정', '납품완료', '계산서발행', '완료', '보류', '취소'];
+// 배송중까지가 관리자 몫, 수령확인은 고객이 누른다.
+export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주확정', '배송중', '수령확인', '계산서발행', '완료', '보류', '취소'];
 
 // ---------- 공급자(이머전트) 정보 ----------
 export const SUPPLIER = {

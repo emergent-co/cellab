@@ -2,6 +2,7 @@
 // PUT  /api/admin/orders/:id           → 주문 필드/품목 수정
 // POST /api/admin/orders/:id {action}  → status 변경 등
 import { json, isAdmin, needAdmin, kstISO, recalcOrder, logEvent, STATUSES } from '../../_lib.js';
+import { notifyCustomer, shipHtml } from '../../_notify.js';
 
 export async function onRequest({ request, env, params }) {
   if (!isAdmin(request, env)) return needAdmin();
@@ -54,6 +55,8 @@ export async function onRequest({ request, env, params }) {
       }
     }
 
+    if (b.status === '배송중' && order.status !== '배송중') await onShipped(env, request, order);
+
     const sums = await recalcOrder(env, order.id);
     await logEvent(env, { order_id: order.id, action: 'updated', actor: 'admin', detail: b.status ? `상태→${b.status}` : '주문 수정' });
     const fresh = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(order.id).first();
@@ -65,6 +68,7 @@ export async function onRequest({ request, env, params }) {
     if (b.action === 'status' && STATUSES.includes(b.status)) {
       await env.DB.prepare('UPDATE orders SET status=?, updated_at=? WHERE id=?').bind(b.status, kstISO(), order.id).run();
       await logEvent(env, { order_id: order.id, action: 'status', actor: 'admin', detail: `${order.status} → ${b.status}` });
+      if (b.status === '배송중') await onShipped(env, request, order);
       return json({ ok: true, status: b.status });
     }
     if (b.action === 'bill') {
@@ -82,4 +86,23 @@ export async function onRequest({ request, env, params }) {
   }
 
   return json({ error: 'method_not_allowed' }, 405);
+}
+
+// 배송중으로 바꾼 시점에 고객에게 알림 — 수령 확인은 고객이 누른다
+async function onShipped(env, request, order) {
+  await env.DB.prepare('UPDATE orders SET shipped_at=? WHERE id=?').bind(kstISO(), order.id).run();
+  const customer = order.customer_id
+    ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(order.customer_id).first()
+    : null;
+  if (!customer) return;
+  const origin = new URL(request.url).origin;
+  const url = `${origin}/order/#orders`;
+  await notifyCustomer(env, {
+    customer, order,
+    template: env.ALIMTALK_TPL_SHIP || 'rndsetup_ship',
+    text: `[실험셋업연구소] ${order.title || ''} 주문이 발송되었습니다.\n받으시면 수령 확인을 눌러주세요.\n${url}`,
+    buttons: [{ buttonType: 'WL', buttonName: '수령 확인하기', linkMo: url, linkPc: url }],
+    subject: `[실험셋업연구소] ${order.title || order.order_no} 발송 안내`,
+    html: shipHtml({ orderNo: order.order_no, title: order.title || '', url }),
+  });
 }

@@ -41,7 +41,7 @@
 - **공유 크롬(SSOT)**: `assets/site.js`(NAV·헤더·푸터·글 페이지 좌측 목차/우측 관련제품 레일·부품주문 팝업·검색), `assets/site.css`. 색=네이비 `#1E3A5F`.
 - **데이터/빌드 (SSOT·자동 주입)** — `_build/build.py`가 처리. **아래 항목은 절대 손으로 고치지 말 것**:
   - `sitemap.xml`, `feed.xml`, `search-index.json`(전 페이지 자동 인덱스, 301 소스 제외)
-  - 홈 '셋업 사례' 카드 ← `_build/paper_cases.json`
+  - ~~홈 '셋업 사례' 카드~~ (2026-08 홈에서 섹션 삭제 — 마커 없어 주입 생략 warn은 정상. 콘텐츠 노출은 홈 '최신연구' 레일=posts.json 최신 6편으로 일원화)
   - 홈 '최신연구' 레일 ← `_build/posts.json` 최신 6편 (`<!--NEWRESEARCH-->` 마커)
   - **전 제품 통합 카탈로그** ← `brands/<brand>/index.html`의 `<article class="dscard">` 를 `build_all_products()` 가 수집해 `product/index.html` 의 `<!--ALLPROD_START-->` (구 /brands/ 는 301→/product/, 브랜드 하위 경로는 유지) 마커에 주입(현재 241장). 브랜드 허브에 카드를 추가하면 **빌드만으로 자동 반영**. 통합 카테고리 매핑은 `ALLPROD_CATMAP`, 매핑 실패 시 `ALLPROD_BRANDS` 의 브랜드 기본값.
   - **sitemap 브랜드 페이지 자동 등재** ← `brands/<brand>/index.html`·`brands/<brand>/<slug>/index.html` 스캔(리다이렉트 스텁·noindex·301 소스 제외). 새 브랜드·제품 페이지는 빌드만으로 sitemap에 들어간다.
