@@ -111,6 +111,30 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .okbox{font-size:13px;color:#065F46;background:#D1FAE5;border-radius:9px;padding:11px 13px}
 .lnk{background:0;border:0;color:var(--teal);font-weight:700;font-size:13px;cursor:pointer;padding:0;margin-right:14px}
 
+.split2{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+.panel.pad{padding:20px 22px;position:relative}
+.ph2{font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.2px;margin-bottom:4px}
+.ph2 .cnt{display:inline-block;background:var(--navy);color:#fff;border-radius:999px;font-size:11.5px;padding:2px 9px;margin-left:6px}
+.seg{display:flex;gap:6px;background:#f1f3f6;border-radius:10px;padding:4px;margin-bottom:6px}
+.seg button{flex:1;border:0;background:0;border-radius:8px;padding:10px;font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(20,28,48,.10)}
+.oneform{position:relative}
+.two{display:flex;gap:10px}
+.two>div{flex:1}
+.cartlist{margin-top:10px}
+.cartrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #f2f4f7}
+.cartrow:last-child{border-bottom:0}
+.cartrow .cn{flex:1;min-width:0;font-size:13.5px;line-height:1.4}
+.cartrow .cn b{display:block;font-weight:700}
+.cartrow .cn small{display:block;color:var(--mut);font-size:12px}
+.cartrow .cn .ln{display:inline-block;font-size:11.5px;color:var(--teal);font-weight:700;margin-top:2px}
+.cartrow .cq{flex:0 0 62px;text-align:center;padding:7px;font-size:13.5px}
+.cartrow .cx{flex:0 0 30px;height:30px;border:0;background:#f1f3f6;color:#6b7280;border-radius:8px;font-size:17px;cursor:pointer}
+.cartrow .cx:hover{background:#fee2e2;color:#991B1B}
+table.mini{margin-top:8px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
+.hint{font-size:12.5px;color:var(--mut);line-height:1.55}
+
 /* ---------- 폼 / 모달 ---------- */
 label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:13px 0 6px}
 label.req::after{content:' *';color:#C2410C}
@@ -156,6 +180,7 @@ textarea{min-height:78px;resize:vertical}
   .kpi{padding:14px 15px}
   .kpi b{font-size:20px;margin-top:8px}
   .split{grid-template-columns:1fr}
+  .split2{grid-template-columns:1fr}
   .detail{display:none}
   .detail.on{display:block}
   .panel.list.hide{display:none}
@@ -193,7 +218,8 @@ textarea{min-height:78px;resize:vertical}
   <aside class="side" id="side">
     <div class="brand"><b>실험셋업연구소</b><small>(이머전트)</small></div>
     <nav class="nav" id="nav">
-      <a data-v="orders" class="on">주문 현황</a>
+      <a data-v="new" class="on">주문하기</a>
+      <a data-v="orders">주문 현황</a>
       <a data-v="settle">정산하기</a>
     </nav>
     <div class="foot">070-8983-2600<br>info@rndsetup.com</div>
@@ -220,7 +246,10 @@ const ST = ['요청접수','견적발송','견적승인','발주확정','납품�
 const SIDX = {}; ST.forEach(function(s,i){ SIDX[s]=i; });
 const DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
 
-let me=null, view='orders', tab='전체', kw='', orders=[], cur=null, items=[{name:'',spec:'',unit:'EA',qty:1}];
+let me=null, view='new', tab='전체', kw='', orders=[], cur=null;
+let cart=[], mode='one';   // mode: one=단건, bulk=여러 건
+try { cart = JSON.parse(localStorage.getItem('rs_cart')||'[]') || []; } catch(e){ cart=[]; }
+function saveCart(){ try{ localStorage.setItem('rs_cart', JSON.stringify(cart)); }catch(e){} }
 
 function toast(m){ var t=$('#toast'); t.textContent=m; t.classList.add('on'); setTimeout(function(){t.classList.remove('on');},1900); }
 function badge(s){ return '<span class="badge s'+(SIDX[s]==null?7:SIDX[s])+'">'+esc(s)+'</span>'; }
@@ -233,7 +262,8 @@ async function boot(){
   $('#login').style.display='none';
   $('#shell').classList.add('on');
   $('#whoName').textContent = me.name || '고객';
-  if (location.hash === '#settle') view='settle';
+  var h0 = location.hash.replace('#','');
+  if (h0==='orders'||h0==='settle'||h0==='new') view=h0;
   syncNav();
   render();
 }
@@ -256,7 +286,7 @@ function syncNav(){
 }
 
 /* ---------------- 라우팅 ---------------- */
-function render(){ if (view==='orders') viewOrders(); else viewSettle(); }
+function render(){ if (view==='new') viewNew(); else if (view==='orders') viewOrders(); else viewSettle(); }
 
 /* ---------------- 주문 현황 ---------------- */
 async function viewOrders(){
@@ -282,7 +312,7 @@ async function viewOrders(){
    +'</div>'
    +'<div class="tools">'
      +'<input type="search" id="q" placeholder="주문번호 · 품명으로 검색" value="'+esc(kw)+'">'
-     +'<div class="right"><button class="btn pri" id="newOrder">＋ 주문 요청</button></div>'
+     +'<div class="right"><button class="btn pri" id="newOrder">＋ 주문하기</button></div>'
    +'</div>'
    +'<div class="split">'
      +'<div class="panel list" id="listPanel">'+listTable()+'</div>'
@@ -292,7 +322,7 @@ async function viewOrders(){
   $('#tabs').onclick = function(e){ var b=e.target.closest('button[data-t]'); if(!b) return;
     tab=b.dataset.t; cur=null; viewOrders(); };
   var t; $('#q').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ kw=e.target.value.trim(); viewOrders(); },280); };
-  $('#newOrder').onclick = orderForm;
+  $('#newOrder').onclick = function(){ go('new'); };
   bindRows();
   if (cur) openOrder(cur, true);
 }
@@ -442,81 +472,209 @@ function billForm(orderId){
   };
 }
 
-/* ---------------- 주문 요청 ---------------- */
-function orderForm(){
-  items = [{name:'',spec:'',unit:'EA',qty:1}];
-  var w = modal('주문 요청',
-     '<label class="req">소속 (기관 · 연구실)</label><input id="f-org" value="'+esc(lastOrg())+'" placeholder="예) 부산대학교 재료공학과 000연구실">'
-    +'<label>주문 제목</label><input id="f-title" placeholder="예) 튜브퍼니스 + MFC 셋업">'
-    +'<label class="req">품목</label><div id="itemBox"></div>'
-    +'<button class="add" id="addItem">＋ 품목 추가</button>'
-    +'<label>희망 납기일</label><input id="f-want" type="date">'
-    +'<label>납품 주소</label><input id="f-ship" placeholder="납품받으실 주소">'
-    +'<label>요청사항</label><textarea id="f-note" placeholder="사양·조건·예산·설치 관련 요청을 적어주세요"></textarea>'
-    +'<p class="hint" style="margin-top:10px">단가는 접수 후 담당자가 확인하여 견적서로 회신드립니다.<br>견적서의 “공급받는자”에는 위 소속이 표기됩니다.</p>'
-    +'<div class="mrow"><button class="btn gray" data-x>닫기</button><button class="btn pri" id="f-go">요청 보내기</button></div>');
-  $('#addItem').onclick = function(){ items.push({name:'',spec:'',unit:'EA',qty:1}); renderItems(); };
-  $('#f-go').onclick = function(){ submitOrder(w); };
-  renderItems();
-}
-function lastOrg(){ var o = orders.find(function(x){ return x.org_name; }); return (o&&o.org_name) || me.company || ''; }
+/* ---------------- 주문하기 ---------------- */
+function go(v){ view=v; cur=null; location.hash='#'+v; syncNav(); render(); }
 
-function renderItems(){
-  var box=$('#itemBox');
-  box.innerHTML = items.map(function(it,i){
-    return '<div class="itrow" data-i="'+i+'">'
-      +'<input class="f-name" placeholder="품명 · 모델명으로 검색" value="'+esc(it.name)+'" autocomplete="off">'
-      +'<div class="r"><input class="f-spec" placeholder="규격 (선택)" value="'+esc(it.spec||'')+'">'
-        +'<input class="unit f-unit" value="'+esc(it.unit||'EA')+'">'
-        +'<input class="qty f-qty" type="number" inputmode="numeric" min="1" value="'+(it.qty||1)+'">'
-        +(items.length>1?'<button class="del">삭제</button>':'')
-      +'</div></div>';
-  }).join('');
-  box.querySelectorAll('.itrow').forEach(function(el){
-    var i = Number(el.dataset.i);
-    var nm = el.querySelector('.f-name');
-    nm.oninput = function(e){ items[i].name=e.target.value; suggest(el,i,e.target.value); };
-    nm.onblur = function(){ setTimeout(function(){ var s=el.querySelector('.sug'); if(s) s.remove(); },180); };
-    el.querySelector('.f-spec').oninput = function(e){ items[i].spec=e.target.value; };
-    el.querySelector('.f-unit').oninput = function(e){ items[i].unit=e.target.value; };
-    el.querySelector('.f-qty').oninput  = function(e){ items[i].qty=Number(e.target.value); };
-    var d=el.querySelector('.del'); if(d) d.onclick=function(){ items.splice(i,1); renderItems(); };
-  });
+async function viewNew(){
+  if (!orders.length){
+    var r = await fetch('/api/order').then(function(r){return r.json();}).catch(function(){return {};});
+    orders = r.orders || [];
+  }
+  $('#main').innerHTML =
+    '<div class="ttl">주문하기</div>'
+   +'<div class="split2">'
+     +'<div>'
+       +'<div class="panel pad">'
+         +'<h4 class="ph2">받는 정보</h4>'
+         +'<label class="req">소속 (기관 · 연구실)</label>'
+         +'<input id="f-org" value="'+esc(me.company||'')+'" placeholder="예) 부산대학교 재료공학과 000연구실">'
+         +'<label>납품 주소</label>'
+         +'<input id="f-ship" value="'+esc(me.address||'')+'" placeholder="납품받으실 주소">'
+         +'<p class="hint">한 번 입력하면 다음 주문에서 자동으로 채워집니다.</p>'
+       +'</div>'
+       +'<div class="panel pad" style="margin-top:16px">'
+         +'<div class="seg" id="seg">'
+           +'<button data-m="one" class="'+(mode==='one'?'on':'')+'">단건 주문</button>'
+           +'<button data-m="bulk" class="'+(mode==='bulk'?'on':'')+'">여러 건 한 번에</button>'
+         +'</div>'
+         +'<div id="inputArea"></div>'
+       +'</div>'
+     +'</div>'
+     +'<div>'
+       +'<div class="panel pad" id="cartPanel">'+cartBlock()+'</div>'
+       +'<div class="panel pad" style="margin-top:16px">'
+         +'<h4 class="ph2">최근 주문에서 담기</h4>'+recentBlock()
+       +'</div>'
+     +'</div>'
+   +'</div>';
+
+  $('#seg').onclick = function(e){ var b=e.target.closest('button[data-m]'); if(!b) return;
+    mode=b.dataset.m;
+    document.querySelectorAll('#seg button').forEach(function(x){ x.classList.toggle('on', x.dataset.m===mode); });
+    inputArea(); };
+  inputArea();
+  bindCart();
+  bindRecent();
 }
-var stmr;
-function suggest(el,i,q){
-  clearTimeout(stmr);
-  var old=el.querySelector('.sug'); if(old) old.remove();
-  if (q.trim().length<2) return;
-  stmr = setTimeout(async function(){
+
+/* --- 입력 영역 --- */
+function inputArea(){
+  var box = $('#inputArea');
+  if (mode==='one'){
+    box.innerHTML =
+      '<div class="oneform">'
+      +'<label class="req">품명</label><input id="o-name" placeholder="품명 또는 모델명 (2글자 이상 입력하면 제품이 검색됩니다)" autocomplete="off">'
+      +'<label>규격 · 옵션</label><input id="o-spec" placeholder="예) 500g, 1L, SH-FU-50TS">'
+      +'<label>상품 링크</label><input id="o-link" placeholder="쇼핑몰·제조사 페이지 주소 (선택)" inputmode="url">'
+      +'<div class="two"><div><label>수량</label><input id="o-qty" type="number" inputmode="numeric" min="1" value="1"></div>'
+        +'<div><label>단위</label><input id="o-unit" value="EA"></div></div>'
+      +'<label>메모</label><input id="o-note" placeholder="색상·순도·납기 등 요청 (선택)">'
+      +'<button class="btn pri" id="o-add" style="width:100%;margin-top:16px;padding:13px">담기</button>'
+      +'</div>';
+    var nm = $('#o-name');
+    nm.oninput = function(){ suggestOne(nm.value); };
+    nm.onblur = function(){ setTimeout(function(){ var g=document.querySelector('.oneform .sug'); if(g) g.remove(); },180); };
+    nm.onkeydown = function(e){ if(e.key==='Enter'){ e.preventDefault(); $('#o-add').click(); } };
+    $('#o-add').onclick = addOne;
+  } else {
+    box.innerHTML =
+      '<p class="hint" style="margin:14px 0 8px">엑셀에서 복사해 붙여넣거나, 한 줄에 한 품목씩 적어주세요.<br>'
+      +'<b>품명, 규격, 수량</b> 순서이고 쉼표 또는 탭으로 구분합니다. 수량을 빼면 1개로 봅니다.</p>'
+      +'<textarea id="b-text" style="min-height:170px;font-size:13.5px" placeholder="Potassium hydroxide, 500g, 2&#10;Sodium aluminate (Extra Pure), 1kg&#10;Nafion 117 membrane, , 3"></textarea>'
+      +'<button class="btn gray" id="b-parse" style="width:100%;margin-top:12px;padding:13px">읽어들이기</button>'
+      +'<div id="b-preview"></div>';
+    $('#b-parse').onclick = parseBulk;
+  }
+}
+
+var sTmr;
+function suggestOne(q){
+  clearTimeout(sTmr);
+  var host = document.querySelector('.oneform');
+  var old = host.querySelector('.sug'); if(old) old.remove();
+  if (q.trim().length < 2) return;
+  sTmr = setTimeout(async function(){
     var r = await fetch('/api/order/products?q='+encodeURIComponent(q.trim()))
       .then(function(r){return r.json();}).catch(function(){return {items:[]};});
     if (!r.items || !r.items.length) return;
-    var box=document.createElement('div'); box.className='sug';
-    box.innerHTML = r.items.map(function(p){
-      return '<div data-pid="'+p.id+'" data-nm="'+esc(p.name||p.model)+'" data-sp="'+esc(p.model||'')+'">'
+    var g = document.createElement('div'); g.className='sug'; g.style.top='58px';
+    g.innerHTML = r.items.map(function(p){
+      return '<div data-nm="'+esc(p.name||p.model)+'" data-sp="'+esc(p.model||'')+'">'
         +'<b>'+esc(p.name||p.model)+'</b><small>'+esc([p.brand,p.model,p.sobun].filter(Boolean).join(' · '))+'</small></div>'; }).join('');
-    el.appendChild(box);
-    box.querySelectorAll('div[data-pid]').forEach(function(d){
-      d.onmousedown = function(){ items[i].name=d.dataset.nm; items[i].spec=d.dataset.sp; items[i].product_id=Number(d.dataset.pid); renderItems(); };
+    host.appendChild(g);
+    g.querySelectorAll('div[data-nm]').forEach(function(d){
+      d.onmousedown = function(){ $('#o-name').value=d.dataset.nm; if(!$('#o-spec').value) $('#o-spec').value=d.dataset.sp; g.remove(); };
     });
   }, 260);
 }
 
-async function submitOrder(w){
-  var good = items.filter(function(i){ return (i.name||'').trim(); });
-  if (!good.length) return alert('품목을 1개 이상 입력해주세요.');
+function addOne(){
+  var name = $('#o-name').value.trim();
+  if (!name){ $('#o-name').focus(); return toast('품명을 입력해주세요'); }
+  cart.push({ name:name, spec:$('#o-spec').value.trim(), link:$('#o-link').value.trim(),
+    qty: Math.max(1, Number($('#o-qty').value)||1), unit:$('#o-unit').value.trim()||'EA', note:$('#o-note').value.trim() });
+  saveCart();
+  ['o-name','o-spec','o-link','o-note'].forEach(function(id){ $('#'+id).value=''; });
+  $('#o-qty').value=1;
+  $('#o-name').focus();
+  refreshCart(); toast('담았습니다 (' + cart.length + '건)');
+}
+
+function parseBulk(){
+  var raw = $('#b-text').value.split(/\r?\n/).map(function(l){ return l.trim(); }).filter(Boolean);
+  if (!raw.length) return toast('내용을 붙여넣어 주세요');
+  var rows = raw.map(function(line){
+    var parts = line.split(/\t|,|\s{2,}/).map(function(p){ return p.trim(); });
+    var link = '', qty = 1;
+    for (var i=parts.length-1;i>=0;i--){
+      if (/^https?:\/\//i.test(parts[i])){ link = parts.splice(i,1)[0]; }
+    }
+    var last = parts[parts.length-1];
+    if (parts.length>1 && last && /^\d+(\.\d+)?$/.test(last)){ qty = Number(parts.pop()); }
+    var name = parts.shift() || '';
+    var spec = parts.join(' ').trim();
+    return { name:name, spec:spec, link:link, qty:Math.max(1,qty), unit:'EA', note:'' };
+  }).filter(function(r){ return r.name; });
+
+  $('#b-preview').innerHTML =
+    '<div style="margin-top:14px"><h4 class="ph2">읽어들인 '+rows.length+'건</h4>'
+    +'<table class="mini"><thead><tr><th class="l">품명</th><th>규격</th><th style="width:56px">수량</th></tr></thead><tbody>'
+    + rows.map(function(r){ return '<tr><td class="l">'+esc(r.name)+'</td><td>'+esc(r.spec||'—')+'</td><td>'+r.qty+'</td></tr>'; }).join('')
+    +'</tbody></table>'
+    +'<button class="btn pri" id="b-add" style="width:100%;margin-top:12px;padding:13px">'+rows.length+'건 담기</button></div>';
+  $('#b-add').onclick = function(){
+    cart = cart.concat(rows); saveCart();
+    $('#b-text').value=''; $('#b-preview').innerHTML='';
+    refreshCart(); toast(rows.length+'건 담았습니다');
+  };
+}
+
+/* --- 장바구니 --- */
+function cartBlock(){
+  var n = cart.length;
+  var h = '<h4 class="ph2">담은 품목 <span class="cnt">'+n+'</span></h4>';
+  if (!n) return h + '<div class="empty" style="padding:34px 10px">아직 담은 품목이 없습니다.<br>왼쪽에서 추가해주세요.</div>';
+  h += '<div class="cartlist">' + cart.map(function(c,i){
+    return '<div class="cartrow">'
+      +'<div class="cn"><b>'+esc(c.name)+'</b>'+(c.spec?'<small>'+esc(c.spec)+'</small>':'')
+        +(c.link?'<a href="'+esc(c.link)+'" target="_blank" rel="noopener" class="ln">링크</a>':'')
+        +(c.note?'<small>'+esc(c.note)+'</small>':'')+'</div>'
+      +'<input class="cq" type="number" min="1" value="'+c.qty+'" data-i="'+i+'">'
+      +'<button class="cx" data-i="'+i+'">×</button></div>';
+  }).join('') + '</div>';
+  h += '<label>주문 제목</label><input id="f-title" placeholder="예) 8월 소모품 정기주문">'
+     + '<label>희망 납기일</label><input id="f-want" type="date">'
+     + '<label>요청사항</label><textarea id="f-note" placeholder="배송·설치·예산 관련 요청"></textarea>'
+     + '<button class="btn pri" id="f-go" style="width:100%;margin-top:16px;padding:15px;font-size:15.5px">'+n+'건 주문 요청 보내기</button>'
+     + '<p class="hint" style="text-align:center;margin-top:10px">단가는 접수 후 견적서로 회신드립니다.</p>';
+  return h;
+}
+function refreshCart(){ $('#cartPanel').innerHTML = cartBlock(); bindCart(); }
+function bindCart(){
+  document.querySelectorAll('.cq').forEach(function(inp){
+    inp.onchange = function(){ cart[Number(inp.dataset.i)].qty = Math.max(1, Number(inp.value)||1); saveCart(); }; });
+  document.querySelectorAll('.cx').forEach(function(b){
+    b.onclick = function(){ cart.splice(Number(b.dataset.i),1); saveCart(); refreshCart(); }; });
+  var go2 = $('#f-go'); if (go2) go2.onclick = submitOrder;
+}
+
+/* --- 최근 주문에서 담기 --- */
+function recentBlock(){
+  var rs = orders.slice(0,5);
+  if (!rs.length) return '<div class="hint">이전 주문이 없습니다.</div>';
+  return '<div class="cartlist">' + rs.map(function(o){
+    return '<div class="cartrow"><div class="cn"><b>'+esc(o.title||o.order_no)+'</b>'
+      +'<small>'+esc(String(o.created_at||'').slice(0,10))+' · '+esc(o.order_no)+'</small></div>'
+      +'<button class="btn ghost re" data-id="'+o.id+'" style="padding:8px 12px;font-size:12.5px">다시 담기</button></div>';
+  }).join('') + '</div>';
+}
+function bindRecent(){
+  document.querySelectorAll('.re').forEach(function(b){
+    b.onclick = async function(){
+      var d = await fetch('/api/order/'+b.dataset.id).then(function(r){return r.json();});
+      var add = (d.items||[]).map(function(i){
+        return { name:i.name, spec:i.spec||'', link:i.link||'', qty:i.qty||1, unit:i.unit||'EA', note:'' }; });
+      if (!add.length) return toast('담을 품목이 없습니다');
+      cart = cart.concat(add); saveCart(); refreshCart(); toast(add.length+'건 담았습니다');
+    };
+  });
+}
+
+async function submitOrder(){
+  if (!cart.length) return toast('담은 품목이 없습니다');
   var org = $('#f-org').value.trim();
-  if (!org){ $('#f-org').focus(); return alert('소속(기관·연구실)을 입력해주세요.'); }
+  if (!org){ $('#f-org').focus(); return toast('소속(기관·연구실)을 입력해주세요'); }
   var btn=$('#f-go'); btn.disabled=true; btn.textContent='보내는 중…';
   var r = await fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},
-    body:JSON.stringify({ items:good, org_name:org, title:$('#f-title').value,
+    body:JSON.stringify({ items:cart, org_name:org, title:$('#f-title').value,
       want_date:$('#f-want').value, ship_address:$('#f-ship').value, request_note:$('#f-note').value })})
     .then(function(r){return r.json();});
-  if (!r.ok){ btn.disabled=false; btn.textContent='요청 보내기'; return alert(r.message||'전송에 실패했습니다.'); }
-  w.remove();
+  if (!r.ok){ btn.disabled=false; btn.textContent=cart.length+'건 주문 요청 보내기'; return alert(r.message||'전송에 실패했습니다.'); }
+  cart=[]; saveCart();
+  me.company = org; me.address = $('#f-ship').value.trim() || me.address;
+  orders = [];
   toast(r.order_no+' 접수되었습니다');
-  cur=null; viewOrders();
+  go('orders');
 }
 
 /* ---------------- 정산하기 ---------------- */
@@ -585,7 +743,7 @@ function modal(title, inner){
 
 window.addEventListener('hashchange', function(){
   var v = location.hash.replace('#','') || 'orders';
-  if (v!==view && (v==='orders'||v==='settle')){ view=v; cur=null; syncNav(); render(); }
+  if (v!==view && (v==='orders'||v==='settle'||v==='new')){ view=v; cur=null; syncNav(); render(); }
 });
 boot();
 </script>

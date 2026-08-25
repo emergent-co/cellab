@@ -44,11 +44,12 @@ export async function onRequest({ request, env, params }) {
         const qty = Number(it.qty) || 0;
         const up = Math.round(Number(it.unit_price) || 0);
         await env.DB.prepare(
-          `INSERT INTO order_items (order_id, seq, product_id, name, spec, unit, qty, unit_price, amount, cost_price, note)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?)`
+          `INSERT INTO order_items (order_id, seq, product_id, name, spec, unit, qty, unit_price, amount, cost_price, note, link)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
         ).bind(
           order.id, seq++, it.product_id || null, String(it.name).trim(), String(it.spec || ''),
-          String(it.unit || 'EA'), qty, up, Math.round(qty * up), Math.round(Number(it.cost_price) || 0), String(it.note || '')
+          String(it.unit || 'EA'), qty, up, Math.round(qty * up), Math.round(Number(it.cost_price) || 0),
+          String(it.note || ''), String(it.link || '').trim() || null
         ).run();
       }
     }

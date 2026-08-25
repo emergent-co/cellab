@@ -132,3 +132,6 @@ ALTER TABLE documents ADD COLUMN access_token TEXT;
 ALTER TABLE documents ADD COLUMN sent_at TEXT;
 ALTER TABLE documents ADD COLUMN opened_at TEXT;
 ALTER TABLE outbox ADD COLUMN sent_at TEXT;
+
+-- 2026-08-25: 주문 품목에 상품 링크
+ALTER TABLE order_items ADD COLUMN link TEXT;

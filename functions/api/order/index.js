@@ -43,14 +43,19 @@ export async function onRequest({ request, env }) {
   for (const it of items) {
     const qty = Number(it.qty) > 0 ? Number(it.qty) : 1;
     await env.DB.prepare(
-      `INSERT INTO order_items (order_id, seq, product_id, name, spec, unit, qty, unit_price, amount, note)
-       VALUES (?,?,?,?,?,?,?,0,0,?)`
+      `INSERT INTO order_items (order_id, seq, product_id, name, spec, unit, qty, unit_price, amount, note, link)
+       VALUES (?,?,?,?,?,?,?,0,0,?,?)`
     ).bind(
       orderId, seq++, it.product_id || null,
       String(it.name).trim(), String(it.spec || '').trim(),
-      String(it.unit || 'EA').trim(), qty, String(it.note || '').trim()
+      String(it.unit || 'EA').trim(), qty, String(it.note || '').trim(),
+      String(it.link || '').trim() || null
     ).run();
   }
+
+  await env.DB.prepare(
+    "UPDATE customers SET company=?, address=COALESCE(NULLIF(?,''), address), updated_at=? WHERE id=?"
+  ).bind(org, (b.ship_address || '').trim(), kstISO(), me.id).run();
 
   const def = await env.DB.prepare(
     'SELECT id FROM bill_profiles WHERE customer_id=? AND is_default=1'
