@@ -1,0 +1,57 @@
+// functions/api/_mailer.js — Resend로 이메일 발송
+// 필요한 환경변수: RESEND_API_KEY, (선택) MAIL_FROM
+
+export function mailConfigured(env) {
+  return !!env.RESEND_API_KEY;
+}
+
+export function mailFrom(env) {
+  return env.MAIL_FROM || '실험셋업연구소 <order@rndsetup.com>';
+}
+
+/**
+ * @param {object} m { to, cc?, subject, html, text?, attachments?: [{filename, content(base64)}] }
+ * @returns {Promise<{ok:boolean, id?:string, error?:string}>}
+ */
+export async function sendMail(env, m) {
+  if (!mailConfigured(env)) return { ok: false, error: 'RESEND_API_KEY 미설정' };
+
+  const body = {
+    from: mailFrom(env),
+    to: Array.isArray(m.to) ? m.to : [m.to],
+    subject: m.subject,
+    html: m.html,
+  };
+  if (m.text) body.text = m.text;
+  if (m.cc) body.cc = Array.isArray(m.cc) ? m.cc : [m.cc];
+  if (m.reply_to) body.reply_to = m.reply_to;
+  if (m.attachments?.length) body.attachments = m.attachments;
+
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) return { ok: false, error: j?.message || `HTTP ${r.status}` };
+    return { ok: true, id: j.id };
+  } catch (e) {
+    return { ok: false, error: String(e?.message || e) };
+  }
+}
+
+// 문서 발송 기본 메일 본문
+export function docMailBody({ label, docNo, company, contact, total, viewUrl }) {
+  const won = (n) => Number(n || 0).toLocaleString('ko-KR');
+  return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:15px;color:#1a2332;line-height:1.65">
+  <p>${company || ''} ${contact ? contact + ' 님' : '담당자님'}, 안녕하세요.<br>실험셋업연구소(이머전트)입니다.</p>
+  <p>요청하신 <b>${label}</b>를 보내드립니다. 첨부 PDF를 확인해주세요.</p>
+  <table style="border-collapse:collapse;margin:18px 0;font-size:14px">
+    <tr><td style="padding:5px 14px 5px 0;color:#5a6779">문서번호</td><td style="padding:5px 0"><b>${docNo}</b></td></tr>
+    <tr><td style="padding:5px 14px 5px 0;color:#5a6779">합계금액</td><td style="padding:5px 0"><b>${won(total)}원</b> (VAT 포함)</td></tr>
+  </table>
+  ${viewUrl ? `<p><a href="${viewUrl}" style="display:inline-block;background:#1a6e56;color:#fff;text-decoration:none;padding:11px 20px;border-radius:9px;font-weight:700">문서 열어보기</a></p>` : ''}
+  <p style="color:#5a6779;font-size:13px;margin-top:22px">문의 070-8983-2600 · info@rndsetup.com<br>이머전트 · 대표 이영현 · 사업자등록번호 328-03-02926</p>
+</div>`;
+}

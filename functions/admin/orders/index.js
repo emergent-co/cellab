@@ -98,6 +98,27 @@ textarea{min-height:74px;resize:vertical}
 .bar .save:disabled{opacity:.5}
 .bar .doc{background:#eef2f7;color:var(--mut)}
 .tag{display:inline-block;font-size:11px;font-weight:800;background:#FEF3C7;color:#92400E;border-radius:5px;padding:2px 6px;margin-left:6px}
+.docrow{border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:8px;background:#fbfcfe}
+.dr1{display:flex;align-items:center;gap:8px;font-size:14px}
+.dr1 .dno{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
+.dr1 .dst{margin-left:auto;font-size:11.5px;font-weight:800;background:#DBEAFE;color:#1E40AF;border-radius:999px;padding:3px 9px}
+.dr1 .dst.off{background:#FEE2E2;color:#991B1B}
+.dr2{display:flex;gap:14px;margin-top:9px;font-size:13px}
+.dr2 a,.lnk{color:var(--teal);font-weight:700;text-decoration:none;background:0;border:0;padding:0;cursor:pointer;font-size:13px}
+.qrow{font-size:12.5px;color:#92400E;background:#FEF3C7;border-radius:9px;padding:8px 11px;margin-bottom:8px}
+.mkbtns{display:flex;gap:8px;margin-top:4px}
+.mkbtns .mk{flex:1;border:1px dashed #c3ccd8;background:#fff;border-radius:10px;padding:11px 6px;font-size:13px;font-weight:700;color:var(--mut);cursor:pointer}
+.modal{position:fixed;inset:0;z-index:70;background:rgba(10,37,64,.5);display:flex;align-items:flex-end;justify-content:center}
+.mbox{background:#fff;width:100%;max-width:520px;border-radius:16px 16px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+.mbox h4{font-size:16px;font-weight:800;margin-bottom:12px}
+.mbox label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin:11px 0 5px}
+.mbox input{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;background:#fbfcfe}
+.mrow{display:flex;gap:8px;margin-top:16px}
+.mrow button{flex:1;border:0;border-radius:11px;padding:14px;font-size:15px;font-weight:800;cursor:pointer}
+.mrow .mghost{background:#eef2f7;color:var(--mut)}
+.mrow .mgo{background:var(--teal);color:#fff}
+.mhint{font-size:12px;color:var(--mut);margin-top:10px;text-align:center}
+@media(min-width:820px){.modal{align-items:center}.mbox{border-radius:16px}}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#0a2540;color:#fff;padding:11px 19px;border-radius:11px;font-size:14px;font-weight:700;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:.95}
 @media(min-width:820px){.wrap{max-width:900px;margin:0 auto}.sbody{left:50%;transform:translateX(-50%);max-width:720px;border-radius:16px;top:40px;bottom:40px}}
@@ -175,25 +196,98 @@ function render(){
     +'<div class="sums" id="sums"></div></div>'
   +'<div class="sec"><h3>상태</h3><select id="st">'+STATUSES.map(s=>'<option'+(s===o.status?' selected':'')+'>'+s+'</option>').join('')+'</select></div>'
   +'<div class="sec"><h3>내부 메모</h3><textarea id="memo" placeholder="고객에게 안 보입니다">'+esc(o.admin_memo||'')+'</textarea></div>'
-  +'<div class="sec"><h3>문서</h3>'+docBlock()+'</div>'
+  +'<div class="sec"><h3>문서</h3><div id="docBox">'+docBlock()+'</div></div>'
   +'<div class="sec"><h3>이력</h3>'+(cur.events||[]).map(e=>
       '<div class="ev"><time>'+esc(String(e.created_at||'').slice(5,16))+'</time><div><b>'+esc(e.action)+'</b> · '+esc(e.actor)+(e.detail?'<br>'+esc(e.detail):'')+'</div></div>').join('')
     +((cur.events||[]).length?'':'<div style="font-size:13px;color:var(--mut)">기록 없음</div>')
   +'</div>'
-  +'<div class="bar"><button class="doc" id="docBtn">문서 발행</button><button class="save" id="saveBtn">저장</button></div>';
+  +'<div class="bar"><button class="save" id="saveBtn">저장</button></div>';
 
   document.getElementById('closeBtn').onclick = closeSheet;
   document.getElementById('addItem').onclick = ()=>{ items.push({name:'',spec:'',unit:'EA',qty:1,unit_price:0}); renderItems(); };
   document.getElementById('saveBtn').onclick = save;
-  document.getElementById('docBtn').onclick = ()=>toast('문서 발행은 다음 단계에서 연결됩니다');
+  bindDocs();
   renderItems();
 }
 function kv(k,v){ return '<div class="kv"><span>'+esc(k)+'</span><span>'+esc(v||'-')+'</span></div>'; }
+const DT={quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
 function docBlock(){
   const d = cur.documents||[];
-  if(!d.length) return '<div style="font-size:13px;color:var(--mut)">아직 발행된 문서가 없습니다.<span class="tag">Phase 2</span></div>';
-  const T={quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
-  return d.map(x=>'<div class="kv"><span>'+esc(T[x.type]||x.type)+'</span><span>'+esc(x.doc_no)+' · '+esc(x.status)+'</span></div>').join('');
+  const q = cur.queued||[];
+  let h = '';
+  if(!d.length) h += '<div style="font-size:13px;color:var(--mut);margin-bottom:10px">아직 발행된 문서가 없습니다.</div>';
+  else h += d.map(function(x){
+    return '<div class="docrow" data-id="'+x.id+'">'
+      +'<div class="dr1"><b>'+esc(DT[x.type]||x.type)+'</b><span class="dno">'+esc(x.doc_no||'')+'</span>'
+        +'<span class="dst'+(x.status==='취소됨'?' off':'')+'">'+esc(x.status)+'</span></div>'
+      +'<div class="dr2">'
+        +'<a href="/doc/'+x.id+'" target="_blank">미리보기</a>'
+        +'<a href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>'
+        +(x.status==='취소됨'?'':'<button class="lnk send" data-id="'+x.id+'">이메일 발송</button>')
+      +'</div></div>';
+  }).join('');
+  if(q.length) h += q.map(function(j){
+    return '<div class="qrow">예약 '+esc(String(j.send_at).slice(0,16))+' → '+esc(j.to_addr)
+      +' <button class="lnk qcancel" data-id="'+j.document_id+'">취소</button></div>';
+  }).join('');
+  h += '<div class="mkbtns"><button class="mk" data-t="quote">＋ 견적서 발행</button>'
+     + '<button class="mk" data-t="statement">＋ 거래명세서 발행</button></div>';
+  return h;
+}
+
+function bindDocs(){
+  const box = document.getElementById('docBox');
+  if(!box) return;
+  box.querySelectorAll('.mk').forEach(function(b){ b.onclick=function(){ makeDoc(b.dataset.t); }; });
+  box.querySelectorAll('.send').forEach(function(b){ b.onclick=function(){ sendSheet(b.dataset.id); }; });
+  box.querySelectorAll('.qcancel').forEach(function(b){ b.onclick=function(){ cancelSchedule(b.dataset.id); }; });
+}
+
+async function makeDoc(type){
+  toast(DT[type]+' 만드는 중…');
+  const r = await fetch('/api/admin/docs',{method:'POST',headers:H,
+    body:JSON.stringify({order_id:cur.order.id,type:type})}).then(function(r){return r.json();});
+  if(r.ok){ toast(r.doc_no+' 생성됨'); await openOrder(cur.order.id); loadChips(); loadList(); }
+  else toast('실패: '+(r.message||r.error||''));
+}
+
+async function cancelSchedule(docId){
+  if(!confirm('예약 발송을 취소할까요?')) return;
+  const r = await fetch('/api/admin/docs/'+docId,{method:'POST',headers:H,
+    body:JSON.stringify({action:'cancel'})}).then(function(r){return r.json();});
+  if(r.ok){ toast('예약 취소됨'); openOrder(cur.order.id); }
+}
+
+function sendSheet(docId){
+  const c = cur.customer||{};
+  const to = c.tax_email || c.email || '';
+  const wrap = document.createElement('div');
+  wrap.className='modal'; wrap.id='sendModal';
+  wrap.innerHTML = '<div class="mbox">'
+    +'<h4>이메일 발송</h4>'
+    +'<label>받는 사람</label><input id="m-to" value="'+esc(to)+'" inputmode="email">'
+    +'<label>참조 (선택)</label><input id="m-cc" placeholder="cc@example.com" inputmode="email">'
+    +'<label>제목 (비워두면 기본 제목)</label><input id="m-sub" placeholder="[실험셋업연구소] 견적서 …">'
+    +'<label>예약 발송 (비워두면 즉시)</label><input id="m-at" type="datetime-local">'
+    +'<div class="mrow"><button class="mghost" id="m-x">닫기</button><button class="mgo" id="m-go">보내기</button></div>'
+    +'<p class="mhint">PDF가 자동 첨부되고, 발송·열람 이력이 기록됩니다.</p>'
+    +'</div>';
+  document.body.appendChild(wrap);
+  document.getElementById('m-x').onclick=function(){ wrap.remove(); };
+  wrap.onclick=function(e){ if(e.target===wrap) wrap.remove(); };
+  document.getElementById('m-go').onclick=async function(){
+    const btn=document.getElementById('m-go'); btn.disabled=true; btn.textContent='처리 중…';
+    const at=document.getElementById('m-at').value;
+    const body={action:'send',to:document.getElementById('m-to').value.trim(),
+      cc:document.getElementById('m-cc').value.trim()||undefined,
+      subject:document.getElementById('m-sub').value.trim()||undefined};
+    if(at) body.send_at = at.replace('T',' ')+':00';
+    const r = await fetch('/api/admin/docs/'+docId,{method:'POST',headers:H,body:JSON.stringify(body)})
+      .then(function(r){return r.json();});
+    btn.disabled=false; btn.textContent='보내기';
+    if(r.ok){ wrap.remove(); toast(r.scheduled? '예약 완료':'발송 완료'); await openOrder(cur.order.id); loadChips(); loadList(); }
+    else toast('실패: '+(r.message||r.error||''));
+  };
 }
 function renderItems(){
   const box = document.getElementById('itemBox');
@@ -237,6 +331,8 @@ async function save(){
 let t; document.getElementById('q').oninput = e=>{ clearTimeout(t); t=setTimeout(()=>{ kw=e.target.value.trim(); loadList(); },300); };
 document.getElementById('sheet').onclick = e=>{ if(e.target.id==='sheet') closeSheet(); };
 loadChips(); loadList();
+fetch('/api/cron/outbox',{headers:H}).then(function(r){return r.json();})
+  .then(function(r){ if(r && r.sent) toast('예약 발송 '+r.sent+'건 처리됨'); }).catch(function(){});
 </` + `script>
 </body>
 </html>`;

@@ -110,7 +110,7 @@ async function detail(id){
    +'</div>'
    +'<div class="sec"><h2>문서</h2>'
      +((d.documents||[]).length
-        ? d.documents.map(x=>'<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)+(x.pdf_key?' · <a href="/api/doc/'+x.id+'/pdf">받기</a>':'')+'</span></div>').join('')
+        ? d.documents.map(x=>'<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)+(x.status==='취소됨'?'':' · <a href="/doc/'+x.id+'" target="_blank">보기</a> · <a href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>')+'</span></div>').join('')
         : '<div style="font-size:13px;color:var(--mut)">발행된 문서가 없습니다.</div>')
    +'</div>'
    +(o.status==='견적발송' ? '<button class="btn pri" id="ap">견적 승인하기</button><div style="height:9px"></div>' : '')

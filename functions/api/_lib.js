@@ -102,15 +102,25 @@ export async function nextOrderNo(env) {
   return `ORD-${day}-${n}`;
 }
 
-// ---------- 문서번호 ----------
+// ---------- 문서번호 (기존 발행본 규칙: YYYYMMDD-Q / -T / -X) ----------
+export const DOC_SUFFIX = { quote: 'Q', statement: 'T', taxinvoice: 'X' };
+export const DOC_LABEL  = { quote: '견적서', statement: '거래명세서', taxinvoice: '세금계산서' };
+
 export async function nextDocNo(env, type) {
-  const prefix = { quote: 'QT', statement: 'ST', taxinvoice: 'TX' }[type] || 'DC';
+  const sfx = DOC_SUFFIX[type] || 'Q';
   const day = kstDate().replace(/-/g, '');
-  const row = await env.DB.prepare(
-    'SELECT COUNT(*) AS c FROM documents WHERE doc_no LIKE ?'
-  ).bind(`${prefix}-${day}-%`).first();
-  const n = String((row?.c || 0) + 1).padStart(2, '0');
-  return `${prefix}-${day}-${n}`;
+  const { results } = await env.DB.prepare(
+    'SELECT doc_no FROM documents WHERE doc_no LIKE ?'
+  ).bind(`${day}%-${sfx}`).all();
+  const n = (results || []).length;
+  return n === 0 ? `${day}-${sfx}` : `${day}-${String(n + 1).padStart(2, '0')}-${sfx}`;
+}
+
+// 유효기간 = 발행일 + 30일
+export function plusDays(ymd, days) {
+  const [y, m, d] = String(ymd).split('-').map(Number);
+  const t = new Date(Date.UTC(y, m - 1, d) + days * 86400000);
+  return t.toISOString().slice(0, 10);
 }
 
 // ---------- 이력 ----------
