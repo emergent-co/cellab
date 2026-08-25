@@ -49,12 +49,10 @@
       @media(max-width:820px){.app-grid{grid-template-columns:repeat(2,1fr)}}
       .app-card{display:block;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
       .app-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(10,37,64,.12)}
-      .app-card .aimg{aspect-ratio:4/3;background:#fff center/contain no-repeat;background-origin:content-box;padding:10px;border-bottom:1px solid #f0eee7}
-      .app-card .aimg.cv{background-size:cover;padding:0}
-      .app-card .abd{padding:10px 12px 12px}
-      .app-card .an{font-size:13.5px;font-weight:800;color:var(--ink);line-height:1.35}
-      .app-card .as{font-size:11.5px;color:#8a929c;margin-top:3px}
-      .app-card .ap{font-size:12.5px;font-weight:800;color:#9A3412;margin-top:6px}
+      .app-card{padding:16px 18px}
+      .app-card .an{font-size:15px;font-weight:800;color:var(--ink);line-height:1.35}
+      .app-card .ax{font-size:12.5px;color:#5a6570;line-height:1.6;margin-top:7px;min-height:3.2em}
+      .app-card .ap2{font-size:12.5px;font-weight:700;color:#1E3A5F;margin-top:10px;padding-top:9px;border-top:1px dashed #eee7db}
       .bw-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
       @media(max-width:820px){.bw-strip{grid-template-columns:repeat(2,1fr)}.bw-strip .bws:last-child{grid-column:span 2}}
       .bws{display:block;background:#EDF2F8;border-radius:10px;padding:13px 12px;text-align:center;text-decoration:none;transition:background .15s}
@@ -81,42 +79,6 @@
       <div class="hero-tags">인기<a href="/product/?q=%ED%8A%9C%EB%B8%8C%ED%8D%BC%EB%8B%88%EC%8A%A4">#튜브퍼니스</a><a href="/product/?q=%EB%A8%B8%ED%94%8C%EB%A1%9C">#머플로</a><a href="/product/?q=%EC%97%B0%EB%8F%99%ED%8E%8C%ED%94%84">#연동펌프</a><a href="/product/?q=%EA%B8%B0%EC%A4%80%EC%A0%84%EA%B7%B9">#기준전극</a><a href="/product/?q=%EC%A0%84%ED%95%B4%EC%85%80">#전해셀</a><a href="/product/?q=MFC">#MFC</a></div>
     </section>
 
-    <div class="brand-head"><div class="t">실험 용도로 찾기</div><div class="en">SHOP BY APPLICATION</div></div>
-    <div class="app-grid">
-      <a class="app-card" href="/product/?q=%ED%8D%BC%EB%8B%88%EC%8A%A4">
-        <div class="aimg cv" style="background-image:url('/img/magazine/dca-setup-diagram-3d.jpg')"></div>
-        <div class="abd"><div class="an">양극재 · 소재 소성</div><div class="as">튜브퍼니스 + MFC 분위기 제어 셋업</div><div class="ap"><span data-price="muffle1050">106만 원</span>부터</div></div>
-      </a>
-      <a class="app-card" href="/product/?q=%EC%97%B0%EB%8F%99%ED%8E%8C%ED%94%84">
-        <div class="aimg cv" style="background-image:url('/img/magazine/nickel-cstr-setup-3d.jpg')"></div>
-        <div class="abd"><div class="an">전구체 공침</div><div class="as">CSTR 반응조 + 정량펌프 3채널 셋업</div><div class="ap"><span data-price="pumplab">92만 원</span>부터</div></div>
-      </a>
-      <a class="app-card" href="/brands/gaossunion/battery-test-cell/">
-        <div class="aimg" style="background-image:url('/img/gaossunion/battery-cell-1.jpg')"></div>
-        <div class="abd"><div class="an">배터리 셀 평가</div><div class="as">코인 · in-situ · 광학창 테스트 셀</div><div class="ap">전 모델 정가표</div></div>
-      </a>
-      <a class="app-card" href="/brands/sh-scientific/gas-flow-package/">
-        <div class="aimg cv" style="background-image:url('/img/magazine/si-cvd-setup-3d.jpg')"></div>
-        <div class="abd"><div class="an">CVD · 탄소 코팅</div><div class="as">석영튜브 + 가스라인 + MFC 증착 셋업</div><div class="ap"><span data-price="cvdpkg">499만 원</span>부터</div></div>
-      </a>
-      <a class="app-card" href="/product/?q=%EC%A0%84%ED%95%B4%EC%85%80">
-        <div class="aimg" style="background-image:url('/img/gaossunion/membrane-cell-1.jpg')"></div>
-        <div class="abd"><div class="an">수전해 HER · OER</div><div class="as">H셀 + 기준·상대·작업전극 3전극 셋업</div><div class="ap">9,000원부터</div></div>
-      </a>
-      <a class="app-card" href="/brands/gaossunion/gas-diffusion-cell/">
-        <div class="aimg" style="background-image:url('/img/gaossunion/gdcell-1.jpg')"></div>
-        <div class="abd"><div class="an">CO&#8322; 전환 (CO&#8322;RR)</div><div class="as">GDE 유동셀 + 기어펌프 순환 셋업</div><div class="ap">전 모델 정가표</div></div>
-      </a>
-      <a class="app-card" href="/brands/gaossunion/mea-cell/">
-        <div class="aimg cv" style="background-image:url('/img/magazine/sofc-setup-3d.jpg')"></div>
-        <div class="abd"><div class="an">연료전지 · MEA</div><div class="as">가스 공급 + MEA 전해조 평가 셋업</div><div class="ap">전 모델 정가표</div></div>
-      </a>
-      <a class="app-card" href="/product/?q=%EA%B8%B0%EC%96%B4%ED%8E%8C%ED%94%84">
-        <div class="aimg cv" style="background-image:url('/img/magazine/aorfb-setup-3d.jpg')"></div>
-        <div class="abd"><div class="an">레독스 흐름전지</div><div class="as">유로 셀 + 연동펌프 전해액 순환 셋업</div><div class="ap"><span data-price="pumplab">92만 원</span>부터</div></div>
-      </a>
-    </div>
-
     <div class="brand-head"><div class="t">배터리 공정으로 찾기</div><div class="en">BATTERY WORKFLOW</div></div>
     <div class="bw-strip">
       <a class="bws" href="/product/?q=%EC%97%B0%EB%8F%99%ED%8E%8C%ED%94%84"><span class="k">STEP 1</span><div class="t">전구체 공침</div><div class="d">정량펌프 3채널</div></a>
@@ -126,6 +88,52 @@
       <a class="bws" href="/contact/"><span class="k">STEP 5</span><div class="t">통합 · 자동화</div><div class="d">Modbus 통합 제어 문의</div></a>
     </div>
     <p style="text-align:center;font-size:12.5px;color:#8a929c;margin:12px 0 0">단계별 셋업이 처음이라면 — <a href="/magazine/battery/" style="color:var(--ink);font-weight:700">배터리 랩 A to Z 커리큘럼</a>에서 순서대로 읽어보세요.</p>
+
+    <div class="brand-head"><div class="t">실험 용도로 찾기</div><div class="en">SHOP BY APPLICATION</div></div>
+    <div class="app-grid">
+      <a class="app-card" href="/product/?q=%ED%8D%BC%EB%8B%88%EC%8A%A4">
+        <div class="an">양극재 · 소재 소성</div>
+        <div class="ax">전구체·활물질을 가스 분위기 제어 속에서 소성·하소·소결하는 실험</div>
+        <div class="ap2">튜브퍼니스 · 머플로 · MFC</div>
+      </a>
+      <a class="app-card" href="/product/?q=%EC%97%B0%EB%8F%99%ED%8E%8C%ED%94%84">
+        <div class="an">전구체 공침</div>
+        <div class="ax">금속염·NaOH·암모니아를 정량 공급하며 CSTR에서 전구체를 합성하는 실험</div>
+        <div class="ap2">연동펌프 · 시린지펌프 · 교반기</div>
+      </a>
+      <a class="app-card" href="/brands/gaossunion/battery-test-cell/">
+        <div class="an">배터리 셀 평가</div>
+        <div class="ax">제작한 전극을 셀로 조립해 충방전·계면 반응을 관찰하는 실험</div>
+        <div class="ap2">코인셀 · in-situ 셀 · 광학창 셀</div>
+      </a>
+      <a class="app-card" href="/brands/sh-scientific/gas-flow-package/">
+        <div class="an">CVD · 탄소 코팅</div>
+        <div class="ax">석영튜브 안 가스 분위기에서 박막 증착·탄소 코팅을 하는 실험</div>
+        <div class="ap2">가스플로 패키지 · 석영튜브 · MFC</div>
+      </a>
+      <a class="app-card" href="/product/?q=%EC%A0%84%ED%95%B4%EC%85%80">
+        <div class="an">수전해 HER · OER</div>
+        <div class="ax">3전극 구성으로 촉매 활성·과전압을 평가하는 실험</div>
+        <div class="ap2">H셀 · 기준전극 · RDE</div>
+      </a>
+      <a class="app-card" href="/brands/gaossunion/gas-diffusion-cell/">
+        <div class="an">CO&#8322; 전환 (CO&#8322;RR)</div>
+        <div class="ax">가스 확산 전극으로 CO&#8322; 환원 생성물을 평가하는 실험</div>
+        <div class="ap2">GDE 유동셀 · CO&#8322;RR 촉매 · 기어펌프</div>
+      </a>
+      <a class="app-card" href="/brands/gaossunion/mea-cell/">
+        <div class="an">연료전지 · MEA</div>
+        <div class="ax">막전극접합체(MEA) 단위 셀의 성능을 평가하는 실험</div>
+        <div class="ap2">MEA 전해조 · 유동셀 · 카본페이퍼</div>
+      </a>
+      <a class="app-card" href="/product/?q=%EA%B8%B0%EC%96%B4%ED%8E%8C%ED%94%84">
+        <div class="an">레독스 흐름전지</div>
+        <div class="ax">전해액을 순환시키며 충방전 사이클을 평가하는 실험</div>
+        <div class="ap2">유동셀 · 연동펌프 · 기어펌프</div>
+      </a>
+    </div>
+
+    
 
     <div class="tr-band">
       <div class="c"><div class="v">1,700+</div><div class="l">취급 SKU</div></div>
