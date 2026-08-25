@@ -20,15 +20,15 @@ export async function onRequest({ request, env }) {
   const b = await request.json().catch(() => ({}));
   const items = Array.isArray(b.items) ? b.items.filter((i) => (i.name || '').trim()) : [];
   if (!items.length) return json({ error: 'no_items', message: '품목을 1개 이상 입력해주세요.' }, 400);
-  // 납품지: 저장해 둔 것을 고르거나 직접 입력
-  let org = String(b.org_name || '').trim();
-  let ship = String(b.ship_address || '').trim();
-  if (b.site_id) {
-    const site = await env.DB.prepare('SELECT * FROM sites WHERE id=? AND customer_id=?')
-      .bind(b.site_id, me.id).first();
-    if (site) { org = site.org_name || org; ship = site.address || ship; }
+  // 납품지는 반드시 등록된 것 중에서 고른다 (주소 정확도 때문에 직접 입력을 받지 않는다)
+  if (!b.site_id) {
+    return json({ error: 'no_site', message: '납품지를 먼저 추가해주세요.' }, 400);
   }
-  if (!org) return json({ error: 'no_org', message: '소속(기관·연구실)을 선택하거나 입력해주세요.' }, 400);
+  const site = await env.DB.prepare('SELECT * FROM sites WHERE id=? AND customer_id=?')
+    .bind(b.site_id, me.id).first();
+  if (!site) return json({ error: 'no_site', message: '납품지를 찾을 수 없습니다.' }, 400);
+  const org = site.org_name || '';
+  const ship = site.address || '';
 
   // 제목은 받지 않고 품목에서 만든다 — "첫 품목 외 N건"
   const title = items.length > 1
@@ -69,19 +69,6 @@ export async function onRequest({ request, env }) {
   await env.DB.prepare(
     "UPDATE customers SET company=?, address=COALESCE(NULLIF(?,''), address), updated_at=? WHERE id=?"
   ).bind(org, ship, kstISO(), me.id).run();
-
-  // 직접 입력한 납품지는 다음 주문에서 고를 수 있게 저장
-  if (!b.site_id && org) {
-    const dup = await env.DB.prepare('SELECT id FROM sites WHERE customer_id=? AND org_name=? AND COALESCE(address,\'\')=?')
-      .bind(me.id, org, ship).first();
-    if (!dup) {
-      const n = (await env.DB.prepare('SELECT COUNT(*) AS c FROM sites WHERE customer_id=?').bind(me.id).first())?.c || 0;
-      if (n < 10) {
-        await env.DB.prepare('INSERT INTO sites (customer_id, org_name, address, is_default, created_at) VALUES (?,?,?,?,?)')
-          .bind(me.id, org, ship, n === 0 ? 1 : 0, kstISO()).run();
-      }
-    }
-  }
 
   const def = await env.DB.prepare(
     'SELECT id FROM bill_profiles WHERE customer_id=? AND is_default=1'

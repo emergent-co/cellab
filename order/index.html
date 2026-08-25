@@ -148,6 +148,10 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 .radio div small{display:block;color:var(--mut);font-size:12px}
 .radio .sx{flex:0 0 26px;height:26px;border:0;background:0;color:#b6bcc6;font-size:16px;cursor:pointer}
 .radio .sx:hover{color:#991B1B}
+.addrrow{display:flex;gap:7px}
+.addrrow input{flex:1}
+.addrrow .btn{flex:0 0 auto;padding:11px 14px}
+.pcwrap{display:none;height:420px;margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .skel{display:grid;gap:14px}
 .sk{background:linear-gradient(90deg,#eef0f4 25%,#f6f7f9 37%,#eef0f4 63%);
   background-size:400% 100%;border-radius:12px;animation:shim 1.3s ease infinite}
@@ -186,6 +190,10 @@ textarea{min-height:78px;resize:vertical}
 .radio div small{display:block;color:var(--mut);font-size:12px}
 .radio .sx{flex:0 0 26px;height:26px;border:0;background:0;color:#b6bcc6;font-size:16px;cursor:pointer}
 .radio .sx:hover{color:#991B1B}
+.addrrow{display:flex;gap:7px}
+.addrrow input{flex:1}
+.addrrow .btn{flex:0 0 auto;padding:11px 14px}
+.pcwrap{display:none;height:420px;margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .skel{display:grid;gap:14px}
 .sk{background:linear-gradient(90deg,#eef0f4 25%,#f6f7f9 37%,#eef0f4 63%);
   background-size:400% 100%;border-radius:12px;animation:shim 1.3s ease infinite}
@@ -799,18 +807,20 @@ function cartBlock(){
     h += sites.map(function(s){
       return '<label class="radio'+(siteId===s.id?' on':'')+'"><input type="radio" name="site" value="'+s.id+'"'
         +(siteId===s.id?' checked':'')+'>'
-        +'<div><b>'+esc(s.org_name)+'</b>'+(s.address?'<small>'+esc(s.address)+'</small>':'<small style="color:#C2410C">주소 없음</small>')+'</div>'
+        +'<div><b>'+esc(s.org_name)+'</b><small>'+esc(s.address||'')+'</small></div>'
         +'<button class="sx" data-sid="'+s.id+'">×</button></label>'; }).join('');
   } else {
-    h += '<label class="req">소속 (기관 · 연구실)</label><input id="f-org" placeholder="예) 부산대학교 재료공학과 000연구실">'
-       + '<label>납품 주소</label><input id="f-ship" placeholder="납품받으실 주소">'
-       + '<p class="hint">한 번 입력하면 다음 주문부터 골라 쓸 수 있습니다.</p>';
+    h += '<div class="warnbox">납품지를 추가해주세요.<br>주소가 정확해야 배송 사고가 없어 등록된 납품지로만 주문할 수 있습니다.</div>'
+       + '<button class="btn ghost" id="addSite2" style="width:100%;margin-top:10px">＋ 납품지 추가</button>';
   }
   h += '</div>';
 
-  if (n) h += '<button class="btn pri" id="f-go" style="width:100%;margin-top:16px;padding:15px;font-size:15.5px">'
+  if (n) h += '<button class="btn pri" id="f-go"'+(sites.length?'':' disabled')
+       + ' style="width:100%;margin-top:16px;padding:15px;font-size:15.5px">'
        + n + '건 주문 요청 보내기</button>'
-       + '<p class="hint" style="text-align:center;margin-top:10px">단가는 접수 후 견적서로 회신드립니다.</p>';
+       + '<p class="hint" style="text-align:center;margin-top:10px">'
+       + (sites.length ? '단가는 접수 후 견적서로 회신드립니다.' : '납품지를 추가하면 주문할 수 있습니다.')
+       + '</p>';
   return h;
 }
 function refreshCart(){ $('#cartPanel').innerHTML = cartBlock(); bindCart(); }
@@ -831,37 +841,75 @@ function bindCart(){
       cache.sites=null; viewNew();
     }; });
   var as = $('#addSite'); if (as) as.onclick = siteForm;
+  var as2 = $('#addSite2'); if (as2) as2.onclick = siteForm;
   var go2 = $('#f-go'); if (go2) go2.onclick = submitOrder;
+}
+
+// 다음(카카오) 우편번호 서비스 — 열 때 한 번만 불러온다
+function loadPostcode(cb){
+  if (window.daum && window.daum.Postcode) return cb();
+  var s = document.createElement('script');
+  s.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+  s.onload = cb;
+  s.onerror = function(){ toast('주소 검색을 불러오지 못했습니다'); };
+  document.head.appendChild(s);
 }
 
 function siteForm(){
   var w = modal('납품지 추가',
-     '<label class="req">소속 (기관 · 연구실)</label><input id="s-org" placeholder="예) 부산대학교 재료공학과 000연구실">'
-    +'<label>납품 주소</label><input id="s-addr" placeholder="납품받으실 주소">'
+     '<label class="req">소속 (기관 · 연구실)</label>'
+    +'<input id="s-org" placeholder="예) 부산대학교 재료공학과 000연구실">'
+    +'<label class="req">주소</label>'
+    +'<div class="addrrow"><input id="s-addr" placeholder="주소 검색을 눌러주세요" readonly>'
+      +'<button class="btn gray" id="s-find">주소 검색</button></div>'
+    +'<input id="s-post" type="hidden">'
+    +'<input id="s-detail" placeholder="상세주소 (동·호수, 연구동 등)" style="margin-top:7px">'
+    +'<div id="s-wrap" class="pcwrap"></div>'
     +'<label class="chk"><input type="checkbox" id="s-def" checked> 기본 납품지로 사용</label>'
     +'<div class="mrow"><button class="btn gray" data-x>닫기</button><button class="btn pri" id="s-go">저장</button></div>');
+
+  $('#s-find').onclick = function(){
+    var wrap = $('#s-wrap');
+    loadPostcode(function(){
+      wrap.style.display = 'block';
+      wrap.innerHTML = '';
+      new daum.Postcode({
+        width: '100%', height: '100%',
+        oncomplete: function(data){
+          var road = data.roadAddress || data.jibunAddress || '';
+          var extra = '';
+          if (data.bname && /[동|로|가]$/g.test(data.bname)) extra += data.bname;
+          if (data.buildingName && data.apartment === 'Y') extra += (extra ? ', ' : '') + data.buildingName;
+          if (extra) road += ' (' + extra + ')';
+          $('#s-addr').value = road;
+          $('#s-post').value = data.zonecode || '';
+          wrap.style.display = 'none';
+          $('#s-detail').focus();
+        },
+        onresize: function(size){ wrap.style.height = size.height + 'px'; }
+      }).embed(wrap);
+    });
+  };
+
   $('#s-go').onclick = async function(){
     var org = $('#s-org').value.trim();
-    if (!org) return alert('소속을 입력해주세요.');
+    if (!org){ $('#s-org').focus(); return alert('소속을 입력해주세요.'); }
+    if (!$('#s-addr').value.trim()) return alert('주소 검색으로 주소를 선택해주세요.');
+    var btn = $('#s-go'); btn.disabled = true; btn.textContent = '저장 중…';
     var r = await fetch('/api/order/sites',{method:'POST',headers:{'content-type':'application/json'},
-      body:JSON.stringify({ org_name:org, address:$('#s-addr').value.trim(), is_default:$('#s-def').checked })})
-      .then(function(r){return r.json();});
-    if (!r.ok) return alert(r.message||'저장 실패');
+      body:JSON.stringify({ org_name:org, address:$('#s-addr').value.trim(),
+        postcode:$('#s-post').value, address_detail:$('#s-detail').value.trim(),
+        is_default:$('#s-def').checked })}).then(function(r){return r.json();});
+    if (!r.ok){ btn.disabled=false; btn.textContent='저장'; return alert(r.message||'저장 실패'); }
     w.remove(); siteId = r.id; cache.sites=null; viewNew(); toast('납품지가 추가되었습니다');
   };
 }
 
 async function submitOrder(){
   if (!cart.length) return toast('담은 품목이 없습니다');
-  var body = { items: cart };
-  if (sites.length){
-    if (!siteId) return toast('납품지를 선택해주세요');
-    body.site_id = siteId;
-  } else {
-    var org = $('#f-org').value.trim();
-    if (!org){ $('#f-org').focus(); return toast('소속(기관·연구실)을 입력해주세요'); }
-    body.org_name = org; body.ship_address = $('#f-ship').value.trim();
-  }
+  if (!sites.length) return toast('납품지를 먼저 추가해주세요');
+  if (!siteId) return toast('납품지를 선택해주세요');
+  var body = { items: cart, site_id: siteId };
   var btn=$('#f-go'); btn.disabled=true; btn.textContent='보내는 중…';
   var r = await fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},
     body:JSON.stringify(body)}).then(function(r){return r.json();});

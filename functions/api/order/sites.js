@@ -25,8 +25,13 @@ export async function onRequest({ request, env }) {
 
   const b = await request.json().catch(() => ({}));
   const org = String(b.org_name || '').trim();
-  const addr = String(b.address || '').trim();
+  const road = String(b.address || '').trim();          // 카카오(다음) 주소검색 결과
+  const post = String(b.postcode || '').trim();
+  const detail = String(b.address_detail || '').trim();
   if (!org) return json({ error: 'no_org', message: '소속(기관·연구실)을 입력해주세요.' }, 400);
+  if (!road) return json({ error: 'no_address', message: '주소 검색으로 주소를 선택해주세요.' }, 400);
+  // 표시·문서용 한 줄 주소
+  const addr = (post ? `[${post}] ` : '') + road + (detail ? ', ' + detail : '');
 
   const cnt = (await env.DB.prepare('SELECT COUNT(*) AS c FROM sites WHERE customer_id=?').bind(me.id).first())?.c || 0;
   if (cnt >= 10) return json({ error: 'too_many', message: '납품지는 최대 10개까지 저장할 수 있습니다.' }, 400);
@@ -35,8 +40,9 @@ export async function onRequest({ request, env }) {
   if (isDefault) await env.DB.prepare('UPDATE sites SET is_default=0 WHERE customer_id=?').bind(me.id).run();
 
   const r = await env.DB.prepare(
-    'INSERT INTO sites (customer_id, org_name, address, is_default, created_at) VALUES (?,?,?,?,?)'
-  ).bind(me.id, org, addr, isDefault, kstISO()).run();
+    `INSERT INTO sites (customer_id, org_name, address, postcode, address_detail, is_default, created_at)
+     VALUES (?,?,?,?,?,?,?)`
+  ).bind(me.id, org, addr, post, detail, isDefault, kstISO()).run();
 
   return json({ ok: true, id: r.meta.last_row_id });
 }
