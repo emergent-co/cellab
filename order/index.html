@@ -174,6 +174,62 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 @keyframes sp{to{transform:rotate(360deg)}}
 .sug .mine{display:inline-block;font-size:10.5px;font-weight:700;background:#DBEAFE;color:#1E40AF;
   border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+/* 최근 주문 — 이전에 산 것이라는 게 한눈에 보이게 파란 계열 */
+.recent .cartrow{background:#f2f6ff;border:1px solid #dbe6fb;border-radius:10px;
+  padding:11px 13px;margin-bottom:7px}
+.recent .cartrow .cn b{color:#1E3A8A}
+.recent .cartrow .cn small{color:#5b7bb5}
+.recent .cartrow .radd{background:#fff;border-color:#c7d9f7;color:#1E40AF;font-weight:700}
+.recent .cartrow .radd:hover{background:#e8f0ff}
+.sug div.mrow2{background:#f7faff}
+
+.ttlrow{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.ttlrow .btn{margin-left:auto}
+.scards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.scard{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 16px;position:relative;overflow:hidden}
+.scard.done{background:#fcfcfd;border-color:#eceef2}
+.scard.done .sc2,.scard.done .sc3,.scard.done .sc4{opacity:.45}
+.scard.rej{border-color:#f2c9c9}
+.sc1{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.sc1 .sdate{margin-left:auto;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums}
+.sc2{font-size:14.5px;font-weight:700;line-height:1.4;margin-bottom:8px}
+.sc3{font-size:21px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sc3 small{font-size:12px;font-weight:600;color:var(--mut);margin-left:4px;letter-spacing:0}
+.sc4{display:flex;flex-wrap:wrap;gap:5px 9px;margin-top:10px;font-size:11.5px;color:var(--mut)}
+.sc4 .pill{background:#eef1f6;color:#4b5563;border-radius:999px;padding:2px 9px;font-weight:700}
+.sc5{margin-top:9px;font-size:12.5px;color:var(--mut);border-top:1px dashed var(--line);padding-top:8px}
+.badge.q0{background:#EDE9FE;color:#5B21B6}.badge.q1{background:#FEF3C7;color:#92400E}
+.badge.q2{background:#DBEAFE;color:#1E40AF}.badge.q3{background:#DCFCE7;color:#166534}
+.badge.q4{background:#FEE2E2;color:#991B1B}
+.stamp2{position:absolute;right:14px;top:50%;transform:translateY(-50%) rotate(-15deg);
+  width:92px;height:92px;border:3px solid #C0392B;border-radius:50%;
+  box-shadow:0 0 0 2px #fff inset, 0 0 0 5px #C0392B inset;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#C0392B;opacity:.62;pointer-events:none}
+.stamp2 b{font-size:15px;font-weight:800;letter-spacing:.04em}
+.stamp2 small{font-size:9.5px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.lbrow{display:flex;align-items:center;margin:13px 0 6px}
+.lbrow .mini{margin-left:auto}
+.qrow{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px;background:#fcfcfd;position:relative}
+.qrow .qn{margin-bottom:8px}
+.q3{display:flex;gap:7px}
+.q3>div{flex:1}
+.q3 label{margin:0 0 4px;font-size:11.5px}
+.q3 input{padding:9px 10px;font-size:14px}
+.qrow .qs{background:#f1f3f6;text-align:right;font-weight:700}
+.qrow .qx{position:absolute;right:8px;top:8px;border:0;background:0;color:#b6bcc6;font-size:17px;cursor:pointer}
+.qrow .qx:hover{color:#991B1B}
+.qsum{text-align:right;font-size:13.5px;padding:4px 2px 2px}
+.qsum div{display:flex;justify-content:flex-end;gap:10px;padding:2px 0}
+.qsum b{min-width:96px;font-variant-numeric:tabular-nums}
+.qsum .tt b{font-size:16px;color:var(--navy)}
+.seg2{display:flex;gap:8px}
+.seg2 button{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px;
+  font-size:14px;font-weight:700;color:var(--mut);cursor:pointer}
+.seg2 button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.docbox{display:flex;align-items:center;gap:10px;background:#f4f6f9;border-radius:10px;padding:10px 12px;margin-bottom:7px}
+.docbox span{flex:0 0 84px;font-size:13px;font-weight:700;color:#4b5563}
+.docbox input{flex:1;background:#fff;padding:9px 10px;font-size:14px}
 
 /* ---------- 폼 / 모달 ---------- */
 label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:13px 0 6px}
@@ -216,6 +272,14 @@ textarea{min-height:78px;resize:vertical}
 @keyframes sp{to{transform:rotate(360deg)}}
 .sug .mine{display:inline-block;font-size:10.5px;font-weight:700;background:#DBEAFE;color:#1E40AF;
   border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+/* 최근 주문 — 이전에 산 것이라는 게 한눈에 보이게 파란 계열 */
+.recent .cartrow{background:#f2f6ff;border:1px solid #dbe6fb;border-radius:10px;
+  padding:11px 13px;margin-bottom:7px}
+.recent .cartrow .cn b{color:#1E3A8A}
+.recent .cartrow .cn small{color:#5b7bb5}
+.recent .cartrow .radd{background:#fff;border-color:#c7d9f7;color:#1E40AF;font-weight:700}
+.recent .cartrow .radd:hover{background:#e8f0ff}
+.sug div.mrow2{background:#f7faff}
 .mrow{display:flex;gap:8px;margin-top:20px}
 .mrow .btn{flex:1;padding:14px}
 .itrow{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:9px;background:#fcfcfd;position:relative}
@@ -732,7 +796,7 @@ function suggestOne(q){
     g.innerHTML = r.items.map(function(p,i){
       var tag = p.src==='mine' ? '<span class="mine">이전 주문</span>' : '';
       var sub = p.src==='mine' ? (p.spec||'') : [p.brand,p.model,p.sobun].filter(Boolean).join(' · ');
-      return '<div data-i="'+i+'"><b>'+esc(p.name)+tag+'</b><small>'+esc(sub)+'</small></div>'; }).join('');
+      return '<div data-i="'+i+'"'+(p.src==='mine'?' class="mrow2"':'')+'><b>'+esc(p.name)+tag+'</b><small>'+esc(sub)+'</small></div>'; }).join('');
     host.appendChild(g);
     g.querySelectorAll('div[data-i]').forEach(function(d){
       d.onmousedown = function(){
@@ -882,7 +946,7 @@ async function recentTab(){
   $('#inputArea').innerHTML =
      '<p class="hint" style="margin:14px 0 10px">같은 소속에서 주문한 품목입니다. 눌러서 바로 담을 수 있습니다.</p>'
     +'<input type="search" id="r-q" placeholder="품명으로 좁히기" style="margin-bottom:10px">'
-    +'<div id="r-list"></div>';
+    +'<div id="r-list" class="recent"></div>';
   var t; $('#r-q').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ paintRecent(e.target.value.trim()); },200); };
   paintRecent('');
 }
@@ -1042,15 +1106,21 @@ async function submitOrder(){
 /* ---------------- 정산하기 ---------------- */
 async function viewSettle(){
   if (cache.settle) paintSettle(cache.settle);
-  var st = await fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return null;});
+  var both = await Promise.all([
+    fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch('/api/order/settlements').then(function(r){return r.json();}).catch(function(){return {};})
+  ]);
+  var st = both[0];
   if (!st){ if(!cache.settle) paintSettle({}); return; }
+  st.requests = (both[1] && both[1].settlements) || [];
   cache.settle = st;
   paintSettle(st);
 }
 
 function paintSettle(st){
   var ps = st.profiles||[], docs = st.documents||[];
-  var head = '<div class="ttl">정산하기</div>';
+  var head = '<div class="ttlrow"><div class="ttl" style="margin:0">정산하기</div>'
+    +'<button class="btn pri" id="reqBtn">정산 요청</button></div>';
 
   if (st.postpaid){
     head += '<div class="kpis" style="grid-template-columns:repeat(3,1fr)">'
@@ -1078,6 +1148,7 @@ function paintSettle(st){
   }
 
   $('#main').innerHTML = head
+   + reqCards(st.requests||[])
    +'<div class="panel pad" style="margin-bottom:18px">'
      +'<div class="dt2" style="font-size:15px;margin-bottom:14px">세금계산서 발행 정보</div>'
      +(ps.length
@@ -1108,6 +1179,7 @@ function paintSettle(st){
        : '<div class="empty">아직 발급된 서류가 없습니다.</div>')
    +'</div>';
 
+  $('#reqBtn').onclick = settleForm;
   $('#addBill').onclick = function(){ billForm(null); };
   document.querySelectorAll('[data-del]').forEach(function(b){
     b.onclick = async function(){
@@ -1116,6 +1188,111 @@ function paintSettle(st){
       cache.settle=null; toast('삭제되었습니다'); viewSettle();
     };
   });
+}
+
+/* ---------------- 정산 요청 ---------------- */
+var SQ = { '정산요청':'q0', '처리중':'q1', '서류발급 완료':'q2', '입금완료':'q3', '반려':'q4' };
+
+function reqCards(rows){
+  var h = '<div class="dt2" style="font-size:15px;margin:2px 0 12px">정산 요청 내역</div>';
+  if (!rows.length){
+    return h + '<div class="panel"><div class="empty">아직 정산 요청이 없습니다.<br>'
+      + '위 <b>정산 요청</b> 버튼으로 요청하시면 서류를 발급해 드립니다.</div></div>'
+      + '<div style="height:18px"></div>';
+  }
+  h += '<div class="scards">' + rows.map(function(r){
+    var items = r.items || [];
+    var title = items.length ? (items[0].name + (items.length>1 ? ' 외 '+(items.length-1)+'건' : '')) : '(항목 없음)';
+    var docs = ['견적서 '+shortD(r.quote_date), '거래명세서 '+shortD(r.statement_date)];
+    if (r.taxinvoice_date) docs.push('세금계산서 '+shortD(r.taxinvoice_date));
+    var done = r.status==='입금완료';
+    return '<div class="scard'+(done?' done':'')+(r.status==='반려'?' rej':'')+'">'
+      + (done ? '<div class="stamp2"><b>정산완료</b><small>'+esc(String(r.done_at||'').slice(0,10))+'</small></div>' : '')
+      + '<div class="sc1"><span class="badge '+(SQ[r.status]||'q0')+'">'+esc(r.status)+'</span>'
+        + '<span class="sdate">'+esc(String(r.created_at||'').slice(0,10))+'</span></div>'
+      + '<div class="sc2">'+esc(title)+'</div>'
+      + '<div class="sc3">'+won(r.total)+'<small>원 · 부가세 포함</small></div>'
+      + '<div class="sc4"><span class="pill">'+esc(r.method==='카드'?'카드':'통장입금')+'</span>'
+        + docs.map(function(d){ return '<span>'+esc(d)+'</span>'; }).join('') + '</div>'
+      + (r.memo?'<div class="sc5">'+esc(r.memo)+'</div>':'')
+      + '</div>';
+  }).join('') + '</div><div style="height:18px"></div>';
+  return h;
+}
+function shortD(d){ return d ? String(d).slice(5).replace('-','/') : '—'; }
+
+var sItems = [];
+function settleForm(){
+  sItems = [{ name:'', qty:1, price:0 }];
+  var method = '통장';
+  var w = modal('정산 요청',
+     '<div class="lbrow"><label class="req" style="margin:0">항목</label>'
+       +'<button class="mini" id="q-add">＋ 항목 추가</button></div>'
+    +'<div id="q-items"></div>'
+    +'<div class="qsum" id="q-sum"></div>'
+    +'<label class="req">결제 방식</label>'
+    +'<div class="seg2" id="q-method"><button data-v="통장" class="on">통장입금</button>'
+      +'<button data-v="카드">카드</button></div>'
+    +'<label class="req">필요 서류 <span class="hint" style="font-weight:600">(날짜 필수 입력)</span></label>'
+    +'<div class="docbox"><span>견적서</span><input id="q-d1" type="date"></div>'
+    +'<div class="docbox"><span>거래명세서</span><input id="q-d2" type="date"></div>'
+    +'<div class="docbox" id="q-d3box"><span>세금계산서</span><input id="q-d3" type="date"></div>'
+    +'<label class="req">회신받을 이메일</label><input id="q-email" type="email" inputmode="email" placeholder="example@email.com" value="'+esc(me.email||'')+'">'
+    +'<label>메모</label><textarea id="q-memo" placeholder="메모를 입력하세요 (선택)"></textarea>'
+    +'<button class="btn pri" id="q-go" style="width:100%;margin-top:18px;padding:15px;font-size:15.5px">정산 요청</button>');
+
+  $('#q-add').onclick = function(){ sItems.push({name:'',qty:1,price:0}); paintQItems(); };
+  $('#q-method').onclick = function(e){
+    var b = e.target.closest('button[data-v]'); if(!b) return;
+    method = b.dataset.v;
+    document.querySelectorAll('#q-method button').forEach(function(x){ x.classList.toggle('on', x.dataset.v===method); });
+    // 카드결제는 매출전표로 갈음하므로 세금계산서를 받지 않는다
+    $('#q-d3box').style.display = method==='카드' ? 'none' : 'flex';
+  };
+  $('#q-go').onclick = async function(){
+    var items = sItems.filter(function(i){ return (i.name||'').trim(); });
+    if (!items.length) return alert('항목을 1개 이상 입력해주세요.');
+    if (!$('#q-d1').value || !$('#q-d2').value || (method!=='카드' && !$('#q-d3').value))
+      return alert('필요 서류의 날짜를 모두 입력해주세요.');
+    var email = $('#q-email').value.trim();
+    if (!email) return alert('회신받을 이메일을 입력해주세요.');
+    var btn=$('#q-go'); btn.disabled=true; btn.textContent='요청 중…';
+    var r = await fetch('/api/order/settlements',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({ items:items, method:method, reply_email:email,
+        quote_date:$('#q-d1').value, statement_date:$('#q-d2').value, taxinvoice_date:$('#q-d3').value,
+        memo:$('#q-memo').value })}).then(function(r){return r.json();});
+    if (!r.ok){ btn.disabled=false; btn.textContent='정산 요청'; return alert(r.message||'요청 실패'); }
+    w.remove(); cache.settle=null; toast('정산 요청이 접수되었습니다'); viewSettle();
+  };
+  paintQItems();
+}
+
+function paintQItems(){
+  $('#q-items').innerHTML = sItems.map(function(it,i){
+    return '<div class="qrow" data-i="'+i+'">'
+      +'<input class="qn" placeholder="항목명" value="'+esc(it.name)+'">'
+      +'<div class="q3"><div><label>수량</label><input class="qq" type="number" min="1" value="'+it.qty+'"></div>'
+        +'<div><label>단가(원)</label><input class="qp" type="number" inputmode="numeric" value="'+it.price+'"></div>'
+        +'<div><label>소계(원)</label><input class="qs" value="'+won(it.qty*it.price)+'" readonly></div></div>'
+      +(sItems.length>1?'<button class="qx" data-i="'+i+'">×</button>':'')
+      +'</div>';
+  }).join('');
+  $('#q-items').querySelectorAll('.qrow').forEach(function(el){
+    var i = Number(el.dataset.i);
+    el.querySelector('.qn').oninput = function(e){ sItems[i].name = e.target.value; };
+    el.querySelector('.qq').oninput = function(e){ sItems[i].qty = Math.max(1,Number(e.target.value)||1); qsum(el,i); };
+    el.querySelector('.qp').oninput = function(e){ sItems[i].price = Number(e.target.value)||0; qsum(el,i); };
+    var x = el.querySelector('.qx'); if (x) x.onclick=function(){ sItems.splice(i,1); paintQItems(); };
+  });
+  qtotal();
+}
+function qsum(el,i){ el.querySelector('.qs').value = won(sItems[i].qty*sItems[i].price); qtotal(); }
+function qtotal(){
+  var sup = sItems.reduce(function(a,i){ return a + i.qty*i.price; },0);
+  var vat = Math.round(sup*0.1);
+  $('#q-sum').innerHTML = '<div><span>합계</span><b>'+won(sup)+'원</b></div>'
+    +'<div><span>부가세 (10%)</span><b>'+won(vat)+'원</b></div>'
+    +'<div class="tt"><span>총계</span><b>'+won(sup+vat)+'원</b></div>';
 }
 
 /* ---------------- 모달 헬퍼 ---------------- */

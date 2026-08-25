@@ -18,6 +18,15 @@ export async function onRequest({ request, env }) {
       return json({ customer: c, ...s, ledger: rows });
     }
 
+    if (new URL(request.url).searchParams.get('requests')) {
+      const { results } = await env.DB.prepare(
+        `SELECT s.*, c.name AS contact, c.company
+           FROM settlements s JOIN customers c ON c.id = s.customer_id
+          ORDER BY s.id DESC LIMIT 200`
+      ).all();
+      return json({ requests: (results || []).map((r) => ({ ...r, items: safeJson(r.items_json) })) });
+    }
+
     const { results } = await env.DB.prepare(
       `SELECT c.id, c.name, c.company, c.phone, c.billing_mode,
               COALESCE((SELECT SUM(o.total_amount) FROM orders o
@@ -55,6 +64,16 @@ export async function onRequest({ request, env }) {
     return json({ ok: true, ...s });
   }
 
+  // 정산 요청 상태 변경
+  if (b.action === 'settle_status') {
+    const ok = ['정산요청', '처리중', '서류발급 완료', '입금완료', '반려'].includes(b.status);
+    if (!ok) return json({ error: 'bad_status' }, 400);
+    const done = b.status === '입금완료' ? kstISO() : null;
+    await env.DB.prepare('UPDATE settlements SET status=?, admin_memo=?, done_at=?, updated_at=? WHERE id=?')
+      .bind(b.status, String(b.admin_memo || ''), done, kstISO(), b.settlement_id).run();
+    return json({ ok: true });
+  }
+
   if (b.action === 'delete_pay') {
     await env.DB.prepare('DELETE FROM payments WHERE id=?').bind(b.payment_id).run();
     return json({ ok: true });
@@ -62,3 +81,5 @@ export async function onRequest({ request, env }) {
 
   return json({ error: 'unknown_action' }, 400);
 }
+
+function safeJson(s) { try { return JSON.parse(s || '[]'); } catch { return []; } }
