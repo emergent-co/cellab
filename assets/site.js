@@ -140,7 +140,7 @@
         '<button type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>검색</span></button>' +
       '</form>' +
       '<a class="ch-ic" href="#chat" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
-      '<a class="ch-ic" href="/admin" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
+      '<a class="ch-ic" href="/login/" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +

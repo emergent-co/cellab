@@ -174,6 +174,7 @@ body{ padding-top:106px; }
 .ch-top{ position:fixed; top:0; left:0; right:0; height:60px; background:#fff; border-bottom:0; display:flex; align-items:center; gap:16px; padding:0 max(16px, calc((100% - 1240px)/2)); z-index:40; transition:transform .25s ease; }
 @media(max-width:900px){ .ch-top{ padding:0 16px; } }
 .ch-top .ch-brand{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--ink); text-decoration:none; }
+.ch-top .ch-ic[href="#chat"]{ margin-left:auto; }
 .ch-top .ch-brand b{ color:var(--green); }
 .ch-search{ flex:1; min-width:0; max-width:640px; margin:0 auto; display:flex; align-items:center; gap:8px; background:var(--soft); border-radius:10px; padding:9px 14px; }
 .ch-search svg{ width:16px; height:16px; stroke:var(--gray-2); fill:none; stroke-width:2; flex:0 0 auto; }
