@@ -197,6 +197,10 @@ textarea{min-height:78px;resize:vertical}
   table.cards td:nth-child(3){order:3;font-size:12.5px;color:var(--mut)}
   table.cards td:nth-child(4){order:4;margin-left:auto;font-size:15px;font-weight:800}
   table.cards.docs td:nth-child(5){order:5;flex:1 1 100%;margin-top:4px}
+  table.cards.ledger td:nth-child(1){order:3;font-size:12.5px;color:var(--mut)}
+  table.cards.ledger td:nth-child(3){order:4;margin-left:auto;font-size:15px;font-weight:800}
+  table.cards.ledger td:nth-child(4){order:5;flex:1 1 100%;text-align:right;font-size:12.5px;color:var(--mut)}
+  table.cards.ledger td:nth-child(4)::before{content:'잔액 ';}
   /* 상세 안의 품목표는 그대로 */
   .detail table td,.detail table th{padding:11px 6px;font-size:12.5px}
 }
@@ -679,18 +683,40 @@ async function submitOrder(){
 
 /* ---------------- 정산하기 ---------------- */
 async function viewSettle(){
+  var st = await fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return {};});
   var pr = await fetch('/api/order/profiles').then(function(r){return r.json();});
   var dr = await fetch('/api/order/documents').then(function(r){return r.json();});
   var ps = pr.profiles||[], docs = dr.documents||[];
 
-  $('#main').innerHTML =
-    '<div class="ttl">정산하기</div>'
-   +'<div class="kpis" style="grid-template-columns:repeat(3,1fr)">'
-     +kpi('등록한 발행 정보', ps.length, '건')
-     +kpi('발급된 서류', docs.length, '건')
-     +kpi('미열람 서류', docs.filter(function(d){ return d.sent_at && !d.opened_at; }).length, '건', true)
-   +'</div>'
-   +'<div class="panel" style="padding:22px;margin-bottom:18px">'
+  var head = '<div class="ttl">정산하기</div>';
+
+  if (st.postpaid){
+    head += '<div class="kpis" style="grid-template-columns:repeat(3,1fr)">'
+      + kpi('지출금', won(st.spent), '원')
+      + kpi('중간정산금', won(st.paid), '원')
+      + kpi('정산금 잔여', won(st.due), '원', true)
+      + '</div>'
+      + '<p class="hint" style="margin:-8px 0 20px">후불 거래처입니다. 주문 금액이 확정되면 지출금에 더해지고, 입금하시면 정산금에 반영됩니다.</p>'
+      + '<div class="panel" style="margin-bottom:18px">'
+        + '<div style="padding:20px 22px 4px"><div class="dt2" style="font-size:15px">거래 내역</div></div>'
+        + ((st.ledger||[]).length
+          ? '<table class="cards ledger"><thead><tr><th style="width:96px">일자</th><th>내용</th>'
+            + '<th style="width:120px">금액</th><th style="width:130px">잔액</th></tr></thead><tbody>'
+            + st.ledger.map(function(r){
+                var neg = r.amount < 0;
+                return '<tr style="cursor:default"><td>'+esc(r.at)+'</td>'
+                  +'<td class="l"><b>'+esc(r.label)+'</b>'
+                    +'<br><small style="color:var(--mut)">'+esc(r.kind)+(r.ref?' · '+esc(r.ref):'')+'</small></td>'
+                  +'<td class="n" style="color:'+(neg?'#166534':'var(--ink)')+'">'
+                    +(neg?'−':'+')+won(Math.abs(r.amount))+'</td>'
+                  +'<td class="n"><b>'+won(r.balance)+'</b></td></tr>'; }).join('')
+            + '</tbody></table>'
+          : '<div class="empty">거래 내역이 없습니다.</div>')
+      + '</div>';
+  }
+
+  $('#main').innerHTML = head
+   +'<div class="panel pad" style="margin-bottom:18px">'
      +'<div class="dt2" style="font-size:15px;margin-bottom:14px">세금계산서 발행 정보</div>'
      +(ps.length
         ? ps.map(function(p){
@@ -701,7 +727,7 @@ async function viewSettle(){
               +'<div class="kv"><span>계산서 메일</span><span>'+esc(p.tax_email||'—')+'</span></div>'
               +'<button class="lnk" data-del="'+p.id+'" style="margin-top:8px;color:#991B1B">삭제</button>'
               +'</div>'; }).join('')
-        : '<div class="warnbox">등록된 발행 정보가 없습니다. 정산·세금계산서 발행에 필요합니다.</div>')
+        : '<div class="warnbox">등록된 발행 정보가 없습니다. 세금계산서 발행에 필요합니다.</div>')
      +'<div style="height:12px"></div><button class="btn ghost" id="addBill" style="width:100%">＋ 발행 정보 등록</button>'
    +'</div>'
    +'<div class="panel">'

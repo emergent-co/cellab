@@ -135,3 +135,19 @@ ALTER TABLE outbox ADD COLUMN sent_at TEXT;
 
 -- 2026-08-25: 주문 품목에 상품 링크
 ALTER TABLE order_items ADD COLUMN link TEXT;
+
+-- 2026-08-25: 후불(VIP) 정산
+-- 지출금은 orders.total_amount 합계에서 파생한다(별도 저장 안 함). 입금·조정만 기록.
+ALTER TABLE customers ADD COLUMN billing_mode TEXT DEFAULT '선불';   -- 선불 | 후불
+CREATE TABLE IF NOT EXISTS payments (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER NOT NULL,
+  kind    TEXT DEFAULT '입금',   -- 입금 | 조정(음수 가능)
+  amount  INTEGER NOT NULL,
+  method  TEXT,                  -- 통장 | 카드 | 기타
+  paid_at TEXT,
+  memo    TEXT,
+  created_at TEXT,
+  created_by TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_pay_cust ON payments(customer_id, paid_at);
