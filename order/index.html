@@ -286,6 +286,17 @@ textarea{min-height:78px;resize:vertical}
 <div class="toast" id="toast"></div>
 
 <script>
+/* 채널톡 로더 — 페이지 로드가 끝난 뒤 비동기로 붙는다(초기 렌더를 막지 않음) */
+(function(){var w=window;if(w.ChannelIO){return;}var ch=function(){ch.c(arguments);};ch.q=[];
+ch.c=function(a){ch.q.push(a);};w.ChannelIO=ch;
+function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;
+var s=document.createElement("script");s.type="text/javascript";s.async=true;
+s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";
+var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}
+if(document.readyState==="complete"){l();}else{w.addEventListener("load",l);}})();
+</script>
+
+<script>
 const $ = function(s){ return document.querySelector(s); };
 const esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
@@ -293,6 +304,7 @@ const won = function(n){ return Number(n||0).toLocaleString('ko-KR'); };
 const ST = ['요청접수','견적발송','견적승인','발주확정','납품완료','계산서발행','완료','보류','취소'];
 const SIDX = {}; ST.forEach(function(s,i){ SIDX[s]=i; });
 const DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
+const CH_KEY = '9ef4232c-59bb-4911-a4c7-363c6b5bc513';
 
 let me=null, view='new', tab='전체', kw='', orders=[], cur=null;
 let cart=[], mode='one';   // mode: one=단건, bulk=여러 건
@@ -305,7 +317,7 @@ function badge(s){ return '<span class="badge s'+(SIDX[s]==null?7:SIDX[s])+'">'+
 /* ---------------- 부팅 ---------------- */
 async function boot(){
   var r = await fetch('/api/auth/me').then(function(r){return r.json();}).catch(function(){return {};});
-  if (!r.login){ $('#login').style.display='flex'; return; }
+  if (!r.login){ $('#login').style.display='flex'; bootChannel(null); return; }
   me = r.customer;
   $('#login').style.display='none';
   $('#shell').classList.add('on');
@@ -313,10 +325,24 @@ async function boot(){
   var h0 = location.hash.replace('#','');
   if (h0==='orders'||h0==='settle'||h0==='new') view=h0;
   syncNav();
+  bootChannel(me);
   render();
+}
+
+// 로그인한 고객이면 이름·연락처·소속을 같이 넘겨, 상담 시작할 때 누구인지 바로 보이게 한다.
+function bootChannel(c){
+  if (!window.ChannelIO) return;
+  var p = { pluginKey: CH_KEY };
+  if (c){
+    p.memberId = 'rs-' + c.id;
+    p.profile = { name: c.name || '', email: c.email || '', mobileNumber: c.phone || '' };
+    if (c.company) p.profile.소속 = c.company;
+  }
+  try { ChannelIO('boot', p); } catch(e){}
 }
 $('#kakaoBtn').onclick = function(){ location.href='/api/auth/kakao?next=/order/'; };
 $('#logout').onclick = async function(){
+  try { ChannelIO('shutdown'); } catch(e){}
   await fetch('/api/auth/me',{method:'DELETE'});
   location.reload();
 };
