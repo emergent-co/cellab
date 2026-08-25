@@ -20,6 +20,12 @@ export async function onRequest({ request, env }) {
   const b = await request.json().catch(() => ({}));
   const items = Array.isArray(b.items) ? b.items.filter((i) => (i.name || '').trim()) : [];
   if (!items.length) return json({ error: 'no_items', message: '품목을 1개 이상 입력해주세요.' }, 400);
+
+  // 상품 링크와 수량은 필수 — 링크가 있어야 어떤 물건인지 확정되고 단가를 뽑을 수 있다
+  const noLink = items.find((i) => !/^https?:\/\//i.test(String(i.link || '').trim()));
+  if (noLink) return json({ error: 'no_link', message: `상품 링크가 없는 품목이 있습니다: ${noLink.name}` }, 400);
+  const noQty = items.find((i) => !(Number(i.qty) > 0));
+  if (noQty) return json({ error: 'no_qty', message: `수량이 없는 품목이 있습니다: ${noQty.name}` }, 400);
   // 납품지는 반드시 등록된 것 중에서 고른다 (주소 정확도 때문에 직접 입력을 받지 않는다)
   if (!b.site_id) {
     return json({ error: 'no_site', message: '납품지를 먼저 추가해주세요.' }, 400);

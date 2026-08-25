@@ -7,7 +7,7 @@
 // 정산 시점에 스스로 등록하고 다음 주문부터 골라 쓰도록 분리했다.
 import { json, currentCustomer, kstISO } from '../_lib.js';
 
-const F = ['label', 'company', 'biz_no', 'ceo', 'biz_type', 'biz_item', 'tax_email', 'address'];
+const F = ['label', 'company', 'biz_no', 'ceo', 'tax_email', 'address'];
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
@@ -47,9 +47,9 @@ export async function onRequest({ request, env }) {
     const isDefault = b.is_default || cnt === 0 ? 1 : 0;
     if (isDefault) await env.DB.prepare('UPDATE bill_profiles SET is_default=0 WHERE customer_id=?').bind(me.id).run();
     const r = await env.DB.prepare(
-      `INSERT INTO bill_profiles (customer_id, label, company, biz_no, ceo, biz_type, biz_item, tax_email, address, is_default, created_at, updated_at)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
-    ).bind(me.id, vals.label, vals.company, vals.biz_no, vals.ceo, vals.biz_type, vals.biz_item,
+      `INSERT INTO bill_profiles (customer_id, label, company, biz_no, ceo, tax_email, address, is_default, created_at, updated_at)
+       VALUES (?,?,?,?,?,?,?,?,?,?)`
+    ).bind(me.id, vals.label, vals.company, vals.biz_no, vals.ceo,
            vals.tax_email, vals.address, isDefault, kstISO(), kstISO()).run();
     return json({ ok: true, id: r.meta.last_row_id });
   }
@@ -59,9 +59,9 @@ export async function onRequest({ request, env }) {
     if (!own) return json({ error: 'not_found' }, 404);
     if (b.is_default) await env.DB.prepare('UPDATE bill_profiles SET is_default=0 WHERE customer_id=?').bind(me.id).run();
     await env.DB.prepare(
-      `UPDATE bill_profiles SET label=?, company=?, biz_no=?, ceo=?, biz_type=?, biz_item=?,
+      `UPDATE bill_profiles SET label=?, company=?, biz_no=?, ceo=?,
               tax_email=?, address=?, is_default=?, updated_at=? WHERE id=? AND customer_id=?`
-    ).bind(vals.label, vals.company, vals.biz_no, vals.ceo, vals.biz_type, vals.biz_item,
+    ).bind(vals.label, vals.company, vals.biz_no, vals.ceo,
            vals.tax_email, vals.address, b.is_default ? 1 : 0, kstISO(), b.id, me.id).run();
     return json({ ok: true });
   }

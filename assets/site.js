@@ -494,8 +494,16 @@
           for (var i = 0; i < TERMS.length; i++) {
             var tl = TERMS[i][0].toLowerCase();
             if (tl === v) continue;
-            if (tl.indexOf(v) === 0) starts.push(TERMS[i]);
-            else if (tl.indexOf(v) > -1) has.push(TERMS[i]);
+            if (tl.indexOf(v) === 0) { starts.push(TERMS[i]); continue; }
+            if (tl.indexOf(v) > -1) { has.push(TERMS[i]); continue; }
+            var al = TERMS[i][2] || [], hit = false, first = false;
+            for (var a = 0; a < al.length; a++) {
+              var av = al[a].toLowerCase();
+              if (av.indexOf(v) === 0) { first = true; break; }
+              if (av.indexOf(v) > -1) hit = true;
+            }
+            if (first) starts.push(TERMS[i]);
+            else if (hit) has.push(TERMS[i]);
           }
           var list = starts.concat(has).slice(0, 8);
           if (!list.length) { hide(); return; }
