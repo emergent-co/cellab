@@ -148,6 +148,12 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 .radio div small{display:block;color:var(--mut);font-size:12px}
 .radio .sx{flex:0 0 26px;height:26px;border:0;background:0;color:#b6bcc6;font-size:16px;cursor:pointer}
 .radio .sx:hover{color:#991B1B}
+.waitbox{text-align:center;padding:34px 16px}
+.waitbox b{display:block;font-size:14.5px;margin-top:14px}
+.waitbox small{display:block;font-size:12.5px;color:var(--mut);margin-top:6px;line-height:1.55}
+.spin{width:30px;height:30px;margin:0 auto;border:3px solid var(--line);border-top-color:var(--navy);
+  border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
 .sug .mine{display:inline-block;font-size:10.5px;font-weight:700;background:#DBEAFE;color:#1E40AF;
   border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
 
@@ -176,6 +182,12 @@ textarea{min-height:78px;resize:vertical}
 .radio div small{display:block;color:var(--mut);font-size:12px}
 .radio .sx{flex:0 0 26px;height:26px;border:0;background:0;color:#b6bcc6;font-size:16px;cursor:pointer}
 .radio .sx:hover{color:#991B1B}
+.waitbox{text-align:center;padding:34px 16px}
+.waitbox b{display:block;font-size:14.5px;margin-top:14px}
+.waitbox small{display:block;font-size:12.5px;color:var(--mut);margin-top:6px;line-height:1.55}
+.spin{width:30px;height:30px;margin:0 auto;border:3px solid var(--line);border-top-color:var(--navy);
+  border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
 .sug .mine{display:inline-block;font-size:10.5px;font-weight:700;background:#DBEAFE;color:#1E40AF;
   border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:middle}
 .mrow{display:flex;gap:8px;margin-top:20px}
@@ -602,26 +614,78 @@ function addOne(){
 }
 
 /* --- 여러 건: 크롬 확장 --- */
+// 확장이 보내오는 항목 형식: { name|title, option|spec, qty|quantity, url|link }
+function normItems(list){
+  return (list||[]).map(function(x){
+    return { name: String(x.name||x.title||x.product||'').trim(),
+             spec: String(x.option||x.options||x.spec||'').trim(),
+             link: String(x.url||x.link||x.href||'').trim(),
+             qty:  Math.max(1, Number(x.qty||x.quantity||1)||1), note:'' };
+  }).filter(function(x){ return x.name; });
+}
+
+// 확장 content script → 페이지 (같은 window에서 postMessage)
+window.addEventListener('message', function(e){
+  if (e.source !== window) return;
+  var d = e.data;
+  if (!d || d.type !== 'rndsetup:items' || !Array.isArray(d.items)) return;
+  receiveItems(normItems(d.items), d.site || '크롬 확장');
+});
+
+function receiveItems(rows, from){
+  if (!rows.length) return toast('가져온 품목이 없습니다');
+  if (view!=='new'){ go('new'); }
+  var w = modal('가져온 품목 '+rows.length+'건',
+     '<p class="hint">'+esc(from)+'에서 가져왔습니다. 확인 후 담아주세요.</p>'
+    +'<table class="mini" style="margin-top:10px"><thead><tr><th class="l">품명</th><th>옵션</th>'
+      +'<th style="width:52px">수량</th></tr></thead><tbody>'
+    + rows.map(function(r){ return '<tr><td class="l">'+esc(r.name)
+        +(r.link?'<br><small style="color:var(--mut)">'+esc(r.link.slice(0,52))+'…</small>':'')
+        +'</td><td>'+esc(r.spec||'—')+'</td><td>'+r.qty+'</td></tr>'; }).join('')
+    +'</tbody></table>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn pri" id="r-go">'+rows.length+'건 담기</button></div>');
+  $('#r-go').onclick = function(){
+    cart = cart.concat(rows); saveCart(); w.remove();
+    refreshCart(); toast(rows.length+'건 담았습니다');
+  };
+}
+
 function openBulk(){
+  document.querySelectorAll('#seg button').forEach(function(x){ x.classList.toggle('on', x.dataset.m==='bulk'); });
   if (EXT_ID && window.chrome && chrome.runtime && chrome.runtime.sendMessage){
-    var done=false;
+    var done = false;
     try {
-      chrome.runtime.sendMessage(EXT_ID, { type:'rndsetup:bulk-order' }, function(res){
+      chrome.runtime.sendMessage(EXT_ID, { type:'rndsetup:pull' }, function(res){
         done = true;
-        if (chrome.runtime.lastError || !res) bulkPaste();
+        if (chrome.runtime.lastError) return bulkPaste(true);
+        if (res && Array.isArray(res.items)) return receiveItems(normItems(res.items), res.site||'크롬 확장');
+        bulkWait();     // 확장이 창을 띄우고 나중에 보내는 방식
       });
-      setTimeout(function(){ if(!done) bulkPaste(); }, 800);
+      setTimeout(function(){ if(!done) bulkWait(); }, 700);
       return;
     } catch(e){}
   }
-  bulkPaste();
+  bulkPaste(true);
 }
 
-function bulkPaste(){
-  document.querySelectorAll('#seg button').forEach(function(x){ x.classList.toggle('on', x.dataset.m==='bulk'); });
+// 확장이 사이트를 열어 긁어오는 동안 대기
+function bulkWait(){
   $('#inputArea').innerHTML =
-     '<p class="hint" style="margin:14px 0 8px">크롬 확장이 없으면 여기에 붙여넣어 주세요.<br>'
-    +'<b>품명, 규격, 수량</b> 순서이고 쉼표 또는 탭으로 구분합니다. 수량을 빼면 1개로 봅니다.</p>'
+     '<div class="waitbox"><div class="spin"></div>'
+    +'<b>크롬 확장에서 품목을 가져오는 중…</b>'
+    +'<small>확장 창에서 담기를 마치면 이 화면에 자동으로 올라옵니다.</small>'
+    +'<button class="btn ghost" id="w-paste" style="margin-top:14px">직접 붙여넣기</button></div>';
+  $('#w-paste').onclick = function(){ bulkPaste(false); };
+}
+
+function bulkPaste(showNotice){
+  $('#inputArea').innerHTML =
+     (showNotice && !EXT_ID
+       ? '<div class="warnbox" style="margin-top:14px">크롬 확장이 아직 연결되지 않았습니다. 아래에 붙여넣어 주문하실 수 있습니다.</div>'
+       : '')
+    +'<p class="hint" style="margin:14px 0 8px"><b>품명, 규격, 수량</b> 순서로 한 줄에 한 품목씩. '
+    +'쉼표·탭으로 구분하고, 줄에 주소가 섞여 있으면 상품 링크로 인식합니다.</p>'
     +'<textarea id="b-text" style="min-height:170px;font-size:13.5px" placeholder="Potassium hydroxide, 500g, 2&#10;Sodium aluminate (Extra Pure), 1kg&#10;Nafion 117 membrane, , 3"></textarea>'
     +'<button class="btn gray" id="b-parse" style="width:100%;margin-top:12px;padding:13px">읽어들이기</button>'
     +'<div id="b-preview"></div>';
