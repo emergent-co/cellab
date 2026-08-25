@@ -2,6 +2,7 @@
 // POST /api/auth/me     → 거래처 정보 저장
 // DELETE /api/auth/me   → 로그아웃
 import { json, currentCustomer, dropSession, clearCookie, kstISO } from '../_lib.js';
+import { labInfo } from '../order/lab.js';
 
 const FIELDS = ['name', 'email', 'phone', 'company', 'biz_no', 'ceo', 'biz_type', 'biz_item', 'tax_email', 'address'];
 
@@ -15,7 +16,8 @@ export async function onRequest({ request, env }) {
   if (!me) return json({ login: false }, 200);
 
   if (request.method === 'GET') {
-    return json({ login: true, customer: me, profileComplete: !!(me.company && me.biz_no && me.phone) });
+    const info = await labInfo(env, me);
+    return json({ login: true, customer: me, lab: info.lab, members: info.members });
   }
 
   if (request.method === 'POST') {

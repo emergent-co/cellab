@@ -44,5 +44,26 @@ export async function onRequest({ request, env }) {
      VALUES (?,?,?,?,?,?,?)`
   ).bind(me.id, org, addr, post, detail, isDefault, kstISO()).run();
 
+  // 아직 실험실이 없으면 이 소속으로 하나 만들고 소속시킨다(초대 코드가 여기서 생긴다)
+  if (!me.lab_id) {
+    const code = await freshCode(env);
+    const lr = await env.DB.prepare('INSERT INTO labs (code, name, created_by, created_at) VALUES (?,?,?,?)')
+      .bind(code, org, me.id, kstISO()).run();
+    await env.DB.prepare('UPDATE customers SET lab_id=?, company=?, updated_at=? WHERE id=?')
+      .bind(lr.meta.last_row_id, org, kstISO(), me.id).run();
+  }
+
   return json({ ok: true, id: r.meta.last_row_id });
+}
+
+async function freshCode(env) {
+  const AB = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  for (let t = 0; t < 12; t++) {
+    const bytes = new Uint8Array(6);
+    crypto.getRandomValues(bytes);
+    const code = [...bytes].map((b) => AB[b % AB.length]).join('');
+    const dup = await env.DB.prepare('SELECT id FROM labs WHERE code=?').bind(code).first();
+    if (!dup) return code;
+  }
+  return 'L' + Date.now().toString(36).toUpperCase().slice(-5);
 }

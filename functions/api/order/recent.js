@@ -1,17 +1,15 @@
 // GET /api/order/recent → 같은 소속이 구매한 품목 (연구실 단위 공유)
 //   같은 연구실 사람이 이미 산 물건을 다시 찾아 헤매지 않게 한다.
 import { json, currentCustomer } from '../_lib.js';
-import { myOrgs } from './products.js';
+import { labMateIds } from './lab.js';
 
 export async function onRequestGet({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
 
-  const orgs = await myOrgs(env, me.id);
-  const where = orgs.length
-    ? `(o.customer_id = ? OR o.org_name IN (${orgs.map(() => '?').join(',')}))`
-    : 'o.customer_id = ?';
-  const binds = orgs.length ? [me.id, ...orgs] : [me.id];
+  const ids = await labMateIds(env, me);
+  const where = `o.customer_id IN (${ids.map(() => '?').join(',')})`;
+  const binds = ids;
 
   const { results } = await env.DB.prepare(
     `SELECT oi.name, oi.spec, oi.link, oi.qty,
@@ -29,5 +27,5 @@ export async function onRequestGet({ request, env }) {
       LIMIT 60`
   ).bind(...binds).all();
 
-  return json({ orgs, items: results || [] });
+  return json({ items: results || [] });
 }

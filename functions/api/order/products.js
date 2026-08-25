@@ -3,6 +3,7 @@
 //   제품명이 "SH Scientific 전기로 1200℃ 27L SH-FU-27MG"처럼 길어서
 //   단어를 쪼개 모두 포함하는 것을 찾는다("전기로 1200" → 매칭).
 import { json, currentCustomer } from '../_lib.js';
+import { labMateIds } from './lab.js';
 
 export async function onRequestGet({ request, env }) {
   const q = (new URL(request.url).searchParams.get('q') || '').trim();
@@ -14,23 +15,18 @@ export async function onRequestGet({ request, env }) {
   // ---- 1) 주문 이력 (내 소속 공유) ----
   let mine = [];
   if (me) {
-    const orgs = await myOrgs(env, me.id);
+    const ids = await labMateIds(env, me);      // 같은 실험실이면 함께 검색된다
     const cond = words.map(() => '(oi.name LIKE ? OR oi.spec LIKE ?)').join(' AND ');
     const binds = [];
     for (const w of words) binds.push(`%${w}%`, `%${w}%`);
 
-    const where = orgs.length
-      ? `(o.customer_id = ? OR o.org_name IN (${orgs.map(() => '?').join(',')}))`
-      : 'o.customer_id = ?';
-    const whereBinds = orgs.length ? [me.id, ...orgs] : [me.id];
-
     const r = await env.DB.prepare(
       `SELECT oi.name, oi.spec, oi.link, MAX(oi.id) AS last_id
          FROM order_items oi JOIN orders o ON o.id = oi.order_id
-        WHERE ${where} AND ${cond}
+        WHERE o.customer_id IN (${ids.map(() => '?').join(',')}) AND ${cond}
         GROUP BY oi.name, oi.spec
         ORDER BY last_id DESC LIMIT 6`
-    ).bind(...whereBinds, ...binds).all();
+    ).bind(...ids, ...binds).all();
 
     mine = (r.results || []).map((x) => ({
       src: 'mine', name: x.name, spec: x.spec || '', model: '', link: x.link || '',
@@ -58,14 +54,4 @@ export async function onRequestGet({ request, env }) {
   }));
 
   return json({ items: mine.concat(cat) });
-}
-
-// 내가 쓰는 소속 목록 (납품지 + 지난 주문)
-export async function myOrgs(env, customerId) {
-  const a = (await env.DB.prepare('SELECT DISTINCT org_name FROM sites WHERE customer_id=? AND org_name IS NOT NULL')
-    .bind(customerId).all()).results || [];
-  const b = (await env.DB.prepare('SELECT DISTINCT org_name FROM orders WHERE customer_id=? AND org_name IS NOT NULL')
-    .bind(customerId).all()).results || [];
-  const set = new Set([...a, ...b].map((x) => x.org_name).filter(Boolean));
-  return [...set].slice(0, 10);
 }
