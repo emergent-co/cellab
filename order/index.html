@@ -4,177 +4,589 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0a2540">
-<title>주문 요청 — 실험셋업연구소</title>
+<meta name="theme-color" content="#ffffff">
+<title>주문·정산 — 실험셋업연구소</title>
 <link rel="canonical" href="https://rndsetup.com/order/">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a2540;--teal:#1a6e56;--ink:#1a2332;--mut:#5a6779;--line:#e3e8ef;--bg:#f4f6fa}
-html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;word-break:keep-all;-webkit-text-size-adjust:100%}
+:root{
+  --navy:#1e3a8a;--ink:#1f2333;--mut:#6b7280;--line:#e8eaef;--bg:#f7f8fa;
+  --teal:#1a6e56;--side:240px;--head:64px;
+}
+html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.55;word-break:keep-all;-webkit-text-size-adjust:100%}
 button,input,select,textarea{font:inherit;color:inherit}
-.top{background:var(--navy);color:#fff;padding:calc(13px + env(safe-area-inset-top)) 16px 13px}
-.top h1{font-size:16.5px;font-weight:800;display:flex;align-items:center;gap:8px}
-.top h1 a{margin-left:auto;color:#9fc3e8;text-decoration:none;font-size:12.5px;font-weight:600}
-.top p{font-size:12.5px;color:#9fb3c8;margin-top:3px}
-.wrap{max-width:640px;margin:0 auto;padding:14px 12px 100px}
-.sec{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px 15px;margin-bottom:11px}
-.sec h2{font-size:13px;font-weight:800;color:var(--mut);letter-spacing:.3px;margin-bottom:12px}
-label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:11px 0 5px}
-label:first-of-type{margin-top:0}
-input,select,textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;background:#fbfcfe}
-input:focus,textarea:focus,select:focus{outline:0;border-color:var(--teal);background:#fff}
-textarea{min-height:84px;resize:vertical}
-.req::after{content:' *';color:#C2410C}
-.btn{display:block;width:100%;border:0;border-radius:12px;padding:15px;font-size:15.5px;font-weight:800;cursor:pointer}
-.btn.pri{background:var(--teal);color:#fff}
-.btn.pri:disabled{opacity:.5}
-.btn.kakao{background:#FEE500;color:#191600}
+a{color:inherit;text-decoration:none}
+
+/* ---------- 로그인 ---------- */
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:38px 30px;width:100%;max-width:430px;text-align:center}
+.login .bd{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.login .bd small{display:block;font-size:13px;font-weight:600;color:var(--mut);margin-top:3px}
+.login p{font-size:14px;color:var(--mut);margin:20px 0 22px;line-height:1.6}
+.kakao{display:block;width:100%;background:#FEE500;color:#191600;border:0;border-radius:11px;padding:15px;font-size:15.5px;font-weight:800;cursor:pointer}
+
+/* ---------- 셸 ---------- */
+.shell{display:none;min-height:100vh}
+.shell.on{display:block}
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--side);background:#fff;border-right:1px solid var(--line);z-index:30;display:flex;flex-direction:column}
+.brand{padding:26px 22px 24px;text-align:center;border-bottom:1px solid var(--line)}
+.brand b{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.brand small{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin-top:2px}
+.nav{padding:14px 0;flex:1}
+.nav a{display:block;padding:16px 22px;font-size:15px;font-weight:700;color:var(--mut);border-left:4px solid transparent;cursor:pointer}
+.nav a:hover{background:#fafbfc}
+.nav a.on{color:var(--ink);font-weight:800;border-left-color:var(--navy);background:#f4f6fb}
+.side .foot{padding:16px 22px 22px;font-size:11.5px;color:#9aa1ad;line-height:1.65;border-top:1px solid var(--line)}
+
+.head{position:fixed;left:var(--side);right:0;top:0;height:var(--head);background:#fff;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;padding:0 26px;z-index:20}
+.head h1{font-size:17px;font-weight:800}
+.head .who{margin-left:auto;font-size:13.5px;color:var(--mut)}
+.head .who b{color:var(--ink);font-weight:700}
+.head .who button{background:0;border:0;color:var(--mut);font-size:13.5px;cursor:pointer;margin-left:14px}
+.head .who button:hover{color:var(--ink);text-decoration:underline}
+.head .burger{display:none;background:0;border:0;font-size:22px;line-height:1;margin-right:14px;cursor:pointer}
+
+.main{margin-left:var(--side);padding:calc(var(--head) + 26px) 26px 70px}
+.ttl{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
+
+/* ---------- 탭 ---------- */
+.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:22px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{background:0;border:0;padding:0 0 12px;font-size:14.5px;font-weight:700;color:var(--mut);white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* ---------- KPI ---------- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:11px;padding:18px 20px}
+.kpi.hi{border-color:#c7d2fe;background:#f8faff}
+.kpi span{display:block;font-size:12.5px;color:var(--mut);font-weight:600}
+.kpi b{display:block;font-size:24px;font-weight:800;text-align:right;margin-top:14px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi b i{font-style:normal;font-size:13px;font-weight:600;color:var(--mut);margin-left:3px}
+
+/* ---------- 툴바 ---------- */
+.tools{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.tools input[type=search]{flex:1;min-width:200px;max-width:360px;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:14px;background:#fff}
+.btn{border:0;border-radius:9px;padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--navy);color:#fff}
+.btn.ok{background:var(--teal);color:#fff}
+.btn.gray{background:#e9ebef;color:#4b5563}
 .btn.ghost{background:#fff;border:1px solid var(--line);color:var(--mut)}
-.it{border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:9px;background:#fbfcfe;position:relative}
-.it .row{display:flex;gap:6px;margin-top:6px}
-.it .row .qty{flex:0 0 78px;text-align:center}
-.it .row .unit{flex:0 0 68px;text-align:center}
-.it .del{flex:1;border:0;background:#fee2e2;color:#991B1B;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer}
-.addbtn{width:100%;border:1px dashed #c3ccd8;background:#fff;border-radius:11px;padding:13px;font-size:14px;font-weight:700;color:var(--mut);cursor:pointer}
-.sug{position:absolute;left:12px;right:12px;top:52px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 24px rgba(10,37,64,.13);z-index:10;max-height:230px;overflow-y:auto}
-.sug div{padding:11px 12px;font-size:13.5px;border-bottom:1px solid #f1f4f8;cursor:pointer}
+.btn:disabled{opacity:.5;cursor:default}
+.tools .right{margin-left:auto;display:flex;gap:8px}
+
+/* ---------- 목록 + 상세 ---------- */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-size:12px;color:var(--mut);font-weight:700;padding:13px 10px;border-bottom:1px solid var(--line);background:#fcfcfd}
+td{padding:14px 10px;border-bottom:1px solid #f2f4f7;text-align:center;vertical-align:middle}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:#fafbfd}
+tbody tr.sel{background:#f4f6fb}
+td.l{text-align:left}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.s0{background:#FEF3C7;color:#92400E}.s1{background:#DBEAFE;color:#1E40AF}.s2{background:#D1FAE5;color:#065F46}
+.s3{background:#EDE9FE;color:#5B21B6}.s4{background:#F3E8FF;color:#6B21A8}.s5{background:#CFFAFE;color:#155E75}
+.s6{background:#DCFCE7;color:#166534}.s7{background:#F1F5F9;color:#475569}.s8{background:#FEE2E2;color:#991B1B}
+.empty{padding:64px 20px;text-align:center;color:#9aa1ad;font-size:14px}
+.detail{min-height:380px;padding:22px}
+.detail .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px;color:#9aa1ad;font-size:14px;gap:14px}
+.detail .ph svg{width:56px;height:56px;stroke:#d7dbe2;fill:none;stroke-width:1.5}
+.dh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.dh .no{font-size:12.5px;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
+.dt2{font-size:17px;font-weight:800;margin-bottom:16px}
+.sec{border-top:1px solid var(--line);padding-top:15px;margin-top:15px}
+.sec h4{font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.3px;margin-bottom:10px}
+.kv{display:flex;gap:12px;font-size:13.5px;padding:4px 0}
+.kv span:first-child{color:var(--mut);flex:0 0 76px}
+.kv span:last-child{flex:1}
+.sum{display:flex;justify-content:space-between;font-size:16px;font-weight:800;padding-top:11px;border-top:1px solid var(--line);margin-top:8px;font-variant-numeric:tabular-nums}
+.ev{display:flex;gap:10px;font-size:12.5px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.ev:last-child{border-bottom:0}
+.ev time{flex:0 0 86px;color:var(--mut);font-variant-numeric:tabular-nums}
+.warnbox{font-size:13px;color:#92400E;background:#FEF3C7;border-radius:9px;padding:11px 13px;line-height:1.55}
+.okbox{font-size:13px;color:#065F46;background:#D1FAE5;border-radius:9px;padding:11px 13px}
+.lnk{background:0;border:0;color:var(--teal);font-weight:700;font-size:13px;cursor:pointer;padding:0;margin-right:14px}
+
+/* ---------- 폼 / 모달 ---------- */
+label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:13px 0 6px}
+label.req::after{content:' *';color:#C2410C}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-size:14.5px;background:#fff}
+input:focus,textarea:focus,select:focus{outline:0;border-color:#93a4c8}
+textarea{min-height:78px;resize:vertical}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(20,28,48,.45);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.mbox{background:#fff;border-radius:14px;width:100%;max-width:540px;padding:24px;max-height:90vh;overflow-y:auto;position:relative}
+.mbox h3{font-size:17px;font-weight:800;margin-bottom:2px}
+.mbox .x{position:absolute;right:18px;top:18px;background:0;border:0;font-size:22px;color:#9aa1ad;cursor:pointer;line-height:1}
+.mbox .hint{font-size:12.5px;color:var(--mut);line-height:1.55}
+.mrow{display:flex;gap:8px;margin-top:20px}
+.mrow .btn{flex:1;padding:14px}
+.itrow{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:9px;background:#fcfcfd;position:relative}
+.itrow .r{display:flex;gap:7px;margin-top:7px}
+.itrow .r .qty{flex:0 0 84px;text-align:center}
+.itrow .r .unit{flex:0 0 74px;text-align:center}
+.itrow .r .del{flex:1;border:0;background:#fee2e2;color:#991B1B;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.add{width:100%;border:1px dashed #c9cfd8;background:#fff;border-radius:10px;padding:12px;font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer}
+.sug{position:absolute;left:12px;right:12px;top:50px;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 10px 26px rgba(20,28,48,.14);z-index:10;max-height:220px;overflow-y:auto}
+.sug div{padding:10px 12px;font-size:13px;border-bottom:1px solid #f4f6f8;cursor:pointer}
 .sug div:last-child{border-bottom:0}
-.sug b{display:block;font-size:14px}
+.sug b{display:block;font-size:13.5px}
 .sug small{color:var(--mut)}
-.hint{font-size:12.5px;color:var(--mut);margin-top:8px;line-height:1.55}
-.done{text-align:center;padding:44px 20px}
-.done .no{font-size:22px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;margin:14px 0}
-.err{background:#FEE2E2;color:#991B1B;border-radius:10px;padding:11px 13px;font-size:13.5px;font-weight:700;margin-bottom:11px}
-.foot{text-align:center;font-size:12px;color:var(--mut);padding:18px 12px 30px;line-height:1.7}
+.chk{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:13.5px;font-weight:700;color:var(--mut)}
+.chk input{width:18px;height:18px;flex:0 0 18px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1f2333;color:#fff;padding:12px 22px;border-radius:11px;
+  font-size:14px;font-weight:700;z-index:80;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:.95}
+.scrim{display:none;position:fixed;inset:0;background:rgba(20,28,48,.4);z-index:25}
+.scrim.on{display:block}
+
+/* ---------- 모바일 ---------- */
+@media(max-width:900px){
+  :root{--side:0px}
+  .side{transform:translateX(-260px);width:260px;transition:transform .22s}
+  .side.on{transform:none}
+  .head{left:0;padding:0 16px}
+  .head .burger{display:block}
+  .main{margin-left:0;padding:calc(var(--head) + 18px) 14px 80px}
+  .ttl{font-size:19px}
+  .kpis{grid-template-columns:repeat(2,1fr);gap:10px}
+  .kpi{padding:14px 15px}
+  .kpi b{font-size:20px;margin-top:8px}
+  .split{grid-template-columns:1fr}
+  .detail{display:none}
+  .detail.on{display:block}
+  .panel.list.hide{display:none}
+  .head .who{font-size:12.5px}
+
+  /* 표를 카드로 — 좁은 화면에서 표는 못 읽는다 */
+  table.cards thead{display:none}
+  table.cards, table.cards tbody{display:block}
+  table.cards tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:5px 10px;
+    padding:15px 16px;border-bottom:1px solid #f2f4f7}
+  table.cards td{display:block;width:auto;border:0;padding:0;text-align:left;font-size:13.5px}
+  table.cards td:nth-child(2){order:1;flex:1 1 100%;font-size:14.5px;line-height:1.45}
+  table.cards td:nth-child(1){order:2}
+  table.cards td:nth-child(3){order:3;font-size:12.5px;color:var(--mut)}
+  table.cards td:nth-child(4){order:4;margin-left:auto;font-size:15px;font-weight:800}
+  table.cards.docs td:nth-child(5){order:5;flex:1 1 100%;margin-top:4px}
+  /* 상세 안의 품목표는 그대로 */
+  .detail table td,.detail table th{padding:11px 6px;font-size:12.5px}
+}
 </style>
 </head>
 <body>
-<div class="top">
-  <h1>주문 요청<a href="/order/my/">내 주문 →</a></h1>
-  <p>실험셋업연구소 · 이머전트</p>
+
+<!-- 로그인 -->
+<div class="login" id="login" style="display:none">
+  <div class="card">
+    <div class="bd">실험셋업연구소<small>(이머전트)</small></div>
+    <p>주문 요청과 진행 상황 확인, 견적서·거래명세서 발급을<br>한 곳에서 하실 수 있습니다.</p>
+    <button class="kakao" id="kakaoBtn">카카오로 계속하기</button>
+  </div>
 </div>
-<div class="wrap" id="app"><div class="sec">불러오는 중…</div></div>
-<div class="foot">이머전트 · 대표 이영현 · 사업자등록번호 328-03-02926<br>070-8983-2600 · info@rndsetup.com</div>
+
+<!-- 대시보드 -->
+<div class="shell" id="shell">
+  <aside class="side" id="side">
+    <div class="brand"><b>실험셋업연구소</b><small>(이머전트)</small></div>
+    <nav class="nav" id="nav">
+      <a data-v="orders" class="on">주문 현황</a>
+      <a data-v="settle">정산하기</a>
+    </nav>
+    <div class="foot">070-8983-2600<br>info@rndsetup.com</div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <header class="head">
+    <button class="burger" id="burger">☰</button>
+    <h1 id="headTitle">대시보드</h1>
+    <div class="who"><b id="whoName">—</b>님, 안녕하세요<button id="logout">로그아웃</button></div>
+  </header>
+
+  <main class="main" id="main"></main>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-const $ = s => document.querySelector(s);
-const app = $('#app');
-const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let me = null, items = [{name:'',spec:'',unit:'EA',qty:1}];
+const $ = function(s){ return document.querySelector(s); };
+const esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+const won = function(n){ return Number(n||0).toLocaleString('ko-KR'); };
+const ST = ['요청접수','견적발송','견적승인','발주확정','납품완료','계산서발행','완료','보류','취소'];
+const SIDX = {}; ST.forEach(function(s,i){ SIDX[s]=i; });
+const DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
 
-// 주문 시점엔 연락 정보만. 사업자정보(상호·사업자번호·대표자명)는
-// 정산 시점에 '내 주문'에서 고객이 직접 등록한다.
-const P = [['name','담당자명',1],['phone','연락처',1],['email','이메일',1]];
+let me=null, view='orders', tab='전체', kw='', orders=[], cur=null, items=[{name:'',spec:'',unit:'EA',qty:1}];
 
+function toast(m){ var t=$('#toast'); t.textContent=m; t.classList.add('on'); setTimeout(function(){t.classList.remove('on');},1900); }
+function badge(s){ return '<span class="badge s'+(SIDX[s]==null?7:SIDX[s])+'">'+esc(s)+'</span>'; }
+
+/* ---------------- 부팅 ---------------- */
 async function boot(){
-  const q = new URLSearchParams(location.search);
-  if (q.get('err')) app.innerHTML = '<div class="err">로그인 처리 중 문제가 발생했습니다 ('+esc(q.get('err'))+'). 다시 시도해주세요.</div>';
-  const r = await fetch('/api/auth/me').then(r=>r.json());
-  me = r.login ? r.customer : null;
-  if (!me) return viewLogin();
-  if (!me.name || !me.phone || !me.email) return viewProfile();
-  viewOrder();
+  var r = await fetch('/api/auth/me').then(function(r){return r.json();}).catch(function(){return {};});
+  if (!r.login){ $('#login').style.display='flex'; return; }
+  me = r.customer;
+  $('#login').style.display='none';
+  $('#shell').classList.add('on');
+  $('#whoName').textContent = me.name || '고객';
+  if (location.hash === '#settle') view='settle';
+  syncNav();
+  render();
+}
+$('#kakaoBtn').onclick = function(){ location.href='/api/auth/kakao?next=/order/'; };
+$('#logout').onclick = async function(){
+  await fetch('/api/auth/me',{method:'DELETE'});
+  location.reload();
+};
+$('#burger').onclick = function(){ $('#side').classList.toggle('on'); $('#scrim').classList.toggle('on'); };
+$('#scrim').onclick = function(){ $('#side').classList.remove('on'); $('#scrim').classList.remove('on'); };
+$('#nav').onclick = function(e){
+  var a = e.target.closest('a[data-v]'); if(!a) return;
+  view = a.dataset.v; cur=null; location.hash = '#'+view;
+  $('#side').classList.remove('on'); $('#scrim').classList.remove('on');
+  syncNav(); render();
+};
+function syncNav(){
+  document.querySelectorAll('#nav a').forEach(function(a){ a.classList.toggle('on', a.dataset.v===view); });
+  $('#headTitle').textContent = '대시보드';
 }
 
-function viewLogin(){
-  app.innerHTML += '<div class="sec"><h2>로그인</h2>'
-   +'<p style="font-size:14px;margin-bottom:14px">카카오톡으로 로그인하면 주문요청과 진행상황 확인, 견적서·거래명세서 열람을 한 곳에서 하실 수 있습니다.</p>'
-   +'<a class="btn kakao" style="text-align:center;text-decoration:none;display:block" href="/api/auth/kakao?next=/order/">카카오톡으로 시작하기</a>'
-   +'<p class="hint">전화 문의: 070-8983-2600 · info@rndsetup.com</p></div>';
+/* ---------------- 라우팅 ---------------- */
+function render(){ if (view==='orders') viewOrders(); else viewSettle(); }
+
+/* ---------------- 주문 현황 ---------------- */
+async function viewOrders(){
+  var r = await fetch('/api/order').then(function(r){return r.json();});
+  orders = r.orders || [];
+  var org = (orders.find(function(o){ return o.org_name; })||{}).org_name || me.company || '';
+  var total = orders.length;
+  var open = orders.filter(function(o){ return ['요청접수','견적발송','견적승인','발주확정'].indexOf(o.status)>=0; }).length;
+  var wait = orders.filter(function(o){ return o.status==='견적발송'; }).length;
+  var amt = orders.reduce(function(s,o){ return s + (o.total_amount||0); },0);
+
+  $('#main').innerHTML =
+    '<div class="ttl">'+(org?esc(org)+' ':'')+'주문 목록</div>'
+   +'<div class="tabs" id="tabs">'
+     +['전체'].concat(ST.slice(0,7)).map(function(s){
+        return '<button class="'+(s===tab?'on':'')+'" data-t="'+esc(s)+'">'+esc(s)+'</button>'; }).join('')
+   +'</div>'
+   +'<div class="kpis">'
+     +kpi('전체 주문', total, '건')
+     +kpi('진행 중', open, '건')
+     +kpi('승인 대기', wait, '건')
+     +kpi('누적 금액', won(amt), '원', true)
+   +'</div>'
+   +'<div class="tools">'
+     +'<input type="search" id="q" placeholder="주문번호 · 품명으로 검색" value="'+esc(kw)+'">'
+     +'<div class="right"><button class="btn pri" id="newOrder">＋ 주문 요청</button></div>'
+   +'</div>'
+   +'<div class="split">'
+     +'<div class="panel list" id="listPanel">'+listTable()+'</div>'
+     +'<div class="panel detail" id="detail">'+placeholder()+'</div>'
+   +'</div>';
+
+  $('#tabs').onclick = function(e){ var b=e.target.closest('button[data-t]'); if(!b) return;
+    tab=b.dataset.t; cur=null; viewOrders(); };
+  var t; $('#q').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ kw=e.target.value.trim(); viewOrders(); },280); };
+  $('#newOrder').onclick = orderForm;
+  bindRows();
+  if (cur) openOrder(cur, true);
 }
 
-function viewProfile(){
-  app.innerHTML = '<div class="sec"><h2>연락처 확인</h2>'
-   + P.map(([k,l,req])=>'<label class="'+(req?'req':'')+'">'+l+'</label><input id="p-'+k+'" value="'+esc(me[k]||'')+'"'+(k==='email'||k==='tax_email'?' type="email" inputmode="email"':'')+(k==='phone'?' type="tel" inputmode="tel"':'')+'>').join('')
-   +'<p class="hint">견적서 회신과 진행 안내를 받으실 연락처입니다. 카카오 계정에서 자동으로 채워졌다면 그대로 두셔도 됩니다.<br>세금계산서 발행에 필요한 사업자정보는 정산 시점에 “내 주문”에서 등록하시면 됩니다.</p>'
-   +'</div><button class="btn pri" id="saveP">확인하고 주문하기</button>';
-  $('#saveP').onclick = async ()=>{
-    const b = {}; P.forEach(([k])=>b[k]=$('#p-'+k).value.trim());
-    for (const [k,l,req] of P) if (req && !b[k]) return alert(l+'을(를) 입력해주세요.');
-    const btn=$('#saveP'); btn.disabled=true; btn.textContent='저장 중…';
-    const r = await fetch('/api/auth/me',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
-    if (r.ok){ me = r.customer; viewOrder(); } else { btn.disabled=false; btn.textContent='확인하고 주문하기'; alert('저장 실패'); }
-  };
+function kpi(label, val, unit, hi){
+  return '<div class="kpi'+(hi?' hi':'')+'"><span>'+label+'</span><b>'+val+'<i>'+unit+'</i></b></div>';
 }
 
-function viewOrder(){
-  app.innerHTML = '<div class="sec"><h2>주문 품목</h2><div id="itemBox"></div>'
-   +'<button class="addbtn" id="addItem">+ 품목 추가</button></div>'
-   +'<div class="sec"><h2>요청 정보</h2>'
-   +'<label class="req">소속 (기관 · 연구실)</label><input id="f-org" value="'+esc(me.company||'')+'" placeholder="예) 포항공과대학교 신소재공학과 000연구실">'
-   +'<label>주문 제목</label><input id="f-title" placeholder="예) 튜브퍼니스 + MFC 셋업">'
-   +'<label>희망 납기일</label><input id="f-want" type="date">'
-   +'<label>납품 주소</label><input id="f-ship" value="'+esc(me.address||'')+'" placeholder="납품받으실 주소">'
-   +'<label>요청사항</label><textarea id="f-note" placeholder="사양·조건·예산·설치 관련 요청을 적어주세요"></textarea>'
-   +'<p class="hint">단가는 요청 접수 후 담당자가 확인하여 견적서로 회신드립니다.<br>견적서의 “공급받는자”에는 위 소속이 표기됩니다.</p></div>'
-   +'<button class="btn pri" id="submitBtn">주문 요청 보내기</button>'
-   +'<div style="height:9px"></div><button class="btn ghost" id="editP">연락처 수정</button>';
-  $('#addItem').onclick = ()=>{ items.push({name:'',spec:'',unit:'EA',qty:1}); renderItems(); };
-  $('#editP').onclick = viewProfile;
-  $('#submitBtn').onclick = submit;
-  renderItems();
-}
-
-function renderItems(){
-  const box = $('#itemBox');
-  box.innerHTML = items.map((it,i)=>
-    '<div class="it" data-i="'+i+'">'
-    +'<input class="f-name" placeholder="품명 · 모델명으로 검색" value="'+esc(it.name)+'" autocomplete="off">'
-    +'<input class="f-spec" placeholder="규격 / 사양 (선택)" value="'+esc(it.spec||'')+'">'
-    +'<div class="row"><input class="unit f-unit" value="'+esc(it.unit||'EA')+'">'
-      +'<input class="qty f-qty" type="number" inputmode="numeric" min="1" value="'+(it.qty||1)+'">'
-      +(items.length>1?'<button class="del">삭제</button>':'<span style="flex:1"></span>')
-    +'</div></div>').join('');
-  box.querySelectorAll('.it').forEach(el=>{
-    const i = +el.dataset.i;
-    const nm = el.querySelector('.f-name');
-    nm.oninput = e=>{ items[i].name=e.target.value; suggest(el,i,e.target.value); };
-    nm.onblur = ()=>setTimeout(()=>{ const s=el.querySelector('.sug'); if(s) s.remove(); },180);
-    el.querySelector('.f-spec').oninput = e=>items[i].spec=e.target.value;
-    el.querySelector('.f-unit').oninput = e=>items[i].unit=e.target.value;
-    el.querySelector('.f-qty').oninput  = e=>items[i].qty=+e.target.value;
-    const d = el.querySelector('.del'); if(d) d.onclick=()=>{ items.splice(i,1); renderItems(); };
+function filtered(){
+  return orders.filter(function(o){
+    if (tab!=='전체' && o.status!==tab) return false;
+    if (kw){ var s=(o.order_no+' '+(o.title||'')).toLowerCase(); if (s.indexOf(kw.toLowerCase())<0) return false; }
+    return true;
   });
 }
 
-let st;
+function listTable(){
+  var rows = filtered();
+  if (!rows.length) return '<div class="empty">해당하는 주문이 없습니다.</div>';
+  return '<table class="cards"><thead><tr><th style="width:96px">상태</th><th>주문 내용</th>'
+    +'<th style="width:104px">요청일</th><th style="width:118px">금액</th></tr></thead><tbody>'
+    + rows.map(function(o){
+      return '<tr data-id="'+o.id+'"'+(cur===o.id?' class="sel"':'')+'>'
+        +'<td>'+badge(o.status)+'</td>'
+        +'<td class="l"><b>'+esc(o.title||'(제목 없음)')+'</b><br><small style="color:var(--mut)">'+esc(o.order_no)+'</small></td>'
+        +'<td>'+esc(String(o.created_at||'').slice(0,10))+'</td>'
+        +'<td class="n">'+(o.total_amount?won(o.total_amount)+'원':'—')+'</td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+function bindRows(){
+  document.querySelectorAll('#listPanel tbody tr').forEach(function(tr){
+    tr.onclick = function(){ openOrder(Number(tr.dataset.id)); };
+  });
+}
+
+function placeholder(){
+  return '<div class="ph"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/></svg>'
+    +'<span>좌측 목록에서 주문을 선택하세요</span></div>';
+}
+
+async function openOrder(id, keep){
+  cur = id;
+  document.querySelectorAll('#listPanel tbody tr').forEach(function(tr){
+    tr.classList.toggle('sel', Number(tr.dataset.id)===id); });
+  var d = await fetch('/api/order/'+id).then(function(r){return r.json();});
+  if (d.error) return;
+  var o = d.order;
+  var box = $('#detail'); box.classList.add('on');
+  if (window.innerWidth<=900 && !keep) $('#listPanel').classList.add('hide');
+
+  box.innerHTML =
+    (window.innerWidth<=900 ? '<button class="btn ghost" id="back" style="margin-bottom:14px">← 목록</button>' : '')
+   +'<div class="dh"><span class="no">'+esc(o.order_no)+'</span>'+badge(o.status)+'</div>'
+   +'<div class="dt2">'+esc(o.title||'')+'</div>'
+   +'<div class="kv"><span>소속</span><span>'+esc(o.org_name||'—')+'</span></div>'
+   +'<div class="kv"><span>요청일</span><span>'+esc(String(o.created_at||'').slice(0,16))+'</span></div>'
+   +'<div class="kv"><span>희망납기</span><span>'+esc(o.want_date||'—')+'</span></div>'
+   +'<div class="kv"><span>납품지</span><span>'+esc(o.ship_address||'—')+'</span></div>'
+   +(o.request_note?'<div class="kv"><span>요청사항</span><span>'+esc(o.request_note)+'</span></div>':'')
+   +'<div class="sec"><h4>품목</h4><table><thead><tr><th class="l">품명</th><th style="width:64px">수량</th>'
+     +'<th style="width:92px">단가</th><th style="width:100px">금액</th></tr></thead><tbody>'
+     + (d.items||[]).map(function(i){
+         return '<tr style="cursor:default"><td class="l">'+esc(i.name)
+           +(i.spec?'<br><small style="color:var(--mut)">'+esc(i.spec)+'</small>':'')+'</td>'
+           +'<td>'+(i.qty||0)+'</td><td class="n">'+(i.unit_price?won(i.unit_price):'—')+'</td>'
+           +'<td class="n">'+(i.amount?won(i.amount):'—')+'</td></tr>'; }).join('')
+     +'</tbody></table>'
+     +(o.total_amount?'<div class="sum"><span>합계 (VAT 포함)</span><span>'+won(o.total_amount)+'원</span></div>'
+        :'<p class="hint" style="margin-top:10px">단가는 견적서 발송 시 확정됩니다.</p>')
+   +'</div>'
+   +'<div class="sec"><h4>세금계산서 발행 정보</h4><div id="billBox">'+billBlock(d)+'</div></div>'
+   +'<div class="sec"><h4>문서</h4>'
+     +((d.documents||[]).length
+       ? d.documents.map(function(x){
+           return '<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)
+             +(x.status==='취소됨'?'':' &nbsp;<a class="lnk" href="/doc/'+x.id+'" target="_blank">보기</a>'
+               +'<a class="lnk" href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>')+'</span></div>'; }).join('')
+       : '<div style="font-size:13px;color:var(--mut)">발행된 문서가 없습니다.</div>')
+   +'</div>'
+   +(o.status==='견적발송'?'<button class="btn ok" id="ap" style="width:100%;margin-top:16px;padding:14px">견적 승인하기</button>':'')
+   +'<div class="sec"><h4>진행 이력</h4>'
+     +(d.events||[]).map(function(e){
+        return '<div class="ev"><time>'+esc(String(e.created_at||'').slice(5,16))+'</time><div>'+esc(e.detail||e.action)+'</div></div>';
+      }).join('')
+   +'</div>';
+
+  var bk=$('#back'); if(bk) bk.onclick=function(){ $('#listPanel').classList.remove('hide'); box.classList.remove('on'); cur=null; };
+  bindBill(id);
+  var ap=$('#ap');
+  if (ap) ap.onclick = async function(){
+    if(!confirm('견적 내용대로 승인하시겠습니까?')) return;
+    ap.disabled=true; ap.textContent='처리 중…';
+    var r = await fetch('/api/order/'+id,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({action:'approve'})}).then(function(r){return r.json();});
+    if(r.ok){ toast('승인되었습니다'); viewOrders(); } else { alert(r.message||'실패'); ap.disabled=false; ap.textContent='견적 승인하기'; }
+  };
+}
+
+/* ---------------- 계산서 발행 정보 ---------------- */
+function billBlock(d){
+  var b = d.bill, ps = d.profiles||[];
+  var h = '';
+  if (b) h += '<div class="okbox">이 주문은 <b>'+esc(b.company)+'</b>'+(b.biz_no?' ('+esc(b.biz_no)+')':'')+' 명의로 발행됩니다.</div>';
+  else h += '<div class="warnbox">아직 등록된 발행 정보가 없습니다. 정산이 필요하시면 등록해주세요.<br>등록 전까지 견적서는 소속 기관명으로 나갑니다.</div>';
+  if (ps.length) h += '<label>발행 정보 선택</label><select id="billSel"><option value="">— 지정 안 함 —</option>'
+    + ps.map(function(p){ return '<option value="'+p.id+'"'+((b&&b.id===p.id)?' selected':'')+'>'
+        +esc(p.label||p.company)+(p.biz_no?' · '+esc(p.biz_no):'')+'</option>'; }).join('')+'</select>';
+  h += '<div style="height:10px"></div><button class="btn ghost" id="addBill" style="width:100%">＋ 발행 정보 등록</button>';
+  return h;
+}
+function bindBill(orderId){
+  var sel=$('#billSel');
+  if (sel) sel.onchange = async function(){
+    var r = await fetch('/api/order/'+orderId,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({action:'bill', bill_profile_id: sel.value?Number(sel.value):null})}).then(function(r){return r.json();});
+    if (r.ok){ toast('지정되었습니다'); openOrder(orderId, true); } else alert(r.message||'실패');
+  };
+  var ab=$('#addBill'); if (ab) ab.onclick=function(){ billForm(orderId); };
+}
+
+var BF = [['company','상호 (기관·회사명)',1],['biz_no','사업자등록번호',1],['ceo','대표자명',1],
+          ['tax_email','계산서 수신 이메일',0],['address','주소',0],['biz_type','업태',0],['biz_item','종목',0]];
+
+function billForm(orderId){
+  var w = modal('세금계산서 발행 정보',
+    '<p class="hint">사업자등록증에 적힌 그대로 입력해주세요. 한 번 등록하면 다음 주문에서 골라 쓸 수 있습니다.</p>'
+    + BF.map(function(f){ return '<label class="'+(f[2]?'req':'')+'">'+f[1]+'</label><input id="b-'+f[0]+'"'
+        +(f[0]==='tax_email'?' type="email" inputmode="email"':'')
+        +(f[0]==='biz_no'?' inputmode="numeric" placeholder="000-00-00000"':'')+'>'; }).join('')
+    +'<label class="chk"><input type="checkbox" id="b-def" checked> 앞으로 기본으로 사용</label>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button><button class="btn ok" id="b-go">저장</button></div>');
+  $('#b-go').onclick = async function(){
+    var body={};
+    for (var i=0;i<BF.length;i++){ body[BF[i][0]] = $('#b-'+BF[i][0]).value.trim(); }
+    for (var j=0;j<BF.length;j++){ if (BF[j][2] && !body[BF[j][0]]) return alert(BF[j][1]+'을(를) 입력해주세요.'); }
+    body.is_default = $('#b-def').checked;
+    var btn=$('#b-go'); btn.disabled=true; btn.textContent='저장 중…';
+    var r = await fetch('/api/order/profiles',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify(body)}).then(function(r){return r.json();});
+    if (!r.ok){ btn.disabled=false; btn.textContent='저장'; return alert(r.message||'저장 실패'); }
+    if (orderId) await fetch('/api/order/'+orderId,{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({action:'bill', bill_profile_id:r.id})});
+    w.remove();
+    toast('등록되었습니다');
+    if (orderId) openOrder(orderId, true); else viewSettle();
+  };
+}
+
+/* ---------------- 주문 요청 ---------------- */
+function orderForm(){
+  items = [{name:'',spec:'',unit:'EA',qty:1}];
+  var w = modal('주문 요청',
+     '<label class="req">소속 (기관 · 연구실)</label><input id="f-org" value="'+esc(lastOrg())+'" placeholder="예) 부산대학교 재료공학과 000연구실">'
+    +'<label>주문 제목</label><input id="f-title" placeholder="예) 튜브퍼니스 + MFC 셋업">'
+    +'<label class="req">품목</label><div id="itemBox"></div>'
+    +'<button class="add" id="addItem">＋ 품목 추가</button>'
+    +'<label>희망 납기일</label><input id="f-want" type="date">'
+    +'<label>납품 주소</label><input id="f-ship" placeholder="납품받으실 주소">'
+    +'<label>요청사항</label><textarea id="f-note" placeholder="사양·조건·예산·설치 관련 요청을 적어주세요"></textarea>'
+    +'<p class="hint" style="margin-top:10px">단가는 접수 후 담당자가 확인하여 견적서로 회신드립니다.<br>견적서의 “공급받는자”에는 위 소속이 표기됩니다.</p>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button><button class="btn pri" id="f-go">요청 보내기</button></div>');
+  $('#addItem').onclick = function(){ items.push({name:'',spec:'',unit:'EA',qty:1}); renderItems(); };
+  $('#f-go').onclick = function(){ submitOrder(w); };
+  renderItems();
+}
+function lastOrg(){ var o = orders.find(function(x){ return x.org_name; }); return (o&&o.org_name) || me.company || ''; }
+
+function renderItems(){
+  var box=$('#itemBox');
+  box.innerHTML = items.map(function(it,i){
+    return '<div class="itrow" data-i="'+i+'">'
+      +'<input class="f-name" placeholder="품명 · 모델명으로 검색" value="'+esc(it.name)+'" autocomplete="off">'
+      +'<div class="r"><input class="f-spec" placeholder="규격 (선택)" value="'+esc(it.spec||'')+'">'
+        +'<input class="unit f-unit" value="'+esc(it.unit||'EA')+'">'
+        +'<input class="qty f-qty" type="number" inputmode="numeric" min="1" value="'+(it.qty||1)+'">'
+        +(items.length>1?'<button class="del">삭제</button>':'')
+      +'</div></div>';
+  }).join('');
+  box.querySelectorAll('.itrow').forEach(function(el){
+    var i = Number(el.dataset.i);
+    var nm = el.querySelector('.f-name');
+    nm.oninput = function(e){ items[i].name=e.target.value; suggest(el,i,e.target.value); };
+    nm.onblur = function(){ setTimeout(function(){ var s=el.querySelector('.sug'); if(s) s.remove(); },180); };
+    el.querySelector('.f-spec').oninput = function(e){ items[i].spec=e.target.value; };
+    el.querySelector('.f-unit').oninput = function(e){ items[i].unit=e.target.value; };
+    el.querySelector('.f-qty').oninput  = function(e){ items[i].qty=Number(e.target.value); };
+    var d=el.querySelector('.del'); if(d) d.onclick=function(){ items.splice(i,1); renderItems(); };
+  });
+}
+var stmr;
 function suggest(el,i,q){
-  clearTimeout(st);
-  const old = el.querySelector('.sug'); if(old) old.remove();
-  if (q.trim().length < 2) return;
-  st = setTimeout(async ()=>{
-    const r = await fetch('/api/order/products?q='+encodeURIComponent(q.trim())).then(r=>r.json()).catch(()=>({items:[]}));
+  clearTimeout(stmr);
+  var old=el.querySelector('.sug'); if(old) old.remove();
+  if (q.trim().length<2) return;
+  stmr = setTimeout(async function(){
+    var r = await fetch('/api/order/products?q='+encodeURIComponent(q.trim()))
+      .then(function(r){return r.json();}).catch(function(){return {items:[]};});
     if (!r.items || !r.items.length) return;
-    const box = document.createElement('div'); box.className='sug';
-    box.innerHTML = r.items.map(p=>'<div data-pid="'+p.id+'" data-nm="'+esc(p.name||p.model)+'" data-sp="'+esc(p.model||'')+'"><b>'+esc(p.name||p.model)+'</b><small>'+esc([p.brand,p.model,p.sobun].filter(Boolean).join(' · '))+'</small></div>').join('');
+    var box=document.createElement('div'); box.className='sug';
+    box.innerHTML = r.items.map(function(p){
+      return '<div data-pid="'+p.id+'" data-nm="'+esc(p.name||p.model)+'" data-sp="'+esc(p.model||'')+'">'
+        +'<b>'+esc(p.name||p.model)+'</b><small>'+esc([p.brand,p.model,p.sobun].filter(Boolean).join(' · '))+'</small></div>'; }).join('');
     el.appendChild(box);
-    box.querySelectorAll('div[data-pid]').forEach(d=>d.onmousedown=()=>{
-      items[i].name = d.dataset.nm; items[i].spec = d.dataset.sp; items[i].product_id = +d.dataset.pid;
-      renderItems();
+    box.querySelectorAll('div[data-pid]').forEach(function(d){
+      d.onmousedown = function(){ items[i].name=d.dataset.nm; items[i].spec=d.dataset.sp; items[i].product_id=Number(d.dataset.pid); renderItems(); };
     });
   }, 260);
 }
 
-async function submit(){
-  const good = items.filter(i=>(i.name||'').trim());
+async function submitOrder(w){
+  var good = items.filter(function(i){ return (i.name||'').trim(); });
   if (!good.length) return alert('품목을 1개 이상 입력해주세요.');
-  const org = $('#f-org').value.trim();
-  if (!org) { $('#f-org').focus(); return alert('소속(기관·연구실)을 입력해주세요.'); }
-  const btn = $('#submitBtn'); btn.disabled=true; btn.textContent='보내는 중…';
-  const body = { items: good, org_name: org, title: $('#f-title').value, want_date: $('#f-want').value,
-                 ship_address: $('#f-ship').value, request_note: $('#f-note').value };
-  const r = await fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json());
-  if (r.ok){
-    app.innerHTML = '<div class="sec done"><div style="font-size:15px;font-weight:700">주문 요청이 접수되었습니다</div>'
-      +'<div class="no">'+esc(r.order_no)+'</div>'
-      +'<p style="font-size:13.5px;color:var(--mut)">담당자가 확인 후 견적서를 보내드립니다.<br>진행상황은 “내 주문”에서 확인하실 수 있습니다.</p>'
-      +'<div style="height:18px"></div><a class="btn pri" style="text-decoration:none;text-align:center;display:block" href="/order/my/">내 주문 보기</a></div>';
-    window.scrollTo(0,0);
-  } else {
-    btn.disabled=false; btn.textContent='주문 요청 보내기';
-    alert(r.message || '전송에 실패했습니다.');
-  }
+  var org = $('#f-org').value.trim();
+  if (!org){ $('#f-org').focus(); return alert('소속(기관·연구실)을 입력해주세요.'); }
+  var btn=$('#f-go'); btn.disabled=true; btn.textContent='보내는 중…';
+  var r = await fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({ items:good, org_name:org, title:$('#f-title').value,
+      want_date:$('#f-want').value, ship_address:$('#f-ship').value, request_note:$('#f-note').value })})
+    .then(function(r){return r.json();});
+  if (!r.ok){ btn.disabled=false; btn.textContent='요청 보내기'; return alert(r.message||'전송에 실패했습니다.'); }
+  w.remove();
+  toast(r.order_no+' 접수되었습니다');
+  cur=null; viewOrders();
 }
+
+/* ---------------- 정산하기 ---------------- */
+async function viewSettle(){
+  var pr = await fetch('/api/order/profiles').then(function(r){return r.json();});
+  var dr = await fetch('/api/order/documents').then(function(r){return r.json();});
+  var ps = pr.profiles||[], docs = dr.documents||[];
+
+  $('#main').innerHTML =
+    '<div class="ttl">정산하기</div>'
+   +'<div class="kpis" style="grid-template-columns:repeat(3,1fr)">'
+     +kpi('등록한 발행 정보', ps.length, '건')
+     +kpi('발급된 서류', docs.length, '건')
+     +kpi('미열람 서류', docs.filter(function(d){ return d.sent_at && !d.opened_at; }).length, '건', true)
+   +'</div>'
+   +'<div class="panel" style="padding:22px;margin-bottom:18px">'
+     +'<div class="dt2" style="font-size:15px;margin-bottom:14px">세금계산서 발행 정보</div>'
+     +(ps.length
+        ? ps.map(function(p){
+            return '<div class="itrow" style="background:#fff">'
+              +'<b>'+esc(p.label||p.company)+'</b>'+(p.is_default?' <span class="badge s2">기본</span>':'')
+              +'<div class="kv"><span>사업자번호</span><span>'+esc(p.biz_no||'—')+'</span></div>'
+              +'<div class="kv"><span>대표자명</span><span>'+esc(p.ceo||'—')+'</span></div>'
+              +'<div class="kv"><span>계산서 메일</span><span>'+esc(p.tax_email||'—')+'</span></div>'
+              +'<button class="lnk" data-del="'+p.id+'" style="margin-top:8px;color:#991B1B">삭제</button>'
+              +'</div>'; }).join('')
+        : '<div class="warnbox">등록된 발행 정보가 없습니다. 정산·세금계산서 발행에 필요합니다.</div>')
+     +'<div style="height:12px"></div><button class="btn ghost" id="addBill" style="width:100%">＋ 발행 정보 등록</button>'
+   +'</div>'
+   +'<div class="panel">'
+     +'<div style="padding:20px 22px 4px"><div class="dt2" style="font-size:15px">발급 서류</div></div>'
+     +(docs.length
+       ? '<table class="cards docs"><thead><tr><th style="width:110px">종류</th><th>문서번호</th><th style="width:96px">발행일</th>'
+         +'<th style="width:96px">상태</th><th style="width:130px">받기</th></tr></thead><tbody>'
+         + docs.map(function(d){
+             return '<tr style="cursor:default"><td>'+esc(DT[d.type]||d.type)+'</td>'
+               +'<td class="l"><b>'+esc(d.doc_no||'')+'</b><br><small style="color:var(--mut)">'+esc(d.title||d.order_no)+'</small></td>'
+               +'<td>'+esc(d.issue_date||'')+'</td><td>'+badge(d.status)+'</td>'
+               +'<td>'+(d.status==='취소됨'?'—':'<a class="lnk" href="/doc/'+d.id+'" target="_blank">보기</a>'
+                 +'<a class="lnk" href="/doc/'+d.id+'?f=pdf" target="_blank">PDF</a>')+'</td></tr>'; }).join('')
+         + '</tbody></table>'
+       : '<div class="empty">아직 발급된 서류가 없습니다.</div>')
+   +'</div>';
+
+  $('#addBill').onclick = function(){ billForm(null); };
+  document.querySelectorAll('[data-del]').forEach(function(b){
+    b.onclick = async function(){
+      if (!confirm('이 발행 정보를 삭제할까요?')) return;
+      await fetch('/api/order/profiles?id='+b.dataset.del,{method:'DELETE'});
+      toast('삭제되었습니다'); viewSettle();
+    };
+  });
+}
+
+/* ---------------- 모달 헬퍼 ---------------- */
+function modal(title, inner){
+  var w = document.createElement('div');
+  w.className='modal';
+  w.innerHTML = '<div class="mbox"><button class="x" data-x>×</button><h3>'+esc(title)+'</h3>'+inner+'</div>';
+  document.body.appendChild(w);
+  w.addEventListener('click', function(e){
+    if (e.target===w || e.target.hasAttribute('data-x')) w.remove();
+  });
+  return w;
+}
+
+window.addEventListener('hashchange', function(){
+  var v = location.hash.replace('#','') || 'orders';
+  if (v!==view && (v==='orders'||v==='settle')){ view=v; cur=null; syncNav(); render(); }
+});
 boot();
 </script>
 </body>
