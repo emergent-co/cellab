@@ -1501,6 +1501,17 @@ def build_all_products():
                        r'\g<1>%d\g<2>' % len(cards), page2)
         page2 = re.sub(r'(통합 카탈로그(?: —)? )\d+(종)', r'\g<1>%d\g<2>' % len(cards), page2)
         write(target, page2)
+        # 홈 신뢰 밴드 자동 갱신 — 카탈로그 종수 + 취급 SKU(SQL 행 수, 백 단위 버림)
+        home_p = os.path.join(ROOT_DIR, 'index.html')
+        if os.path.exists(home_p):
+            hh = read(home_p)
+            h2 = re.sub(r'(<div class="v">)[\d,]+(종</div><div class="l">통합 카탈로그)',
+                        r'\g<1>%d\g<2>' % len(cards), hh)
+            sku = sum(1 for _ln in open(os.path.join(ROOT_DIR, 'rndsetup_products.sql'), encoding='utf-8') if 'INSERT INTO' in _ln)
+            h2 = re.sub(r'(<div class="v">)[\d,]+\+(</div><div class="l">취급 SKU)',
+                        r'\g<1>{:,}+\g<2>'.format(sku // 100 * 100), h2)
+            if h2 != hh:
+                write(home_p, h2)
         # 검색 자동완성 어휘 — 제품군을 명확히 구분하는 대표 키워드만 (동의어·중복 배제)
         CANON_TERMS = [
             # 열처리
