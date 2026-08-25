@@ -36,8 +36,15 @@
   <div class="hwrap">
 
     <style>
-      /* 홈은 히어로 검색창만 사용 — 헤더 검색 숨김 */
+      /* 홈 헤더: 검색 숨기고 데스크톱은 로고—메뉴—아이콘 한 줄 */
       .ch-msearch{display:none !important}
+      @media(min-width:1100px){
+        body{padding-top:60px}
+        .ch-top{border-bottom:1px solid var(--line)}
+        .ch-nav{top:0;height:60px;background:transparent;border-bottom:0;z-index:41;justify-content:center;pointer-events:none}
+        .ch-nav .tn-item{pointer-events:auto}
+        body.hdr-collapsed .ch-nav{top:0;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);border-bottom:1px solid rgba(224,222,214,.55)}
+      }
       .hero-search{display:flex;max-width:540px;margin:22px auto 0}
       .hero-search input{flex:1;min-width:0;border:2px solid var(--ink);border-right:0;border-radius:10px 0 0 10px;padding:12px 16px;font-size:14px;outline:none;background:#fff;color:var(--ink)}
       .hero-search input::placeholder{color:#9aa3ad}
