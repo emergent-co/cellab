@@ -81,7 +81,8 @@
     { href:'/magazine/', label:'셋업 사례', icon:'feed' },
     { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
     { href:'/contact/', label:'문의하기', icon:'contact', noclick:true, sub:[
-        ['/contact/', '문의하기 · FAQ'],
+        ['#chat',     '문의하기'],
+        ['/contact/', 'FAQ'],
         ['/about/',   '회사소개']
       ] }
   ];
@@ -138,7 +139,7 @@
         '<input type="search" name="q" placeholder="제품명·모델명 검색 — 예: 튜브퍼니스, BT101S, MFC" aria-label="제품 검색" autocomplete="off">' +
         '<button type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>검색</span></button>' +
       '</form>' +
-      '<a class="ch-ic" href="/contact/#form" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
+      '<a class="ch-ic" href="#chat" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
       '<a class="ch-ic" href="/admin" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
@@ -170,7 +171,7 @@
           '<div class="cf-col"><h4>바로가기</h4>' +
             '<a href="/product/?q=리드플루이드">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
-            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a><a href="/contact/#form">자주 묻는 질문(FAQ)</a></div>' +
+            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a><a href="/contact/">자주 묻는 질문(FAQ)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
@@ -520,6 +521,19 @@
       minp.addEventListener('blur', function () { setTimeout(hide, 150); });
       minp.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
     })();
+
+    // 문의하기 = 대화창 열기 (채널톡 → 자체 패널 → /contact/ 폴백)
+    window.chatOpen = function () {
+      try { if (window.ChannelIO) { window.ChannelIO('showMessenger'); return false; } } catch (e) {}
+      var c = document.getElementById('ctaChat');
+      if (c) { c.classList.add('open'); return false; }
+      location.href = '/contact/';
+      return false;
+    };
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href="#chat"], a[href$="#chat"]');
+      if (a) { e.preventDefault(); window.chatOpen(); }
+    });
 
     var sf = document.getElementById('chSearch');
     var rbox = document.getElementById('chResults');
