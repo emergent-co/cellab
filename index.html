@@ -184,69 +184,8 @@
     </style>
 
     <style>
-      .cat-hero{position:relative;margin:6px 0 0;border-radius:14px;overflow:hidden;height:clamp(225px,24vw,315px);border:1px solid var(--line)}
-      .cat-slide{position:absolute;inset:0;display:grid;grid-template-columns:1.1fr .9fr;text-decoration:none;background:#fff;opacity:0;transition:opacity .5s ease;pointer-events:none}
-      .cat-slide.on{opacity:1;pointer-events:auto}
-      .cat-txt{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 clamp(22px,3.6vw,52px)}
-      .cat-k{font-size:11px;font-weight:800;letter-spacing:.1em;color:#EF9F27}
-      .cat-t{font-family:var(--serif);font-size:clamp(19px,2.3vw,29px);font-weight:800;color:var(--ink);line-height:1.32}
-      .cat-d{font-size:clamp(12px,1.2vw,14px);color:#5a6570;line-height:1.6}
-      .cat-go{margin-top:7px;font-size:13px;font-weight:800;color:#fff;background:var(--green);border-radius:9px;padding:9px 18px;width:fit-content}
-      .cat-im{background:#fff center/contain no-repeat;background-origin:content-box;padding:22px;border-left:1px solid #f0eee7}
-      @media(max-width:640px){.cat-slide{grid-template-columns:1fr}.cat-im{display:none}}
-      .cat-dots{position:absolute;right:18px;bottom:14px;z-index:2;display:flex;gap:6px}
-      .cat-dots button{width:8px;height:8px;border-radius:50%;border:0;background:rgba(30,58,95,.25);cursor:pointer;padding:0}
-      .cat-dots button.on{background:#1E3A5F;width:20px;border-radius:5px}
     </style>
-    <div class="cat-hero" id="catHero" aria-label="카테고리 배너">
-      <a class="cat-slide on" href="/magazine/battery/">
-        <span class="cat-txt">
-          <span class="cat-k">커리큘럼</span>
-          <span class="cat-t">배터리 랩 A to Z — 전구체 공침부터 셀 평가까지</span>
-          <span class="cat-d">배터리 소재 실험 전 과정을 8단계 셋업 순서로. 논문 셋업·가이드·트러블슈팅 연결.</span>
-          <span class="cat-go">커리큘럼 보기 →</span>
-        </span>
-        <span class="cat-im" style="background-image:url('/img/product/sh/tube-1500.jpg')"></span>
-      </a>
-      <a class="cat-slide" href="/brands/sh-scientific/guide/">
-        <span class="cat-txt">
-          <span class="cat-k">열처리 · 소성</span>
-          <span class="cat-t">튜브퍼니스 · 전기로 — <span data-price="muffle1050">106만 원</span>부터</span>
-          <span class="cat-d">소성·소결·회화·열처리. 1050~1900℃, 박스·튜브·진공·회전까지 국산 삼흥에너지 정품.</span>
-          <span class="cat-go">퍼니스 고르기 →</span>
-        </span>
-        <span class="cat-im" style="background-image:url('/img/product/sh/muffle-1050.jpg')"></span>
-      </a>
-      <a class="cat-slide" href="/brands/sh-scientific/gas-flow-package/">
-        <span class="cat-txt">
-          <span class="cat-k">CVD · 가스 분위기</span>
-          <span class="cat-t">가스플로 패키지 — 증착·분위기 소성 셋업</span>
-          <span class="cat-d">석영튜브 + 가스 라인 + MFC 통합 구성 <span data-price="cvdpkg">499만 원</span>부터. 탄소 코팅·분위기 제어 실험용.</span>
-          <span class="cat-go">패키지 보기 →</span>
-        </span>
-        <span class="cat-im" style="background-image:url('/img/product/sh/gas-flow-package.jpg')"></span>
-      </a>
-      <a class="cat-slide" href="/magazine/pump-selection-wizard/">
-        <span class="cat-txt">
-          <span class="cat-k">유체 · 정량 공급</span>
-          <span class="cat-t">정량·연동펌프 — <span data-price="pumplab">92만 원</span>부터</span>
-          <span class="cat-d">전해액 순환·전구체 공침·정량 투입. 연동·시린지·기어, 리드플루이드 정품 국내 A/S.</span>
-          <span class="cat-go">펌프 고르기 →</span>
-        </span>
-        <span class="cat-im" style="background-image:url('/img/leadfluid/official/bt600s-1.jpg')"></span>
-      </a>
-      <a class="cat-slide" href="/trust/">
-        <span class="cat-txt">
-          <span class="cat-k">신뢰 · A/S</span>
-          <span class="cat-t">구매 후가 다릅니다 — 국내 A/S · 3년 무상보증</span>
-          <span class="cat-d">수리 전문 이머전트가 직접 A/S. 매거진에서 다룬 장비는 문의 시 할인가로 안내.</span>
-          <span class="cat-go">보증·정품 안내 →</span>
-        </span>
-        <span class="cat-im" style="background-image:url('/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg')"></span>
-      </a>
-      <div class="cat-dots" id="catDots" role="tablist" aria-label="배너 선택"></div>
-    </div>
-
+    
 
     <style>
       .mag-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -375,20 +314,6 @@
       .rv-txt{font-size:12.5px;color:#3a4550;line-height:1.65;margin:0}
       .rv-nm{font-size:12px;font-weight:800;color:var(--ink);margin-top:auto}
       .rv-nm small{font-weight:600;color:#9aa3ad;margin-left:6px}
-      .oc-sub{font-size:15.5px;font-weight:800;color:var(--ink);margin:22px 0 12px}
-      .oc-sub:first-of-type{margin-top:0}
-      .oc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-      @media(max-width:1000px){.oc-grid{grid-template-columns:repeat(2,1fr)}}
-      @media(max-width:520px){.oc-grid{grid-template-columns:1fr}}
-      .oc-card{display:block;text-decoration:none;color:inherit}
-      .oc-tile{position:relative;height:112px;border-radius:8px;overflow:hidden;background:linear-gradient(115deg,#22497A 0%,#2E4E80 55%,#5B79AC 100%) center/cover no-repeat;display:flex;align-items:center}
-      .oc-tile .oi{flex:0 0 46%;height:82%;margin-left:8px;background:center/contain no-repeat;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25))}
-      .oc-tile .ol{flex:1;position:relative;z-index:1;text-align:center;color:#fff;font-size:16.5px;font-weight:800;letter-spacing:-.01em;text-shadow:0 2px 8px rgba(0,0,0,.3);padding-right:8px}
-      .oc-card:hover .oc-tile{box-shadow:0 12px 26px rgba(10,37,64,.22)}
-      .oc-t{font-size:13.5px;font-weight:800;color:var(--green);margin:9px 0 4px}
-      .oc-card:hover .oc-t{text-decoration:underline}
-      .oc-d{font-size:12.5px;color:#5a6570;line-height:1.55}
-      .oc-p{font-size:12.5px;font-weight:800;color:#9A3412;margin-top:4px}
       .mat-band{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#152B44,#1E3A5F);border-radius:14px;padding:26px 30px;margin-top:0}
       .mat-band .mb-bd{flex:1;min-width:260px}
       .mat-band .mb-k{font-size:11px;font-weight:800;letter-spacing:.1em;color:#EF9F27}
@@ -419,114 +344,7 @@
       </div>
     </div>
 
-    <div class="brand-head">
-      <div class="t">전기화학 · 수전해 코너</div>
-      <div class="en">ELECTROCHEMISTRY</div>
-    </div>
-    <div class="oc-sub">전극 컬렉션</div>
-    <div class="oc-grid">
-      <a class="oc-card" href="/product/?q=가오스유니온">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/rde-rrde-1.jpg')"><span class="ol">전극</span></div>
-        <div class="oc-t">전극</div>
-        <div class="oc-d">전극·셀·재료·촉매 700여 종을 계열별로 정리했습니다.</div>
-        <div class="oc-p">전 계열 · 12,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/counter-electrode/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/counter-electrode-1.jpg')"><span class="ol">대향 전극</span></div>
-        <div class="oc-t">대향 전극</div>
-        <div class="oc-d">백금선·백금망·백금판·흑연봉. 작업전극 면적에 맞춰 고릅니다.</div>
-        <div class="oc-p">50종 · 35,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/reference-electrode/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/reference-electrode-1.jpg')"><span class="ol">기준 전극</span></div>
-        <div class="oc-t">기준 전극</div>
-        <div class="oc-d">염화은·포화칼로멜·산화수은·은이온과 염다리.</div>
-        <div class="oc-p">29종 · 35,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/working-electrode/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/working-electrode-1.jpg')"><span class="ol">작동 전극</span></div>
-        <div class="oc-t">작동 전극</div>
-        <div class="oc-d">유리탄소·백금·금·은·카본페이스트 Φ0.5~20mm.</div>
-        <div class="oc-p">53종 · 70,000원부터</div>
-      </a>
-    </div>
-
-    <div class="oc-sub">전기화학 셀 · 재료 — 가오스유니온(Gaoss Union) 정품</div>
-    <div class="oc-grid">
-      <a class="oc-card" href="/brands/gaossunion/glass-cell-c001/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/glass-cell-1.jpg')"><span class="ol">단실 유리 전해셀</span></div>
-        <div class="oc-t">단실 유리 전해셀</div>
-        <div class="oc-d">CV·전기분해 기본형. 구경가변·5구·밀폐형 65종.</div>
-        <div class="oc-p">65종 · 53,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/membrane-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/membrane-cell-1.jpg')"><span class="ol">격막 교환형 전해셀</span></div>
-        <div class="oc-t">격막 교환형 전해셀</div>
-        <div class="oc-d">멤브레인 분리 2H·3H형과 플로우셀 66종.</div>
-        <div class="oc-p">66종 · 59,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/quartz-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/quartz-cell-1.jpg')"><span class="ol">부식 시험 · 석영 셀</span></div>
-        <div class="oc-t">부식 시험 · 석영 셀</div>
-        <div class="oc-d">평판 부식 시험과 분광·ECL용 석영 셀 54종.</div>
-        <div class="oc-p">54종 · 59,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/photo-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/photo-cell-1.jpg')"><span class="ol">광전기화학 셀</span></div>
-        <div class="oc-t">광전기화학 · 광촉매 셀</div>
-        <div class="oc-d">광창 일체형 광전기화학·광촉매 셀 158종.</div>
-        <div class="oc-p">158종 · 17,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/insitu-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/insitu-cell-1.jpg')"><span class="ol">in-situ 분광 셀</span></div>
-        <div class="oc-t">in-situ 분광전기화학 셀</div>
-        <div class="oc-d">라만·적외·XRD·X선흡수 실시간 관찰 23종.</div>
-        <div class="oc-p">23종 · 88,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/gas-diffusion-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/gdcell-1.jpg')"><span class="ol">GDE 전해셀</span></div>
-        <div class="oc-t">가스확산(GDE) 전해셀</div>
-        <div class="oc-d">CO₂ 환원용 GDE 유동 셀·MEA형 31종.</div>
-        <div class="oc-p">31종 · 25,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/mea-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/mea-cell-1.jpg')"><span class="ol">MEA 전해셀</span></div>
-        <div class="oc-t">막전극(MEA) 전해셀</div>
-        <div class="oc-d">제로갭 적층 구조, 바이폴라 플레이트·유로 24종.</div>
-        <div class="oc-p">24종 · 25,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/high-pressure-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/hpcell-1.jpg')"><span class="ol">고압 전기화학 셀</span></div>
-        <div class="oc-t">고압 전기화학 셀</div>
-        <div class="oc-d">단실·이중실 고압 셀과 계측 장비 27종.</div>
-        <div class="oc-p">27종 · 333,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/battery-test-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/battery-cell-1.jpg')"><span class="ol">배터리 테스트 셀</span></div>
-        <div class="oc-t">배터리 테스트 셀</div>
-        <div class="oc-d">in-situ 라만·XRD·가압·전고체 평가 셀 17종.</div>
-        <div class="oc-p">17종 · 350,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/special-cell/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/spcell-1.jpg')"><span class="ol">특수 기능 셀</span></div>
-        <div class="oc-t">리튬전지 in-situ · 특수 셀</div>
-        <div class="oc-d">리튬전지 in-situ, 막전도도·CDI·ECL 9종.</div>
-        <div class="oc-p">9종 · 980,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/co2rr-catalyst/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/co2rr-catalyst-1.jpg')"><span class="ol">CO₂RR 촉매</span></div>
-        <div class="oc-t">CO₂ 환원(CO₂RR) 촉매·전극</div>
-        <div class="oc-d">Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드 78종.</div>
-        <div class="oc-p">78종 · 350,000원부터</div>
-      </a>
-      <a class="oc-card" href="/brands/gaossunion/echem-materials/">
-        <div class="oc-tile" style="background-image:linear-gradient(90deg,rgba(20,35,58,.05),rgba(20,35,58,.35)),url('/img/gaossunion/echem-materials-1.jpg')"><span class="ol">전기화학 재료</span></div>
-        <div class="oc-t">전기화학 재료 · 소모품</div>
-        <div class="oc-d">이온교환막·카본페이퍼·GDL·전해질 65종.</div>
-        <div class="oc-p">65종 · 12,000원부터</div>
-      </a>
-    </div>
-    <p style="font-size:12px;color:#8a929c;margin:12px 2px 0;line-height:1.6">※ 가오스유니온 전 품목은 카드에서 계열별 상세·사양·가격을 바로 확인할 수 있습니다. 가격은 정가 기준(VAT·국제 운송비 별도)이며, 견적·재고는 <a href="/contact/" style="color:#1E3A5F;font-weight:700">문의하기</a>에서 안내드립니다.</p>
+    
 
     <div class="brand-head">
       <div class="t">재료 · 시약 <span style="font-size:11px;font-weight:800;color:#EF9F27;vertical-align:2px">준비 중</span></div>
@@ -557,31 +375,6 @@
 
 <script>
 (function(){
-  /* 카테고리 배너 캐러셀 — 5장 자동 순환, 호버 시 정지 (슬라이드 전부 정적 HTML) */
-  var hero = document.getElementById('catHero');
-  if (hero){
-    var slides = hero.querySelectorAll('.cat-slide');
-    var dots = document.getElementById('catDots');
-    var idx = 0, hPaused = false;
-    slides.forEach(function(_, i){
-      var b = document.createElement('button');
-      b.setAttribute('aria-label', (i+1) + '번 배너');
-      if (i === 0) b.classList.add('on');
-      b.addEventListener('click', function(){ show(i); });
-      dots.appendChild(b);
-    });
-    function show(i){
-      idx = i;
-      slides.forEach(function(s, j){ s.classList.toggle('on', j===i); });
-      dots.querySelectorAll('button').forEach(function(b, j){ b.classList.toggle('on', j===i); });
-    }
-    hero.addEventListener('mouseenter', function(){ hPaused = true; });
-    hero.addEventListener('mouseleave', function(){ hPaused = false; });
-    setInterval(function(){
-      if (hPaused || document.hidden) return;
-      show((idx + 1) % slides.length);
-    }, 4000);
-  }
   /* 공정 필터탭 + 2행 제한 — 카드는 정적 HTML 전부 유지(GEO), 표시만 셀 예산 6칸(3열×2행)까지 */
   var tabs = document.getElementById('magTabs');
   function mosaicCols(){
