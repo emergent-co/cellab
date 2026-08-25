@@ -148,6 +148,10 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 .radio div small{display:block;color:var(--mut);font-size:12px}
 .radio .sx{flex:0 0 26px;height:26px;border:0;background:0;color:#b6bcc6;font-size:16px;cursor:pointer}
 .radio .sx:hover{color:#991B1B}
+.skel{display:grid;gap:14px}
+.sk{background:linear-gradient(90deg,#eef0f4 25%,#f6f7f9 37%,#eef0f4 63%);
+  background-size:400% 100%;border-radius:12px;animation:shim 1.3s ease infinite}
+@keyframes shim{0%{background-position:100% 50%}100%{background-position:0 50%}}
 .waitbox{text-align:center;padding:34px 16px}
 .waitbox b{display:block;font-size:14.5px;margin-top:14px}
 .waitbox small{display:block;font-size:12.5px;color:var(--mut);margin-top:6px;line-height:1.55}
@@ -182,6 +186,10 @@ textarea{min-height:78px;resize:vertical}
 .radio div small{display:block;color:var(--mut);font-size:12px}
 .radio .sx{flex:0 0 26px;height:26px;border:0;background:0;color:#b6bcc6;font-size:16px;cursor:pointer}
 .radio .sx:hover{color:#991B1B}
+.skel{display:grid;gap:14px}
+.sk{background:linear-gradient(90deg,#eef0f4 25%,#f6f7f9 37%,#eef0f4 63%);
+  background-size:400% 100%;border-radius:12px;animation:shim 1.3s ease infinite}
+@keyframes shim{0%{background-position:100% 50%}100%{background-position:0 50%}}
 .waitbox{text-align:center;padding:34px 16px}
 .waitbox b{display:block;font-size:14.5px;margin-top:14px}
 .waitbox small{display:block;font-size:12.5px;color:var(--mut);margin-top:6px;line-height:1.55}
@@ -360,12 +368,27 @@ function syncNav(){
 }
 
 /* ---------------- 라우팅 ---------------- */
-function render(){ if (view==='new') viewNew(); else if (view==='orders') viewOrders(); else viewSettle(); }
+var VT = { new:'주문하기', orders:'주문 현황', settle:'정산하기' };
+function skeleton(){
+  $('#main').innerHTML = '<div class="ttl">'+VT[view]+'</div>'
+    +'<div class="skel"><div class="sk" style="height:120px"></div>'
+    +'<div class="sk" style="height:260px"></div></div>';
+}
+function render(){
+  skeleton();
+  if (view==='new') viewNew(); else if (view==='orders') viewOrders(); else viewSettle();
+}
 
 /* ---------------- 주문 현황 ---------------- */
 async function viewOrders(){
-  var r = await fetch('/api/order').then(function(r){return r.json();});
-  orders = r.orders || [];
+  if (cache.orders){ orders = cache.orders; paintOrders(); }
+  var r = await fetch('/api/order').then(function(r){return r.json();}).catch(function(){return {};});
+  if (!r.orders) { if(!cache.orders) paintOrders(); return; }
+  orders = r.orders; cache.orders = orders;
+  paintOrders();
+}
+
+function paintOrders(){
   var org = (orders.find(function(o){ return o.org_name; })||{}).org_name || me.company || '';
   var total = orders.length;
   var open = orders.filter(function(o){ return ['요청접수','견적발송','견적승인','발주확정'].indexOf(o.status)>=0; }).length;
@@ -541,6 +564,7 @@ function billForm(orderId){
       body:JSON.stringify({action:'bill', bill_profile_id:r.id})});
     w.remove();
     toast('등록되었습니다');
+    cache.settle=null;
     if (orderId) openOrder(orderId, true); else viewSettle();
   };
 }
@@ -552,11 +576,24 @@ function go(v){ view=v; cur=null; location.hash='#'+v; syncNav(); render(); }
 var EXT_ID = '';
 
 let sites=[], siteId=null;
+// 메뉴를 누르면 곧바로 뼈대를 그리고, 데이터가 오면 채운다.
+// 한 번 본 화면은 캐시에서 즉시 그린 뒤 뒤에서 조용히 갱신한다.
+var cache = { orders:null, sites:null, settle:null };
 
 async function viewNew(){
+  if (cache.sites){ sites = cache.sites; pickSite(); paintNew(); }
   var sr = await fetch('/api/order/sites').then(function(r){return r.json();}).catch(function(){return {};});
   sites = sr.sites || [];
-  if (siteId==null){ var d0 = sites.find(function(s){ return s.is_default; }) || sites[0]; siteId = d0 ? d0.id : null; }
+  cache.sites = sites;
+  pickSite();
+  paintNew();
+}
+function pickSite(){
+  if (siteId!=null && sites.some(function(s){ return s.id===siteId; })) return;
+  var d0 = sites.find(function(s){ return s.is_default; }) || sites[0];
+  siteId = d0 ? d0.id : null;
+}
+function paintNew(){
 
   $('#main').innerHTML =
     '<div class="ttl">주문하기</div>'
@@ -791,7 +828,7 @@ function bindCart(){
       if (!confirm('이 납품지를 삭제할까요?')) return;
       await fetch('/api/order/sites?id='+b.dataset.sid,{method:'DELETE'});
       if (siteId===Number(b.dataset.sid)) siteId=null;
-      viewNew();
+      cache.sites=null; viewNew();
     }; });
   var as = $('#addSite'); if (as) as.onclick = siteForm;
   var go2 = $('#f-go'); if (go2) go2.onclick = submitOrder;
@@ -810,7 +847,7 @@ function siteForm(){
       body:JSON.stringify({ org_name:org, address:$('#s-addr').value.trim(), is_default:$('#s-def').checked })})
       .then(function(r){return r.json();});
     if (!r.ok) return alert(r.message||'저장 실패');
-    w.remove(); siteId = r.id; viewNew(); toast('납품지가 추가되었습니다');
+    w.remove(); siteId = r.id; cache.sites=null; viewNew(); toast('납품지가 추가되었습니다');
   };
 }
 
@@ -829,18 +866,22 @@ async function submitOrder(){
   var r = await fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},
     body:JSON.stringify(body)}).then(function(r){return r.json();});
   if (!r.ok){ btn.disabled=false; btn.textContent=cart.length+'건 주문 요청 보내기'; return alert(r.message||'전송에 실패했습니다.'); }
-  cart=[]; saveCart(); orders=[];
+  cart=[]; saveCart(); orders=[]; cache.orders=null; cache.settle=null;
   toast(r.order_no+' 접수되었습니다');
   go('orders');
 }
 
 /* ---------------- 정산하기 ---------------- */
 async function viewSettle(){
-  var st = await fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return {};});
-  var pr = await fetch('/api/order/profiles').then(function(r){return r.json();});
-  var dr = await fetch('/api/order/documents').then(function(r){return r.json();});
-  var ps = pr.profiles||[], docs = dr.documents||[];
+  if (cache.settle) paintSettle(cache.settle);
+  var st = await fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return null;});
+  if (!st){ if(!cache.settle) paintSettle({}); return; }
+  cache.settle = st;
+  paintSettle(st);
+}
 
+function paintSettle(st){
+  var ps = st.profiles||[], docs = st.documents||[];
   var head = '<div class="ttl">정산하기</div>';
 
   if (st.postpaid){
@@ -903,7 +944,7 @@ async function viewSettle(){
     b.onclick = async function(){
       if (!confirm('이 발행 정보를 삭제할까요?')) return;
       await fetch('/api/order/profiles?id='+b.dataset.del,{method:'DELETE'});
-      toast('삭제되었습니다'); viewSettle();
+      cache.settle=null; toast('삭제되었습니다'); viewSettle();
     };
   });
 }

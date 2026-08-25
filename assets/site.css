@@ -175,6 +175,18 @@ body{ padding-top:106px; }
 @media(max-width:900px){ .ch-top{ padding:0 16px; } }
 .ch-top .ch-brand{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--ink); text-decoration:none; }
 .ch-top .ch-ic[href="#chat"]{ margin-left:auto; }
+.ch-ic.srch{ display:none; }
+/* 데스크톱(≥1100px): 헤더 한 줄(로고—메뉴—아이콘) 전 페이지 공통. 검색은 돋보기 → /product/ */
+@media(min-width:1100px){
+  body{ padding-top:60px; }
+  .ch-top{ border-bottom:1px solid var(--line); }
+  .ch-msearch{ display:none; }
+  .ch-ic.srch{ display:flex; margin-left:auto; }
+  .ch-top .ch-ic[href="#chat"]{ margin-left:0; }
+  .ch-nav{ top:0; height:60px; background:transparent; border-bottom:0; z-index:41; justify-content:center; pointer-events:none; }
+  .ch-nav .tn-item{ pointer-events:auto; }
+  body.hdr-collapsed .ch-nav{ top:0; background:rgba(255,255,255,.72); -webkit-backdrop-filter:blur(9px); backdrop-filter:blur(9px); border-bottom:1px solid rgba(224,222,214,.55); }
+}
 .ch-top .ch-brand b{ color:var(--green); }
 .ch-search{ flex:1; min-width:0; max-width:640px; margin:0 auto; display:flex; align-items:center; gap:8px; background:var(--soft); border-radius:10px; padding:9px 14px; }
 .ch-search svg{ width:16px; height:16px; stroke:var(--gray-2); fill:none; stroke-width:2; flex:0 0 auto; }

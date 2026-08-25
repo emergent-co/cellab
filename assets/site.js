@@ -139,7 +139,7 @@
         '<input type="search" name="q" placeholder="제품명·모델명 검색 — 예: 튜브퍼니스, BT101S, MFC" aria-label="제품 검색" autocomplete="off">' +
         '<button type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>검색</span></button>' +
       '</form>' +
-      '<a class="ch-ic" href="#chat" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
+      '<a class="ch-ic srch" href="/product/" aria-label="제품 검색" title="제품 검색"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></a><a class="ch-ic" href="#chat" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
       '<a class="ch-ic" href="/login/" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
@@ -469,9 +469,8 @@
       if (scrim) scrim.addEventListener('click', closeSide);
       side.addEventListener('click', function (e) { if (e.target.closest('a')) closeSide(); });
     }
-    // 메인 검색창 자동완성 — 연관검색어(매칭 카드 수) 실시간 제안
-    (function () {
-      var mf = document.querySelector('.ch-msearch');
+    // 검색창 자동완성 — 연관검색어(매칭 카드 수) 실시간 제안 (헤더·홈 히어로 공용)
+    function attachSuggest(mf) {
       if (!mf) return;
       var minp = mf.querySelector('input[name="q"]');
       if (!minp) return;
@@ -516,12 +515,14 @@
           box.classList.add('on');
         });
       }
-      if (window.innerWidth <= 640) { minp.placeholder = '제품명·모델명 검색'; }
+      if (window.innerWidth <= 640 && mf.classList.contains('ch-msearch')) { minp.placeholder = '제품명·모델명 검색'; }
       minp.addEventListener('input', show);
       minp.addEventListener('focus', show);
       minp.addEventListener('blur', function () { setTimeout(hide, 150); });
       minp.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
-    })();
+    }
+    attachSuggest(document.querySelector('.ch-msearch'));
+    attachSuggest(document.querySelector('.hero-search'));
 
     // 문의하기 = 대화창 열기 (채널톡 → 자체 패널 → /contact/ 폴백)
     window.chatOpen = function () {
