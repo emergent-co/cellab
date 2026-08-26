@@ -1279,7 +1279,43 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-ir/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-ms/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-raman/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-sfg/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-uv/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-xafs/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/insitu-cell-xrd/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
