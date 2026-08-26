@@ -71,7 +71,36 @@ export async function onRequest({ request, env }) {
   return json({ ok: true, ...(await labInfo(env, fresh)) });
 }
 
+/**
+ * 실험실이 없으면 만들어 붙인다.
+ *   원래는 납품지를 처음 등록할 때만 만들었는데, 그때 실패하면 영영 실험실이 없는 상태가 된다
+ *   (초대하기가 계속 막힌다). 그래서 납품지가 하나라도 있으면 언제든 다시 만들어준다.
+ * 실패해도 호출한 쪽을 죽이지 않는다.
+ */
+export async function ensureLab(env, me) {
+  if (!me || me.lab_id) return me?.lab_id || null;
+  try {
+    const site = await env.DB.prepare(
+      'SELECT org_name FROM sites WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1'
+    ).bind(me.id).first();
+    if (!site) return null;                       // 납품지가 없으면 아직 만들 때가 아니다
+    const code = await freshCode(env);
+    const name = site.org_name || me.company || '내 실험실';
+    const r = await env.DB.prepare(
+      'INSERT INTO labs (code, name, created_by, created_at) VALUES (?,?,?,?)'
+    ).bind(code, name, me.id, kstISO()).run();
+    const labId = r.meta.last_row_id;
+    await env.DB.prepare('UPDATE customers SET lab_id=?, updated_at=? WHERE id=?')
+      .bind(labId, kstISO(), me.id).run();
+    me.lab_id = labId;
+    return labId;
+  } catch (e) {
+    return null;
+  }
+}
+
 export async function labInfo(env, me) {
+  if (!me.lab_id) await ensureLab(env, me);
   if (!me.lab_id) return { lab: null, members: [] };
   const lab = await env.DB.prepare('SELECT * FROM labs WHERE id=?').bind(me.lab_id).first();
   if (!lab) return { lab: null, members: [] };

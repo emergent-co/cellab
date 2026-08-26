@@ -554,6 +554,7 @@ async function boot(){
     return;
   }
   me = r.customer; lab = r.lab || null;
+  if (lab) lab.members = (r.members||[]).length;
 
   if (ref){
     fetch('/api/order/lab',{method:'POST',headers:{'content-type':'application/json'},
@@ -577,16 +578,62 @@ async function boot(){
   render();
 }
 
-// 로그인한 고객이면 이름·연락처·소속을 같이 넘겨, 상담 시작할 때 누구인지 바로 보이게 한다.
+// 로그인한 고객이면 이름·연락처를 같이 넘겨, 상담 시작할 때 누구인지 바로 보이게 한다.
+//   ※ memberId 는 memberHash 없이 넘기면 채널톡 boot 이 401 로 죽는다(상담창이 안 열림).
+//     서버에서 해시를 받아왔을 때만 회원으로 붙이고, 아니면 익명으로 붙인다.
+var chReady = false;
+function chProfile(c){
+  if (!c) return null;
+  var pr = { name: c.name || '', email: c.work_email || c.email || '', mobileNumber: c.phone || '' };
+  return pr;
+}
+function chBoot(cfg, onFail){
+  try {
+    ChannelIO('boot', cfg, function(err){
+      if (err){ chReady = false; if (onFail) onFail(err); return; }
+      chReady = true;
+    });
+  } catch(e){ if (onFail) onFail(e); }
+}
 function bootChannel(c){
   if (!window.ChannelIO) return;
-  var p = { pluginKey: CH_KEY };
-  if (c){
-    p.memberId = 'rs-' + c.id;
-    p.profile = { name: c.name || '', email: c.email || '', mobileNumber: c.phone || '' };
-    if (c.company) p.profile.소속 = c.company;
-  }
-  try { ChannelIO('boot', p); } catch(e){}
+  var base = { pluginKey: CH_KEY };
+  var pr = chProfile(c);
+  if (pr) base.profile = pr;
+
+  if (!c){ chBoot(base); return; }
+
+  fetch('/api/auth/channel').then(function(r){ return r.json(); }).catch(function(){ return {}; })
+    .then(function(r){
+      var cfg = Object.assign({}, base);
+      if (r && r.member && r.member.memberHash){
+        cfg.memberId = r.member.memberId;
+        cfg.memberHash = r.member.memberHash;
+      }
+      // 회원으로 붙다 실패하면 익명으로라도 붙인다 — 상담은 되어야 한다
+      chBoot(cfg, function(){ try { ChannelIO('shutdown'); } catch(e){} chBoot(base); });
+    });
+}
+
+// 문의하기 — 채널톡이 안 열리면 조용히 실패하지 말고 연락처를 띄운다
+function openChat(){
+  var opened = false;
+  try { ChannelIO('showMessenger'); opened = true; } catch(e){}
+  setTimeout(function(){
+    var f = document.querySelector('#ch-plugin-script-iframe');
+    var shown = f && f.getBoundingClientRect().height > 100;
+    if (!shown) contactFallback();
+  }, 1400);
+  if (!opened) contactFallback();
+}
+function contactFallback(){
+  if (document.querySelector('.modal.cfb')) return;
+  var w = modal('문의하기',
+     '<p class="hint" style="margin-top:10px">상담창이 열리지 않네요. 아래로 연락 주시면 바로 도와드리겠습니다.</p>'
+    +'<div class="kv"><span>전화</span><span><a class="lnk" href="tel:07089832600">070-8983-2600</a></span></div>'
+    +'<div class="kv"><span>이메일</span><span><a class="lnk" href="mailto:info@rndsetup.com">info@rndsetup.com</a></span></div>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button></div>');
+  w.classList.add('cfb');
 }
 $('#kakaoBtn').onclick = function(){
   var next = this.dataset.next || '/order/';
@@ -832,7 +879,7 @@ function paintHome(){
     var t = e.target.closest('[data-go]'); if (t) return go(t.dataset.go);
     var a = e.target.closest('[data-act]'); if (!a) return;
     if (a.dataset.act==='invite'){ lab ? inviteForm() : toast('납품지를 먼저 등록하면 실험실이 만들어집니다'); }
-    if (a.dataset.act==='chat'){ window.ChannelIO ? ChannelIO('showMessenger') : location.href='tel:070-8983-2600'; }
+    if (a.dataset.act==='chat'){ window.ChannelIO ? openChat() : contactFallback(); }
   };
 
   // 뱃지 숫자는 있으면 좋고 없어도 그만 — 조용히 채워 넣는다
@@ -878,7 +925,9 @@ function paintMe(){
           +'<div class="kv"><span>실험실 코드</span><span><b>'+esc(lab.code)+'</b></span></div>'
           +'<div class="kv"><span>인원</span><span>'+(lab.members||1)+'명</span></div>'
           +'<button class="btn ghost" id="m-inv" style="width:100%;margin-top:12px">동료 초대하기</button>'
-        : '<div style="font-size:13px;color:var(--mut)">납품지를 등록하면 실험실이 만들어집니다.</div>')
+        : '<div style="font-size:13px;color:var(--mut);line-height:1.6">실험실을 만들면 동료를 초대해 '
+          +'주문 이력과 정산 내역을 함께 볼 수 있습니다.</div>'
+          +'<button class="btn ghost" id="m-mklab" style="width:100%;margin-top:12px">실험실 만들기</button>')
      + '</div>';
 
   $('#main').innerHTML = h;
@@ -889,6 +938,7 @@ function paintMe(){
     billManage(r.profiles||[]);
   };
   var mi = $('#m-inv'); if (mi) mi.onclick = inviteForm;
+  var mk = $('#m-mklab'); if (mk) mk.onclick = makeLab;
 
   fetch('/api/order/sites').then(function(r){return r.json();}).then(function(r){
     if (view!=='me') return;
@@ -1474,6 +1524,29 @@ function bindCart(){
   var go2 = $('#f-go'); if (go2) go2.onclick = submitOrder;
 }
 
+// 실험실 만들기 — 납품지 등록 때 자동 생성이 실패했을 경우의 수동 경로
+function makeLab(){
+  var w = modal('실험실 만들기',
+     '<p class="hint" style="margin-top:10px">같은 연구실 동료를 초대하면 '
+    +'<b>주문 이력과 정산 내역을 함께 봅니다.</b> 이름은 나중에 바꿀 수 있습니다.</p>'
+    +'<label class="req">실험실 이름</label><input id="l-name" placeholder="예) 세라믹연구실" '
+      +'value="'+esc((sites[0] && sites[0].org_name) || (me && me.company) || '')+'">'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="l-go">만들기</button></div>');
+  $('#l-go').onclick = async function(){
+    var nm = $('#l-name').value.trim();
+    if (!nm) return alert('실험실 이름을 입력해주세요.');
+    var btn=$('#l-go'); btn.disabled=true; btn.textContent='만드는 중…';
+    var r = await fetch('/api/order/lab',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({name:nm})}).then(function(x){return x.json();}).catch(function(){return {};});
+    if (!r.ok){ btn.disabled=false; btn.textContent='만들기'; return alert(r.message||'만들지 못했습니다.'); }
+    lab = r.lab; if (lab) lab.members = (r.members||[]).length;
+    $('#whoOrg').textContent = (lab && lab.name) || '';
+    w.remove(); paintLab(); toast('실험실이 만들어졌습니다');
+    if (view==='me') paintMe();
+  };
+}
+
 // 주문자 정보 — 한 번 저장하면 다음 주문부터는 다시 묻지 않는다
 function ordererForm(){
   var w = modal('주문자 정보',
@@ -1564,8 +1637,9 @@ function siteForm(){
     if (!r.ok){ btn.disabled=false; btn.textContent='저장'; return alert(r.message||'저장 실패'); }
     w.remove(); siteId = r.id; cache.sites=null;
     var m = await fetch('/api/auth/me').then(function(r){return r.json();}).catch(function(){return {};});
-    if (m.lab){ lab = m.lab; $('#whoOrg').textContent = lab.name; paintLab(); }
-    viewNew(); toast('납품지가 추가되었습니다');
+    if (m.lab){ lab = m.lab; lab.members = (m.members||[]).length; $('#whoOrg').textContent = lab.name; paintLab(); }
+    toast('납품지가 추가되었습니다');
+    if (view==='me') paintMe(); else if (view==='home') paintHome(); else viewNew();
   };
 }
 
