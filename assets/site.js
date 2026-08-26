@@ -534,6 +534,52 @@
     attachSuggest(document.querySelector('.ch-msearch'));
     attachSuggest(document.querySelector('.hero-search'));
 
+    // 로그인 계정 메뉴 — 로그인 시 사람 아이콘이 계정 드롭다운으로 전환
+    (function () {
+      var ic = document.querySelector('.ch-top .ch-ic[href="/login/"]');
+      if (!ic || !window.fetch) return;
+      fetch('/api/auth/me', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (d) {
+        if (!d || !d.login) return;
+        var cu = d.customer || {};
+        var name = (cu.name || '고객') + ' 님';
+        var email = cu.email || cu.work_email || '';
+        var initial = (cu.name || 'C').charAt(0);
+        var p = document.createElement('div');
+        p.className = 'ch-acct';
+        p.innerHTML =
+          '<div class="ah"><div class="av"></div><div><div class="an"></div><div class="ae"></div></div></div>' +
+          '<ul>' +
+          '<li><a href="/order/#orders"><span class="i">&#128203;</span>주문내역</a></li>' +
+          '<li><a href="/order/#new"><span class="i">&#128722;</span>주문하기</a></li>' +
+          '<li><a href="/order/#settle"><span class="i">&#128179;</span>정산 내역</a></li>' +
+          '<li class="sep"></li>' +
+          '<li><a href="/order/#me"><span class="i">&#9881;&#65039;</span>프로필 설정</a></li>' +
+          '<li><a href="#logout" class="out"><span class="i">&#10162;</span>로그아웃</a></li>' +
+          '</ul>';
+        p.querySelector('.av').textContent = initial;
+        p.querySelector('.an').textContent = name;
+        p.querySelector('.ae').textContent = email;
+        document.body.appendChild(p);
+        ic.setAttribute('href', '#account');
+        ic.setAttribute('title', name);
+        ic.addEventListener('click', function (e) {
+          e.preventDefault();
+          p.classList.toggle('on');
+          ic.classList.toggle('acct-on', p.classList.contains('on'));
+        });
+        document.addEventListener('click', function (e) {
+          if (e.target.closest('.ch-acct') || e.target.closest('.ch-ic[href="#account"]')) return;
+          p.classList.remove('on'); ic.classList.remove('acct-on');
+        });
+        p.querySelector('a.out').addEventListener('click', function (e) {
+          e.preventDefault();
+          fetch('/api/auth/me', { method: 'DELETE', credentials: 'same-origin' })
+            .then(function () { location.href = '/'; })
+            .catch(function () { location.href = '/'; });
+        });
+      }).catch(function () {});
+    })();
+
     // 문의하기 = 대화창 열기 (채널톡 → 자체 패널 → /contact/ 폴백)
     window.chatOpen = function () {
       try { if (window.ChannelIO) { window.ChannelIO('showMessenger'); return false; } } catch (e) {}

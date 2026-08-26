@@ -128,3 +128,7 @@
 # 광전기화학·광촉매 셀 모델별 분리(2026-08)
 /brands/gaossunion/photo-cell/  /product/  301
 /brands/gaossunion/photo-cell  /product/  301
+
+# in-situ 분광전기화학 셀 모델별 분리(2026-08)
+/brands/gaossunion/insitu-cell/  /product/  301
+/brands/gaossunion/insitu-cell  /product/  301
