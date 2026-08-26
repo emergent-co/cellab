@@ -151,6 +151,16 @@ export async function recalcOrder(env, orderId) {
 export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주확정', '배송중', '수령확인', '계산서발행', '완료', '보류', '취소'];
 
 // ---------- 공급자(이머전트) 정보 ----------
+/**
+ * 회신받을 이메일.
+ * 카카오 계정 이메일은 대개 개인 메일이라 업무 서류를 거기로 보내면 안 된다.
+ * 고객이 따로 적어둔 업무용 메일(work_email)이 있으면 그것을 우선한다.
+ */
+export function replyEmail(c) {
+  if (!c) return '';
+  return String(c.work_email || c.email || '').trim();
+}
+
 export const SUPPLIER = {
   company: '이머전트',
   brand: '실험셋업연구소',

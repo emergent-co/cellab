@@ -41,8 +41,8 @@ export async function onRequestPost({ request, env }) {
       company: bill?.company || order.org_name || customer?.company || '',
       biz_no: bill?.biz_no || customer?.biz_no || '',
       ceo: bill?.ceo || customer?.ceo || '',
-      contact: customer?.name || '',
-      email: bill?.tax_email || customer?.email || '',
+      contact: order.orderer_name || customer?.name || '',
+      email: bill?.tax_email || order.orderer_email || customer?.work_email || customer?.email || '',
       address: bill?.address || order.ship_address || customer?.address || '',
     },
     items: items.map((i) => ({

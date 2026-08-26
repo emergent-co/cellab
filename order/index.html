@@ -130,6 +130,37 @@ table.orders td.ttd b{font-weight:700}
 table.orders td.ttd .rmeta{margin-left:9px;font-size:12px}
 table.orders td.dt{font-size:12.5px;color:var(--mut);font-variant-numeric:tabular-nums}
 .lnk2{color:inherit;text-decoration:underline;text-decoration-color:#cfd5df;text-underline-offset:2px}
+/* 홈 — 바로가기 타일 */
+.hi{margin-bottom:18px}
+.hi b{display:block;font-size:21px;font-weight:800;letter-spacing:-.02em}
+.hi span{display:block;font-size:13px;color:var(--mut);margin-top:4px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.tiles.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 16px 16px;
+  text-align:left;cursor:pointer;transition:.14s;font:inherit;color:inherit}
+.tile:hover{border-color:#c9d2e4;box-shadow:0 4px 14px rgba(22,34,64,.07);transform:translateY(-1px)}
+.tile svg{width:26px;height:26px;color:var(--navy);margin-bottom:10px}
+.tile b{font-size:15px;font-weight:800}
+.tile span{font-size:12.5px;color:var(--mut);line-height:1.45}
+.tile.pri{background:var(--navy);border-color:var(--navy)}
+.tile.pri svg{color:#fff}.tile.pri b{color:#fff}.tile.pri span{color:#c7d2e8}
+.tile.sm{flex-direction:row;align-items:center;gap:12px;padding:14px 16px}
+.tile.sm svg{margin:0;width:22px;height:22px;flex:0 0 auto}
+.tile.sm b{font-size:14px}
+.tile.sm span{font-size:12px;margin-left:auto;text-align:right}
+.tile .tb{position:absolute;right:12px;top:12px;font-style:normal;font-size:11px;font-weight:800;
+  padding:3px 8px;border-radius:999px;background:#eef1f6;color:#475569}
+.tile.hot .tb{background:#FEE2E2;color:#991B1B}
+.tile.pri .tb{background:rgba(255,255,255,.18);color:#fff}
+.panel.pad{padding:18px 18px 16px;margin-bottom:12px}
+.panel.pad .kv{padding:7px 0;border-bottom:1px solid #f4f6f9}
+.panel.pad .kv:last-child{border-bottom:0}
+.panel.pad .kv>span:first-child{flex:0 0 108px;color:var(--mut)}
+.ordbar{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;font-size:13px;
+  background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.ordbar b{font-size:14px;font-weight:800}
+.ordbar span{color:var(--mut);font-variant-numeric:tabular-nums}
 .dbody{margin-top:4px}
 .dbody .actbox,.dbody .okbox{margin-top:2px}
 .dbody .twobtn,.dbody .btn.ok{margin-bottom:16px}
@@ -372,6 +403,13 @@ textarea{min-height:78px;resize:vertical}
   .main{margin-left:0;padding:calc(var(--head) + 18px) 14px 80px}
   .ttl{font-size:19px}
   .kpis{grid-template-columns:repeat(2,1fr);gap:10px}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .tiles.two{grid-template-columns:1fr}
+  .tile{padding:15px 14px 13px}
+  .tile svg{width:23px;height:23px;margin-bottom:8px}
+  .hi b{font-size:19px}
+  .panel.pad .kv{flex-wrap:wrap}
+  .panel.pad .kv>span:first-child{flex:0 0 92px;font-size:12.5px}
   .kbar{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kbar>div{border-bottom:1px solid var(--line)}
   .kbar>div:nth-child(2n){border-right:0}
@@ -428,9 +466,11 @@ textarea{min-height:78px;resize:vertical}
   <aside class="side" id="side">
     <div class="brand"><b>실험셋업연구소</b><small>(이머전트)</small></div>
     <nav class="nav" id="nav">
-      <a data-v="new" class="on">주문하기</a>
+      <a data-v="home" class="on">홈</a>
+      <a data-v="new">주문하기</a>
       <a data-v="orders">주문 현황</a>
       <a data-v="settle">정산하기</a>
+      <a data-v="me">회원정보</a>
     </nav>
     <div class="labbox" id="labBox"></div>
     <div class="foot">070-8983-2600<br>info@rndsetup.com</div>
@@ -480,7 +520,14 @@ const GROUP = {
 const DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
 const CH_KEY = '9ef4232c-59bb-4911-a4c7-363c6b5bc513';
 
-let me=null, lab=null, view='new', tab='전체', kw='', orders=[], cur=null;
+let me=null, lab=null, view='home', tab='전체', kw='', orders=[], cur=null;
+// 주문자 — 서류·연락이 실제로 가는 곳. 카카오 계정 메일은 개인 메일일 때가 많아 따로 받는다.
+let ord = { name:'', email:'', phone:'' };
+function syncOrd(){
+  if (!me) return;
+  ord = { name: me.name||'', email: me.work_email || me.email || '', phone: me.phone||'' };
+}
+function ordOk(){ return !!(ord.name && ord.email && ord.phone); }
 let cart=[], mode='one';   // mode: one=단건, bulk=여러 건
 try { cart = JSON.parse(localStorage.getItem('rs_cart')||'[]') || []; } catch(e){ cart=[]; }
 function saveCart(){ try{ localStorage.setItem('rs_cart', JSON.stringify(cart)); }catch(e){} }
@@ -516,11 +563,12 @@ async function boot(){
   }
   $('#login').style.display='none';
   $('#shell').classList.add('on');
+  syncOrd();
   $('#whoName').textContent = me.name || '고객';
   $('#whoOrg').textContent = (lab && lab.name) || me.company || '';
   paintLab();
   var h0 = location.hash.replace('#','');
-  if (h0==='orders'||h0==='settle'||h0==='new') view=h0;
+  if (VIEWS.indexOf(h0)>=0) view=h0;
   syncNav();
   bootChannel(me);
   render();
@@ -556,7 +604,7 @@ $('#nav').onclick = function(e){
 };
 function syncNav(){
   document.querySelectorAll('#nav a').forEach(function(a){ a.classList.toggle('on', a.dataset.v===view); });
-  $('#headTitle').textContent = '대시보드';
+  $('#headTitle').textContent = VT[view] || '대시보드';
 }
 
 /* ---------------- 실험실 · 초대 ---------------- */
@@ -714,15 +762,151 @@ function loadKakao(cb){
 }
 
 /* ---------------- 라우팅 ---------------- */
-var VT = { new:'주문하기', orders:'주문 현황', settle:'정산하기' };
+var VT = { home:'홈', new:'주문하기', orders:'주문 현황', settle:'정산하기', me:'회원정보' };
+var VIEWS = ['home','new','orders','settle','me'];
 function skeleton(){
   $('#main').innerHTML = '<div class="ttl">'+VT[view]+'</div>'
     +'<div class="skel"><div class="sk" style="height:120px"></div>'
     +'<div class="sk" style="height:260px"></div></div>';
 }
 function render(){
+  if (view==='home'){ paintHome(); return; }
+  if (view==='me'){ paintMe(); return; }
   skeleton();
   if (view==='new') viewNew(); else if (view==='orders') viewOrders(); else viewSettle();
+}
+
+/* ---------------- 홈 (바로가기) ---------------- */
+// 아이콘은 외부 파일 없이 인라인 SVG로 — 로딩 실패할 게 없다
+var ICON = {
+  order:  '<path d="M3 6h18M6 6l1.5 12.5A2 2 0 0 0 9.5 20h5a2 2 0 0 0 2-1.5L18 6M9 6V4a3 3 0 0 1 6 0v2"/>',
+  list:   '<path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/>',
+  money:  '<path d="M3 7h18v11H3zM3 11h18M7 15h3"/>',
+  user:   '<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 20a8 8 0 0 1 16 0"/>',
+  chat:   '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12Z"/>',
+  invite: '<path d="M16 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2 20a7 7 0 0 1 12 -5M6 8v6M3 11h6"/>',
+};
+function tile(v, icon, title, desc, badge, cls){
+  return '<button class="tile'+(cls?' '+cls:'')+'" data-go="'+v+'">'
+    + (badge ? '<i class="tb">'+badge+'</i>' : '')
+    + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" '
+      + 'stroke-linecap="round" stroke-linejoin="round">'+icon+'</svg>'
+    + '<b>'+esc(title)+'</b><span>'+esc(desc)+'</span></button>';
+}
+
+function paintHome(){
+  var nCart = cart.length;
+  var nWait = orders.filter(function(o){ return GROUP['확인 필요'].indexOf(o.status)>=0; }).length;
+  var nOpen = orders.filter(function(o){ return GROUP['완료'].indexOf(o.status)<0; }).length;
+  var nReq  = (cache.settle && (cache.settle.requests||[]).filter(function(r){
+                return r.status!=='입금완료' && r.status!=='반려'; }).length) || 0;
+  var due   = cache.settle && cache.settle.postpaid ? cache.settle.due : null;
+  var todo  = !ordOk();
+
+  $('#main').innerHTML =
+     '<div class="hi">'
+      +'<b>'+esc((me && me.name) || '고객')+'님, 안녕하세요</b>'
+      +'<span>'+esc((lab && lab.name) || (me && me.company) || '')+'</span>'
+     +'</div>'
+    +(todo ? '<div class="warnbox" style="margin-bottom:14px">주문자 정보가 아직 없습니다. '
+             +'<b>회원정보</b>에서 이름·회신 이메일·연락처를 먼저 채워주세요.</div>' : '')
+    +'<div class="tiles">'
+      + tile('new',    ICON.order, '주문하기',   '상품 링크로 바로 접수', nCart ? nCart+'건 담김' : '', 'pri')
+      + tile('orders', ICON.list,  '주문 현황',  nOpen ? '진행 중 '+nOpen+'건' : '지난 주문 보기', nWait ? nWait : '', nWait?'hot':'')
+      + tile('settle', ICON.money, '정산하기',   due!=null ? '잔여 '+won(due)+'원' : '서류 요청·발급 내역', nReq ? nReq : '')
+      + tile('me',     ICON.user,  '회원정보',   '주문자·납품지·계산서 정보', todo ? '!' : '', todo?'hot':'')
+    +'</div>'
+    +'<div class="tiles two">'
+      + '<button class="tile sm" data-act="invite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.invite+'</svg>'
+        + '<b>동료 초대</b><span>실험실 주문 이력 공유</span></button>'
+      + '<button class="tile sm" data-act="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.chat+'</svg>'
+        + '<b>문의하기</b><span>070-8983-2600</span></button>'
+    +'</div>';
+
+  $('#main').onclick = function(e){
+    var t = e.target.closest('[data-go]'); if (t) return go(t.dataset.go);
+    var a = e.target.closest('[data-act]'); if (!a) return;
+    if (a.dataset.act==='invite'){ lab ? inviteForm() : toast('납품지를 먼저 등록하면 실험실이 만들어집니다'); }
+    if (a.dataset.act==='chat'){ window.ChannelIO ? ChannelIO('showMessenger') : location.href='tel:070-8983-2600'; }
+  };
+
+  // 뱃지 숫자는 있으면 좋고 없어도 그만 — 조용히 채워 넣는다
+  if (!cache.orders) fetch('/api/order').then(function(r){return r.json();}).then(function(r){
+    if (r && r.orders){ orders = cache.orders = r.orders; if (view==='home') paintHome(); }
+  }).catch(function(){});
+  else orders = cache.orders;
+
+  if (!cache.settle) Promise.all([
+    fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return null;}),
+    fetch('/api/order/settlements').then(function(r){return r.json();}).catch(function(){return {};})
+  ]).then(function(both){
+    if (!both[0]) return;
+    both[0].requests = (both[1] && both[1].settlements) || [];
+    cache.settle = both[0];
+    if (view==='home') paintHome();
+  }).catch(function(){});
+}
+
+/* ---------------- 회원정보 ---------------- */
+function paintMe(){
+  var h = '<div class="ttl">회원정보</div>';
+
+  h += '<div class="panel pad"><h4 class="ph2">주문자<button class="mini" id="m-ord">수정</button></h4>'
+     + (ordOk()
+        ? '<div class="kv"><span>이름</span><span>'+esc(ord.name)+'</span></div>'
+          +'<div class="kv"><span>회신 이메일</span><span>'+esc(ord.email)+'</span></div>'
+          +'<div class="kv"><span>연락처</span><span>'+esc(ord.phone)+'</span></div>'
+          +(me.email && me.email!==ord.email
+            ? '<div class="kv"><span>카카오 계정</span><span style="color:var(--mut)">'+esc(me.email)+'</span></div>' : '')
+        : '<div class="warnbox">이름·회신 이메일·연락처를 입력해주세요.<br>서류와 배송 연락이 여기로 갑니다.</div>')
+     + '</div>';
+
+  h += '<div class="panel pad"><h4 class="ph2">납품지<button class="mini" id="m-site">＋ 추가</button></h4>'
+     + '<div id="m-sites"><div class="skel"><div class="sk" style="height:52px"></div></div></div></div>';
+
+  h += '<div class="panel pad"><h4 class="ph2">세금계산서 발행 정보<button class="mini" id="m-bill">관리</button></h4>'
+     + '<div id="m-bills"><div class="skel"><div class="sk" style="height:52px"></div></div></div></div>';
+
+  h += '<div class="panel pad"><h4 class="ph2">실험실</h4>'
+     + (lab
+        ? '<div class="kv"><span>이름</span><span>'+esc(lab.name)+'</span></div>'
+          +'<div class="kv"><span>실험실 코드</span><span><b>'+esc(lab.code)+'</b></span></div>'
+          +'<div class="kv"><span>인원</span><span>'+(lab.members||1)+'명</span></div>'
+          +'<button class="btn ghost" id="m-inv" style="width:100%;margin-top:12px">동료 초대하기</button>'
+        : '<div style="font-size:13px;color:var(--mut)">납품지를 등록하면 실험실이 만들어집니다.</div>')
+     + '</div>';
+
+  $('#main').innerHTML = h;
+  $('#m-ord').onclick = ordererForm;
+  $('#m-site').onclick = siteForm;
+  $('#m-bill').onclick = async function(){
+    var r = await fetch('/api/order/profiles').then(function(x){return x.json();}).catch(function(){return {};});
+    billManage(r.profiles||[]);
+  };
+  var mi = $('#m-inv'); if (mi) mi.onclick = inviteForm;
+
+  fetch('/api/order/sites').then(function(r){return r.json();}).then(function(r){
+    if (view!=='me') return;
+    var ls = (r && r.sites) || [];
+    sites = cache.sites = ls;
+    $('#m-sites').innerHTML = ls.length
+      ? ls.map(function(x){
+          return '<div class="kv"><span>'+esc(x.org_name||'—')+'</span><span>'+esc(x.address||'')
+            +(x.address_detail?' '+esc(x.address_detail):'')+'</span></div>'; }).join('')
+      : '<div class="warnbox">등록된 납품지가 없습니다. 주문하려면 하나 이상 필요합니다.</div>';
+  }).catch(function(){});
+
+  fetch('/api/order/profiles').then(function(r){return r.json();}).then(function(r){
+    if (view!=='me') return;
+    var ps = (r && r.profiles) || [];
+    $('#m-bills').innerHTML = ps.length
+      ? ps.map(function(x){
+          return '<div class="kv"><span>'+esc(x.company||'—')+(x.is_default?' <i class="todo">기본</i>':'')
+            +'</span><span>'+esc(x.biz_no||'—')+' · '+esc(x.ceo||'—')+'</span></div>'; }).join('')
+      : '<div style="font-size:13px;color:var(--mut)">등록된 발행 정보가 없습니다. 정산 시 필요합니다.</div>';
+  }).catch(function(){});
 }
 
 /* ---------------- 주문 현황 ---------------- */
@@ -816,6 +1000,11 @@ function detailHead(o){
    +'<div class="kv"><span>소속</span><span>'+esc(o.org_name||'—')+'</span></div>'
    +'<div class="kv"><span>요청일</span><span>'+esc(String(o.created_at||'').slice(0,16))+'</span></div>'
    +'<div class="kv"><span>납품지</span><span>'+esc(o.ship_address||'—')+'</span></div>'
+   +(o.orderer_name
+      ? '<div class="kv"><span>주문자</span><span>'+esc(o.orderer_name)
+        +(o.orderer_email?' · '+esc(o.orderer_email):'')
+        +(o.orderer_phone?' · '+esc(o.orderer_phone):'')+'</span></div>'
+      : '')
    +(o.request_note?'<div class="kv"><span>요청사항</span><span>'+esc(o.request_note)+'</span></div>':'');
 }
 function detailTitle(w, o){
@@ -1227,6 +1416,16 @@ function cartBlock(){
       +'<button class="cx" data-i="'+i+'">×</button></div>';
   }).join('') + '</div>';
 
+  h += '<div class="sitebox"><h4 class="ph2">주문자<button class="mini" id="edOrd">수정</button></h4>';
+  if (ordOk()){
+    h += '<div class="ordbar"><b>'+esc(ord.name)+'</b>'
+       + '<span>'+esc(ord.email)+'</span><span>'+esc(ord.phone)+'</span></div>';
+  } else {
+    h += '<div class="warnbox">주문자 정보를 확인해주세요.<br>서류와 연락은 여기 적으신 곳으로 갑니다.</div>'
+       + '<button class="btn ghost" id="edOrd2" style="width:100%;margin-top:10px">주문자 정보 입력</button>';
+  }
+  h += '</div>';
+
   h += '<div class="sitebox"><h4 class="ph2">납품지<button class="mini" id="addSite">＋ 추가</button></h4>';
   if (sites.length){
     h += sites.map(function(s){
@@ -1240,10 +1439,12 @@ function cartBlock(){
   }
   h += '</div>';
 
-  if (n) h += '<button class="btn pri" id="f-go"'+(sites.length?'':' disabled')
+  var ready = sites.length && ordOk();
+  if (n) h += '<button class="btn pri" id="f-go"'+(ready?'':' disabled')
        + ' style="width:100%;margin-top:16px;padding:15px;font-size:15.5px">'
        + n + '건 주문 요청 보내기</button>'
-       + (sites.length ? '' : '<p class="hint" style="text-align:center;margin-top:10px">납품지를 추가하면 주문할 수 있습니다.</p>');
+       + (ready ? '' : '<p class="hint" style="text-align:center;margin-top:10px">'
+           + (!ordOk() ? '주문자 정보를 입력하면' : '납품지를 추가하면') + ' 주문할 수 있습니다.</p>');
   return h;
 }
 function refreshCart(){ $('#cartPanel').innerHTML = cartBlock(); bindCart(); }
@@ -1263,9 +1464,43 @@ function bindCart(){
       if (siteId===Number(b.dataset.sid)) siteId=null;
       cache.sites=null; viewNew();
     }; });
+  var eo = $('#edOrd'); if (eo) eo.onclick = ordererForm;
+  var eo2 = $('#edOrd2'); if (eo2) eo2.onclick = ordererForm;
   var as = $('#addSite'); if (as) as.onclick = siteForm;
   var as2 = $('#addSite2'); if (as2) as2.onclick = siteForm;
   var go2 = $('#f-go'); if (go2) go2.onclick = submitOrder;
+}
+
+// 주문자 정보 — 한 번 저장하면 다음 주문부터는 다시 묻지 않는다
+function ordererForm(){
+  var w = modal('주문자 정보',
+     '<p class="hint" style="margin-top:10px">견적서·거래명세서·세금계산서와 배송 연락이 <b>여기 적으신 곳으로</b> 갑니다. '
+    +'카카오 계정 메일이 개인 메일이라면 업무용 메일로 바꿔주세요.</p>'
+    +'<label class="req">주문자명</label><input id="o-name" value="'+esc(ord.name)+'" placeholder="홍길동">'
+    +'<label class="req">회신받을 이메일</label><input id="o-email" type="email" inputmode="email" '
+      +'value="'+esc(ord.email)+'" placeholder="name@company.co.kr">'
+    +(me && me.email && me.email!==ord.email
+       ? '<p class="hint" style="margin-top:6px">카카오 계정 메일: '+esc(me.email)+'</p>' : '')
+    +'<label class="req">연락처</label><input id="o-phone" inputmode="tel" '
+      +'value="'+esc(ord.phone)+'" placeholder="010-0000-0000">'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="o-go">저장</button></div>');
+
+  $('#o-go').onclick = async function(){
+    var v = { name:$('#o-name').value.trim(), email:$('#o-email').value.trim(), phone:$('#o-phone').value.trim() };
+    if (!v.name)  return alert('주문자명을 입력해주세요.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) return alert('이메일 형식을 확인해주세요.');
+    if (!v.phone) return alert('연락처를 입력해주세요.');
+    var btn=$('#o-go'); btn.disabled=true; btn.textContent='저장 중…';
+    var r = await fetch('/api/auth/me',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({ name:v.name, work_email:v.email, phone:v.phone })})
+      .then(function(r){return r.json();}).catch(function(){return {};});
+    if (!r.ok){ btn.disabled=false; btn.textContent='저장'; return alert(r.message||'저장에 실패했습니다.'); }
+    me = r.customer; syncOrd();
+    $('#whoName').textContent = me.name || '고객';
+    w.remove(); toast('저장되었습니다');
+    if (view==='new') refreshCart();
+  };
 }
 
 // 다음(카카오) 우편번호 서비스 — 열 때 한 번만 불러온다
@@ -1335,7 +1570,8 @@ async function submitOrder(){
   if (!cart.length) return toast('담은 품목이 없습니다');
   if (!sites.length) return toast('납품지를 먼저 추가해주세요');
   if (!siteId) return toast('납품지를 선택해주세요');
-  var body = { items: cart, site_id: siteId };
+  if (!ordOk()){ toast('주문자 정보를 먼저 입력해주세요'); return ordererForm(); }
+  var body = { items: cart, site_id: siteId, orderer: ord };
   var btn=$('#f-go'); btn.disabled=true; btn.textContent='보내는 중…';
   var r = await fetch('/api/order',{method:'POST',headers:{'content-type':'application/json'},
     body:JSON.stringify(body)}).then(function(r){return r.json();});
@@ -1503,7 +1739,8 @@ function settleForm(){
     +'<div class="docbox"><span>견적서</span><input id="q-d1" type="date"></div>'
     +'<div class="docbox"><span>거래명세서</span><input id="q-d2" type="date"></div>'
     +'<div class="docbox" id="q-d3box"><span>세금계산서</span><input id="q-d3" type="date"></div>'
-    +'<label class="req">회신받을 이메일</label><input id="q-email" type="email" inputmode="email" placeholder="example@email.com" value="'+esc(me.email||'')+'">'
+    +'<label class="req">회신받을 이메일</label><input id="q-email" type="email" inputmode="email" placeholder="name@company.co.kr" value="'+esc(ord.email||me.email||'')+'">'
+    +'<p class="hint" style="margin-top:6px">서류가 이 주소로 갑니다. 업무용 메일로 바꿔 적으셔도 됩니다.</p>'
     +'<label>메모</label><textarea id="q-memo" placeholder="메모를 입력하세요 (선택)"></textarea>'
     +'<button class="btn pri" id="q-go" style="width:100%;margin-top:18px;padding:15px;font-size:15.5px">정산 요청</button>');
 
@@ -1574,8 +1811,8 @@ function modal(title, inner){
 }
 
 window.addEventListener('hashchange', function(){
-  var v = location.hash.replace('#','') || 'orders';
-  if (v!==view && (v==='orders'||v==='settle'||v==='new')){ view=v; cur=null; syncNav(); render(); }
+  var v = location.hash.replace('#','') || 'home';
+  if (v!==view && VIEWS.indexOf(v)>=0){ view=v; cur=null; syncNav(); render(); }
 });
 boot();
 </script>

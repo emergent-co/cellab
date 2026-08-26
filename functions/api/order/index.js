@@ -1,6 +1,6 @@
 // GET  /api/order        → 내 주문 목록
 // POST /api/order        → 주문요청 생성
-import { json, currentCustomer, kstISO, nextOrderNo, recalcOrder, logEvent } from '../_lib.js';
+import { json, currentCustomer, kstISO, nextOrderNo, recalcOrder, logEvent, replyEmail } from '../_lib.js';
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
@@ -44,11 +44,25 @@ export async function onRequest({ request, env }) {
     : String(items[0].name).trim();
   // 사업자정보는 정산 시점에 받는다 — 여기서 요구하지 않는다.
 
+  // 주문자 정보 — 누가 주문했는지는 주문에 박아둔다.
+  //   나중에 고객이 이름/메일을 바꿔도 그때 그 주문의 주문자는 그대로 남아야 한다.
+  const od = b.orderer || {};
+  const oName  = String(od.name  || me.name  || '').trim();
+  const oEmail = String(od.email || replyEmail(me) || '').trim();
+  const oPhone = String(od.phone || me.phone || '').trim();
+  if (!oName)  return json({ error: 'no_orderer', message: '주문자명을 입력해주세요.' }, 400);
+  if (!oEmail) return json({ error: 'no_orderer', message: '회신받을 이메일을 입력해주세요.' }, 400);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(oEmail)) {
+    return json({ error: 'bad_email', message: '이메일 형식을 확인해주세요.' }, 400);
+  }
+  if (!oPhone) return json({ error: 'no_orderer', message: '연락처를 입력해주세요.' }, 400);
+
   const orderNo = await nextOrderNo(env);
   const now = kstISO();
   const r = await env.DB.prepare(
-    `INSERT INTO orders (order_no, customer_id, status, title, org_name, want_date, ship_address, request_note, created_at, updated_at)
-     VALUES (?,?,?,?,?,?,?,?,?,?)`
+    `INSERT INTO orders (order_no, customer_id, status, title, org_name, want_date, ship_address, request_note,
+                         orderer_name, orderer_email, orderer_phone, created_at, updated_at)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
   ).bind(
     orderNo, me.id, '요청접수',
     title,
@@ -56,6 +70,7 @@ export async function onRequest({ request, env }) {
     '',
     ship || me.address || '',
     '',
+    oName, oEmail, oPhone,
     now, now
   ).run();
   const orderId = r.meta.last_row_id;
@@ -74,9 +89,11 @@ export async function onRequest({ request, env }) {
     ).run();
   }
 
+  // 이번에 확인한 주문자 정보를 거래처 기본값으로 갱신 — 다음 주문에서 다시 안 물어보게
   await env.DB.prepare(
-    "UPDATE customers SET company=?, address=COALESCE(NULLIF(?,''), address), updated_at=? WHERE id=?"
-  ).bind(org, ship, kstISO(), me.id).run();
+    `UPDATE customers SET company=?, address=COALESCE(NULLIF(?,''), address),
+            name=?, work_email=?, phone=?, updated_at=? WHERE id=?`
+  ).bind(org, ship, oName, oEmail, oPhone, kstISO(), me.id).run();
 
   const def = await env.DB.prepare(
     'SELECT id FROM bill_profiles WHERE customer_id=? AND is_default=1'

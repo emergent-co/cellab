@@ -164,7 +164,7 @@ async function loadList(){
     '<div class="card" data-id="'+o.id+'">'
     +'<div class="r1"><span class="no">'+esc(o.order_no)+'</span><span class="st s'+(SIDX[o.status]??7)+'">'+esc(o.status)+'</span></div>'
     +'<div class="ttl">'+esc(o.title||'(제목 없음)')+'</div>'
-    +'<div class="sub"><span>'+esc(o.company||o.contact||'-')+'</span>'
+    +'<div class="sub"><span>'+esc(o.company||o.contact||'-')+(o.orderer_name?' · '+esc(o.orderer_name):'')+'</span>'
       +(o.want_date?'<span>납기 '+esc(o.want_date)+'</span>':'')
       +'<span>'+esc(String(o.created_at||'').slice(0,10))+'</span></div>'
     +'<div class="amt">'+won(o.total_amount)+'원</div></div>').join('');
@@ -186,8 +186,12 @@ function render(){
   body.innerHTML =
    '<div class="shead"><span class="no">'+esc(o.order_no)+'</span><span class="st s'+(SIDX[o.status]??7)+'">'+esc(o.status)+'</span><button class="x" id="closeBtn">×</button></div>'
   +'<div class="sec"><h3>고객</h3>'
-    +kv('소속', o.org_name||c.company)+kv('담당자',(c.name||'')+(c.phone?' · '+c.phone:''))
-    +kv('이메일',c.email)+kv('납품지',o.ship_address)
+    +kv('소속', o.org_name||c.company)
+    +kv('주문자',(o.orderer_name||c.name||'')+((o.orderer_phone||c.phone)?' · '+(o.orderer_phone||c.phone):''))
+    +kv('회신 메일', o.orderer_email||c.work_email||c.email)
+    +((o.orderer_email && c.email && o.orderer_email!==c.email)
+       ? kv('카카오 계정', c.email) : '')
+    +kv('납품지',o.ship_address)
   +'</div>'
   +'<div class="sec"><h3>세금계산서 발행 정보</h3><div id="billBox">'+billBlock()+'</div></div>'
   +'<div class="sec"><h3>요청내용</h3>'
@@ -311,7 +315,7 @@ async function cancelSchedule(docId){
 
 function sendSheet(docId){
   const c = cur.customer||{};
-  const to = c.tax_email || c.email || '';
+  const to = c.tax_email || (cur.order && cur.order.orderer_email) || c.work_email || c.email || '';
   const wrap = document.createElement('div');
   wrap.className='modal'; wrap.id='sendModal';
   wrap.innerHTML = '<div class="mbox">'

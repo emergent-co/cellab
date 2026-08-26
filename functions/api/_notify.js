@@ -15,28 +15,30 @@ export function alimtalkConfigured(env) {
  */
 export async function notifyCustomer(env, n) {
   const { customer, order } = n;
+  const phone = order?.orderer_phone || customer?.phone || '';
 
-  if (alimtalkConfigured(env) && customer?.phone) {
+  if (alimtalkConfigured(env) && phone) {
     const r = await sendAlimtalk(env, {
-      to: String(customer.phone).replace(/[^0-9]/g, ''),
+      to: String(phone).replace(/[^0-9]/g, ''),
       template: n.template,
       text: n.text,
       buttons: n.buttons,
     });
     await logEvent(env, {
       order_id: order?.id, action: 'notify', channel: 'kakao', actor: 'system',
-      to_addr: customer.phone, result: r.ok ? 'ok' : 'fail',
+      to_addr: phone, result: r.ok ? 'ok' : 'fail',
       detail: r.ok ? `알림톡 발송 (${n.template})` : `알림톡 실패: ${r.error}`,
     });
     if (r.ok) return r;
     // 알림톡 실패 시 이메일로 떨어뜨린다
   }
 
-  if (mailConfigured(env) && customer?.email) {
-    const r = await sendMail(env, { to: customer.email, subject: n.subject, html: n.html });
+  const to = order?.orderer_email || customer?.work_email || customer?.email || '';
+  if (mailConfigured(env) && to) {
+    const r = await sendMail(env, { to, subject: n.subject, html: n.html });
     await logEvent(env, {
       order_id: order?.id, action: 'notify', channel: 'email', actor: 'system',
-      to_addr: customer.email, result: r.ok ? 'ok' : 'fail',
+      to_addr: to, result: r.ok ? 'ok' : 'fail',
       detail: r.ok ? '이메일 알림 발송' : `이메일 알림 실패: ${r.error}`,
     });
     return r;

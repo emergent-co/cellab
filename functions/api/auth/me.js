@@ -4,7 +4,7 @@
 import { json, currentCustomer, dropSession, clearCookie, kstISO } from '../_lib.js';
 import { labInfo } from '../order/lab.js';
 
-const FIELDS = ['name', 'email', 'phone', 'company', 'biz_no', 'ceo', 'biz_type', 'biz_item', 'tax_email', 'address'];
+const FIELDS = ['name', 'email', 'work_email', 'phone', 'company', 'biz_no', 'ceo', 'biz_type', 'biz_item', 'tax_email', 'address'];
 
 export async function onRequest({ request, env }) {
   if (request.method === 'DELETE') {
