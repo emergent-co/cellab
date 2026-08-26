@@ -1195,7 +1195,43 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/battery-test-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-b001/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-b002/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-b003/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-b004/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-b005/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-pressurized/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/battery-cell-special/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1255,7 +1291,37 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell-entry/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell-mea/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell-mtr/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell-parts/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell-solid/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/gas-diffusion-cell-standard/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1357,7 +1423,31 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/mea-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/mea-cell-parts/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/mea-cell-special/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/mea-cell-system/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/mea-cell-ti/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/mea-cell-wb/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1537,7 +1627,25 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/special-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/special-cell-cdi/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/special-cell-dendrite/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/special-cell-membrane/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/special-cell-misc/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>

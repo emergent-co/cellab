@@ -136,3 +136,19 @@
 # 고압 전기화학 셀 모델별 분리(2026-08)
 /brands/gaossunion/high-pressure-cell/  /product/  301
 /brands/gaossunion/high-pressure-cell  /product/  301
+
+# 막전극(MEA) 전해셀 모델별 분리(2026-08)
+/brands/gaossunion/mea-cell/  /product/  301
+/brands/gaossunion/mea-cell  /product/  301
+
+# 가스확산 전해셀 모델별 분리(2026-08)
+/brands/gaossunion/gas-diffusion-cell/  /product/  301
+/brands/gaossunion/gas-diffusion-cell  /product/  301
+
+# 배터리 테스트 셀 모델별 분리(2026-08)
+/brands/gaossunion/battery-test-cell/  /product/  301
+/brands/gaossunion/battery-test-cell  /product/  301
+
+# 리튬전지 in-situ·특수 기능 셀 모델별 분리(2026-08)
+/brands/gaossunion/special-cell/  /product/  301
+/brands/gaossunion/special-cell  /product/  301
