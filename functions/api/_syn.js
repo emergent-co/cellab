@@ -20,7 +20,7 @@ const GROUPS = [
   ['기어펌프','gear pump','기어'],
   ['다이어프램','diaphragm','격막','무급유','oil free','오일프리'],
   ['진공펌프','vacuum','배큠','베큠','진공'],
-  ['로터리','rotary','유회전','오일회전','회전펌프','rotary vane','베인'],
+  ['로터리','로타리','rotary','유회전','오일회전','회전펌프','rotary vane','베인'],
   ['드라이펌프','스크류','screw','건식펌프','dry pump'],
   ['고진공','터보','turbo','turbo molecular','확산펌프'],
   ['방폭','explosion proof','내압방폭'],
@@ -28,7 +28,7 @@ const GROUPS = [
   // ── 유량 / 압력 ─────────────────────────────────────────────
   ['mfc','유량제어','유량제어기','mass flow controller','매스플로우','질량유량제어기','가스유량제어'],
   ['mfm','유량계','flow meter','질량유량계','매스플로우미터','플로우미터','유량측정'],
-  ['액체유량계','liquid flow','액체유량','액체제어기'],
+  ['액체유량계','liquid flow','액체유량','액체제어기','유량계'],
   ['압력','pressure','압력계','압력제어기','게이지','gauge','트랜스듀서','transducer','진공게이지','압력센서'],
   ['밸브','valve','멀티포트','multiport','multi port','분배밸브','로터리밸브','선택밸브','솔레노이드'],
   ['튜브','tube','튜빙','tubing','호스','hose','배관','실리콘튜브'],
@@ -56,7 +56,7 @@ const GROUPS = [
   ['데시케이터','desiccator','건조함','방습함'],
 
   // ── 농축 / 증류 ─────────────────────────────────────────────
-  ['농축기','회전농축기','증발기','evaporator','로터리이배퍼레이터','rotary evaporator','감압농축','회전증발기','로터리','rotavap','회전농축'],
+  ['농축기','회전농축기','증발기','evaporator','이배퍼레이터','rotary evaporator','감압농축','회전증발기','로터리','로타리','rotavap','회전농축'],
   ['트랩','trap','콜드트랩','cold trap','용매회수','회수트랩'],
   ['증류','distillation','숏패스','short path','분별증류','정제'],
 
@@ -122,12 +122,13 @@ export function expandWord(word) {
   if (loose) { push(loose); return out; }          // 숫자는 동의어 확장하지 않는다
 
   const hits = new Set();
-  if (INDEX.has(n)) for (const gi of INDEX.get(n)) hits.add(gi);
-
-  // 2글자 이상이면 부분일치도 본다 ("연동펌" → 연동펌프, "퍼니" → 퍼니스)
-  if (n.length >= 2) {
+  // 사전에 그 말이 그대로 있으면 그 그룹만 쓴다.
+  //   "진공펌프"를 "펌프"까지 넓히면 665개 펌프가 전부 딸려와 검색이 무의미해진다.
+  if (INDEX.has(n)) {
+    for (const gi of INDEX.get(n)) hits.add(gi);
+  } else if (n.length >= 2) {
+    // 그대로는 없을 때만 부분일치로 찾는다 ("연동펌" → 연동펌프, "퍼니" → 퍼니스)
     for (const k of KEYS) {
-      if (k === n) continue;
       if (k.length >= 2 && (k.includes(n) || n.includes(k))) {
         for (const gi of INDEX.get(k)) hits.add(gi);
       }

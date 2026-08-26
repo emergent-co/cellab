@@ -12,11 +12,38 @@ const P_BLOB = `(IFNULL(name,'')||' '||IFNULL(model,'')||' '||IFNULL(sku,'')||' 
 // 주문이력 한 행
 const I_BLOB = `(IFNULL(oi.name,'')||' '||IFNULL(oi.spec,''))`;
 
+// 분류(소분+대분) / 제품명(품명+모델) — 어디에 걸렸는지로 순위를 가른다
+const CAT_BLOB = `(IFNULL(sobun,'')||' '||IFNULL(daebun,''))`;
+const NM_BLOB  = `(IFNULL(name,'')||' '||IFNULL(model,''))`;
+
 // 확장된 단어들을 (blob LIKE ? OR blob LIKE ? ...) 조건 + 바인드로
 function likeGroup(blob, alts, binds) {
   const use = alts.slice(0, 12);
   binds.push(...use.map((a) => `%${a}%`));
   return '(' + use.map(() => `${blob} LIKE ?`).join(' OR ') + ')';
+}
+
+/**
+ * 점수 = 어디에 걸렸는지 + 사용자가 친 말 그대로인지.
+ *   분류(대분/소분)에 걸린 것  → 그 카테고리의 대표 제품일 확률이 높다
+ *   제품명에 친 말 그대로 있음 → 찾던 그 물건일 확률이 높다
+ * 동점이면 분류명이 짧은 쪽(= 더 일반적인 카테고리)을 위로 올린다.
+ */
+function scoreSql(groups, literals, binds) {
+  const parts = [];
+  // 사용자가 친 말이 그대로 들어있는 단어 수 (단어당 2점)
+  for (const w of literals) {
+    binds.push(`%${w}%`);
+    parts.push(`(CASE WHEN ${P_BLOB} LIKE ? THEN 2 ELSE 0 END)`);
+  }
+  // 첫 단어(= 찾는 물건의 머리말)를 제품명에 그대로 가지고 있으면 3점
+  binds.push(`%${literals[0]}%`);
+  parts.push(`(CASE WHEN ${NM_BLOB} LIKE ? THEN 3 ELSE 0 END)`);
+  // 첫 단어(동의어 포함)가 분류에 걸리면 4점 — "퍼니스"는 전기로 카테고리가 먼저다
+  const head = groups[0].slice(0, 10);
+  binds.push(...head.map((a) => `%${a}%`));
+  parts.push('(CASE WHEN (' + head.map(() => `${CAT_BLOB} LIKE ?`).join(' OR ') + ') THEN 4 ELSE 0 END)');
+  return parts.join(' + ');
 }
 
 export async function onRequestGet({ request, env }) {
@@ -52,20 +79,14 @@ export async function onRequestGet({ request, env }) {
   // ---- 2) 자사 제품 ----
   const b2 = [];
   const cond2 = groups.map((g) => likeGroup(P_BLOB, g, b2)).join(' AND ');
-
-  // 정렬: 사용자가 친 말 그대로 걸린 것 → 모델명이 그 말로 시작하는 것 순
   const rank = [];
-  const rankSql = literals.map((w) => {
-    rank.push(`%${w}%`);
-    return `(CASE WHEN ${P_BLOB} LIKE ? THEN 1 ELSE 0 END)`;
-  }).join(' + ');
-  rank.push(`${literals[0]}%`);
+  const rankSql = scoreSql(groups, literals, rank);
 
   const { results } = await env.DB.prepare(
     `SELECT id, brand, model, name, sobun, daebun
        FROM products
       WHERE ${cond2}
-      ORDER BY (${rankSql}) DESC, (IFNULL(model,'') LIKE ?) DESC, id
+      ORDER BY (${rankSql}) DESC, length(${CAT_BLOB}) ASC, id
       LIMIT 14`
   ).bind(...b2, ...rank).all();
 

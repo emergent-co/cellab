@@ -5,6 +5,8 @@
 import { expandQuery } from './_syn.js';
 
 const BLOB = `(IFNULL(name,'')||' '||IFNULL(model,'')||' '||IFNULL(sku,'')||' '||IFNULL(sobun,'')||' '||IFNULL(daebun,'')||' '||IFNULL(brand,''))`;
+const CAT_BLOB = `(IFNULL(sobun,'')||' '||IFNULL(daebun,''))`;
+const NM_BLOB  = `(IFNULL(name,'')||' '||IFNULL(model,''))`;
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -28,9 +30,10 @@ export async function onRequest(context) {
   if (brand)  { where.push("brand = ?");  binds.push(brand); }
   if (sobun)  { where.push("sobun = ?");  binds.push(sobun); }
   if (status) { where.push("status = ?"); binds.push(status); }
-  if (q) {
+  const qGroups = q ? expandQuery(q) : [];
+  if (qGroups.length) {
     // 단어끼리는 AND, 같은 단어의 동의어끼리는 OR
-    for (const alts of expandQuery(q)) {
+    for (const alts of qGroups) {
       const use = alts.slice(0, 12);
       where.push("(" + use.map(() => `${BLOB} LIKE ?`).join(" OR ") + ")");
       for (const a of use) binds.push("%" + a + "%");
@@ -38,7 +41,25 @@ export async function onRequest(context) {
   }
   const clause = where.length ? "WHERE " + where.join(" AND ") : "";
 
-  const sql = `SELECT ${cols} FROM products ${clause} ORDER BY brand, sobun, model LIMIT ? OFFSET ?`;
+  // 검색어가 있으면 관련도 순으로 — 분류에 걸린 것, 친 말 그대로 걸린 것이 위로
+  let order = "brand, sobun, model";
+  if (qGroups.length) {
+    const rank = [];
+    const parts = [];
+    for (const g of qGroups) {
+      rank.push("%" + g[0] + "%");
+      parts.push(`(CASE WHEN ${BLOB} LIKE ? THEN 2 ELSE 0 END)`);
+    }
+    rank.push("%" + qGroups[0][0] + "%");
+    parts.push(`(CASE WHEN ${NM_BLOB} LIKE ? THEN 3 ELSE 0 END)`);
+    const head = qGroups[0].slice(0, 10);
+    for (const a of head) rank.push("%" + a + "%");
+    parts.push("(CASE WHEN (" + head.map(() => `${CAT_BLOB} LIKE ?`).join(" OR ") + ") THEN 4 ELSE 0 END)");
+    order = `(${parts.join(" + ")}) DESC, length(${CAT_BLOB}) ASC, id`;
+    binds.push(...rank);
+  }
+
+  const sql = `SELECT ${cols} FROM products ${clause} ORDER BY ${order} LIMIT ? OFFSET ?`;
   binds.push(size, (page - 1) * size);
   const { results } = await env.DB.prepare(sql).bind(...binds).all();
 
