@@ -112,3 +112,7 @@
 /brands/  /product/  301
 /brands/gaossunion/glass-cell/  /product/  301
 /brands/gaossunion/glass-cell  /product/  301
+
+# 커리큘럼 폐지(2026-08) — 배터리 사전으로 통합
+/magazine/battery/  /wiki/  301
+/magazine/battery  /wiki/  301

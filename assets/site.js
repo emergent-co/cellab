@@ -79,7 +79,10 @@
         ['/guides/', '선택 가이드']
       ] },
     { href:'/magazine/', label:'셋업 사례', icon:'feed' },
-    { href:'/magazine/battery/', label:'에너지 랩 A to Z', icon:'pick' },
+    { href:'/info/', label:'유용한 정보', icon:'pick', noclick:true, sub:[
+        ['/info/', '제품 정보'],
+        ['/wiki/', '배터리 사전']
+      ] },
     { href:'/contact/', label:'문의하기', icon:'contact', noclick:true, sub:[
         ['#chat',     '문의하기'],
         ['/contact/', 'FAQ'],
