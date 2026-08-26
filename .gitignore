@@ -48,3 +48,6 @@ _ops/clean_fail.log
 /Electrolytic Cell Quotation Sheet -2026 Edition.pdf
 /Flow, In-situ & MEA Price List – 2026 English Version.pdf
 /Quotation List for Electrodes  Catalysts 2026 Edition.pdf
+
+# 카탈로그 이미지 추출 작업본 (원본은 img/gaossunion 으로 복사됨)
+_ops/_extract/
