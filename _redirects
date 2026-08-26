@@ -116,3 +116,11 @@
 # 커리큘럼 폐지(2026-08) — 배터리 사전으로 통합
 /magazine/battery/  /wiki/  301
 /magazine/battery  /wiki/  301
+
+# 격막교환셀 모델별 분리(2026-08)
+/brands/gaossunion/membrane-cell/  /product/  301
+/brands/gaossunion/membrane-cell  /product/  301
+
+# 부식·석영 셀 모델별 분리(2026-08)
+/brands/gaossunion/quartz-cell/  /product/  301
+/brands/gaossunion/quartz-cell  /product/  301

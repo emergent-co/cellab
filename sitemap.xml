@@ -913,6 +913,18 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/info/compare-muffle/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/info/compare-peristaltic/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/wiki/annealing/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.7</priority>
@@ -1195,6 +1207,24 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/corrosion-cell-c009/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/corrosion-cell-c010/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/corrosion-cell-c011/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/counter-electrode/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
@@ -1261,12 +1291,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/membrane-cell/</loc>
-    <lastmod>2026-08-26</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://rndsetup.com/brands/gaossunion/membrane-cell-c007/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
@@ -1303,7 +1327,37 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell-c012/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell-c013/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell-c014/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell-c015/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell-c017/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/quartz-cell-c018/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>

@@ -75,8 +75,7 @@
   var NAV = [
     { href:'/product/', label:'제품소개', icon:'devices', noclick:true, sub:[
         ['/product/', '제품소개'],
-        ['/manuals/', '메뉴얼'],
-        ['/guides/', '선택 가이드']
+        ['/manuals/', '메뉴얼']
       ] },
     { href:'/magazine/', label:'셋업 사례', icon:'feed' },
     { href:'/info/', label:'유용한 정보', icon:'pick', noclick:true, sub:[

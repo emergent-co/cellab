@@ -1,0 +1,272 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>부위 넘버링 입력기 — 1차 — 유리 셀 C001/C002/C004 · 격막교환 셀 C007/C008</title>
+<style>
+:root{--b:#1E3A5F;--d:#0D6E6E;--o:#646469;--x:#B22222;--line:#e3e1dd;--ink:#1c1917}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.55 "Malgun Gothic","맑은 고딕",system-ui,sans-serif;color:var(--ink);background:#f6f5f3}
+header{background:#fff;border-bottom:1px solid var(--line);padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+header h1{font-size:15px;margin:0 12px 0 0;white-space:nowrap}
+.btn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}
+.btn:hover{background:#f0efec}
+.btn.pri{background:var(--b);color:#fff;border-color:var(--b)}
+.prog{flex:1;min-width:140px;height:8px;background:#e8e6e2;border-radius:4px;overflow:hidden}
+.prog i{display:block;height:100%;background:#2f7d5f;width:0}
+main{display:grid;grid-template-columns:1fr 380px;gap:14px;padding:14px;align-items:start}
+@media(max-width:1000px){main{grid-template-columns:1fr}}
+.stage{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}
+.imgwrap{position:relative;display:inline-block;max-width:100%;line-height:0;cursor:crosshair;user-select:none}
+.imgwrap img{max-width:100%;height:auto;display:block}
+.mk{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;
+    color:#fff;font-weight:700;font-size:19px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 0 3px #fff;cursor:grab;line-height:1}
+.mk.sel{outline:3px solid #f0a500;outline-offset:3px}
+.side{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;position:sticky;top:64px;max-height:calc(100vh - 80px);overflow:auto}
+.mt{font-size:15px;font-weight:700;margin:0 0 2px}
+.mf{color:#78716c;font-size:12px;margin:0 0 10px}
+ul.items{list-style:none;margin:0;padding:0}
+ul.items li{display:flex;gap:8px;align-items:flex-start;padding:7px 6px;border-radius:7px;cursor:pointer;border:1px solid transparent}
+ul.items li:hover{background:#f6f5f3}
+ul.items li.cur{background:#fff8e8;border-color:#f0a500}
+ul.items li.done{opacity:.62}
+ul.items li.none{opacity:.5;text-decoration:line-through}
+.bdg{flex:none;width:24px;height:24px;border-radius:50%;color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.lb{flex:1}
+.kd{display:block;font-size:11px;color:#78716c}
+.acts{flex:none;display:flex;gap:4px}
+.acts button{border:1px solid var(--line);background:#fff;border-radius:5px;font-size:11px;padding:2px 6px;cursor:pointer}
+.nav{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.nav select{font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px;max-width:220px}
+textarea{width:100%;min-height:54px;font:inherit;border:1px solid var(--line);border-radius:6px;padding:7px;resize:vertical}
+.rules{background:#fffdf6;border:1px solid #f0e3bf;border-radius:8px;padding:10px 12px;margin:0 14px 0;font-size:13px}
+.rules ol{margin:6px 0 0;padding-left:20px}
+.rules b{color:#8a5a00}
+.empty{padding:60px 20px;text-align:center;color:#78716c}
+.drop{border:2px dashed #cfcbc4;border-radius:10px;padding:34px;text-align:center;color:#78716c;margin-top:10px}
+.drop.on{border-color:var(--b);background:#f0f5fb}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:20px;background:#efeeea;color:#57534e;margin-left:6px}
+</style><!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "셋업으로 읽는 에너지·소재 공정 매거진", "description": "논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "마그네틱 펌프", "질량유량계(MFC)", "질량유량계 다기체 보정", "sccm·slm 가스 유량 제어", "압력 컨트롤러", "배압 레귤레이터(BPR)", "관류배양", "연속배양(chemostat)", "flow chemistry 연속흐름 반응", "열처리로(전기로·튜브퍼니스)", "튜브퍼니스(관상로)", "머플로(박스형 전기로)", "진공 전기로", "회전 튜브로(로터리 킬른)", "엘리베이터 전기로", "3존 튜브퍼니스", "소성(firing)", "하소(calcination)", "소결(sintering)", "어닐링(소둔)", "가스 분위기 제어", "산소 분압(pO2) 제어", "동적 분위기 제어(DCA)", "CVD 탄소 코팅", "열산화", "배터리 양극재 전구체 공침", "전해액 순환", "수전해·전기화학 셋업", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "실험 셋업 정보"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head><body>
+<header>
+  <h1>부위 넘버링 입력기</h1>
+  <span class="tag">1차 — 유리 셀 C001/C002/C004 · 격막교환 셀 C007/C008</span>
+  <div class="prog"><i id="pbar"></i></div>
+  <span id="pnum" style="font-size:12px;color:#57534e;white-space:nowrap">0 / 0</span>
+  <button class="btn" id="bOpen">사진 폴더 열기</button>
+  <button class="btn" id="bLoad">이어하기</button>
+  <button class="btn pri" id="bSave">JSON 내보내기</button>
+  <input type="file" id="fDir" webkitdirectory directory multiple hidden>
+  <input type="file" id="fJson" accept="application/json" hidden>
+</header>
+
+<div class="rules">
+  <b>작업 규칙</b>
+  <ol>
+    <li>목록의 부위가 <b>사진에 안 보이면 “없음”</b>을 누르세요. 비슷한 데 찍지 마세요.</li>
+    <li>같은 부위가 여러 개 보이면 <b>가장 잘 보이는 하나만</b> 찍습니다.</li>
+    <li>번호끼리 겹치지 않게, 제품 형상을 가리지 않는 자리에.</li>
+    <li>유리 안쪽이 비쳐 보이는 부위는 <b>바깥 윤곽 쪽</b>에 찍습니다.</li>
+    <li>애매하면 찍지 말고 <b>메모에 “잘 모르겠음”</b>이라고 적어 주세요.</li>
+  </ol>
+  <p style="margin:8px 0 0;color:#8a5a00"><b>중요:</b> 브라우저를 닫기 전에 반드시 <b>JSON 내보내기</b>를 누르세요. 자동 저장되지 않습니다. 다음에 이어서 할 때는 <b>이어하기</b>로 그 파일을 불러오면 됩니다.</p>
+</div>
+
+<main>
+  <div class="stage">
+    <div class="nav">
+      <button class="btn" id="bPrev">◀ 이전</button>
+      <select id="sel"></select>
+      <button class="btn" id="bNext">다음 ▶</button>
+      <span id="fname" style="font-size:12px;color:#78716c"></span>
+    </div>
+    <div id="host"><div class="empty">위의 <b>사진 폴더 열기</b>를 눌러 <code>img/gaossunion</code> 폴더를 통째로 고르거나,<br>아래 상자에 폴더를 끌어다 놓으세요.
+      <div class="drop" id="drop">여기에 폴더를 끌어다 놓기</div></div></div>
+  </div>
+  <div class="side">
+    <p class="mt" id="mt">—</p>
+    <p class="mf" id="mf"></p>
+    <ul class="items" id="items"></ul>
+    <p style="margin:14px 0 4px;font-weight:700;font-size:13px">메모 (애매한 것 적어주세요)</p>
+    <textarea id="memo" placeholder="예) 3번 루긴 모세관이 어느 관인지 잘 모르겠음"></textarea>
+  </div>
+</main>
+
+<script>
+const SPEC = {"_batch": "1차 — 유리 셀 C001/C002/C004 · 격막교환 셀 C007/C008", "models": {"C001": {"title": "C001 이중층/단층 전해셀", "items": [{"n": 1, "kind": "b", "label": "내부 셀 — 시료액이 담기는 챔버"}, {"n": 2, "kind": "b", "label": "PTFE 뚜껑 — 플랜지형 개구부에 안착"}, {"n": 3, "kind": "b", "label": "가변 구경 전극포트 (내경 6.5~12.5 mm)"}, {"n": 4, "kind": "d", "label": "외층 자켓 — 항온수가 흐르는 바깥 유리층"}, {"n": 5, "kind": "d", "label": "항온수 순환 포트 2개 — 호스 니플"}, {"n": 6, "kind": "o", "label": "가스 버블링 · 염다리 포트"}, {"n": 7, "kind": "x", "label": "전극 3종 (기준·작업·상대) — 연출용"}]}, "C002-1": {"title": "C002-1 나사 뚜껑형 전해셀", "items": [{"n": 1, "kind": "b", "label": "내부 셀 — 시료액 챔버"}, {"n": 2, "kind": "b", "label": "PTFE 나사 뚜껑 (내나사 지름 35~70 mm)"}, {"n": 3, "kind": "b", "label": "O링 압착 밀봉부"}, {"n": 4, "kind": "b", "label": "프릿(소결) 염다리"}, {"n": 5, "kind": "d", "label": "항온수 순환 포트 2개"}, {"n": 6, "kind": "x", "label": "전극 3종 — 연출용"}]}, "C002-2": {"title": "C002-2 완전 밀폐형 전해셀", "items": [{"n": 1, "kind": "b", "label": "내부 셀 — 시료액 챔버"}, {"n": 2, "kind": "b", "label": "오디오잭식 전극 포트"}, {"n": 3, "kind": "x", "label": "볼밸브 — 질소 퍼지·진공용"}, {"n": 4, "kind": "d", "label": "항온수 순환 포트 2개"}, {"n": 5, "kind": "o", "label": "라운드 바텀 — 가압 사용 시 필수 형상"}]}, "C004": {"title": "C004 소용량 테이퍼 바닥형 전해셀", "items": [{"n": 1, "kind": "b", "label": "셀 바디 — 테이퍼(원추) 바닥형"}, {"n": 2, "kind": "b", "label": "갈아맞춤 조인트 5구"}, {"n": 3, "kind": "b", "label": "전극 삽입 조인트 — O링 스크루 압착"}, {"n": 4, "kind": "b", "label": "F형 가스 유입관"}, {"n": 5, "kind": "b", "label": "액봉(liquid seal) — 가스 배출부 역류 차단"}, {"n": 6, "kind": "d", "label": "항온수 순환 포트 2개"}, {"n": 7, "kind": "x", "label": "전극(연장형) — 연출용"}]}, "C007-1": {"title": "C007-1 2H형 격막교환 전해셀 (준밀폐)", "items": [{"n": 1, "kind": "b", "label": "양극실 · 음극실 (각 30~250 mL)"}, {"n": 2, "kind": "b", "label": "클램프 체결부 — 막 교체용"}, {"n": 3, "kind": "b", "label": "PTFE 뚜껑 + 외나사 포트"}, {"n": 4, "kind": "b", "label": "침지형 가스 버블러"}, {"n": 5, "kind": "d", "label": "이중층 자켓 항온수 포트"}, {"n": 6, "kind": "x", "label": "이온교환막 자리 (두 실 사이)"}, {"n": 7, "kind": "x", "label": "전극 3종 — 연출용"}]}, "C007-2": {"title": "C007-2 2H형 격막교환 전해셀 (완전 밀폐)", "items": [{"n": 1, "kind": "b", "label": "양극실 · 음극실"}, {"n": 2, "kind": "b", "label": "오디오잭식 전극 포트"}, {"n": 3, "kind": "x", "label": "볼밸브 — 질소 퍼지·진공용"}, {"n": 4, "kind": "d", "label": "이중층 자켓 항온수 포트"}, {"n": 5, "kind": "x", "label": "이온교환막 자리"}]}, "C007-10": {"title": "C007-10 소용량 H형 (준밀폐)", "items": [{"n": 1, "kind": "b", "label": "양극실 · 음극실 (각 10 mL)"}, {"n": 2, "kind": "b", "label": "클램프 체결부"}, {"n": 3, "kind": "b", "label": "PTFE 피팅 (붉은색 · 내나사 압착)"}, {"n": 4, "kind": "o", "label": "시료채취 포트"}, {"n": 5, "kind": "x", "label": "이온교환막 자리"}, {"n": 6, "kind": "x", "label": "전극 3종 — 연출용"}]}, "C007-10-2": {"title": "C007-10-2 소용량 (완전 밀폐)", "items": [{"n": 1, "kind": "b", "label": "소용량 셀 바디"}, {"n": 2, "kind": "b", "label": "PTFE 뚜껑 오디오잭 포트"}, {"n": 3, "kind": "x", "label": "밸브 어셈블리 (별매)"}, {"n": 4, "kind": "b", "label": "가스 입·출구 커넥터"}, {"n": 5, "kind": "b", "label": "침지형 가스 버블러"}]}, "C007-11": {"title": "C007-11 H형 플로우 셀", "items": [{"n": 1, "kind": "b", "label": "셀 본체 — 2H형 플로우 구조"}, {"n": 2, "kind": "b", "label": "전해액 유입·배출 포트"}, {"n": 3, "kind": "b", "label": "L자형 염다리 (측면 삽입 · 고정 지그)"}, {"n": 4, "kind": "b", "label": "퀵릴리스 뚜껑 (불소고무 밀봉)"}, {"n": 5, "kind": "b", "label": "침지형 가스 유입구 · 퀵커플링 배출구"}, {"n": 6, "kind": "x", "label": "백금망 애노드 99.99% (별매)"}, {"n": 7, "kind": "x", "label": "전용 Ag/AgCl 기준전극 (별매)"}, {"n": 8, "kind": "x", "label": "마그네틱 스터러 (별매)"}]}, "C008-1": {"title": "C008-1 3H형 격막교환 전해셀 (준밀폐)", "items": [{"n": 1, "kind": "b", "label": "양극실 · 음극실"}, {"n": 2, "kind": "b", "label": "기준전극실 — 내나사 밀봉"}, {"n": 3, "kind": "b", "label": "루긴 모세관 (선단 0.2 mm 미만)"}, {"n": 4, "kind": "b", "label": "클램프 체결부"}, {"n": 5, "kind": "b", "label": "침지형 가스 버블러"}, {"n": 6, "kind": "d", "label": "이중층 자켓 항온수 포트"}, {"n": 7, "kind": "x", "label": "이온교환막 자리"}, {"n": 8, "kind": "x", "label": "전극 3종 — 연출용"}]}, "C008-2": {"title": "C008-2 3H형 격막교환 전해셀 (완전 밀폐)", "items": [{"n": 1, "kind": "b", "label": "3실 셀 바디"}, {"n": 2, "kind": "b", "label": "완전 밀폐 뚜껑 (오디오잭 포트)"}, {"n": 3, "kind": "x", "label": "볼밸브 — 질소 퍼지·진공용"}, {"n": 4, "kind": "b", "label": "기준전극실 + 루긴 모세관"}, {"n": 5, "kind": "d", "label": "이중층 자켓 항온수 포트"}]}, "C008-10": {"title": "C008-10 소용량 3H형", "items": [{"n": 1, "kind": "b", "label": "양극실 · 음극실 (각 10 mL급)"}, {"n": 2, "kind": "b", "label": "기준전극실 — 분리형"}, {"n": 3, "kind": "b", "label": "루긴 모세관"}, {"n": 4, "kind": "x", "label": "이온교환막 자리"}, {"n": 5, "kind": "x", "label": "전극 3종 — 연출용"}]}}, "images": {"c001-1": "C001", "c002-1-1": "C002-1", "c002-1-2": "C002-1", "c002-2-1": "C002-2", "c002-2-2": "C002-2", "c002-2-3": "C002-2", "c004-1": "C004", "c004-2": "C004", "c004-3": "C004", "c007-1-1": "C007-1", "c007-1-2": "C007-1", "c007-1-3": "C007-1", "c007-2-1": "C007-2", "c007-2-2": "C007-2", "c007x10-2": "C007-10", "c007x10-3": "C007-10", "c007x10-1": "C007-10-2", "c007-11-1": "C007-11", "c008-1-1": "C008-1", "c008-1-2": "C008-1", "c008-2-1": "C008-2", "c008-2-2": "C008-2", "c008-10-1": "C008-10", "c008-10-2": "C008-10"}};
+const KIND = {b:['본체 구성','#1E3A5F'], d:['이 형식만','#0D6E6E'], o:['주문 시 옵션','#646469'], x:['미포함 · 별매','#B22222']};
+const ORDER = Object.keys(SPEC.images);
+const state = {};   // base -> {marks:{n:{x,y}}, none:[n], memo:''}
+const urls = {};    // base -> objectURL
+let cur = 0, selN = null, imgEl = null;
+
+ORDER.forEach(b => state[b] = {marks:{}, none:[], memo:''});
+
+function items(base){ return SPEC.models[SPEC.images[base]].items; }
+function doneCount(base){ const s=state[base]; return Object.keys(s.marks).length + s.none.length; }
+function isDone(base){ return doneCount(base) >= items(base).length; }
+
+function updateProgress(){
+  const tot = ORDER.length, dn = ORDER.filter(isDone).length;
+  document.getElementById('pbar').style.width = (100*dn/tot)+'%';
+  document.getElementById('pnum').textContent = dn+' / '+tot+' 장';
+  const s = document.getElementById('sel');
+  [...s.options].forEach((o,i)=>{ const b=ORDER[i];
+    o.textContent = (isDone(b)?'✔ ':'') + b + '  ('+doneCount(b)+'/'+items(b).length+')'; });
+}
+
+function buildSelect(){
+  const s = document.getElementById('sel'); s.innerHTML='';
+  ORDER.forEach(b => { const o=document.createElement('option'); o.value=b; s.appendChild(o); });
+  s.onchange = () => { cur = ORDER.indexOf(s.value); render(); };
+}
+
+function firstPending(base){
+  const s = state[base];
+  for(const it of items(base)) if(!(it.n in s.marks) && !s.none.includes(it.n)) return it.n;
+  return null;
+}
+
+function render(){
+  const base = ORDER[cur], mdl = SPEC.models[SPEC.images[base]], s = state[base];
+  document.getElementById('sel').value = base;
+  document.getElementById('mt').textContent = mdl.title;
+  document.getElementById('mf').textContent = base + '.jpg' + (urls[base] ? '' : '  — 사진 없음');
+  document.getElementById('fname').textContent = (cur+1)+' / '+ORDER.length;
+  document.getElementById('memo').value = s.memo;
+  selN = selN && (items(base).some(i=>i.n===selN)) ? selN : firstPending(base);
+
+  // 사진
+  const host = document.getElementById('host');
+  if(!urls[base]){ host.innerHTML = '<div class="empty">'+base+'.jpg 를 폴더에서 찾지 못했습니다.<br>사진 폴더를 다시 골라 주세요.</div>'; }
+  else {
+    host.innerHTML = '';
+    const w = document.createElement('div'); w.className='imgwrap'; w.id='iw';
+    const im = document.createElement('img'); im.src = urls[base]; im.alt = base;
+    w.appendChild(im); host.appendChild(w); imgEl = im;
+    im.onload = drawMarks;
+    if(im.complete) drawMarks();
+    w.addEventListener('click', ev => {
+      if(ev.target !== im) return;
+      if(selN == null){ return; }
+      const r = im.getBoundingClientRect();
+      const x = Math.round((ev.clientX-r.left)/r.width*im.naturalWidth);
+      const y = Math.round((ev.clientY-r.top)/r.height*im.naturalHeight);
+      s.marks[selN] = {x,y};
+      s.none = s.none.filter(n=>n!==selN);
+      selN = firstPending(base);
+      render();
+    });
+  }
+  // 목록
+  const ul = document.getElementById('items'); ul.innerHTML='';
+  items(base).forEach(it => {
+    const li = document.createElement('li');
+    const placed = it.n in s.marks, none = s.none.includes(it.n);
+    li.className = (it.n===selN?'cur ':'') + (placed?'done ':'') + (none?'none':'');
+    li.onclick = e => { if(e.target.tagName==='BUTTON') return; selN = it.n; render(); };
+    const b = document.createElement('span'); b.className='bdg';
+    b.style.background = KIND[it.kind][1]; b.textContent = it.n;
+    const lb = document.createElement('span'); lb.className='lb';
+    lb.innerHTML = it.label + '<span class="kd">'+KIND[it.kind][0]+(placed?' · 찍음':none?' · 사진에 없음':'')+'</span>';
+    const ac = document.createElement('span'); ac.className='acts';
+    const bn = document.createElement('button'); bn.textContent = none?'되돌리기':'없음';
+    bn.onclick = () => { if(none){ s.none = s.none.filter(n=>n!==it.n); }
+                         else { delete s.marks[it.n]; s.none.push(it.n); }
+                         selN = firstPending(base); render(); };
+    ac.appendChild(bn);
+    if(placed){ const bd=document.createElement('button'); bd.textContent='지우기';
+      bd.onclick=()=>{ delete s.marks[it.n]; selN=it.n; render(); }; ac.appendChild(bd); }
+    li.append(b, lb, ac); ul.appendChild(li);
+  });
+  updateProgress();
+}
+
+function drawMarks(){
+  const base = ORDER[cur], s = state[base], w = document.getElementById('iw');
+  if(!w || !imgEl) return;
+  [...w.querySelectorAll('.mk')].forEach(e=>e.remove());
+  const map = {}; items(base).forEach(i=>map[i.n]=i);
+  Object.entries(s.marks).forEach(([n, p]) => {
+    const it = map[n]; if(!it) return;
+    const d = document.createElement('div');
+    d.className = 'mk' + (String(selN)===String(n)?' sel':'');
+    d.style.background = KIND[it.kind][1];
+    d.style.left = (100*p.x/imgEl.naturalWidth)+'%';
+    d.style.top  = (100*p.y/imgEl.naturalHeight)+'%';
+    d.textContent = n; d.title = it.label;
+    d.onmousedown = ev => {
+      ev.preventDefault(); ev.stopPropagation(); selN = Number(n); d.style.cursor='grabbing';
+      const move = e2 => { const r = imgEl.getBoundingClientRect();
+        p.x = Math.max(0, Math.min(imgEl.naturalWidth,  Math.round((e2.clientX-r.left)/r.width*imgEl.naturalWidth)));
+        p.y = Math.max(0, Math.min(imgEl.naturalHeight, Math.round((e2.clientY-r.top)/r.height*imgEl.naturalHeight)));
+        d.style.left=(100*p.x/imgEl.naturalWidth)+'%'; d.style.top=(100*p.y/imgEl.naturalHeight)+'%'; };
+      const up = () => { document.removeEventListener('mousemove',move);
+        document.removeEventListener('mouseup',up); d.style.cursor='grab'; render(); };
+      document.addEventListener('mousemove',move); document.addEventListener('mouseup',up);
+    };
+    w.appendChild(d);
+  });
+}
+
+function takeFiles(list){
+  let hit = 0;
+  for(const f of list){
+    if(!/\.jpe?g$/i.test(f.name)) continue;
+    const base = f.name.replace(/\.jpe?g$/i,'');
+    if(base in state){ if(urls[base]) URL.revokeObjectURL(urls[base]);
+      urls[base] = URL.createObjectURL(f); hit++; }
+  }
+  const miss = ORDER.filter(b=>!urls[b]);
+  alert('사진 '+hit+'장을 찾았습니다.' + (miss.length ? '\n못 찾은 것 '+miss.length+'장: '+miss.join(', ') : ''));
+  render();
+}
+
+document.getElementById('bOpen').onclick = () => document.getElementById('fDir').click();
+document.getElementById('fDir').onchange = e => takeFiles(e.target.files);
+document.getElementById('bLoad').onclick = () => document.getElementById('fJson').click();
+document.getElementById('fJson').onchange = e => {
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => { try{
+      const d = JSON.parse(r.result);
+      ORDER.forEach(b => {
+        const mk = (d.markers||{})[b] || [];
+        state[b].marks = {}; mk.forEach(m => state[b].marks[m.n] = {x:m.x, y:m.y});
+        const nt = (d.notes||{})[b] || {};
+        state[b].none = nt.none || []; state[b].memo = nt.memo || '';
+      });
+      selN = null; render(); alert('불러왔습니다.');
+    } catch(err){ alert('JSON 을 읽지 못했습니다: '+err); } };
+  r.readAsText(f);
+};
+document.getElementById('memo').oninput = e => { state[ORDER[cur]].memo = e.target.value; };
+document.getElementById('bPrev').onclick = () => { cur=(cur-1+ORDER.length)%ORDER.length; selN=null; render(); };
+document.getElementById('bNext').onclick = () => { cur=(cur+1)%ORDER.length; selN=null; render(); };
+document.getElementById('bSave').onclick = () => {
+  const out = {_batch: SPEC._batch, markers:{}, notes:{}};
+  ORDER.forEach(b => {
+    const s = state[b], map = {}; items(b).forEach(i=>map[i.n]=i);
+    const arr = Object.entries(s.marks).map(([n,p]) => ({n:Number(n), x:p.x, y:p.y,
+      kind: map[n].kind, label: map[n].label})).sort((a,c)=>a.n-c.n);
+    if(arr.length) out.markers[b] = arr;
+    if(s.none.length || s.memo) out.notes[b] = {none:s.none.slice().sort((a,c)=>a-c), memo:s.memo};
+  });
+  const blob = new Blob([JSON.stringify(out,null,1)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'numbering_batch1.json';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+const drop = document.getElementById('drop');
+document.addEventListener('dragover', e => { e.preventDefault(); if(drop) drop.classList.add('on'); });
+document.addEventListener('dragleave', () => { if(drop) drop.classList.remove('on'); });
+document.addEventListener('drop', e => { e.preventDefault();
+  if(drop) drop.classList.remove('on');
+  if(e.dataTransfer.files && e.dataTransfer.files.length) takeFiles(e.dataTransfer.files); });
+window.addEventListener('keydown', e => {
+  if(e.target.tagName === 'TEXTAREA') return;
+  if(e.key === 'ArrowRight') document.getElementById('bNext').click();
+  if(e.key === 'ArrowLeft')  document.getElementById('bPrev').click();
+  if(/^[1-9]$/.test(e.key)){ const n=Number(e.key);
+    if(items(ORDER[cur]).some(i=>i.n===n)){ selN=n; render(); } }
+});
+buildSelect(); render();
+</script></body></html>
