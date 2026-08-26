@@ -1231,6 +1231,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/echem-instrument/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/echem-materials/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
@@ -1273,7 +1279,37 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell-p001/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell-p002/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell-p003/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell-p004/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell-parts/</loc>
+    <lastmod>2026-08-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/high-pressure-cell-pfc/</loc>
     <lastmod>2026-08-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
