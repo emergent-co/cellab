@@ -119,6 +119,17 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .s3{background:#EDE9FE;color:#5B21B6}.s4{background:#F3E8FF;color:#6B21A8}.s5{background:#CFFAFE;color:#155E75}
 .s6{background:#DCFCE7;color:#166534}.s7{background:#F1F5F9;color:#475569}.s8{background:#FEE2E2;color:#991B1B}
 .empty{padding:64px 20px;text-align:center;color:#9aa1ad;font-size:14px}
+/* 대시보드 요약 — 상자 없이 텍스트 한 줄 */
+.sumline{font-size:13px;color:var(--mut);margin:-2px 0 14px;font-variant-numeric:tabular-nums}
+.sumline b{color:var(--ink);font-weight:800}
+.sumline em{font-style:normal;color:#B45309;font-weight:800}
+/* 주문 목록 행 — 한 줄로 */
+table.orders td{padding:10px}
+table.orders td.ttd{max-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.orders td.ttd b{font-weight:700}
+table.orders td.ttd .rmeta{margin-left:9px;font-size:12px}
+table.orders td.dt{font-size:12.5px;color:var(--mut);font-variant-numeric:tabular-nums}
+.lnk2{color:inherit;text-decoration:underline;text-decoration-color:#cfd5df;text-underline-offset:2px}
 .dbody{margin-top:4px}
 .dbody .actbox,.dbody .okbox{margin-top:2px}
 .dbody .twobtn,.dbody .btn.ok{margin-bottom:16px}
@@ -126,8 +137,8 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 .omodal .mbox h3{display:flex;align-items:center;gap:9px;padding-right:34px}
 .omodal .mbox h3 .no{font-size:13px;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
 /* 목록 행에서 바로 보이는 것들 */
-.todo{display:inline-block;margin-left:7px;font-style:normal;font-size:11px;font-weight:800;
-  padding:3px 8px;border-radius:999px;background:#FEF3C7;color:#92400E;white-space:nowrap;vertical-align:2px}
+.todo{display:inline-block;margin-left:7px;font-style:normal;font-size:10.5px;font-weight:800;
+  padding:2px 7px;border-radius:999px;background:#FEF3C7;color:#92400E;white-space:nowrap;vertical-align:1px}
 .rmeta{color:var(--mut);font-variant-numeric:tabular-nums}
 .dim{color:#b3b9c4;font-weight:600;font-size:12.5px}
 .dh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
@@ -208,9 +219,9 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 .recent .cartrow .radd:hover{background:#e8f0ff}
 .sug div.mrow2{background:#f7faff}
 
-.kbar{display:flex;background:#fff;border:1px solid var(--line);border-radius:12px;
+.kbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#fff;border:1px solid var(--line);border-radius:12px;
   overflow:hidden;margin-bottom:14px}
-.kbar>div{flex:1;padding:13px 16px;border-right:1px solid var(--line);min-width:0}
+.kbar>div{padding:13px 16px;border-right:1px solid var(--line);min-width:0}
 .kbar>div:last-child{border-right:0}
 .kbar>div.hi{background:#f8faff}
 .kbar span{display:block;font-size:11.5px;color:var(--mut);font-weight:600}
@@ -361,10 +372,10 @@ textarea{min-height:78px;resize:vertical}
   .main{margin-left:0;padding:calc(var(--head) + 18px) 14px 80px}
   .ttl{font-size:19px}
   .kpis{grid-template-columns:repeat(2,1fr);gap:10px}
-  .kbar{flex-wrap:wrap}
-  .kbar>div{flex:1 1 50%;border-bottom:1px solid var(--line)}
-  .kbar>div:nth-child(2){border-right:0}
-  .kbar>div.hi{flex:1 1 100%;border-bottom:0}
+  .kbar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kbar>div{border-bottom:1px solid var(--line)}
+  .kbar>div:nth-child(2n){border-right:0}
+  .kbar>div.hi{grid-column:1/-1;border-bottom:0}
   .kbar b{font-size:16px}
   .kpi{padding:14px 15px}
   .kpi b{font-size:20px;margin-top:8px}
@@ -379,8 +390,8 @@ textarea{min-height:78px;resize:vertical}
   /* 표를 카드로 — 좁은 화면에서 표는 못 읽는다 */
   table.cards thead{display:none}
   table.cards, table.cards tbody{display:block}
-  table.cards tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:5px 10px;
-    padding:15px 16px;border-bottom:1px solid #f2f4f7}
+  table.cards tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:4px 9px;
+    padding:12px 14px;border-bottom:1px solid #f2f4f7}
   table.cards td{display:block;width:auto;border:0;padding:0;text-align:left;font-size:13.5px}
   table.cards td:nth-child(2){order:1;flex:1 1 100%;font-size:14.5px;line-height:1.45}
   table.cards td:nth-child(1){order:2}
@@ -396,7 +407,8 @@ textarea{min-height:78px;resize:vertical}
   .dbody table th:nth-child(2){width:40px}
   .dbody table th:nth-child(3),.dbody table th:nth-child(4){width:70px}
   /* 주문 행 카드: 할 일 배지가 제목과 같은 줄에 오도록 */
-  table.cards.orders td:nth-child(2){line-height:1.5}
+  table.cards.orders td.ttd{max-width:none;white-space:normal;line-height:1.45}
+  table.cards.orders td.ttd .rmeta{display:block;margin:2px 0 0}
 }
 </style>
 </head>
@@ -455,13 +467,14 @@ const won = function(n){ return Number(n||0).toLocaleString('ko-KR'); };
 const ST = ['요청접수','견적발송','견적승인','발주확정','배송중','수령확인','계산서발행','완료','보류','취소'];
 const SIDX = {}; ST.forEach(function(s,i){ SIDX[s]=i; });
 // 고객이 읽는 말로 바꾼다 — 내부 단계명(견적발송/발주확정…)은 관리자만 본다
-const SLABEL = { '요청접수':'접수됨', '견적발송':'견적 도착', '견적승인':'승인 완료',
+const SLABEL = { '요청접수':'접수됨', '견적발송':'확인 중', '견적승인':'주문 확정',
   '발주확정':'주문 확정', '배송중':'배송중', '수령확인':'수령 확인',
   '계산서발행':'계산서 발행', '완료':'완료', '보류':'보류', '취소':'취소' };
-// 탭은 셋으로 — 내가 할 일 / 진행 중 / 끝난 것
+// 고객이 직접 눌러야 넘어가는 단계는 '수령 확인' 하나뿐이다.
+// (가격은 상품 URL에서 보고 접수하므로 견적 승인 절차가 없다)
 const GROUP = {
-  '확인 필요': ['견적발송','배송중'],           // 고객이 눌러야 넘어가는 단계
-  '진행 중':  ['요청접수','견적승인','발주확정','수령확인','계산서발행','보류'],
+  '확인 필요': ['배송중'],
+  '진행 중':  ['요청접수','견적발송','견적승인','발주확정','수령확인','계산서발행','보류'],
   '완료':     ['완료','취소'],
 };
 const DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
@@ -663,11 +676,30 @@ function shareKakao(url, isLab){
         return;
       } catch(e){}
     }
-    // SDK를 못 쓰면 기기 공유 시트(카톡 포함) → 그것도 없으면 복사
-    if (navigator.share) { navigator.share({ title:'실험셋업연구소 주문', text:text, url:url }).catch(function(){}); return; }
-    navigator.clipboard && navigator.clipboard.writeText(url);
-    toast('링크를 복사했습니다. 카카오톡에 붙여넣어 주세요');
+    // SDK를 못 쓰면 기기 공유 시트(카톡 포함)
+    if (navigator.share) {
+      navigator.share({ title:'실험셋업연구소 주문', text:text, url:url })
+        .catch(function(){ pasteFallback(url, text); });
+      return;
+    }
+    pasteFallback(url, text);
   });
+}
+
+// 카카오 공유가 안 될 때 — 조용히 실패하지 않고 붙여넣을 것을 눈앞에 띄운다
+function pasteFallback(url, text){
+  var body = text + '\n' + url;
+  var w = modal('카카오톡으로 보내기',
+     '<p class="hint" style="margin-top:10px">이 기기에서는 바로 보내기가 열리지 않습니다. '
+    +'아래 내용을 복사해 카카오톡에 붙여넣어 주세요.</p>'
+    +'<textarea id="pf-t" rows="4" readonly style="width:100%;margin-top:10px">'+esc(body)+'</textarea>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn pri" id="pf-c">복사하기</button></div>');
+  $('#pf-c').onclick = async function(){
+    try { await navigator.clipboard.writeText(body); }
+    catch(e){ var t=$('#pf-t'); t.select(); document.execCommand('copy'); }
+    $('#pf-c').textContent = '복사됨';
+  };
 }
 function loadKakao(cb){
   if (window.Kakao && window.Kakao.isInitialized && window.Kakao.isInitialized()) return cb(true);
@@ -705,7 +737,6 @@ async function viewOrders(){
 function paintOrders(){
   var org = (orders.find(function(o){ return o.org_name; })||{}).org_name || me.company || '';
   var total = orders.length;
-  var open = orders.filter(function(o){ return GROUP['진행 중'].indexOf(o.status)>=0; }).length;
   var wait = orders.filter(function(o){ return GROUP['확인 필요'].indexOf(o.status)>=0; }).length;
   var amt = orders.reduce(function(s,o){ return s + (o.total_amount||0); },0);
 
@@ -717,12 +748,9 @@ function paintOrders(){
         return '<button class="'+(s===tab?'on':'')+'" data-t="'+esc(s)+'">'+esc(s)
           + (c? '<i>'+c+'</i>' : '') + '</button>'; }).join('')
    +'</div>'
-   +'<div class="kpis">'
-     +kpi('전체 주문', total, '건')
-     +kpi('진행 중', open, '건')
-     +kpi('확인 필요', wait, '건', wait>0)
-     +kpi('누적 금액', won(amt), '원')
-   +'</div>'
+   +'<div class="sumline">주문 <b>'+total+'</b>건'
+     +(wait?' · <em>확인 필요 '+wait+'건</em>':'')
+     +' · 누적 <b>'+won(amt)+'</b>원</div>'
    +'<div class="tools">'
      +'<input type="search" id="q" placeholder="주문번호 · 품명으로 검색" value="'+esc(kw)+'">'
    +'</div>'
@@ -732,10 +760,6 @@ function paintOrders(){
     tab=b.dataset.t; cur=null; viewOrders(); };
   var t; $('#q').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ kw=e.target.value.trim(); viewOrders(); },280); };
   bindRows();
-}
-
-function kpi(label, val, unit, hi){
-  return '<div class="kpi'+(hi?' hi':'')+'"><span>'+label+'</span><b>'+val+'<i>'+unit+'</i></b></div>';
 }
 
 function filtered(){
@@ -748,8 +772,7 @@ function filtered(){
 
 // 행에서 바로 해야 할 일이 보이게 — 눌러보지 않아도 알 수 있어야 한다
 function todoChip(st){
-  if (st==='견적발송') return '<em class="todo">견적 승인 필요</em>';
-  if (st==='배송중')  return '<em class="todo">수령 확인 필요</em>';
+  if (st==='배송중') return '<em class="todo">수령 확인</em>';
   return '';
 }
 // 납품지는 앞부분만 (동/구 정도까지)
@@ -761,18 +784,18 @@ function shortAddr(a){
 function listTable(){
   var rows = filtered();
   if (!rows.length) return '<div class="empty">해당하는 주문이 없습니다.</div>';
-  return '<table class="cards orders"><thead><tr><th style="width:96px">상태</th><th>주문 내용</th>'
-    +'<th style="width:104px">요청일</th><th style="width:118px">금액</th></tr></thead><tbody>'
+  return '<table class="cards orders"><thead><tr><th style="width:88px">상태</th><th>주문 내용</th>'
+    +'<th style="width:88px">요청일</th><th style="width:112px">금액</th></tr></thead><tbody>'
     + rows.map(function(o){
       var meta = [esc(o.order_no)];
-      if (o.item_count>1) meta.push('총 '+o.item_count+'건');
+      if (o.item_count>1) meta.push(o.item_count+'건');
       var ad = shortAddr(o.ship_address); if (ad) meta.push(esc(ad));
       return '<tr data-id="'+o.id+'" class="'+(GROUP['확인 필요'].indexOf(o.status)>=0?'act':'')+'">'
         +'<td>'+badge(o.status)+'</td>'
-        +'<td class="l"><b>'+esc(o.title||'(품목 없음)')+'</b>'+todoChip(o.status)
-          +'<br><small class="rmeta">'+meta.join(' · ')+'</small></td>'
-        +'<td>'+esc(String(o.created_at||'').slice(2,10))+'</td>'
-        +'<td class="n">'+(o.total_amount?won(o.total_amount)+'원':'<span class="dim">견적 대기</span>')+'</td></tr>';
+        +'<td class="l ttd"><b>'+esc(o.title||'(품목 없음)')+'</b>'+todoChip(o.status)
+          +'<small class="rmeta">'+meta.join(' · ')+'</small></td>'
+        +'<td class="dt">'+esc(String(o.created_at||'').slice(2,10))+'</td>'
+        +'<td class="n">'+(o.total_amount?won(o.total_amount)+'원':'<span class="dim">확인 중</span>')+'</td></tr>';
     }).join('') + '</tbody></table>';
 }
 
@@ -786,66 +809,78 @@ function closeOrderModal(){
   var m = document.querySelector('.modal.omodal'); if (m) m.remove();
 }
 
-async function openOrder(id){
-  cur = id;
-  // 먼저 껍데기를 띄우고 내용을 채운다 — 누르자마자 반응해야 한다
-  closeOrderModal();
-  var w = modal('주문 상세', '<div class="dbody" id="detail"><div class="skel"><div class="sk" style="height:22px"></div>'
-      +'<div class="sk" style="height:74px"></div><div class="sk" style="height:130px"></div></div></div>');
-  w.classList.add('omodal');
-  w.addEventListener('click', function(e){ if (e.target===w || e.target.hasAttribute('data-x')) cur=null; });
-
-  var d = await fetch('/api/order/'+id).then(function(r){return r.json();}).catch(function(){return {error:1};});
-  if (!document.body.contains(w)) return;          // 그새 닫았으면 그만
-  if (d.error){ $('#detail').innerHTML = '<div class="empty">주문을 불러오지 못했습니다.</div>'; return; }
-  var o = d.order;
-  var box = $('#detail');
-  var h3 = w.querySelector('h3');
-  if (h3) h3.innerHTML = '<span class="no">'+esc(o.order_no)+'</span> '+badge(o.status);
-
-  box.innerHTML =
-    '<div class="dt2">'+esc(o.title||'')+'</div>'
+// 팝업 머리 — 목록에 이미 있는 값만으로 즉시 그린다 (네트워크를 기다리지 않는다)
+function detailHead(o){
+  return '<div class="dt2">'+esc(o.title||'')+'</div>'
    + actionBlock(o)
    +'<div class="kv"><span>소속</span><span>'+esc(o.org_name||'—')+'</span></div>'
    +'<div class="kv"><span>요청일</span><span>'+esc(String(o.created_at||'').slice(0,16))+'</span></div>'
-   +(o.want_date?'<div class="kv"><span>희망납기</span><span>'+esc(o.want_date)+'</span></div>':'')
    +'<div class="kv"><span>납품지</span><span>'+esc(o.ship_address||'—')+'</span></div>'
-   +(o.request_note?'<div class="kv"><span>요청사항</span><span>'+esc(o.request_note)+'</span></div>':'')
-   +'<div class="sec"><h4>품목</h4><table><thead><tr><th class="l">품명</th><th style="width:64px">수량</th>'
-     +'<th style="width:92px">단가</th><th style="width:100px">금액</th></tr></thead><tbody>'
+   +(o.request_note?'<div class="kv"><span>요청사항</span><span>'+esc(o.request_note)+'</span></div>':'');
+}
+function detailTitle(w, o){
+  var h3 = w.querySelector('h3');
+  if (h3) h3.innerHTML = '<span class="no">'+esc(o.order_no||'')+'</span> '+(o.status?badge(o.status):'');
+}
+
+async function openOrder(id){
+  cur = id;
+  closeOrderModal();
+  // 목록에 있는 정보로 팝업을 먼저 완성한다 — 누르는 즉시 읽을 게 있어야 한다
+  var lite = null;
+  for (var i=0;i<orders.length;i++) if (orders[i].id===id) lite = orders[i];
+  var w = modal('주문 상세',
+    '<div class="dbody" id="detail">'
+    + (lite ? detailHead(lite) : '')
+    + '<div class="sec"><h4>품목</h4><div class="skel">'
+      + '<div class="sk" style="height:46px"></div><div class="sk" style="height:46px"></div></div></div>'
+    + '</div>');
+  w.classList.add('omodal');
+  if (lite) detailTitle(w, lite);
+  w.addEventListener('click', function(e){ if (e.target===w || e.target.hasAttribute('data-x')) cur=null; });
+  if (lite) bindActions(id, lite);          // 수령 확인 버튼은 바로 눌릴 수 있어야 한다
+
+  var d = await fetch('/api/order/'+id).then(function(r){return r.json();}).catch(function(){return {error:1};});
+  if (!document.body.contains(w)) return;          // 그새 닫았으면 그만
+  if (d.error){
+    if (!lite) $('#detail').innerHTML = '<div class="empty">주문을 불러오지 못했습니다.</div>';
+    return;
+  }
+  var o = d.order;
+  detailTitle(w, o);
+
+  $('#detail').innerHTML =
+    detailHead(o)
+   +'<div class="sec"><h4>품목</h4><table><thead><tr><th class="l">품명</th><th style="width:56px">수량</th>'
+     +'<th style="width:88px">단가</th><th style="width:96px">금액</th></tr></thead><tbody>'
      + (d.items||[]).map(function(i){
-         return '<tr style="cursor:default"><td class="l">'+esc(i.name)
+         return '<tr style="cursor:default"><td class="l">'
+           +(i.link?'<a class="lnk2" href="'+esc(i.link)+'" target="_blank" rel="noopener">'+esc(i.name)+'</a>':esc(i.name))
            +(i.spec?'<br><small style="color:var(--mut)">'+esc(i.spec)+'</small>':'')+'</td>'
            +'<td>'+(i.qty||0)+'</td><td class="n">'+(i.unit_price?won(i.unit_price):'—')+'</td>'
            +'<td class="n">'+(i.amount?won(i.amount):'—')+'</td></tr>'; }).join('')
      +'</tbody></table>'
      +(o.total_amount?'<div class="sum"><span>합계 (VAT 포함)</span><span>'+won(o.total_amount)+'원</span></div>'
-        :'<p class="hint" style="margin-top:10px">단가는 견적서 발송 시 확정됩니다.</p>')
+        :'<p class="hint" style="margin-top:10px">금액을 확인하는 중입니다.</p>')
    +'</div>'
-   +'<div class="sec"><h4>세금계산서 발행 정보</h4><div id="billBox">'+billBlock(d)+'</div></div>'
-   +'<div class="sec"><h4>문서</h4>'
-     +((d.documents||[]).length
-       ? d.documents.map(function(x){
+   +((d.documents||[]).length
+     ? '<div class="sec"><h4>문서</h4>'
+       + d.documents.map(function(x){
            return '<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)
              +(x.status==='취소됨'?'':' &nbsp;<a class="lnk" href="/doc/'+x.id+'" target="_blank">보기</a>'
                +'<a class="lnk" href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>')+'</span></div>'; }).join('')
-       : '<div style="font-size:13px;color:var(--mut)">발행된 문서가 없습니다.</div>')
-   +'</div>'
+       +'</div>'
+     : '')
    +'<div class="sec"><h4>진행 이력</h4>'
      +(d.events||[]).map(function(e){
         return '<div class="ev"><time>'+esc(String(e.created_at||'').slice(5,16))+'</time><div>'+esc(e.detail||e.action)+'</div></div>';
       }).join('')
    +'</div>';
 
-  bindBill(id);
   bindActions(id, o);
 }
 
 function actionBlock(o){
-  if (o.status==='견적발송'){
-    return '<div class="actbox">견적서가 도착했습니다. 내용을 확인하고 승인해주세요.</div>'
-      +'<button class="btn ok" id="ap" style="width:100%;margin-top:10px;padding:14px">견적 승인하기</button>';
-  }
   if (o.status==='배송중'){
     return '<div class="actbox">발송되었습니다. 물건을 받으셨으면 눌러주세요.</div>'
       +(o.receive_note?'<div class="warnbox" style="margin-top:8px">미수령으로 알려주셨습니다 — '+esc(o.receive_note)+'<br>확인 후 연락드리겠습니다.</div>':'')
@@ -859,16 +894,6 @@ function actionBlock(o){
 }
 
 function bindActions(id, o){
-  var ap=$('#ap');
-  if (ap) ap.onclick = async function(){
-    if(!confirm('견적 내용대로 승인하시겠습니까?')) return;
-    ap.disabled=true; ap.textContent='처리 중…';
-    var r = await fetch('/api/order/'+id,{method:'POST',headers:{'content-type':'application/json'},
-      body:JSON.stringify({action:'approve'})}).then(function(r){return r.json();});
-    if(r.ok){ cache.orders=null; closeOrderModal(); cur=null; toast('승인되었습니다'); viewOrders(); }
-    else { alert(r.message||'실패'); ap.disabled=false; ap.textContent='견적 승인하기'; }
-  };
-
   var rc=$('#rc');
   if (rc) rc.onclick = async function(){
     if(!confirm('물건을 모두 받으셨습니까?')) return;
@@ -896,28 +921,6 @@ function bindActions(id, o){
 }
 
 /* ---------------- 계산서 발행 정보 ---------------- */
-function billBlock(d){
-  var b = d.bill, ps = d.profiles||[];
-  var h = '';
-  if (b) h += '<div class="okbox"><b>'+esc(b.company)+'</b>'
-    +(b.biz_no?' · '+esc(b.biz_no):'')+(b.ceo?' · '+esc(b.ceo):'')+' 명의로 발행됩니다.</div>';
-  else h += '<div class="warnbox">아직 등록된 발행 정보가 없습니다. 정산이 필요하시면 등록해주세요.<br>등록 전까지 견적서는 소속 기관명으로 나갑니다.</div>';
-  if (ps.length) h += '<label>발행 정보 선택</label><select id="billSel"><option value="">— 지정 안 함 —</option>'
-    + ps.map(function(p){ return '<option value="'+p.id+'"'+((b&&b.id===p.id)?' selected':'')+'>'
-        +esc(p.label||p.company)+(p.biz_no?' · '+esc(p.biz_no):'')+'</option>'; }).join('')+'</select>';
-  h += '<div style="height:10px"></div><button class="btn ghost" id="addBill" style="width:100%">＋ 발행 정보 등록</button>';
-  return h;
-}
-function bindBill(orderId){
-  var sel=$('#billSel');
-  if (sel) sel.onchange = async function(){
-    var r = await fetch('/api/order/'+orderId,{method:'POST',headers:{'content-type':'application/json'},
-      body:JSON.stringify({action:'bill', bill_profile_id: sel.value?Number(sel.value):null})}).then(function(r){return r.json();});
-    if (r.ok){ toast('지정되었습니다'); openOrder(orderId); } else alert(r.message||'실패');
-  };
-  var ab=$('#addBill'); if (ab) ab.onclick=function(){ billForm(orderId); };
-}
-
 var BF = [['company','상호 (기관·회사명)',1],['biz_no','사업자등록번호',1],['ceo','대표자명',1],
           ['tax_email','계산서 수신 이메일',0],['address','주소',0],['biz_type','업태',0],['biz_item','종목',0]];
 
