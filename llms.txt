@@ -1,10 +1,10 @@
-# 실험셋업연구소 — 셋업으로 읽는 에너지·소재 공정 매거진
+# 실험셋업연구소 — 에너지·배터리·수전해 실험장비 원스톱 스토어 + 셋업 매거진
 
-> 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 운영: 실험셋업연구소(상호 이머전트·이영현) · 부산.
+> 에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극, 질량유량계(MFC) 등 1,700여 SKU를 정품 공급하고, 논문이 실제로 쓴 실험 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 운영: 실험셋업연구소(상호 이머전트·이영현) · 부산.
 
 ## 핵심 정보
 
-- **본질**: 논문이 실제로 쓴 실험 셋업을 분석·공유하는 실험 셋업 매거진. 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리하고, 무료 제어 소프트웨어(유량·스케줄·다장비 동기·로그/재현)와 논문 셋업 재현법·구매·유지보수 주의사항도 함께 다룬다.
+- **본질**: 에너지·배터리·수전해 실험장비 원스톱 스토어 + 논문 셋업 분석 매거진. 온도·가스 분위기·진공·유량 제어 조건과 장비 구성을 셋업 단위로 정리하고, 무료 제어 소프트웨어(유량·스케줄·다장비 동기·로그/재현)와 논문 셋업 재현법·구매·유지보수 주의사항도 함께 다룬다.
 - **다루는 브랜드(정품 안내)**: 리드플루이드(LeadFluid, 정량·연동·시린지·기어펌프, Ingersoll Rand 계열), 삼흥에너지(SH Scientific, 튜브퍼니스·전기로), Alicat(질량유량계 MFC), 가오스유니온(Gaoss Union, 전기화학 전극·재료·CO2 환원 촉매). 구매·수리·국내 A/S(3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 담당.
 - **신뢰 근거**: Nature 계열 논문이 실제 LeadFluid 펌프를 실험 셋업에 사용. 구매·수리·국내 A/S는 이머전트(Emergent co)가 직접 진단·수리하고 구매 고객 3년 무상보증. LeadFluid는 CE·RoHS 인증, Ingersoll Rand(NYSE: IR) 계열.
 - **구매 채널**: 실제 판매·결제는 나비엠알오(navimro.com)에서 이뤄짐. 가격·견적은 문의 페이지로 안내.
@@ -12,11 +12,17 @@
 
 ## 주요 페이지 (정확한 URL)
 
-> 사이트 메뉴(NAV) 4개: 제품소개(/product/, 하위: 메뉴얼 /manuals/ · 선택 가이드 /guides/) · 셋업 사례(/magazine/) · 에너지 랩 A to Z(/magazine/battery/) · 문의하기(/contact/, 하위: 회사소개 /about/)
+> 사이트 메뉴(NAV) 4개: 제품소개(/product/, 하위: 메뉴얼 /manuals/) · 셋업 사례(/magazine/) · 유용한 정보(하위: 제품 정보 /info/ · 배터리 사전 /wiki/) · 문의하기(/contact/, 하위: FAQ /contact/ · 회사소개 /about/)
 
-- [홈 = 실험 셋업 매거진](https://rndsetup.com/): 논문 실험 셋업을 공정·조건·필요 장비 순으로 분석한 매거진 + 논문 사례 + 실험장비 안내
+- [홈 = 실험장비 원스톱 스토어](https://rndsetup.com/): 히어로 검색 + 배터리 공정별/실험 용도별 장비 찾기 + 최신 논문 셋업 + 구글 리뷰
+- [제품 정보 — 브랜드별 장비 비교](https://rndsetup.com/info/): 단품·유형 비교 글 모음 + 각 글 하단 선택 위저드(조건 선택→모델 직링크)
+  - [연동펌프 모델 비교 (BT100S~WT600S)](https://rndsetup.com/info/compare-peristaltic/)
+  - [머플로 모델 비교 (1050~1900℃)](https://rndsetup.com/info/compare-muffle/)
+  - [퍼니스 유형 비교 (박스/튜브/진공/회전)](https://rndsetup.com/info/compare-furnace/)
+  - [가스 유량 제어 비교 (MFC/로터미터/니들밸브)](https://rndsetup.com/info/compare-mfc/)
+  - [전기화학 셀 비교 (H셀/단실/GDE/MEA)](https://rndsetup.com/info/compare-echem-cell/)
+- [배터리 사전](https://rndsetup.com/wiki/): 공정·재료·전기화학·장비·단위 용어 34개를 위키 형식(정의→개요→실무 포인트→같이 보기)으로 설명. 각 항목 /wiki/<슬러그>/
 - [셋업 사례](https://rndsetup.com/magazine/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
-  - [배터리 랩 A to Z — 커리큘럼](https://rndsetup.com/magazine/battery/): 배터리 소재 실험 전 과정 8단계(전구체 공침→소성·하소→탄소 코팅→슬러리·전극→건조→코인셀→전해액→화성·평가)를 셋업 순서로 배치한 커리큘럼 허브 — 단계별 논문 셋업·가이드·트러블슈팅 연결
   - [소성·하소용 튜브퍼니스·가스 분위기 선정 가이드](https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/): 배터리 양극재·세라믹·촉매·분말 소재 공통 — 최고온도·튜브 지름·분위기·유량 제어(MFC)·기록 5축 선정 기준
   - [소성 배치마다 결과가 다른 7가지 이유 — 트러블슈팅](https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/): 승온 편차·균열구간·적재량·유량 드리프트·전환 타이밍·흡습·리크 — 배치 편차 점검표(양극재·세라믹·촉매·분말 공통)
   - [하소 vs 소성 vs 소결, sccm이란 — 용어사전](https://rndsetup.com/magazine/glossary-heat-gas-terms/): 열처리·가스 유량 용어 12개 정의 — 하소·소성·소결·어닐링, sccm·slm, MFC, 산소 분압, 퍼지, 균열구간, DCA
@@ -35,7 +41,7 @@
   - [삼흥에너지 메뉴얼](https://rndsetup.com/brands/sh-scientific/manual/): 온도컨트롤러·퍼니스 사용법
   - [삼흥에너지 설치·A/S 블로그](https://rndsetup.com/brands/sh-scientific/blog/)
 - [온도컨트롤러(SP590·NOVA500E) 사용법 가이드](https://rndsetup.com/temp-controller-guide/): 가상 컨트롤러로 직접 연습하는 인터랙티브 가이드 — 전기로 온도 스케줄(상승·유지·하강)·구간 반복·HOLD·무한반복·RS485 통신 설정. 삼흥에너지 전기로 다수 모델(MoSi₂ 시리즈=SP590, 진공머플·튜브로=SP570)에 적용. 한/영/중 지원
-- [가오스유니온(Gaoss Union) 전기화학](https://rndsetup.com/brands/gaossunion/): 전기화학 전극·재료·CO2 환원 촉매 322종 — 기준전극(Ag/AgCl·SCE·Hg/HgO)·가역수소전극(RHE)·상대전극(백금·흑연)·작업전극(유리탄소·백금·금)·회전원판전극(RDE/RRDE)·전극 클램프·이온교환막/카본페이퍼·CO2RR 촉매(GDE 캐소드·IrO2 애노드)
+- [가오스유니온(Gaoss Union) 전기화학](https://rndsetup.com/brands/gaossunion/): 전기화학 셀·전극·재료·CO2 환원 촉매 838종 — 기준전극(Ag/AgCl·SCE·Hg/HgO)·가역수소전극(RHE)·상대전극(백금·흑연)·작업전극(유리탄소·백금·금)·회전원판전극(RDE/RRDE)·전극 클램프·이온교환막/카본페이퍼·CO2RR 촉매(GDE 캐소드·IrO2 애노드)
 - [ALICAT](https://rndsetup.com/brands/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
 - [펌프 종류·선택](https://rndsetup.com/magazine/pump-selection-wizard/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
@@ -53,11 +59,10 @@
   - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/furnace/setups/alicat-mfc-tubefurnace/)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/pump/setups/plating-flow-calibration/)
 - 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/brands/leadfluid/)에 통합
-- [실험장비 통합 카탈로그](https://rndsetup.com/product/): 취급 제품 241종을 브랜드 구분 없이 장비 종류(열처리·건조·배양·교반·진공·펌프·MFC·전기화학)로 찾는 통합 목록 + 브랜드 소개(삼흥에너지·리드플루이드·Alicat·가오스유니온)
+- [실험장비 통합 카탈로그](https://rndsetup.com/product/): 취급 제품 251종을 브랜드 구분 없이 장비 종류(열처리·건조·배양·교반·진공·펌프·MFC·전기화학)로 찾는 통합 목록(삼흥에너지·리드플루이드·Alicat·가오스유니온)
 - [메뉴얼 모음](https://rndsetup.com/manuals/): 전기로·튜브퍼니스·온도컨트롤러·펌프·MFC 사용 메뉴얼
-- [선택 가이드](https://rndsetup.com/guides/): 퍼니스·펌프·질량유량계(MFC)·전기화학 전극을 조건으로 좁혀가는 선택 가이드 모음 — 장비명으로 검색해 해당 가이드로 바로 이동(개별 가이드는 각 브랜드·매거진 페이지에 있음)
 - [회사소개](https://rndsetup.com/about/): 실험셋업연구소(상호 이머전트) 소개 — 매거진·논문 셋업·장비 안내
-- [문의하기 · 자주 묻는 질문(FAQ)](https://rndsetup.com/contact/): 구매·견적, 수리·A/S, 제어 소프트웨어, 배송·기타 FAQ 26문 + 문의 폼
+- [문의하기 · 자주 묻는 질문(FAQ)](https://rndsetup.com/contact/): 구매·견적, 수리·A/S, 제어 소프트웨어, 배송·기타 FAQ 26문 + 대화창(채널톡) 상담
 - [카탈로그 PDF](https://rndsetup.com/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그
 
 ## 사용 권장
