@@ -734,7 +734,7 @@
   var CSS = ''
     + '.qbtn{display:inline-block;font-family:inherit;font-size:14px;font-weight:800;color:#fff;'
     + 'background:#C2410C;border:0;padding:12px 22px;border-radius:10px;cursor:pointer;line-height:1.2}'
-    + '.qbtn:hover{background:#9A3412}'
+    + '.qbtn:hover{background:#E8632C}'
     + '.qm-back{position:fixed;inset:0;background:rgba(20,18,16,.55);display:none;align-items:center;'
     + 'justify-content:center;z-index:9000;padding:20px}'
     + '.qm-back.on{display:flex}'
@@ -742,7 +742,7 @@
     + 'padding:26px 26px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.28)}'
     + '.qm h2{font-family:var(--serif,Georgia);font-size:20px;font-weight:700;margin:0 0 6px;color:#1A1A1A}'
     + '.qm .qm-sub{font-size:13.5px;color:#6B6B6B;line-height:1.65;margin:0 0 16px}'
-    + '.qm .qm-for{font-size:12.5px;font-weight:700;color:#9A3412;background:#FDF3EC;border-radius:8px;'
+    + '.qm .qm-for{font-size:12.5px;font-weight:700;color:#E8632C;background:#FDF3EC;border-radius:8px;'
     + 'padding:8px 12px;margin:0 0 16px;line-height:1.5}'
     + '.qm label{display:block;font-size:12.5px;font-weight:700;color:#3a3a3a;margin:12px 0 5px}'
     + '.qm label .req{color:#C2410C}'
@@ -754,7 +754,7 @@
     + '.qm .qm-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}'
     + '.qm .qm-send{width:100%;margin-top:18px;font-size:15px;font-weight:800;color:#fff;background:#C2410C;'
     + 'border:0;padding:13px;border-radius:10px;cursor:pointer;font-family:inherit}'
-    + '.qm .qm-send:hover{background:#9A3412}'
+    + '.qm .qm-send:hover{background:#E8632C}'
     + '.qm .qm-send:disabled{opacity:.55;cursor:default}'
     + '.qm .qm-x{position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:24px;'
     + 'line-height:1;color:#9C958D;cursor:pointer;padding:4px 8px;font-family:inherit}'
@@ -1017,7 +1017,7 @@
   + '.bb-price{font-family:var(--serif,Georgia,serif);font-size:26px;font-weight:800;color:#17202A;letter-spacing:-.01em}'
   + '.bb-price small{font-size:13px;font-weight:700;color:#7a6f68;margin-left:5px}'
   + '.bb-extra{margin:6px 0 0;font-size:12.5px;color:#7a6f68;line-height:1.65}'
-  + '.bb-extra b{color:#9A3412}'
+  + '.bb-extra b{color:#E8632C}'
   + '.bb-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #F1EDE9}'
   + '.bb-row .k{color:#7a6f68;flex:0 0 auto}.bb-row .v{text-align:right;font-weight:700;color:#17202A}'
   + '.bb-qty{display:flex;align-items:center;gap:8px;margin:12px 0 10px}'
@@ -1028,7 +1028,7 @@
   +   'font-size:14px;font-weight:800;cursor:pointer;border:1px solid transparent;margin-top:8px}'
   + '.bb-cart{background:#F6F4F1;color:#17202A;border-color:#D9D4CE}'
   + '.bb-cart:hover{background:#EFEAE4}'
-  + '.bb-buy{background:#C2410C;color:#fff}.bb-buy:hover{background:#9A3412}'
+  + '.bb-buy{background:#C2410C;color:#fff}.bb-buy:hover{background:#E8632C}'
   + '.bb-note{margin:10px 0 0;font-size:12px;color:#9C958D;line-height:1.6}'
   + '.bb-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#17202A;color:#fff;'
   +   'padding:11px 18px;border-radius:10px;font-size:13.5px;font-weight:700;opacity:0;pointer-events:none;'
@@ -1102,17 +1102,27 @@
     return cart.length;
   }
 
-  /* ── 좁은 화면에서는 구매박스를 제품 정보 아래로 이동 ── */
-  function relocate() {
-    var rail = document.querySelector('.pg');
-    var info = document.querySelector('.dt-info');
-    var host = (window.innerWidth > 1000) ? rail : info;
+  /* ── 우측 여백 레일 : 본문 폭은 건드리지 않고 바깥 여백만 사용 ──
+     여백이 부족한 화면(<1560px)에서는 제품 정보 아래로 내려보낸다 */
+  function railFit() {
+    var rail = document.querySelector('.buyrail');
+    if (!rail) return;
+    var wide = window.matchMedia('(min-width:1560px)').matches;
+    var host = wide ? rail : document.querySelector('.dt-info');
     if (host && box.parentNode !== host) host.appendChild(box);
+    if (!wide) { rail.style.top = ''; rail.style.height = ''; return; }
+    var start = document.querySelector('.detail-top');
+    var end   = document.querySelector('#pumplab-footer') || document.querySelector('.ctbar-sec');
+    if (!start || !end) return;
+    var top = start.offsetTop;
+    rail.style.top = top + 'px';
+    rail.style.height = Math.max(320, end.offsetTop - top) + 'px';
   }
-  relocate();
+  railFit();
+  window.addEventListener('load', railFit);
   var rzT;
   window.addEventListener('resize', function () {
-    clearTimeout(rzT); rzT = setTimeout(relocate, 150);
+    clearTimeout(rzT); rzT = setTimeout(railFit, 150);
   });
 
   render();

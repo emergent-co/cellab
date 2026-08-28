@@ -497,11 +497,11 @@ def inject_setup_cta():
             if not title:
                 continue
             block = (
-                '<section class="setup-cta" style="margin:26px 0 8px;border:1px solid #d6e0ee;border-radius:14px;padding:22px 22px;background:#EDF1F8">'
-                '<div style="font-size:12px;font-weight:800;letter-spacing:.04em;color:#1E3A5F;margin-bottom:7px">솔루션 패키지</div>'
-                '<h3 style="font-size:18px;font-weight:700;color:#1E3A5F;margin:0 0 8px;line-height:1.4">이 셋업 구성 그대로 견적·솔루션 문의</h3>'
+                '<section class="setup-cta" style="margin:26px 0 8px;border:1px solid #d6e0ee;border-radius:14px;padding:22px 22px;background:#EAF4FB">'
+                '<div style="font-size:12px;font-weight:800;letter-spacing:.04em;color:#3B3695;margin-bottom:7px">솔루션 패키지</div>'
+                '<h3 style="font-size:18px;font-weight:700;color:#3B3695;margin:0 0 8px;line-height:1.4">이 셋업 구성 그대로 견적·솔루션 문의</h3>'
                 '<p style="font-size:14px;color:#3a4650;line-height:1.75;margin:0 0 14px">위에 정리한 장비·모듈 구성을 기준으로 견적과 통합 셋업(구성·제어·연동·설치)을 안내해 드립니다. 다른 브랜드·조건도 함께 맞춰 드립니다.</p>'
-                '<a href="/contact/?setup=' + quote(title) + '#general" style="display:inline-block;background:#1E3A5F;color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:9px;text-decoration:none">이 셋업으로 문의하기 &rarr;</a>'
+                '<a href="/contact/?setup=' + quote(title) + '#general" style="display:inline-block;background:#3B3695;color:#fff;font-weight:800;font-size:14px;padding:11px 20px;border-radius:9px;text-decoration:none">이 셋업으로 문의하기 &rarr;</a>'
                 '</section>'
             )
             if START in html:
@@ -1615,15 +1615,15 @@ def build_wiki():
         '.wk-crumb a{{color:#9aa3ad;text-decoration:none}}\n'
         '.wk-wrap h1{{font-family:"Noto Serif KR",Georgia,serif;font-size:clamp(23px,3vw,32px);font-weight:800;color:#1A1A1A;letter-spacing:-.02em;line-height:1.35}}\n'
         '.wk-en{{font-size:13px;color:#9aa3ad;font-weight:700;margin-top:4px}}\n'
-        '.wk-cat{{display:inline-block;font-size:11.5px;font-weight:800;color:#1E3A5F;background:#EDF2F8;border-radius:999px;padding:4px 12px;margin-top:10px}}\n'
-        '.wk-def{{margin:16px 0 26px;padding:14px 18px;background:#EDF2F8;border-left:4px solid #1E3A5F;border-radius:0 10px 10px 0;font-size:14.5px;line-height:1.75;color:#26313c}}\n'
-        '.wk-wrap h2{{font-size:18px;font-weight:800;color:#1A1A1A;margin:30px 0 10px;padding-bottom:7px;border-bottom:2px solid #1E3A5F}}\n'
+        '.wk-cat{{display:inline-block;font-size:11.5px;font-weight:800;color:#3B3695;background:#EAF4FB;border-radius:999px;padding:4px 12px;margin-top:10px}}\n'
+        '.wk-def{{margin:16px 0 26px;padding:14px 18px;background:#EAF4FB;border-left:4px solid #3B3695;border-radius:0 10px 10px 0;font-size:14.5px;line-height:1.75;color:#26313c}}\n'
+        '.wk-wrap h2{{font-size:18px;font-weight:800;color:#1A1A1A;margin:30px 0 10px;padding-bottom:7px;border-bottom:2px solid #3B3695}}\n'
         '.wk-wrap p{{font-size:14.5px;color:#3a4550;line-height:1.85;margin:10px 0}}\n'
         '.wk-see{{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}}\n'
-        '.wk-see a{{font-size:13px;font-weight:700;color:#1E3A5F;background:#fff;border:1px solid #d9e2ec;border-radius:999px;padding:6px 14px;text-decoration:none}}\n'
-        '.wk-see a:hover{{background:#EDF2F8}}\n'
+        '.wk-see a{{font-size:13px;font-weight:700;color:#3B3695;background:#fff;border:1px solid #d9e2ec;border-radius:999px;padding:6px 14px;text-decoration:none}}\n'
+        '.wk-see a:hover{{background:#EAF4FB}}\n'
         '.wk-prod{{margin-top:8px}}\n'
-        '.wk-prod a{{display:inline-block;font-size:13px;font-weight:800;color:#fff;background:#1E3A5F;border-radius:9px;padding:9px 16px;text-decoration:none;margin:4px 8px 0 0}}\n'
+        '.wk-prod a{{display:inline-block;font-size:13px;font-weight:800;color:#fff;background:#3B3695;border-radius:9px;padding:9px 16px;text-decoration:none;margin:4px 8px 0 0}}\n'
         '</style>\n</head>\n<body>\n<div id="pumplab-header"></div>\n<main>\n'
     )
     FOOT = '\n</main>\n<div id="pumplab-footer"></div>\n<script src="/assets/site.js" defer></script>\n</body>\n</html>\n'
@@ -1685,7 +1685,7 @@ def build_wiki():
     body.append('    <div class="wk-crumb"><a href="/">홈</a> › 배터리 사전</div>')
     body.append('    <h1>배터리 사전</h1>')
     body.append('    <p style="max-width:720px">에너지·배터리 실험에서 만나는 용어 %d개를 위키 형식으로 설명합니다. 정의 → 개요 → 실무 포인트 → 같이 보기 순서로, 논문을 읽다 막히는 말을 빠르게 해소하는 것이 목적입니다.</p>' % len(terms))
-    body.append('    <input type="search" id="wkq" placeholder="용어 검색 — 예: 하소, 과전압, sccm" style="width:100%;max-width:440px;border:2px solid #1E3A5F;border-radius:10px;padding:11px 16px;font-size:14px;margin:6px 0 8px" aria-label="용어 검색">')
+    body.append('    <input type="search" id="wkq" placeholder="용어 검색 — 예: 하소, 과전압, sccm" style="width:100%;max-width:440px;border:2px solid #3B3695;border-radius:10px;padding:11px 16px;font-size:14px;margin:6px 0 8px" aria-label="용어 검색">')
     for c in cats:
         group = [t for t in terms if t['cat'] == c]
         if not group:
