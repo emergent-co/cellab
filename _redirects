@@ -152,3 +152,17 @@
 # 리튬전지 in-situ·특수 기능 셀 모델별 분리(2026-08)
 /brands/gaossunion/special-cell/  /product/  301
 /brands/gaossunion/special-cell  /product/  301
+
+# 가오스유니온 전극 계열 — 홈페이지 기준 제품별 분리(2026-08)
+/brands/gaossunion/reference-electrode/  /brands/gaossunion/agcl-reference-electrode/  301
+/brands/gaossunion/reference-electrode  /brands/gaossunion/agcl-reference-electrode/  301
+/brands/gaossunion/counter-electrode/  /brands/gaossunion/pt-plate-counter-electrode/  301
+/brands/gaossunion/counter-electrode  /brands/gaossunion/pt-plate-counter-electrode/  301
+/brands/gaossunion/working-electrode/  /brands/gaossunion/gc-disc-working-electrode/  301
+/brands/gaossunion/working-electrode  /brands/gaossunion/gc-disc-working-electrode/  301
+/brands/gaossunion/rde-rrde/  /brands/gaossunion/rde-external-thread/  301
+/brands/gaossunion/rde-rrde  /brands/gaossunion/rde-external-thread/  301
+/brands/gaossunion/rhe/  /brands/gaossunion/rhe-reference-electrode/  301
+/brands/gaossunion/rhe  /brands/gaossunion/rhe-reference-electrode/  301
+/brands/gaossunion/electrode-holder/  /brands/gaossunion/pt-clamp-ptfe/  301
+/brands/gaossunion/electrode-holder  /brands/gaossunion/pt-clamp-ptfe/  301

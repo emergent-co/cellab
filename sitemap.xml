@@ -1309,7 +1309,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/counter-electrode/</loc>
+    <loc>https://rndsetup.com/brands/gaossunion/custom-material-working-electrode/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1334,12 +1334,6 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/gaossunion/electrode-drying-rack/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/brands/gaossunion/electrode-holder/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1807,25 +1801,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/brands/gaossunion/rde-rrde/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://rndsetup.com/brands/gaossunion/rde-rrde3a/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/brands/gaossunion/reference-electrode/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/brands/gaossunion/rhe/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1952,12 +1928,6 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/gaossunion/ti-electrode-clamp/</loc>
-    <lastmod>2026-08-29</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/brands/gaossunion/working-electrode/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>

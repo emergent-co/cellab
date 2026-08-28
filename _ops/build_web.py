@@ -83,7 +83,8 @@ def price_tbl(rows, headers=('모델','규격','정가(VAT 별도)')):
     h='<div class="pkg-tblwrap"><table class="pkg-tbl pkg-opt"><thead><tr>'+''.join('<th>%s</th>'%x for x in headers)+'</tr></thead><tbody>'
     for m,spec,p in rows:
         pr = ('<b>%s원</b>'%format(p,',')) if p else '<b>문의</b>'
-        h+='<tr><td><b>%s</b></td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,spec,pr)
+        sp = '' if spec==m else spec          # 모델명과 규격이 같으면 규격칸을 비운다
+        h+='<tr><td><b>%s</b></td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,sp,pr)
     return h+'</tbody></table></div>'
 
 def feat(items):
