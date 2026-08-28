@@ -1102,6 +1102,19 @@
     return cart.length;
   }
 
+  /* ── 좁은 화면에서는 구매박스를 제품 정보 아래로 이동 ── */
+  function relocate() {
+    var rail = document.querySelector('.pg');
+    var info = document.querySelector('.dt-info');
+    var host = (window.innerWidth > 1000) ? rail : info;
+    if (host && box.parentNode !== host) host.appendChild(box);
+  }
+  relocate();
+  var rzT;
+  window.addEventListener('resize', function () {
+    clearTimeout(rzT); rzT = setTimeout(relocate, 150);
+  });
+
   render();
   document.addEventListener('change', function (e) {
     if (e.target && (e.target.id === 'pdModel' || e.target.id === 'pdQty')) {
