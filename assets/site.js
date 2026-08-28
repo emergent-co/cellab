@@ -147,14 +147,14 @@
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진<br>공정 → 조건 → 필요 장비로 읽는 실험 셋업 아카이브</div>' +
+      '<div class="ch-side-foot">에너지·배터리·수전해 실험장비 원스톱 스토어<br>논문 셋업으로 검증된 장비 구성 · 셋업 매거진 운영</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
       '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
     '<div class="ch-scrim" id="chScrim"></div>';
 
   var FOOTER =
-    '<section style="background:#0A2540;padding:26px 20px;text-align:center">' +
+    '<section style="background:#2A2570;padding:26px 20px;text-align:center">' +
       '<div style="max-width:560px;margin:0 auto">' +
         '<div style="color:#fff;font-weight:800;font-size:16px;line-height:1.4;margin-bottom:4px">새 논문 셋업이 올라오면 이메일로 알려드립니다</div>' +
         '<div style="color:#C9D4E2;font-size:13px;margin-bottom:14px">실험 셋업 매거진 구독 · 새 글 알림만, 스팸 없음</div>' +
@@ -178,7 +178,7 @@
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>논문 실험 셋업을 분석해 공유하는 실험 셋업 매거진</span></div>' +
+            '<span>에너지·배터리·수전해 실험장비 원스톱 스토어 · 셋업 매거진</span></div>' +
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> (이머전트) · 이영현 · 070-8983-2600 · 사업자등록 328-03-02926<br>' +
           '부산광역시 · 서비스·도매/소매업 · 정밀·과학기기 도매, 화학제품 도매, 전기·전자·정밀기기 수리</div>' +
