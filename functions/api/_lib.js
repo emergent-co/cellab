@@ -152,20 +152,20 @@ export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주
 
 // ---------- 공급자(이머전트) 정보 ----------
 /**
- * 주문·정산 페이지는 등록된 거래처(VIP) 전용이다.
+ * 주문·정산 페이지는 멤버십 회원 전용이다.
  * customers.access 가 '승인' 인 사람만 열린다. 새 카카오 가입자는 '대기'.
  */
-export function isVip(c) {
+export function isMember(c) {
   return !!(c && c.access === '승인');
 }
 
-/** VIP 전용 API 앞에 세우는 문지기. 통과하면 null, 아니면 Response. */
-export function vipGate(me) {
+/** 멤버십 전용 API 앞에 세우는 문지기. 통과하면 null, 아니면 Response. */
+export function memberGate(me) {
   if (!me) return json({ error: 'login_required' }, 401);
-  if (!isVip(me)) {
+  if (!isMember(me)) {
     return json({
-      error: 'not_vip',
-      message: '주문·정산은 등록된 거래처만 이용할 수 있습니다. 견적 문의로 남겨주시면 연락드리겠습니다.',
+      error: 'not_member',
+      message: '주문·정산은 멤버십 회원만 이용할 수 있습니다. 견적 문의로 남겨주시면 연락드리겠습니다.',
     }, 403);
   }
   return null;

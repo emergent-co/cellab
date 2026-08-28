@@ -5,14 +5,14 @@
 //   DELETE /api/order/profiles?id=      → 삭제
 // 연구원·대학원생 고객은 주문 시점엔 사업자정보를 모르는 경우가 많아,
 // 정산 시점에 스스로 등록하고 다음 주문부터 골라 쓰도록 분리했다.
-import { json, currentCustomer, kstISO, vipGate} from '../_lib.js';
+import { json, currentCustomer, kstISO, memberGate} from '../_lib.js';
 
 const F = ['label', 'company', 'biz_no', 'ceo', 'tax_email', 'address'];
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
-  const gate = vipGate(me); if (gate) return gate;
+  const gate = memberGate(me); if (gate) return gate;
 
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(

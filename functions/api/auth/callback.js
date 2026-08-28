@@ -4,8 +4,8 @@ import { kstISO, createSession, sessionCookie } from '../_lib.js';
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
-  const next = decodeURIComponent(url.searchParams.get('state') || '/order/');
-  if (!code) return Response.redirect(`${url.origin}/order/?err=no_code`, 302);
+  const next = decodeURIComponent(url.searchParams.get('state') || '/member/');
+  if (!code) return Response.redirect(`${url.origin}/member/?err=no_code`, 302);
 
   const redirectUri = `${url.origin}/api/auth/callback`;
   const body = new URLSearchParams({
@@ -23,7 +23,7 @@ export async function onRequestGet({ request, env }) {
   });
   const tok = await tr.json();
   if (!tok.access_token) {
-    return Response.redirect(`${url.origin}/order/?err=token&d=${encodeURIComponent(tok.error_description || tok.error || '')}`, 302);
+    return Response.redirect(`${url.origin}/member/?err=token&d=${encodeURIComponent(tok.error_description || tok.error || '')}`, 302);
   }
 
   const ur = await fetch('https://kapi.kakao.com/v2/user/me', {
@@ -31,7 +31,7 @@ export async function onRequestGet({ request, env }) {
   });
   const me = await ur.json();
   const kakaoId = String(me.id || '');
-  if (!kakaoId) return Response.redirect(`${url.origin}/order/?err=profile`, 302);
+  if (!kakaoId) return Response.redirect(`${url.origin}/member/?err=profile`, 302);
 
   const acc = me.kakao_account || {};
   const nickname = (acc.profile && acc.profile.nickname) || '';
@@ -63,7 +63,7 @@ export async function onRequestGet({ request, env }) {
   const token = await createSession(env, cid);
   return new Response(null, {
     status: 302,
-    headers: { Location: `${url.origin}${next.startsWith('/') ? next : '/order/'}`, 'Set-Cookie': sessionCookie(token) },
+    headers: { Location: `${url.origin}${next.startsWith('/') ? next : '/member/'}`, 'Set-Cookie': sessionCookie(token) },
   });
 }
 

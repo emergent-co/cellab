@@ -1,7 +1,7 @@
 // GET  /api/auth/me     → 로그인 상태 + 거래처 정보
 // POST /api/auth/me     → 거래처 정보 저장
 // DELETE /api/auth/me   → 로그아웃
-import { json, currentCustomer, dropSession, clearCookie, kstISO, isVip } from '../_lib.js';
+import { json, currentCustomer, dropSession, clearCookie, kstISO, isMember } from '../_lib.js';
 import { labInfo } from '../order/lab.js';
 
 const FIELDS = ['name', 'email', 'work_email', 'phone', 'company', 'biz_no', 'ceo', 'biz_type', 'biz_item', 'tax_email', 'address'];
@@ -17,9 +17,9 @@ export async function onRequest({ request, env }) {
 
   if (request.method === 'GET') {
     // 승인 전이면 실험실을 만들거나 조회하지 않는다 — 거래처가 확정된 뒤의 개념이다
-    if (!isVip(me)) return json({ login: true, vip: false, customer: me, lab: null, members: [] });
+    if (!isMember(me)) return json({ login: true, member: false, customer: me, lab: null, members: [] });
     const info = await labInfo(env, me);
-    return json({ login: true, vip: true, customer: me, lab: info.lab, members: info.members });
+    return json({ login: true, member: true, customer: me, lab: info.lab, members: info.members });
   }
 
   if (request.method === 'POST') {

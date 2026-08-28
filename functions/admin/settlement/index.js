@@ -84,7 +84,7 @@ input,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:1
 </style>
 </head>
 <body>
-<div class="top"><h1>정산 관리<a href="/admin/orders/">주문관리 →</a><a href="/admin/customers/" style="margin-left:12px">거래처 →</a></h1></div>
+<div class="top"><h1>정산 관리<a href="/admin/orders/">주문관리 →</a><a href="/admin/customers/" style="margin-left:12px">멤버십 →</a></h1></div>
 <div class="wrap" id="list"><div class="empty">불러오는 중…</div></div>
 <div class="sheet" id="sheet"><div class="sbody" id="sbody"></div></div>
 <div class="toast" id="toast"></div>
@@ -138,7 +138,7 @@ async function open(id){
           +(r.payment_id?'<button class="x" style="width:28px;height:28px;font-size:15px" data-pd="'+r.payment_id+'">×</button>':'')
           +'</div>'; }).join('') : '<div style="font-size:13px;color:var(--mut)">내역 없음</div>')
    +'</div>'
-   +'<div class="bar"><button class="mode" id="mode">'+(c.billing_mode==='후불'?'선불로 전환':'후불(VIP)로 전환')+'</button>'
+   +'<div class="bar"><button class="mode" id="mode">'+(c.billing_mode==='후불'?'선불로 전환':'후불(멤버십)로 전환')+'</button>'
      +'<button class="pay" id="pay">입금 기록</button></div>';
 
   document.getElementById('cx').onclick = close;

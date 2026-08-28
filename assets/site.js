@@ -141,7 +141,7 @@
         '<input type="search" name="q" placeholder="제품명·모델명 검색 — 예: 튜브퍼니스, BT101S, MFC" aria-label="제품 검색" autocomplete="off">' +
         '<button type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>검색</span></button>' +
       '</form>' +
-      '<a class="ch-ic srch" href="/product/" aria-label="제품 검색" title="제품 검색"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></a><a class="ch-ic ch-cart" href="/order/" aria-label="장바구니" title="장바구니"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg><i class="ch-cnt" hidden>0</i></a>' +
+      '<a class="ch-ic srch" href="/product/" aria-label="제품 검색" title="제품 검색"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></a><a class="ch-ic ch-cart" href="/cart/" aria-label="장바구니" title="장바구니"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg><i class="ch-cnt" hidden>0</i></a>' +
       '<a class="ch-ic" href="/login/" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
@@ -549,11 +549,11 @@
         p.innerHTML =
           '<div class="ah"><div class="av"></div><div><div class="an"></div><div class="ae"></div></div></div>' +
           '<ul>' +
-          '<li><a href="/order/#orders"><span class="i">&#128203;</span>주문내역</a></li>' +
-          '<li><a href="/order/#new"><span class="i">&#128722;</span>주문하기</a></li>' +
-          '<li><a href="/order/#settle"><span class="i">&#128179;</span>정산 내역</a></li>' +
+          '<li><a href="/member/#orders"><span class="i">&#128203;</span>주문내역</a></li>' +
+          '<li><a href="/member/#new"><span class="i">&#128722;</span>주문하기</a></li>' +
+          '<li><a href="/member/#settle"><span class="i">&#128179;</span>정산 내역</a></li>' +
           '<li class="sep"></li>' +
-          '<li><a href="/order/#me"><span class="i">&#9881;&#65039;</span>프로필 설정</a></li>' +
+          '<li><a href="/member/#me"><span class="i">&#9881;&#65039;</span>프로필 설정</a></li>' +
           '<li><a href="#logout" class="out"><span class="i">&#10162;</span>로그아웃</a></li>' +
           '</ul>';
         p.querySelector('.av').textContent = initial;
@@ -1051,6 +1051,8 @@
   document.head.appendChild(css);
 
   function won(n) { return n ? n.toLocaleString('ko-KR') + '원' : '문의'; }
+  /* 모델명과 규격이 같으면 한 번만 쓴다 (예: '표준 · 표준' 방지) */
+  function lbl(o) { return (o.m || '') + (o.s && o.s !== o.m ? ' · ' + o.s : ''); }
 
   /* ── 상단 드롭다운 + 제품문의 버튼 ── */
   var qbtn = document.querySelector('.dt-info .qbtn');
@@ -1063,7 +1065,7 @@
     MODELS.forEach(function (o, i) {
       var op = document.createElement('option');
       op.value = i;
-      op.textContent = o.m + (o.s ? ' · ' + o.s : '') + ' — ' + won(o.p);
+      op.textContent = lbl(o) + ' — ' + won(o.p);
       sel.appendChild(op);
     });
     pick.appendChild(sel);
@@ -1090,14 +1092,14 @@
       '<div class="bb-price">' + won(p) + (o.p ? '<small>VAT 별도</small>' : '') + '</div>'
     + (o.p ? '<p class="bb-extra"><b>관세 · 국제 운송비 별도</b> — 해외 발주 품목입니다. 수량·배송지에 따라 달라져 주문 시 확정 안내드립니다.</p>'
            : '<p class="bb-extra">규격을 알려주시면 금액을 안내드립니다.</p>')
-    + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (o.m || '—') + (o.s ? ' · ' + o.s : '') + '</span></div>'
+    + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
     + '<div class="bb-row"><span class="k">배송</span><span class="v">해외 발주 · 국내 배송</span></div>'
     + '<div class="bb-row"><span class="k">예상 배송일</span><span class="v">주문 확정 후 안내</span></div>'
     + '<div class="bb-qty"><label for="pdQty">수량</label>'
     +   '<input type="number" id="pdQty" min="1" value="' + q + '"></div>'
     + '<button type="button" class="bb-btn bb-cart" id="bbCart">장바구니 담기</button>'
     + '<button type="button" class="bb-btn bb-buy" id="bbBuy">구매하기</button>'
-    + '<p class="bb-note">장바구니·구매는 주문 페이지로 이어집니다.</p>';
+    + '<p class="bb-note">담으신 품목은 장바구니에서 확인하실 수 있습니다.</p>';
   }
   function toast(m) {
     var t = document.querySelector('.bb-toast');
@@ -1151,6 +1153,6 @@
     var t = e.target;
     if (!t || !t.closest) return;
     if (t.closest('#bbCart')) { addCart(); if (window.paintCart) window.paintCart(); toast('장바구니에 담았습니다'); }
-    if (t.closest('#bbBuy'))  { addCart(); location.href = '/order/'; }
+    if (t.closest('#bbBuy'))  { addCart(); if (window.paintCart) window.paintCart(); location.href = '/cart/'; }
   });
 })();

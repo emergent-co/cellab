@@ -1,5 +1,5 @@
-// functions/admin/customers/index.js — 거래처 승인 · 견적 문의 (모바일 우선) · Basic Auth
-//   주문·정산 페이지는 '승인'된 거래처만 열린다. 여기서 승인/대기/거절을 정한다.
+// functions/admin/customers/index.js — 멤버십 승인 · 견적 문의 (모바일 우선) · Basic Auth
+//   주문·정산 페이지는 '승인'된 멤버십 회원만 열린다. 여기서 승인/대기/거절을 정한다.
 
 const REALM = 'rndsetup-admin';
 
@@ -28,7 +28,7 @@ function page(token) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>거래처 승인 — rndsetup</title>
+<title>멤버십 승인 — rndsetup</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0a2540;--teal:#1a6e56;--ink:#1a2332;--mut:#5a6779;--line:#e3e8ef;--bg:#f4f6fa}
@@ -71,9 +71,9 @@ button,input,select{font:inherit;color:inherit}
 </style>
 </head>
 <body>
-<div class="top"><h1>거래처 승인<a class="r" href="/admin/orders/">주문관리 →</a><a href="/admin/settlement/">정산 →</a></h1></div>
+<div class="top"><h1>멤버십 승인<a class="r" href="/admin/orders/">주문관리 →</a><a href="/admin/settlement/">정산 →</a></h1></div>
 <div class="tabs" id="tabs">
-  <button data-t="cust" class="on">거래처 <i id="nWait" hidden>0</i></button>
+  <button data-t="cust" class="on">멤버십 <i id="nWait" hidden>0</i></button>
   <button data-t="inq">견적 문의 <i id="nInq" hidden>0</i></button>
 </div>
 <div class="wrap" id="list"><div class="empty">불러오는 중…</div></div>
@@ -110,7 +110,7 @@ function paint(){ tab==='cust' ? paintCust() : paintInq(); }
 
 var TAGC={'대기':'w','승인':'o','거절':'x'};
 function paintCust(){
-  if(!custs.length) return $('#list').innerHTML='<div class="empty">거래처가 없습니다.</div>';
+  if(!custs.length) return $('#list').innerHTML='<div class="empty">회원이 없습니다.</div>';
   $('#list').innerHTML = custs.map(function(c){
     var wait = c.access==='대기';
     return '<div class="card'+(wait?' wait':'')+'">'
@@ -131,7 +131,7 @@ function paintCust(){
   document.querySelectorAll('.acts button').forEach(function(b){
     b.onclick = async function(){
       var a=b.dataset.a;
-      if(a!=='승인' && !confirm('이 거래처를 "'+a+'" 상태로 바꿀까요?')) return;
+      if(a!=='승인' && !confirm('이 회원을 "'+a+'" 상태로 바꿀까요?')) return;
       b.disabled=true;
       var r = await fetch('/api/admin/customers',{method:'POST',headers:H,
         body:JSON.stringify({id:Number(b.dataset.id),access:a})}).then(function(x){return x.json();});

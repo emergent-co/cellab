@@ -3,12 +3,12 @@
 //   GET  /api/order/lab            → 내 랩 정보 + 구성원
 //   POST /api/order/lab {name}     → 랩 생성(없을 때) 또는 이름 변경
 //   POST /api/order/lab {code}     → 초대 코드로 합류
-import { json, currentCustomer, kstISO, logEvent, vipGate} from '../_lib.js';
+import { json, currentCustomer, kstISO, logEvent, memberGate} from '../_lib.js';
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
-  const gate = vipGate(me); if (gate) return gate;
+  const gate = memberGate(me); if (gate) return gate;
 
   if (request.method === 'GET') {
     // 합류하기 전에 "어떤 실험실인지"만 확인 — 이름과 인원수만 준다

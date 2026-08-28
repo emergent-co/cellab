@@ -1,9 +1,9 @@
-// GET /api/auth/kakao?next=/order/  → 카카오 로그인 시작
+// GET /api/auth/kakao?next=/member/  → 카카오 로그인 시작
 import { json } from '../_lib.js';
 
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
-  const next = url.searchParams.get('next') || '/order/';
+  const next = url.searchParams.get('next') || '/member/';
   const key = env.KAKAO_REST_KEY || '';
   if (!key) return json({ error: 'kakao_not_configured', message: 'KAKAO_REST_KEY 환경변수가 없습니다.' }, 503);
 

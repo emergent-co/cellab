@@ -96,7 +96,7 @@ async function onShipped(env, request, order) {
     : null;
   if (!customer) return;
   const origin = new URL(request.url).origin;
-  const url = `${origin}/order/#orders`;
+  const url = `${origin}/member/#orders`;
   await notifyCustomer(env, {
     customer, order,
     template: env.ALIMTALK_TPL_SHIP || 'rndsetup_ship',

@@ -1,5 +1,5 @@
 // POST /api/order/inquiry — 견적 문의 (로그인 없이도 보낼 수 있다)
-//   등록된 거래처가 아닌 방문자가 장바구니에 담은 것을 그대로 문의로 넘긴다.
+//   멤버십 회원이 아닌 방문자가 장바구니에 담은 것을 그대로 문의로 넘긴다.
 //   주문이 아니라 문의다 — 값을 매기지 않고, 사람이 읽고 회신한다.
 import { json, currentCustomer, kstISO, esc, logEvent } from '../_lib.js';
 import { sendMail, mailConfigured } from '../_mailer.js';

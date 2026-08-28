@@ -1,13 +1,13 @@
 // GET /api/order/settlement → 정산하기 화면에 필요한 전부 (한 번의 요청으로)
 //   후불이면 지출/정산/잔여 + 원장, 그리고 계산서 발행 정보 · 발급 서류까지 함께 준다.
 //   화면 하나를 그리려고 API를 세 번 왕복하면 그만큼 빈 화면이 길어진다.
-import { json, currentCustomer, vipGate} from '../_lib.js';
+import { json, currentCustomer, memberGate} from '../_lib.js';
 import { settlement, ledger } from '../_settle.js';
 
 export async function onRequestGet({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
-  const gate = vipGate(me); if (gate) return gate;
+  const gate = memberGate(me); if (gate) return gate;
 
   const postpaid = (me.billing_mode || '선불') === '후불';
 
