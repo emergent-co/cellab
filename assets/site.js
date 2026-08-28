@@ -781,10 +781,11 @@
     + '<div class="qm">'
     +   '<button type="button" class="qm-x" aria-label="닫기">&times;</button>'
     +   '<form id="qmForm" novalidate>'
-    +     '<h2>견적 문의</h2>'
-    +     '<p class="qm-sub">구성에 따라 사양·금액이 달라집니다. <b>다루는 시료와 공정</b>만 남겨주시면, 맞는 구성과 견적으로 회신드립니다.</p>'
+    +     '<h2 id="qmTitle">견적 문의</h2>'
+    +     '<p class="qm-sub" id="qmSub">구성에 따라 사양·금액이 달라집니다. <b>다루는 시료와 공정</b>만 남겨주시면, 맞는 구성과 견적으로 회신드립니다.</p>'
     +     '<p class="qm-for" id="qmFor"></p>'
     +     '<div id="qmFurn">'+ '<label>샘플 시료 <span class="req">*</span></label>'+ '<textarea name="샘플시료" placeholder="재질 · 형태 · 양 (예: 알루미나 분말 50g / 실리콘 웨이퍼 2인치 5장)"></textarea>'+ '<div class="qm-fx">무엇을 넣고 처리하는지 — 재질, 형태(분말·벌크·박막), 대략의 양</div>'+ '<label>사용 공정 <span class="req">*</span></label>'+ '<textarea name="사용공정" placeholder="목표 온도 · 분위기 · 승온/유지 조건 (예: Ar 분위기 900℃까지 5℃/min 승온 후 2시간 유지)"></textarea>'+ '<div class="qm-fx">목표 온도 · 분위기(대기/불활성/진공) · 승온·유지 조건 · 처리 목적</div>'+ '</div>'+ '<div id="qmPump" style="display:none">'+ '<label><span id="qmHeadLabel">구성 (펌프헤드) </span><span class="req">*</span></label>'+ '<select name="구성헤드" id="qmHead"><option value="">선택해 주세요</option></select>'+ '<div class="qm-fx" id="qmHeadFx">헤드에 따라 유량 범위·채널 수·가격이 달라집니다. 모르시면 <b>추천 요청</b>을 선택하세요.</div>'+ '<label>목표 유량 <span class="req">*</span></label>'+ '<input type="text" name="목표유량" placeholder="예: 50 mL/min 연속 / 200 μL 정량 분주">'+ '<div class="qm-fx">필요한 유량과 운전 방식(연속 이송 · 정량 분주 · 순환)</div>'+ '<label>현재 사용 중인 펌프 <span style="font-weight:600;color:#9C958D">(있으면)</span></label>'+ '<input type="text" name="기존펌프" placeholder="예: Masterflex L/S 07528-10 / 리드플루이드 BT100S">'+ '<div class="qm-fx">교체·증설이면 기존 모델명을 알려주시면 호환 구성으로 잡아드립니다.</div>'+ '<label>요청사항</label>'+ '<textarea name="요청사항" placeholder="유체 종류(점도·부식성) · 채널 수 · 통신 연동 · 납기 등 알려주실 내용"></textarea>'+ '</div>'
+    + '<div id="qmProdBox" style="display:none">'+ '<label>모델 · 옵션</label>'+ '<input type="text" name="모델옵션" id="qmModel" readonly>'+ '<label>수량</label>'+ '<input type="number" name="수량" id="qmQty" min="1" value="1">'+ '<label>문의 내용 <span class="req">*</span></label>'+ '<textarea name="문의내용" id="qmMsg" placeholder="규격·수량·납기 등 궁금하신 점을 적어주세요"></textarea>'+ '</div>'
     +     '<div class="qm-g2">'
     +       '<div><label>이름 <span class="req">*</span></label>'
     +         '<input type="text" name="이름" required placeholder="홍길동"></div>'
@@ -796,13 +797,13 @@
     +     '<input type="hidden" name="문의유형" id="qmType" value="삼흥 열처리 견적(카탈로그)">'
     +     '<input type="hidden" name="문의제품" id="qmProd" value="">'
     +     '<input type="hidden" name="출처페이지" id="qmPath" value="">'
-    +     '<button type="submit" class="qm-send">견적 요청 보내기 →</button>'
+    +     '<button type="submit" class="qm-send" id="qmSend">견적 요청 보내기 →</button>'
     +     '<p class="qm-err" id="qmErr"></p>'
-    +     '<p class="qm-priv">보내주신 정보는 견적 회신 목적으로만 사용합니다. 급하시면 <b>info@rndsetup.com</b> · <b>070-8983-2600</b></p>'
+    +     ''
     +   '</form>'
     +   '<div class="qm-done" id="qmDone">'
     +     '<h2>문의가 접수되었습니다</h2>'
-    +     '<p>보내주신 조건을 검토해, 맞는 구성과 견적으로 회신드립니다.<br>급하시면 <b>info@rndsetup.com</b> 으로도 연락 주세요.</p>'
+    +     '<p id="qmDoneMsg">보내주신 조건을 검토해 회신드립니다.</p>'
     +   '</div>'
     + '</div>';
   document.body.appendChild(back);
@@ -812,9 +813,36 @@
   var errEl = back.querySelector('#qmErr');
   var lastFocus = null;
 
-  function open(product) {
+  function open(product, opts) {
     lastFocus = document.activeElement;
+    opts = opts || {};
     back.querySelector('#qmProd').value = product || '';
+
+    /* ── 제품문의 모드 (전기화학 등 개별 제품 페이지) ── */
+    var isProd = !!opts.productMode;
+    back.querySelector('#qmProdBox').style.display = isProd ? '' : 'none';
+    back.querySelector('#qmTitle').textContent = isProd ? '제품문의' : '견적 문의';
+    back.querySelector('#qmSend').textContent  = isProd ? '문의 보내기 →' : '견적 요청 보내기 →';
+    back.querySelector('#qmSub').innerHTML = isProd
+      ? '모델·수량과 궁금하신 점을 남겨주시면 확인해 회신드립니다.'
+      : '구성에 따라 사양·금액이 달라집니다. <b>다루는 시료와 공정</b>만 남겨주시면, 맞는 구성과 견적으로 회신드립니다.';
+    back.querySelector('#qmDoneMsg').textContent = isProd
+      ? '문의 내용을 확인해 회신드립니다.'
+      : '보내주신 조건을 검토해 회신드립니다.';
+    if (isProd) {
+      back.querySelector('#qmFurn').style.display = 'none';
+      back.querySelector('#qmPump').style.display = 'none';
+      back.querySelector('#qmModel').value = opts.model || '';
+      back.querySelector('#qmQty').value   = opts.qty || 1;
+      back.querySelector('#qmType').value  = '제품문의';
+      var forEl = back.querySelector('#qmFor');
+      if (forEl) forEl.textContent = product || '';
+      back.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      var f0 = back.querySelector('#qmMsg'); if (f0) setTimeout(function(){ f0.focus(); }, 30);
+      return;
+    }
+
     var isPump = /leadfluid|리드플루이드|BT\d|WT\d|WG\d|MF\d|MS\d|BQ\d|JP\d|TYD|TFD|TSD|TGD|CT300|EF\d|FG\d|FP\d|AF9|G3030|G6060|MC10|MM10|\ud38c\ud504\ud5e4\ub4dc/i.test((product||'') + ' ' + location.pathname);
     back.querySelector('#qmFurn').style.display = isPump ? 'none' : '';
     back.querySelector('#qmPump').style.display = isPump ? '' : 'none';
@@ -865,6 +893,19 @@
   }
 
   document.addEventListener('click', function (e) {
+    var pb = (e.target && e.target.closest) ? e.target.closest('[data-inquiry]') : null;
+    if (pb) {
+      e.preventDefault();
+      var box = document.getElementById('buybox');
+      var mSel = document.getElementById('pdModel');
+      var qEl  = document.getElementById('pdQty');
+      open(pb.getAttribute('data-inquiry'), {
+        productMode: true,
+        model: mSel ? (mSel.options[mSel.selectedIndex] || {}).text || '' : '',
+        qty:   qEl ? (qEl.value || 1) : 1
+      });
+      return;
+    }
     var b = (e.target && e.target.closest) ? e.target.closest('[data-quote]') : null;
     if (b) { e.preventDefault(); open(b.getAttribute('data-quote')); }
   });
@@ -950,4 +991,128 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+})();
+
+/* ===========================================================
+   제품 상세 — 모델 드롭다운 + 구매 박스 (buybox)
+   페이지가 <div id="buybox" data-name="..." data-models='[...]'> 를 두면 동작.
+   models: [{m:모델, s:규격, p:정가(0=문의)}]
+   =========================================================== */
+(function () {
+  var box = document.getElementById('buybox');
+  if (!box) return;
+
+  var NAME = box.dataset.name || document.title;
+  var MODELS = [];
+  try { MODELS = JSON.parse(box.dataset.models || '[]'); } catch (e) { MODELS = []; }
+
+  var css = document.createElement('style');
+  css.textContent =
+    '.pd-pick{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:18px 0 0}'
+  + '.pd-pick select{flex:1;min-width:190px;max-width:340px;padding:10px 11px;border:1px solid #D9D4CE;'
+  +   'border-radius:9px;font-family:inherit;font-size:13.5px;background:#fff;color:#17202A}'
+  + '.bb{border:1px solid #E7E3DE;border-radius:14px;padding:16px 16px 14px;background:#fff;'
+  +   'font-size:13.5px;line-height:1.6}'
+  + '.bb-price{font-family:var(--serif,Georgia,serif);font-size:26px;font-weight:800;color:#17202A;letter-spacing:-.01em}'
+  + '.bb-price small{font-size:13px;font-weight:700;color:#7a6f68;margin-left:5px}'
+  + '.bb-extra{margin:6px 0 0;font-size:12.5px;color:#7a6f68;line-height:1.65}'
+  + '.bb-extra b{color:#9A3412}'
+  + '.bb-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #F1EDE9}'
+  + '.bb-row .k{color:#7a6f68;flex:0 0 auto}.bb-row .v{text-align:right;font-weight:700;color:#17202A}'
+  + '.bb-qty{display:flex;align-items:center;gap:8px;margin:12px 0 10px}'
+  + '.bb-qty label{color:#7a6f68;font-size:12.5px}'
+  + '.bb-qty input{width:74px;padding:8px 9px;border:1px solid #D9D4CE;border-radius:8px;'
+  +   'font-family:inherit;font-size:13.5px;text-align:center}'
+  + '.bb-btn{display:block;width:100%;padding:11px 12px;border-radius:10px;font-family:inherit;'
+  +   'font-size:14px;font-weight:800;cursor:pointer;border:1px solid transparent;margin-top:8px}'
+  + '.bb-cart{background:#F6F4F1;color:#17202A;border-color:#D9D4CE}'
+  + '.bb-cart:hover{background:#EFEAE4}'
+  + '.bb-buy{background:#C2410C;color:#fff}.bb-buy:hover{background:#9A3412}'
+  + '.bb-note{margin:10px 0 0;font-size:12px;color:#9C958D;line-height:1.6}'
+  + '.bb-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#17202A;color:#fff;'
+  +   'padding:11px 18px;border-radius:10px;font-size:13.5px;font-weight:700;opacity:0;pointer-events:none;'
+  +   'transition:opacity .25s;z-index:9999}'
+  + '.bb-toast.on{opacity:1}';
+  document.head.appendChild(css);
+
+  function won(n) { return n ? n.toLocaleString('ko-KR') + '원' : '문의'; }
+
+  /* ── 상단 드롭다운 + 제품문의 버튼 ── */
+  var qbtn = document.querySelector('.dt-info .qbtn');
+  if (qbtn && MODELS.length) {
+    var pick = document.createElement('div');
+    pick.className = 'pd-pick';
+    var sel = document.createElement('select');
+    sel.id = 'pdModel';
+    sel.setAttribute('aria-label', '모델 · 옵션 선택');
+    MODELS.forEach(function (o, i) {
+      var op = document.createElement('option');
+      op.value = i;
+      op.textContent = o.m + (o.s ? ' · ' + o.s : '') + ' — ' + won(o.p);
+      sel.appendChild(op);
+    });
+    pick.appendChild(sel);
+    qbtn.parentNode.insertBefore(pick, qbtn);
+    pick.appendChild(qbtn);
+  }
+  if (qbtn) {
+    qbtn.textContent = '제품문의';
+    qbtn.setAttribute('data-inquiry', qbtn.getAttribute('data-quote') || NAME);
+    qbtn.removeAttribute('data-quote');
+  }
+
+  /* ── 우측 구매 박스 ── */
+  function cur() {
+    var sel = document.getElementById('pdModel');
+    var i = sel ? +sel.value : 0;
+    return MODELS[i] || { m: '', s: '', p: 0 };
+  }
+  function render() {
+    var o = cur();
+    var q = Math.max(1, +(document.getElementById('pdQty') || {}).value || 1);
+    var p = o.p ? o.p * q : 0;
+    box.innerHTML =
+      '<div class="bb-price">' + won(p) + (o.p ? '<small>VAT 별도</small>' : '') + '</div>'
+    + (o.p ? '<p class="bb-extra"><b>관세 · 국제 운송비 별도</b> — 해외 발주 품목입니다. 수량·배송지에 따라 달라져 주문 시 확정 안내드립니다.</p>'
+           : '<p class="bb-extra">규격을 알려주시면 금액을 안내드립니다.</p>')
+    + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (o.m || '—') + (o.s ? ' · ' + o.s : '') + '</span></div>'
+    + '<div class="bb-row"><span class="k">배송</span><span class="v">해외 발주 · 국내 배송</span></div>'
+    + '<div class="bb-row"><span class="k">예상 배송일</span><span class="v">주문 확정 후 안내</span></div>'
+    + '<div class="bb-qty"><label for="pdQty">수량</label>'
+    +   '<input type="number" id="pdQty" min="1" value="' + q + '"></div>'
+    + '<button type="button" class="bb-btn bb-cart" id="bbCart">장바구니 담기</button>'
+    + '<button type="button" class="bb-btn bb-buy" id="bbBuy">구매하기</button>'
+    + '<p class="bb-note">장바구니·구매는 주문 페이지로 이어집니다.</p>';
+  }
+  function toast(m) {
+    var t = document.querySelector('.bb-toast');
+    if (!t) { t = document.createElement('div'); t.className = 'bb-toast'; document.body.appendChild(t); }
+    t.textContent = m; t.classList.add('on');
+    setTimeout(function () { t.classList.remove('on'); }, 1900);
+  }
+  function addCart() {
+    var o = cur();
+    var q = Math.max(1, +(document.getElementById('pdQty') || {}).value || 1);
+    var cart = [];
+    try { cart = JSON.parse(localStorage.getItem('rs_cart') || '[]') || []; } catch (e) { cart = []; }
+    cart.push({ name: NAME + (o.m ? ' ' + o.m : ''), spec: o.s || '',
+                link: location.origin + location.pathname, qty: q, note: '' });
+    try { localStorage.setItem('rs_cart', JSON.stringify(cart)); } catch (e) {}
+    return cart.length;
+  }
+
+  render();
+  document.addEventListener('change', function (e) {
+    if (e.target && (e.target.id === 'pdModel' || e.target.id === 'pdQty')) {
+      var keep = e.target.id === 'pdQty' ? e.target.value : null;
+      render();
+      if (keep) document.getElementById('pdQty').value = keep;
+    }
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    if (t.closest('#bbCart')) { addCart(); toast('장바구니에 담았습니다'); }
+    if (t.closest('#bbBuy'))  { addCart(); location.href = '/order/'; }
+  });
 })();

@@ -1,0 +1,718 @@
+sku	소분	모델	옵션	정가
+GU-REFERE-R1038	기준전극	R1038	표준	70000
+GU-REFERE-R1060-Standard	기준전극	R1060-Standard	표준	70000
+GU-REFERE-R1060-Extended	기준전극	R1060-Extended	연장형	70000
+GU-REFERE-R8060	기준전극	R8060	이중 염다리	140000
+GU-REFERE-PK-1020	기준전극	PK-1020	PEEK 로드	333000
+GU-REFERE-PK-1038	기준전극	PK-1038	PEEK 로드	333000
+GU-REFERE-R1038K	기준전극	R1038K	갈색 내광형	70000
+GU-REFERE-R1060K	기준전극	R1060K	다갈색 내광형	70000
+GU-REFERE	기준전극	이중접점형	이중 접점	228000
+GU-REFERE-232	기준전극	232 표준	232 표준	35000
+GU-REFERE-232-2	기준전극	232 연장형	232 연장형	53000
+GU-REFERE-3-8mm	기준전극	세경 3.8mm	세경 3.8mm	70000
+GU-REFERE-217	기준전극	217 (쌍염교)	217 (쌍염교)	70000
+GU-REFERE-1545	기준전극	1545	1545	70000
+GU-REFERE-2	기준전극	표준	표준	70000
+GU-REFERE-3	기준전극	연장형	연장형	88000
+GU-REFERE-3-8mm-2	기준전극	세경 3.8mm	세경 3.8mm	105000
+GU-REFERE-4	기준전극	표준	표준	140000
+GU-REFERE-5	기준전극	연장형	연장형	175000
+GU-REFERE-3-8mm-3	기준전극	세경 3.8mm	세경 3.8mm	175000
+GU-REFERE-6	기준전극	이중 염다리	이중 염다리	175000
+GU-REFERE-7	기준전극	사불화형	사불화형	245000
+GU-REFERE-Hg-1038	기준전극	Hg-1038	PEEK 로드	472000
+GU-REFERE-4038	기준전극	4038	4038	70000
+GU-REFERE-4060	기준전극	4060	4060	70000
+GU-REFERE-140mm	기준전극	직선형 140mm	직선형 140mm	35000
+GU-REFERE-170mm	기준전극	직선형 170mm	직선형 170mm	35000
+GU-REFERE-8	기준전극	굴곡형	굴곡형	35000
+GU-REFERE-9	기준전극	루긴 모세관	루긴 모세관	35000
+GU-RHE-10101	가역수소전극	10101	PTFE 바디 · pH 2~16 · 내부 전해액 불필요	2100000
+GU-RHE-10101-1	가역수소전극	10101-1	RHE 전용	350000
+GU-RHE-10101-2	가역수소전극	10101-2	RHE 전용	175000
+GU-COUNTE-PT0537	상대전극	PT0537	0.5×37mm 노출	175000
+GU-COUNTE-PT1037	상대전극	PT1037	1.0×37mm 노출	665000
+GU-COUNTE-PT0523	상대전극	PT0523	0.5×230mm 노출	770000
+GU-COUNTE-PT1005	상대전극	PT1005	1.0×5mm 노출	175000
+GU-COUNTE-PT1010	상대전극	PT1010	1.0×10mm 노출	280000
+GU-COUNTE-PT052300	상대전극	PT052300	0.5×230mm 노출	840000
+GU-COUNTE	상대전극	주문제작	전방 스프링 Φ4mm	0
+GU-COUNTE-Pt1010	상대전극	Pt1010	10×10mm · 52 mesh	280000
+GU-COUNTE-Pt1015	상대전극	Pt1015	10×15mm · 52 mesh	333000
+GU-COUNTE-Pt1020	상대전극	Pt1020	10×20mm · 52 mesh	385000
+GU-COUNTE-Pt1030	상대전극	Pt1030	10×30mm · 52 mesh	472000
+GU-COUNTE-Pt1515	상대전극	Pt1515	15×15mm · 52 mesh	420000
+GU-COUNTE-Pt2020	상대전극	Pt2020	20×20mm · 52 mesh	560000
+GU-COUNTE-Pt3030	상대전극	Pt3030	30×30mm · 52 mesh	840000
+GU-COUNTE-Pt-R20	상대전극	Pt-R20	Φ20mm · 52 mesh	525000
+GU-COUNTE-Pt0505-1	상대전극	Pt0505-1	5×5×0.1mm	175000
+GU-COUNTE-Pt0505-2	상대전극	Pt0505-2	5×5×0.2mm	210000
+GU-COUNTE-Pt0505-3	상대전극	Pt0505-3	5×5×0.3mm	245000
+GU-COUNTE-Pt0510-1	상대전극	Pt0510-1	5×10×0.1mm	210000
+GU-COUNTE-Pt0510-2	상대전극	Pt0510-2	5×10×0.2mm	280000
+GU-COUNTE-Pt0510-3	상대전극	Pt0510-3	5×10×0.3mm	315000
+GU-COUNTE-Pt1010-1	상대전극	Pt1010-1	10×10×0.1mm	280000
+GU-COUNTE-Pt1010-2	상대전극	Pt1010-2	10×10×0.2mm	367000
+GU-COUNTE-Pt1010-3	상대전극	Pt1010-3	10×10×0.3mm	455000
+GU-COUNTE-Pt1010-5	상대전극	Pt1010-5	10×10×0.5mm	630000
+GU-COUNTE-Pt1015-1	상대전극	Pt1015-1	10×15×0.1mm	315000
+GU-COUNTE-Pt1015-2	상대전극	Pt1015-2	10×15×0.2mm	455000
+GU-COUNTE-Pt1015-3	상대전극	Pt1015-3	10×15×0.3mm	595000
+GU-COUNTE-Pt1015-5	상대전극	Pt1015-5	10×15×0.5mm	858000
+GU-COUNTE-Pt1020-1	상대전극	Pt1020-1	10×20×0.1mm	367000
+GU-COUNTE-Pt1020-2	상대전극	Pt1020-2	10×20×0.2mm	560000
+GU-COUNTE-Pt1020-3	상대전극	Pt1020-3	10×20×0.3mm	717000
+GU-COUNTE-Pt1020-5	상대전극	Pt1020-5	10×20×0.5mm	1033000
+GU-COUNTE-Pt1030-1	상대전극	Pt1030-1	10×30×0.1mm	455000
+GU-COUNTE-Pt1030-2	상대전극	Pt1030-2	10×30×0.2mm	717000
+GU-COUNTE-Pt1030-3	상대전극	Pt1030-3	10×30×0.3mm	980000
+GU-COUNTE-Pt1030-5	상대전극	Pt1030-5	10×30×0.5mm	1540000
+GU-COUNTE-Pt1515-1	상대전극	Pt1515-1	15×15×0.1mm	403000
+GU-COUNTE-Pt1515-2	상대전극	Pt1515-2	15×15×0.2mm	595000
+GU-COUNTE-Pt1515-3	상대전극	Pt1515-3	15×15×0.3mm	770000
+GU-COUNTE-Pt1515-5	상대전극	Pt1515-5	15×15×0.5mm	1138000
+GU-COUNTE-Pt2020-1	상대전극	Pt2020-1	20×20×0.1mm	560000
+GU-COUNTE-Pt2020-2	상대전극	Pt2020-2	20×20×0.2mm	892000
+GU-COUNTE-Pt2020-3	상대전극	Pt2020-3	20×20×0.3mm	1208000
+GU-COUNTE-Pt2020-5	상대전극	Pt2020-5	20×20×0.5mm	0
+GU-COUNTE-Pt3030-1	상대전극	Pt3030-1	30×30×0.1mm	962000
+GU-COUNTE-Pt3030-2	상대전극	Pt3030-2	30×30×0.2mm	1680000
+GU-COUNTE-Pt3030-3	상대전극	Pt3030-3	30×30×0.3mm	2450000
+GU-COUNTE-Pt213	상대전극	Pt213	5×2×0.2mm	88000
+GU-COUNTE-6-75	상대전극	수입형 6×75	6×75mm · 순도 99.99%	0
+GU-COUNTE-6-100	상대전극	수입 연장형 6×100	6×100mm · 순도 99.99%	0
+GU-COUNTE-6-75-2	상대전극	국산형 6×75	6×75mm · 순도 98%	35000
+GU-COUNTE-6-100-2	상대전극	국산 연장형 6×100	6×100mm · 순도 98%	35000
+GU-COUNTE-6-75-3	상대전극	수입형 6×75	6×75mm · 순도 99.99%	0
+GU-COUNTE-6-75-4	상대전극	국산형 6×75	6×75mm · 순도 98%	35000
+GU-WORKIN-1mm	작업전극	1mm	Φ1mm	578000
+GU-WORKIN-2mm	작업전극	2mm	Φ2mm	333000
+GU-WORKIN-3mm	작업전극	3mm	Φ3mm	350000
+GU-WORKIN-4mm	작업전극	4mm	Φ4mm	367000
+GU-WORKIN-5mm	작업전극	5mm	Φ5mm	367000
+GU-WORKIN-6mm	작업전극	6mm	Φ6mm	367000
+GU-WORKIN-1mm-2	작업전극	1mm	Φ1mm	455000
+GU-WORKIN-2mm-2	작업전극	2mm	Φ2mm	245000
+GU-WORKIN-3mm-2	작업전극	3mm	Φ3mm	245000
+GU-WORKIN-4mm-2	작업전극	4mm	Φ4mm	262000
+GU-WORKIN-5mm-2	작업전극	5mm	Φ5mm	297000
+GU-WORKIN-6mm-2	작업전극	6mm	Φ6mm	542000
+GU-WORKIN-7mm	작업전극	7mm	Φ7mm	560000
+GU-WORKIN-8mm	작업전극	8mm	Φ8mm	822000
+GU-WORKIN-9mm	작업전극	9mm	Φ9mm	1172000
+GU-WORKIN-10mm	작업전극	10mm	Φ10mm	1645000
+GU-WORKIN-15mm	작업전극	15mm	Φ15mm	3325000
+GU-WORKIN-20mm	작업전극	20mm	Φ20mm	5600000
+GU-WORKIN-0-5mm	작업전극	0.5mm	Φ0.5mm	158000
+GU-WORKIN-1mm-3	작업전극	1mm	Φ1mm	175000
+GU-WORKIN-2mm-3	작업전극	2mm	Φ2mm	262000
+GU-WORKIN-3mm-3	작업전극	3mm	Φ3mm	280000
+GU-WORKIN-4mm-3	작업전극	4mm	Φ4mm	420000
+GU-WORKIN-5mm-3	작업전극	5mm	Φ5mm	612000
+GU-WORKIN-6mm-3	작업전극	6mm	Φ6mm	962000
+GU-WORKIN-0-5mm-2	작업전극	0.5mm	Φ0.5mm	140000
+GU-WORKIN-1mm-4	작업전극	1mm	Φ1mm	192000
+GU-WORKIN-2mm-4	작업전극	2mm	Φ2mm	438000
+GU-WORKIN-3mm-4	작업전극	3mm	Φ3mm	980000
+GU-WORKIN-4mm-4	작업전극	4mm	Φ4mm	1575000
+GU-WORKIN-5mm-4	작업전극	5mm	Φ5mm	2450000
+GU-WORKIN-6mm-4	작업전극	6mm	Φ6mm	3500000
+GU-WORKIN-2mm-5	작업전극	2mm	Φ2mm	175000
+GU-WORKIN-3mm-5	작업전극	3mm	Φ3mm	192000
+GU-WORKIN-4mm-5	작업전극	4mm	Φ4mm	192000
+GU-WORKIN-5mm-5	작업전극	5mm	Φ5mm	210000
+GU-WORKIN-6mm-5	작업전극	6mm	Φ6mm	228000
+GU-WORKIN-2-10mm	작업전극	2×10mm	2×10mm	210000
+GU-WORKIN-2mm-6	작업전극	Φ2mm	Φ2mm	175000
+GU-WORKIN-2-4mm	작업전극	Φ2~4mm	Φ2~4mm	140000
+GU-WORKIN-3mm-6	작업전극	Φ3mm	Φ3mm	245000
+GU-WORKIN-2-4mm-2	작업전극	Φ2~4mm	Φ2~4mm	140000
+GU-WORKIN-2-4mm-3	작업전극	Φ2~4mm	Φ2~4mm	140000
+GU-WORKIN-2-4mm-4	작업전극	Φ2~4mm	Φ2~4mm	140000
+GU-WORKIN-2-4mm-5	작업전극	Φ2~4mm	Φ2~4mm	140000
+GU-WORKIN-2-4mm-6	작업전극	Φ2~4mm	Φ2~4mm	140000
+GU-WORKIN-2-5mm	작업전극	Φ2~5mm	Φ2~5mm	122000
+GU-WORKIN-2-5mm-2	작업전극	Φ2~5mm	Φ2~5mm	122000
+GU-WORKIN-2-6mm	작업전극	Φ2~6mm	Φ2~6mm	245000
+GU-WORKIN-2-6mm-2	작업전극	Φ2~6mm	Φ2~6mm	140000
+GU-WORKIN-2-4mm-7	작업전극	Φ2~4mm	Φ2~4mm	175000
+GU-WORKIN-2-4mm-8	작업전극	Φ2~4mm	Φ2~4mm	70000
+GU-WORKIN-2-4mm-9	작업전극	Φ2~4mm	Φ2~4mm	70000
+GU-RDE-RR-GC-5mm	회전전극	GC 유리탄소 Φ5mm	GC 유리탄소 Φ5mm	1050000
+GU-RDE-RR-PT-5mm	회전전극	PT 백금 Φ5mm	PT 백금 Φ5mm	1645000
+GU-RDE-RR-AU-5mm	회전전극	AU 금 Φ5mm	AU 금 Φ5mm	2800000
+GU-RDE-RR-GC-3-4-5mm	회전전극	GC 유리탄소 Φ3·4·5mm	GC 유리탄소 Φ3·4·5mm	1050000
+GU-RDE-RR-PT-3-4-5mm	회전전극	PT 백금 Φ3·4·5mm	PT 백금 Φ3·4·5mm	1645000
+GU-RDE-RR-AU-3mm	회전전극	AU 금 Φ3mm	AU 금 Φ3mm	1522000
+GU-RDE-RR-AU-4mm	회전전극	AU 금 Φ4mm	AU 금 Φ4mm	2100000
+GU-RDE-RR-AU-5mm-2	회전전극	AU 금 Φ5mm	AU 금 Φ5mm	2800000
+GU-RDE-RR-GC-5-6mm	회전전극	GC 유리탄소 Φ5.6mm	GC 유리탄소 Φ5.6mm	3150000
+GU-RDE-RR-PT-5-6mm	회전전극	PT 백금 Φ5.6mm	PT 백금 Φ5.6mm	3675000
+GU-RDE-RR-AU-5-6mm	회전전극	AU 금 Φ5.6mm	AU 금 Φ5.6mm	4550000
+GU-RDE-RR-GC-4mm	회전전극	GC 유리탄소 Φ4mm	GC 유리탄소 Φ4mm	2800000
+GU-RDE-RR-PT-4mm	회전전극	PT 백금 Φ4mm	PT 백금 Φ4mm	10150000
+GU-RDE-RR-AU-4mm-2	회전전극	AU 금 Φ4mm	AU 금 Φ4mm	3500000
+GU-RDE-RR	회전전극	표준	회전 전극용 홀더	210000
+GU-ELECTR-PT-X	전극 클램프·홀더	PT-X	PT-X	315000
+GU-ELECTR-PT-1	전극 클램프·홀더	PT-1	PT-1	315000
+GU-ELECTR-PT-3	전극 클램프·홀더	PT-3	PT-3	315000
+GU-ELECTR-GC-2	전극 클램프·홀더	GC-2	GC-2	333000
+GU-ELECTR-GC	전극 클램프·홀더	GC 전용	GC 전용	403000
+GU-ELECTR-PT-XS	전극 클램프·홀더	PT-XS	PT-XS	455000
+GU-ELECTR-AU-X	전극 클램프·홀더	AU-X	AU-X	753000
+GU-ELECTR-SUS-1-316F	전극 클램프·홀더	SUS-1 (316F)	SUS-1 (316F)	88000
+GU-ELECTR-SUS-2-PTFE	전극 클램프·홀더	SUS-2 (PTFE 하우징)	SUS-2 (PTFE 하우징)	140000
+GU-ELECTR-SUS-X	전극 클램프·홀더	SUS-X	SUS-X	210000
+GU-ELECTR-TI-3	전극 클램프·홀더	TI-3	TI-3	140000
+GU-ELECTR-TI-X	전극 클램프·홀더	TI-X	TI-X	245000
+GU-ELECTR-E1006	전극 클램프·홀더	E1006	Φ6.5 구멍 3개 + Φ2 구멍 2개	175000
+GU-ELECTR-E1008	전극 클램프·홀더	E1008	Φ8.5 1개 + Φ6.5 2개 + Φ2 2개	175000
+GU-ELECTR-E1010	전극 클램프·홀더	E1010	Φ10.5 1개 + Φ6.5 2개 + Φ2 2개	175000
+GU-ELECTR-E1012	전극 클램프·홀더	E1012	Φ12.5 1개 + Φ6.5 2개 + Φ2 2개	175000
+GU-ELECTR-E1016	전극 클램프·홀더	E1016	Φ16.5 1개 + Φ6.5 2개 + Φ2 2개	175000
+GU-ELECTR	전극 클램프·홀더	표준	전극 9개 거치 · Φ2mm 소켓	88000
+GU-ELECTR-P400	전극 연마용품	P400 시리즈	연마포·연마분(0.05μm 등)	245000
+GU-ELECTR-P800	전극 연마용품	P800 시리즈	연마포·연마분 확장 세트	508000
+GU-ELECTR-GU100	전극 연마용품	GU100	전동 전극 연마기	2275000
+GU-ECHEM-GC1010-1	전기화학 재료	GC1010-1	10×10×1mm	105000
+GU-ECHEM-GC1010-2	전기화학 재료	GC1010-2	10×10×2mm	122000
+GU-ECHEM-GC1010-3	전기화학 재료	GC1010-3	10×10×3mm	140000
+GU-ECHEM-GC1015-1	전기화학 재료	GC1015-1	10×15×1mm	158000
+GU-ECHEM-GC1015-2	전기화학 재료	GC1015-2	10×15×2mm	175000
+GU-ECHEM-GC1015-3	전기화학 재료	GC1015-3	10×15×3mm	192000
+GU-ECHEM-GC1020-1	전기화학 재료	GC1020-1	10×20×1mm	210000
+GU-ECHEM-GC1020-2	전기화학 재료	GC1020-2	10×20×2mm	245000
+GU-ECHEM-GC1020-3	전기화학 재료	GC1020-3	10×20×3mm	262000
+GU-ECHEM-GC1025-1	전기화학 재료	GC1025-1	10×25×1mm	262000
+GU-ECHEM-GC1025-2	전기화학 재료	GC1025-2	10×25×2mm	297000
+GU-ECHEM-GC1025-3	전기화학 재료	GC1025-3	10×25×3mm	333000
+GU-ECHEM-GC1515-1	전기화학 재료	GC1515-1	15×15×1mm	245000
+GU-ECHEM-GC1515-2	전기화학 재료	GC1515-2	15×15×2mm	262000
+GU-ECHEM-GC1515-3	전기화학 재료	GC1515-3	15×15×3mm	297000
+GU-ECHEM-GC1520-1	전기화학 재료	GC1520-1	15×20×1mm	315000
+GU-ECHEM-GC1520-2	전기화학 재료	GC1520-2	15×20×2mm	350000
+GU-ECHEM-GC1520-3	전기화학 재료	GC1520-3	15×20×3mm	385000
+GU-ECHEM-GC2020-1	전기화학 재료	GC2020-1	20×20×1mm	420000
+GU-ECHEM-GC2020-2	전기화학 재료	GC2020-2	20×20×2mm	472000
+GU-ECHEM-GC2020-3	전기화학 재료	GC2020-3	20×20×3mm	525000
+GU-ECHEM-GC2525-1	전기화학 재료	GC2525-1	25×25×1mm	665000
+GU-ECHEM-GC2525-2	전기화학 재료	GC2525-2	25×25×2mm	735000
+GU-ECHEM-GC2525-3	전기화학 재료	GC2525-3	25×25×3mm	805000
+GU-ECHEM-1010-1	전기화학 재료	1010-1	10×10×1mm	9000
+GU-ECHEM-1010-2	전기화학 재료	1010-2	10×10×2mm	17000
+GU-ECHEM-1010-3	전기화학 재료	1010-3	10×10×3mm	26000
+GU-ECHEM-1015-1	전기화학 재료	1015-1	10×15×1mm	9000
+GU-ECHEM-1015-2	전기화학 재료	1015-2	10×15×2mm	17000
+GU-ECHEM-1015-3	전기화학 재료	1015-3	10×15×3mm	26000
+GU-ECHEM-1020-1	전기화학 재료	1020-1	10×20×1mm	12000
+GU-ECHEM-1020-2	전기화학 재료	1020-2	10×20×2mm	17000
+GU-ECHEM-1020-3	전기화학 재료	1020-3	10×20×3mm	24000
+GU-ECHEM-1025-1	전기화학 재료	1025-1	10×25×1mm	15000
+GU-ECHEM-1025-2	전기화학 재료	1025-2	10×25×2mm	23000
+GU-ECHEM-1025-3	전기화학 재료	1025-3	10×25×3mm	30000
+GU-ECHEM-1515-1	전기화학 재료	1515-1	15×15×1mm	17000
+GU-ECHEM-1515-2	전기화학 재료	1515-2	15×15×2mm	26000
+GU-ECHEM-1515-3	전기화학 재료	1515-3	15×15×3mm	35000
+GU-ECHEM-1520-1	전기화학 재료	1520-1	15×20×1mm	17000
+GU-ECHEM-1520-2	전기화학 재료	1520-2	15×20×2mm	26000
+GU-ECHEM-1520-3	전기화학 재료	1520-3	15×20×3mm	35000
+GU-ECHEM-2020-1	전기화학 재료	2020-1	20×20×1mm	25000
+GU-ECHEM-2020-2	전기화학 재료	2020-2	20×20×2mm	35000
+GU-ECHEM-2020-3	전기화학 재료	2020-3	20×20×3mm	48000
+GU-ECHEM-2525-1	전기화학 재료	2525-1	25×25×1mm	37000
+GU-ECHEM-2525-2	전기화학 재료	2525-2	25×25×2mm	54000
+GU-ECHEM-2525-3	전기화학 재료	2525-3	25×25×3mm	54000
+GU-ECHEM-Nafion-115	전기화학 재료	Nafion 115	100×100mm	350000
+GU-ECHEM-Nafion-117	전기화학 재료	Nafion 117	100×100mm	350000
+GU-ECHEM-Nafion-212	전기화학 재료	Nafion 212	100×100mm	350000
+GU-ECHEM-Nafion-211	전기화학 재료	Nafion 211	100×100mm	245000
+GU-ECHEM-Fuma-FAA-3-50	전기화학 재료	Fuma-FAA-3-50	100×100mm	472000
+GU-ECHEM-FAA-3-pk-130	전기화학 재료	FAA-3-pk-130	100×100mm	472000
+GU-ECHEM-FBM	전기화학 재료	FBM	100×100mm	647000
+GU-ECHEM-SGL22BB	전기화학 재료	SGL22BB	100×100mm	70000
+GU-ECHEM-SGL38BC	전기화학 재료	SGL38BC	100×100mm	70000
+GU-ECHEM-SGL39BB	전기화학 재료	SGL39BB	100×100mm	79000
+GU-ECHEM-CDS180S	전기화학 재료	CDS180S	100×100mm	70000
+GU-ECHEM-W1S1011	전기화학 재료	W1S1011	400×400mm	875000
+GU-ECHEM-W0S1011	전기화학 재료	W0S1011	400×400mm	875000
+GU-ECHEM	전기화학 재료	표준	100×100mm	70000
+GU-ECHEM-100-50-10mm	전기화학 재료	100×50×10mm	100 PPI	1750000
+GU-ECHEM-100-100-10mm	전기화학 재료	100×100×10mm	100 PPI	3500000
+GU-ECHEM-100-100mm	전기화학 재료	100×100mm	두께 0.16mm	700000
+GU-ECHEM-210-295mm	전기화학 재료	210×295mm	두께 0.5mm	140000
+GU-ECHEM-210-295mm-2	전기화학 재료	210×295mm	두께 0.5mm	140000
+GU-CO2RR-Ag-NPs	CO2RR 촉매	Ag NPs	~50-80nm · 목표물 CO · 선택도 ≥95% · 2g/병	350000
+GU-CO2RR-Sn-NPs-H	CO2RR 촉매	Sn NPs-H	~50-80nm · 목표물 포름산(염) · 선택도 ≥90% · 2g/병	525000
+GU-CO2RR-Sn-NPs-M	CO2RR 촉매	Sn NPs-M	~50-80nm · 목표물 포름산(염) · 선택도 ≥80% · 2g/병	350000
+GU-CO2RR-Bi2O3-H	CO2RR 촉매	Bi2O3-H	~50-80nm · 목표물 포름산(염) · 선택도 ≥90% · 2g/병	962000
+GU-CO2RR-Bi2O3-M	CO2RR 촉매	Bi2O3-M	~50-80nm · 목표물 포름산(염) · 선택도 ≥80% · 2g/병	788000
+GU-CO2RR-Cu-NPs-H	CO2RR 촉매	Cu NPs-H	~30-50nm · 목표물 C2+ 생성물 · 선택도 ≥70% · 2g/병	962000
+GU-CO2RR-Cu-NPs-M	CO2RR 촉매	Cu NPs-M	~30-50nm · 목표물 C2+ 생성물 · 선택도 ≥60% · 2g/병	788000
+GU-CO2RR-CuO-NPs-S	CO2RR 촉매	CuO NPs-S	~50-80nm · 목표물 C2+ 생성물 · 선택도 ≥65% · 2g/병	875000
+GU-CO2RR-Ag-CB	CO2RR 촉매	Ag-CB	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	858000
+GU-CO2RR-Ag-CT	CO2RR 촉매	Ag-CT	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1033000
+GU-CO2RR-Ag-CBU	CO2RR 촉매	Ag-CBU	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1208000
+GU-CO2RR-Ag-CTU	CO2RR 촉매	Ag-CTU	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1383000
+GU-CO2RR-Ag-CBH	CO2RR 촉매	Ag-CBH	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1208000
+GU-CO2RR-Ag-CTH	CO2RR 촉매	Ag-CTH	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1383000
+GU-CO2RR-Ag-CBUH	CO2RR 촉매	Ag-CBUH	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1558000
+GU-CO2RR-Ag-CTUH	CO2RR 촉매	Ag-CTUH	10×10cm² · 목표물 CO · 선택도 ≥95% · 담지량 ~1 mg	1750000
+GU-CO2RR-Sn-CB	CO2RR 촉매	Sn-CB	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1033000
+GU-CO2RR-Sn-CT	CO2RR 촉매	Sn-CT	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1208000
+GU-CO2RR-Sn-CBU	CO2RR 촉매	Sn-CBU	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1208000
+GU-CO2RR-Sn-CTU	CO2RR 촉매	Sn-CTU	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1470000
+GU-CO2RR-Sn-CBH	CO2RR 촉매	Sn-CBH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1383000
+GU-CO2RR-Sn-CTH	CO2RR 촉매	Sn-CTH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1558000
+GU-CO2RR-Sn-CBUH	CO2RR 촉매	Sn-CBUH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1715000
+GU-CO2RR-Sn-CTUH	CO2RR 촉매	Sn-CTUH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1925000
+GU-CO2RR-Sn-CBX	CO2RR 촉매	Sn-CBX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	1925000
+GU-CO2RR-Sn-CTX	CO2RR 촉매	Sn-CTX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	2100000
+GU-CO2RR-Sn-CBUX	CO2RR 촉매	Sn-CBUX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	2275000
+GU-CO2RR-Sn-CTUX	CO2RR 촉매	Sn-CTUX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% (X계열 ≥7	2450000
+GU-CO2RR-Bi2O3-CB	CO2RR 촉매	Bi2O3-CB	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1208000
+GU-CO2RR-Bi2O3-CT	CO2RR 촉매	Bi2O3-CT	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1383000
+GU-CO2RR-Bi2O3-CBU	CO2RR 촉매	Bi2O3-CBU	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1558000
+GU-CO2RR-Bi2O3-CTU	CO2RR 촉매	Bi2O3-CTU	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1750000
+GU-CO2RR-Bi2O3-CBH	CO2RR 촉매	Bi2O3-CBH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1558000
+GU-CO2RR-Bi2O3-CTH	CO2RR 촉매	Bi2O3-CTH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1715000
+GU-CO2RR-Bi2O3-CBUH	CO2RR 촉매	Bi2O3-CBUH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	1925000
+GU-CO2RR-Bi2O3-CTUH	CO2RR 촉매	Bi2O3-CTUH	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	2100000
+GU-CO2RR-Bi2O3-CBX	CO2RR 촉매	Bi2O3-CBX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	2100000
+GU-CO2RR-Bi2O3-CTX	CO2RR 촉매	Bi2O3-CTX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	2275000
+GU-CO2RR-Bi2O3-CBUX	CO2RR 촉매	Bi2O3-CBUX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	2450000
+GU-CO2RR-Bi2O3-CTUX	CO2RR 촉매	Bi2O3-CTUX	10×10cm² · 목표물 포름산(염) · 선택도 ≥90% · 담지량 ~	2800000
+GU-CO2RR-Cu-CB	CO2RR 촉매	Cu-CB	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	1558000
+GU-CO2RR-Cu-CT	CO2RR 촉매	Cu-CT	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	1715000
+GU-CO2RR-Cu-CBU	CO2RR 촉매	Cu-CBU	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	1925000
+GU-CO2RR-Cu-CTU	CO2RR 촉매	Cu-CTU	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	2100000
+GU-CO2RR-Cu-CBH	CO2RR 촉매	Cu-CBH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	1715000
+GU-CO2RR-Cu-CTH	CO2RR 촉매	Cu-CTH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	1925000
+GU-CO2RR-Cu-CBUH	CO2RR 촉매	Cu-CBUH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	2100000
+GU-CO2RR-Cu-CTUH	CO2RR 촉매	Cu-CTUH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	0
+GU-CO2RR-Cu-CBX	CO2RR 촉매	Cu-CBX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	2275000
+GU-CO2RR-Cu-CTX	CO2RR 촉매	Cu-CTX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	2450000
+GU-CO2RR-Cu-CBUX	CO2RR 촉매	Cu-CBUX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	2625000
+GU-CO2RR-Cu-CTUX	CO2RR 촉매	Cu-CTUX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥70% · 담지량 	2800000
+GU-CO2RR-CuO-CB	CO2RR 촉매	CuO-CB	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	1558000
+GU-CO2RR-CuO-CT	CO2RR 촉매	CuO-CT	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	1715000
+GU-CO2RR-CuO-CBU	CO2RR 촉매	CuO-CBU	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	1925000
+GU-CO2RR-CuO-CTU	CO2RR 촉매	CuO-CTU	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2100000
+GU-CO2RR-CuO-CBH	CO2RR 촉매	CuO-CBH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	1715000
+GU-CO2RR-CuO-CTH	CO2RR 촉매	CuO-CTH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	1925000
+GU-CO2RR-CuO-CBUH	CO2RR 촉매	CuO-CBUH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2100000
+GU-CO2RR-CuO-CTUH	CO2RR 촉매	CuO-CTUH	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2275000
+GU-CO2RR-CuO-CBX	CO2RR 촉매	CuO-CBX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2275000
+GU-CO2RR-CuO-CTX	CO2RR 촉매	CuO-CTX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2450000
+GU-CO2RR-CuO-CBUX	CO2RR 촉매	CuO-CBUX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2625000
+GU-CO2RR-CuO-CTUX	CO2RR 촉매	CuO-CTUX	10×10cm² · 목표물 C2+ 생성물 · 선택도 ≥65% · 담지량 	2800000
+GU-CO2RR-IrO2-ACI	CO2RR 촉매	IrO2-ACI	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	3150000
+GU-CO2RR-IrO2-ALK	CO2RR 촉매	IrO2-ALK	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	3325000
+GU-CO2RR-IrOx-ACI	CO2RR 촉매	IrOx-ACI	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	3500000
+GU-CO2RR-IrOx-ALK	CO2RR 촉매	IrOx-ALK	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	3675000
+GU-CO2RR-NiFeIr-ACI	CO2RR 촉매	NiFeIr-ACI	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	2625000
+GU-CO2RR-NiFeIr-ALK	CO2RR 촉매	NiFeIr-ALK	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	2800000
+GU-CO2RR-NiFe-ACI	CO2RR 촉매	NiFe-ACI	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	2450000
+GU-CO2RR-NiFe-ALK	CO2RR 촉매	NiFe-ALK	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	2625000
+GU-CO2RR-IrO2-SSE	CO2RR 촉매	IrO2-SSE	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	3675000
+GU-CO2RR-IrOx-SSE	CO2RR 촉매	IrOx-SSE	10×10cm² · 티타늄 포일 400μm · 담지량 2 mg/cm² ·	3850000
+GU-CO2RR-IrO2-CCI	CO2RR 촉매	IrO2-CCI	10×10cm² · 소수성 카본페이퍼 200μm · 담지량 2 mg/cm	2975000
+GU-CO2RR-IrO2-CLK	CO2RR 촉매	IrO2-CLK	10×10cm² · 소수성 카본페이퍼 200μm · 담지량 2 mg/cm	3150000
+GU-CO2RR-IrOx-CCI	CO2RR 촉매	IrOx-CCI	10×10cm² · 소수성 카본페이퍼 200μm · 담지량 2 mg/cm	3325000
+GU-CO2RR-IrOx-CLK	CO2RR 촉매	IrOx-CLK	10×10cm² · 소수성 카본페이퍼 200μm · 담지량 2 mg/cm	3500000
+GU-CO2RR	CO2RR 촉매	표준	스티렌-디비닐벤젠 · 술폰산기 · 가교도 8~9% · 함수율 50~65%	875000
+GU-BATCEL-B0011	배터리 테스트 셀	B001-1	PEEK 셀 바디 · Ag/AgCl 기준전극 · GC Φ3mm 도전매체 	1635000
+GU-BATCEL-B0012	배터리 테스트 셀	B001-2	PEEK 셀 바디 · GC Φ3mm 도전매체 · 상부 주액 스크루(기상 	1460000
+GU-BATCEL-B002	배터리 테스트 셀	B002	고순도 티타늄 · PEEK 절연 라이너 · 금도금 구리 탭 · Φ55×2	1645000
+GU-BATCEL-B002RM	배터리 테스트 셀	B002-RM	B002 기반 · 라만 관찰창 추가 · 스프링 가압	2800000
+GU-BATCEL-B002XRD	배터리 테스트 셀	B002-XRD	Bruker D8 호환 · 베릴륨 창 노출 Φ20mm · Φ49.5×18	3967000
+GU-BATCEL-B003	배터리 테스트 셀	B003	고순도 티타늄 · Φ70×24mm · 리튬 와이어 기준전극 · 중간판이 	2275000
+GU-BATCEL-B003RM	배터리 테스트 셀	B003-RM	B002-RM 기반 · 기준전극 추가	3413000
+GU-BATCEL-B003XRD	배터리 테스트 셀	B003-XRD	Bruker D8 호환 · 리튬 링 기준전극 · 베릴륨 창 Φ20mm ·	4550000
+GU-BATCEL-B003RE	배터리 테스트 셀	B003-RE	Φ6mm 표준 기준전극 선택(은이온·염화은·포화칼로멜·산화수은·황산제일수	1925000
+GU-BATCEL-BIFA	배터리 테스트 셀	B-IFA	단결정 실리콘(Si) IR 창 · 고순도 티타늄 · 50×50×20mm 	7000000
+GU-BATCEL-B0041	배터리 테스트 셀	B004-1	사파이어 광학창 · GC 도전기판 · 작업전극 10×10mm · 자동 수	2800000
+GU-BATCEL-B0042	배터리 테스트 셀	B004-2	고순도 티타늄 기판 · 사파이어 창 투과율 95% 이상 · 리튬 포일 1	1750000
+GU-BATCEL-B0043	배터리 테스트 셀	B004-3	B004-2 기반 · 기준전극 추가	1750000
+GU-BATCEL-B0051	배터리 테스트 셀	B005-1	PEEK 바디 · 티타늄 탭 · 3전극(Ag/AgCl Φ2mm) · 시료	1925000
+GU-BATCEL-B0051RE	배터리 테스트 셀	B005-1-RE	Ag/AgCl Φ2mm 기준전극 단품	350000
+GU-BATCEL-B0052	배터리 테스트 셀	B005-2	B005-1 기반 · 양극·음극 사이 격막 고정 구조	2275000
+GU-BATCEL-B0053	배터리 테스트 셀	B005-3	B005-1 기반 · 리튬 기준전극 구성	2800000
+GU-BATCEL-PB002	배터리 테스트 셀	PB002	B002 기반 · 가스 압력계 장착 · 최대 사용압력 0.6 MPa · 	2625000
+GU-BATCEL-PB002RM	배터리 테스트 셀	PB002-RM	PB002 기반 · 라만 관찰 기능 추가	3850000
+GU-BATCEL-PB003	배터리 테스트 셀	PB003	B003 기반 · 가스 압력계 장착 · 최대 사용압력 0.6 MPa	3150000
+GU-BATCEL-PB003RM	배터리 테스트 셀	PB003-RM	PB003 기반 · 라만 관찰 기능 추가	4375000
+GU-BATCEL-TB002	배터리 테스트 셀	TB002	B002 기반 · 눈금 1칸당 0.02 mm 전진 가압 · 자동 수평 구	3150000
+GU-BATCEL-PB001	배터리 테스트 셀	PB001	고순도 티타늄 몰드 · 자동 수평 기구 · 착탈식 금도금 구리 탭 · 측	700000
+GU-BATCEL-PB001PS	배터리 테스트 셀	PB001-PS	다단 증폭·독립 전원 · 감도 전환 · 고속 압력 피드백	962000
+GU-BATCEL-ZN1	배터리 테스트 셀	Zn-1	PMMA(아크릴) · 30·50 mL · 가스 순환 기능 · 맞춤 치수 	1540000
+GU-BATCEL-ZN2	배터리 테스트 셀	Zn-2	PMMA(아크릴) · 30·50 mL · 가스 순환 기능 · 맞춤 치수 	1540000
+GU-BATCEL-BVRB	배터리 테스트 셀	B-VRB	유로 면적 20×20mm · 고순도 흑연 양극판 · PEEK 고정봉 · 	0
+GU-GLCELL-C002130MLS	단실 유리 전해셀	C002-1	30 mL · 단층 · 구경 50#	245000
+GU-GLCELL-C002130MLD	단실 유리 전해셀	C002-1	30 mL · 이중층(항온 자켓) · 구경 50#	367000
+GU-GLCELL-C002150MLS	단실 유리 전해셀	C002-1	50 mL · 단층 · 구경 50#	245000
+GU-GLCELL-C002150MLD	단실 유리 전해셀	C002-1	50 mL · 이중층(항온 자켓) · 구경 50#	367000
+GU-GLCELL-C0021100MLS	단실 유리 전해셀	C002-1	100 mL · 단층 · 구경 50#	262000
+GU-GLCELL-C0021100MLD	단실 유리 전해셀	C002-1	100 mL · 이중층(항온 자켓) · 구경 50#	385000
+GU-GLCELL-C0021150MLS	단실 유리 전해셀	C002-1	150 mL · 단층 · 구경 60#	350000
+GU-GLCELL-C0021150MLD	단실 유리 전해셀	C002-1	150 mL · 이중층(항온 자켓) · 구경 60#	455000
+GU-GLCELL-C0021200MLS	단실 유리 전해셀	C002-1	200 mL · 단층 · 구경 60#	367000
+GU-GLCELL-C0021200MLD	단실 유리 전해셀	C002-1	200 mL · 이중층(항온 자켓) · 구경 60#	525000
+GU-GLCELL-C0021250MLS	단실 유리 전해셀	C002-1	250 mL · 단층 · 구경 70#	560000
+GU-GLCELL-C0021250MLD	단실 유리 전해셀	C002-1	250 mL · 이중층(항온 자켓) · 구경 70#	700000
+GU-GLCELL-C0021500MLS	단실 유리 전해셀	C002-1	500 mL · 단층 · 구경 70#	630000
+GU-GLCELL-C0021500MLD	단실 유리 전해셀	C002-1	500 mL · 이중층(항온 자켓) · 구경 70#	788000
+GU-GLCELL-C00211000MLS	단실 유리 전해셀	C002-1	1000 mL · 단층 · 구경 70#	700000
+GU-GLCELL-C00211000MLD	단실 유리 전해셀	C002-1	1000 mL · 이중층(항온 자켓) · 구경 70#	875000
+GU-GLCELL-VALVE1S	단실 유리 전해셀	VALVE	밸브 1개당 · -	175000
+GU-MBCELL-C007130ML	격막 교환형 전해셀	C007-1	30 mL · 단층	560000
+GU-MBCELL-C007130ML-2	격막 교환형 전해셀	C007-1	30 mL · 이중층(항온 자켓)	805000
+GU-MBCELL-C007150ML	격막 교환형 전해셀	C007-1	50 mL · 단층	578000
+GU-MBCELL-C007150ML-2	격막 교환형 전해셀	C007-1	50 mL · 이중층(항온 자켓)	805000
+GU-MBCELL-C0071100ML	격막 교환형 전해셀	C007-1	100 mL · 단층	630000
+GU-MBCELL-C0071100ML-2	격막 교환형 전해셀	C007-1	100 mL · 이중층(항온 자켓)	875000
+GU-MBCELL-C0071150ML	격막 교환형 전해셀	C007-1	150 mL · 단층	875000
+GU-MBCELL-C0071150ML-2	격막 교환형 전해셀	C007-1	150 mL · 이중층(항온 자켓)	1103000
+GU-MBCELL-C0071200ML	격막 교환형 전해셀	C007-1	200 mL · 단층	980000
+GU-MBCELL-C0071200ML-2	격막 교환형 전해셀	C007-1	200 mL · 이중층(항온 자켓)	1225000
+GU-MBCELL-C0071250ML	격막 교환형 전해셀	C007-1	250 mL · 단층	980000
+GU-MBCELL-C0071250ML-2	격막 교환형 전해셀	C007-1	250 mL · 이중층(항온 자켓)	1225000
+GU-MBCELL-C007230ML	격막 교환형 전해셀	C007-2	30 mL · 단층	700000
+GU-MBCELL-C007230ML-2	격막 교환형 전해셀	C007-2	30 mL · 이중층(항온 자켓)	928000
+GU-MBCELL-C007250ML	격막 교환형 전해셀	C007-2	50 mL · 단층	700000
+GU-MBCELL-C007250ML-2	격막 교환형 전해셀	C007-2	50 mL · 이중층(항온 자켓)	928000
+GU-MBCELL-C0072100ML	격막 교환형 전해셀	C007-2	100 mL · 단층	753000
+GU-MBCELL-C0072100ML-2	격막 교환형 전해셀	C007-2	100 mL · 이중층(항온 자켓)	980000
+GU-MBCELL-C0072150ML	격막 교환형 전해셀	C007-2	150 mL · 단층	980000
+GU-MBCELL-C0072150ML-2	격막 교환형 전해셀	C007-2	150 mL · 이중층(항온 자켓)	1225000
+GU-MBCELL-C0072200ML	격막 교환형 전해셀	C007-2	200 mL · 단층	1103000
+GU-MBCELL-C0072200ML-2	격막 교환형 전해셀	C007-2	200 mL · 이중층(항온 자켓)	1330000
+GU-MBCELL-C0072250ML	격막 교환형 전해셀	C007-2	250 mL · 단층	1103000
+GU-MBCELL-C0072250ML-2	격막 교환형 전해셀	C007-2	250 mL · 이중층(항온 자켓)	1330000
+GU-MBCELL-C007102	격막 교환형 전해셀	C007-10-2	단층 셀 바디	578000
+GU-MBCELL-C007102-2	격막 교환형 전해셀	C007-10-2	단층 셀 바디 + 시료채취 포트	630000
+GU-MBCELL-C007102-3	격막 교환형 전해셀	C007-10-2	이중층 항온 셀 바디	1050000
+GU-MBCELL-C007102-4	격막 교환형 전해셀	C007-10-2	밸브 어셈블리	1400000
+GU-MBCELL-C00711	격막 교환형 전해셀	C007-11	셀 본체	980000
+GU-MBCELL-C00711AGAGCL	격막 교환형 전해셀	C007-11	전용 Ag/AgCl 기준전극	595000
+GU-MBCELL-C007119999	격막 교환형 전해셀	C007-11	백금망 전극 (99.99%)	560000
+GU-MBCELL-C00711-2	격막 교환형 전해셀	C007-11	마그네틱 스터러	350000
+GU-MBCELL-C0081510ML	격막 교환형 전해셀	C008-1	5~10 mL · 단층	630000
+GU-MBCELL-C0081510ML-2	격막 교환형 전해셀	C008-1	5~10 mL · 이중층(항온 자켓)	1103000
+GU-MBCELL-C008130ML	격막 교환형 전해셀	C008-1	30 mL · 단층	630000
+GU-MBCELL-C008130ML-2	격막 교환형 전해셀	C008-1	30 mL · 이중층(항온 자켓)	928000
+GU-MBCELL-C008150ML	격막 교환형 전해셀	C008-1	50 mL · 단층	630000
+GU-MBCELL-C008150ML-2	격막 교환형 전해셀	C008-1	50 mL · 이중층(항온 자켓)	928000
+GU-MBCELL-C0081100ML	격막 교환형 전해셀	C008-1	100 mL · 단층	700000
+GU-MBCELL-C0081100ML-2	격막 교환형 전해셀	C008-1	100 mL · 이중층(항온 자켓)	980000
+GU-MBCELL-C0081150ML	격막 교환형 전해셀	C008-1	150 mL · 단층	928000
+GU-MBCELL-C0081150ML-2	격막 교환형 전해셀	C008-1	150 mL · 이중층(항온 자켓)	1575000
+GU-MBCELL-C0081200ML	격막 교환형 전해셀	C008-1	200 mL · 단층	1050000
+GU-MBCELL-C0081200ML-2	격막 교환형 전해셀	C008-1	200 mL · 이중층(항온 자켓)	1330000
+GU-MBCELL-C0081250ML	격막 교환형 전해셀	C008-1	250 mL · 단층	1050000
+GU-MBCELL-C0081250ML-2	격막 교환형 전해셀	C008-1	250 mL · 이중층(항온 자켓)	1330000
+GU-MBCELL-C0082510ML	격막 교환형 전해셀	C008-2	5~10 mL · 단층	753000
+GU-MBCELL-C0082510ML-2	격막 교환형 전해셀	C008-2	5~10 mL · 이중층(항온 자켓)	1225000
+GU-MBCELL-C008230ML	격막 교환형 전해셀	C008-2	30 mL · 단층	753000
+GU-MBCELL-C008230ML-2	격막 교환형 전해셀	C008-2	30 mL · 이중층(항온 자켓)	1050000
+GU-MBCELL-C008250ML	격막 교환형 전해셀	C008-2	50 mL · 단층	753000
+GU-MBCELL-C008250ML-2	격막 교환형 전해셀	C008-2	50 mL · 이중층(항온 자켓)	1050000
+GU-MBCELL-C0082100ML	격막 교환형 전해셀	C008-2	100 mL · 단층	805000
+GU-MBCELL-C0082100ML-2	격막 교환형 전해셀	C008-2	100 mL · 이중층(항온 자켓)	1103000
+GU-MBCELL-C0082150ML	격막 교환형 전해셀	C008-2	150 mL · 단층	1050000
+GU-MBCELL-C0082150ML-2	격막 교환형 전해셀	C008-2	150 mL · 이중층(항온 자켓)	1330000
+GU-MBCELL-C0082200ML	격막 교환형 전해셀	C008-2	200 mL · 단층	1155000
+GU-MBCELL-C0082200ML-2	격막 교환형 전해셀	C008-2	200 mL · 이중층(항온 자켓)	1453000
+GU-MBCELL-C0082250ML	격막 교환형 전해셀	C008-2	250 mL · 단층	1155000
+GU-MBCELL-C0082250ML-2	격막 교환형 전해셀	C008-2	250 mL · 이중층(항온 자켓)	1453000
+GU-MBCELL-OPTC0071C0072C0081C0082	격막 교환형 전해셀	OPT	C007-1 / C007-2 / C008-1 / C008-2	59000
+GU-MBCELL-OPT1	격막 교환형 전해셀	OPT	완전 밀폐형 (밸브 1개당)	175000
+GU-MBCELL-OPTC0071021	격막 교환형 전해셀	OPT	C007-10-2 (커넥터 1개당)	88000
+GU-QZCELL-C01331212MM	부식 시험·석영 전해셀	C013-3	12×12 mm	2625000
+GU-QZCELL-C015150ML403580MM	부식 시험·석영 전해셀	C015-1	50 mL · 외경 40 · 내경 35 · 높이 80 mm	753000
+GU-QZCELL-C015220ML423826MM	부식 시험·석영 전해셀	C015-2	20 mL · 외경 42 · 내경 38 · 높이 26 mm	2275000
+GU-QZCELL-C017150ML555052MM35	부식 시험·석영 전해셀	C017-1	50 mL · 외경 55 · 내경 50 · 높이 52 mm (유효 35)	2800000
+GU-QZCELL-C017250ML555052MM35	부식 시험·석영 전해셀	C017-2	50 mL · 외경 55 · 내경 50 · 높이 52 mm (유효 35)	0
+GU-QZCELL-C018150ML	부식 시험·석영 전해셀	C018-1	50 mL	1278000
+GU-QZCELL-C0181100ML	부식 시험·석영 전해셀	C018-1	100 mL	1453000
+GU-QZCELL-C0181150ML	부식 시험·석영 전해셀	C018-1	150 mL	0
+GU-QZCELL-C0181200ML	부식 시험·석영 전해셀	C018-1	200 mL	1925000
+GU-QZCELL-C0181250ML	부식 시험·석영 전해셀	C018-1	250 mL	2100000
+GU-QZCELL-C0181500ML	부식 시험·석영 전해셀	C018-1	500 mL	2450000
+GU-QZCELL-C018250ML	부식 시험·석영 전해셀	C018-2	50 mL	1400000
+GU-QZCELL-C0182100ML	부식 시험·석영 전해셀	C018-2	100 mL	1575000
+GU-QZCELL-C0182150ML	부식 시험·석영 전해셀	C018-2	150 mL	1750000
+GU-QZCELL-C0182200ML	부식 시험·석영 전해셀	C018-2	200 mL	2100000
+GU-QZCELL-C0182250ML	부식 시험·석영 전해셀	C018-2	250 mL	2275000
+GU-QZCELL-C0182500ML	부식 시험·석영 전해셀	C018-2	500 mL	2555000
+GU-QZCELL-OPT1	부식 시험·석영 전해셀	OPT	포트 1개	59000
+GU-QZCELL-OPT1-2	부식 시험·석영 전해셀	OPT	밸브 1개	175000
+GU-PHCELL-C019150ML	광전기화학·광촉매 셀	C019-1	50 mL · 단층	525000
+GU-PHCELL-C019150ML-2	광전기화학·광촉매 셀	C019-1	50 mL · 이중층(항온 자켓)	630000
+GU-PHCELL-C0191100ML	광전기화학·광촉매 셀	C019-1	100 mL · 단층	525000
+GU-PHCELL-C0191100ML-2	광전기화학·광촉매 셀	C019-1	100 mL · 이중층(항온 자켓)	630000
+GU-PHCELL-C0191150ML	광전기화학·광촉매 셀	C019-1	150 mL · 단층	578000
+GU-PHCELL-C0191150ML-2	광전기화학·광촉매 셀	C019-1	150 mL · 이중층(항온 자켓)	700000
+GU-PHCELL-C019250ML	광전기화학·광촉매 셀	C019-2	50 mL · 단층	578000
+GU-PHCELL-C019250ML-2	광전기화학·광촉매 셀	C019-2	50 mL · 이중층(항온 자켓)	700000
+GU-PHCELL-C0192100ML	광전기화학·광촉매 셀	C019-2	100 mL · 단층	578000
+GU-PHCELL-C0192100ML-2	광전기화학·광촉매 셀	C019-2	100 mL · 이중층(항온 자켓)	700000
+GU-PHCELL-C0192150ML	광전기화학·광촉매 셀	C019-2	150 mL · 단층	630000
+GU-PHCELL-C0192150ML-2	광전기화학·광촉매 셀	C019-2	150 mL · 이중층(항온 자켓)	753000
+GU-PHCELL-C023130ML	광전기화학·광촉매 셀	C023-1	30 mL · 단층	805000
+GU-PHCELL-C023130ML-2	광전기화학·광촉매 셀	C023-1	30 mL · 이중층(항온 자켓)	1050000
+GU-PHCELL-C023150ML	광전기화학·광촉매 셀	C023-1	50 mL · 단층	805000
+GU-PHCELL-C023150ML-2	광전기화학·광촉매 셀	C023-1	50 mL · 이중층(항온 자켓)	1050000
+GU-PHCELL-C0231100ML	광전기화학·광촉매 셀	C023-1	100 mL · 단층	700000
+GU-PHCELL-C0231100ML-2	광전기화학·광촉매 셀	C023-1	100 mL · 이중층(항온 자켓)	1103000
+GU-PHCELL-C0231150ML	광전기화학·광촉매 셀	C023-1	150 mL · 단층	1103000
+GU-PHCELL-C0231150ML-2	광전기화학·광촉매 셀	C023-1	150 mL · 이중층(항온 자켓)	1330000
+GU-PHCELL-C0231200ML	광전기화학·광촉매 셀	C023-1	200 mL · 단층	1225000
+GU-PHCELL-C0231200ML-2	광전기화학·광촉매 셀	C023-1	200 mL · 이중층(항온 자켓)	1453000
+GU-PHCELL-C0231250ML	광전기화학·광촉매 셀	C023-1	250 mL · 단층	1225000
+GU-PHCELL-C0231250ML-2	광전기화학·광촉매 셀	C023-1	250 mL · 이중층(항온 자켓)	1453000
+GU-PHCELL-C023230ML	광전기화학·광촉매 셀	C023-2	30 mL · 단층	928000
+GU-PHCELL-C023230ML-2	광전기화학·광촉매 셀	C023-2	30 mL · 이중층(항온 자켓)	1155000
+GU-PHCELL-C023250ML	광전기화학·광촉매 셀	C023-2	50 mL · 단층	928000
+GU-PHCELL-C023250ML-2	광전기화학·광촉매 셀	C023-2	50 mL · 이중층(항온 자켓)	1155000
+GU-PHCELL-C0232100ML	광전기화학·광촉매 셀	C023-2	100 mL · 단층	980000
+GU-PHCELL-C0232100ML-2	광전기화학·광촉매 셀	C023-2	100 mL · 이중층(항온 자켓)	1225000
+GU-PHCELL-C0232150ML	광전기화학·광촉매 셀	C023-2	150 mL · 단층	1225000
+GU-PHCELL-C0232150ML-2	광전기화학·광촉매 셀	C023-2	150 mL · 이중층(항온 자켓)	1453000
+GU-PHCELL-C0232200ML	광전기화학·광촉매 셀	C023-2	200 mL · 단층	1330000
+GU-PHCELL-C0232200ML-2	광전기화학·광촉매 셀	C023-2	200 mL · 이중층(항온 자켓)	1575000
+GU-PHCELL-C0232250ML	광전기화학·광촉매 셀	C023-2	250 mL · 단층	1330000
+GU-PHCELL-C0232250ML-2	광전기화학·광촉매 셀	C023-2	250 mL · 이중층(항온 자켓)	1575000
+GU-PHCELL-C024130ML	광전기화학·광촉매 셀	C024-1	30 mL · 단층	3150000
+GU-PHCELL-C024130ML-2	광전기화학·광촉매 셀	C024-1	30 mL · 이중층(항온 자켓)	3850000
+GU-PHCELL-C024150ML	광전기화학·광촉매 셀	C024-1	50 mL · 단층	3150000
+GU-PHCELL-C024150ML-2	광전기화학·광촉매 셀	C024-1	50 mL · 이중층(항온 자켓)	3850000
+GU-PHCELL-C0241100ML	광전기화학·광촉매 셀	C024-1	100 mL · 단층	3325000
+GU-PHCELL-C0241100ML-2	광전기화학·광촉매 셀	C024-1	100 mL · 이중층(항온 자켓)	4025000
+GU-PHCELL-C0241150ML	광전기화학·광촉매 셀	C024-1	150 mL · 단층	4025000
+GU-PHCELL-C0241150ML-2	광전기화학·광촉매 셀	C024-1	150 mL · 이중층(항온 자켓)	4725000
+GU-PHCELL-C0241200ML	광전기화학·광촉매 셀	C024-1	200 mL · 단층	4375000
+GU-PHCELL-C0241200ML-2	광전기화학·광촉매 셀	C024-1	200 mL · 이중층(항온 자켓)	5075000
+GU-PHCELL-C0241250ML	광전기화학·광촉매 셀	C024-1	250 mL · 단층	4375000
+GU-PHCELL-C0241250ML-2	광전기화학·광촉매 셀	C024-1	250 mL · 이중층(항온 자켓)	5075000
+GU-PHCELL-C024230ML	광전기화학·광촉매 셀	C024-2	30 mL · 단층	3500000
+GU-PHCELL-C024230ML-2	광전기화학·광촉매 셀	C024-2	30 mL · 이중층(항온 자켓)	4200000
+GU-PHCELL-C024250ML	광전기화학·광촉매 셀	C024-2	50 mL · 단층	3500000
+GU-PHCELL-C024250ML-2	광전기화학·광촉매 셀	C024-2	50 mL · 이중층(항온 자켓)	4200000
+GU-PHCELL-C0242100ML	광전기화학·광촉매 셀	C024-2	100 mL · 단층	3675000
+GU-PHCELL-C0242100ML-2	광전기화학·광촉매 셀	C024-2	100 mL · 이중층(항온 자켓)	4375000
+GU-PHCELL-C0242150ML	광전기화학·광촉매 셀	C024-2	150 mL · 단층	4375000
+GU-PHCELL-C0242150ML-2	광전기화학·광촉매 셀	C024-2	150 mL · 이중층(항온 자켓)	5075000
+GU-PHCELL-C0242200ML	광전기화학·광촉매 셀	C024-2	200 mL · 단층	4725000
+GU-PHCELL-C0242200ML-2	광전기화학·광촉매 셀	C024-2	200 mL · 이중층(항온 자켓)	5425000
+GU-PHCELL-C0242250ML	광전기화학·광촉매 셀	C024-2	250 mL · 단층	4725000
+GU-PHCELL-C0242250ML-2	광전기화학·광촉매 셀	C024-2	250 mL · 이중층(항온 자켓)	5425000
+GU-PHCELL-C025130ML	광전기화학·광촉매 셀	C025-1	30 mL · 단층	875000
+GU-PHCELL-C025130ML-2	광전기화학·광촉매 셀	C025-1	30 mL · 이중층(항온 자켓)	1155000
+GU-PHCELL-C025150ML	광전기화학·광촉매 셀	C025-1	50 mL · 단층	875000
+GU-PHCELL-C025150ML-2	광전기화학·광촉매 셀	C025-1	50 mL · 이중층(항온 자켓)	1155000
+GU-PHCELL-C0251100ML	광전기화학·광촉매 셀	C025-1	100 mL · 단층	928000
+GU-PHCELL-C0251100ML-2	광전기화학·광촉매 셀	C025-1	100 mL · 이중층(항온 자켓)	1225000
+GU-PHCELL-C0251150ML	광전기화학·광촉매 셀	C025-1	150 mL · 단층	1155000
+GU-PHCELL-C0251150ML-2	광전기화학·광촉매 셀	C025-1	150 mL · 이중층(항온 자켓)	1453000
+GU-PHCELL-C0251200ML	광전기화학·광촉매 셀	C025-1	200 mL · 단층	1278000
+GU-PHCELL-C0251200ML-2	광전기화학·광촉매 셀	C025-1	200 mL · 이중층(항온 자켓)	1575000
+GU-PHCELL-C0251250ML	광전기화학·광촉매 셀	C025-1	250 mL · 단층	1278000
+GU-PHCELL-C0251250ML-2	광전기화학·광촉매 셀	C025-1	250 mL · 이중층(항온 자켓)	1575000
+GU-PHCELL-C025230ML	광전기화학·광촉매 셀	C025-2	30 mL · 단층	980000
+GU-PHCELL-C025230ML-2	광전기화학·광촉매 셀	C025-2	30 mL · 이중층(항온 자켓)	1278000
+GU-PHCELL-C025250ML	광전기화학·광촉매 셀	C025-2	50 mL · 단층	980000
+GU-PHCELL-C025250ML-2	광전기화학·광촉매 셀	C025-2	50 mL · 이중층(항온 자켓)	1278000
+GU-PHCELL-C0252100ML	광전기화학·광촉매 셀	C025-2	100 mL · 단층	1050000
+GU-PHCELL-C0252100ML-2	광전기화학·광촉매 셀	C025-2	100 mL · 이중층(항온 자켓)	1330000
+GU-PHCELL-C0252150ML	광전기화학·광촉매 셀	C025-2	150 mL · 단층	1278000
+GU-PHCELL-C0252150ML-2	광전기화학·광촉매 셀	C025-2	150 mL · 이중층(항온 자켓)	1575000
+GU-PHCELL-C0252200ML	광전기화학·광촉매 셀	C025-2	200 mL · 단층	1400000
+GU-PHCELL-C0252200ML-2	광전기화학·광촉매 셀	C025-2	200 mL · 이중층(항온 자켓)	1680000
+GU-PHCELL-C0252250ML	광전기화학·광촉매 셀	C025-2	250 mL · 단층	1400000
+GU-PHCELL-C0252250ML-2	광전기화학·광촉매 셀	C025-2	250 mL · 이중층(항온 자켓)	1680000
+GU-PHCELL-C026150ML	광전기화학·광촉매 셀	C026-1	50 mL	595000
+GU-PHCELL-C0261100ML	광전기화학·광촉매 셀	C026-1	100 mL	595000
+GU-PHCELL-C0261150ML	광전기화학·광촉매 셀	C026-1	150 mL	770000
+GU-PHCELL-C0261200ML	광전기화학·광촉매 셀	C026-1	200 mL	1050000
+GU-PHCELL-C0261250ML	광전기화학·광촉매 셀	C026-1	250 mL	1522000
+GU-PHCELL-C0261500ML	광전기화학·광촉매 셀	C026-1	500 mL	2100000
+GU-PHCELL-C026350ML	광전기화학·광촉매 셀	C026-3	50 mL	735000
+GU-PHCELL-C0263100ML	광전기화학·광촉매 셀	C026-3	100 mL	735000
+GU-PHCELL-C0263150ML	광전기화학·광촉매 셀	C026-3	150 mL	910000
+GU-PHCELL-C0263200ML	광전기화학·광촉매 셀	C026-3	200 mL	1225000
+GU-PHCELL-C0263250ML	광전기화학·광촉매 셀	C026-3	250 mL	1662000
+GU-PHCELL-C0263500ML	광전기화학·광촉매 셀	C026-3	500 mL	2275000
+GU-PHCELL-C026450ML	광전기화학·광촉매 셀	C026-4	50 mL	875000
+GU-PHCELL-C0264100ML	광전기화학·광촉매 셀	C026-4	100 mL	875000
+GU-PHCELL-C0264150ML	광전기화학·광촉매 셀	C026-4	150 mL	962000
+GU-PHCELL-C0264200ML	광전기화학·광촉매 셀	C026-4	200 mL	1260000
+GU-PHCELL-C0264250ML	광전기화학·광촉매 셀	C026-4	250 mL	1750000
+GU-PHCELL-C0264500ML	광전기화학·광촉매 셀	C026-4	500 mL	2450000
+GU-PHCELL-C027130ML	광전기화학·광촉매 셀	C027-1	30 mL	1103000
+GU-PHCELL-C027140ML	광전기화학·광촉매 셀	C027-1	40 mL	1103000
+GU-PHCELL-C027150ML	광전기화학·광촉매 셀	C027-1	50 mL	1278000
+GU-PHCELL-C0271100ML	광전기화학·광촉매 셀	C027-1	100 mL	1278000
+GU-PHCELL-C0271150ML	광전기화학·광촉매 셀	C027-1	150 mL	1925000
+GU-PHCELL-C0271200ML	광전기화학·광촉매 셀	C027-1	200 mL	2275000
+GU-PHCELL-C0271250ML	광전기화학·광촉매 셀	C027-1	250 mL	2275000
+GU-PHCELL-C0271500ML	광전기화학·광촉매 셀	C027-1	500 mL	4375000
+GU-PHCELL-C027230ML	광전기화학·광촉매 셀	C027-2	30 mL	1225000
+GU-PHCELL-C027240ML	광전기화학·광촉매 셀	C027-2	40 mL	1225000
+GU-PHCELL-C027250ML	광전기화학·광촉매 셀	C027-2	50 mL	1400000
+GU-PHCELL-C0272100ML	광전기화학·광촉매 셀	C027-2	100 mL	1400000
+GU-PHCELL-C0272150ML	광전기화학·광촉매 셀	C027-2	150 mL	2100000
+GU-PHCELL-C0272200ML	광전기화학·광촉매 셀	C027-2	200 mL	2450000
+GU-PHCELL-C0272250ML	광전기화학·광촉매 셀	C027-2	250 mL	2450000
+GU-PHCELL-C0272500ML	광전기화학·광촉매 셀	C027-2	500 mL	4550000
+GU-PHCELL-C028PTFE25ML	광전기화학·광촉매 셀	C028	PTFE · 25 mL	980000
+GU-PHCELL-C028PTFE40ML	광전기화학·광촉매 셀	C028	PTFE · 40 mL	980000
+GU-PHCELL-C028PMMA25ML	광전기화학·광촉매 셀	C028	PMMA(아크릴) · 25 mL	980000
+GU-PHCELL-C028PMMA40ML	광전기화학·광촉매 셀	C028	PMMA(아크릴) · 40 mL	980000
+GU-PHCELL-C028PEEK25ML	광전기화학·광촉매 셀	C028	PEEK · 25 mL	2800000
+GU-PHCELL-C028PEEK40ML	광전기화학·광촉매 셀	C028	PEEK · 40 mL	2800000
+GU-PHCELL-K13005ML	광전기화학·광촉매 셀	K1300	5 mL	2100000
+GU-PHCELL-K130010ML	광전기화학·광촉매 셀	K1300	10 mL	2100000
+GU-PHCELL-K1300255ML	광전기화학·광촉매 셀	K1300-25	5 mL	2100000
+GU-PHCELL-K13002510ML	광전기화학·광촉매 셀	K1300-25	10 mL	2100000
+GU-PHCELL-C0305ML	광전기화학·광촉매 셀	C030	5 mL	403000
+GU-PHCELL-C03025ML	광전기화학·광촉매 셀	C030	25 mL	455000
+GU-PHCELL-C03040ML	광전기화학·광촉매 셀	C030	40 mL	525000
+GU-PHCELL-C033150ML100ML	광전기화학·광촉매 셀	C033-1	50 mL · 100 mL	1750000
+GU-PHCELL-C033250ML100ML	광전기화학·광촉매 셀	C033-2	50 mL · 100 mL	1750000
+GU-PHCELL-ACC00730	광전기화학·광촉매 셀	ACC	폭기 헤드(aeration head) · 007-30	88000
+GU-PHCELL-ACC00731	광전기화학·광촉매 셀	ACC	가스 입·출구 타워 · 007-31	17000
+GU-PHCELL-ACC00732	광전기화학·광촉매 셀	ACC	석영 광창판(quartz window plate) · 007-32	175000
+GU-PHCELL-ACC14	광전기화학·광촉매 셀	ACC	F형 가스 유입관 · 14#	140000
+GU-PHCELL-ACC19	광전기화학·광촉매 셀	ACC	F형 가스 유입관 · 19#	140000
+GU-PHCELL-ACC14-2	광전기화학·광촉매 셀	ACC	액봉(liquid seal) · 14#	140000
+GU-PHCELL-ACC19-2	광전기화학·광촉매 셀	ACC	액봉(liquid seal) · 19#	140000
+GU-PHCELL-ACCM10	광전기화학·광촉매 셀	ACC	밀봉 나사 · M10	17000
+GU-PHCELL-ACCM14	광전기화학·광촉매 셀	ACC	밀봉 나사 · M14	17000
+GU-PHCELL-ACC10MM	광전기화학·광촉매 셀	ACC	루긴 모세관 · Φ10 mm	88000
+GU-PHCELL-ACC140MM	광전기화학·광촉매 셀	ACC	프릿(소결) 유리 염다리 · 140 mm	88000
+GU-PHCELL-ACC170MM	광전기화학·광촉매 셀	ACC	프릿(소결) 유리 염다리 · 170 mm	88000
+GU-PHCELL-ACC10MM-2	광전기화학·광촉매 셀	ACC	프릿 유리 염다리 엘보형 · Φ10 mm	88000
+GU-PHCELL-ACC1	광전기화학·광촉매 셀	ACC	격막 체결 체인 · 사이즈 1	175000
+GU-PHCELL-ACC2	광전기화학·광촉매 셀	ACC	격막 체결 체인 · 사이즈 2	210000
+GU-PHCELL-ACC3	광전기화학·광촉매 셀	ACC	격막 체결 체인 · 사이즈 3	245000
+GU-INSITU-C0311	in-situ 분광전기화학 셀	C031-1	PEEK 바디 · 석영 관찰창 Φ37 mm · 작업전극–창 거리 6 mm	2800000
+GU-INSITU-C0312	in-situ 분광전기화학 셀	C031-2	2H 막 교체형 · 이온교환막(사용자 준비) 분리 · 기준전극 WE 동실	4025000
+GU-INSITU-C0313	in-situ 분광전기화학 셀	C031-3	3H 가스확산형 · 음극실 바닥 가스 채널 · 이온교환막·GDE 사용자 	5250000
+GU-INSITU-C0313S	in-situ 분광전기화학 셀	C031-3S	C031-3 업그레이드 · 가스실 사행(serpentine) 유로 · A	5250000
+GU-INSITU-C031S	in-situ 분광전기화학 셀	C031-S	3실 독립(가스·작업전극·상대전극) · 사행 유로 · GDE 전용 · 사	5250000
+GU-INSITU-C0314	in-situ 분광전기화학 셀	C031-4	디스크 전극형 · 표준 Φ5mm 유리탄소 디스크(금·백금·은 교체 가능)	2800000
+GU-INSITU-C0316	in-situ 분광전기화학 셀	C031-6	분말 시료 직접 관찰용	700000
+GU-INSITU-IFA1	in-situ 분광전기화학 셀	IFA-1	단결정 실리콘 창에 화학도금 나노 금박막 → 도전 기재 · 기준·상대전극	5250000
+GU-INSITU-IFA2	in-situ 분광전기화학 셀	IFA-2	유리탄소 기재 작업전극 Φ10 mm · 마이크로미터 내장으로 전극–결정 	9275000
+GU-INSITU-IFAP	in-situ 분광전기화학 셀	IFA-P	고순도 티타늄 하우징 · PTFE 챔버 20+20 mL · 사파이어 관찰	0
+GU-INSITU-INFRAREDLIGHT	in-situ 분광전기화학 셀	Infraredlight	백금망 작업전극 · CaF₂ IR 창 · 용액 두께 0.5 mm · PE	2800000
+GU-INSITU-가변입사각광학스테이지	in-situ 분광전기화학 셀	입사각 가변 광학 스테이지	입사각 30~80° 연속 조절 · 침투 깊이 0.4~46 µm · 측면·	5250000
+GU-INSITU-결정금도금셀	in-situ 분광전기화학 셀	결정 금도금 셀	내부반사 결정 금도금용	88000
+GU-INSITU-결정금도금액	in-situ 분광전기화학 셀	결정 금도금 용액	50 mL	945000
+GU-INSITU-C031XRD	in-situ 분광전기화학 셀	C031-XRD	XRD 회절 측정용 in-situ 셀	2800000
+GU-INSITU-XAFS1	in-situ 분광전기화학 셀	XAFS-1	Kapton 관찰창 · XAS/XAFS 측정	2800000
+GU-INSITU-XAFS2	in-situ 분광전기화학 셀	XAFS-2	격막 분리 2실 구성	4025000
+GU-INSITU-XAFS3	in-situ 분광전기화학 셀	XAFS-3	기체 반응 전용 챔버	1400000
+GU-INSITU-XAFS4	in-situ 분광전기화학 셀	XAFS-4	광각 Kapton 창 120° · 전극 간극 최적화 · 가스확산실↔투과실	0
+GU-INSITU-19008	in-situ 분광전기화학 셀	19008	SFG 분광 측정용	2800000
+GU-INSITU-MSIFA	in-situ 분광전기화학 셀	MS-IFA	질량분석과 적외 분광 동시 측정	7000000
+GU-INSITU-UV26001	in-situ 분광전기화학 셀	UV2600-1	자외 분광 동시 측정	2800000
+GU-INSITU-UV26002	in-situ 분광전기화학 셀	UV2600-2	격막 분리 2실 구성	4025000
+GU-INSITU-MSFC	in-situ 분광전기화학 셀	MS-FC	패러데이 컵 + 전자증배관 이중 검출기 · 광농도 범위 고감도 검출	7000000
+GU-INSITU-INSITUX	in-situ 분광전기화학 셀	In-situ-X	복수 분광 모드 대응 다기능 셀	4025000
+GU-MEACEL-MEATITI1010MM2020MM5CM	막전극(MEA) 전해셀	MEA-TI-TI	10×10 mm · 20×20 mm · 5 cm²	4025000
+GU-MEACEL-MEATITI3030MM	막전극(MEA) 전해셀	MEA-TI-TI	30×30 mm	4550000
+GU-MEACEL-MEATITI5050MM	막전극(MEA) 전해셀	MEA-TI-TI	50×50 mm	5775000
+GU-MEACEL-MEATITI100100MM	막전극(MEA) 전해셀	MEA-TI-TI	100×100 mm	7525000
+GU-MEACEL-MEAGP1010MM2020MM5CM	막전극(MEA) 전해셀	MEA-GP	10×10 mm · 20×20 mm · 5 cm²	4025000
+GU-MEACEL-MEAGP3030MM5050MM	막전극(MEA) 전해셀	MEA-GP	30×30 mm · 50×50 mm	0
+GU-MEACEL-MEA가시화형1010MM2020MM5CM	막전극(MEA) 전해셀	MEA-가시화형	10×10 mm · 20×20 mm · 5 cm²	4550000
+GU-MEACEL-MEA가시화형3030MM5050MM	막전극(MEA) 전해셀	MEA-가시화형	30×30 mm · 50×50 mm	0
+GU-MEACEL-MEATIWB5050MM	막전극(MEA) 전해셀	MEA-TI-WB	50×50 mm	5775000
+GU-MEACEL-MEATIWB100100MM	막전극(MEA) 전해셀	MEA-TI-WB	100×100 mm	9800000
+GU-MEACEL-MEATIWB200200MM	막전극(MEA) 전해셀	MEA-TI-WB	200×200 mm	24500000
+GU-MEACEL-MEATIRM1414MM	막전극(MEA) 전해셀	MEA-TI-RM	14×14 mm	5250000
+GU-MEACEL-유로교체형3030MM	막전극(MEA) 전해셀	유로 교체형	30×30 mm	4550000
+GU-MEACEL-유로교체형5050MM100100MM	막전극(MEA) 전해셀	유로 교체형	50×50 mm · 100×100 mm	0
+GU-MEACEL-MEATIX1010MM2020MM5CM유로판5장	막전극(MEA) 전해셀	MEA-TI-X	10×10 mm · 20×20 mm · 5 cm² · 유로판 5장	0
+GU-MEACEL-ECMEA막전극전해시스템통합제어	막전극(MEA) 전해셀	EC-MEA	막전극 전해 시스템 통합 제어	16450000
+GU-MEACEL-EC20001가오스유니온전해액순환	막전극(MEA) 전해셀	EC200-01	가오스유니온 · 전해액 순환	1925000
+GU-MEACEL-FUMAFAA350FUMATECH독일	막전극(MEA) 전해셀	Fuma-FAA-3-50	Fumatech(독일)	472000
+GU-MEACEL-117100100DUPONT미국NAFION117	막전극(MEA) 전해셀	117-100×100	DuPont(미국) Nafion 117 · 100×100 mm	350000
+GU-MEACEL-3M미국8MM30M	막전극(MEA) 전해셀	Kapton 테이프 (3M)	3M(미국) · 8 mm × 30 m	210000
+GU-MEACEL-SGL22BBSGL독일100100MM10장박스	막전극(MEA) 전해셀	SGL 22BB	SGL(독일) · 100×100 mm · 10장/박스	595000
+GU-MEACEL-가오스유니온5MM50MM	막전극(MEA) 전해셀	구리 도전 테이프	가오스유니온 · 5 mm × 50 mm	25000
+GU-MEACEL-YL1가오스유니온	막전극(MEA) 전해셀	YL-1	가오스유니온	525000
+GU-MEACEL-3M미국3MM5MM	막전극(MEA) 전해셀	PTFE 튜브 Φ3 mm	3M(미국) · Φ3 mm × 5 mm	175000
+GU-MEACEL-가오스유니온	막전극(MEA) 전해셀	전해셀 가습기	가오스유니온	542000
+GU-MEACEL-EC20002가오스유니온	막전극(MEA) 전해셀	EC200-02	가오스유니온	1295000
+GU-MEACEL-EC20003가오스유니온최대100정밀도01	막전극(MEA) 전해셀	EC200-03	가오스유니온 · 최대 100℃ · 정밀도 0.1℃	1645000
+GU-MEACEL-SEVENSTARHUACHUANG중국	막전극(MEA) 전해셀	질량유량계(MFC)	Sevenstar Huachuang(중국)	3850000
+GU-GDCELL-101014단실구성기본형	가스확산 전해셀	101014	단실 구성 · 기본형	2800000
+GU-GDCELL-CP10CP20PMMA단실챔버1010또는2020	가스확산 전해셀	CP10/CP20	PMMA · 단실 · 챔버 10×10 또는 20×20 mm	753000
+GU-GDCELL-CP10CP20PTFE단실챔버1010또는2020	가스확산 전해셀	CP10/CP20	PTFE · 단실 · 챔버 10×10 또는 20×20 mm	753000
+GU-GDCELL-CP10CP20PEEK단실챔버1010또는2020	가스확산 전해셀	CP10/CP20	PEEK · 단실 · 챔버 10×10 또는 20×20 mm	1453000
+GU-GDCELL-101016관찰창없음	가스확산 전해셀	101016	관찰창 없음	2800000
+GU-GDCELL-1010171관찰창있음양음극간격7MM미만	가스확산 전해셀	101017-1	관찰창 있음 · 양·음극 간격 7 mm 미만	3500000
+GU-GDCELL-10101712관찰창있음양음극간격3MM미만	가스확산 전해셀	101017-1.2	관찰창 있음 · 양·음극 간격 3 mm 미만	4025000
+GU-GDCELL-101018양음극간격12MM	가스확산 전해셀	101018	양·음극 간격 1.2 mm	5250000
+GU-GDCELL-101019양음극간격04MM	가스확산 전해셀	101019	양·음극 간격 0.4 mm	4725000
+GU-GDCELL-101015전해액순환수분관리	가스확산 전해셀	101015	전해액 순환·수분 관리	1050000
+GU-GDCELL-PK1038	가스확산 전해셀	PK-1038	PEEK축 Ag/AgCl 기준전극	333000
+GU-GDCELL-HG1038	가스확산 전해셀	Hg-1038	PEEK축 Hg/HgO 기준전극	333000
+GU-GDCELL-153502153502MM	가스확산 전해셀	15×35×0.2	15×35×0.2 mm	1190000
+GU-GDCELL-EC20001가오스유니온	가스확산 전해셀	EC200-01	가오스유니온	1925000
+GU-GDCELL-FUMAFAA350FUMATECH독일	가스확산 전해셀	Fuma-FAA-3-50	Fumatech(독일)	472000
+GU-GDCELL-소수성카본페이퍼100100MM10장박스	가스확산 전해셀	소수성 카본페이퍼	100×100 mm · 10장/박스	595000
+GU-GDCELL-산화이리듐코팅메시전극100100MM티타늄기재IR	가스확산 전해셀	산화이리듐 코팅 메시 전극	100×100 mm · 티타늄 기재 · Ir 담지 0.2 mg/cm²	700000
+GU-GDCELL-CP1038	가스확산 전해셀	CP-1038	염다리	175000
+GU-GDCELL-구리도전테이프5MM50MM	가스확산 전해셀	구리 도전 테이프	5 mm × 50 mm	25000
+GU-GDCELL-YL1	가스확산 전해셀	YL-1	액체 플로우 셀	525000
+GU-GDCELL-PTFE튜빙3MM5MM	가스확산 전해셀	PTFE 튜빙 Φ3 mm	Φ3 mm × 5 mm	175000
+GU-GDCELL-유량안정화저장조30ML	가스확산 전해셀	유량 안정화 저장조	30 mL	403000
+GU-GDCELL-EC20002전단력구조내장	가스확산 전해셀	EC200-02	전단력 구조 내장 · 140~170 mL/min · 사용압력 90 kPa	1295000
+GU-GDCELL-질량유량계MFC	가스확산 전해셀	질량유량계(MFC)	질량유량계(MFC)	3850000
+GU-GDCELL-QG2012020MM	가스확산 전해셀	QG-20-1	20×20 mm	3675000
+GU-GDCELL-QG2022020MM기준전극장착	가스확산 전해셀	QG-20-2	20×20 mm · 기준전극 장착	4025000
+GU-GDCELL-QG2032020MM	가스확산 전해셀	QG-20-3	20×20 mm	4025000
+GU-GDCELL-QG2042020MM	가스확산 전해셀	QG-20-4	20×20 mm	4550000
+GU-GDCELL-MTR41	가스확산 전해셀	MTR-4-1	단실 가스확산 전해셀	2800000
+GU-GDCELL-MTR42	가스확산 전해셀	MTR-4-2	이중실 가스확산 전해셀	3325000
+GU-GDCELL-MTRQW백금선05230MM상대전극포함	가스확산 전해셀	MTR-QW	백금선 0.5×230 mm 상대전극 포함	2625000
+GU-GDCELL-MTRFCQW반응셀본체	가스확산 전해셀	MTR-FC-QW	반응 셀 본체	5250000
+GU-GDCELL-MTRFCQWMTRFCQW부속	가스확산 전해셀	MTR-FC-QW	MTR-FC-QW 부속	175000
+GU-HPCELL-P001150ML100ML밸브SUS304	고압 전기화학 셀·계측 장비	P001-1	50 mL · 100 mL · 밸브 SUS304	28000000
+GU-HPCELL-P001250ML100ML관찰창포함	고압 전기화학 셀·계측 장비	P001-2	50 mL · 100 mL · 관찰창 포함	30625000
+GU-HPCELL-P0011010ML	고압 전기화학 셀·계측 장비	P001-10	10 mL	32375000
+GU-HPCELL-P00212020ML밸브SUS304	고압 전기화학 셀·계측 장비	P002-1	20+20 mL · 밸브 SUS304	10325000
+GU-HPCELL-P00222020ML	고압 전기화학 셀·계측 장비	P002-2	20+20 mL	11550000
+GU-HPCELL-P00315050ML	고압 전기화학 셀·계측 장비	P003-1	50+50 mL	21000000
+GU-HPCELL-P0031100100ML	고압 전기화학 셀·계측 장비	P003-1	100+100 mL	22750000
+GU-HPCELL-P00325050ML	고압 전기화학 셀·계측 장비	P003-2	50+50 mL	22750000
+GU-HPCELL-P0032100100ML	고압 전기화학 셀·계측 장비	P003-2	100+100 mL	24500000
+GU-HPCELL-PFC11010MM양음극공용유로소비전력200W4	고압 전기화학 셀·계측 장비	PFC-1	10×10 mm · 양·음극 공용 유로 · 소비전력 200 W · 420	73500000
+GU-HPCELL-PFC21010MM양음극독립유로	고압 전기화학 셀·계측 장비	PFC-2	10×10 mm · 양·음극 독립 유로	108500000
+GU-HPCELL-P0041단층50ML	고압 전기화학 셀·계측 장비	P004-1	단층 50 mL	3500000
+GU-HPCELL-P0041이중층50ML	고압 전기화학 셀·계측 장비	P004-1	이중층 50 mL	7525000
+GU-HPCELL-2구마그네틱스터러전해셀2대동시교반	고압 전기화학 셀·계측 장비	GU-2 2구 마그네틱 스터러	전해셀 2대 동시 교반	1645000
+GU-HPCELL-연동펌프전해액순환	고압 전기화학 셀·계측 장비	EC200-01 연동 펌프	전해액 순환	1925000
+GU-HPCELL-기액혼합펌프전단력구조	고압 전기화학 셀·계측 장비	EC200-02 기액 혼합 펌프	전단력 구조	1295000
+GU-HPCELL-고압정량펌프고압조건정량이송	고압 전기화학 셀·계측 장비	HP300-01 고압 정량 펌프	고압 조건 정량 이송	4200000
+GU-HPCELL-막전극가열온도컨트롤러최대100정밀도01	고압 전기화학 셀·계측 장비	EC200-301 막전극 가열 온도 컨트롤러	단채널 EC200-301 · 최대 100℃ · 정밀도 0.1℃	1663000
+GU-HPCELL-질량유량계MFC최대사용압력3MPA표기모델	고압 전기화학 셀·계측 장비	질량유량계(MFC)	최대 사용압력 3 MPa 표기 모델	3850000
+GU-HPCELL-회전원판링원판전극RDERRDE어셈블리샤프트불활성	고압 전기화학 셀·계측 장비	ECR-6100C 회전원판·링원판 전극 장치	샤프트 불활성 가스 퍼지 기구 · USB·RS-232C 제어	43750000
+GU-HPCELL-ECSTAT302C13V30MA전류5레인지오토C	고압 전기화학 셀·계측 장비	ECstat-302C	±13 V / ±30 mA · 전류 5레인지+오토 · CV·LSV·CA·	43750000
+GU-HPCELL-ECBOOST400213V300MA전류6레인지제	고압 전기화학 셀·계측 장비	ECboost-4002	±13 V / ±300 mA · 전류 6레인지 (제품코드 21064)	0
+GU-HPCELL-INSITU미분전기화학질량분석기DEMS전기화학질	고압 전기화학 셀·계측 장비	PM-DEMS 미분 전기화학 질량분석기	전기화학 질량분석기 전용 반응 셀 대응	0
+GU-SPCELL-C0315전지모사INSITU관찰	리튬전지 in-situ·특수 기능 셀	C031-5	코인셀 모사 · 리튬 포일 단면 관찰 · 고순도 티타늄 기판 · 사파이어	1750000
+GU-SPCELL-C03151사파이어광학창투과율95이상	리튬전지 in-situ·특수 기능 셀	C031-5-1	C031-5 + 기준전극 추가 · 그 외 사양 동일(티타늄 기판 · 사파	1750000
+GU-SPCELL-B004카탈로그표기FLOW카탈로그25페이지	리튬전지 in-situ·특수 기능 셀	B004 (카탈로그 표기)	전고체 전지 가압 시험 픽스처 = 배터리 카탈로그 PB001과 동일 제품	0
+GU-SPCELL-BIFA광학스테이지BIFA전용	리튬전지 in-situ·특수 기능 셀	B-IFA 광학 스테이지	B-IFA 전용	0
+GU-SPCELL-B0013FLOW카탈로그58페이지	리튬전지 in-situ·특수 기능 셀	B001-3	Flow 카탈로그 58페이지	1925000
+GU-SPCELL-B0014FLOW카탈로그58페이지	리튬전지 in-situ·특수 기능 셀	B001-4	Flow 카탈로그 58페이지	1925000
+GU-SPCELL-C0341	리튬전지 in-situ·특수 기능 셀	C034-1	막 전도도 측정 셀	3412000
+GU-SPCELL-C0342	리튬전지 in-situ·특수 기능 셀	C034-2	막 전도도 측정 셀	3412000
+GU-SPCELL-DQ15050MM	리튬전지 in-situ·특수 기능 셀	DQ-1	50×50 mm	1662000
+GU-SPCELL-DQ25050MM	리튬전지 in-situ·특수 기능 셀	DQ-2	50×50 mm	2275000
+GU-SPCELL-전기화학발광ECL전해셀	리튬전지 in-situ·특수 기능 셀	C014PK-ECL	전기화학발광(ECL) 전해셀	980000
