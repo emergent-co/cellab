@@ -12,9 +12,10 @@
 
 ## 주요 페이지 (정확한 URL)
 
-> 사이트 메뉴(NAV) 4개: 제품소개(/product/, 하위: 메뉴얼 /manuals/) · 셋업 사례(/magazine/) · 유용한 정보(하위: 제품 정보 /info/ · 배터리 사전 /wiki/) · 문의하기(/contact/, 하위: FAQ /contact/ · 회사소개 /about/)
+> 사이트 메뉴(NAV) 5개: 툴·실험장비(/product/, 하위: 통합 카탈로그·메뉴얼 /manuals/) · 소재(/materials/) · 셋업 사례(/magazine/) · 유용한 정보(하위: 제품 정보 /info/ · 배터리 사전 /wiki/) · 문의하기(/contact/, 하위: FAQ /contact/ · 회사소개 /about/)
 
 - [홈 = 실험장비 원스톱 스토어](https://rndsetup.com/): 히어로 검색 + 배터리 공정별/실험 용도별 장비 찾기 + 최신 논문 셋업 + 구글 리뷰
+- [소재](https://rndsetup.com/materials/): 전기화학 재료·소모품 65종, CO2RR 촉매 79종, 전극 연마용품, 클램프·홀더 허브
 - [제품 정보 — 브랜드별 장비 비교](https://rndsetup.com/info/): 단품·유형 비교 글 모음 + 각 글 하단 선택 위저드(조건 선택→모델 직링크)
   - [연동펌프 모델 비교 (BT100S~WT600S)](https://rndsetup.com/info/compare-peristaltic/)
   - [머플로 모델 비교 (1050~1900℃)](https://rndsetup.com/info/compare-muffle/)

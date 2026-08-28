@@ -73,10 +73,11 @@
   };
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/product/', label:'제품소개', icon:'devices', noclick:true, sub:[
-        ['/product/', '제품소개'],
+    { href:'/product/', label:'툴·실험장비', icon:'devices', noclick:true, sub:[
+        ['/product/', '통합 카탈로그'],
         ['/manuals/', '메뉴얼']
       ] },
+    { href:'/materials/', label:'소재', icon:'guide' },
     { href:'/magazine/', label:'셋업 사례', icon:'feed' },
     { href:'/info/', label:'유용한 정보', icon:'pick', noclick:true, sub:[
         ['/info/', '제품 정보'],

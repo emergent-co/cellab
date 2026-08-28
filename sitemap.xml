@@ -13,6 +13,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/materials/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/info/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.9</priority>

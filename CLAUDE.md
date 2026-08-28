@@ -30,7 +30,7 @@
 - `.gitattributes` 삭제·임의수정 금지.
 
 ## 4. 구조 요약 (2026-08 기준)
-- **NAV 4개**(2026-08 축소): 셋업 사례(`/magazine/`) · 에너지 랩 A to Z(`/magazine/battery/`) · 제품소개(`/product/` 통합 카탈로그, sub: 제품소개·메뉴얼 `/manuals/`) — NAV 1번째 · 문의하기(`/contact/`, sub: 문의하기·회사소개 `/about/`). 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
+- **NAV 5개**(2026-08): 툴·실험장비(`/product/`, sub: 통합 카탈로그·메뉴얼) · 소재(`/materials/`) · 셋업 사례(`/magazine/`) · 유용한 정보(sub: 제품 정보 `/info/`·배터리 사전 `/wiki/`) · 문의하기(`/contact/`, sub: 문의하기(챗)·FAQ·회사소개). 홈 밴드 CTA(재료·소모품→/materials/, 툴·장비→/product/)와 연결. 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
 - **문의·FAQ = `/contact/` 원페이지**(2026-08 통합): 정답블록 → 검색 필터 → 카테고리 탭(구매·견적/수리·A/S/제어·소프트웨어/배송·기타) → FAQ 아코디언 26문 → 문의 폼(`#form`, Formspree `mnjkzppj`). **FAQPage JSON-LD 26문 전량 정적 렌더**(JS는 표시 토글만). `/faq/`는 301 + 파일 삭제.
 - **유용한 정보(2026-08 신설)**: NAV '에너지 랩 A to Z' 폐지 → '유용한 정보'(noclick, sub: 제품 정보 `/info/` · 배터리 사전 `/wiki/`). `/magazine/battery/` 커리큘럼은 삭제+301→`/wiki/`.
   - `/info/` = **브랜드별 장비 비교 전용**(카드 검색창 포함). 비교 글=단품 모델·유형 비교(`compare-peristaltic|muffle|furnace|mfc|echem-cell/`+기존 `/compare/`), 각 글 하단에 **선택 위저드**(글의 비교 기준을 질문으로 변환→모델 직링크). 부품소개·FAQ 블록 없음, 단순 브랜드 소개 없음. NAV 제품소개 sub에서 '선택 가이드' 제거됨(위저드로 대체).

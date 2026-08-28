@@ -405,6 +405,7 @@ CRAWLER_LINKS = [
     ('/pump/atoz/tube-size-guide/', '연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
     ('/magazine/', '셋업 사례 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)'),
+    ('/materials/', '소재 — 전기화학 재료·소모품, CO2RR 촉매, 멤브레인, 연마용품'),
     ('/info/', '제품 정보 — 부품·장비 소개, 브랜드별 장비 비교, FAQ·제품상담'),
     ('/wiki/', '배터리 사전 — 공정·재료·전기화학·장비 용어를 위키형으로 설명'),
     ('/magazine/deposition/', '증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장'),
@@ -1893,6 +1894,7 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
+        ('materials/',               '0.9', 'weekly'),   # 소재 허브
         ('info/',                    '0.9', 'weekly'),   # 제품 정보 허브
         ('wiki/',                    '0.9', 'weekly'),   # 배터리 사전 인덱스
         ('magazine/deposition/',     '0.8', 'monthly'),  # 증착 허브
