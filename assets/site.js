@@ -141,7 +141,7 @@
         '<input type="search" name="q" placeholder="제품명·모델명 검색 — 예: 튜브퍼니스, BT101S, MFC" aria-label="제품 검색" autocomplete="off">' +
         '<button type="submit"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span>검색</span></button>' +
       '</form>' +
-      '<a class="ch-ic srch" href="/product/" aria-label="제품 검색" title="제품 검색"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></a><a class="ch-ic" href="#chat" aria-label="견적함 · 문의" title="견적 문의"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg></a>' +
+      '<a class="ch-ic srch" href="/product/" aria-label="제품 검색" title="제품 검색"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></a><a class="ch-ic ch-cart" href="/order/" aria-label="장바구니" title="장바구니"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.6 12h10.8L21 8H6"/></svg><i class="ch-cnt" hidden>0</i></a>' +
       '<a class="ch-ic" href="/login/" aria-label="로그인" title="로그인"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.5 20c1.6-3.4 4.3-5 7.5-5s5.9 1.6 7.5 5"/></svg></a>' +
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
@@ -588,6 +588,20 @@
       location.href = '/contact/';
       return false;
     };
+    // 헤더 장바구니 배지 — 주문 페이지와 같은 rs_cart 를 읽는다
+    window.cartCount = function () {
+      try { return (JSON.parse(localStorage.getItem('rs_cart') || '[]') || []).length; } catch (e) { return 0; }
+    };
+    window.paintCart = function () {
+      var n = window.cartCount();
+      document.querySelectorAll('.ch-cart .ch-cnt').forEach(function (el) {
+        el.textContent = n > 99 ? '99+' : String(n);
+        el.hidden = !n;
+      });
+    };
+    window.paintCart();
+    window.addEventListener('storage', function (e) { if (e.key === 'rs_cart') window.paintCart(); });
+
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href="#chat"], a[href$="#chat"]');
       if (a) { e.preventDefault(); window.chatOpen(); }
@@ -1136,7 +1150,7 @@
   document.addEventListener('click', function (e) {
     var t = e.target;
     if (!t || !t.closest) return;
-    if (t.closest('#bbCart')) { addCart(); toast('장바구니에 담았습니다'); }
+    if (t.closest('#bbCart')) { addCart(); if (window.paintCart) window.paintCart(); toast('장바구니에 담았습니다'); }
     if (t.closest('#bbBuy'))  { addCart(); location.href = '/order/'; }
   });
 })();

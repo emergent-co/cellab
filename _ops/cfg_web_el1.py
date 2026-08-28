@@ -3,6 +3,10 @@ import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import build_web as B
 
+# SQL의 '카본코팅 전극/카본코팅 카본전극' = 玻碳(유리탄소) 오역 표기 — 유리탄소 디스크 전극의 정가행
+_GC = ([(m,'미국산 '+o,p) for m,o,p in B.rows_by(sobun='작업전극', name_has='카본코팅 전극 (미국산)')]
+     + [(m,'일본산 '+o,p) for m,o,p in B.rows_by(sobun='작업전극', name_has='카본코팅 카본전극 (일본산)')])
+
 # 1. 표준 유리탄소(GC) 작업전극
 B.build(dict(slug='gc-disc-working-electrode', cat='작업전극',
  h1='표준 유리탄소(GC) 작업전극', sub='Φ1~10 mm · 미국·일본산 유리탄소',
@@ -13,7 +17,7 @@ B.build(dict(slug='gc-disc-working-electrode', cat='작업전극',
  summary='유리탄소 <b>Φ1~10 mm</b> · 외피 <b>PTFE·PEEK·PCTFE</b> Φ3~17 mm · 전극 총장 75 mm(연장 가능) · 꼬리 <b>금도금 도선주</b>',
  quote='가오스유니온 표준 유리탄소(GC) 작업전극',
  imgs=['gc-disc-working-electrode-1.jpg','gc-disc-working-electrode-2.jpg'],
- models=['Φ1mm','Φ2mm','Φ3mm','Φ4mm','Φ5mm','Φ6mm','Φ7mm','Φ8mm','Φ10mm'],
+ models=[('%s (%s)'%(m,o)) for m,o,_ in _GC],
  feat=['<b>유리탄소(glassy carbon)</b>는 전위창이 넓고 배경전류가 낮아 순환전압전류법의 기본 작업전극입니다',
        '연마해 표면을 되살려 <b>반복 사용</b>합니다 — <a href="/brands/gaossunion/electrode-polishing/">전극 연마용품</a>',
        '외피를 <b>PCTFE·PEEK</b>로 고르면 유기 용매나 불소 함유 용액에서 팽윤·침투를 줄일 수 있습니다',
@@ -25,7 +29,7 @@ B.build(dict(slug='gc-disc-working-electrode', cat='작업전극',
        ('전극 총장','<b>75 mm</b> (연장 가능)'),
        ('외피 길이','60 mm'),
        ('전극 꼬리','<b>금도금 도선주</b>')],
- price=None,
+ price=_GC,
  cross='작업전극 계열: <a href="/brands/gaossunion/pt-disc-working-electrode/">백금 디스크</a> · <a href="/brands/gaossunion/au-disc-working-electrode/">금 디스크</a>',
  faq=[('유리탄소 전극은 왜 연마하나요?','표면이 오염되거나 산화되면 전류 응답이 흐려집니다. 알루미나 슬러리로 거울면까지 연마하면 초기 상태에 가깝게 돌아옵니다. 측정 전마다 연마하는 것이 표준 절차입니다.'),
       ('외피 재질은 어떻게 고르나요?','일반 수용액이면 PTFE로 충분합니다. 유기 용매나 불소 함유 용액, 고온 조건이면 PEEK 또는 PCTFE를 권합니다. 외피와 유리탄소 사이로 용액이 스며들면 측정값이 흔들립니다.'),

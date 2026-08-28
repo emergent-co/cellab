@@ -102,6 +102,12 @@ body{ padding-top:106px; }
 .ch-ic{ flex:none; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--gray); }
 .ch-ic:hover{ background:var(--soft); color:var(--ink); }
 .ch-ic svg{ width:21px; height:21px; stroke:currentColor; fill:none; stroke-width:1.8; }
+/* 장바구니 담긴 개수 배지 */
+.ch-cart{ position:relative; }
+.ch-cart .ch-cnt{ position:absolute; top:2px; right:0; min-width:17px; height:17px; padding:0 4px;
+  border-radius:9px; background:var(--accent); color:#fff; font-size:10.5px; font-weight:800;
+  font-style:normal; line-height:17px; text-align:center; }
+.ch-cart .ch-cnt[hidden]{ display:none; }
 @media(max-width:640px){ .ch-ic{ display:none; } .ch-msearch button[type=submit] span{ display:none; } .ch-top{ gap:10px; } .ch-top .ch-brand{ font-size:17px; } .ch-msearch input{ padding:0 10px; font-size:13.5px; } .ch-msearch button[type=submit]{ padding:0 13px; } }
 
 /* 본문 좌우 여백 15% — 주요 콘텐츠 래퍼 폭 70% */

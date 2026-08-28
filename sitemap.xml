@@ -1195,7 +1195,31 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/ag-ion-reference-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/agcl-double-salt-bridge/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/agcl-reference-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/array-working-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/au-disc-working-electrode/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1243,6 +1267,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/carbon-paste-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/co2rr-catalyst/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
@@ -1285,6 +1315,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/electrode-drying-rack/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/electrode-holder/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
@@ -1292,6 +1328,12 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/gaossunion/electrode-polishing/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/frit-salt-bridge/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1435,6 +1477,24 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/l-type-working-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/luggin-capillary/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/magnetic-working-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/mea-cell-parts/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
@@ -1490,6 +1550,24 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/gaossunion/membrane-cell-c008-10/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/mercury-oxide-reference-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/mercury-sulfate-reference-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/multifunction-working-electrode/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -1585,6 +1663,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/pt-disc-working-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/pt-plate-counter-electrode/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
@@ -1657,6 +1741,30 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/gaossunion/rhe-reference-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/sce-reference-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/sem-working-electrode/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/simple-electrode-holder/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/gaossunion/special-cell-cdi/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
@@ -1676,6 +1784,12 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/gaossunion/special-cell-misc/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/gaossunion/t-type-working-electrode/</loc>
     <lastmod>2026-08-29</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>

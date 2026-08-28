@@ -25,7 +25,7 @@ B.build(dict(slug='agcl-reference-electrode', cat='기준전극',
        ('1038형','유리관 <b>Φ3.8 mm</b>'),('1060형','유리관 <b>Φ6.0 mm</b>'),
        ('2060형','<b>PCTFE(삼불화)관</b> Φ6.0 mm'),('1020형','<b>PEEK관</b> Φ2.0 mm'),
        ('내광 사양','R1038K 갈색 · R1060K 다갈색'),('충전액','포화 염화칼륨')],
- price=B.rows_by(sobun='기준전극', name_has='염화은'),
+ price=AG,   # R8060(이중염교)은 별도 페이지
  cross='기준전극 계열: <a href="/brands/gaossunion/agcl-reference-double/">이중염교</a> · <a href="/brands/gaossunion/sce-reference-electrode/">포화칼로멜</a> · <a href="/brands/gaossunion/hgo-reference-electrode/">산화수은</a> · <a href="/brands/gaossunion/hg2so4-reference-electrode/">황산제일수은</a> · <a href="/brands/gaossunion/ag-agion-reference-electrode/">은-은이온</a>',
  faq=[('산성이나 알칼리 용액에도 쓸 수 있나요?','원칙적으로는 중성용입니다. 산성·알칼리에서 쓰려면 염다리로 분리해 충전액과 시료액이 직접 섞이지 않게 하십시오. 아예 조건에 맞는 전극(산성 황산제일수은, 알칼리 산화수은)을 쓰는 편이 전위가 안정됩니다.'),
       ('PEEK관(PK-1020·PK-1038)은 왜 비싼가요?','유리 대신 PEEK로 만들면 깨질 위험이 없고 불소 함유 용액에서도 견딥니다. 좁은 셀에 넣을 수 있는 Φ2.0 mm 세경도 PEEK 사양입니다.'),

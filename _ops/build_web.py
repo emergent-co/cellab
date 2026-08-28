@@ -50,7 +50,9 @@ def rows_by(sobun=None, name_has=None, model_re=None):
 
 # ---------- 조각 생성기 ----------
 def hero(slug, alt, imgs):
-    """imgs: [파일명] — 첫 장이 대표"""
+    """imgs: [파일명] — 첫 장이 대표. 비어 있으면 갤러리 자체를 넣지 않는다"""
+    if not imgs:
+        return ''
     h = ('<div class="dt-img"><img src="/img/gaossunion/%s" alt="%s 제품 사진 (가오스유니온 Gaoss Union)" '
          'loading="lazy" onerror="this.closest(\'.dt-img\').style.display=\'none\'"></div>\n'
          '<div class="dt-thumbs">' % (imgs[0], esc(alt)))
@@ -115,8 +117,9 @@ def ld(cfg, slug, faq):
       "brand":{"@type":"Brand","name":"Gaoss Union","alternateName":"가오스유니온"},
       "category":"전기화학 · "+cfg['cat'],
       "url":"https://rndsetup.com/brands/gaossunion/%s/"%slug,
-      "image":"https://rndsetup.com/img/gaossunion/%s"%cfg['imgs'][0],
       "description":cfg['desc']}
+    if cfg.get('imgs'):
+        prod["image"]="https://rndsetup.com/img/gaossunion/%s"%cfg['imgs'][0]
     if cfg.get('models'): prod["model"]=cfg['models']
     if prices:
         prod["offers"]={"@type":"AggregateOffer","priceCurrency":"KRW",
