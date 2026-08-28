@@ -84,7 +84,7 @@ input,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:1
 </style>
 </head>
 <body>
-<div class="top"><h1>정산 관리<a href="/admin/orders/">주문관리 →</a></h1></div>
+<div class="top"><h1>정산 관리<a href="/admin/orders/">주문관리 →</a><a href="/admin/customers/" style="margin-left:12px">거래처 →</a></h1></div>
 <div class="wrap" id="list"><div class="empty">불러오는 중…</div></div>
 <div class="sheet" id="sheet"><div class="sbody" id="sbody"></div></div>
 <div class="toast" id="toast"></div>

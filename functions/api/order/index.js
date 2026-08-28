@@ -1,10 +1,11 @@
 // GET  /api/order        → 내 주문 목록
 // POST /api/order        → 주문요청 생성
-import { json, currentCustomer, kstISO, nextOrderNo, recalcOrder, logEvent, replyEmail } from '../_lib.js';
+import { json, currentCustomer, kstISO, nextOrderNo, recalcOrder, logEvent, replyEmail, vipGate} from '../_lib.js';
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
+  const gate = vipGate(me); if (gate) return gate;
 
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(

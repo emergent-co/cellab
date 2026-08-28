@@ -1,10 +1,11 @@
 // GET  /api/order/:id            → 내 주문 상세 (품목 + 문서 + 이력)
 // POST /api/order/:id  {action}  → approve(견적승인) / cancel(요청취소)
-import { json, currentCustomer, kstISO, logEvent } from '../_lib.js';
+import { json, currentCustomer, kstISO, logEvent, vipGate} from '../_lib.js';
 
 export async function onRequest({ request, env, params }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
+  const gate = vipGate(me); if (gate) return gate;
 
   const order = await env.DB.prepare('SELECT * FROM orders WHERE id=? AND customer_id=?')
     .bind(params.id, me.id).first();

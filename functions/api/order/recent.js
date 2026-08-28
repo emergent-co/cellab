@@ -1,11 +1,12 @@
 // GET /api/order/recent → 같은 소속이 구매한 품목 (연구실 단위 공유)
 //   같은 연구실 사람이 이미 산 물건을 다시 찾아 헤매지 않게 한다.
-import { json, currentCustomer } from '../_lib.js';
+import { json, currentCustomer, vipGate} from '../_lib.js';
 import { labMateIds } from './lab.js';
 
 export async function onRequestGet({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
+  const gate = vipGate(me); if (gate) return gate;
 
   const ids = await labMateIds(env, me);
   const where = `o.customer_id IN (${ids.map(() => '?').join(',')})`;

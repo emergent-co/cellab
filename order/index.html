@@ -155,6 +155,16 @@ table.orders td.dt{font-size:12.5px;color:var(--mut);font-variant-numeric:tabula
   display:flex;align-items:center;justify-content:center;transition:.14s}
 .backbtn:hover{background:var(--soft-blue);border-color:#cfcde6}
 .backbtn[hidden]{display:none}
+.gwrap{max-width:620px;margin:0 auto}
+.gwrap .panel.pad{margin-bottom:14px}
+.gwrap label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:14px 0 6px}
+.gwrap label.req::after{content:' *';color:#B45309}
+.gwrap input,.gwrap textarea{width:100%;border:1px solid var(--line);border-radius:10px;
+  padding:12px 13px;font-size:14px;background:#fff}
+.gwrap input:focus,.gwrap textarea:focus{outline:0;border-color:var(--navy)}
+.gwrap textarea{resize:vertical;line-height:1.55}
+.gwrap .cq{width:64px;text-align:center;padding:8px}
+.gnote{text-align:center;font-size:13px;color:var(--mut);padding:6px 0 20px}
 .hi{margin-bottom:18px}
 .hi b{display:block;font-size:21px;font-weight:800;letter-spacing:-.02em}
 .hi span{display:block;font-size:13px;color:var(--mut);margin-top:4px}
@@ -540,13 +550,14 @@ async function boot(){
   var ref = qs.get('ref');    // 서비스 추천 (실험실과 무관)
 
   var r = await fetch('/api/auth/me').then(function(r){return r.json();}).catch(function(){return {};});
-  if (!r.login){
-    $('#login').style.display='flex'; bootChannel(null);
-    if (inv || ref){
-      $('#kakaoBtn').dataset.next = '/order/?' + (inv ? 'inv='+encodeURIComponent(inv) : 'ref='+encodeURIComponent(ref));
-      if (inv) peekLab(inv);
-    }
-    return;
+
+  // 주문·정산은 등록된 거래처 전용이다.
+  //   로그인 안 했거나 아직 승인 전이면 → 담은 것으로 견적 문의를 보내는 화면.
+  if (!r.login || r.vip === false){
+    me = r.customer || null;
+    bootChannel(me);
+    if (inv || ref) history.replaceState({}, '', '/order/');
+    return paintGuest(!!r.login);
   }
   me = r.customer; lab = r.lab || null;
   if (lab) lab.members = (r.members||[]).length;
@@ -820,6 +831,123 @@ function render(){
   if (view==='me'){ paintMe(); return; }
   skeleton();
   if (view==='new') viewNew(); else if (view==='orders') viewOrders(); else viewSettle();
+}
+
+/* ---------------- 견적 문의 (거래처가 아닌 방문자) ---------------- */
+// 주문·정산은 등록된 거래처 전용이라, 그 외에는 담은 것을 문의로 넘긴다.
+// 담은 물건이 날아가지 않는 것이 이 화면의 핵심이다.
+function paintGuest(loggedIn){
+  var waiting = loggedIn && me && me.access === '대기';
+  var refused = loggedIn && me && me.access === '거절';
+
+  $('#login').style.display='none';
+  $('#shell').classList.add('on');
+  document.querySelector('.side').style.display = 'none';
+  document.querySelector('.main').style.marginLeft = '0';
+  $('#headTitle').textContent = '견적 문의';
+  $('#backBtn').hidden = true;
+  $('#whoName').textContent = (me && me.name) || '';
+  $('#whoOrg').textContent = '';
+  if (!loggedIn) document.querySelector('.head .who').style.display = 'none';
+
+  paintGuestBody(waiting, refused, loggedIn);
+}
+
+function paintGuestBody(waiting, refused, loggedIn){
+  var g = {
+    name : (me && me.name) || '',
+    email: (me && (me.work_email || me.email)) || '',
+    phone: (me && me.phone) || '',
+    org  : (me && me.company) || '',
+  };
+
+  var h = '<div class="gwrap">';
+
+  h += '<div class="ttl" style="margin-bottom:6px">견적 문의</div>'
+     + '<p class="hint" style="margin-bottom:18px;font-size:13.5px">'
+     + (waiting
+        ? '거래처 등록을 검토하고 있습니다. 승인되면 주문·정산 페이지가 열립니다.<br>그 전에도 아래로 견적을 문의하실 수 있습니다.'
+        : refused
+        ? '현재 계정으로는 주문 페이지를 이용하실 수 없습니다. 문의로 남겨주시면 확인 후 연락드리겠습니다.'
+        : '주문·정산 페이지는 <b>등록된 거래처 전용</b>입니다.<br>담으신 품목을 그대로 보내주시면 견적을 회신드립니다.')
+     + '</p>';
+
+  if (waiting) h += '<div class="warnbox" style="margin-bottom:16px">승인 대기 중입니다.</div>';
+
+  // 담은 품목
+  h += '<div class="panel pad"><h4 class="ph2">담은 품목 <span class="cnt">'+cart.length+'</span></h4>';
+  if (!cart.length){
+    h += '<div class="empty" style="padding:26px 10px">담은 품목이 없습니다.<br>'
+       + '<a class="lnk" href="/product/">제품을 둘러보고 담아보세요</a></div>';
+  } else {
+    h += '<div class="cartlist">' + cart.map(function(c,i){
+      return '<div class="cartrow">'
+        +'<div class="cn"><b>'+esc(c.name)+'</b>'+(c.spec?'<small>'+esc(c.spec)+'</small>':'')
+          +(c.link?'<a href="'+esc(c.link)+'" target="_blank" rel="noopener" class="ln">링크</a>':'')+'</div>'
+        +'<input class="cq" type="number" min="1" value="'+(c.qty||1)+'" data-i="'+i+'">'
+        +'<button class="cx" data-i="'+i+'">×</button></div>';
+    }).join('') + '</div>';
+  }
+  h += '</div>';
+
+  // 연락처
+  h += '<div class="panel pad"><h4 class="ph2">회신받을 곳</h4>'
+    + '<label class="req">성함</label><input id="g-name" value="'+esc(g.name)+'" placeholder="홍길동">'
+    + '<label>소속 (선택)</label><input id="g-org" value="'+esc(g.org)+'" placeholder="OO대학교 OO연구실">'
+    + '<label class="req">이메일</label><input id="g-email" type="email" inputmode="email" value="'+esc(g.email)+'" placeholder="name@company.co.kr">'
+    + '<label>연락처 (선택)</label><input id="g-phone" inputmode="tel" value="'+esc(g.phone)+'" placeholder="010-0000-0000">'
+    + '<label>문의 내용 (선택)</label><textarea id="g-note" rows="3" placeholder="납기, 사양, 예산 등 알려주시면 정확한 견적을 드립니다"></textarea>'
+    + '<button class="btn pri" id="g-go" style="width:100%;margin-top:16px;padding:15px;font-size:15.5px">견적 문의 보내기</button>'
+    + '</div>';
+
+  // 이미 거래처인 경우의 길
+  h += '<div class="gnote">'
+    + (loggedIn
+       ? '이미 거래 중인 거래처인데 이 화면이 보인다면 <a class="lnk" href="#" id="g-chat">문의</a>해 주세요.'
+       : '이미 등록된 거래처시라면 <a class="lnk" href="#" id="g-login">카카오로 로그인</a>하시면 주문 페이지가 열립니다.')
+    + '</div>';
+
+  h += '</div>';
+  $('#main').innerHTML = h;
+  bindGuest();
+}
+
+function bindGuest(){
+  document.querySelectorAll('.gwrap .cq').forEach(function(inp){
+    inp.onchange = function(){ cart[Number(inp.dataset.i)].qty = Math.max(1, Number(inp.value)||1); saveCart(); };
+  });
+  document.querySelectorAll('.gwrap .cx').forEach(function(b){
+    b.onclick = function(){ cart.splice(Number(b.dataset.i),1); saveCart();
+      paintGuestBody(me && me.access==='대기', me && me.access==='거절', !!me); };
+  });
+  var lg = $('#g-login'); if (lg) lg.onclick = function(e){ e.preventDefault();
+    location.href = '/api/auth/kakao?next=' + encodeURIComponent('/order/'); };
+  var ct = $('#g-chat'); if (ct) ct.onclick = function(e){ e.preventDefault(); openChat(); };
+
+  $('#g-go').onclick = async function(){
+    var body = {
+      name: $('#g-name').value.trim(), org_name: $('#g-org').value.trim(),
+      email: $('#g-email').value.trim(), phone: $('#g-phone').value.trim(),
+      note: $('#g-note').value.trim(), items: cart,
+    };
+    if (!body.name) return alert('성함을 입력해주세요.');
+    if (!body.email && !body.phone) return alert('이메일 또는 연락처 중 하나는 남겨주세요.');
+    if (body.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) return alert('이메일 형식을 확인해주세요.');
+    if (!cart.length && !body.note) return alert('문의하실 품목이나 내용을 남겨주세요.');
+
+    var btn = $('#g-go'); btn.disabled = true; btn.textContent = '보내는 중…';
+    var r = await fetch('/api/order/inquiry',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify(body)}).then(function(x){return x.json();}).catch(function(){return {};});
+    if (!r.ok){ btn.disabled=false; btn.textContent='견적 문의 보내기'; return alert(r.message||'전송에 실패했습니다.'); }
+
+    cart = []; saveCart();
+    $('#main').innerHTML = '<div class="gwrap"><div class="panel pad" style="text-align:center;padding:44px 22px">'
+      + '<div class="ttl" style="margin-bottom:8px">문의가 접수되었습니다</div>'
+      + '<p class="hint" style="font-size:13.5px">문의번호 <b>#'+r.id+'</b><br>'
+      + '영업일 기준 하루 안에 회신드리겠습니다.</p>'
+      + '<a class="btn ghost" href="/product/" style="display:inline-block;margin-top:18px">제품 더 둘러보기</a>'
+      + '</div></div>';
+  };
 }
 
 /* ---------------- 홈 (바로가기) ---------------- */

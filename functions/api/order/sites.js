@@ -2,12 +2,13 @@
 //   GET    /api/order/sites
 //   POST   /api/order/sites      { org_name, address, is_default }
 //   DELETE /api/order/sites?id=
-import { json, currentCustomer, kstISO } from '../_lib.js';
+import { json, currentCustomer, kstISO, vipGate} from '../_lib.js';
 import { ensureLab } from './lab.js';
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
+  const gate = vipGate(me); if (gate) return gate;
 
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(

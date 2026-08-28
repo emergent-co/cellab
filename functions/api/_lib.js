@@ -152,6 +152,26 @@ export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주
 
 // ---------- 공급자(이머전트) 정보 ----------
 /**
+ * 주문·정산 페이지는 등록된 거래처(VIP) 전용이다.
+ * customers.access 가 '승인' 인 사람만 열린다. 새 카카오 가입자는 '대기'.
+ */
+export function isVip(c) {
+  return !!(c && c.access === '승인');
+}
+
+/** VIP 전용 API 앞에 세우는 문지기. 통과하면 null, 아니면 Response. */
+export function vipGate(me) {
+  if (!me) return json({ error: 'login_required' }, 401);
+  if (!isVip(me)) {
+    return json({
+      error: 'not_vip',
+      message: '주문·정산은 등록된 거래처만 이용할 수 있습니다. 견적 문의로 남겨주시면 연락드리겠습니다.',
+    }, 403);
+  }
+  return null;
+}
+
+/**
  * 회신받을 이메일.
  * 카카오 계정 이메일은 대개 개인 메일이라 업무 서류를 거기로 보내면 안 된다.
  * 고객이 따로 적어둔 업무용 메일(work_email)이 있으면 그것을 우선한다.

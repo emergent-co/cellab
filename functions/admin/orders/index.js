@@ -126,7 +126,7 @@ textarea{min-height:74px;resize:vertical}
 </style>
 </head>
 <body>
-<div class="top"><h1>주문관리<a href="/admin/settlement/">정산 →</a><a href="/admin" style="margin-left:12px">제품 →</a></h1></div>
+<div class="top"><h1>주문관리<a href="/admin/customers/">거래처 →</a><a href="/admin/settlement/" style="margin-left:12px">정산 →</a><a href="/admin" style="margin-left:12px">제품 →</a></h1></div>
 <div class="chips" id="chips"></div>
 <div class="srch"><input id="q" type="search" placeholder="주문번호 · 거래처 · 품명 검색" autocomplete="off"></div>
 <div class="wrap" id="list"><div class="empty">불러오는 중…</div></div>

@@ -1,13 +1,14 @@
 // 고객의 정산 요청
 //   GET  /api/order/settlements  → 내 요청 목록
 //   POST /api/order/settlements  → 새 요청
-import { json, currentCustomer, kstISO, logEvent } from '../_lib.js';
+import { json, currentCustomer, kstISO, logEvent, vipGate} from '../_lib.js';
 
 export const SETTLE_STATUS = ['정산요청', '처리중', '서류발급 완료', '입금완료', '반려'];
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
   if (!me) return json({ error: 'login_required' }, 401);
+  const gate = vipGate(me); if (gate) return gate;
 
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(
