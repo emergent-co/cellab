@@ -103,9 +103,11 @@
   .warn-h{ font-size:14px; font-weight:800; color:#9A3412; margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:#9A3412; }
-  .detail-top .wrap{max-width:960px}
-  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
-  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
+  .detail-top .wrap{max-width:1040px}
+  .dt-grid{display:grid;grid-template-columns:minmax(0,32%) minmax(0,1fr) 258px;gap:24px;align-items:start;margin-top:6px}
+  .dt-buy{position:sticky;top:84px}
+  @media(max-width:1000px){.dt-grid{grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:22px}.dt-buy{grid-column:1/-1;position:static;max-width:420px}}
+  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}.dt-buy{grid-column:auto;max-width:none}}
   .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
   .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
   .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:#9A3412}
@@ -143,15 +145,16 @@
 <div class="dt-col"><div class="dt-img"><img src="/img/gaossunion/pt-plate-counter-electrode-1.jpg" alt="백금판 상대전극 제품 사진 (가오스유니온 Gaoss Union)" loading="lazy" onerror="this.closest('.dt-img').style.display='none'"></div>
 <div class="dt-thumbs"><button type="button" data-src="/img/gaossunion/pt-plate-counter-electrode-1.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/pt-plate-counter-electrode-1.jpg" alt="백금판 상대전극 제품 사진 1" loading="lazy" onerror="this.parentElement.style.display='none'"></button></div>
 <script>function agSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>
+</div>
 <div class="dt-info">
 <div class="dt-brand">가오스유니온 · Gaoss Union</div>
 <h1 class="dt-name">백금판 상대전극 <span style="font-size:.5em;color:#9A9A9A">순도 99.99% · 5×2 ~ 30×30 mm</span></h1>
 <p class="dt-ans">상대전극은 작업전극에 흐르는 전류를 받아 주는 짝입니다. 백금판은 면적이 넓어 전류 밀도를 낮게 유지하며, 가장 널리 쓰입니다.</p>
 <p class="dt-sum">순도 <b>99.99%</b> · 두께 <b>0.1 · 0.2 · 0.3 · 0.5 mm</b> · 규격 <b>5×2 ~ 30×30 mm</b> 34종 · 외피 PTFE · 88,000원부터</p>
 <button type="button" class="qbtn" data-quote="가오스유니온 백금판 상대전극">제품문의</button>
-<div id="buybox" class="bb" data-name="백금판 상대전극" data-models='[{"m": "Pt0505-1", "s": "5×5×0.1mm", "p": 175000}, {"m": "Pt0505-2", "s": "5×5×0.2mm", "p": 210000}, {"m": "Pt0505-3", "s": "5×5×0.3mm", "p": 245000}, {"m": "Pt0510-1", "s": "5×10×0.1mm", "p": 210000}, {"m": "Pt0510-2", "s": "5×10×0.2mm", "p": 280000}, {"m": "Pt0510-3", "s": "5×10×0.3mm", "p": 315000}, {"m": "Pt1010-1", "s": "10×10×0.1mm", "p": 280000}, {"m": "Pt1010-2", "s": "10×10×0.2mm", "p": 367000}, {"m": "Pt1010-3", "s": "10×10×0.3mm", "p": 455000}, {"m": "Pt1010-5", "s": "10×10×0.5mm", "p": 630000}, {"m": "Pt1015-1", "s": "10×15×0.1mm", "p": 315000}, {"m": "Pt1015-2", "s": "10×15×0.2mm", "p": 455000}, {"m": "Pt1015-3", "s": "10×15×0.3mm", "p": 595000}, {"m": "Pt1015-5", "s": "10×15×0.5mm", "p": 858000}, {"m": "Pt1020-1", "s": "10×20×0.1mm", "p": 367000}, {"m": "Pt1020-2", "s": "10×20×0.2mm", "p": 560000}, {"m": "Pt1020-3", "s": "10×20×0.3mm", "p": 717000}, {"m": "Pt1020-5", "s": "10×20×0.5mm", "p": 1033000}, {"m": "Pt1030-1", "s": "10×30×0.1mm", "p": 455000}, {"m": "Pt1030-2", "s": "10×30×0.2mm", "p": 717000}, {"m": "Pt1030-3", "s": "10×30×0.3mm", "p": 980000}, {"m": "Pt1030-5", "s": "10×30×0.5mm", "p": 1540000}, {"m": "Pt1515-1", "s": "15×15×0.1mm", "p": 403000}, {"m": "Pt1515-2", "s": "15×15×0.2mm", "p": 595000}, {"m": "Pt1515-3", "s": "15×15×0.3mm", "p": 770000}, {"m": "Pt1515-5", "s": "15×15×0.5mm", "p": 1138000}, {"m": "Pt2020-1", "s": "20×20×0.1mm", "p": 560000}, {"m": "Pt2020-2", "s": "20×20×0.2mm", "p": 892000}, {"m": "Pt2020-3", "s": "20×20×0.3mm", "p": 1208000}, {"m": "Pt2020-5", "s": "20×20×0.5mm", "p": 0}, {"m": "Pt3030-1", "s": "30×30×0.1mm", "p": 962000}, {"m": "Pt3030-2", "s": "30×30×0.2mm", "p": 1680000}, {"m": "Pt3030-3", "s": "30×30×0.3mm", "p": 2450000}, {"m": "Pt213", "s": "5×2×0.2mm", "p": 88000}]'></div>
 <div class="dt-kw"><a href="/brands/gaossunion/">#가오스유니온</a><a href="/brands/gaossunion/">#전기화학</a><a href="/product/">#실험장비카탈로그</a></div>
 </div>
+<div id="buybox" class="bb dt-buy" data-name="백금판 상대전극" data-models='[{"m": "Pt0505-1", "s": "5×5×0.1mm", "p": 175000}, {"m": "Pt0505-2", "s": "5×5×0.2mm", "p": 210000}, {"m": "Pt0505-3", "s": "5×5×0.3mm", "p": 245000}, {"m": "Pt0510-1", "s": "5×10×0.1mm", "p": 210000}, {"m": "Pt0510-2", "s": "5×10×0.2mm", "p": 280000}, {"m": "Pt0510-3", "s": "5×10×0.3mm", "p": 315000}, {"m": "Pt1010-1", "s": "10×10×0.1mm", "p": 280000}, {"m": "Pt1010-2", "s": "10×10×0.2mm", "p": 367000}, {"m": "Pt1010-3", "s": "10×10×0.3mm", "p": 455000}, {"m": "Pt1010-5", "s": "10×10×0.5mm", "p": 630000}, {"m": "Pt1015-1", "s": "10×15×0.1mm", "p": 315000}, {"m": "Pt1015-2", "s": "10×15×0.2mm", "p": 455000}, {"m": "Pt1015-3", "s": "10×15×0.3mm", "p": 595000}, {"m": "Pt1015-5", "s": "10×15×0.5mm", "p": 858000}, {"m": "Pt1020-1", "s": "10×20×0.1mm", "p": 367000}, {"m": "Pt1020-2", "s": "10×20×0.2mm", "p": 560000}, {"m": "Pt1020-3", "s": "10×20×0.3mm", "p": 717000}, {"m": "Pt1020-5", "s": "10×20×0.5mm", "p": 1033000}, {"m": "Pt1030-1", "s": "10×30×0.1mm", "p": 455000}, {"m": "Pt1030-2", "s": "10×30×0.2mm", "p": 717000}, {"m": "Pt1030-3", "s": "10×30×0.3mm", "p": 980000}, {"m": "Pt1030-5", "s": "10×30×0.5mm", "p": 1540000}, {"m": "Pt1515-1", "s": "15×15×0.1mm", "p": 403000}, {"m": "Pt1515-2", "s": "15×15×0.2mm", "p": 595000}, {"m": "Pt1515-3", "s": "15×15×0.3mm", "p": 770000}, {"m": "Pt1515-5", "s": "15×15×0.5mm", "p": 1138000}, {"m": "Pt2020-1", "s": "20×20×0.1mm", "p": 560000}, {"m": "Pt2020-2", "s": "20×20×0.2mm", "p": 892000}, {"m": "Pt2020-3", "s": "20×20×0.3mm", "p": 1208000}, {"m": "Pt2020-5", "s": "20×20×0.5mm", "p": 0}, {"m": "Pt3030-1", "s": "30×30×0.1mm", "p": 962000}, {"m": "Pt3030-2", "s": "30×30×0.2mm", "p": 1680000}, {"m": "Pt3030-3", "s": "30×30×0.3mm", "p": 2450000}, {"m": "Pt213", "s": "5×2×0.2mm", "p": 88000}]'></div>
 </div></div></section>
 <section class="pkg"><div class="wrap">
 <a class="ds-back" href="/brands/gaossunion/">← 가오스유니온 전기화학 전체</a>

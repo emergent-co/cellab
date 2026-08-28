@@ -103,9 +103,11 @@
   .warn-h{ font-size:14px; font-weight:800; color:#9A3412; margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:#9A3412; }
-  .detail-top .wrap{max-width:960px}
-  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
-  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
+  .detail-top .wrap{max-width:1040px}
+  .dt-grid{display:grid;grid-template-columns:minmax(0,32%) minmax(0,1fr) 258px;gap:24px;align-items:start;margin-top:6px}
+  .dt-buy{position:sticky;top:84px}
+  @media(max-width:1000px){.dt-grid{grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:22px}.dt-buy{grid-column:1/-1;position:static;max-width:420px}}
+  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}.dt-buy{grid-column:auto;max-width:none}}
   .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
   .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
   .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:#9A3412}
@@ -140,10 +142,12 @@
 <div id="pumplab-header"></div>
 <section class="detail-top"><div class="wrap"><div class="crumb"><a href="/">홈</a> › <a href="/product/">제품</a> › <a href="/brands/gaossunion/">가오스유니온</a> › {{CRUMB}}</div>
 <div class="dt-grid">
-<div class="dt-col">{{HERO}}<div class="dt-info">
+<div class="dt-col">{{HERO}}</div>
+<div class="dt-info">
 <div class="dt-brand">가오스유니온 · Gaoss Union</div>
 {{HEAD}}<div class="dt-kw"><a href="/brands/gaossunion/">#가오스유니온</a><a href="/brands/gaossunion/">#전기화학</a><a href="/product/">#실험장비카탈로그</a></div>
 </div>
+{{BUY}}
 </div></div></section>
 {{BODY}}<section class="ctbar-sec">
   <div class="wrap">

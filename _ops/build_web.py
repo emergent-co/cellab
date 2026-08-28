@@ -61,12 +61,16 @@ def hero(slug, alt, imgs):
     h += '</div>\n<script>function agSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>\n'
     return h
 
-def head(h1, sub, answer, summary, quote, models_json='[]'):
+def head(h1, sub, answer, summary, quote):
     return ('<h1 class="dt-name">%s <span style="font-size:.5em;color:#9A9A9A">%s</span></h1>\n'
             '<p class="dt-ans">%s</p>\n<p class="dt-sum">%s</p>\n'
             '<button type="button" class="qbtn" data-quote="%s">제품문의</button>\n'
-            '<div id="buybox" class="bb" data-name="%s" data-models=\'%s\'></div>\n'
-            % (h1, sub, answer, summary, esc(quote), esc(h1), models_json))
+            % (h1, sub, answer, summary, esc(quote)))
+
+def buybox(h1, models_json):
+    """3번째 그리드 열 — 제품문의 버튼 오른쪽"""
+    return ('<div id="buybox" class="bb dt-buy" data-name="%s" data-models=\'%s\'></div>'
+            % (esc(h1), models_json))
 
 def spec_tbl(rows):
     return ('<div class="pkg-tblwrap"><table class="pkg-tbl"><tbody>'
@@ -138,7 +142,8 @@ def build(cfg):
     if not (cfg.get('price') or []):
         mj=json.dumps([{'m':m,'s':'','p':0} for m in (cfg.get('models') or ['기본'])],ensure_ascii=False)
     mj=mj.replace("'",'&#39;')
-    s=s.replace('{{HEAD}}', head(cfg['h1'], cfg['sub'], cfg['answer'], cfg['summary'], cfg['quote'], mj))
+    s=s.replace('{{HEAD}}', head(cfg['h1'], cfg['sub'], cfg['answer'], cfg['summary'], cfg['quote']))
+    s=s.replace('{{BUY}}',  buybox(cfg['h1'], mj))
     s=s.replace('{{BODY}}', body(cfg))
     s=s.replace('{{FAQ}}',  faq_block(cfg['h1']+' FAQ', cfg['faq']))
     s=s.replace('{{LD}}',   ld(cfg, slug, cfg['faq']))

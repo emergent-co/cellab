@@ -103,9 +103,11 @@
   .warn-h{ font-size:14px; font-weight:800; color:#9A3412; margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:#9A3412; }
-  .detail-top .wrap{max-width:960px}
-  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
-  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
+  .detail-top .wrap{max-width:1040px}
+  .dt-grid{display:grid;grid-template-columns:minmax(0,32%) minmax(0,1fr) 258px;gap:24px;align-items:start;margin-top:6px}
+  .dt-buy{position:sticky;top:84px}
+  @media(max-width:1000px){.dt-grid{grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:22px}.dt-buy{grid-column:1/-1;position:static;max-width:420px}}
+  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}.dt-buy{grid-column:auto;max-width:none}}
   .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
   .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
   .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:#9A3412}
@@ -143,15 +145,16 @@
 <div class="dt-col"><div class="dt-img"><img src="/img/gaossunion/rde-external-thread-1.jpg" alt="회전원판전극 RDE (외나사) 제품 사진 (가오스유니온 Gaoss Union)" loading="lazy" onerror="this.closest('.dt-img').style.display='none'"></div>
 <div class="dt-thumbs"><button type="button" data-src="/img/gaossunion/rde-external-thread-1.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/rde-external-thread-1.jpg" alt="회전원판전극 RDE (외나사) 제품 사진 1" loading="lazy" onerror="this.parentElement.style.display='none'"></button><button type="button" data-src="/img/gaossunion/rde-external-thread-2.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/rde-external-thread-2.jpg" alt="회전원판전극 RDE (외나사) 제품 사진 2" loading="lazy" onerror="this.parentElement.style.display='none'"></button><button type="button" data-src="/img/gaossunion/rde-external-thread-3.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/rde-external-thread-3.jpg" alt="회전원판전극 RDE (외나사) 제품 사진 3" loading="lazy" onerror="this.parentElement.style.display='none'"></button></div>
 <script>function agSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>
+</div>
 <div class="dt-info">
 <div class="dt-brand">가오스유니온 · Gaoss Union</div>
 <h1 class="dt-name">회전원판전극 RDE (외나사) <span style="font-size:.5em;color:#9A9A9A">디스크 Φ5.0 mm · 전극 외경 15 mm</span></h1>
 <p class="dt-ans">회전원판전극은 전극을 일정 속도로 돌려 물질 전달을 계산 가능한 상태로 만드는 장치입니다. ORR·HER 촉매 활성 평가의 표준입니다.</p>
 <p class="dt-sum">디스크 <b>GC · Pt · Au Φ5.0 mm</b> · 전극 외경 <b>15 mm</b> · 봉 PTFE·PEEK · 사용 온도 10~25℃ · 1,050,000원부터</p>
 <button type="button" class="qbtn" data-quote="가오스유니온 회전원판전극 RDE (외나사)">제품문의</button>
-<div id="buybox" class="bb" data-name="회전원판전극 RDE (외나사)" data-models='[{"m": "GC 유리탄소 Φ5mm", "s": "디스크 Φ5.0 mm · 전극 외경 15 mm", "p": 1050000}, {"m": "PT 백금 Φ5mm", "s": "디스크 Φ5.0 mm · 전극 외경 15 mm", "p": 1645000}, {"m": "AU 금 Φ5mm", "s": "디스크 Φ5.0 mm · 전극 외경 15 mm", "p": 2800000}]'></div>
 <div class="dt-kw"><a href="/brands/gaossunion/">#가오스유니온</a><a href="/brands/gaossunion/">#전기화학</a><a href="/product/">#실험장비카탈로그</a></div>
 </div>
+<div id="buybox" class="bb dt-buy" data-name="회전원판전극 RDE (외나사)" data-models='[{"m": "GC 유리탄소 Φ5mm", "s": "디스크 Φ5.0 mm · 전극 외경 15 mm", "p": 1050000}, {"m": "PT 백금 Φ5mm", "s": "디스크 Φ5.0 mm · 전극 외경 15 mm", "p": 1645000}, {"m": "AU 금 Φ5mm", "s": "디스크 Φ5.0 mm · 전극 외경 15 mm", "p": 2800000}]'></div>
 </div></div></section>
 <section class="pkg"><div class="wrap">
 <a class="ds-back" href="/brands/gaossunion/">← 가오스유니온 전기화학 전체</a>

@@ -103,9 +103,11 @@
   .warn-h{ font-size:14px; font-weight:800; color:#9A3412; margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:#9A3412; }
-  .detail-top .wrap{max-width:960px}
-  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
-  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
+  .detail-top .wrap{max-width:1040px}
+  .dt-grid{display:grid;grid-template-columns:minmax(0,32%) minmax(0,1fr) 258px;gap:24px;align-items:start;margin-top:6px}
+  .dt-buy{position:sticky;top:84px}
+  @media(max-width:1000px){.dt-grid{grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:22px}.dt-buy{grid-column:1/-1;position:static;max-width:420px}}
+  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}.dt-buy{grid-column:auto;max-width:none}}
   .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
   .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
   .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:#9A3412}
@@ -143,15 +145,16 @@
 <div class="dt-col"><div class="dt-img"><img src="/img/gaossunion/agcl-reference-electrode-1.jpg" alt="염화은 기준전극 (단염교) 제품 사진 (가오스유니온 Gaoss Union)" loading="lazy" onerror="this.closest('.dt-img').style.display='none'"></div>
 <div class="dt-thumbs"><button type="button" data-src="/img/gaossunion/agcl-reference-electrode-1.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/agcl-reference-electrode-1.jpg" alt="염화은 기준전극 (단염교) 제품 사진 1" loading="lazy" onerror="this.parentElement.style.display='none'"></button><button type="button" data-src="/img/gaossunion/agcl-reference-electrode-2.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/agcl-reference-electrode-2.jpg" alt="염화은 기준전극 (단염교) 제품 사진 2" loading="lazy" onerror="this.parentElement.style.display='none'"></button><button type="button" data-src="/img/gaossunion/agcl-reference-electrode-3.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/agcl-reference-electrode-3.jpg" alt="염화은 기준전극 (단염교) 제품 사진 3" loading="lazy" onerror="this.parentElement.style.display='none'"></button><button type="button" data-src="/img/gaossunion/agcl-reference-electrode-4.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/agcl-reference-electrode-4.jpg" alt="염화은 기준전극 (단염교) 제품 사진 4" loading="lazy" onerror="this.parentElement.style.display='none'"></button></div>
 <script>function agSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>
+</div>
 <div class="dt-info">
 <div class="dt-brand">가오스유니온 · Gaoss Union</div>
 <h1 class="dt-name">염화은 기준전극 (단염교) <span style="font-size:.5em;color:#9A9A9A">Ag/AgCl · 중성 전해액</span></h1>
 <p class="dt-ans">염화은 기준전극은 <b>중성 전해액</b>에서 쓰는 표준 기준전극입니다. 관 재질과 지름으로 사양이 갈립니다.</p>
 <p class="dt-sum"><b>중성 전해액</b>용 · 1038형 유리 <b>Φ3.8</b> / 1060형 유리 <b>Φ6.0</b> / 2060형 <b>PCTFE Φ6.0</b> / 1020형 <b>PEEK Φ2.0</b> · 70,000원부터</p>
 <button type="button" class="qbtn" data-quote="가오스유니온 염화은 기준전극 (단염교)">제품문의</button>
-<div id="buybox" class="bb" data-name="염화은 기준전극 (단염교)" data-models='[{"m": "R1038", "s": "표준", "p": 70000}, {"m": "R1060-Standard", "s": "표준", "p": 70000}, {"m": "R1060-Extended", "s": "연장형", "p": 70000}, {"m": "R8060", "s": "이중 염다리", "p": 140000}, {"m": "PK-1020", "s": "PEEK 로드", "p": 333000}, {"m": "PK-1038", "s": "PEEK 로드", "p": 333000}, {"m": "R1038K", "s": "갈색 내광형", "p": 70000}, {"m": "R1060K", "s": "다갈색 내광형", "p": 70000}, {"m": "이중접점형", "s": "이중 접점", "p": 228000}]'></div>
 <div class="dt-kw"><a href="/brands/gaossunion/">#가오스유니온</a><a href="/brands/gaossunion/">#전기화학</a><a href="/product/">#실험장비카탈로그</a></div>
 </div>
+<div id="buybox" class="bb dt-buy" data-name="염화은 기준전극 (단염교)" data-models='[{"m": "R1038", "s": "표준", "p": 70000}, {"m": "R1060-Standard", "s": "표준", "p": 70000}, {"m": "R1060-Extended", "s": "연장형", "p": 70000}, {"m": "R8060", "s": "이중 염다리", "p": 140000}, {"m": "PK-1020", "s": "PEEK 로드", "p": 333000}, {"m": "PK-1038", "s": "PEEK 로드", "p": 333000}, {"m": "R1038K", "s": "갈색 내광형", "p": 70000}, {"m": "R1060K", "s": "다갈색 내광형", "p": 70000}, {"m": "이중접점형", "s": "이중 접점", "p": 228000}]'></div>
 </div></div></section>
 <section class="pkg"><div class="wrap">
 <a class="ds-back" href="/brands/gaossunion/">← 가오스유니온 전기화학 전체</a>

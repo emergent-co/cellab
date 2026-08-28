@@ -103,9 +103,11 @@
   .warn-h{ font-size:14px; font-weight:800; color:#9A3412; margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:#9A3412; }
-  .detail-top .wrap{max-width:960px}
-  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
-  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
+  .detail-top .wrap{max-width:1040px}
+  .dt-grid{display:grid;grid-template-columns:minmax(0,32%) minmax(0,1fr) 258px;gap:24px;align-items:start;margin-top:6px}
+  .dt-buy{position:sticky;top:84px}
+  @media(max-width:1000px){.dt-grid{grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:22px}.dt-buy{grid-column:1/-1;position:static;max-width:420px}}
+  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}.dt-buy{grid-column:auto;max-width:none}}
   .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
   .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
   .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:#9A3412}
@@ -143,15 +145,16 @@
 <div class="dt-col"><div class="dt-img"><img src="/img/gaossunion/gc-disc-working-electrode-1.jpg" alt="표준 유리탄소(GC) 작업전극 제품 사진 (가오스유니온 Gaoss Union)" loading="lazy" onerror="this.closest('.dt-img').style.display='none'"></div>
 <div class="dt-thumbs"><button type="button" data-src="/img/gaossunion/gc-disc-working-electrode-1.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/gc-disc-working-electrode-1.jpg" alt="표준 유리탄소(GC) 작업전극 제품 사진 1" loading="lazy" onerror="this.parentElement.style.display='none'"></button><button type="button" data-src="/img/gaossunion/gc-disc-working-electrode-2.jpg" onclick="agSwap(this)"><img src="/img/gaossunion/gc-disc-working-electrode-2.jpg" alt="표준 유리탄소(GC) 작업전극 제품 사진 2" loading="lazy" onerror="this.parentElement.style.display='none'"></button></div>
 <script>function agSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>
+</div>
 <div class="dt-info">
 <div class="dt-brand">가오스유니온 · Gaoss Union</div>
 <h1 class="dt-name">표준 유리탄소(GC) 작업전극 <span style="font-size:.5em;color:#9A9A9A">Φ1~10 mm · 미국·일본산 유리탄소</span></h1>
 <p class="dt-ans">유리탄소는 가장 널리 쓰이는 작업전극 재료입니다. 넓은 전위창과 낮은 배경전류를 가지며, 연마해 반복 사용합니다.</p>
 <p class="dt-sum">유리탄소 <b>Φ1~10 mm</b> · 외피 <b>PTFE·PEEK·PCTFE</b> Φ3~17 mm · 전극 총장 75 mm(연장 가능) · 꼬리 <b>금도금 도선주</b></p>
 <button type="button" class="qbtn" data-quote="가오스유니온 표준 유리탄소(GC) 작업전극">제품문의</button>
-<div id="buybox" class="bb" data-name="표준 유리탄소(GC) 작업전극" data-models='[{"m": "Φ1mm", "s": "", "p": 0}, {"m": "Φ2mm", "s": "", "p": 0}, {"m": "Φ3mm", "s": "", "p": 0}, {"m": "Φ4mm", "s": "", "p": 0}, {"m": "Φ5mm", "s": "", "p": 0}, {"m": "Φ6mm", "s": "", "p": 0}, {"m": "Φ7mm", "s": "", "p": 0}, {"m": "Φ8mm", "s": "", "p": 0}, {"m": "Φ10mm", "s": "", "p": 0}]'></div>
 <div class="dt-kw"><a href="/brands/gaossunion/">#가오스유니온</a><a href="/brands/gaossunion/">#전기화학</a><a href="/product/">#실험장비카탈로그</a></div>
 </div>
+<div id="buybox" class="bb dt-buy" data-name="표준 유리탄소(GC) 작업전극" data-models='[{"m": "Φ1mm", "s": "", "p": 0}, {"m": "Φ2mm", "s": "", "p": 0}, {"m": "Φ3mm", "s": "", "p": 0}, {"m": "Φ4mm", "s": "", "p": 0}, {"m": "Φ5mm", "s": "", "p": 0}, {"m": "Φ6mm", "s": "", "p": 0}, {"m": "Φ7mm", "s": "", "p": 0}, {"m": "Φ8mm", "s": "", "p": 0}, {"m": "Φ10mm", "s": "", "p": 0}]'></div>
 </div></div></section>
 <section class="pkg"><div class="wrap">
 <a class="ds-back" href="/brands/gaossunion/">← 가오스유니온 전기화학 전체</a>

@@ -1010,7 +1010,8 @@
   css.textContent =
     '.pd-pick{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:18px 0 0}'
   + '.pd-pick select{flex:1;min-width:190px;max-width:340px;padding:10px 11px;border:1px solid #D9D4CE;'
-  +   'border-radius:9px;font-family:inherit;font-size:13.5px;background:#fff;color:#17202A}'
+  +   'border-radius:9px;font-family:inherit;font-size:12.5px;background:#fff;color:#17202A;'
+  +   'text-overflow:ellipsis;padding-right:26px}'
   + '.bb{border:1px solid #E7E3DE;border-radius:14px;padding:16px 16px 14px;background:#fff;'
   +   'font-size:13.5px;line-height:1.6}'
   + '.bb-price{font-family:var(--serif,Georgia,serif);font-size:26px;font-weight:800;color:#17202A;letter-spacing:-.01em}'
