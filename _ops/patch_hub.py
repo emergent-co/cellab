@@ -81,9 +81,25 @@ def card(d, cat):
                       html.escape(cat), d['slug'], html.escape(d['h1']),
                       html.escape(d['ans']), html.escape(pricetxt(d))))
 
+def refresh():
+    """이미 교체된 뒤 다시 돌릴 때: 52장의 <li>·<article>을 제자리에서 갱신한다(멱등)."""
+    t = io.open(HUB, encoding='utf-8').read(); orig = t
+    n = 0
+    for cat, slugs in CATS:
+        for s in slugs:
+            d = read(s)
+            m = re.search(r'<li><a href="/brands/gaossunion/%s/">[^<]*</a></li>' % s, t)
+            if m: t = t[:m.start()] + li(d, cat) + t[m.end():]; n += 1
+            m = re.search(r'<article class="dscard"(?:(?!</article>).)*?/brands/gaossunion/%s/(?:(?!</article>).)*?</article>' % s, t, re.S)
+            if m: t = t[:m.start()] + card(d, cat) + t[m.end():]
+    io.open(HUB, 'w', encoding='utf-8').write(t)
+    print('갱신 %d항목 / 카드 %d' % (n, t.count('<article class="dscard"')))
+
 def main():
     t = io.open(HUB, encoding='utf-8').read()
     orig = t
+    if '/brands/gaossunion/reference-electrode/' not in t:
+        print('이미 교체됨 → 제자리 갱신 모드'); return refresh()
 
     lis, cards, DATA = [], [], []
     for cat, slugs in CATS:

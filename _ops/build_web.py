@@ -49,6 +49,12 @@ def rows_by(sobun=None, name_has=None, model_re=None):
     return out
 
 # ---------- 조각 생성기 ----------
+def autoimgs(slug):
+    """img/gaossunion/<slug>-N.jpg 를 번호순으로 자동 수집 — cfg에 imgs를 적지 않아도 된다"""
+    d=os.path.join(ROOT,'img','gaossunion')
+    fs=[f for f in os.listdir(d) if re.match(r'^%s-\d+\.jpg$'%re.escape(slug), f)]
+    return sorted(fs, key=lambda f:int(re.search(r'-(\d+)\.jpg$',f).group(1)))
+
 def hero(slug, alt, imgs):
     """imgs: [파일명] — 첫 장이 대표. 비어 있으면 갤러리 자체를 넣지 않는다"""
     if not imgs:
@@ -141,6 +147,7 @@ def ld(cfg, slug, faq):
 def build(cfg):
     slug=cfg['slug']
     s=TPL
+    if not cfg.get('imgs'): cfg['imgs']=autoimgs(slug)
     s=s.replace('{{HERO}}', hero(slug, cfg['h1'], cfg['imgs']))
     mj=json.dumps([{'m':m,'s':sp,'p':pr} for m,sp,pr in (cfg.get('price') or [])],ensure_ascii=False)
     if not (cfg.get('price') or []):

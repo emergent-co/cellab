@@ -1,9 +1,9 @@
 // GET /api/admin/orders?stats=1
 // GET /api/admin/orders?status=&q=&page=&size=
-import { json, isAdmin, needAdmin, STATUSES } from '../../_lib.js';
+import { json, isAdmin, needAdmin, STATUSES, adminOK} from '../../_lib.js';
 
 export async function onRequestGet({ request, env }) {
-  if (!isAdmin(request, env)) return needAdmin();
+  if (!(await adminOK(request, env))) return needAdmin();
   const p = new URL(request.url).searchParams;
 
   if (p.get('stats')) {

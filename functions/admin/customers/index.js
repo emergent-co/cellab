@@ -1,22 +1,21 @@
 // functions/admin/customers/index.js — 멤버십 승인 · 견적 문의 (모바일 우선) · Basic Auth
 //   주문·정산 페이지는 '승인'된 멤버십 회원만 열린다. 여기서 승인/대기/거절을 정한다.
 
-const REALM = 'rndsetup-admin';
+
+import { adminOK, REALM } from '../../api/_lib.js';
 
 export async function onRequest({ request, env }) {
-  const pw = env.ADMIN_PASSWORD || '';
+  // 카카오 세션이 관리자면 비밀번호를 다시 묻지 않는다.
+  // ADMIN_PASSWORD Basic Auth 도 그대로 통한다 — 카카오가 막혔을 때의 비상구.
   const auth = request.headers.get('Authorization') || '';
-  let ok = false;
-  if (pw && auth.startsWith('Basic ')) {
-    try { const d = atob(auth.slice(6)); const i = d.indexOf(':');
-      ok = (i >= 0 ? d.slice(i + 1) : d) === pw; } catch { ok = false; }
-  }
-  if (!ok) {
-    return new Response('인증이 필요합니다. (관리자)', { status: 401,
+  if (!(await adminOK(request, env))) {
+    return new Response('인증이 필요합니다. (관리자)', {
+      status: 401,
       headers: { 'WWW-Authenticate': `Basic realm="${REALM}", charset="UTF-8"`,
-                 'content-type': 'text/plain; charset=utf-8' } });
+                 'content-type': 'text/plain; charset=utf-8' },
+    });
   }
-  return new Response(page(auth.slice(6)), {
+  return new Response(page(auth.startsWith('Basic ') ? auth.slice(6) : ''), {
     headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
   });
 }
@@ -81,7 +80,8 @@ button,input,select{font:inherit;color:inherit}
 
 <script>
 var TOKEN = ${JSON.stringify(token)};
-var H = { 'Authorization': 'Basic ' + TOKEN, 'content-type': 'application/json' };
+var H = TOKEN ? { 'Authorization': 'Basic ' + TOKEN, 'content-type': 'application/json' }
+                : { 'content-type': 'application/json' };
 var $ = function(s){ return document.querySelector(s); };
 var esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };

@@ -1,26 +1,21 @@
 // functions/admin/orders/index.js — 주문관리 (모바일 우선) · Basic Auth
 // 폰에서 목록 확인 → 품목/단가 수정 → 상태 변경 → 이력 확인까지 한 화면에서.
 
-const REALM = 'rndsetup-admin';
+
+import { adminOK, REALM } from '../../api/_lib.js';
 
 export async function onRequest({ request, env }) {
-  const pw = env.ADMIN_PASSWORD || '';
+  // 카카오 세션이 관리자면 비밀번호를 다시 묻지 않는다.
+  // ADMIN_PASSWORD Basic Auth 도 그대로 통한다 — 카카오가 막혔을 때의 비상구.
   const auth = request.headers.get('Authorization') || '';
-  let ok = false;
-  if (pw && auth.startsWith('Basic ')) {
-    try {
-      const d = atob(auth.slice(6));
-      const i = d.indexOf(':');
-      ok = (i >= 0 ? d.slice(i + 1) : d) === pw;
-    } catch { ok = false; }
-  }
-  if (!ok) {
+  if (!(await adminOK(request, env))) {
     return new Response('인증이 필요합니다. (관리자)', {
       status: 401,
-      headers: { 'WWW-Authenticate': `Basic realm="${REALM}", charset="UTF-8"`, 'content-type': 'text/plain; charset=utf-8' },
+      headers: { 'WWW-Authenticate': `Basic realm="${REALM}", charset="UTF-8"`,
+                 'content-type': 'text/plain; charset=utf-8' },
     });
   }
-  return new Response(page(auth.slice(6)), {
+  return new Response(page(auth.startsWith('Basic ') ? auth.slice(6) : ''), {
     headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
   });
 }
@@ -136,7 +131,8 @@ textarea{min-height:74px;resize:vertical}
 
 <script>
 const TOKEN = ${JSON.stringify(token)};
-const H = { 'Authorization': 'Basic ' + TOKEN, 'content-type': 'application/json' };
+const H = TOKEN ? { 'Authorization': 'Basic ' + TOKEN, 'content-type': 'application/json' }
+                  : { 'content-type': 'application/json' };
 const STATUSES = ['요청접수','견적발송','견적승인','발주확정','납품완료','계산서발행','완료','보류','취소'];
 const SIDX = {}; STATUSES.forEach((s,i)=>SIDX[s]=i);
 let filter = '전체', kw = '', cur = null, items = [];
@@ -282,7 +278,7 @@ function bindDocs(){
 function openDoc(id, pdf){
   const w = window.open('', '_blank');
   if(w) w.document.write('<p style="font-family:sans-serif;padding:24px;color:#5a6779">불러오는 중…</p>');
-  fetch('/doc/'+id+(pdf?'?f=pdf':''), { headers: { 'Authorization': 'Basic ' + TOKEN } })
+  fetch('/doc/'+id+(pdf?'?f=pdf':''), { headers: TOKEN ? { 'Authorization': 'Basic ' + TOKEN } : {} })
     .then(function(r){
       if(!r.ok) return r.text().then(function(t){ throw new Error(t || ('HTTP '+r.status)); });
       return r.blob();

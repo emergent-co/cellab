@@ -1,11 +1,11 @@
 // GET  /api/admin/settlement                → 후불 거래처 요약 목록
 // GET  /api/admin/settlement?customer_id=   → 한 거래처 상세(원장 포함)
 // POST /api/admin/settlement                → 입금/조정 기록 · 후불 전환
-import { json, isAdmin, needAdmin, kstISO, kstDate } from '../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, kstDate, adminOK} from '../_lib.js';
 import { settlement, ledger } from '../_settle.js';
 
 export async function onRequest({ request, env }) {
-  if (!isAdmin(request, env)) return needAdmin();
+  if (!(await adminOK(request, env))) return needAdmin();
 
   if (request.method === 'GET') {
     const cid = new URL(request.url).searchParams.get('customer_id');

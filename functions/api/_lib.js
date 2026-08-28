@@ -26,8 +26,20 @@ export function won(n) {
   return Number(n || 0).toLocaleString('ko-KR');
 }
 
-// ---------- 관리자 Basic Auth (기존 /admin 과 동일 규칙) ----------
+// ---------- 관리자 ----------
+//   두 가지 길이 있다.
+//     ① ADMIN_PASSWORD Basic Auth — 카카오 없이 어디서든 들어가는 비상구
+//     ② customers.role = 'admin' 인 사람의 카카오 세션 — 평소에 쓰는 길
+//   ①을 남겨두는 이유: 카카오 로그인이 막히거나 계정에 문제가 생겨도 관리자가 잠기지 않는다.
 export const REALM = 'rndsetup-admin';
+
+/** 카카오 세션까지 본다. 비동기라 호출부에서 await 해야 한다. */
+export async function adminOK(request, env) {
+  if (isAdmin(request, env)) return true;
+  const me = await currentCustomer(request, env).catch(() => null);
+  return !!(me && me.role === 'admin');
+}
+
 export function isAdmin(request, env) {
   const pw = env.ADMIN_PASSWORD || '';
   if (!pw) return false;

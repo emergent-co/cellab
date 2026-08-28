@@ -17,9 +17,10 @@ export async function onRequest({ request, env }) {
 
   if (request.method === 'GET') {
     // 승인 전이면 실험실을 만들거나 조회하지 않는다 — 거래처가 확정된 뒤의 개념이다
-    if (!isMember(me)) return json({ login: true, member: false, customer: me, lab: null, members: [] });
+    const admin = me.role === 'admin';
+    if (!isMember(me)) return json({ login: true, member: false, admin, customer: me, lab: null, members: [] });
     const info = await labInfo(env, me);
-    return json({ login: true, member: true, customer: me, lab: info.lab, members: info.members });
+    return json({ login: true, member: true, admin, customer: me, lab: info.lab, members: info.members });
   }
 
   if (request.method === 'POST') {

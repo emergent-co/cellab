@@ -1,11 +1,11 @@
 // GET  /api/admin/orders/:id           → 상세(주문·고객·품목·문서·이력)
 // PUT  /api/admin/orders/:id           → 주문 필드/품목 수정
 // POST /api/admin/orders/:id {action}  → status 변경 등
-import { json, isAdmin, needAdmin, kstISO, recalcOrder, logEvent, STATUSES } from '../../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, recalcOrder, logEvent, STATUSES, adminOK} from '../../_lib.js';
 import { notifyCustomer, shipHtml } from '../../_notify.js';
 
 export async function onRequest({ request, env, params }) {
-  if (!isAdmin(request, env)) return needAdmin();
+  if (!(await adminOK(request, env))) return needAdmin();
 
   const order = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(params.id).first();
   if (!order) return json({ error: 'not_found' }, 404);

@@ -1,10 +1,10 @@
 // POST /api/admin/docs   { order_id, type }  → 문서 생성(스냅샷 고정) + 문서번호 채번
 import { json, isAdmin, needAdmin, kstISO, kstDate, nextDocNo, plusDays,
-         randomToken, logEvent, DOC_LABEL } from '../../_lib.js';
+         randomToken, logEvent, DOC_LABEL, adminOK} from '../../_lib.js';
 import { ISSUER } from '../../_doctpl.js';
 
 export async function onRequestPost({ request, env }) {
-  if (!isAdmin(request, env)) return needAdmin();
+  if (!(await adminOK(request, env))) return needAdmin();
   const b = await request.json().catch(() => ({}));
   const type = ['quote', 'statement'].includes(b.type) ? b.type : 'quote';
 

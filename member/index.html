@@ -47,6 +47,17 @@ a{color:inherit;text-decoration:none}
 .nav a{display:block;padding:16px 22px;font-size:15px;font-weight:700;color:var(--mut);border-left:4px solid transparent;cursor:pointer}
 .nav a:hover{background:#fafbfc}
 .nav a.on{color:var(--ink);font-weight:800;border-left-color:var(--navy);background:var(--soft-blue)}
+/* 관리자 전용 — 회원 메뉴 아래에 조용히 붙는다 */
+.nav.adm{flex:0 0 auto;padding:0 0 12px;border-top:1px solid var(--line);margin-top:4px}
+.nav.adm .admh{font-size:11px;font-weight:800;color:var(--mut-2);letter-spacing:.04em;
+  padding:14px 22px 6px}
+.nav.adm a{padding:11px 22px;font-size:13.5px;font-weight:600;color:var(--mut);border-left:4px solid transparent}
+.nav.adm a:hover{background:var(--soft-blue);color:var(--navy)}
+.admrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px;padding-top:16px;
+  border-top:1px solid var(--line);font-size:13px}
+.admrow>span{font-size:11px;font-weight:800;color:var(--mut-2);letter-spacing:.04em}
+.admrow a{color:var(--mut);font-weight:700;text-decoration:none}
+.admrow a:hover{color:var(--navy);text-decoration:underline}
 .labbox{padding:14px 18px;border-top:1px solid var(--line)}
 .labnone{font-size:11.5px;color:#9aa1ad;line-height:1.6}
 .labname{font-size:13px;font-weight:800;line-height:1.35}
@@ -468,6 +479,12 @@ textarea{min-height:78px;resize:vertical}
       <a data-v="settle">정산하기</a>
       <a data-v="me">회원정보</a>
     </nav>
+    <nav class="nav adm" id="admNav" hidden>
+      <div class="admh">관리자</div>
+      <a href="/admin/orders/">주문 관리</a>
+      <a href="/admin/settlement/">정산 관리</a>
+      <a href="/admin/customers/">멤버십 · 문의</a>
+    </nav>
     <div class="labbox" id="labBox"></div>
     <div class="foot">070-8983-2600<br>info@rndsetup.com</div>
   </aside>
@@ -518,7 +535,7 @@ const GROUP = {
 const DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
 const CH_KEY = '9ef4232c-59bb-4911-a4c7-363c6b5bc513';
 
-let me=null, lab=null, view='home', tab='전체', kw='', orders=[], cur=null;
+let me=null, lab=null, isAdm=false, view='home', tab='전체', kw='', orders=[], cur=null;
 // 주문자 — 서류·연락이 실제로 가는 곳. 카카오 계정 메일은 개인 메일일 때가 많아 따로 받는다.
 let ord = { name:'', email:'', phone:'' };
 function syncOrd(){
@@ -547,8 +564,9 @@ async function boot(){
     location.replace('/cart/');
     return;
   }
-  me = r.customer; lab = r.lab || null;
+  me = r.customer; lab = r.lab || null; isAdm = r.admin === true;
   if (lab) lab.members = (r.members||[]).length;
+  if (isAdm) $('#admNav').hidden = false;
 
   if (ref){
     fetch('/api/order/lab',{method:'POST',headers:{'content-type':'application/json'},
@@ -869,6 +887,14 @@ function paintHome(){
         + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.chat+'</svg>'
         + '<b>문의하기</b><span>070-8983-2600</span></button>'
     +'</div>';
+
+  if (isAdm){
+    $('#main').insertAdjacentHTML('beforeend',
+       '<div class="admrow"><span>관리자</span>'
+      +'<a href="/admin/orders/">주문 관리</a>'
+      +'<a href="/admin/settlement/">정산 관리</a>'
+      +'<a href="/admin/customers/">멤버십 · 문의</a></div>');
+  }
 
   $('#main').onclick = function(e){
     var t = e.target.closest('[data-go]'); if (t) return go(t.dataset.go);

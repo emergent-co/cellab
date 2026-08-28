@@ -1,10 +1,10 @@
 // GET  /api/admin/customers            → 거래처 목록 (승인 대기가 위로)
 // POST /api/admin/customers  {id, access}  → 승인 / 대기 / 거절
 // GET  /api/admin/customers?inquiries=1   → 견적 문의 목록
-import { json, isAdmin, needAdmin, kstISO, logEvent } from '../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, logEvent, adminOK} from '../_lib.js';
 
 export async function onRequest({ request, env }) {
-  if (!isAdmin(request, env)) return needAdmin();
+  if (!(await adminOK(request, env))) return needAdmin();
   const p = new URL(request.url).searchParams;
 
   if (request.method === 'GET') {

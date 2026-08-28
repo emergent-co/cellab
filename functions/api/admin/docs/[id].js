@@ -1,11 +1,11 @@
 // GET  /api/admin/docs/:id            → 문서 상세(스냅샷 포함)
 // POST /api/admin/docs/:id  {action}  → send(즉시/예약) · cancel(예약취소) · void(취소처리)
-import { json, isAdmin, needAdmin, kstISO, logEvent, DOC_LABEL } from '../../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, logEvent, DOC_LABEL, adminOK} from '../../_lib.js';
 import { docMailBody } from '../../_mailer.js';
 import { deliver, calcTotals } from '../../_send.js';
 
 export async function onRequest({ request, env, params }) {
-  if (!isAdmin(request, env)) return needAdmin();
+  if (!(await adminOK(request, env))) return needAdmin();
 
   const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(params.id).first();
   if (!doc) return json({ error: 'not_found' }, 404);

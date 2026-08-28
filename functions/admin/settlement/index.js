@@ -1,19 +1,19 @@
 // functions/admin/settlement/index.js — 후불 거래처 정산 (모바일 우선) · Basic Auth
-const REALM = 'rndsetup-admin';
+
+import { adminOK, REALM } from '../../api/_lib.js';
 
 export async function onRequest({ request, env }) {
-  const pw = env.ADMIN_PASSWORD || '';
+  // 카카오 세션이 관리자면 비밀번호를 다시 묻지 않는다.
+  // ADMIN_PASSWORD Basic Auth 도 그대로 통한다 — 카카오가 막혔을 때의 비상구.
   const auth = request.headers.get('Authorization') || '';
-  let ok = false;
-  if (pw && auth.startsWith('Basic ')) {
-    try { const d = atob(auth.slice(6)); const i = d.indexOf(':');
-      ok = (i >= 0 ? d.slice(i + 1) : d) === pw; } catch { ok = false; }
+  if (!(await adminOK(request, env))) {
+    return new Response('인증이 필요합니다. (관리자)', {
+      status: 401,
+      headers: { 'WWW-Authenticate': `Basic realm="${REALM}", charset="UTF-8"`,
+                 'content-type': 'text/plain; charset=utf-8' },
+    });
   }
-  if (!ok) {
-    return new Response('인증이 필요합니다. (관리자)', { status: 401,
-      headers: { 'WWW-Authenticate': `Basic realm="${REALM}", charset="UTF-8"`, 'content-type': 'text/plain; charset=utf-8' } });
-  }
-  return new Response(page(auth.slice(6)), {
+  return new Response(page(auth.startsWith('Basic ') ? auth.slice(6) : ''), {
     headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
 }
 
@@ -90,7 +90,8 @@ input,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:1
 <div class="toast" id="toast"></div>
 <script>
 const TOKEN = ${JSON.stringify(token)};
-const H = { 'Authorization':'Basic '+TOKEN, 'content-type':'application/json' };
+const H = TOKEN ? { 'Authorization':'Basic '+TOKEN, 'content-type':'application/json' }
+                : { 'content-type':'application/json' };
 const won = function(n){ return Number(n||0).toLocaleString('ko-KR'); };
 const esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){
   return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };

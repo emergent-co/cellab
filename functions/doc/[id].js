@@ -1,7 +1,7 @@
 // GET /doc/:id?t=<access_token>        → 문서 HTML (인쇄 가능)
 // GET /doc/:id?t=<access_token>&f=pdf  → PDF 다운로드
 // 관리자 Basic Auth 또는 로그인한 주문 당사자도 열람 가능.
-import { isAdmin, currentCustomer, kstISO, logEvent, DOC_LABEL } from '../api/_lib.js';
+import { isAdmin, currentCustomer, kstISO, logEvent, DOC_LABEL, adminOK} from '../api/_lib.js';
 import { renderDocHTML } from '../api/_doctpl.js';
 import { getOrMakePdf, pdfConfigured } from '../api/_pdf.js';
 
@@ -13,7 +13,7 @@ export async function onRequestGet({ request, env, params }) {
   // ---- 권한 ----
   const token = url.searchParams.get('t') || '';
   let viewer = null;
-  if (isAdmin(request, env)) viewer = 'admin';
+  if (await adminOK(request, env)) viewer = 'admin';
   else if (token && doc.access_token && token === doc.access_token) viewer = 'link';
   else {
     const me = await currentCustomer(request, env);
