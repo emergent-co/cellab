@@ -25,6 +25,14 @@ export async function onRequest({ request, env }) {
 
   if (request.method === 'POST') {
     const b = await request.json().catch(() => ({}));
+    // 업무 이메일은 서류가 실제로 가는 곳이라 형식을 서버에서도 확인한다
+    if (b.work_email !== undefined) {
+      const we = String(b.work_email).trim();
+      if (!we || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(we)) {
+        return json({ error: 'bad_work_email', message: '업무 이메일 형식을 확인해주세요.' }, 400);
+      }
+      b.work_email = we;
+    }
     const sets = [], vals = [];
     for (const f of FIELDS) {
       if (b[f] !== undefined) { sets.push(`${f}=?`); vals.push(String(b[f]).trim()); }

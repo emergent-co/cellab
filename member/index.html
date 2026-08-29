@@ -75,6 +75,7 @@ a{color:inherit;text-decoration:none}
 .amact .mini{margin-left:0;margin-right:4px}
 .amact .mini.ok{border-color:#a7d8c4;color:#166534}
 .amact .mini.no{border-color:#f0c0c0;color:#991B1B}
+em.warn{font-style:normal;color:#B45309;font-weight:700}
 .inqrow{border-bottom:1px solid var(--line);padding:14px 16px}
 .inqrow:last-child{border-bottom:0}
 .inqrow .r1{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
@@ -400,6 +401,7 @@ textarea{min-height:78px;resize:vertical}
 .modal{position:fixed;inset:0;z-index:60;background:rgba(26,26,26,.45);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
 .mbox{background:#fff;border-radius:14px;width:100%;max-width:540px;padding:24px;max-height:90vh;overflow-y:auto;position:relative}
 .mbox h3{font-size:17px;font-weight:800;margin-bottom:2px}
+.modal.locked{background:rgba(26,26,26,.62)}
 .mbox .x{position:absolute;right:18px;top:18px;background:0;border:0;font-size:22px;color:#9aa1ad;cursor:pointer;line-height:1}
 .mbox .hint{font-size:12.5px;color:var(--mut);line-height:1.55}
 
@@ -621,6 +623,9 @@ async function boot(){
   syncNav();
   bootChannel(me);
   render();
+
+  // 업무 이메일이 없으면 여기서 막고 받는다
+  if (!me.work_email) requireWorkEmail();
 }
 
 // 로그인한 고객이면 이름·연락처를 같이 넘겨, 상담 시작할 때 누구인지 바로 보이게 한다.
@@ -1170,7 +1175,9 @@ function amPaint(){
     el.innerHTML = '<table class="cards"><thead><tr><th style="width:82px">상태</th><th>회원</th>'
       +'<th style="width:76px">주문</th><th style="width:180px">처리</th></tr></thead><tbody>'
       + amCust.map(function(c){
-          var meta=[esc(c.name||'—'), esc(c.work_email||c.email||'—')];
+          var meta=[esc(c.name||'—')];
+          meta.push(c.work_email ? esc(c.work_email)
+            : '<em class="warn">업무 메일 미입력</em>' + (c.email?' ('+esc(c.email)+')':''));
           if(c.phone) meta.push(esc(c.phone));
           if(c.lab_name) meta.push('실험실 '+esc(c.lab_name));
           return '<tr class="'+(c.access==='대기'?'act':'')+'" style="cursor:default">'
@@ -1937,6 +1944,57 @@ function makeLab(){
   };
 }
 
+// 개인 메일로 흔히 쓰는 도메인 — 막지는 않고 한 번 되묻는다
+var PERSONAL_MAIL = ['naver.com','gmail.com','kakao.com','daum.net','hanmail.net',
+  'nate.com','outlook.com','hotmail.com','yahoo.com','icloud.com','me.com'];
+function looksPersonal(email){
+  var d = String(email||'').split('@')[1];
+  return !!d && PERSONAL_MAIL.indexOf(d.toLowerCase()) >= 0;
+}
+
+/**
+ * 업무 이메일은 반드시 받는다.
+ *   견적서·거래명세서·세금계산서가 실제로 가는 곳이라, 카카오 계정 메일(대개 개인 메일)로
+ *   두면 서류가 엉뚱한 곳으로 간다. 그래서 로그인 후 처음 들어올 때 닫을 수 없는 창으로 받는다.
+ */
+function requireWorkEmail(){
+  if (document.querySelector('.modal.locked')) return;
+  var w = modal('업무 이메일을 알려주세요',
+     '<p class="hint" style="margin-top:10px">견적서·거래명세서·세금계산서가 <b>이 주소로</b> 발송됩니다.<br>'
+    +'카카오 계정 메일과 달라도 됩니다. 나중에 회원정보에서 바꾸실 수 있습니다.</p>'
+    +'<label class="req">업무 이메일</label>'
+    +'<input id="w-email" type="email" inputmode="email" placeholder="name@company.co.kr" autocomplete="email">'
+    +(me && me.email ? '<p class="hint" style="margin-top:6px">카카오 계정 메일: '+esc(me.email)
+        +' <button class="lnk" id="w-same" type="button">이 주소 그대로 쓰기</button></p>' : '')
+    +'<label class="req">이름</label><input id="w-name" value="'+esc((me&&me.name)||'')+'" placeholder="홍길동">'
+    +'<label class="req">연락처</label><input id="w-phone" inputmode="tel" value="'+esc((me&&me.phone)||'')+'" placeholder="010-0000-0000">'
+    +'<div class="mrow"><button class="btn pri" id="w-go" style="flex:1">저장하고 시작하기</button></div>',
+    true);
+
+  var same = $('#w-same');
+  if (same) same.onclick = function(){ $('#w-email').value = me.email; $('#w-email').focus(); };
+  setTimeout(function(){ var i=$('#w-email'); if(i) i.focus(); }, 60);
+
+  $('#w-go').onclick = async function(){
+    var v = { email: $('#w-email').value.trim(), name: $('#w-name').value.trim(), phone: $('#w-phone').value.trim() };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) return alert('업무 이메일 형식을 확인해주세요.');
+    if (!v.name)  return alert('이름을 입력해주세요.');
+    if (!v.phone) return alert('연락처를 입력해주세요.');
+    if (looksPersonal(v.email)
+        && !confirm('개인 메일 주소로 보입니다.\n서류가 이 주소로 발송되는데, 이대로 진행할까요?')) return;
+
+    var btn=$('#w-go'); btn.disabled=true; btn.textContent='저장 중…';
+    var r = await fetch('/api/auth/me',{method:'POST',headers:{'content-type':'application/json'},
+      body:JSON.stringify({ work_email:v.email, name:v.name, phone:v.phone })})
+      .then(function(x){return x.json();}).catch(function(){return {};});
+    if (!r.ok){ btn.disabled=false; btn.textContent='저장하고 시작하기'; return alert(r.message||'저장에 실패했습니다.'); }
+    me = r.customer; syncOrd();
+    $('#whoName').textContent = me.name || '고객';
+    w.remove(); toast('저장되었습니다');
+    render();
+  };
+}
+
 // 주문자 정보 — 한 번 저장하면 다음 주문부터는 다시 묻지 않는다
 function ordererForm(){
   var w = modal('주문자 정보',
@@ -2266,12 +2324,13 @@ function qtotal(){
 }
 
 /* ---------------- 모달 헬퍼 ---------------- */
-function modal(title, inner){
+function modal(title, inner, locked){
   var w = document.createElement('div');
-  w.className='modal';
-  w.innerHTML = '<div class="mbox"><button class="x" data-x>×</button><h3>'+esc(title)+'</h3>'+inner+'</div>';
+  w.className = 'modal' + (locked ? ' locked' : '');
+  w.innerHTML = '<div class="mbox">' + (locked ? '' : '<button class="x" data-x>×</button>')
+    + '<h3>'+esc(title)+'</h3>' + inner + '</div>';
   document.body.appendChild(w);
-  w.addEventListener('click', function(e){
+  if (!locked) w.addEventListener('click', function(e){
     if (e.target===w || e.target.hasAttribute('data-x')) w.remove();
   });
   return w;
@@ -2292,14 +2351,16 @@ function typingIn(el){
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){
     var m = document.querySelector('.modal');
-    if (m){ e.preventDefault(); if (m.classList.contains('omodal')) cur = null; m.remove(); }
+    if (m && !m.classList.contains('locked')){ e.preventDefault(); if (m.classList.contains('omodal')) cur = null; m.remove(); }
     return;
   }
   if (e.key !== 'Backspace') return;
   if (typingIn(e.target) || e.ctrlKey || e.metaKey || e.altKey) return;
   if (!$('#shell').classList.contains('on')) return;      // 로그인 화면에서는 손대지 않는다
   var open = document.querySelector('.modal');
-  if (open){ e.preventDefault(); if (open.classList.contains('omodal')) cur = null; open.remove(); return; }
+  if (open){ e.preventDefault();
+    if (open.classList.contains('locked')) return;      // 필수 입력은 못 건너뛴다
+    if (open.classList.contains('omodal')) cur = null; open.remove(); return; }
   if (view !== 'home'){ e.preventDefault(); go('home'); }
 });
 
