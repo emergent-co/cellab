@@ -3,6 +3,7 @@
 
 
 import { adminOK, REALM } from '../../api/_lib.js';
+import { SHELL_CSS, shellTop, SHELL_END } from '../_shell.js';
 
 export async function onRequest({ request, env }) {
   // 카카오 세션이 관리자면 비밀번호를 다시 묻지 않는다.
@@ -30,14 +31,8 @@ function page(token) {
 <title>멤버십 승인 — rndsetup</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a2540;--teal:#1a6e56;--ink:#1a2332;--mut:#5a6779;--line:#e3e8ef;--bg:#f4f6fa}
-html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  color:var(--ink);background:var(--bg);line-height:1.5;-webkit-text-size-adjust:100%}
+${SHELL_CSS}
 button,input,select{font:inherit;color:inherit}
-.top{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
-.top h1{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
-.top h1 a{color:#9fc3e8;text-decoration:none;font-size:12.5px;font-weight:600}
-.top h1 a.r{margin-left:auto}
 .tabs{display:flex;gap:6px;padding:11px 12px 0;max-width:900px;margin:0 auto}
 .tabs button{flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px;
   font-size:13.5px;font-weight:700;color:var(--mut);cursor:pointer}
@@ -70,7 +65,7 @@ button,input,select{font:inherit;color:inherit}
 </style>
 </head>
 <body>
-<div class="top"><h1>멤버십 승인<a class="r" href="/admin/orders/">주문관리 →</a><a href="/admin/settlement/">정산 →</a></h1></div>
+${shellTop("멤버십 · 문의", "members")}
 <div class="tabs" id="tabs">
   <button data-t="cust" class="on">멤버십 <i id="nWait" hidden>0</i></button>
   <button data-t="inq">견적 문의 <i id="nInq" hidden>0</i></button>
@@ -163,6 +158,7 @@ function paintInq(){
 
 load();
 </script>
+${SHELL_END}
 </body>
 </html>`;
 }

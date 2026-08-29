@@ -1,6 +1,7 @@
 // functions/admin/settlement/index.js — 후불 거래처 정산 (모바일 우선) · Basic Auth
 
 import { adminOK, REALM } from '../../api/_lib.js';
+import { SHELL_CSS, shellTop, SHELL_END } from '../_shell.js';
 
 export async function onRequest({ request, env }) {
   // 카카오 세션이 관리자면 비밀번호를 다시 묻지 않는다.
@@ -28,13 +29,8 @@ function page(token) {
 <title>정산 관리 — rndsetup</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a2540;--teal:#1a6e56;--ink:#1a2332;--mut:#5a6779;--line:#e3e8ef;--bg:#f4f6fa}
-html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  color:var(--ink);background:var(--bg);line-height:1.5;-webkit-text-size-adjust:100%}
+${SHELL_CSS}
 button,input,select{font:inherit;color:inherit}
-.top{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
-.top h1{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
-.top h1 a{color:#9fc3e8;text-decoration:none;font-size:12.5px;font-weight:600;margin-left:auto}
 .wrap{padding:12px 12px 90px;max-width:900px;margin:0 auto}
 .card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 15px;margin-bottom:9px;cursor:pointer}
 .r1{display:flex;align-items:center;gap:8px}
@@ -84,7 +80,7 @@ input,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:1
 </style>
 </head>
 <body>
-<div class="top"><h1>정산 관리<a href="/admin/orders/">주문관리 →</a><a href="/admin/customers/" style="margin-left:12px">멤버십 →</a></h1></div>
+${shellTop("정산 관리", "settle")}
 <div class="wrap" id="list"><div class="empty">불러오는 중…</div></div>
 <div class="sheet" id="sheet"><div class="sbody" id="sbody"></div></div>
 <div class="toast" id="toast"></div>
@@ -190,6 +186,7 @@ function payForm(){
 }
 load();
 </` + `script>
+${SHELL_END}
 </body>
 </html>`;
 }

@@ -3,6 +3,7 @@
 
 
 import { adminOK, REALM } from '../../api/_lib.js';
+import { SHELL_CSS, shellTop, SHELL_END } from '../_shell.js';
 
 export async function onRequest({ request, env }) {
   // 카카오 세션이 관리자면 비밀번호를 다시 묻지 않는다.
@@ -31,13 +32,9 @@ function page(token) {
 <title>주문관리 — rndsetup</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a2540;--teal:#1a6e56;--ink:#1a2332;--mut:#5a6779;--line:#e3e8ef;--bg:#f4f6fa;--warn:#C2410C}
-html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-text-size-adjust:100%}
+${SHELL_CSS}
 body{padding-bottom:env(safe-area-inset-bottom)}
 button,input,select,textarea{font:inherit;color:inherit}
-.top{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:10px 14px calc(10px + env(safe-area-inset-top)) ;padding-top:calc(10px + env(safe-area-inset-top))}
-.top h1{font-size:16px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;gap:8px}
-.top h1 a{color:#9fc3e8;text-decoration:none;font-size:12.5px;font-weight:600;margin-left:auto}
 .chips{display:flex;gap:7px;overflow-x:auto;padding:9px 12px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15;-webkit-overflow-scrolling:touch}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;color:var(--mut);white-space:nowrap;cursor:pointer}
@@ -121,7 +118,7 @@ textarea{min-height:74px;resize:vertical}
 </style>
 </head>
 <body>
-<div class="top"><h1>주문관리<a href="/admin/customers/">멤버십 →</a><a href="/admin/settlement/" style="margin-left:12px">정산 →</a><a href="/admin" style="margin-left:12px">제품 →</a></h1></div>
+${shellTop("주문 관리", "orders")}
 <div class="chips" id="chips"></div>
 <div class="srch"><input id="q" type="search" placeholder="주문번호 · 거래처 · 품명 검색" autocomplete="off"></div>
 <div class="wrap" id="list"><div class="empty">불러오는 중…</div></div>
@@ -385,6 +382,7 @@ loadChips(); loadList();
 fetch('/api/cron/outbox',{headers:H}).then(function(r){return r.json();})
   .then(function(r){ if(r && r.sent) toast('예약 발송 '+r.sent+'건 처리됨'); }).catch(function(){});
 </` + `script>
+${SHELL_END}
 </body>
 </html>`;
 }
