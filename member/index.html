@@ -55,7 +55,65 @@ a{color:inherit;text-decoration:none}
 .nav.adm a:hover{background:var(--soft-blue);color:var(--navy)}
 /* 관리자 화면 */
 .ops2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
-.opsh{font-size:12px;font-weight:800;color:var(--mut-2);letter-spacing:.04em;margin-bottom:10px}
+/* 헤더 알림 */
+.head .bell{position:relative;background:0;border:0;width:36px;height:36px;border-radius:50%;
+  cursor:pointer;color:var(--mut);margin-left:auto;flex:0 0 auto;display:flex;
+  align-items:center;justify-content:center;padding:0}
+.head .bell[hidden]{display:none}
+.head .bell:hover{background:var(--soft-blue);color:var(--navy)}
+.head .bell svg{width:20px;height:20px}
+.head .bell.has{color:var(--navy)}
+.bdot{position:absolute;top:2px;right:1px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;
+  background:#B45309;color:#fff;font-size:10px;font-weight:800;font-style:normal;line-height:16px;text-align:center}
+.bdot[hidden]{display:none}
+.head .bell + .notif + .who{margin-left:12px}
+.notif{position:fixed;right:18px;top:calc(var(--head) + 6px);width:340px;max-height:70vh;overflow-y:auto;
+  background:#fff;border:1px solid var(--line);border-radius:14px;z-index:50;
+  box-shadow:0 12px 34px rgba(26,26,26,.14);padding:6px}
+.notif[hidden]{display:none}
+.nfh{font-size:12px;font-weight:800;color:var(--mut);padding:10px 12px 8px;display:flex;align-items:center;gap:6px}
+.nfh i{font-style:normal;background:#B45309;color:#fff;border-radius:999px;padding:1px 7px;font-size:10.5px}
+.nfg{border-top:1px solid var(--line);padding:8px 0 4px}
+.nfg:first-of-type{border-top:0}
+.nfgt{font-size:11px;font-weight:800;color:var(--mut-2);letter-spacing:.03em;padding:2px 12px 6px}
+.nfgt b{color:#B45309}
+.nfr{display:flex;align-items:center;gap:9px;width:100%;background:0;border:0;padding:8px 12px;
+  cursor:pointer;text-align:left;font:inherit;color:inherit;border-radius:9px}
+.nfr:hover{background:var(--soft-blue)}
+.nfr .t{flex:1;min-width:0}
+.nfr .t b{display:block;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nfr .t small{display:block;font-size:11.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nfr .d{flex:0 0 auto;font-size:11px;color:var(--mut-2);font-variant-numeric:tabular-nums}
+.nfmore{display:block;width:100%;background:0;border:0;padding:7px 12px 9px;font:inherit;
+  font-size:12px;font-weight:700;color:var(--navy);cursor:pointer;text-align:left}
+.nfmore:hover{text-decoration:underline}
+.nfempty{padding:26px 14px 30px;text-align:center;font-size:13px;color:var(--mut)}
+@media(max-width:560px){ .notif{right:8px;left:8px;width:auto} }
+
+/* 새로 들어온 것 — 목록 위 강조 블록 */
+.newbox{border:1px solid #F0C98A;background:#FFFBF3;border-radius:12px;padding:10px 12px 8px;margin-bottom:12px}
+.newbox[hidden]{display:none}
+.newh{font-size:11.5px;font-weight:800;color:#92400E;letter-spacing:.03em;margin-bottom:6px}
+.newh i{font-style:normal;background:#B45309;color:#fff;border-radius:999px;padding:1px 7px;margin-left:5px}
+.newrow{display:flex;align-items:center;gap:9px;width:100%;background:#fff;border:1px solid #F3DCB8;
+  border-radius:9px;padding:9px 11px;margin-bottom:5px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.newrow:last-child{margin-bottom:0}
+.newrow:hover{border-color:#E0B476;background:#FFFDF8}
+.newrow .t{flex:1;min-width:0}
+.newrow .t b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.newrow .t small{display:block;font-size:11.5px;color:var(--mut)}
+.newrow .a{flex:0 0 auto;font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* 사이드바 메뉴 배지 */
+.nav.adm a{position:relative}
+.nb{position:absolute;right:18px;top:50%;transform:translateY(-50%);font-style:normal;
+  background:#B45309;color:#fff;border-radius:999px;font-size:10.5px;font-weight:800;padding:1px 7px}
+.nb[hidden]{display:none}
+.asfoot td{background:#FAFAFB;font-size:12.5px;color:var(--mut);border-top:1px solid var(--line)}
+.asfoot td b{color:var(--ink);font-size:14px}
+.opsh{font-size:12px;font-weight:800;color:var(--mut-2);letter-spacing:.04em;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px}
+.opsh .cnt{font-style:normal;background:#B45309;color:#fff;border-radius:999px;padding:1px 7px;font-size:10.5px}
+.opsh .cnt[hidden]{display:none}
 @media(max-width:1100px){.ops2{grid-template-columns:1fr;gap:26px}}
 .amodal .mbox{max-width:760px;padding:20px 22px 22px}
 .achips{display:flex;gap:7px;overflow-x:auto;padding:2px 0 14px;-webkit-overflow-scrolling:touch}
@@ -124,7 +182,7 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
 .head .hbrand em{font-style:normal;font-size:12.5px;font-weight:600;color:var(--mut);margin-left:7px}
 .head h1{font-size:14px;font-weight:700;color:var(--mut);padding-left:16px;
   border-left:1px solid var(--line);line-height:1.2;flex:0 0 auto}
-.head .who{margin-left:auto;font-size:13.5px;color:var(--mut);white-space:nowrap}
+.head .who{margin-left:12px;font-size:13.5px;color:var(--mut);white-space:nowrap}
 .head .who b{color:var(--ink);font-weight:700}
 .head .who .hey{font-style:normal}
 .head .who button{background:0;border:0;color:var(--mut);font-size:13.5px;cursor:pointer;margin-left:14px}
@@ -518,8 +576,8 @@ textarea{min-height:78px;resize:vertical}
     </nav>
     <nav class="nav adm" id="admNav" hidden>
       <div class="admh">관리자</div>
-      <a data-v="admOps">주문 · 정산</a>
-      <a data-v="admMembers">멤버십 · 문의</a>
+      <a data-v="admOps">주문 · 정산<i class="nb" id="nbOps" hidden></i></a>
+      <a data-v="admMembers">멤버십 · 문의<i class="nb" id="nbMem" hidden></i></a>
     </nav>
     <div class="labbox" id="labBox"></div>
     <div class="foot">070-8983-2600<br>info@rndsetup.com</div>
@@ -531,6 +589,11 @@ textarea{min-height:78px;resize:vertical}
     <a class="hbrand" href="/" title="실험셋업연구소 홈페이지로">실험셋업연구소<em>주문·정산</em></a>
     <button class="backbtn" id="backBtn" title="홈으로 (백스페이스)" hidden>←</button>
     <h1 id="headTitle">대시보드</h1>
+    <button class="bell" id="bell" hidden aria-label="알림" title="알림">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7M13.7 20a2 2 0 0 1-3.4 0"/></svg>
+      <i class="bdot" id="bellN" hidden></i></button>
+    <div class="notif" id="notif" hidden></div>
     <div class="who"><span id="whoOrg" class="worg"></span><b id="whoName">—</b><i class="hey">님, 안녕하세요</i><button id="logout">로그아웃</button></div>
   </header>
 
@@ -602,7 +665,11 @@ async function boot(){
   }
   me = r.customer; lab = r.lab || null; isAdm = r.admin === true;
   if (lab) lab.members = (r.members||[]).length;
-  if (isAdm) $('#admNav').hidden = false;
+  if (isAdm){
+    $('#admNav').hidden = false;
+    setTimeout(admPoll, 400);
+    setInterval(admPoll, 120000);      // 2분마다 조용히 갱신
+  }
 
   if (ref){
     fetch('/api/order/lab',{method:'POST',headers:{'content-type':'application/json'},
@@ -888,6 +955,80 @@ function render(){
 /* ================= 관리자 화면 (사이드바를 그대로 쓴다) ================= */
 // 별도 페이지를 두지 않고 이 셸 안에서 전환한다. 인증은 카카오 세션 쿠키가 한다.
 var AH = { 'content-type': 'application/json' };
+// 사이드바 메뉴에 '기다리는 건수'를 띄운다 — 다른 화면에 있어도 눈에 들어온다
+var admPend = { ord:0, settle:0, mem:0 };
+function admBadges(){
+  function set(id, n){ var el=$(id); if(!el) return; el.textContent = n||''; el.hidden = !n; }
+  set('#nbOps', admPend.ord + admPend.settle);
+  set('#nbMem', admPend.mem);
+}
+// 알림에 띄울 실제 항목들 — 숫자만으로는 뭐가 왔는지 모른다
+var admFeed = { ord:[], settle:[], mem:[], inq:[] };
+async function admPoll(){
+  if (!isAdm) return;
+  try {
+    var a = await fetch('/api/admin/orders?status='+encodeURIComponent('요청접수'),{headers:AH})
+      .then(function(r){return r.json();});
+    admFeed.ord = a.orders || [];
+
+    var q = await fetch('/api/admin/settlement?requests=1',{headers:AH}).then(function(r){return r.json();});
+    admFeed.settle = (q.requests||[]).filter(function(r){ return ['정산요청','처리중'].indexOf(r.status)>=0; });
+
+    var m = await fetch('/api/admin/customers',{headers:AH}).then(function(r){return r.json();});
+    admFeed.mem = (m.customers||[]).filter(function(c){ return c.access==='대기'; });
+
+    var iq = await fetch('/api/admin/customers?inquiries=1',{headers:AH}).then(function(r){return r.json();});
+    admFeed.inq = (iq.inquiries||[]).filter(function(x){ return x.status==='접수'; });
+
+    admPend.ord = admFeed.ord.length;
+    admPend.settle = admFeed.settle.length;
+    admPend.mem = admFeed.mem.length + admFeed.inq.length;
+    admBadges(); paintNotif();
+  } catch(e){}
+}
+
+function notifTotal(){
+  return admFeed.ord.length + admFeed.settle.length + admFeed.mem.length + admFeed.inq.length;
+}
+function paintNotif(){
+  var bell = $('#bell'), dot = $('#bellN'), box = $('#notif');
+  if (!bell || !isAdm) return;
+  bell.hidden = false;
+  var n = notifTotal();
+  dot.textContent = n > 99 ? '99+' : String(n);
+  dot.hidden = !n;
+  bell.classList.toggle('has', !!n);
+
+  var groups = [
+    ['새 주문',      admFeed.ord,    'admOps',     function(o){ return [o.title||'(제목 없음)', (o.company||o.contact||'')+(o.orderer_name?' · '+o.orderer_name:''), String(o.created_at||'').slice(5,16)]; }],
+    ['정산 요청',    admFeed.settle, 'admOps',     function(r){ var i=(r.items||[])[0];
+        return [(i?i.name:'(항목 없음)')+((r.items||[]).length>1?' 외 '+((r.items||[]).length-1)+'건':''),
+                (r.company||r.contact||'')+' · '+won(r.total)+'원', String(r.created_at||'').slice(5,16)]; }],
+    ['멤버십 승인',  admFeed.mem,    'admMembers', function(c){ return [c.company||c.name||'—', c.work_email||c.email||'', String(c.created_at||'').slice(5,16)]; }],
+    ['견적 문의',    admFeed.inq,    'admMembers', function(q){ return [q.name+(q.org_name?' · '+q.org_name:''),
+                (q.items||[]).length+'건 · '+(q.email||q.phone||''), String(q.created_at||'').slice(5,16)]; }],
+  ];
+
+  var h = '<div class="nfh">알림'+(n?'<i>'+n+'</i>':'')+'</div>';
+  var any = false;
+  groups.forEach(function(g){
+    var rows = g[1]; if (!rows.length) return;
+    any = true;
+    h += '<div class="nfg"><div class="nfgt">'+esc(g[0])+' <b>'+rows.length+'</b></div>'
+      + rows.slice(0,4).map(function(x){
+          var f = g[3](x);
+          return '<button class="nfr" data-go="'+g[2]+'"><span class="t"><b>'+esc(f[0])+'</b>'
+            +'<small>'+esc(f[1])+'</small></span><span class="d">'+esc(f[2])+'</span></button>'; }).join('')
+      + (rows.length>4 ? '<button class="nfmore" data-go="'+g[2]+'">전체 '+rows.length+'건 보기</button>' : '')
+      + '</div>';
+  });
+  if (!any) h += '<div class="nfempty">새로 들어온 것이 없습니다.</div>';
+  box.innerHTML = h;
+  box.querySelectorAll('[data-go]').forEach(function(b){
+    b.onclick = function(){ box.hidden = true; go(b.dataset.go); };
+  });
+}
+
 function abadge(s){ return '<span class="badge s'+(SIDX[s]==null?7:SIDX[s])+'">'+esc(s)+'</span>'; }
 function akv(k,v){ return '<div class="kv"><span>'+esc(k)+'</span><span>'+esc(v||'—')+'</span></div>'; }
 function amodal(title, inner){
@@ -901,13 +1042,18 @@ function viewAdmOps(){
   $('#main').innerHTML = '<div class="ttl">주문 · 정산 관리</div>'
     + '<div class="ops2">'
       + '<section class="opscol"><h3 class="opsh">주문</h3>'
+        + '<div class="newbox" id="aoNew" hidden></div>'
         + '<div class="achips" id="aoChips"></div>'
         + '<div class="tools" style="margin-bottom:10px"><input type="search" id="aoQ" placeholder="주문번호 · 거래처 · 품명" value="'+esc(aoKw)+'"></div>'
         + '<div class="panel list" id="aoList"><div class="empty">불러오는 중…</div></div></section>'
       + '<section class="opscol"><h3 class="opsh">정산</h3>'
+        + '<div class="newbox" id="asNew" hidden></div>'
+        + '<div class="achips" id="asChips"></div>'
+        + '<div class="tools" style="margin-bottom:10px"><input type="search" id="asQ" placeholder="거래처 · 담당자" value="'+esc(asKw)+'"></div>'
         + '<div class="panel list" id="asList"><div class="empty">불러오는 중…</div></div></section>'
     + '</div>';
   var t; $('#aoQ').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ aoKw=e.target.value.trim(); aoList(); },300); };
+  var t2; $('#asQ').oninput = function(e){ clearTimeout(t2); t2=setTimeout(function(){ asKw=e.target.value.trim(); asPaint(); },200); };
   aoChips(); aoList(); asLoad();
 }
 async function aoChips(){
@@ -918,6 +1064,22 @@ async function aoChips(){
     return '<button class="achip'+(x[0]===aoFilter?' on':'')+'" data-s="'+esc(x[0])+'">'+esc(x[0])+'<b>'+x[1]+'</b></button>'; }).join('');
   el.onclick = function(e){ var b=e.target.closest('.achip'); if(!b) return; aoFilter=b.dataset.s; aoChips(); aoList(); };
 }
+// 아직 손대지 않은 주문 — 목록 위에 띄운다
+function aoNew(rows){
+  var box = $('#aoNew'); if(!box) return;
+  var pend = rows.filter(function(o){ return o.status==='요청접수'; });
+  if(!pend.length){ box.innerHTML=''; box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = '<div class="newh">새 주문 <i>'+pend.length+'</i></div>'
+    + pend.map(function(o){
+        return '<button class="newrow" data-oid="'+o.id+'">'
+          +'<span class="badge s0">요청접수</span>'
+          +'<span class="t"><b>'+esc(o.title||'(제목 없음)')+'</b>'
+            +'<small>'+esc(o.company||o.contact||'')+(o.orderer_name?' · '+esc(o.orderer_name):'')+'</small></span>'
+          +'<span class="a">'+esc(String(o.created_at||'').slice(5,10))+'</span></button>'; }).join('');
+  box.querySelectorAll('[data-oid]').forEach(function(b){ b.onclick=function(){ aoOpen(b.dataset.oid); }; });
+}
+
 async function aoList(){
   var u = '/api/admin/orders?';
   if (aoFilter!=='전체') u += 'status='+encodeURIComponent(aoFilter)+'&';
@@ -925,6 +1087,7 @@ async function aoList(){
   var r = await fetch(u,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
   var el = $('#aoList'); if(!el) return;
   var rows = r.orders||[];
+  if (aoFilter==='전체' && !aoKw) aoNew(rows);   // 필터 안 걸었을 때만 상단 강조
   if(!rows.length){ el.innerHTML='<div class="empty">해당 주문이 없습니다.</div>'; return; }
   el.innerHTML = '<table class="cards orders"><thead><tr><th style="width:92px">상태</th><th>주문 내용</th>'
     +'<th style="width:88px">요청일</th><th style="width:118px">금액</th></tr></thead><tbody>'
@@ -932,7 +1095,7 @@ async function aoList(){
         var meta=[esc(o.order_no)];
         if(o.company||o.contact) meta.push(esc(o.company||o.contact));
         if(o.orderer_name) meta.push(esc(o.orderer_name));
-        return '<tr data-id="'+o.id+'"><td>'+abadge(o.status)+'</td>'
+        return '<tr data-id="'+o.id+'" class="'+(o.status==='요청접수'?'act':'')+'"><td>'+abadge(o.status)+'</td>'
           +'<td class="l ttd"><b>'+esc(o.title||'(제목 없음)')+'</b><small class="rmeta">'+meta.join(' · ')+'</small></td>'
           +'<td class="dt">'+esc(String(o.created_at||'').slice(2,10))+'</td>'
           +'<td class="n">'+(o.total_amount?won(o.total_amount)+'원':'<span class="dim">미정</span>')+'</td></tr>'; }).join('')
@@ -1068,20 +1231,110 @@ async function aoSave(){
 }
 
 /* ---- 정산 관리 ---- */
+var asAll = [], asReq = [], asFilter = '전체', asKw = '';
+var SQPEND = ['정산요청','처리중'];   // 아직 내 손을 기다리는 상태
 async function asLoad(){
   var r = await fetch('/api/admin/settlement',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
+  asAll = r.customers || [];
+  var q = await fetch('/api/admin/settlement?requests=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
+  asReq = q.requests || [];
+  asChips(); asPaint(); admBadges();
+}
+function asMatch(c){
+  if (asFilter==='잔여 있음' && !(c.due > 0)) return false;
+  if (asFilter==='후불' && c.billing_mode!=='후불') return false;
+  if (asFilter==='선불' && c.billing_mode==='후불') return false;
+  if (asKw){
+    var t = ((c.company||'')+' '+(c.name||'')).toLowerCase();
+    if (t.indexOf(asKw.toLowerCase()) < 0) return false;
+  }
+  return true;
+}
+function asChips(){
+  var el=$('#asChips'); if(!el) return;
+  var n = {
+    '전체': asAll.length,
+    '잔여 있음': asAll.filter(function(c){ return c.due > 0; }).length,
+    '후불': asAll.filter(function(c){ return c.billing_mode==='후불'; }).length,
+    '선불': asAll.filter(function(c){ return c.billing_mode!=='후불'; }).length,
+  };
+  el.innerHTML = Object.keys(n).map(function(k){
+    return '<button class="achip'+(k===asFilter?' on':'')+'" data-s="'+esc(k)+'">'+esc(k)+'<b>'+n[k]+'</b></button>'; }).join('');
+  el.onclick = function(e){ var b=e.target.closest('.achip'); if(!b) return; asFilter=b.dataset.s; asChips(); asPaint(); };
+}
+function asPaint(){
+  asNew();
   var el=$('#asList'); if(!el) return;
-  var cs = r.customers||[];
-  if(!cs.length){ el.innerHTML='<div class="empty">거래처가 없습니다.</div>'; return; }
+  var cs = asAll.filter(asMatch);
+  if(!cs.length){ el.innerHTML='<div class="empty">'+(asAll.length?'해당하는 거래처가 없습니다.':'거래처가 없습니다.')+'</div>'; return; }
+  var sumDue = cs.reduce(function(a,c){ return a + (c.due||0); },0);
   el.innerHTML = '<table class="cards"><thead><tr><th>거래처</th><th style="width:126px">잔여</th></tr></thead><tbody>'
     + cs.map(function(c){
         return '<tr data-id="'+c.id+'"><td class="l"><b>'+esc(c.company||c.name||'—')+'</b>'
           +(c.billing_mode==='후불'?' <span class="badge s0">후불</span>':'')
           +'<small class="rmeta">지출 '+won(c.spent)+' · 정산 '+won(c.paid)+'</small></td>'
           +'<td class="n"><b'+(c.due?' style="color:#B45309"':'')+'>'+won(c.due)+'원</b></td></tr>'; }).join('')
+    + '<tr class="asfoot" style="cursor:default"><td class="l">'+cs.length+'곳 합계</td>'
+      + '<td class="n"><b>'+won(sumDue)+'원</b></td></tr>'
     +'</tbody></table>';
-  el.querySelectorAll('tbody tr').forEach(function(tr){ tr.onclick=function(){ asOpen(tr.dataset.id); }; });
+  el.querySelectorAll('tbody tr[data-id]').forEach(function(tr){ tr.onclick=function(){ asOpen(tr.dataset.id); }; });
 }
+// 새로 들어온 정산 요청 — 놓치면 안 되는 것이라 목록 위에 띄운다
+function asNew(){
+  var box = $('#asNew'); if(!box) return;
+  var pend = asReq.filter(function(r){ return SQPEND.indexOf(r.status)>=0; });
+  if(!pend.length){ box.innerHTML=''; box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = '<div class="newh">새 정산 요청 <i>'+pend.length+'</i></div>'
+    + pend.map(function(r){
+        var its = r.items||[];
+        var ttl = its.length ? its[0].name + (its.length>1?' 외 '+(its.length-1)+'건':'') : '(항목 없음)';
+        return '<button class="newrow" data-sid="'+r.id+'">'
+          +'<span class="badge '+(SQ[r.status]||'q0')+'">'+esc(r.status)+'</span>'
+          +'<span class="t"><b>'+esc(r.company||r.contact||'—')+'</b><small>'+esc(ttl)+'</small></span>'
+          +'<span class="a">'+won(r.total)+'원</span></button>'; }).join('');
+  box.querySelectorAll('[data-sid]').forEach(function(b){
+    b.onclick = function(){ asReqOpen(Number(b.dataset.sid)); };
+  });
+}
+var SQADMIN = ['정산요청','처리중','서류발급 완료','입금완료','반려'];
+function asReqOpen(id){
+  var r = asReq.find(function(x){ return x.id===id; }); if(!r) return;
+  var its = r.items||[];
+  var w = amodal('정산 요청 · '+(r.company||r.contact||''),
+     '<div class="dbody">'
+    + akv('요청일', String(r.created_at||'').slice(0,16))
+    + akv('요청자', r.contact)
+    + akv('결제', r.method)
+    + akv('회신 메일', r.reply_email)
+    + akv('필요 서류', [r.quote_date&&('견적서 '+r.quote_date), r.statement_date&&('거래명세서 '+r.statement_date),
+        r.taxinvoice_date&&('세금계산서 '+r.taxinvoice_date)].filter(Boolean).join(' · '))
+    + (r.memo ? akv('메모', r.memo) : '')
+    + '<div class="sec"><h4>항목</h4>'
+      + (its.length ? '<table><thead><tr><th class="l">항목</th><th style="width:56px">수량</th>'
+          +'<th style="width:104px">단가</th><th style="width:110px">소계</th></tr></thead><tbody>'
+          + its.map(function(i){ return '<tr style="cursor:default"><td class="l">'+esc(i.name)+'</td>'
+              +'<td>'+(i.qty||1)+'</td><td class="n">'+won(i.price)+'</td>'
+              +'<td class="n">'+won((i.qty||1)*(i.price||0))+'</td></tr>'; }).join('')
+          + '</tbody></table>' : '<div class="empty">항목 없음</div>')
+      + '<div class="sum"><span>공급가액 '+won(r.supply)+'원 · 부가세 '+won(r.vat)+'원</span>'
+        + '<span>'+won(r.total)+'원</span></div></div>'
+    + '<div class="sec"><h4>처리 상태</h4><select id="sq-st">'
+      + SQADMIN.map(function(x){ return '<option'+(x===r.status?' selected':'')+'>'+x+'</option>'; }).join('')
+      + '</select></div>'
+    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ok" id="sq-go">상태 저장</button></div></div>');
+  $('#sq-go').onclick = async function(){
+    var btn=$('#sq-go'); btn.disabled=true; btn.textContent='저장 중…';
+    var res = await fetch('/api/admin/settlement',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'settle_status', settlement_id:r.id, status:$('#sq-st').value})})
+      .then(function(x){return x.json();});
+    btn.disabled=false; btn.textContent='상태 저장';
+    if(!res.ok) return alert(res.message||'실패');
+    w.remove(); toast('저장했습니다'); asLoad();
+  };
+}
+
 var asCur=null;
 async function asOpen(id){
   var d = await fetch('/api/admin/settlement?customer_id='+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
@@ -1143,16 +1396,15 @@ function asPayForm(){
 function kstToday(){ return new Date(Date.now()+9*3600000).toISOString().slice(0,10); }
 
 /* ---- 멤버십 · 문의 ---- */
-var amTab='cust', amCust=[], amInq=[];
-async function viewAdmMembers(){
+var amCust=[], amInq=[];
+function viewAdmMembers(){
   $('#main').innerHTML = '<div class="ttl">멤버십 · 문의</div>'
-    + '<div class="tabs" id="amTabs">'
-      + '<button data-t="cust" class="on">멤버십<i id="amW"></i></button>'
-      + '<button data-t="inq">견적 문의<i id="amI"></i></button></div>'
-    + '<div class="panel list" id="amList"><div class="empty">불러오는 중…</div></div>';
-  $('#amTabs').onclick = function(e){ var b=e.target.closest('button[data-t]'); if(!b) return;
-    amTab=b.dataset.t; document.querySelectorAll('#amTabs button').forEach(function(x){ x.classList.toggle('on',x===b); });
-    amPaint(); };
+    + '<div class="ops2">'
+      + '<section class="opscol"><h3 class="opsh">멤버십<i class="cnt" id="amW"></i></h3>'
+        + '<div class="panel list" id="amCust"><div class="empty">불러오는 중…</div></div></section>'
+      + '<section class="opscol"><h3 class="opsh">견적 문의<i class="cnt" id="amI"></i></h3>'
+        + '<div class="panel list" id="amInqs"><div class="empty">불러오는 중…</div></div></section>'
+    + '</div>';
   amLoad();
 }
 async function amLoad(){
@@ -1161,55 +1413,56 @@ async function amLoad(){
   var b = await fetch('/api/admin/customers?inquiries=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
   amInq = b.inquiries||[];
   var w = amCust.filter(function(c){ return c.access==='대기'; }).length;
-  if($('#amW')){ $('#amW').textContent = w||''; }
-  if($('#amI')){ $('#amI').textContent = amInq.length||''; }
-  amPaint();
+  if($('#amW')){ $('#amW').textContent = w||''; $('#amW').hidden = !w; }
+  if($('#amI')){ $('#amI').textContent = amInq.length||''; $('#amI').hidden = !amInq.length; }
+  amPaint(); admBadges();
 }
 var ATAG = {'대기':'s0','승인':'s2','거절':'s8'};
 function amPaint(){
-  var el=$('#amList'); if(!el) return;
-  if(amTab==='cust'){
-    if(!amCust.length) return el.innerHTML='<div class="empty">회원이 없습니다.</div>';
-    el.innerHTML = '<table class="cards"><thead><tr><th style="width:82px">상태</th><th>회원</th>'
-      +'<th style="width:76px">주문</th><th style="width:180px">처리</th></tr></thead><tbody>'
+  var a=$('#amCust'), b=$('#amInqs');
+  if(a){
+    a.innerHTML = !amCust.length ? '<div class="empty">회원이 없습니다.</div>'
+      : '<table class="cards"><thead><tr><th style="width:78px">상태</th><th>회원</th>'
+        +'<th style="width:150px">처리</th></tr></thead><tbody>'
       + amCust.map(function(c){
           var meta=[esc(c.name||'—')];
           meta.push(c.work_email ? esc(c.work_email)
             : '<em class="warn">업무 메일 미입력</em>' + (c.email?' ('+esc(c.email)+')':''));
-          if(c.phone) meta.push(esc(c.phone));
           if(c.lab_name) meta.push('실험실 '+esc(c.lab_name));
           return '<tr class="'+(c.access==='대기'?'act':'')+'" style="cursor:default">'
             +'<td><span class="badge '+(ATAG[c.access]||'s7')+'">'+esc(c.access||'대기')+'</span></td>'
-            +'<td class="l"><b>'+esc(c.company||c.name||'—')+'</b><small class="rmeta">'+meta.join(' · ')+'</small></td>'
-            +'<td>'+(c.n_orders||0)+'</td>'
+            +'<td class="l"><b>'+esc(c.company||c.name||'—')+'</b>'
+              +(c.n_orders?' <span class="rmeta">주문 '+c.n_orders+'</span>':'')
+              +'<small class="rmeta">'+meta.join(' · ')+'</small></td>'
             +'<td class="amact">'
               +(c.access!=='승인'?'<button class="mini ok" data-id="'+c.id+'" data-a="승인">승인</button>':'')
               +(c.access!=='대기'?'<button class="mini" data-id="'+c.id+'" data-a="대기">대기</button>':'')
               +(c.access!=='거절'?'<button class="mini no" data-id="'+c.id+'" data-a="거절">거절</button>':'')
             +'</td></tr>'; }).join('')
       +'</tbody></table>';
-    el.querySelectorAll('.amact button').forEach(function(b){ b.onclick=async function(){
-      var a=b.dataset.a;
-      if(a!=='승인' && !confirm('이 회원을 "'+a+'" 상태로 바꿀까요?')) return;
-      b.disabled=true;
+    a.querySelectorAll('.amact button').forEach(function(btn){ btn.onclick=async function(){
+      var act=btn.dataset.a;
+      if(act!=='승인' && !confirm('이 회원을 "'+act+'" 상태로 바꿀까요?')) return;
+      btn.disabled=true;
       var r = await fetch('/api/admin/customers',{method:'POST',headers:AH,
-        body:JSON.stringify({id:Number(b.dataset.id),access:a})}).then(function(x){return x.json();});
-      if(r.ok){ toast(a+' 처리했습니다'); amLoad(); } else { b.disabled=false; alert(r.message||'실패'); }
+        body:JSON.stringify({id:Number(btn.dataset.id),access:act})}).then(function(x){return x.json();});
+      if(r.ok){ toast(act+' 처리했습니다'); amLoad(); } else { btn.disabled=false; alert(r.message||'실패'); }
     }; });
-  } else {
-    if(!amInq.length) return el.innerHTML='<div class="empty">들어온 문의가 없습니다.</div>';
-    el.innerHTML = amInq.map(function(q){
-      var its=q.items||[];
-      return '<div class="inqrow"><div class="r1"><b>'+esc(q.name||'—')+'</b>'
-        +(q.org_name?'<span class="badge s7">'+esc(q.org_name)+'</span>':'')
-        +'<span class="badge s1">'+its.length+'건</span>'
-        +'<span class="rmeta" style="margin-left:auto">'+esc(String(q.created_at||'').slice(0,16))+'</span></div>'
-        +'<div class="rmeta">'+(q.email?esc(q.email):'')+(q.phone?' · '+esc(q.phone):'')+'</div>'
-        +(its.length?'<div class="inqit">'+its.map(function(i){
-            return '<div>'+esc(i.name)+(i.spec?' <small>'+esc(i.spec)+'</small>':'')
-              +'<b>'+(i.qty||1)+'개</b></div>'; }).join('')+'</div>':'')
-        +(q.note?'<div class="inqnote">'+esc(q.note)+'</div>':'')
-        +'</div>'; }).join('');
+  }
+  if(b){
+    b.innerHTML = !amInq.length ? '<div class="empty">들어온 문의가 없습니다.</div>'
+      : amInq.map(function(q){
+          var its=q.items||[];
+          return '<div class="inqrow"><div class="r1"><b>'+esc(q.name||'—')+'</b>'
+            +(q.org_name?'<span class="badge s7">'+esc(q.org_name)+'</span>':'')
+            +'<span class="badge s1">'+its.length+'건</span>'
+            +'<span class="rmeta" style="margin-left:auto">'+esc(String(q.created_at||'').slice(0,16))+'</span></div>'
+            +'<div class="rmeta">'+(q.email?esc(q.email):'')+(q.phone?' · '+esc(q.phone):'')+'</div>'
+            +(its.length?'<div class="inqit">'+its.map(function(i){
+                return '<div>'+esc(i.name)+(i.spec?' <small>'+esc(i.spec)+'</small>':'')
+                  +'<b>'+(i.qty||1)+'개</b></div>'; }).join('')+'</div>':'')
+            +(q.note?'<div class="inqnote">'+esc(q.note)+'</div>':'')
+            +'</div>'; }).join('');
   }
 }
 
@@ -2464,6 +2717,17 @@ function modal(title, inner, locked){
 
 // 헤더 '홈으로'
 $('#backBtn').onclick = function(){ closeOrderModal(); go('home'); };
+
+$('#bell').onclick = function(e){
+  e.stopPropagation();
+  var box = $('#notif');
+  box.hidden = !box.hidden;
+  if (!box.hidden) admPoll();
+};
+document.addEventListener('click', function(e){
+  var box = $('#notif');
+  if (box && !box.hidden && !e.target.closest('#notif') && !e.target.closest('#bell')) box.hidden = true;
+});
 
 // 브라우저는 오래전부터 백스페이스로 뒤로가기를 하지 않는다.
 // 손은 그걸 기억하고 있으니 우리가 직접 처리해준다.
