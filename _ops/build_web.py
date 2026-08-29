@@ -105,7 +105,7 @@ def body(cfg):
     if cfg.get('note'):
         s += '<p class="pkg-note" style="margin-top:16px">%s</p>' % cfg['note']
     if cfg.get('warn'):
-        s += '<p class="pkg-note" style="border-left:3px solid #854F0B;padding-left:12px;color:#5a4a2a">%s</p>'%cfg['warn']
+        s += '<p class="pkg-note" style="background:#FDF6E9;border:1px solid #F3E0BC;border-radius:10px;padding:12px 14px;color:#3a3330">%s</p>'%cfg['warn']
     if cfg.get('cross'):
         s += '<p class="pkg-note" style="margin-top:14px">%s</p>'%cfg['cross']
     s += '<p style="margin-top:16px"><button type="button" class="qbtn" data-quote="%s">견적문의</button></p>\n</div></section>\n'%esc(cfg['quote'])
