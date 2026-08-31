@@ -386,7 +386,7 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/guide/', '삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업'),
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
-    ('/product/', '제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 241종 (삼흥에너지·리드플루이드·Alicat·가오스유니온)'),
+    ('/product/', '제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 (삼흥에너지·리드플루이드·Alicat·가오스유니온)'),
     ('/brands/gaossunion/co2rr-catalyst/', 'CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드'),
     ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
     ('/guides/', '선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법'),

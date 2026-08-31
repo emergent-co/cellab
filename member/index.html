@@ -1019,7 +1019,13 @@ function skeleton(){
 function render(){
   // 관리자 화면도 이 셸 안에서 그린다 — 사이드바가 그대로 남는다
   if (ADMVIEWS.indexOf(view) >= 0){
-    if (!isAdm){ view='home'; syncNav(); return paintHome(); }
+    // 관리자가 아니면 홈으로 되돌린다 — 주소(해시)까지 같이 되돌려야
+    // 새로고침할 때마다 같은 시도를 반복하지 않는다
+    if (!isAdm){
+      view='home';
+      if (location.hash && location.hash!=='#home') location.replace('#home');
+      syncNav(); return paintHome();
+    }
     if (view==='admTodo') return viewAdmTodo();
     if (view==='admOps')  return viewAdmOps();
     if (view==='admDocs') return viewAdmDocs();
