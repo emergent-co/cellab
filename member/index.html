@@ -4957,7 +4957,9 @@ async function dqSubmit(preview){
 
 /* ---- 한 벌로 뽑은 서류: 한 통으로 보내거나 예약한다 ---- */
 function dqBatch(made, to){
-  var pick = made.map(function(d){ return d.id; });
+  // 진짜 전자세금계산서는 바로빌이 국세청 양식으로 고객에게 직접 보낸다.
+  // 우리 출력본까지 같이 보내면 비슷하게 생긴 문서가 두 통 가서 헷갈린다 — 기본은 빼둔다.
+  var pick = made.filter(function(d){ return d.type !== 'taxinvoice'; }).map(function(d){ return d.id; });
   var w = amodal('발행 완료', '<div class="dbody" id="dqBBody"></div>');
   var h3 = w.querySelector('h3');
   if (h3) h3.innerHTML = made.length+'종 발행 <small style="font-weight:600;color:var(--mut)">'
@@ -4966,10 +4968,17 @@ function dqBatch(made, to){
   $('#dqBBody').innerHTML =
      '<div class="sec"><h4>발행된 문서</h4>'
       + made.map(function(d){
-          return '<div class="bdoc"><label class="bck"><input type="checkbox" data-id="'+d.id+'" checked>'
-            + '<span><b>'+esc(DTYPE[d.type])+'</b><small>'+esc(d.doc_no)+'</small></span></label>'
+          var tax = d.type === 'taxinvoice';
+          return '<div class="bdoc"><label class="bck"><input type="checkbox" data-id="'+d.id+'"'+(tax?'':' checked')+'>'
+            + '<span><b>'+esc(DTYPE[d.type])+'</b><small>'+esc(d.doc_no)
+              + (tax ? ' · 국세청 발행은 따로' : '')+'</small></span></label>'
             + '<button class="mini" data-open="'+esc(d.view)+'">열기</button>'
             + '<button class="mini" data-open="'+esc(d.view)+'&f=pdf">PDF</button></div>'; }).join('')
+     + (made.some(function(d){ return d.type==='taxinvoice'; })
+        ? '<p class="dnote" style="margin-top:8px">세금계산서는 <b>빼둔 채로</b> 보냅니다 — 법적 효력이 있는 '
+          + '전자세금계산서는 문서 상세의 <b>국세청 발행</b>으로 내보내면 바로빌이 국세청 양식으로 직접 메일을 보냅니다. '
+          + '우리 출력본은 확인용이라 같이 보내면 비슷한 문서가 두 통 갑니다.</p>'
+        : '')
      + '</div>'
     + '<div class="sec"><h4>메일 발송 <i style="font-style:normal;color:var(--mut);font-weight:600">고른 문서를 한 통에 첨부합니다</i></h4>'
       + dqField('dqBTo','받는 사람','email', to||'', 'name@company.co.kr')
