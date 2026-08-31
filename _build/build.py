@@ -95,24 +95,72 @@ def prune(dirnames):
     dirnames[:] = [d for d in dirnames if d not in WALK_SKIP and not d.startswith('.')]
 
 
+# 파일은 한 번만 읽고 한 번만 쓴다.
+#   전에는 주입 단계마다 같은 HTML 을 다시 열었고(단계당 486개), write() 는 비교하려고
+#   또 한 번 열었다. 486개 × 9번 ≈ 4,400 번의 파일 열기 — 윈도우에서는 이게 빌드 시간의 대부분이다.
+#   이제 읽은 것은 메모리에 두고, 바뀐 것만 마지막에 한 번 디스크로 내린다.
+_FCACHE = {}      # 절대경로 -> 현재 내용
+_DIRTY = set()    # 아직 디스크에 안 내려간 것
+
+
 def read(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        return f.read()
+    key = os.path.abspath(path)
+    if key not in _FCACHE:
+        with open(path, 'r', encoding='utf-8') as f:
+            _FCACHE[key] = f.read()
+    return _FCACHE[key]
 
 
 def write(path, content):
-    """변경된 경우에만 파일 쓰기 (OneDrive 동기화 부담 감소)."""
-    if os.path.exists(path):
-        try:
-            with open(path, 'r', encoding='utf-8') as f:
-                existing = f.read()
-            if existing == content:
-                return False  # 변경 없음 → 안 씀
-        except Exception:
-            pass
-    with open(path, 'w', encoding='utf-8') as f:
-        f.write(content)
+    """바뀐 것만 기록해 둔다 (실제 쓰기는 flush_writes 에서 한꺼번에)."""
+    global _TREE
+    key = os.path.abspath(path)
+    if key not in _FCACHE:
+        if os.path.exists(path):
+            try:
+                read(path)
+            except Exception:
+                _FCACHE[key] = None
+        else:
+            _TREE = None      # 새 페이지가 생겼다 — 훑어둔 목록을 다시 만든다
+    if _FCACHE.get(key) == content:
+        return False          # 변경 없음
+    _FCACHE[key] = content
+    _DIRTY.add(key)
     return True
+
+
+def flush_writes():
+    """모아둔 변경분을 디스크에 내린다. 안 바뀐 파일은 건드리지 않는다(OneDrive 동기화 부담)."""
+    n = 0
+    for key in sorted(_DIRTY):
+        d = os.path.dirname(key)
+        if d and not os.path.isdir(d):
+            os.makedirs(d, exist_ok=True)
+        with open(key, 'w', encoding='utf-8') as f:
+            f.write(_FCACHE[key])
+        n += 1
+    _DIRTY.clear()
+    return n
+
+
+_TREE = None
+
+
+def html_tree():
+    """트리는 빌드당 한 번만 훑는다 — 같은 목록을 네 번 다시 만들 이유가 없다."""
+    global _TREE
+    if _TREE is None:
+        t = []
+        for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+            prune(dirnames)
+            if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
+                continue
+            hs = [f for f in filenames if f.endswith('.html')]
+            if hs:
+                t.append((dirpath, hs))
+        _TREE = t
+    return _TREE
 
 
 def build_seo_intro(h1_text, intro_text):
@@ -481,10 +529,7 @@ def inject_setup_cta():
         'magazine/electrode-vacuum-post-drying-moisture/index.html',
     }  # 매거진 논문글(명시적으로만)
     count = 0
-    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        prune(dirnames)
-        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
-            continue
+    for dirpath, filenames in html_tree():
         rel_dir = os.path.relpath(dirpath, ROOT_DIR).replace(os.sep, '/')
         in_setup_dir = rel_dir in ('setups', 'furnace/setups', 'pump/setups') or \
             rel_dir.startswith('setups/') or rel_dir.startswith('furnace/setups/') or rel_dir.startswith('pump/setups/')
@@ -532,10 +577,7 @@ def inject_static_nav():
     nav = _crawler_nav_html()
     START, END = '<!--CNAV_START-->', '<!--CNAV_END-->'
     count = 0
-    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        prune(dirnames)
-        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
-            continue
+    for dirpath, filenames in html_tree():
         for fn in filenames:
             if not fn.endswith('.html'):
                 continue
@@ -853,10 +895,7 @@ def inject_head_schema():
     START, END = '<!--HEADLD_START-->', '<!--HEADLD_END-->'
     org_json = json.dumps(ORG_WEBSITE_GRAPH, ensure_ascii=False).replace('</', '<\\/')
     count = 0
-    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        prune(dirnames)
-        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
-            continue
+    for dirpath, filenames in html_tree():
         for fn in filenames:
             if not fn.endswith('.html'):
                 continue
@@ -888,10 +927,7 @@ def normalize_html_urls():
     내부 링크(href·src)·canonical·og·JSON-LD의 .html을 제거해 리다이렉트 홉을 없앤다.
     리다이렉트 스텁(meta refresh)은 제외(그 자체가 옛 .html URL을 처리)."""
     count = 0
-    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        prune(dirnames)
-        if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
-            continue
+    for dirpath, filenames in html_tree():
         for fn in filenames:
             if not fn.endswith('.html'):
                 continue
@@ -1762,8 +1798,9 @@ def build_search_index():
                  'node_modules', 'img', 'assets', 'out', '.wrangler'}
     redirected = _redirect_sources()
     entries = []
-    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and not d.startswith('.')]
+    for dirpath, filenames in html_tree():
+        if set(dirpath.split(os.sep)) & SKIP_DIRS:
+            continue
         for fn in filenames:
             if not fn.endswith('.html'):
                 continue
@@ -2147,7 +2184,10 @@ def main():
     build_prices()        # 가격 SSOT — SQL 최저가를 index.html·site.js 마커에 주입
     build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔 (301 소스 제외)
 
+    saved = flush_writes()
+
     print('\n' + '=' * 60)
+    print(f'  파일 쓰기: {saved}개 (안 바뀐 파일은 건드리지 않음)')
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
     print('=' * 60)
 
