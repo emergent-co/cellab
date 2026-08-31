@@ -3320,23 +3320,33 @@ function clientPicker(box, picked, onPick){
     async function search(){
       var r = await fetch('/api/admin/issue?clients=1&q='+encodeURIComponent(inp.value.trim()),{headers:AH})
         .then(function(r){return r.json();}).catch(function(){return{};});
-      var old = box.querySelector('.clidrop'); if (old) old.remove();
+      closeDrops();                       // 이전 목록을 남겨두지 않는다
       var rows = r.clients||[];
+      var kw = inp.value.trim();
       var d = document.createElement('div'); d.className='clidrop';
-      d.innerHTML = rows.length ? rows.map(function(c){
-        var al = (c.alias && c.alias !== c.company) ? ' <em class="alias">'+esc(c.alias)+'</em>' : '';
-        return '<button data-id="'+c.id+'"><b>'+esc(c.company||c.name||'—')+al+'</b><small>'
-          + esc([c.name, c.lab_name, c.work_email||c.email,
-                 (c.access && c.access!=='승인' && c.access!=='거래처') ? '('+c.access+')' : ''
-                ].filter(Boolean).join(' · '))
-          + '</small></button>'; }).join('') : '<button disabled style="color:var(--mut)">일치하는 거래처가 없습니다</button>';
+      d.innerHTML = (rows.length ? rows.map(function(c){
+          var al = (c.alias && c.alias !== c.company) ? ' <em class="alias">'+esc(c.alias)+'</em>' : '';
+          return '<button data-id="'+c.id+'"><b>'+esc(c.company||c.name||'—')+al+'</b><small>'
+            + esc([c.name, c.lab_name, c.work_email||c.email,
+                   (c.access && c.access!=='승인' && c.access!=='거래처') ? '('+c.access+')' : ''
+                  ].filter(Boolean).join(' · '))
+            + '</small></button>'; }).join('')
+        : '<button disabled style="color:var(--mut)">일치하는 거래처가 없습니다</button>')
+        // 새 거래처면 여기서 바로 등록한다 — 화면을 옮겨 다닐 이유가 없다
+        + '<button data-add="1" style="background:var(--soft-blue)"><b>＋ 새 거래처 등록'
+          + (kw ? ' — “'+esc(kw)+'”' : '') + '</b>'
+          + '<small>등록하면 바로 이 문서에 붙습니다</small></button>';
       box.querySelector('.cliq').appendChild(d);
       d.querySelectorAll('[data-id]').forEach(function(b){
         b.onclick = function(){
           picked = rows.filter(function(c){ return String(c.id)===b.dataset.id; })[0];
-          onPick(picked); paint();
+          closeDrops(); onPick(picked); paint();
         };
       });
+      d.querySelector('[data-add]').onclick = function(){
+        closeDrops();
+        clAddForm({ company: kw, onDone: function(c){ picked = c; onPick(c); paint(); } });
+      };
     }
   }
   paint();
@@ -3410,22 +3420,21 @@ function clPaint(){
 }
 
 /* ---- 거래처 추가 ----
-   같은 기관에 연구실을 하나 더 다는 일이 훨씬 잦다. 그래서 '기존 사업자에 추가'가 기본이고,
-   상호·사업자번호·대표자·주소는 물려받아 다시 적지 않는다. */
-function clAddForm(){
-  var mode = 'sub', org = null;
+   양식은 하나다. 거래처명을 치면 이미 등록된 사업자가 떠오르고, 고르면
+   사업자번호·대표자·주소가 알아서 채워진다. 새 사업자면 그냥 계속 쓰면 된다.
+   '기존이냐 새것이냐'를 사람이 먼저 정할 이유가 없다. */
+function clAddForm(opts){
+  opts = opts || {};
+  var picked = null;      // 고른 기존 사업자 (없으면 새로 쓰는 것)
   var w = amodal('거래처 추가',
      '<div class="dcard" style="border:0;padding:0">'
-    +'<div class="seg2" id="ca-mode"><button data-v="sub" class="on">기존 사업자에 추가</button>'
-      +'<button data-v="new">새 사업자 등록</button></div>'
-    +'<div id="ca-org"></div>'
-    +'<div id="ca-new" hidden>'
-      +'<label>거래처명 <span class="hint" style="font-weight:600">(사업자 상호)</span></label>'
-      +'<input type="text" id="ca-company" placeholder="예) 포항공과대학교 산학협력단">'
-      +'<div class="d2col"><div><label>사업자번호</label><input type="text" id="ca-biz" placeholder="000-00-00000"></div>'
-        +'<div><label>대표자</label><input type="text" id="ca-ceo"></div></div>'
-      +'<label>주소</label><input type="text" id="ca-addr">'
-    +'</div>'
+    +'<label class="req">거래처명 <span class="hint" style="font-weight:600">(사업자 상호)</span></label>'
+    +'<div class="cliq"><input type="text" id="ca-company" autocomplete="off"'
+      +' value="'+esc(opts.company||'')+'" placeholder="치면 이미 등록된 곳이 떠오릅니다"></div>'
+    +'<div id="ca-hit"></div>'
+    +'<div class="d2col"><div><label>사업자번호</label><input type="text" id="ca-biz" placeholder="000-00-00000"></div>'
+      +'<div><label>대표자</label><input type="text" id="ca-ceo"></div></div>'
+    +'<label>주소</label><input type="text" id="ca-addr">'
     +'<label class="req" style="margin-top:18px">별칭 <span class="hint" style="font-weight:600">(검색용 · 연구실이나 교수님 이름)</span></label>'
     +'<input type="text" id="ca-alias" placeholder="예) 홍지현교수님, 화학과 103">'
     +'<div class="d2col"><div><label>담당자</label><input type="text" id="ca-name"></div>'
@@ -3437,77 +3446,72 @@ function clAddForm(){
     +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
       +'<button class="btn ok" id="ca-go">추가</button></div>');
 
-  // 기존 사업자 찾기
-  function paintOrg(){
-    var box = $('#ca-org');
-    if (mode !== 'sub'){ box.innerHTML = ''; return; }
-    if (org){
-      box.innerHTML = '<label>사업자</label><div class="clipick"><div class="t">'
-        +'<b>'+esc(org.company)+'</b><small>'+esc([org.biz_no, org.ceo, org.address].filter(Boolean).join(' · '))+'</small>'
-        +'<small style="margin-top:5px">이미 등록된 하위 거래처 '+org.n+'건'
-          + (org.children && org.children.length
-             ? ' — ' + org.children.map(function(k){ return esc(k.alias||k.name||'—'); }).join(', ') : '')
-        +'</small></div><button class="mini" id="ca-chg">바꾸기</button></div>';
-      $('#ca-chg').onclick = function(){ org=null; paintOrg(); };
-      return;
-    }
-    box.innerHTML = '<label>사업자 찾기</label><div class="cliq"><input type="text" class="cliin" id="ca-q" '
-      +'placeholder="상호 · 사업자번호 · 대표자"></div>';
-    var inp = $('#ca-q'), t;
-    inp.oninput = function(){ clearTimeout(t); t=setTimeout(search,250); };
-    inp.onfocus = search;
-    async function search(){
-      var r = await fetch('/api/admin/clients?orgs=1&q='+encodeURIComponent(inp.value.trim()),{headers:AH})
-        .then(function(r){return r.json();}).catch(function(){return{};});
-      var old = box.querySelector('.clidrop'); if (old) old.remove();
-      var rows = r.orgs||[];
-      var d = document.createElement('div'); d.className='clidrop';
-      d.innerHTML = rows.length ? rows.map(function(o){
-        return '<button data-b="'+esc(o.biz_no)+'"><b>'+esc(o.company)+' <em class="alias">'+o.n+'건</em></b>'
-          +'<small>'+esc([o.biz_no, o.ceo].filter(Boolean).join(' · '))+'</small></button>'; }).join('')
-        : '<button disabled style="color:var(--mut)">일치하는 사업자가 없습니다 — 새 사업자로 등록하세요</button>';
-      box.querySelector('.cliq').appendChild(d);
-      d.querySelectorAll('[data-b]').forEach(function(bb){
-        bb.onclick = function(){ org = rows.filter(function(o){ return o.biz_no===bb.dataset.b; })[0]; paintOrg(); };
-      });
-    }
+  var inp = $('#ca-company'), box = inp.parentNode, t;
+
+  function drop(){ closeDrops(); }
+
+  function hit(){
+    var el = $('#ca-hit');
+    if (!picked){ el.innerHTML = ''; return; }
+    el.innerHTML = '<div class="dfrom" style="background:#F0F6FB;border-color:#cfe1f0;color:var(--navy)">'
+      + '이미 등록된 사업자 — 하위 거래처 ' + picked.n + '건'
+      + (picked.children && picked.children.length
+         ? ' (' + picked.children.map(function(k){ return esc(k.alias||k.name||'—'); }).join(', ') + ')' : '')
+      + '<button id="ca-x" title="연결 끊기">×</button></div>';
+    $('#ca-x').onclick = function(){ picked = null; hit(); };
   }
 
-  $('#ca-mode').onclick = function(e){
-    var b = e.target.closest('button[data-v]'); if(!b) return;
-    mode = b.dataset.v;
-    document.querySelectorAll('#ca-mode button').forEach(function(x){ x.classList.toggle('on', x.dataset.v===mode); });
-    $('#ca-new').hidden = (mode !== 'new');
-    org = null; paintOrg();
-  };
-  paintOrg();
+  async function search(){
+    var q = inp.value.trim();
+    drop();
+    if (q.length < 1) return;
+    var r = await fetch('/api/admin/clients?orgs=1&q='+encodeURIComponent(q),{headers:AH})
+      .then(function(r){return r.json();}).catch(function(){return{};});
+    var rows = (r.orgs||[]).slice(0,8);
+    if (!rows.length) return;                 // 새 사업자면 조용히 넘어간다
+    var d = document.createElement('div'); d.className='clidrop';
+    d.innerHTML = rows.map(function(o){
+      return '<button data-b="'+esc(o.biz_no)+'"><b>'+esc(o.company)+' <em class="alias">'+o.n+'건</em></b>'
+        +'<small>'+esc([o.biz_no, o.ceo].filter(Boolean).join(' · '))+'</small></button>'; }).join('');
+    box.appendChild(d);
+    d.querySelectorAll('[data-b]').forEach(function(bb){
+      bb.onclick = function(){
+        picked = rows.filter(function(o){ return o.biz_no===bb.dataset.b; })[0];
+        // 고르면 나머지 칸을 채워준다 — 다시 적을 이유가 없다
+        $('#ca-company').value = picked.company || '';
+        $('#ca-biz').value     = picked.biz_no || '';
+        $('#ca-ceo').value     = picked.ceo || '';
+        $('#ca-addr').value    = picked.address || '';
+        drop(); hit(); $('#ca-alias').focus();
+      };
+    });
+  }
+
+  inp.oninput = function(){ picked = null; hit(); clearTimeout(t); t=setTimeout(search,250); };
+  inp.onfocus = search;
 
   $('#ca-go').onclick = async function(){
-    var alias = $('#ca-alias').value.trim();
-    if (mode === 'sub' && !org) return alert('사업자를 먼저 찾아서 골라주세요.');
-    if (mode === 'new' && !$('#ca-company').value.trim()) return alert('거래처명을 입력해주세요.');
-    if (!alias) return alert('별칭을 입력해주세요 — 같은 기관 안에서 구분하는 이름입니다.');
+    var company = $('#ca-company').value.trim();
+    var alias   = $('#ca-alias').value.trim();
+    if (!company) return alert('거래처명을 입력해주세요.');
+    if (!alias)   return alert('별칭을 입력해주세요 — 같은 기관 안에서 구분하는 이름입니다.');
 
-    var body = {
-      action:'create', alias:alias,
-      name:$('#ca-name').value, phone:$('#ca-phone').value,
-      work_email:$('#ca-email').value, memo:$('#ca-memo').value,
-    };
-    if (mode === 'sub') body.parent_biz_no = org.biz_no;
-    else {
-      body.company = $('#ca-company').value;
-      body.biz_no  = $('#ca-biz').value;
-      body.ceo     = $('#ca-ceo').value;
-      body.address = $('#ca-addr').value;
-    }
     var btn = $('#ca-go'); btn.disabled = true; btn.textContent = '추가 중…';
-    var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,body:JSON.stringify(body)})
+    var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,body:JSON.stringify({
+      action:'create', company:company, alias:alias,
+      biz_no:$('#ca-biz').value, ceo:$('#ca-ceo').value, address:$('#ca-addr').value,
+      name:$('#ca-name').value, phone:$('#ca-phone').value,
+      work_email:$('#ca-email').value, memo:$('#ca-memo').value })})
       .then(function(r){return r.json();}).catch(function(){return{};});
     btn.disabled = false; btn.textContent = '추가';
     if (!r.ok) return alert(r.message || '추가하지 못했습니다.');
-    w.remove(); toast('거래처를 추가했습니다'); clLoad();
-    clOpen(r.id);
+    w.remove(); toast('거래처를 추가했습니다');
+    if (opts.onDone) return opts.onDone(r.client || { id:r.id, company:company, alias:alias });
+    clLoad(); clOpen(r.id);
   };
+
+  // 이름을 들고 들어왔으면 별칭 칸부터 잡아준다 — 거래처명은 이미 채워져 있다
+  if (opts.company) { setTimeout(function(){ var a=$('#ca-alias'); if(a) a.focus(); }, 60); }
 }
 
 async function clOpen(id){
@@ -4077,6 +4081,41 @@ function dqField(id, label, type, val, ph){
     + ' style="width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-size:14px;box-sizing:border-box">';
 }
 
+/* 문서를 다른 거래처로 옮긴다.
+   서류를 먼저 뽑고 거래처를 나중에 등록하면 문서가 엉뚱한 곳에 매인다. */
+function dqRelinkForm(doc, linked){
+  var pick = null;
+  var draft = doc.status === '작성됨';
+  var w = amodal('거래처 연결 바꾸기',
+     '<div class="dcard" style="border:0;padding:0">'
+    +'<div class="kv"><span>문서</span><span><b>'+esc(DTYPE[doc.type]||doc.type)+' '+esc(doc.doc_no)+'</b> '+abadge(doc.status)+'</span></div>'
+    +'<div class="kv"><span>지금 연결</span><span>'+esc(linked ? (linked.company||linked.name||'—') : '연결 안 됨')+'</span></div>'
+    +'<label style="margin-top:16px">옮길 거래처</label><div id="rl-cli"></div>'
+    +'<div class="'+(draft?'dnote':'dfrom')+'" style="margin-top:14px">'
+      + (draft
+         ? '초안이라 서류의 <b>공급받는자</b>도 새 거래처 정보로 다시 씁니다.'
+         : '이미 발송한 문서입니다. <b>연결만 옮기고 서류 내용은 그대로 둡니다</b> — 상대가 받은 서류와 달라지면 안 되니까요. 서류에 찍힌 상호가 틀렸다면 이 문서를 취소하고 새로 발행하세요.')
+    +'</div></div>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="rl-go">옮기기</button></div>');
+
+  clientPicker($('#rl-cli'), null, function(c){ pick = c; });
+
+  $('#rl-go').onclick = async function(){
+    if (!pick) return alert('옮길 거래처를 골라주세요.');
+    var b = $('#rl-go'); b.disabled = true; b.textContent = '옮기는 중…';
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
+      body:JSON.stringify({ action:'relink', id:doc.id, customer_id:pick.id })})
+      .then(function(r){return r.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = '옮기기';
+    if (!r.ok) return alert(r.message || '옮기지 못했습니다.');
+    w.remove();
+    document.querySelectorAll('.modal').forEach(function(m){ m.remove(); });
+    toast(r.company+' 으로 옮겼습니다'+(r.rewritten?' (서류도 수정)':''));
+    dqHist(); dqOpen(doc.id);
+  };
+}
+
 async function dqOpen(id){
   var d = await fetch('/api/admin/docs/'+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
   if (!d.document) return toast('불러오지 못했습니다');
@@ -4088,9 +4127,19 @@ async function dqOpen(id){
 
   var q = (d.queued||[])[0];
   $('#dqBody').innerHTML =
-     '<div class="sec"><h4>내용</h4>'
+     '<div class="sec"><h4>연결된 거래처 <i style="font-style:normal;color:var(--mut);font-weight:600">이 거래처 이력에 뜹니다</i></h4>'
+      + '<div class="clipick"><div class="t"><b>'
+        + esc(d.linked ? (d.linked.company || d.linked.name || '—') : '연결 안 됨')
+        + ((d.linked && d.linked.alias && d.linked.alias !== d.linked.company)
+           ? ' <em class="alias">'+esc(d.linked.alias)+'</em>' : '')
+        + '</b><small>'
+        + esc(d.linked ? ([d.linked.name, d.linked.work_email].filter(Boolean).join(' · ') || '—')
+                       : '거래처를 지정하면 그 이력에 나타납니다')
+        + '</small></div><button class="mini" id="dqRelink">바꾸기</button></div>'
+     + '</div>'
+    + '<div class="sec"><h4>내용</h4>'
       + akv('제목', p.title)
-      + akv('거래처', (p.client&&p.client.company)||'')
+      + akv('서류상 공급받는자', (p.client&&p.client.company)||'')
       + akv('담당자', (p.client&&p.client.contact)||'')
       + akv('받는 메일', (p.client&&p.client.email)||'')
       + akv('발행일', p.issue_date) + akv('유효기간', p.valid_until)
@@ -4127,6 +4176,8 @@ async function dqOpen(id){
         + '</div>' : '')
     + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
       + (doc.status==='작성됨' ? '<button class="btn ghost" id="dqEdit">이어서 수정</button>' : '') + '</div>';
+
+  $('#dqRelink').onclick = function(){ dqRelinkForm(doc, d.linked); };
 
   var url = d.view;
   if ($('#dqView')) $('#dqView').onclick = function(){ window.open(url, '_blank'); };
@@ -4190,7 +4241,7 @@ function modal(title, inner, locked){
     + '<h3>'+esc(title)+'</h3>' + inner + '</div>';
   document.body.appendChild(w);
   if (!locked) w.addEventListener('click', function(e){
-    if (e.target===w || e.target.hasAttribute('data-x')) w.remove();
+    if (e.target===w || e.target.hasAttribute('data-x')){ closeDrops(); w.remove(); }
   });
   return w;
 }
@@ -4207,7 +4258,14 @@ $('#bell').onclick = function(e){
 document.addEventListener('click', function(e){
   var box = $('#notif');
   if (box && !box.hidden && !e.target.closest('#notif') && !e.target.closest('#bell')) box.hidden = true;
+
+  // 거래처 후보 목록 — 칸 바깥을 누르면 닫는다.
+  // 각 폼마다 따로 달면 리스너가 쌓이고 하나씩 빠뜨리게 된다. 여기 한 군데서만 본다.
+  if (!e.target.closest('.cliq')) closeDrops();
 });
+function closeDrops(){
+  document.querySelectorAll('.clidrop').forEach(function(d){ d.remove(); });
+}
 
 // 브라우저는 오래전부터 백스페이스로 뒤로가기를 하지 않는다.
 // 손은 그걸 기억하고 있으니 우리가 직접 처리해준다.
@@ -4220,6 +4278,7 @@ function typingIn(el){
 }
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){
+    if (document.querySelector('.clidrop')){ e.preventDefault(); closeDrops(); return; }
     var m = document.querySelector('.modal');
     if (m && !m.classList.contains('locked')){ e.preventDefault(); if (m.classList.contains('omodal')) cur = null; m.remove(); }
     return;

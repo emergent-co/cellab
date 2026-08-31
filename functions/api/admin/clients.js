@@ -182,8 +182,9 @@ async function post(request, env) {
 }
 
 /* 거래처 추가.
-   parent_biz_no 를 주면 그 사업자의 상호·사업자번호·대표자·주소를 그대로 물려받고,
-   별칭·담당자·연락처만 새로 받는다 — 같은 기관의 다른 연구실을 다는 흔한 경우다. */
+   양식은 하나다 — 기존 사업자든 새 사업자든 같은 칸을 채운다.
+   사업자번호가 이미 쓰이고 있으면, 상호·대표자·주소는 그 사업자에 맞춰 정리한다
+   (화면에서 골라 채웠어도 손으로 고쳐 어긋나는 일이 생긴다). */
 async function create(env, b) {
   const now = kstISO();
   const email = String(b.work_email || '').trim();
@@ -195,22 +196,21 @@ async function create(env, b) {
   let biz_no  = String(b.biz_no || '').trim();
   let ceo     = String(b.ceo || '').trim();
   let address = String(b.address || '').trim();
+  if (!company) return json({ error: 'no_company', message: '거래처명을 입력해주세요.' }, 400);
 
-  // 기존 사업자 아래에 다는 경우 — 상위 정보는 손으로 다시 적지 않는다
-  if (b.parent_biz_no) {
-    const parent = await env.DB.prepare(
-      `SELECT company, biz_no, ceo, address FROM customers
+  if (biz_no) {
+    const twin = await env.DB.prepare(
+      `SELECT company, ceo, address FROM customers
         WHERE biz_no=? AND company IS NOT NULL AND company <> '' ORDER BY id LIMIT 1`)
-      .bind(String(b.parent_biz_no).trim()).first();
-    if (!parent) return json({ error: 'no_parent', message: '그 사업자번호로 등록된 거래처가 없습니다.' }, 404);
-    company = parent.company;
-    biz_no  = parent.biz_no;
-    ceo     = ceo || parent.ceo || '';
-    address = address || parent.address || '';
+      .bind(biz_no).first();
+    if (twin) {                       // 같은 사업자번호는 같은 상호를 쓴다
+      company = twin.company;
+      ceo     = ceo || twin.ceo || '';
+      address = address || twin.address || '';
+    }
   }
 
   const alias = String(b.alias || '').trim() || company;
-  if (!company) return json({ error: 'no_company', message: '거래처명을 입력해주세요.' }, 400);
 
   // 같은 사업자번호에 같은 별칭이 이미 있으면 막는다 — 목록에서 구분이 안 된다
   if (biz_no) {
@@ -245,5 +245,13 @@ async function create(env, b) {
 
   await logEvent(env, { action: 'client_add', actor: 'admin',
     detail: `거래처 추가 ${company}${alias !== company ? ` (${alias})` : ''}` });
-  return json({ ok: true, id });
+
+  // 만든 거래처를 그대로 돌려준다 — 문서 발행 화면에서 곧바로 골라 쓸 수 있게
+  return json({ ok: true, id, client: {
+    id, company, alias, biz_no, ceo, address,
+    name: String(b.name || '').trim(),
+    work_email: email, email: '', phone: String(b.phone || '').trim(),
+    access: '거래처', billing_mode: b.billing_mode === '후불' ? '후불' : '선불',
+    lab_id: null, lab_name: '', lab_code: '',
+  } });
 }
