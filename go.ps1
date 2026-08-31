@@ -36,9 +36,11 @@ Step "3. HTML 무결성 검증"
 $py = @'
 import os, re, json, sys
 bad = []; ld = []; n = 0; l = 0
+SKIP = {'.git', '.wrangler', 'node_modules', '_build', '_to_delete', 'img', 'assets', 'out'}
 for root, dirs, fs in os.walk('.'):
+    # continue 로는 그 아래까지 훑는 것을 못 막는다 — dirs 를 잘라야 .git(3만 5천 개)을 건너뛴다
+    dirs[:] = [d for d in dirs if d not in SKIP and not d.startswith('.')]
     r = root.replace('\\', '/')
-    if any(r.startswith(s) for s in ('./.git', './node_modules', './_build', './_to_delete')): continue
     for fn in fs:
         if not fn.endswith('.html'): continue
         p = os.path.join(root, fn); n += 1

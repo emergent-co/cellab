@@ -87,6 +87,14 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
 
 
+# os.walk 는 continue 로 가지치기가 안 된다 — dirnames 를 직접 잘라야 그 아래로 안 내려간다.
+# .git 만 3만 5천 개, img 는 1천 개가 넘는데 HTML 은 한 장도 없다. 훑을 이유가 없다.
+WALK_SKIP = {'.git', '.wrangler', '_build', '_to_delete', 'node_modules', 'img', 'assets', 'out'}
+
+def prune(dirnames):
+    dirnames[:] = [d for d in dirnames if d not in WALK_SKIP and not d.startswith('.')]
+
+
 def read(path):
     with open(path, 'r', encoding='utf-8') as f:
         return f.read()
@@ -474,6 +482,7 @@ def inject_setup_cta():
     }  # 매거진 논문글(명시적으로만)
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        prune(dirnames)
         if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         rel_dir = os.path.relpath(dirpath, ROOT_DIR).replace(os.sep, '/')
@@ -524,6 +533,7 @@ def inject_static_nav():
     START, END = '<!--CNAV_START-->', '<!--CNAV_END-->'
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        prune(dirnames)
         if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         for fn in filenames:
@@ -844,6 +854,7 @@ def inject_head_schema():
     org_json = json.dumps(ORG_WEBSITE_GRAPH, ensure_ascii=False).replace('</', '<\\/')
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        prune(dirnames)
         if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         for fn in filenames:
@@ -878,6 +889,7 @@ def normalize_html_urls():
     리다이렉트 스텁(meta refresh)은 제외(그 자체가 옛 .html URL을 처리)."""
     count = 0
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        prune(dirnames)
         if set(dirpath.split(os.sep)) & {'_build', '_to_delete'}:
             continue
         for fn in filenames:
@@ -1746,7 +1758,8 @@ def build_new_research():
 def build_search_index():
     """전 페이지를 스캔해 사이트 검색 인덱스(/search-index.json)를 생성.
     site.js가 fetch해 수동 SEARCH_INDEX와 병합한다. 새 페이지는 빌드만 하면 검색에 잡힘."""
-    SKIP_DIRS = {'_build', '_to_delete', '.git', 'admin', 'api', 'functions', 'node_modules'}
+    SKIP_DIRS = {'_build', '_to_delete', '.git', 'admin', 'api', 'functions',
+                 'node_modules', 'img', 'assets', 'out', '.wrangler'}
     redirected = _redirect_sources()
     entries = []
     for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
