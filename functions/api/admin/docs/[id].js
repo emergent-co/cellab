@@ -30,7 +30,11 @@ export async function onRequest({ request, env, params }) {
       ? await env.DB.prepare('SELECT id, company, alias, name, work_email, access FROM customers WHERE id=?')
           .bind(doc.customer_id).first()
       : null;
-    return json({ document: doc, payload, events, queued, siblings, linked,
+    const order = doc.order_id
+      ? await env.DB.prepare('SELECT id, order_no, status, total_amount FROM orders WHERE id=?')
+          .bind(doc.order_id).first()
+      : null;
+    return json({ document: doc, payload, events, queued, siblings, linked, order,
                   view: `/doc/${doc.id}?t=${doc.access_token}` });
   }
 

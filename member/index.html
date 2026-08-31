@@ -235,6 +235,13 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
   border-radius:7px;padding:6px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cliline .mini{flex:0 0 auto}
 @media(max-width:640px){.cliline{flex-wrap:wrap}.cliline .c1,.cliline .c2{flex:1 1 100%}}
+.ordsw{margin-top:18px;border:1px solid var(--line);border-radius:11px;padding:13px 14px;background:#fcfcfd}
+.swrow{display:flex!important;align-items:flex-start;gap:10px;margin:0!important;cursor:pointer}
+.swrow input{width:18px;height:18px;flex:0 0 auto;margin-top:1px;accent-color:var(--navy)}
+.swrow b{display:block;font-size:13.5px;font-weight:800;color:var(--ink)}
+.swrow small{display:block;font-size:11.5px;color:var(--mut);margin-top:3px;line-height:1.5}
+#dqOrdSt{margin-top:12px}
+#dqOrdSt[hidden]{display:none}
 .drow{display:flex;align-items:center;gap:10px;margin-bottom:7px}
 .drow>span{flex:0 0 84px;font-size:12.5px;font-weight:700;color:var(--mut)}
 .drow>input{flex:1;min-width:0}
@@ -3923,7 +3930,8 @@ var dqPrefill = null;                       // 할 일에서 넘어올 때 채�
 var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTarget=0,
     dqVat=true, dqDocId=null, dqSrc={}, dqTodo=null, dqHistType='', dqHistKw='',
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
-    dqTitleAuto=true;   // 직접 고치기 전까지는 품목에서 만들어 채운다
+    dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
+    dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
 
 function dqToday(){ return new Date(Date.now()+9*3600000).toISOString().slice(0,10); }
 function dqPlus(d, n){ var t=new Date(d+'T00:00:00Z'); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); }
@@ -3994,6 +4002,12 @@ function paintDocs(){
        + '<button class="mini" id="dqAdd" style="margin-top:4px">＋ 품목 추가</button>'
        + '<div class="qsum" id="dqSum"></div>'
        + '<label>비고</label><textarea id="dqNote" rows="2" placeholder="특기사항이 있으면 적어주세요 (선택) — 입금계좌는 항상 자동으로 들어갑니다"></textarea>'
+       + '<div class="ordsw"><label class="swrow"><input type="checkbox" id="dqMakeOrder"'+(dqMakeOrder?' checked':'')+'>'
+         + '<span><b>이 발행을 주문으로도 기록</b>'
+         + '<small>물건이 실제로 나가는 건일 때만 켜세요. 견적만 보내는 건은 꺼두면 장부에 안 잡힙니다.</small></span></label>'
+         + '<div id="dqOrdSt"'+(dqMakeOrder?'':' hidden')+'><label>주문 상태</label><select id="dqOrderStatus">'
+           + ST.map(function(x){ return '<option'+(x===dqOrderStatus?' selected':'')+'>'+x+'</option>'; }).join('')
+         + '</select></div></div>'
        + '<div class="twobtn"><button class="btn ghost" id="dqPrev">미리보기</button>'
          + '<button class="btn pri" id="dqSave">'
            + ((editing && dqTypes.length===1) ? '수정 저장'
@@ -4023,6 +4037,10 @@ function paintDocs(){
   dqPaintBill(); dqSrcButtons(); dqSrcTag();
 
   $('#dqTitle').oninput = function(e){ dqTitleAuto = !e.target.value.trim(); dqTitle = e.target.value; };
+  $('#dqMakeOrder').onchange = function(e){
+    dqMakeOrder = e.target.checked; $('#dqOrdSt').hidden = !dqMakeOrder;
+  };
+  $('#dqOrderStatus').onchange = function(e){ dqOrderStatus = e.target.value; };
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
   $('#dqTarget').oninput = function(e){ dqTarget = numFmt(e.target); dqSum(); };
   $('#dqTarget').onblur  = function(e){          // 칸을 벗어날 때 10원 단위로 맞춘다
@@ -4097,6 +4115,7 @@ function dqCliLine(box, c, unpick){
 function dqReset(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
+  dqMakeOrder=false; dqOrderStatus='발주확정';
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
   paintDocs();
 }
@@ -4299,6 +4318,7 @@ async function dqSubmit(preview){
     dates: (function(){ var o={}; document.querySelectorAll('#dqDateBox input[data-d]')
               .forEach(function(el){ if (el.value) o[el.dataset.d] = el.value; }); return o; })(),
     title: $('#dqTitle').value, note: $('#dqNote').value,
+    make_order: dqMakeOrder, order_status: dqOrderStatus,
     vat_included: dqVat, items: items })})
     .then(function(r){return r.json();}).catch(function(){return{};});
   btn.disabled = false; btn.textContent = was;
@@ -4324,7 +4344,8 @@ async function dqSubmit(preview){
     dqTodo = null; admPoll(true);
   }
 
-  toast(made.length>1 ? made.length+'종 발행했습니다' : DTYPE[made[0].type]+' '+made[0].doc_no+' 발행');
+  toast((made.length>1 ? made.length+'종 발행' : DTYPE[made[0].type]+' '+made[0].doc_no+' 발행')
+        + (r.order ? ' · 주문 '+r.order.order_no+' 기록' : ''));
   // 발행이 끝나면 폼을 비운다. 그대로 두면 다음 건을 쓰려 할 때 '수정 모드'에 갇힌다.
   dqReset();
   if (made.length > 1) dqBatch(made, r.to);
@@ -4407,6 +4428,7 @@ async function dqHist(){
         if (d.company) meta.push(d.company);
         if (d.total) meta.push(won(d.total)+'원');
         if (d.queued) meta.push('예약 '+String(d.send_at||'').slice(5,16));
+        meta.push(d.is_order ? '주문 기록됨' : '견적만');
         return '<tr data-id="'+d.id+'" class="'+(d.status==='작성됨'?'act':'')+'">'
           + '<td>'+esc(DTYPE[d.type]||d.type)+'</td>'
           + '<td class="l ttd"><b>'+esc(d.title||d.doc_no)+'</b><small class="rmeta">'+esc(meta.join(' · '))+'</small></td>'
@@ -4479,6 +4501,16 @@ async function dqOpen(id){
                        : '거래처를 지정하면 그 이력에 나타납니다')
         + '</small></div><button class="mini" id="dqRelink">바꾸기</button></div>'
      + '</div>'
+    + '<div class="sec"><h4>주문 기록</h4>'
+      + (d.order
+         ? '<div class="kv"><span>연결된 주문</span><span><b>'+esc(d.order.order_no)+'</b> '
+           + abadge(d.order.status)+' · '+won(d.order.total_amount)+'원</span></div>'
+         : '<div class="dnote">이 발행은 <b>주문으로 잡히지 않았습니다</b> — 지출금·미수금에 들어가지 않습니다.'
+           + '<br>물건이 실제로 나간 건이면 아래에서 주문으로 올리세요.</div>'
+           + '<div class="dsrc" style="margin-top:10px"><select id="dqOrdSt2" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
+           + ST.map(function(x){ return '<option'+(x==='발주확정'?' selected':'')+'>'+x+'</option>'; }).join('')
+           + '</select><button class="mini" id="dqToOrder">주문으로 기록</button></div>')
+     + '</div>'
     + '<div class="sec"><h4>내용</h4>'
       + akv('제목', p.title)
       + akv('서류상 공급받는자', (p.client&&p.client.company)||'')
@@ -4520,6 +4552,17 @@ async function dqOpen(id){
       + (doc.status==='작성됨' ? '<button class="btn ghost" id="dqEdit">이어서 수정</button>' : '') + '</div>';
 
   $('#dqRelink').onclick = function(){ dqRelinkForm(doc, d.linked); };
+  if ($('#dqToOrder')) $('#dqToOrder').onclick = async function(){
+    var b2 = $('#dqToOrder'); b2.disabled = true; b2.textContent = '기록 중…';
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
+      body:JSON.stringify({ action:'to_order', id:doc.id, status:$('#dqOrdSt2').value })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b2.disabled = false; b2.textContent = '주문으로 기록';
+    if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
+    w.remove(); toast('주문 '+r.order.order_no+' 으로 기록했습니다'
+      + (r.linked>1 ? ' (서류 '+r.linked+'건 연결)' : ''));
+    dqHist(); admPoll(true); dqOpen(doc.id);
+  };
 
   var url = d.view;
   if ($('#dqView')) $('#dqView').onclick = function(){ window.open(url, '_blank'); };

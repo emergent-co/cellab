@@ -8,7 +8,7 @@
 //   GET  ?list=1&type=&status=&q=   발행 이력
 //   POST                        문서 생성 / 수정(작성됨 상태만)
 import { json, needAdmin, adminOK, kstISO, kstDate, nextDocNo, plusDays,
-         randomToken, logEvent, DOC_LABEL } from '../_lib.js';
+         randomToken, logEvent, DOC_LABEL, nextOrderNo, STATUSES } from '../_lib.js';
 import { ISSUER } from '../_doctpl.js';
 import { deliverMany, calcTotals } from '../_send.js';
 import { docMailBody, splitAddr } from '../_mailer.js';
@@ -137,7 +137,8 @@ async function get(request, env) {
     let p = {}; try { p = JSON.parse(d.payload_json || '{}'); } catch { /* noop */ }
     const { payload_json, ...rest } = d;
     return { ...rest, title: p.title || '', company: d.company || p.client?.company || '',
-             total: p.totals?.total || 0, view: `/doc/${d.id}?t=${d.access_token}` };
+             total: p.totals?.total || 0, is_order: !!d.order_id,
+             view: `/doc/${d.id}?t=${d.access_token}` };
   });
 
   const st = (await env.DB.prepare(
@@ -164,6 +165,7 @@ async function post(request, env) {
   const b = await request.json().catch(() => ({}));
   if (b.action === 'send') return sendBatch(request, env, b);
   if (b.action === 'relink') return relink(env, b);
+  if (b.action === 'to_order') return toOrder(env, b);
 
   // 한 벌로 발행한다 — 견적서·거래명세서·세금계산서를 같은 내용으로 동시에.
   const types = (Array.isArray(b.types) && b.types.length ? b.types : [b.type || 'quote'])
@@ -274,12 +276,95 @@ async function post(request, env) {
     made.push({ id, type, doc_no: docNo, issue_date: issue, view: `/doc/${id}?t=${tok}` });
   }
 
+  // 기본은 '주문 아님'. 물건이 실제로 나가는 건일 때만 켠다.
+  let order = null;
+  if (b.make_order) {
+    order = await makeOrder(env, {
+      customer, payload: { ...base, title: base.title },
+      items, totals, status: b.order_status, issueDate: dateOf(types[0]),
+      docIds: made.map((m) => m.id),
+    });
+  }
+
   return json({
-    ok: true, batch, totals, docs: made,
+    ok: true, batch, totals, docs: made, order,
     to: base.client.email,
     // 예전 호출부 호환 — 첫 문서를 단건처럼 돌려준다
     id: made[0].id, doc_no: made[0].doc_no, view: made[0].view,
   });
+}
+
+/* ---- 발행한 내용을 주문으로도 기록 ----
+   견적만 내고 성사 안 되는 건이 많다. 그래서 기본은 '주문 아님'이고,
+   실제로 물건이 나가는 건일 때만 켜서 장부에 올린다.
+   금액은 서류의 값을 그대로 옮긴다 — 다시 계산하면 1원씩 어긋난다. */
+async function makeOrder(env, { customer, payload, items, totals, status, issueDate, docIds }) {
+  const st = STATUSES.includes(status) ? status : '발주확정';
+  const day = String(issueDate || '').slice(0, 10);
+  const at = /^\d{4}-\d{2}-\d{2}$/.test(day) ? `${day} 00:00:00` : kstISO();
+  const now = kstISO();
+
+  const order_no = await nextOrderNo(env);
+  const r = await env.DB.prepare(
+    `INSERT INTO orders (order_no, customer_id, status, title, org_name, ship_address,
+                         orderer_name, orderer_email, orderer_phone, bill_profile_id,
+                         supply_amount, vat_amount, total_amount, manual, created_at, updated_at)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?, 1, ?, ?)`
+  ).bind(order_no, customer.id, st, payload.title || '(제목 없음)',
+         payload.client?.company || customer.company || '', customer.address || '',
+         payload.client?.contact || customer.name || '',
+         payload.client?.email || customer.work_email || customer.email || '',
+         customer.phone || '', null,
+         totals.supply, totals.vat, totals.total, at, now).run();
+
+  const orderId = r.meta.last_row_id;
+  let seq = 1;
+  for (const it of items) {
+    await env.DB.prepare(
+      `INSERT INTO order_items (order_id, seq, name, spec, unit, qty, unit_price, amount, note)
+       VALUES (?,?,?,?,?,?,?,?,?)`
+    ).bind(orderId, seq++, it.name, it.spec || '', 'EA', it.qty,
+           Math.round(it.unit_price || 0),
+           Math.round((it.qty || 0) * (it.unit_price || 0)), it.note || '').run();
+  }
+
+  // 서류를 이 주문에 붙인다 — 주문 화면에서 발급 서류가 보이게
+  for (const id of docIds || []) {
+    await env.DB.prepare("UPDATE documents SET order_id=?, source='order', updated_at=? WHERE id=?")
+      .bind(orderId, now, id).run();
+  }
+
+  await logEvent(env, { order_id: orderId, action: 'created', actor: 'admin',
+    detail: `발행 문서를 주문으로 기록 ${order_no} · ${st}` });
+  return { id: orderId, order_no, status: st };
+}
+
+/* 이미 발행한 문서를 나중에 주문으로 올린다 */
+async function toOrder(env, b) {
+  const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
+  if (!doc) return json({ error: 'not_found' }, 404);
+  if (doc.order_id) return json({ error: 'already', message: '이미 주문에 연결된 문서입니다.' }, 409);
+  const customer = doc.customer_id
+    ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(doc.customer_id).first()
+    : null;
+  if (!customer) return json({ error: 'no_client', message: '거래처가 연결돼 있지 않습니다. 먼저 거래처를 지정해주세요.' }, 400);
+
+  let payload = {};
+  try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
+  const items = payload.items || [];
+  if (!items.length) return json({ error: 'no_items', message: '품목이 없습니다.' }, 400);
+
+  // 같은 벌로 뽑은 서류가 있으면 함께 붙인다
+  const sibs = doc.batch
+    ? ((await env.DB.prepare('SELECT id FROM documents WHERE batch=? AND order_id IS NULL')
+        .bind(doc.batch).all()).results || []).map((x) => x.id)
+    : [doc.id];
+
+  const order = await makeOrder(env, {
+    customer, payload, items, totals: payload.totals || { supply: 0, vat: 0, total: 0 },
+    status: b.status, issueDate: payload.issue_date, docIds: sibs.length ? sibs : [doc.id],
+  });
+  return json({ ok: true, order, linked: sibs.length || 1 });
 }
 
 /* ---- 문서를 다른 거래처로 옮기기 ----
