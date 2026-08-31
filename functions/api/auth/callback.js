@@ -40,30 +40,28 @@ export async function onRequestGet({ request, env }) {
   const email = (acc.email || '').trim();
   const phone = normPhone(acc.phone_number);
 
-  const exist = await env.DB.prepare('SELECT id FROM customers WHERE kakao_id = ?').bind(kakaoId).first();
-  let cid;
-  if (exist) {
-    cid = exist.id;
-    // 이미 입력한 값은 덮어쓰지 않고, 비어 있는 칸만 카카오 정보로 채운다.
-    await env.DB.prepare(
-      `UPDATE customers SET
-         name  = COALESCE(NULLIF(name,''),  ?),
-         email = COALESCE(NULLIF(email,''), ?),
-         phone = COALESCE(NULLIF(phone,''), ?),
-         updated_at = ?
-       WHERE id = ?`
-    ).bind(name, email, phone, kstISO(), cid).run();
-  } else {
-    const r = await env.DB.prepare(
-      "INSERT INTO customers (kakao_id, name, email, phone, access, created_at, updated_at) VALUES (?,?,?,?,'승인',?,?)"
-    ).bind(kakaoId, name, email, phone, kstISO(), kstISO()).run();
-    cid = r.meta.last_row_id;
-  }
-
-  // 당분간 멤버십 자동 승인 — 승인제로 전환하려면 이 블록을 제거하고 관리자 승인 플로우만 남긴다.
-  await env.DB.prepare(
-    "UPDATE customers SET access='승인' WHERE id=? AND (access IS NULL OR access='' OR access='대기')"
-  ).bind(cid).run();
+  // 조회→수정(또는 추가)→자동승인 세 번을 한 번의 UPSERT 로 묶는다.
+  // D1 왕복 한 번이 60ms 쯤이라, 로그인처럼 사람이 기다리는 길목에서는 그대로 체감된다.
+  // 새로 들어온 사람은 처음부터 '승인 · 후불' — /member/ 가 후불 멤버십 전용이라
+  // 승인만 하고 선불로 두면 가입하자마자 못 들어온다.
+  const NOW = kstISO();
+  const up = await env.DB.prepare(
+    `INSERT INTO customers (kakao_id, name, email, phone, access, billing_mode, created_at, updated_at)
+     VALUES (?1, ?2, ?3, ?4, '승인', '후불', ?5, ?5)
+     ON CONFLICT(kakao_id) DO UPDATE SET
+       name  = COALESCE(NULLIF(customers.name,''),  ?2),
+       email = COALESCE(NULLIF(customers.email,''), ?3),
+       phone = COALESCE(NULLIF(customers.phone,''), ?4),
+       access = CASE WHEN customers.access IS NULL OR customers.access IN ('','대기')
+                     THEN '승인' ELSE customers.access END,
+       billing_mode = CASE WHEN customers.access IS NULL OR customers.access IN ('','대기')
+                           THEN '후불' ELSE customers.billing_mode END,
+       updated_at = ?5
+     RETURNING id`
+  ).bind(kakaoId, name, email, phone, NOW).first();
+  const cid = up && up.id;
+  if (!cid) return Response.redirect(`${url.origin}/member/?err=save`, 302);
+  // (당분간 멤버십 자동 승인 — 승인제로 바꾸려면 위 UPSERT 의 access 기본값을 '대기' 로 둔다)
 
   const token = await createSession(env, cid);
   return new Response(null, {

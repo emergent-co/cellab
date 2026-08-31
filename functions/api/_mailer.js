@@ -85,7 +85,7 @@ export function docMailBody({ label, docNo, company, contact, total, viewUrl, to
 
 /** 주문·정산 내용 확인 요청 메일.
  *  승인을 받는 게 아니라 '이렇게 적었으니 봐 달라'는 안내다. 버튼도 하나만 둔다. */
-export function confirmMailBody({ kind, title, company, contact, total, viewUrl, listUrl, to, cc, memo }) {
+export function confirmMailBody({ kind, title, company, contact, total, viewUrl, to, cc, memo }) {
   const won = (n) => Number(n || 0).toLocaleString('ko-KR');
   const e = (t) => String(t == null ? '' : t)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -113,7 +113,6 @@ export function confirmMailBody({ kind, title, company, contact, total, viewUrl,
   </table>
   ${memo ? `<p style="background:#F7F8FA;border-radius:9px;padding:12px 14px;font-size:14px;white-space:pre-wrap">${e(memo)}</p>` : ''}
   <p><a href="${viewUrl}" style="display:inline-block;background:#1a6e56;color:#fff;text-decoration:none;padding:12px 22px;border-radius:9px;font-weight:700">내용 확인하기</a></p>
-  ${listUrl ? `<p style="font-size:13px"><a href="${listUrl}" style="color:#3b3695">로그인 없이 바로 보기</a></p>` : ''}
   <p style="color:#5a6779;font-size:13px">따로 눌러야 할 버튼은 없습니다. 보시고 알려주시기만 하면 됩니다.</p>
   <p style="color:#5a6779;font-size:13px;margin-top:22px">문의 070-8983-2600 · info@rndsetup.com<br>이머전트 · 대표 이영현 · 사업자등록번호 328-03-02926</p>
 </div>`;

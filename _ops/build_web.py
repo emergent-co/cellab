@@ -75,6 +75,31 @@ def head(h1, sub, answer, summary, quote):
             '<button type="button" class="qbtn" data-quote="%s">제품문의</button>\n'
             % (h1, sub, answer, summary, esc(quote)))
 
+# ══ 해외 발주 판매가 산식 (2026-08-29 확정) ══
+#   판매가 = (정가 + 배송료) × 관세 × 수수료      ※ 부가세는 계수 1 (VAT 별도 표기 유지)
+#   배송료는 주문당 1회 성격이라 수량에 비례시키지 않는다.
+#     · 1개 기준 표시가  unit  = (P + SHIP) × K
+#     · 2개째부터 추가분  extra = P × K
+#     · 10개 이상은 배송료 문의
+SHIP = 100000      # 기본 배송료
+DUTY = 1.1         # 관세
+FEE  = 1.1         # 우리 수수료
+VAT  = 1.0         # 부가세 — VAT 별도 표기 유지
+K    = DUTY * FEE * VAT
+QTY_ASK = 10       # 이 수량 이상이면 배송료 문의
+
+def landed(p):
+    """1개 기준 판매가 (배송료 포함) — 1,000원 단위 반올림"""
+    return int(round((p + SHIP) * K / 1000.0)) * 1000 if p else 0
+
+def landed_extra(p):
+    """2개째부터 추가되는 1개분 (배송료 제외)"""
+    return int(round(p * K / 1000.0)) * 1000 if p else 0
+
+PRICE_NOTE = ('1개 기준 판매가입니다. <b>배송료 10만원 · 관세 10% · 수수료 10%</b>가 포함돼 있으며 <b>VAT는 별도</b>입니다. '
+              '배송료는 주문당 1회라 <b>2개째부터는 배송료가 다시 붙지 않습니다</b>. '
+              '<b>10개 이상</b>은 배송료를 따로 안내드립니다.')
+
 def buybox(h1, models_json):
     """3번째 그리드 열 — 제품문의 버튼 오른쪽"""
     return ('<div id="buybox" class="bb dt-buy" data-name="%s" data-models=\'%s\'></div>'
@@ -85,13 +110,16 @@ def spec_tbl(rows):
             + ''.join('<tr><th>%s</th><td>%s</td></tr>'%r for r in rows)
             + '</tbody></table></div>')
 
-def price_tbl(rows, headers=('모델','규격','정가(VAT 별도)')):
+def price_tbl(rows, headers=('모델','규격','판매가 1개 (VAT 별도)')):
     h='<div class="pkg-tblwrap"><table class="pkg-tbl pkg-opt"><thead><tr>'+''.join('<th>%s</th>'%x for x in headers)+'</tr></thead><tbody>'
     for m,spec,p in rows:
-        pr = ('<b>%s원</b>'%format(p,',')) if p else '<b>문의</b>'
+        pr = ('<b>%s원</b>'%format(landed(p),',')) if p else '<b>문의</b>'
         sp = '' if spec==m else spec          # 모델명과 규격이 같으면 규격칸을 비운다
         h+='<tr><td><b>%s</b></td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,sp,pr)
-    return h+'</tbody></table></div>'
+    h+='</tbody></table></div>'
+    if any(p for _,_,p in rows):
+        h+='<p class="pkg-note">%s</p>'%PRICE_NOTE
+    return h
 
 def feat(items):
     return '<ul class="pkg-feat">'+''.join('<li>%s</li>'%i for i in items)+'</ul>'
@@ -118,7 +146,7 @@ def faq_block(title, items):
     return s+'</div>'
 
 def ld(cfg, slug, faq):
-    prices=[p for _,_,p in (cfg.get('price') or []) if p]
+    prices=[landed(p) for _,_,p in (cfg.get('price') or []) if p]
     prod={"@context":"https://schema.org","@type":"Product",
       "name":cfg['ldname'],
       "brand":{"@type":"Brand","name":"Gaoss Union","alternateName":"가오스유니온"},
@@ -149,9 +177,9 @@ def build(cfg):
     s=TPL
     if not cfg.get('imgs'): cfg['imgs']=autoimgs(slug)
     s=s.replace('{{HERO}}', hero(slug, cfg['h1'], cfg['imgs']))
-    mj=json.dumps([{'m':m,'s':sp,'p':pr} for m,sp,pr in (cfg.get('price') or [])],ensure_ascii=False)
+    mj=json.dumps([{'m':m,'s':sp,'p':landed(pr),'x':landed_extra(pr)} for m,sp,pr in (cfg.get('price') or [])],ensure_ascii=False)
     if not (cfg.get('price') or []):
-        mj=json.dumps([{'m':m,'s':'','p':0} for m in (cfg.get('models') or ['기본'])],ensure_ascii=False)
+        mj=json.dumps([{'m':m,'s':'','p':0,'x':0} for m in (cfg.get('models') or ['기본'])],ensure_ascii=False)
     mj=mj.replace("'",'&#39;')
     s=s.replace('{{HEAD}}', head(cfg['h1'], cfg['sub'], cfg['answer'], cfg['summary'], cfg['quote']))
     s=s.replace('{{BUY}}',  buybox(cfg['h1'], mj))
