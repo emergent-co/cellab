@@ -164,20 +164,29 @@ export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주
 
 // ---------- 공급자(이머전트) 정보 ----------
 /**
- * 주문·정산 페이지는 멤버십 회원 전용이다.
- * customers.access 가 '승인' 인 사람만 열린다. 새 카카오 가입자는 '대기'.
+ * /member/ (주문·정산) 는 멤버십 = 승인 + 후불 거래처 전용이다.
+ *   - access '승인'  : 거래처로 확정된 사람. 새 카카오 가입자는 '대기'.
+ *   - billing_mode '후불' : 쓴 만큼 쌓아두고 중간정산하는 방식. 이 화면 전체가 그 전제로 짜여 있다.
+ * 선불 고객은 여기 들어오지 않는다 — 주문 이력은 선불 전용 페이지에서 본다.
  */
-export function isMember(c) {
-  return !!(c && c.access === '승인');
-}
+export function isApproved(c) { return !!(c && c.access === '승인'); }
+export function isPostpaid(c) { return !!(c && (c.billing_mode || '선불') === '후불'); }
+export function isMember(c) { return isApproved(c) && isPostpaid(c); }
 
 /** 멤버십 전용 API 앞에 세우는 문지기. 통과하면 null, 아니면 Response. */
 export function memberGate(me) {
   if (!me) return json({ error: 'login_required' }, 401);
-  if (!isMember(me)) {
+  if (me.role === 'admin') return null;          // 관리자 화면이 이 안에 있다 — 플래그로 잠그지 않는다
+  if (!isApproved(me)) {
     return json({
       error: 'not_member',
       message: '주문·정산은 멤버십 회원만 이용할 수 있습니다. 견적 문의로 남겨주시면 연락드리겠습니다.',
+    }, 403);
+  }
+  if (!isPostpaid(me)) {
+    return json({
+      error: 'prepaid_only',
+      message: '이 화면은 후불(멤버십) 거래처 전용입니다. 선불 거래는 주문 조회 페이지에서 확인해주세요.',
     }, 403);
   }
   return null;

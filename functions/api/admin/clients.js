@@ -149,9 +149,16 @@ async function post(request, env) {
 
   if (b.action === 'access') {
     if (!ACCESS.includes(b.access)) return json({ error: 'bad_access' }, 400);
-    await env.DB.prepare('UPDATE customers SET access=?, updated_at=? WHERE id=?').bind(b.access, now, c.id).run();
-    await logEvent(env, { action: 'member_access', actor: 'admin', detail: `${who} 멤버십 ${b.access}` });
-    return json({ ok: true, access: b.access });
+    // 멤버십 승인 = 후불. /member/ 는 후불 전제로 짜여 있어, 승인만 하고 선불로 두면 못 들어온다.
+    const toPostpaid = b.access === '승인' && (c.billing_mode || '선불') !== '후불';
+    await env.DB.prepare(
+      toPostpaid
+        ? "UPDATE customers SET access=?, billing_mode='후불', updated_at=? WHERE id=?"
+        : 'UPDATE customers SET access=?, updated_at=? WHERE id=?'
+    ).bind(b.access, now, c.id).run();
+    await logEvent(env, { action: 'member_access', actor: 'admin',
+      detail: `${who} 멤버십 ${b.access}${toPostpaid ? ' · 후불 전환' : ''}` });
+    return json({ ok: true, access: b.access, billing_mode: toPostpaid ? '후불' : c.billing_mode });
   }
 
   if (b.action === 'mode') {

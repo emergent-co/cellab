@@ -1,7 +1,8 @@
 // GET  /api/auth/me     → 로그인 상태 + 거래처 정보
 // POST /api/auth/me     → 거래처 정보 저장
 // DELETE /api/auth/me   → 로그아웃
-import { json, currentCustomer, dropSession, clearCookie, kstISO, isMember } from '../_lib.js';
+import { json, currentCustomer, dropSession, clearCookie, kstISO,
+         isMember, isApproved, isPostpaid } from '../_lib.js';
 import { labInfo } from '../order/lab.js';
 
 const FIELDS = ['name', 'email', 'work_email', 'phone', 'company', 'biz_no', 'ceo', 'biz_type', 'biz_item', 'tax_email', 'address'];
@@ -18,7 +19,12 @@ export async function onRequest({ request, env }) {
   if (request.method === 'GET') {
     // 승인 전이면 실험실을 만들거나 조회하지 않는다 — 거래처가 확정된 뒤의 개념이다
     const admin = me.role === 'admin';
-    if (!isMember(me)) return json({ login: true, member: false, admin, customer: me, lab: null, members: [] });
+    // 못 들어오는 이유를 구분해서 준다 — 승인 전인지, 선불 거래처인지에 따라 갈 곳이 다르다
+    if (!admin && !isMember(me)) {
+      return json({ login: true, member: false, admin,
+        reason: isApproved(me) && !isPostpaid(me) ? 'prepaid' : 'pending',
+        customer: me, lab: null, members: [] });
+    }
     const info = await labInfo(env, me);
     return json({ login: true, member: true, admin, customer: me, lab: info.lab, members: info.members });
   }
