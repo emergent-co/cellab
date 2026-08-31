@@ -142,7 +142,9 @@ async function post(request, env) {
   const b = await request.json().catch(() => ({}));
   if (b.action === 'create') return create(env, b);
   if (!b.id) return json({ error: 'no_id' }, 400);
-  const c = await env.DB.prepare('SELECT id, name, company FROM customers WHERE id=?').bind(b.id).first();
+  const c = await env.DB.prepare(
+    'SELECT id, name, company, billing_mode, role, access, kakao_id FROM customers WHERE id=?'
+  ).bind(b.id).first();
   if (!c) return json({ error: 'not_found' }, 404);
   const now = kstISO();
   const who = c.company || c.name || `#${c.id}`;
@@ -166,6 +168,43 @@ async function post(request, env) {
     await env.DB.prepare('UPDATE customers SET billing_mode=?, updated_at=? WHERE id=?').bind(mode, now, c.id).run();
     await logEvent(env, { action: 'billing_mode', actor: 'admin', detail: `${who} ${mode} 전환` });
     return json({ ok: true, billing_mode: mode });
+  }
+
+  /* 거래처 삭제.
+     이력이 한 건이라도 있으면 지우지 않는다 — 주문·정산·문서가 사라지면 장부가 어긋나고,
+     이미 나간 서류의 발행처만 없어진다. 그럴 땐 «거절»로 돌려 목록에서 내리는 게 맞다. */
+  if (b.action === 'delete') {
+    if (c.role === 'admin') {
+      return json({ error: 'is_admin', message: '관리자 계정은 지울 수 없습니다.' }, 400);
+    }
+    const n = await env.DB.prepare(
+      `SELECT (SELECT COUNT(*) FROM orders      WHERE customer_id=?1) AS o,
+              (SELECT COUNT(*) FROM settlements WHERE customer_id=?1) AS s,
+              (SELECT COUNT(*) FROM documents   WHERE customer_id=?1) AS d,
+              (SELECT COUNT(*) FROM payments    WHERE customer_id=?1) AS p`
+    ).bind(c.id).first();
+    const left = [];
+    if (n.o) left.push(`주문 ${n.o}건`);
+    if (n.s) left.push(`정산 ${n.s}건`);
+    if (n.d) left.push(`발행 문서 ${n.d}건`);
+    if (n.p) left.push(`입금 ${n.p}건`);
+    if (left.length) {
+      return json({ error: 'has_history',
+        message: `${left.join(' · ')}이 남아 있어 지울 수 없습니다.\n`
+               + '이력을 먼저 지우거나, 멤버십을 «거절»로 돌려 목록에서 내려주세요.' }, 400);
+    }
+    // 딸린 부속만 함께 정리한다. 이력이 없는 것은 위에서 확인했다.
+    await env.DB.batch([
+      env.DB.prepare('DELETE FROM bill_profiles WHERE customer_id=?').bind(c.id),
+      env.DB.prepare('DELETE FROM sites         WHERE customer_id=?').bind(c.id),
+      env.DB.prepare('DELETE FROM sessions      WHERE customer_id=?').bind(c.id),
+      env.DB.prepare('UPDATE todos     SET customer_id=NULL WHERE customer_id=?').bind(c.id),
+      env.DB.prepare('UPDATE inquiries SET customer_id=NULL WHERE customer_id=?').bind(c.id),
+      env.DB.prepare('DELETE FROM customers WHERE id=?').bind(c.id),
+    ]);
+    await logEvent(env, { action: 'client_deleted', actor: 'admin',
+      detail: `거래처 삭제 ${who}${c.kakao_id ? ' (카카오 계정 연결됨 — 다시 로그인하면 새로 만들어집니다)' : ''}` });
+    return json({ ok: true, deleted: who });
   }
 
   if (b.action === 'memo') {

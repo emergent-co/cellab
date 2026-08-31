@@ -446,8 +446,21 @@ table.cards.ledger tr[data-oid]:hover{background:#f7f8fb}
 .ivlab em b{color:var(--navy);font-weight:800;background:var(--soft-blue);border-radius:4px;padding:1px 4px}
 .kpi.ok{border-color:#B7E0C6;background:#F2FBF5}
 .kpi.ok b{color:#166534}
-.kpi em.duein{display:block;font-style:normal;font-size:11.5px;font-weight:600;line-height:1.55;
-  margin-top:8px;text-align:right;color:var(--mut)}
+/* 본문 구획 제목 — 형광펜으로 그은 것처럼 눈에 걸리게 */
+.sech{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;letter-spacing:-.01em;
+  margin:2px 0 12px;min-height:24px}
+.sech b{background:linear-gradient(transparent 58%, #FCE3B8 58%);padding:0 3px 1px}
+.sech i{font-style:normal;font-size:11.5px;font-weight:800;background:#eef1f6;color:#475569;
+  border-radius:999px;padding:2px 8px}
+.sechp{padding:2px 0;margin-bottom:22px;overflow:hidden}
+.sechp table{margin:0}
+.sec th small.vt{display:block;font-size:10px;font-weight:700;color:var(--mut-2);letter-spacing:0}
+/* 안내 한 줄은 처음부터 끝까지 같은 크기·같은 굵기로. 안쪽 <b> 가
+   .kpi b(24px 블록) 를 물려받아 혼자 커지고 줄바꿈되던 것을 여기서 되돌린다. */
+.kpi em.duein{display:block;font-style:normal;font-size:11.5px;font-weight:600;line-height:1.5;
+  margin-top:7px;text-align:right;color:var(--mut);letter-spacing:-.01em}
+.kpis.money .kpi em.duein b{display:inline;font-size:11.5px;font-weight:600;color:inherit;
+  letter-spacing:-.01em;margin:0;text-align:inherit}
 .kpi.warn em.duein{color:#92400E}
 .kpi.ok em.duein{color:#166534}
 .kpis.money .kpi{cursor:default}
@@ -846,7 +859,7 @@ textarea{min-height:78px;resize:vertical}
     <nav class="nav" id="nav">
       <a data-v="home" class="on">홈</a>
       <a data-v="order">주문하기</a>
-      <a data-v="settle">정산하기</a>
+      <a data-v="settle">정산하기 · 거래내역</a>
     </nav>
     <nav class="nav adm" id="admNav" hidden>
       <div class="admh">관리자</div>
@@ -1379,8 +1392,8 @@ function loadKakao(cb){
 }
 
 /* ---------------- 라우팅 ---------------- */
-var VT = { home:'홈', order:'주문하기', new:'주문하기', orders:'정산하기',
-           settle:'정산하기', admHome:'관리자 홈',
+var VT = { home:'홈', order:'주문하기', new:'주문하기', orders:'정산하기 · 거래내역',
+           settle:'정산하기 · 거래내역', admHome:'관리자 홈',
            admTodo:'할 일', admOps:'주문 · 정산 · 문의', admDocs:'문서 발행',
            admClients:'거래처 관리', admMembers:'거래처 관리' };
 var VIEWS = ['home','order','new','orders','settle','admHome','admTodo','admOps','admDocs','admClients','admMembers'];
@@ -1741,7 +1754,7 @@ async function aoOpen(id){
       + akv('납품지', o.ship_address)
       + (d.bill ? akv('계산서', d.bill.company+' · '+(d.bill.biz_no||'')) : '')
      +'</div>'
-    +'<div class="sec"><h4>품목 · 단가</h4><div id="aoItems"></div>'
+    +'<div class="sec"><h4>품목 · 단가 <i style="font-style:normal;color:var(--mut);font-weight:600">VAT 포함으로 넣어주세요</i></h4><div id="aoItems"></div>'
       +'<button class="mini" id="aoAdd" style="margin:10px 0 0">＋ 품목 추가</button>'
       +'<div class="qsum" id="aoSum"></div></div>'
     +'<div class="sec"><h4>상태 · 메모</h4>'
@@ -1767,8 +1780,8 @@ function aoRenderItems(){
       +'<input class="f-spec" placeholder="규격 · 모델" value="'+esc(it.spec||'')+'">'
       +'<div class="arow"><input class="f-unit" value="'+esc(it.unit||'EA')+'" aria-label="단위">'
         +'<input class="f-qty" type="number" inputmode="decimal" value="'+(it.qty||0)+'" aria-label="수량">'
-        +'<input class="f-price" type="number" inputmode="numeric" value="'+(it.unit_price||0)+'" aria-label="단가">'
-        +'<span class="aamt">'+won(Math.round((it.qty||0)*(it.unit_price||0)))+'원</span>'
+        +'<input class="f-price" type="number" inputmode="numeric" value="'+incOf(it.unit_price)+'" aria-label="단가 (VAT 포함)">'
+        +'<span class="aamt">'+won(Math.round((it.qty||0)*incOf(it.unit_price)))+'원</span>'
         +'<button class="adel" aria-label="삭제">×</button></div></div>'; }).join('')
     || '<div class="empty" style="padding:18px">품목이 없습니다.</div>';
   box.querySelectorAll('.aitem').forEach(function(el){
@@ -1776,9 +1789,10 @@ function aoRenderItems(){
     el.querySelector('.f-name').oninput = function(e){ aoItems[i].name=e.target.value; };
     el.querySelector('.f-spec').oninput = function(e){ aoItems[i].spec=e.target.value; };
     el.querySelector('.f-unit').oninput = function(e){ aoItems[i].unit=e.target.value; };
-    function recalc(){ el.querySelector('.aamt').textContent = won(Math.round((aoItems[i].qty||0)*(aoItems[i].unit_price||0)))+'원'; aoSums(); }
+    // 단가는 VAT 포함으로 받고, 저장은 공급가로 한다 (서버가 부가세를 다시 얹는다)
+    function recalc(){ el.querySelector('.aamt').textContent = won(Math.round((aoItems[i].qty||0)*incOf(aoItems[i].unit_price)))+'원'; aoSums(); }
     el.querySelector('.f-qty').oninput  = function(e){ aoItems[i].qty=Number(e.target.value); recalc(); };
-    el.querySelector('.f-price').oninput= function(e){ aoItems[i].unit_price=Number(e.target.value); recalc(); };
+    el.querySelector('.f-price').oninput= function(e){ aoItems[i].unit_price=supOf(e.target.value); recalc(); };
     el.querySelector('.adel').onclick = function(){ aoItems.splice(i,1); aoRenderItems(); };
   });
   aoSums();
@@ -1789,7 +1803,7 @@ function aoSums(){
   var el = $('#aoSum'); if(!el) return;
   el.innerHTML = '<div><span>공급가액</span><b>'+won(s)+'원</b></div>'
     +'<div><span>부가세</span><b>'+won(v)+'원</b></div>'
-    +'<div class="tt"><span>합계</span><b>'+won(s+v)+'원</b></div>';
+    +'<div class="tt"><span>합계 (VAT 포함)</span><b>'+won(s+v)+'원</b></div>';
 }
 function aoDocs(){
   var box=$('#aoDocs'); if(!box) return;
@@ -2080,7 +2094,7 @@ function paintHome(){
              +'<b>회원정보</b>에서 이름·회신 이메일·연락처를 먼저 채워주세요.</div>' : '')
     +'<div class="tiles">'
       + tile('new',    ICON.order, '주문하기',   '상품 링크로 바로 접수', nCart ? nCart+'건 담김' : '', 'pri')
-      + tile('settle', ICON.money, '정산하기',   due!=null ? '잔여 '+won(due)+'원' : '거래 내역 · 서류 요청', nReq ? nReq : '')
+      + tile('settle', ICON.money, '정산하기 · 거래내역', due!=null ? '잔여 '+won(due)+'원' : '거래 내역 · 서류 요청', nReq ? nReq : '')
       + tile('@me',    ICON.user,  '회원정보',   '주문자·납품지·계산서 정보', todo ? '!' : '', todo?'hot':'')
       + '<button class="tile sm" data-act="invite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
         + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.invite+'</svg>'
@@ -2304,6 +2318,26 @@ function closeOrderModal(){
 }
 
 // 팝업 머리 — 목록에 이미 있는 값만으로 즉시 그린다 (네트워크를 기다리지 않는다)
+/* 이 화면의 모든 금액은 VAT 포함이 기준이다.
+   품목 단가는 공급가로 저장돼 있으므로 1.1 을 곱해 보여주되,
+   반올림이 쌓여 합계와 어긋나지 않도록 마지막 줄에서 차액을 흡수한다. */
+function incOf(p){ return Math.round((Number(p)||0) * 1.1); }   // 공급가 → VAT 포함
+function supOf(p){ return Math.round((Number(p)||0) / 1.1); }   // VAT 포함 → 공급가
+
+function vatRows(items, total){
+  var rows = (items||[]).map(function(i){
+    var amt = Math.round((Number(i.qty)||0) * (Number(i.unit_price)||0));
+    return Object.assign({}, i, { _sup: amt, incAmt: Math.round(amt * 1.1) });
+  });
+  var sum = rows.reduce(function(a, r){ return a + r.incAmt; }, 0);
+  if (total && sum && rows.length && sum !== total) rows[rows.length-1].incAmt += (total - sum);
+  rows.forEach(function(r){
+    var q = Number(r.qty) || 0;
+    r.incUnit = q ? Math.round(r.incAmt / q) : r.incAmt;
+  });
+  return rows;
+}
+
 function detailHead(o){
   return '<div class="dt2">'+esc(o.title||'')+'</div>'
    + actionBlock(o)
@@ -2351,13 +2385,13 @@ async function openOrder(id){
   $('#detail').innerHTML =
     detailHead(o)
    +'<div class="sec"><h4>품목</h4><table><thead><tr><th class="l">품명</th><th style="width:56px">수량</th>'
-     +'<th style="width:88px">단가</th><th style="width:96px">금액</th></tr></thead><tbody>'
-     + (d.items||[]).map(function(i){
+     +'<th style="width:96px">단가<small class="vt">VAT 포함</small></th><th style="width:104px">금액</th></tr></thead><tbody>'
+     + vatRows(d.items||[], o.total_amount).map(function(i){
          return '<tr style="cursor:default"><td class="l">'
            +(i.link?'<a class="lnk2" href="'+esc(i.link)+'" target="_blank" rel="noopener">'+esc(i.name)+'</a>':esc(i.name))
            +(i.spec?'<br><small style="color:var(--mut)">'+esc(i.spec)+'</small>':'')+'</td>'
-           +'<td>'+(i.qty||0)+'</td><td class="n">'+(i.unit_price?won(i.unit_price):'—')+'</td>'
-           +'<td class="n">'+(i.amount?won(i.amount):'—')+'</td></tr>'; }).join('')
+           +'<td>'+(i.qty||0)+'</td><td class="n">'+(i.incUnit?won(i.incUnit):'—')+'</td>'
+           +'<td class="n">'+(i.incAmt?won(i.incAmt):'—')+'</td></tr>'; }).join('')
      +'</tbody></table>'
      +(o.total_amount?'<div class="sum"><span>합계 (VAT 포함)</span><span>'+won(o.total_amount)+'원</span></div>'
         :'<p class="hint" style="margin-top:10px">금액을 확인하는 중입니다.</p>')
@@ -3053,7 +3087,7 @@ function paintSettle(st){
   h += '</section><section>';
 
   {
-    h += fold('거래 내역', lg.length, lg.length
+    h += sech('거래 내역', lg.length, lg.length
       ? '<table class="cards ledger"><thead><tr><th style="width:96px">일자</th><th>내용</th>'
         + '<th style="width:120px">금액</th><th style="width:130px">잔액</th></tr></thead><tbody>'
         + lg.map(function(r){
@@ -3067,10 +3101,10 @@ function paintSettle(st){
                 +(neg?'−':'+')+won(Math.abs(r.amount))+'</td>'
               +'<td class="n"><b>'+won(r.balance)+'</b></td></tr>'; }).join('')
         + '</tbody></table>'
-      : '<div class="empty">거래 내역이 없습니다.</div>', true);
+      : '<div class="empty">거래 내역이 없습니다.</div>');
   }
 
-  h += fold('발급 서류', docs.length, docs.length
+  h += sech('발급 서류', docs.length, docs.length
     ? '<table class="cards docs"><thead><tr><th style="width:110px">종류</th><th>문서번호</th>'
       + '<th style="width:96px">발행일</th><th style="width:96px">상태</th><th style="width:130px">받기</th></tr></thead><tbody>'
       + docs.map(function(d){
@@ -3080,7 +3114,7 @@ function paintSettle(st){
             +'<td>'+(d.status==='취소됨'?'—':'<a class="lnk" href="/doc/'+d.id+'" target="_blank">보기</a>'
               +'<a class="lnk" href="/doc/'+d.id+'?f=pdf" target="_blank">PDF</a>')+'</td></tr>'; }).join('')
       + '</tbody></table>'
-    : '<div class="empty">아직 발급된 서류가 없습니다.</div>', true);
+    : '<div class="empty">아직 발급된 서류가 없습니다.</div>');
 
   h += '</section></div>';
   $('#main').innerHTML = h;
@@ -3089,6 +3123,12 @@ function paintSettle(st){
   });
   flashOrder();
   $('#reqBtn').onclick = settleForm;
+}
+
+/* 왼쪽 «정산 요청 내역» 과 같은 틀 — 제목은 카드 밖으로 올리고 높이를 맞춘다 */
+function sech(title, n, inner){
+  return '<div class="sech"><b>'+esc(title)+'</b>'+(n?'<i>'+n+'</i>':'')+'</div>'
+    + '<div class="panel sechp">'+inner+'</div>';
 }
 
 function fold(title, n, inner, open){
@@ -3150,7 +3190,7 @@ function billManage(ps){
 var SQ = { '정산요청':'q0', '처리중':'q1', '서류발급 완료':'q2', '입금완료':'q3', '반려':'q4' };
 
 function reqCards(rows){
-  var h = '<div class="dt2" style="font-size:15px;margin:2px 0 12px">정산 요청 내역</div>';
+  var h = '<div class="sech"><b>정산 요청 내역</b>'+(rows.length?'<i>'+rows.length+'</i>':'')+'</div>';
   if (!rows.length){
     return h + '<div class="panel"><div class="empty">아직 정산 요청이 없습니다.<br>'
       + '위 <b>정산 요청</b> 버튼으로 요청하시면 서류를 발급해 드립니다.</div></div>'
@@ -3972,7 +4012,7 @@ async function ordForm(client, orderId){
     var d = await fetch('/api/admin/orders/'+orderId,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
     if (!d.order){ w0.remove(); return toast('불러오지 못했습니다'); }
     o = d.order;
-    items = (d.items||[]).map(function(i){ return { name:i.name, spec:i.spec||'', qty:Number(i.qty)||1, price:Number(i.unit_price)||0 }; });
+    items = (d.items||[]).map(function(i){ return { name:i.name, spec:i.spec||'', qty:Number(i.qty)||1, price:incOf(i.unit_price) }; });
   }
   if (!items.length) items = [{name:'',spec:'',qty:1,price:0}];
 
@@ -3987,7 +4027,11 @@ async function ordForm(client, orderId){
       + ST.map(function(x){ return '<option'+((o?o.status:'완료')===x?' selected':'')+'>'+x+'</option>'; }).join('')
       +'</select></div></div>'
     +'<label class="req">제목</label><input type="text" id="of-t" value="'+esc(o?(o.title||''):'')+'" placeholder="예) 관형 전기로 및 부속">'
-    +'<label>품목 <span class="hint" style="font-weight:600">(단가는 부가세 별도)</span></label>'
+    +'<label>소속 <span class="hint" style="font-weight:600">(서류·배송에 찍힙니다)</span></label>'
+    +'<input type="text" id="of-org" value="'+esc(o ? (o.org_name||'') : (client.company||''))+'" placeholder="비우면 거래처의 기본 납품지 소속으로 채웁니다">'
+    +'<label>납품지</label>'
+    +'<input type="text" id="of-addr" value="'+esc(o ? (o.ship_address||'') : (client.address||''))+'" placeholder="비우면 거래처의 기본 납품지 주소로 채웁니다">'
+    +'<label>품목 <span class="hint" style="font-weight:600">(단가는 VAT 포함)</span></label>'
     +'<div id="of-items"></div>'
     +'<button class="mini" id="of-add" style="margin-top:4px">＋ 품목 추가</button>'
     +'<div class="qsum" id="of-sum"></div>'
@@ -4011,14 +4055,15 @@ async function ordForm(client, orderId){
     clRefresh(client.id);
   };
 
+  // 여기서 치는 단가는 VAT 포함이다 — 총액을 먼저 확정하고 공급가액을 역산한다
   function sums(){
-    var sup = items.reduce(function(a,i){ return a + Math.round((i.qty||0)*(i.price||0)); }, 0);
-    var vat = Math.round(sup*0.1);
+    var tot = items.reduce(function(a,i){ return a + Math.round((i.qty||0)*(i.price||0)); }, 0);
+    var sup = supOf(tot), vat = tot - sup;
     $('#of-sum').innerHTML = '<div><span>공급가액</span><b>'+won(sup)+'원</b></div>'
       + '<div><span>부가세</span><b>'+won(vat)+'원</b></div>'
-      + '<div class="tt"><span>합계</span><b>'+won(sup+vat)+'원</b></div>';
+      + '<div class="tt"><span>합계 (VAT 포함)</span><b>'+won(tot)+'원</b></div>';
   }
-  var box = mItems($('#of-items'), items, { spec:true, priceLabel:'단가 (VAT 별도)', onChange:sums });
+  var box = mItems($('#of-items'), items, { spec:true, priceLabel:'단가 (VAT 포함)', onChange:sums });
   $('#of-add').onclick = box.add;
 
   $('#of-go').onclick = async function(){
@@ -4027,8 +4072,9 @@ async function ordForm(client, orderId){
     if (!$('#of-t').value.trim()) return alert('제목을 입력해주세요.');
     var body = {
       customer_id: client.id, title:$('#of-t').value, status:$('#of-st').value,
+      org_name:$('#of-org').value.trim(), ship_address:$('#of-addr').value.trim(),
       trade_date:$('#of-date').value, admin_memo:$('#of-m').value,
-      items: rows.map(function(i){ return { name:i.name, spec:i.spec||'', qty:i.qty, unit_price:i.price }; }),
+      items: rows.map(function(i){ return { name:i.name, spec:i.spec||'', qty:i.qty, unit_price:supOf(i.price) }; }),
     };
     var b = $('#of-go'); b.disabled = true;
     var r = orderId
@@ -4282,7 +4328,8 @@ async function clOpen(id){
     + '<div class="sec"><h4>메모 <i style="font-style:normal;color:var(--mut);font-weight:600">고객에게 안 보입니다</i></h4>'
       + '<textarea id="clMemo" rows="2" placeholder="내부 메모">'+esc(c.memo||'')+'</textarea></div>'
 
-    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+    + '<div class="mrow"><button class="btn gray" id="clDel">삭제</button>'
+      + '<button class="btn gray" data-x>닫기</button>'
       + '<button class="btn ghost" id="clTodo">할 일로</button>'
       + '<button class="btn pri" id="clIssue">견적서 발행</button>'
       + '<button class="btn ok" id="clSave">저장</button></div>';
@@ -4325,6 +4372,20 @@ async function clOpen(id){
       else setForm(c, null, d.profiles);
     };
   });
+
+  $('#clDel').onclick = async function(){
+    if (!confirm('«'+(c.company||c.name||'이 거래처')+'» 를 지울까요?\n\n'
+      + '거래처 정보와 계산서 발행 정보·납품지가 함께 지워집니다. 되돌릴 수 없습니다.\n'
+      + '(주문·정산·문서 이력이 있으면 지워지지 않습니다)')) return;
+    var bt = $('#clDel'); bt.disabled = true;
+    var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,
+      body:JSON.stringify({id:c.id, action:'delete'})})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    bt.disabled = false;
+    if (!r.ok) return alert(r.message || '지우지 못했습니다.');
+    w.remove(); toast('거래처를 지웠습니다');
+    clLoad(); admPoll(true);
+  };
 
   $('#clIssue').onclick = function(){
     w.remove();

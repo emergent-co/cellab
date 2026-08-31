@@ -59,6 +59,16 @@ export async function onRequestPost({ request, env }) {
     .filter((i) => i.name);
   if (!items.length) return json({ error: 'no_items', message: '품목을 1개 이상 넣어주세요.' }, 400);
 
+  // 소속·납품지는 서류와 배송에 그대로 찍힌다. 비면 «—» 로 남아 나중에 아무도 못 채운다.
+  //   ① 관리자가 적어 넣은 값 ② 거래처의 기본 납품지 ③ 거래처 기본 정보 순으로 채운다.
+  const site = await env.DB.prepare(
+    'SELECT * FROM sites WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1'
+  ).bind(customer.id).first();
+  // sites.address 는 저장할 때 이미 상세주소까지 합쳐 넣는다 — 여기서 또 붙이면 뒷부분이 두 번 찍힌다
+  const siteAddr = site ? String(site.address || '').trim() : '';
+  const orgName = String(b.org_name || (site && site.org_name) || customer.company || '').trim();
+  const shipAddr = String(b.ship_address || siteAddr || customer.address || '').trim();
+
   const status = STATUSES.includes(b.status) ? b.status : '완료';
   // 거래일(created_at)을 직접 정한다 — 옮겨 적는 이력은 오늘 날짜가 아니다
   const day = String(b.trade_date || '').slice(0, 10) || kstDate();
@@ -71,7 +81,7 @@ export async function onRequestPost({ request, env }) {
                          manual, created_at, updated_at)
      VALUES (?,?,?,?,?,?,?,?,?,?,?, 1, ?, ?)`
   ).bind(order_no, customer.id, status, String(b.title || '').trim() || '(제목 없음)',
-         String(b.org_name || customer.company || ''), String(b.ship_address || customer.address || ''),
+         orgName, shipAddr,
          String(b.request_note || ''), String(b.admin_memo || ''),
          String(b.orderer_name || customer.name || ''),
          String(b.orderer_email || customer.work_email || customer.email || ''),
