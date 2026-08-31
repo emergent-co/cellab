@@ -1,7 +1,8 @@
 // GET  /api/admin/settlement                → 후불 거래처 요약 목록
 // GET  /api/admin/settlement?customer_id=   → 한 거래처 상세(원장 포함)
 // POST /api/admin/settlement                → 입금/조정 기록 · 후불 전환
-import { json, isAdmin, needAdmin, kstISO, kstDate, adminOK, logEvent } from '../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, kstDate, adminOK, logEvent, randomToken } from '../_lib.js';
+import { confirmMailBody, splitAddr, sendMail, mailConfigured } from '../_mailer.js';
 import { settlement, ledger } from '../_settle.js';
 
 export async function onRequest({ request, env }) {
@@ -130,6 +131,45 @@ export async function onRequest({ request, env }) {
     await logEvent(env, { action: 'settle_add', actor: 'admin',
       detail: `정산 직접 입력 ${items[0].name}${items.length > 1 ? ` 외 ${items.length - 1}건` : ''} · ${total.toLocaleString('ko-KR')}원` });
     return json({ ok: true, id: r.meta.last_row_id, supply, vat, total });
+  }
+
+  // 정산 내용을 고객에게 링크로 보여준다
+  if (b.action === 'settle_confirm') {
+    const st = await env.DB.prepare('SELECT * FROM settlements WHERE id=?').bind(b.settlement_id).first();
+    if (!st) return json({ error: 'not_found' }, 404);
+    const c = await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(st.customer_id).first();
+    const rawTo = String(b.to || st.reply_email || (c && (c.work_email || c.email)) || '').trim();
+    if (!rawTo) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
+    if (!mailConfigured(env)) return json({ error: 'no_mail', message: 'RESEND_API_KEY 가 설정되지 않았습니다.' }, 400);
+
+    let token = st.access_token;
+    if (!token) {
+      token = randomToken();
+      await env.DB.prepare('UPDATE settlements SET access_token=? WHERE id=?').bind(token, st.id).run();
+    }
+    let items = []; try { items = JSON.parse(st.items_json || '[]'); } catch { /* noop */ }
+    const first = items[0];
+    const title = first ? `${first.name}${items.length > 1 ? ` 외 ${items.length - 1}건` : ''}` : '정산 내용';
+
+    const origin = new URL(request.url).origin;
+    const to = splitAddr(rawTo).addr;
+    const rawCc = String(b.cc || '').trim();
+    const cc = rawCc ? rawCc.split(/[,;]/).map((x) => splitAddr(x).addr).filter(Boolean).join(', ') : null;
+
+    const r = await sendMail(env, {
+      to, cc,
+      subject: b.subject || `[실험셋업연구소] 정산 내용 확인 요청 — ${title}`,
+      html: confirmMailBody({
+        kind: 'settle', title, company: c && c.company, contact: c && c.name,
+        total: st.total, viewUrl: `${origin}/view/settle/${st.id}?t=${token}`,
+        to: rawTo, cc: rawCc, memo: b.memo,
+      }),
+    });
+    await logEvent(env, { action: 'confirm_sent', channel: 'email', actor: 'admin', to_addr: to,
+      result: r.ok ? 'ok' : 'fail',
+      detail: r.ok ? `정산 #${st.id} 확인 요청 발송` : `정산 확인 요청 실패: ${r.error}` });
+    if (!r.ok) return json({ error: 'send_failed', message: r.error }, 502);
+    return json({ ok: true, sent: true, view: `${origin}/view/settle/${st.id}?t=${token}` });
   }
 
   if (b.action === 'settle_delete') {

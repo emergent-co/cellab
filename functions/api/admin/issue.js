@@ -208,8 +208,11 @@ async function post(request, env) {
   // dates 에 없으면 공통 발행일을, 그것도 없으면 오늘을 쓴다.
   const common = b.issue_date || kstDate();
   const dateOf = (t) => (b.dates && b.dates[t]) || common;
+  // 견적명·거래명은 첫 품목 이름으로 자동 생성한다 — 매번 손으로 적을 이유가 없다
+  const autoTitle = items.length
+    ? `${items[0].name}${items.length > 1 ? ` 외 ${items.length - 1}건` : ''}` : '';
   const base = {
-    title: String(b.title || '').trim(),
+    title: String(b.title || '').trim() || autoTitle,
     client: {
       company: bill?.company || customer.company || '',
       biz_no: bill?.biz_no || customer.biz_no || '',

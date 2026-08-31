@@ -1,7 +1,10 @@
 // GET  /api/admin/orders/:id           → 상세(주문·고객·품목·문서·이력)
 // PUT  /api/admin/orders/:id           → 주문 필드/품목 수정
 // POST /api/admin/orders/:id {action}  → status 변경 등
-import { json, isAdmin, needAdmin, kstISO, recalcOrder, logEvent, STATUSES, adminOK} from '../../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, recalcOrder, logEvent, STATUSES, adminOK,
+         randomToken } from '../../_lib.js';
+import { confirmMailBody, splitAddr } from '../../_mailer.js';
+import { sendMail, mailConfigured } from '../../_mailer.js';
 import { notifyCustomer, shipHtml } from '../../_notify.js';
 
 export async function onRequest({ request, env, params }) {
@@ -79,6 +82,46 @@ export async function onRequest({ request, env, params }) {
 
   if (request.method === 'POST') {
     const b = await request.json().catch(() => ({}));
+
+    // 고객에게 '이렇게 적었습니다' 링크를 보낸다 — 승인받는 게 아니라 확인해 달라는 것
+    if (b.action === 'confirm') {
+      const customer = order.customer_id
+        ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(order.customer_id).first()
+        : null;
+      const rawTo = String(b.to || order.orderer_email
+        || (customer && (customer.work_email || customer.email)) || '').trim();
+      if (!rawTo) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
+      if (!mailConfigured(env)) return json({ error: 'no_mail', message: 'RESEND_API_KEY 가 설정되지 않았습니다.' }, 400);
+
+      let token = order.access_token;
+      if (!token) {
+        token = randomToken();
+        await env.DB.prepare('UPDATE orders SET access_token=? WHERE id=?').bind(token, order.id).run();
+      }
+      const origin = new URL(request.url).origin;
+      const viewUrl = `${origin}/view/order/${order.id}?t=${token}`;
+      const to = splitAddr(rawTo).addr;
+      const rawCc = String(b.cc || '').trim();
+      const cc = rawCc ? rawCc.split(/[,;]/).map((x) => splitAddr(x).addr).filter(Boolean).join(', ') : null;
+
+      const html = confirmMailBody({
+        kind: 'order', title: order.title || order.order_no,
+        company: order.org_name || (customer && customer.company),
+        contact: order.orderer_name || (customer && customer.name),
+        total: order.total_amount, viewUrl, to: rawTo, cc: rawCc, memo: b.memo,
+      });
+      const r = await sendMail(env, {
+        to, cc,
+        subject: b.subject || `[실험셋업연구소] 주문 내용 확인 요청 — ${order.title || order.order_no}`,
+        html,
+      });
+      await logEvent(env, { order_id: order.id, action: 'confirm_sent', channel: 'email', actor: 'admin',
+        to_addr: to, result: r.ok ? 'ok' : 'fail',
+        detail: r.ok ? `주문 내용 확인 요청 발송` : `확인 요청 발송 실패: ${r.error}` });
+      if (!r.ok) return json({ error: 'send_failed', message: r.error }, 502);
+      return json({ ok: true, sent: true, view: viewUrl });
+    }
+
     if (b.action === 'status' && STATUSES.includes(b.status)) {
       await env.DB.prepare('UPDATE orders SET status=?, updated_at=? WHERE id=?').bind(b.status, kstISO(), order.id).run();
       await logEvent(env, { order_id: order.id, action: 'status', actor: 'admin', detail: `${order.status} → ${b.status}` });

@@ -82,3 +82,38 @@ export function docMailBody({ label, docNo, company, contact, total, viewUrl, to
   <p style="color:#5a6779;font-size:13px;margin-top:22px">문의 070-8983-2600 · info@rndsetup.com<br>이머전트 · 대표 이영현 · 사업자등록번호 328-03-02926</p>
 </div>`;
 }
+
+/** 주문·정산 내용 확인 요청 메일.
+ *  승인을 받는 게 아니라 '이렇게 적었으니 봐 달라'는 안내다. 버튼도 하나만 둔다. */
+export function confirmMailBody({ kind, title, company, contact, total, viewUrl, to, cc, memo }) {
+  const won = (n) => Number(n || 0).toLocaleString('ko-KR');
+  const e = (t) => String(t == null ? '' : t)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const label = kind === 'settle' ? '정산 내용' : '주문 내용';
+
+  const t = to ? splitAddr(to) : null;
+  const toName = contact || (t && t.name) || '담당자';
+  const line = (k, nm, ad) =>
+    `<tr><td style="padding:2px 12px 2px 0;color:#5a6779;white-space:nowrap">${k}</td>`
+    + `<td style="padding:2px 0"><b>${e(nm)} 님</b>`
+    + (ad ? ` <span style="color:#8a94a3;font-size:13px">&lt;${e(ad)}&gt;</span>` : '') + '</td></tr>';
+  const ccList = String(cc || '').split(/[,;]/).map((x) => x.trim()).filter(Boolean).map(splitAddr);
+
+  return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:15px;color:#1a2332;line-height:1.65">
+  <table style="border-collapse:collapse;font-size:14px;margin-bottom:20px">
+    ${line('수신', toName, t && t.addr)}
+    ${ccList.map((c) => line('참조', c.name, c.addr)).join('')}
+  </table>
+  <p>${e(company || '')} ${e(toName)} 님, 안녕하세요.<br>실험셋업연구소(이머전트)입니다.</p>
+  <p>진행 중인 <b>${e(label)}</b>을 아래와 같이 정리했습니다. 확인해주시고,
+     <b>다른 점이 있으면 알려주시면 바로 고쳐드리겠습니다.</b></p>
+  <table style="border-collapse:collapse;margin:18px 0;font-size:14px">
+    <tr><td style="padding:5px 14px 5px 0;color:#5a6779">내용</td><td style="padding:5px 0"><b>${e(title || '')}</b></td></tr>
+    ${total ? `<tr><td style="padding:5px 14px 5px 0;color:#5a6779">금액</td><td style="padding:5px 0"><b>${won(total)}원</b> (VAT 포함)</td></tr>` : ''}
+  </table>
+  ${memo ? `<p style="background:#F7F8FA;border-radius:9px;padding:12px 14px;font-size:14px;white-space:pre-wrap">${e(memo)}</p>` : ''}
+  <p><a href="${viewUrl}" style="display:inline-block;background:#1a6e56;color:#fff;text-decoration:none;padding:12px 22px;border-radius:9px;font-weight:700">내용 확인하기</a></p>
+  <p style="color:#5a6779;font-size:13px">따로 눌러야 할 버튼은 없습니다. 보시고 알려주시기만 하면 됩니다.</p>
+  <p style="color:#5a6779;font-size:13px;margin-top:22px">문의 070-8983-2600 · info@rndsetup.com<br>이머전트 · 대표 이영현 · 사업자등록번호 328-03-02926</p>
+</div>`;
+}

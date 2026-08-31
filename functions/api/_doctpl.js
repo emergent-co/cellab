@@ -117,16 +117,21 @@ export function renderDocHTML(d) {
   .c{ text-align:center; }
   .blk{ margin-bottom:3.4mm; }
   .parties{ display:flex; gap:5mm; margin-bottom:1mm; align-items:stretch; }
-  /* min-width:0 이 없으면 nowrap 인 긴 값(업태/업종 등)이 칸을 밀어내 페이지 밖으로 튀어나간다 */
-  .party{ flex:42 1 0; min-width:0; border:.6pt solid #4a4a4a; position:relative; display:flex; flex-direction:column; }
-  .ph{ background:#f2f2f2; border-bottom:.6pt solid #4a4a4a; text-align:center;
+  /* 공급받는자·공급자도 '표'로 그린다.
+     div 테두리로 그리면 같은 .6pt 인데도 픽셀 격자에서 반 칸 어긋나 흐릿하게 번진다 —
+     문서의 다른 선과 굵기가 달라 보이는 원인이었다. 표로 두면 같은 방식으로 찍힌다. */
+  .party{ flex:42 1 0; min-width:0; position:relative; table-layout:fixed; }
+  .party td, .party th{ padding:0; }
+  .ph{ background:#f2f2f2; text-align:center;
        font-size:9.4pt; font-weight:500; padding:1.7mm 0; letter-spacing:.04em; }
-  .plist{ flex:1; min-width:0; display:flex; flex-direction:column; padding:1.4mm 3mm; }
+  .pbody{ vertical-align:top; }
+  .plist{ min-width:0; display:flex; flex-direction:column; padding:1.4mm 3mm; }
   .prow{ flex:1 0 auto; min-width:0; display:flex; align-items:center; min-height:6.4mm; font-size:9.1pt; }
   .pk{ flex:0 0 19mm; color:#555; }
   .pv{ flex:1; line-height:1.3; white-space:nowrap; overflow:hidden; }
   .party.issuer{ flex:58 1 0; }
-  .stamp{ position:absolute; right:3mm; top:8.5mm; width:17mm; height:17mm; opacity:.9; }
+  .parties{ align-items:stretch; }
+  .stamp{ position:absolute; right:3mm; top:8.5mm; width:17mm; height:17mm; opacity:.9; z-index:1; }
   .items{ margin-top:5mm; }
   .items th{ font-size:9.6pt; }
   .items td{ height:${rowMM}mm; padding:${rowPad}mm 2.6mm; font-size:${rowPt}pt; line-height:1.2; }
@@ -176,29 +181,28 @@ export function renderDocHTML(d) {
   </table>
 
   <div class="parties">
-    <div class="party">
-      <div class="ph">공급받는자</div>
-      <div class="plist">
+    <table class="party">
+      <tr><th class="ph">공급받는자</th></tr>
+      <tr><td class="pbody"><div class="plist">
         <div class="prow"><span class="pk">상호</span>${L(d.client?.company)}</div>
         <div class="prow"><span class="pk">사업자번호</span>${L(d.client?.biz_no)}</div>
         <div class="prow"><span class="pk">대표자명</span>${L(d.client?.ceo)}</div>
         <div class="prow"><span class="pk">담당자</span>${L(d.client?.contact)}</div>
         <div class="prow"><span class="pk">이메일</span>${L(d.client?.email)}</div>
         <div class="prow"><span class="pk">주소</span>${L(d.client?.address)}</div>
-      </div>
-    </div>
-    <div class="party issuer">
-      <img class="stamp" src="${STAMP_PNG}" alt="">
-      <div class="ph">공급자</div>
-      <div class="plist">
+      </div></td></tr>
+    </table>
+    <table class="party issuer">
+      <tr><th class="ph">공급자</th></tr>
+      <tr><td class="pbody"><img class="stamp" src="${STAMP_PNG}" alt=""><div class="plist">
         <div class="prow"><span class="pk">상호</span>${R(ISSUER.company)}</div>
         <div class="prow"><span class="pk">사업자번호</span>${R(ISSUER.reg_no)}</div>
         <div class="prow"><span class="pk">대표자명</span>${R(ISSUER.ceo)}</div>
         <div class="prow"><span class="pk">전화</span>${R(ISSUER.tel)}</div>
         <div class="prow"><span class="pk">주소</span>${R(ISSUER.address)}</div>
         <div class="prow"><span class="pk">업태/업종</span>${R(ISSUER.biz_type + ' / ' + ISSUER.biz_item)}</div>
-      </div>
-    </div>
+      </div></td></tr>
+    </table>
   </div>
 
   <table class="items">

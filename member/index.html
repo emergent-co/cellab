@@ -1417,10 +1417,14 @@ async function aoOpen(id){
       +'<textarea id="aoMemo" rows="2" placeholder="내부 메모 — 고객에게 안 보입니다" style="margin-top:8px">'+esc(o.admin_memo||'')+'</textarea></div>'
     +'<div class="sec"><h4>문서</h4><div id="aoDocs"></div></div>'
     +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ghost" id="aoConfirm">내용 확인 요청</button>'
       +'<button class="btn ok" id="aoSave">저장</button></div>';
 
   $('#aoAdd').onclick = function(){ aoItems.push({name:'',spec:'',unit:'EA',qty:1,unit_price:0}); aoRenderItems(); };
   $('#aoSave').onclick = aoSave;
+  $('#aoConfirm').onclick = function(){
+    confirmForm('order', o.id, { to: o.orderer_email || c.work_email || c.email || '' });
+  };
   aoRenderItems(); aoDocs();
 }
 function aoRenderItems(){
@@ -3428,7 +3432,7 @@ function clChips(){
   // '승인'은 로그인해서 쓰는 멤버십 회원, '거래처'는 서류 발행용으로만 들고 있는 곳.
   // 이름이 비슷하면 헷갈리니 화면에는 풀어서 적는다.
   var all = [['전체','전체',clStats.all_||0], ['대기','승인 대기',clStats.wait||0],
-             ['승인','멤버십',clStats.ok||0], ['거래처','거래처',clStats.client||0],
+             ['승인','멤버십',clStats.ok||0], ['거래처','일반거래처',clStats.client||0],
              ['거절','거절',clStats.no||0]];
   el.innerHTML = all.map(function(x){
     return '<button class="achip'+(x[0]===clFilter?' on':'')+'" data-s="'+esc(x[0])+'" '
@@ -3497,6 +3501,39 @@ function mItems(box, items, opts){
   }
   paint();
   return { add: function(){ items.push({name:'',spec:'',qty:1,price:0}); paint(); }, paint: paint };
+}
+
+/* ---- 내용 확인 요청 ----
+   승인받는 게 아니라, 우리가 적어둔 내용을 고객이 바로 볼 수 있는 링크를 보내는 것이다. */
+function confirmForm(kind, id, opts){
+  opts = opts || {};
+  var label = kind==='settle' ? '정산' : '주문';
+  var w = amodal(label+' 내용 확인 요청',
+     '<div class="dcard" style="border:0;padding:0">'
+    +'<div class="dnote" style="margin-bottom:14px">고객이 눌러서 바로 볼 수 있는 링크를 보냅니다. '
+      +'<b>승인 버튼은 없습니다</b> — 보고 다른 점이 있으면 알려달라는 안내입니다.</div>'
+    +'<label class="req">받는 사람</label><input type="email" id="cf-to" value="'+esc(opts.to||'')+'" placeholder="name@company.co.kr">'
+    +'<label>참조 (선택)</label><input type="email" id="cf-cc" placeholder="cc@example.com">'
+    +'<label>덧붙일 말 (선택)</label><textarea id="cf-memo" rows="3" placeholder="예) 납기는 9월 둘째 주로 잡았습니다. 확인 부탁드립니다."></textarea>'
+    +'</div>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="cf-go">확인 요청 보내기</button></div>');
+
+  $('#cf-go').onclick = async function(){
+    var to = $('#cf-to').value.trim();
+    if (!to) return alert('받는 사람 이메일을 입력해주세요.');
+    var b = $('#cf-go'); b.disabled = true; b.textContent = '보내는 중…';
+    var url = kind==='settle' ? '/api/admin/settlement' : '/api/admin/orders/'+id;
+    var body = kind==='settle'
+      ? { action:'settle_confirm', settlement_id:id, to:to, cc:$('#cf-cc').value.trim()||null, memo:$('#cf-memo').value }
+      : { action:'confirm', to:to, cc:$('#cf-cc').value.trim()||null, memo:$('#cf-memo').value };
+    var r = await fetch(url,{method:'POST',headers:AH,body:JSON.stringify(body)})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = '확인 요청 보내기';
+    if (!r.ok) return alert(r.message || '보내지 못했습니다.');
+    w.remove(); toast('확인 요청을 보냈습니다');
+    if (r.view && confirm('보낸 화면을 지금 열어볼까요?')) window.open(r.view, '_blank');
+  };
 }
 
 /* ---- 주문 직접 입력 · 수정 ---- */
@@ -3598,6 +3635,7 @@ function setForm(client, st, profiles){
     +'</div>'
     +'<div class="mrow">'+(st?'<button class="btn gray" id="sf-del">삭제</button>':'')
       +'<button class="btn gray" data-x>닫기</button>'
+      +(st?'<button class="btn ghost" id="sf-cf">내용 확인 요청</button>':'')
       +'<button class="btn ok" id="sf-go">'+(st?'저장':'추가')+'</button></div>');
 
   function sums(){
@@ -3610,6 +3648,9 @@ function setForm(client, st, profiles){
   var box = mItems($('#sf-items'), items, { priceLabel:'단가 (VAT 포함)', onChange:sums });
   $('#sf-add').onclick = box.add;
 
+  if ($('#sf-cf')) $('#sf-cf').onclick = function(){
+    confirmForm('settle', st.id, { to: client.work_email || client.email || '' });
+  };
   if ($('#sf-del')) $('#sf-del').onclick = async function(){
     if (!confirm('이 정산 기록을 지울까요?')) return;
     await fetch('/api/admin/settlement',{method:'POST',headers:AH,
@@ -3881,7 +3922,8 @@ var DTYPE = { quote:'견적서', statement:'거래명세서', taxinvoice:'세금
 var dqPrefill = null;                       // 할 일에서 넘어올 때 채워지는 짐
 var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTarget=0,
     dqVat=true, dqDocId=null, dqSrc={}, dqTodo=null, dqHistType='', dqHistKw='',
-    dqTitle='', dqOrders=[], dqSettles=[], dqDates={};   // {quote:'YYYY-MM-DD', ...}
+    dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
+    dqTitleAuto=true;   // 직접 고치기 전까지는 품목에서 만들어 채운다
 
 function dqToday(){ return new Date(Date.now()+9*3600000).toISOString().slice(0,10); }
 function dqPlus(d, n){ var t=new Date(d+'T00:00:00Z'); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); }
@@ -3980,6 +4022,7 @@ function paintDocs(){
   dqPaintClient();
   dqPaintBill(); dqSrcButtons(); dqSrcTag();
 
+  $('#dqTitle').oninput = function(e){ dqTitleAuto = !e.target.value.trim(); dqTitle = e.target.value; };
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
   $('#dqTarget').oninput = function(e){ dqTarget = numFmt(e.target); dqSum(); };
   $('#dqTarget').onblur  = function(e){          // 칸을 벗어날 때 10원 단위로 맞춘다
@@ -4022,6 +4065,15 @@ function dqValidHint(){
   el.innerHTML = '견적서 유효기간은 발행일 + 1개월 — <b>'+dqPlus(d,30)+'</b>';
 }
 
+// 견적명·거래명 = 첫 품목 + 외 N건. 손으로 고치면 그때부터 건드리지 않는다.
+function dqAutoTitle(){
+  if (!dqTitleAuto) return;
+  var named = dqItems.filter(function(i){ return (i.name||'').trim(); });
+  dqTitle = named.length
+    ? named[0].name.trim() + (named.length>1 ? ' 외 '+(named.length-1)+'건' : '') : '';
+  var el = $('#dqTitle'); if (el) el.value = dqTitle;
+}
+
 function dqPaintClient(){
   clientPicker($('#dqCliBox'), dqCli, function(c){
     dqCli = c; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
@@ -4044,7 +4096,8 @@ function dqCliLine(box, c, unpick){
 
 function dqReset(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
-  dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
+  dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
+  dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
   paintDocs();
 }
 
@@ -4122,7 +4175,8 @@ function dqPickSource(kind){
         var want = ['quote','statement','taxinvoice'].filter(function(t){ return d.dates[t]; });
         if (want.length) dqTypes = want;
       }
-      if (d.title) dqTitle = d.title;
+      if (d.title){ dqTitle = d.title; dqTitleAuto = false; }
+      else dqTitleAuto = true;
       if (d.bill_profile_id){
         var p = dqProfiles.filter(function(x){ return x.id===d.bill_profile_id; })[0];
         if (p) dqBill = p;
@@ -4161,7 +4215,7 @@ function dqPaintItems(){
   }).join('');
   box.querySelectorAll('.dq').forEach(function(el){
     var i = Number(el.dataset.i);
-    el.querySelector('.nm').oninput = function(e){ dqItems[i].name = e.target.value; };
+    el.querySelector('.nm').oninput = function(e){ dqItems[i].name = e.target.value; dqAutoTitle(); };
     el.querySelector('.sp').oninput = function(e){ dqItems[i].spec = e.target.value; };
     el.querySelector('.qy').oninput = function(e){ dqItems[i].qty = Math.max(1,Number(e.target.value)||1); dqRow(el,i); };
     el.querySelector('.pr').oninput = function(e){ dqItems[i].price = numFmt(e.target); dqRow(el,i); };
@@ -4171,7 +4225,7 @@ function dqPaintItems(){
       e.target.value = dqItems[i].price ? won(dqItems[i].price) : '';
       dqRow(el,i);
     };
-    var x = el.querySelector('.dx'); if (x) x.onclick = function(){ dqItems.splice(i,1); dqPaintItems(); };
+    var x = el.querySelector('.dx'); if (x) x.onclick = function(){ dqItems.splice(i,1); dqPaintItems(); dqAutoTitle(); };
   });
   dqSum();
 }
@@ -4483,7 +4537,7 @@ async function dqOpen(id){
     w.remove(); toast('예약을 취소했습니다'); dqHist();
   };
   if ($('#dqEdit')) $('#dqEdit').onclick = function(){
-    dqDocId = doc.id; dqTypes = [doc.type]; dqTitle = p.title||'';
+    dqDocId = doc.id; dqTypes = [doc.type]; dqTitle = p.title||''; dqTitleAuto = !dqTitle;
     dqVat = !!(p.totals && p.totals.vat_included);
     dqTarget = dqVat ? (tot.total||0) : 0;
     dqDates = {}; if (p.issue_date) dqDates[doc.type] = p.issue_date;
