@@ -5191,7 +5191,11 @@ async function dqOpen(id){
     var r = await fetch('/api/admin/docs/'+doc.id,{method:'POST',headers:AH,
       body:JSON.stringify({action:'nts_issue'})}).then(function(x){return x.json();}).catch(function(){return{};});
     bt.disabled = false; bt.textContent = '국세청 발행';
-    if (!r.ok) return alert(r.message || '발행하지 못했습니다.');
+    if (!r.ok) {
+      // 코드만 보고는 어디를 고쳐야 할지 알 수 없다 — 서버가 붙여 보낸 뜻까지 같이 띄운다
+      return alert('국세청 발행 실패\n\n' + (r.message || '알 수 없는 오류')
+        + (r.code ? '\n\n(바로빌 오류코드 '+r.code+')' : ''));
+    }
     toast('국세청 발행 완료 ('+r.mode+')');
     w.remove(); dqOpen(doc.id); dqHist();
   };

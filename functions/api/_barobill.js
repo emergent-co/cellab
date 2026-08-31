@@ -111,12 +111,54 @@ export async function barobillCall(env, method, args = {}) {
   const m = raw.match(new RegExp(`<${method}Result[^>]*>([\\s\\S]*?)</${method}Result>`));
   const value = m ? unesc(m[1]).trim() : '';
   // 바로빌은 음수 하나를 오류코드로 돌려준다.
+  //   구조체를 주는 메서드는 첫 원소에 코드를 실어 보내기도 한다 (<ContactName>-10001</ContactName> 처럼).
   const n = Number(value);
-  if (value !== '' && Number.isInteger(n) && n < 0) {
-    return { ok: false, code: n, error: `바로빌 오류코드 ${n}`, raw: raw.slice(0, 800) };
-  }
+  if (value !== '' && Number.isInteger(n) && n < 0) return fail(n, raw);
+  const inner = String(value).match(/>(-\d{4,5})</);
+  if (inner) return fail(Number(inner[1]), raw);
   return { ok: true, value, raw };
 }
+
+function fail(n, raw) {
+  return { ok: false, code: n, error: `${n} · ${BB_ERR[n] || '바로빌 오류'}`, raw: String(raw).slice(0, 800) };
+}
+
+/* 자주 만나는 오류코드 — 숫자만 보면 어디를 고쳐야 할지 알 수가 없다.
+   전체 표: dev.barobill.co.kr/docs/references/바로빌-API-오류코드 */
+export const BB_ERR = {
+  '-10000': '알 수 없는 오류',
+  '-10001': '해당 인증키와 연결된 연계사가 아닙니다 (파트너 전용 기능)',
+  '-10002': '해당 인증키를 찾을 수 없습니다 — CERTKEY 확인',
+  '-10003': '바로빌 연동서비스 점검 중',
+  '-10008': '날짜 형식이 잘못되었습니다',
+  '-11001': '공급자 아이디가 잘못되었습니다 (ContactID)',
+  '-11002': '공급자 정보가 없습니다',
+  '-11003': '공급받는자 정보가 없습니다',
+  '-11005': '발행방향이 잘못되었습니다 (IssueDirection)',
+  '-11006': '공급가액이 잘못되었습니다',
+  '-11007': '영수/청구 구분이 잘못되었습니다 (PurposeType)',
+  '-11009': '문서 형태가 잘못되었습니다 (TaxInvoiceType)',
+  '-11101': '공급자 사업자번호가 잘못되었습니다',
+  '-11102': '공급자 상호가 잘못되었습니다',
+  '-11103': '공급자 대표자명이 잘못되었습니다',
+  '-11104': '공급자 주소가 잘못되었습니다',
+  '-11105': '공급자 업종이 잘못되었습니다 (BizType)',
+  '-11106': '공급자 업태가 잘못되었습니다 (BizClass)',
+  '-11107': '공급자 담당자명이 잘못되었습니다',
+  '-11108': '공급자 이메일이 잘못되었습니다',
+  '-11201': '공급받는자 사업자번호가 잘못되었습니다 — 거래처의 계산서 발행 정보를 확인하세요',
+  '-11202': '공급받는자 상호가 잘못되었습니다',
+  '-11203': '공급받는자 대표자명이 잘못되었습니다',
+  '-11204': '공급받는자 주소가 잘못되었습니다',
+  '-11207': '공급받는자 담당자명이 잘못되었습니다',
+  '-11208': '공급받는자 이메일이 잘못되었습니다',
+  '-24001': '공급자 사업자번호와 아이디가 맞지 않습니다 — BAROBILL_ID 를 확인하세요 (대소문자 구분)',
+  '-24002': '공급받는자 사업자번호와 아이디가 맞지 않습니다',
+  '-24005': '사업자번호와 아이디가 맞지 않습니다',
+  '-30001': '지금 상태에서는 처리할 수 없는 요청입니다',
+};
+
+
 
 function unesc(t) {
   return String(t).replace(/&lt;/g, '<').replace(/&gt;/g, '>')
