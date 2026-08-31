@@ -9,6 +9,9 @@ name = "rndsetup-outbox-cron"
 main = "index.js"
 compatibility_date = "2026-01-01"
 
+# 확인용 주소를 만들어 둔다 — 이 주소를 열면 즉시 한 번 돌아간다.
+workers_dev = true
+
 [triggers]
 crons = ["*/5 * * * *"]
 
