@@ -102,6 +102,8 @@ async function get(request, env) {
     return json({
       source: 'settlement', settlement_id: s.id, customer_id: s.customer_id,
       bill_profile_id: s.bill_profile_id || null,
+      // 고객이 정산 요청할 때 서류별로 적어 보낸 날짜 — 그대로 쓴다
+      dates: { quote: s.quote_date || '', statement: s.statement_date || '', taxinvoice: s.taxinvoice_date || '' },
       title: items.length ? `${items[0].name}${items.length > 1 ? ` 외 ${items.length - 1}건` : ''}` : '',
       vat_included: true,
       target_total: Number(s.total) || 0,
@@ -161,6 +163,7 @@ function slimClient(c) {
 async function post(request, env) {
   const b = await request.json().catch(() => ({}));
   if (b.action === 'send') return sendBatch(request, env, b);
+  if (b.action === 'relink') return relink(env, b);
 
   // 한 벌로 발행한다 — 견적서·거래명세서·세금계산서를 같은 내용으로 동시에.
   const types = (Array.isArray(b.types) && b.types.length ? b.types : [b.type || 'quote'])
@@ -201,11 +204,11 @@ async function post(request, env) {
 
   const { items, totals } = compute(raw, b.vat_included !== false);
 
-  const issue = b.issue_date || kstDate();
-  // 유효기간은 발행일 + 1개월. 화면에서 따로 받지 않는다 — 견적서에만 뜻이 있고 늘 같은 값이다.
+  // 서류마다 발행일이 다를 수 있다 — 견적은 오늘, 거래명세서는 납품일, 계산서는 월말 식으로.
+  // dates 에 없으면 공통 발행일을, 그것도 없으면 오늘을 쓴다.
+  const common = b.issue_date || kstDate();
+  const dateOf = (t) => (b.dates && b.dates[t]) || common;
   const base = {
-    issue_date: issue,
-    valid_until: plusDays(issue, 30),
     title: String(b.title || '').trim(),
     client: {
       company: bill?.company || customer.company || '',
@@ -228,7 +231,10 @@ async function post(request, env) {
     if (doc.status !== '작성됨') {
       return json({ error: 'locked', message: '이미 발송된 문서는 수정할 수 없습니다. 새로 발행해주세요.' }, 409);
     }
-    const payload = { ...base, type: doc.type, doc_no: doc.doc_no };
+    const issue = dateOf(doc.type);
+    // 유효기간은 발행일 + 1개월. 화면에서 따로 받지 않는다 — 견적서에만 뜻이 있고 늘 같은 값이다.
+    const payload = { ...base, type: doc.type, doc_no: doc.doc_no,
+                      issue_date: issue, valid_until: plusDays(issue, 30) };
     await env.DB.prepare(
       `UPDATE documents SET customer_id=?, order_id=?, settlement_id=?, source=?, issue_date=?, payload_json=?, updated_at=? WHERE id=?`
     ).bind(customer.id, b.order_id || null, b.settlement_id || null,
@@ -246,7 +252,9 @@ async function post(request, env) {
   const made = [];
   for (const type of types) {
     const docNo = await nextDocNo(env, type);
-    const payload = { ...base, type, doc_no: docNo };
+    const issue = dateOf(type);
+    const payload = { ...base, type, doc_no: docNo,
+                      issue_date: issue, valid_until: plusDays(issue, 30) };
     const tok = randomToken();
     const r = await env.DB.prepare(
       `INSERT INTO documents (order_id, customer_id, settlement_id, source, batch, type, doc_no, version, status,
@@ -260,7 +268,7 @@ async function post(request, env) {
       order_id: b.order_id || null, document_id: id, action: 'created', actor: 'admin',
       detail: `${DOC_LABEL[type]} ${docNo} 발행 (${customer.company || customer.name || ''})`,
     });
-    made.push({ id, type, doc_no: docNo, view: `/doc/${id}?t=${tok}` });
+    made.push({ id, type, doc_no: docNo, issue_date: issue, view: `/doc/${id}?t=${tok}` });
   }
 
   return json({
@@ -269,6 +277,49 @@ async function post(request, env) {
     // 예전 호출부 호환 — 첫 문서를 단건처럼 돌려준다
     id: made[0].id, doc_no: made[0].doc_no, view: made[0].view,
   });
+}
+
+/* ---- 문서를 다른 거래처로 옮기기 ----
+   서류를 먼저 뽑고 거래처를 나중에 등록하는 일이 흔하다. 그러면 문서가 엉뚱한 곳에 매여
+   거래처 이력에 안 보인다. 여기서 연결을 옮긴다.
+
+   초안(작성됨)이면 서류에 찍히는 공급받는자까지 새 거래처로 다시 쓴다.
+   이미 발송한 문서는 연결만 옮긴다 — 상대가 받은 종이의 내용을 뒤늦게 바꾸면 안 된다. */
+async function relink(env, b) {
+  const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
+  if (!doc) return json({ error: 'not_found' }, 404);
+  const customer = await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(b.customer_id).first();
+  if (!customer) return json({ error: 'no_client', message: '거래처를 선택해주세요.' }, 400);
+
+  let payload = {};
+  try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
+
+  const draft = doc.status === '작성됨';
+  if (draft) {
+    const bill = await env.DB.prepare(
+      'SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1')
+      .bind(customer.id).first();
+    payload.client = {
+      company: bill?.company || customer.company || '',
+      biz_no:  bill?.biz_no  || customer.biz_no  || '',
+      ceo:     bill?.ceo     || customer.ceo     || '',
+      contact: customer.name || '',
+      email:   bill?.tax_email || customer.work_email || customer.email || '',
+      address: bill?.address || customer.address || '',
+    };
+  }
+
+  const now = kstISO();
+  await env.DB.prepare('UPDATE documents SET customer_id=?, payload_json=?, updated_at=? WHERE id=?')
+    .bind(customer.id, JSON.stringify(payload), now, doc.id).run();
+
+  const who = customer.company || customer.name || `#${customer.id}`;
+  await logEvent(env, {
+    order_id: doc.order_id, document_id: doc.id, action: 'relinked', actor: 'admin',
+    detail: `${DOC_LABEL[doc.type] || '문서'} ${doc.doc_no} → ${who}`
+          + (draft ? ' (공급받는자도 함께 수정)' : ' (연결만 이동 · 서류 내용은 그대로)'),
+  });
+  return json({ ok: true, rewritten: draft, company: who });
 }
 
 /* ---- 묶음 발송 · 예약 ----
