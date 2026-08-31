@@ -1617,7 +1617,7 @@ def build_wiki():
         '.wk-wrap h1{{font-family:"Noto Serif KR",Georgia,serif;font-size:clamp(23px,3vw,32px);font-weight:800;color:#1A1A1A;letter-spacing:-.02em;line-height:1.35}}\n'
         '.wk-en{{font-size:13px;color:#9aa3ad;font-weight:700;margin-top:4px}}\n'
         '.wk-cat{{display:inline-block;font-size:11.5px;font-weight:800;color:#3B3695;background:#EAF4FB;border-radius:999px;padding:4px 12px;margin-top:10px}}\n'
-        '.wk-def{{margin:16px 0 26px;padding:14px 18px;background:#EAF4FB;border-left:4px solid #3B3695;border-radius:0 10px 10px 0;font-size:14.5px;line-height:1.75;color:#26313c}}\n'
+        '.wk-def{{margin:16px 0 26px;padding:14px 18px;background:#EAF4FB;border-radius:10px;font-size:14.5px;line-height:1.75;color:#26313c}}\n'
         '.wk-wrap h2{{font-size:18px;font-weight:800;color:#1A1A1A;margin:30px 0 10px;padding-bottom:7px;border-bottom:2px solid #3B3695}}\n'
         '.wk-wrap p{{font-size:14.5px;color:#3a4550;line-height:1.85;margin:10px 0}}\n'
         '.wk-see{{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}}\n'
