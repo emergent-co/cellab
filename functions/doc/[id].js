@@ -18,9 +18,13 @@ export async function onRequestGet({ request, env, params }) {
   else {
     const me = await currentCustomer(request, env);
     if (me) {
-      const own = await env.DB.prepare('SELECT id FROM orders WHERE id=? AND customer_id=?')
-        .bind(doc.order_id, me.id).first();
-      if (own) viewer = 'customer';
+      // 단독 발행 문서는 documents.customer_id 로, 주문 문서는 주문 소유로 판정한다.
+      if (doc.customer_id && Number(doc.customer_id) === Number(me.id)) viewer = 'customer';
+      else if (doc.order_id) {
+        const own = await env.DB.prepare('SELECT id FROM orders WHERE id=? AND customer_id=?')
+          .bind(doc.order_id, me.id).first();
+        if (own) viewer = 'customer';
+      }
     }
   }
   if (!viewer) return new Response('열람 권한이 없습니다.', { status: 403, headers: htxt() });

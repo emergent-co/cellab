@@ -43,7 +43,7 @@ export async function onRequest({ request, env, params }) {
   const to = String(b.to || payload.client?.email || '').trim();
   if (!to) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
 
-  const totals = calcTotals(payload.items);
+  const totals = calcTotals(payload.items, payload.totals);
   const subject = b.subject || `[실험셋업연구소] ${label} ${doc.doc_no}`;
   const origin = new URL(request.url).origin;
   const viewUrl = `${origin}/doc/${doc.id}?t=${doc.access_token}`;

@@ -4,7 +4,12 @@ import { renderDocHTML } from './_doctpl.js';
 import { getOrMakePdf, pdfConfigured, b64 } from './_pdf.js';
 import { sendMail, mailConfigured } from './_mailer.js';
 
-export function calcTotals(items) {
+export function calcTotals(items, fixed) {
+  if (fixed && Number(fixed.total)) {
+    return { supply: Math.round(Number(fixed.supply) || 0),
+             vat: Math.round(Number(fixed.vat) || 0),
+             total: Math.round(Number(fixed.total) || 0) };
+  }
   const supply = (items || []).reduce(
     (s, i) => s + Math.round((Number(i.qty) || 0) * (Number(i.unit_price) || 0)), 0);
   const vat = Math.round(supply * 0.1);
@@ -44,12 +49,15 @@ export async function deliver(env, { doc, payload, to, cc, subject, html, actor 
   await env.DB.prepare("UPDATE documents SET status='발송됨', sent_at=?, updated_at=? WHERE id=?")
     .bind(now, now, doc.id).run();
 
-  if (doc.type === 'quote') {
-    await env.DB.prepare("UPDATE orders SET status='견적발송', updated_at=? WHERE id=? AND status IN ('요청접수','보류')")
-      .bind(now, doc.order_id).run();
-  } else if (doc.type === 'statement') {
-    await env.DB.prepare("UPDATE orders SET status='배송중', updated_at=? WHERE id=? AND status IN ('발주확정','견적승인')")
-      .bind(now, doc.order_id).run();
+  // 주문에서 만든 문서만 주문 상태를 옮긴다 — 단독 발행 건에는 옮길 주문이 없다.
+  if (doc.order_id) {
+    if (doc.type === 'quote') {
+      await env.DB.prepare("UPDATE orders SET status='견적발송', updated_at=? WHERE id=? AND status IN ('요청접수','보류')")
+        .bind(now, doc.order_id).run();
+    } else if (doc.type === 'statement') {
+      await env.DB.prepare("UPDATE orders SET status='배송중', updated_at=? WHERE id=? AND status IN ('발주확정','견적승인')")
+        .bind(now, doc.order_id).run();
+    }
   }
 
   await logEvent(env, {

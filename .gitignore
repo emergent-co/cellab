@@ -51,3 +51,7 @@ _ops/clean_fail.log
 
 # 카탈로그 이미지 추출 작업본 (원본은 img/gaossunion 으로 복사됨)
 _ops/_extract/
+
+# wrangler 빌드 산출물 / 임시 정리함
+.wrangler/
+_to_delete/

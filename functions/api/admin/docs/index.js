@@ -57,9 +57,9 @@ export async function onRequestPost({ request, env }) {
   const now = kstISO();
   const tok = randomToken();
   const r = await env.DB.prepare(
-    `INSERT INTO documents (order_id, type, doc_no, version, status, issue_date, payload_json, access_token, created_at, updated_at)
-     VALUES (?,?,?,?,?,?,?,?,?,?)`
-  ).bind(order.id, type, docNo, ver, '작성됨', issue, JSON.stringify(payload), tok, now, now).run();
+    `INSERT INTO documents (order_id, customer_id, source, type, doc_no, version, status, issue_date, payload_json, access_token, created_at, updated_at)
+     VALUES (?,?, 'order', ?,?,?,?,?,?,?,?,?)`
+  ).bind(order.id, order.customer_id || null, type, docNo, ver, '작성됨', issue, JSON.stringify(payload), tok, now, now).run();
 
   const id = r.meta.last_row_id;
   await logEvent(env, {

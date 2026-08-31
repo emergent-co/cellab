@@ -60,13 +60,17 @@ export function renderDocHTML(d) {
       <td class="c">${esc(it.name)}${spec ? ` (${esc(spec)})` : ''}</td>
       <td class="c">${qty}</td>
       <td class="c">${won(up)}</td>
-      <td class="c">${won(Math.round(line * 1.1))}</td>
+      <td class="c">${won(it.amount != null ? Math.round(Number(it.amount) || 0) : Math.round(line * 1.1))}</td>
       <td class="c">${esc(it.note || '')}</td>
     </tr>`;
   }).join('');
 
-  const vat = Math.round(supply * 0.1);
-  const total = supply + vat;
+  // 정산 요청처럼 '부가세 포함 총액'이 먼저 정해진 경우, 그 값을 그대로 쓴다.
+  // 1.1을 다시 곱해 1원이 어긋나는 것을 막는다.
+  const fx = d.totals && Number(d.totals.total) ? d.totals : null;
+  if (fx) supply = Math.round(Number(fx.supply) || 0);
+  const vat = fx ? Math.round(Number(fx.vat) || 0) : Math.round(supply * 0.1);
+  const total = fx ? Math.round(Number(fx.total) || 0) : supply + vat;
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -178,7 +182,12 @@ export function renderDocHTML(d) {
 </html>`;
 }
 
-export function docTotals(items) {
+export function docTotals(items, fixed) {
+  if (fixed && Number(fixed.total)) {
+    return { supply: Math.round(Number(fixed.supply) || 0),
+             vat: Math.round(Number(fixed.vat) || 0),
+             total: Math.round(Number(fixed.total) || 0) };
+  }
   const supply = (items || []).reduce((s, i) => s + Math.round((Number(i.qty) || 0) * (Number(i.unit_price) || 0)), 0);
   const vat = Math.round(supply * 0.1);
   return { supply, vat, total: supply + vat };
