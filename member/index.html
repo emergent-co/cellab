@@ -282,6 +282,20 @@ em.alias{font-style:normal;font-size:11.5px;font-weight:700;color:var(--navy);
 .kpi:hover{border-color:#cfcde6}
 
 /* ---------- 할 일 ---------- */
+/* 휴대폰에서는 관리자 홈의 지표·바로가기가 스크롤 없이 한 화면에 들어와야 한다.
+   지표는 네 칸 한 줄로, 바로가기는 아이콘+이름만 남긴 가로형 두 줄로 접는다. */
+@media(max-width:640px){
+  .ahome .kpis{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  .ahome .kpi{padding:10px 7px}
+  .ahome .kpi span{font-size:10.5px;letter-spacing:-.03em;line-height:1.3}
+  .ahome .kpi b{font-size:19px}
+  .ahome .tiles{gap:8px;margin-bottom:14px}
+  .ahome .tile{flex-direction:row;align-items:center;gap:9px;padding:13px 12px;text-align:left}
+  .ahome .tile svg{margin:0;width:21px;height:21px;flex:0 0 auto}
+  .ahome .tile b{font-size:13px;line-height:1.25;word-break:keep-all}
+  .ahome .tile span{display:none}
+  .ahome .tile .tb{position:static;margin-left:auto}
+}
 .tdadd{display:flex;gap:8px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);
   border-radius:12px;padding:12px;margin-bottom:16px}
 .tdadd input[type=text]{flex:1 1 240px;min-width:180px;border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:14px}
@@ -753,7 +767,6 @@ textarea{min-height:78px;resize:vertical}
     <nav class="nav adm" id="admNav" hidden>
       <div class="admh">관리자</div>
       <a data-v="admHome">관리자 홈</a>
-      <a data-v="admTodo">할 일<i class="nb" id="nbTodo" hidden></i></a>
       <a data-v="admOps">주문 · 정산 · 문의<i class="nb" id="nbOps" hidden></i></a>
       <a data-v="admDocs">문서 발행</a>
       <a data-v="admClients">거래처 관리<i class="nb" id="nbMem" hidden></i></a>
@@ -1140,7 +1153,10 @@ function render(){
       syncNav(); return paintHome();
     }
     if (view==='admHome') return viewAdmHome();
-    if (view==='admTodo') return viewAdmTodo();
+    if (view==='admTodo'){                       // 옛 주소·북마크 호환 — 이제 팝업이다
+      view='admHome'; location.replace('#admHome'); syncNav();
+      viewAdmHome(); return tdModal();
+    }
     if (view==='admOps')  return viewAdmOps();
     if (view==='admDocs') return viewAdmDocs();
     if (view==='admMembers'){                                   // 옛 주소 호환
@@ -1809,7 +1825,6 @@ function paintHome(){
     $('#main').querySelector('.homew').insertAdjacentHTML('beforeend',
        '<div class="admrow"><span>관리자</span>'
       +'<a data-go="admHome">관리자 홈</a>'
-      +'<a data-go="admTodo">할 일</a>'
       +'<a data-go="admDocs">문서 발행</a>'
       +'<a data-go="admOps">주문 · 정산 · 문의</a>'
       +'<a data-go="admClients">거래처 관리</a></div>');
@@ -3164,8 +3179,8 @@ function paintAdmHome(){
 
   var nNew = ord.length + set.length + mem.length + inq.length;
 
-  $('#main').innerHTML =
-     '<div class="hi"><b>'+esc((me && me.name) || '관리자')+'님, 관리자 화면입니다</b>'
+  $('#main').innerHTML = '<div class="ahome">'
+    +'<div class="hi"><b>'+esc((me && me.name) || '관리자')+'님, 관리자 화면입니다</b>'
       +'<span>'+esc(today)+' · 처리할 일 '+(due.length+nNew)+'건</span></div>'
 
     + '<div class="kpis">'
@@ -3211,7 +3226,8 @@ function paintAdmHome(){
               [c.billing_mode, c.phone].filter(Boolean).join(' · '),
               {v:won(c.due)+'원', n:true}); }).join(''),
           ahLoaded ? '미수금이 없습니다.' : '불러오는 중…')
-    + '</div>';
+    + '</div>'
+   + '</div>';
 
   var akey = function(el){ return el.dataset ? el.dataset.go : null; };
   ordDrag($('#main').querySelector('.kpis'), 'admKpis', akey);
@@ -3226,6 +3242,7 @@ function paintAdmHome(){
       return td ? tdToIssue(td) : go('admTodo');
     }
     if (g.indexOf('@doc:')===0) return dqOpen(g.slice(5));
+    if (g === 'admTodo') return tdModal();
     go(g);
   };
 }
@@ -3236,9 +3253,13 @@ function paintAdmHome(){
 var TD_KINDS = ['견적발행','거래명세서','세금계산서','연락','발주·배송','입금확인','기타'];
 var tdFilter = '미완료', tdKw = '', tdRows = [], tdStats = {};
 
-function viewAdmTodo(){
-  $('#main').innerHTML = '<div class="ttl">할 일</div>'
-    + '<div class="tdadd">'
+/* 할 일은 하루에 몇 번씩 열었다 닫는 것이라, 화면을 통째로 갈아끼울 게 아니라
+   보던 자리 위에 팝업으로 띄운다. 안쪽 id 는 그대로라 tdLoad·tdPaint 는 손댈 게 없다. */
+function tdModal(){
+  document.querySelectorAll('.amodal').forEach(function(m){ m.remove(); });
+  var w = amodal('할 일', '<div class="dbody" id="tdBody"></div>');
+  $('#tdBody').innerHTML =
+      '<div class="tdadd">'
       + '<input type="text" id="tdT" placeholder="할 일을 적어주세요 — 예) 포항공대 김박사님 퍼니스 견적">'
       + '<select id="tdK">' + TD_KINDS.map(function(k){ return '<option>'+esc(k)+'</option>'; }).join('') + '</select>'
       + '<input type="date" id="tdD" title="마감일">'
@@ -3253,6 +3274,8 @@ function viewAdmTodo(){
   $('#tdT').onkeydown = function(e){ if (e.key==='Enter') tdQuickAdd(); };
   var t; $('#tdQ').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ tdKw=e.target.value.trim(); tdLoad(); },250); };
   tdLoad();
+  setTimeout(function(){ if ($('#tdT')) $('#tdT').focus(); }, 40);
+  return w;
 }
 
 async function tdQuickAdd(){
@@ -3346,6 +3369,7 @@ function tdToIssue(t){
     title: t.title || '',
     items: (t.items||[]).map(function(i){ return { name:i.name, spec:'', qty:i.qty||1, price:i.price||0, note:'' }; }),
   };
+  document.querySelectorAll('.amodal').forEach(function(m){ m.remove(); });
   go('admDocs');
 }
 
