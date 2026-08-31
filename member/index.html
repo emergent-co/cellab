@@ -378,13 +378,29 @@ em.alias{font-style:normal;font-size:11.5px;font-weight:700;color:var(--navy);
 .guide .gt{flex:1 1 260px;min-width:0}
 .guide .gt b{display:block;font-size:14px;margin-bottom:3px}
 .guide .btn{flex:0 0 auto;padding:10px 16px;font-size:13px}
-.wn{display:grid;gap:11px;margin:2px 0 4px}
-.wnc{display:flex;gap:12px;background:var(--soft-blue);border:1px solid #dcd9ee;border-radius:12px;padding:14px 15px}
-.wnc i{flex:0 0 26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;font-style:normal;
-  font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
-.wnc h5{margin:1px 0 4px;font-size:14.5px;font-weight:800;letter-spacing:-.01em}
-.wnc p{margin:0;font-size:13px;color:var(--mut);line-height:1.65}
-.wnc p b{color:var(--ink)}
+/* 새 기능 안내 — 팝업으로 설명하지 않고 그 버튼을 직접 가리킨다 */
+.tour{position:fixed;inset:0;z-index:200}
+.tour .hole{position:fixed;border-radius:14px;box-shadow:0 0 0 9999px rgba(16,20,34,.55);
+  outline:2.5px solid var(--navy);outline-offset:3px;transition:left .22s,top .22s,width .22s,height .22s;
+  animation:tglow 1.2s ease-in-out infinite}
+@keyframes tglow{0%,100%{outline-color:rgba(59,54,149,1)}50%{outline-color:rgba(59,54,149,.18)}}
+.tour .tpin{position:fixed;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+  box-shadow:0 2px 10px rgba(0,0,0,.32);animation:tblink .85s steps(1,end) infinite}
+@keyframes tblink{0%,55%{opacity:1;transform:scale(1)}56%,100%{opacity:.2;transform:scale(.86)}}
+.tour .tarrow{position:fixed;font-size:26px;line-height:1;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.45);
+  animation:tbob .9s ease-in-out infinite}
+@keyframes tbob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.tour .tbub{position:fixed;background:#fff;border-radius:14px;padding:16px 17px 14px;
+  box-shadow:0 14px 38px rgba(10,14,30,.34)}
+.tour .tbub h5{margin:0 0 6px;font-size:15px;font-weight:800;letter-spacing:-.01em}
+.tour .tbub p{margin:0;font-size:13px;color:var(--mut);line-height:1.65}
+.tour .tbub p b{color:var(--ink)}
+.tour .trow{display:flex;align-items:center;gap:8px;margin-top:14px}
+.tour .tstep{font-size:11.5px;font-weight:800;color:var(--mut-2);margin-right:auto}
+.tour .trow button{border:0;border-radius:9px;padding:9px 15px;font-size:13px;font-weight:800;cursor:pointer}
+.tour .tskip{background:#eef1f6;color:var(--mut)}
+.tour .tnext{background:var(--navy);color:#fff}
 .wnlink{display:block;margin:20px auto 0;border:0;background:0;color:var(--mut);font-size:12.5px;
   font-weight:700;text-decoration:underline;cursor:pointer}
 .tabs::-webkit-scrollbar{display:none}
@@ -404,6 +420,11 @@ tbody tr.act td:first-child{box-shadow:inset 3px 0 0 #F59E0B}
 /* ---------- KPI ---------- */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
 .kpis.k3{grid-template-columns:repeat(3,1fr)}
+.kpi.ok{border-color:#B7E0C6;background:#F2FBF5}
+.kpi.ok b{color:#166534}
+.duenote{font-size:12.5px;font-weight:600;color:#92400E;margin:-14px 0 20px;line-height:1.6}
+.duenote.ok{color:#166534}
+.duenote.zero{color:var(--mut)}
 .kpis.money .kpi{cursor:default}
 .kpis.money .kpi:hover{border-color:var(--line)}
 .kpis.money .kpi.warn:hover{border-color:#F0C98A}
@@ -871,31 +892,99 @@ var WN_KEY = 'rs_whatsnew_v1';
 function wnSeen(){ try { return !!localStorage.getItem(WN_KEY); } catch(e){ return false; } }
 function wnMark(){ try { localStorage.setItem(WN_KEY, '1'); } catch(e){} }
 
-function whatsNew(force){
+/* 가리킬 곳은 홈의 실제 버튼들이다. 말로 설명하는 것보다 짚어주는 게 빠르다. */
+var TOUR = [
+  { sel:'[data-go="new"]', title:'품명만 치면 지난 주문이 그대로 올라옵니다',
+    body:'주문하기에서 품명·모델명을 <b>두 글자만</b> 쳐도 지난 주문이 후보로 뜹니다. 고르면 규격과 '
+       + '<b>상품 링크까지 자동으로 채워집니다</b> — 쇼핑몰에서 링크를 다시 찾아 붙이지 않으셔도 됩니다.' },
+  { sel:'[data-act="invite"]', title:'동료를 초대해 같이 쓰실 수 있습니다',
+    body:'실험실(조직)에 동료를 초대하면 <b>주문 이력과 정산 내역을 함께</b> 보십니다. '
+       + '누가 무엇을 주문했는지 그대로 남아, 담당자가 바뀌어도 이력이 이어집니다.' },
+  { sel:'[data-act="chat"]', title:'문의는 이제 여기서 바로 하시면 됩니다',
+    body:'전에는 카카오톡으로 주고받던 문의를 <b>여기서 바로</b> 하실 수 있습니다. '
+       + '주문·정산 내용을 함께 보면서 이야기하게 되어 훨씬 빠릅니다.' },
+];
+var tourEl = null, tourI = 0;
+
+function whatsNew(force){                      // 첫 로그인 안내 (홈의 버튼을 짚어준다)
   if (!force && wnSeen()) return;
-  function card(n, title, body){
-    return '<div class="wnc"><i>'+n+'</i><div><h5>'+title+'</h5><p>'+body+'</p></div></div>';
+  if (tourEl) return;
+  if (view !== 'home'){ go('home'); }
+  setTimeout(function(){ tourOpen(); }, view==='home' ? 0 : 120);
+}
+
+function tourOpen(){
+  if (tourEl) return;
+  tourI = 0;
+  tourEl = document.createElement('div');
+  tourEl.className = 'tour';
+  tourEl.innerHTML = '<div class="hole"></div><div class="tpin">✦</div><div class="tarrow">▲</div>'
+    + '<div class="tbub"><h5></h5><p></p><div class="trow"><span class="tstep"></span>'
+    + '<button class="tskip">그만 보기</button><button class="tnext">다음</button></div></div>';
+  document.body.appendChild(tourEl);
+  tourEl.querySelector('.tskip').onclick = function(){ tourEnd(); };
+  tourEl.querySelector('.tnext').onclick = function(){
+    tourI++;
+    if (tourI >= TOUR.length) return tourEnd();
+    tourPaint();
+  };
+  window.addEventListener('resize', tourPos);
+  window.addEventListener('scroll', tourPos, true);
+  tourPaint();
+}
+
+function tourEnd(){
+  wnMark();
+  if (tourEl) tourEl.remove();
+  tourEl = null;
+  window.removeEventListener('resize', tourPos);
+  window.removeEventListener('scroll', tourPos, true);
+}
+
+function tourPaint(){
+  if (!tourEl) return;
+  var st = TOUR[tourI];
+  tourEl.querySelector('h5').textContent = st.title;
+  tourEl.querySelector('p').innerHTML = st.body;
+  tourEl.querySelector('.tstep').textContent = (tourI+1)+' / '+TOUR.length;
+  tourEl.querySelector('.tnext').textContent = (tourI === TOUR.length-1) ? '다 봤어요' : '다음';
+  var t = document.querySelector(st.sel);
+  if (t && t.scrollIntoView) t.scrollIntoView({ block:'center', behavior:'smooth' });
+  tourPos();
+  setTimeout(tourPos, 300);          // 스크롤이 멎은 뒤 한 번 더 맞춘다
+}
+
+function tourPos(){
+  if (!tourEl) return;
+  var st = TOUR[tourI], t = document.querySelector(st.sel);
+  var hole = tourEl.querySelector('.hole'), pin = tourEl.querySelector('.tpin'),
+      arr  = tourEl.querySelector('.tarrow'), bub = tourEl.querySelector('.tbub');
+  var bw = Math.min(330, window.innerWidth - 32);
+  bub.style.width = bw + 'px';
+  if (!t){                             // 가리킬 것이 없으면 가운데에 말만 띄운다
+    hole.hidden = pin.hidden = arr.hidden = true;
+    bub.style.left = Math.round((window.innerWidth - bw)/2) + 'px';
+    bub.style.top  = '30%';
+    return;
   }
-  var w = modal('새로 생긴 기능을 알려드립니다',
-     '<p class="hint" style="margin:2px 0 14px">세 가지만 알아두시면 주문이 훨씬 빨라집니다.</p>'
-    +'<div class="wn">'
-      + card(1, '품명만 치면 지난 주문이 그대로 올라옵니다',
-          '주문하기에서 품명·모델명을 <b>두 글자만</b> 쳐도 지난 주문이 후보로 뜹니다. '
-        + '고르면 규격과 <b>상품 링크까지 자동으로 채워집니다</b> — 쇼핑몰에서 링크를 다시 찾아 붙이지 않으셔도 됩니다.')
-      + card(2, '동료를 초대해 같이 쓰실 수 있습니다',
-          '실험실에 동료를 초대하면 <b>주문 이력과 정산 내역을 함께</b> 보십니다. '
-        + '누가 무엇을 주문했는지 한 화면에 남아, 담당자가 바뀌어도 이력이 그대로 이어집니다. '
-        + '홈의 <b>동료 초대</b>에서 하실 수 있습니다.')
-      + card(3, '문의는 이제 여기서 바로 하시면 됩니다',
-          '전에는 카카오톡으로 주고받던 문의를 홈의 <b>문의하기</b>에서 바로 하실 수 있습니다. '
-        + '주문·정산 내용을 함께 보면서 이야기하게 되어 훨씬 빠릅니다.')
-    +'</div>'
-    +'<div class="mrow"><button class="btn pri" id="wnGo">알겠습니다</button></div>');
-  w.addEventListener('click', function(e){       // ×·바깥 클릭으로 닫아도 본 것으로 친다
-    if (e.target===w || e.target.hasAttribute('data-x')) wnMark();
-  });
-  $('#wnGo').onclick = function(){ wnMark(); w.remove(); };
-  return w;
+  hole.hidden = pin.hidden = arr.hidden = false;
+  var r = t.getBoundingClientRect();
+  hole.style.left = r.left+'px'; hole.style.top = r.top+'px';
+  hole.style.width = r.width+'px'; hole.style.height = r.height+'px';
+  pin.style.left = (r.right - 13)+'px'; pin.style.top = (r.top - 13)+'px';
+
+  var bh = bub.offsetHeight || 170;
+  var below = (r.bottom + bh + 60) < window.innerHeight;   // 아래에 자리가 있으면 아래에
+  var bl = Math.max(16, Math.min(window.innerWidth - bw - 16, r.left + r.width/2 - bw/2));
+  bub.style.left = bl + 'px';
+  arr.style.left = (r.left + r.width/2 - 9) + 'px';
+  if (below){
+    bub.style.top = (r.bottom + 44) + 'px';
+    arr.textContent = '▲'; arr.style.top = (r.bottom + 8) + 'px';   // 위(버튼)를 가리킨다
+  } else {
+    bub.style.top = Math.max(12, r.top - bh - 44) + 'px';
+    arr.textContent = '▼'; arr.style.top = (r.top - 38) + 'px';     // 아래(버튼)를 가리킨다
+  }
 }
 
 /* ---------------- 부팅 ---------------- */
@@ -953,7 +1042,7 @@ async function boot(){
   // 업무 이메일이 없으면 여기서 막고 받는다
   if (!me.work_email) requireWorkEmail();
 
-  // 새 기능 안내는 첫 로그인 한 번. 주문자 정보를 받는 중이면 그게 끝난 뒤에 띄운다.
+  // 새 기능 안내는 첫 로그인 한 번. 주문자 정보를 받는 중이면 그게 끝난 뒤에 시작한다.
   (function tryWn(n){
     if (wnSeen()) return;
     if (document.querySelector('.modal')){ if (n < 60) return setTimeout(function(){ tryWn(n+1); }, 1000); return; }
@@ -2820,43 +2909,38 @@ async function viewSettle(){
 function paintSettle(st){
   var ps = st.profiles||[], docs = st.documents||[], lg = st.ledger||[], reqs = st.requests||[];
 
+  // 이 화면은 멤버십(후불) 거래처를 위한 것이다 — 쓴 만큼 쌓아두고 중간중간 정산한다.
+  var bp = ps.find(function(x){ return x.is_default; }) || ps[0];
+  var due = Number(st.due || 0);
+
   var h = '<div class="ttlrow"><div class="ttl" style="margin:0">정산하기</div>'
+        + '<button class="btn ghost" id="billMng">세금계산서 발행정보'
+          + (bp ? '' : ' <b style="color:#B45309">＋</b>') + '</button>'
         + '<button class="btn pri" id="reqBtn">정산 요청</button></div>';
 
-  // 정산 현황 — 숫자를 먼저 보여준다. 들어와서 제일 먼저 궁금한 건 "얼마 남았나"다.
-  var openReq = reqs.filter(function(r){ return r.status!=='입금완료' && r.status!=='반려'; }).length;
-  var cards = st.postpaid
-    ? [['지출금', won(st.spent)+'원', ''],
-       ['중간정산금', won(st.paid)+'원', ''],
-       ['잔여금', won(st.due)+'원', st.due > 0 ? 'warn' : ''],
-       ['진행 중 요청', openReq+'건', openReq ? 'hi' : '']]
-    : [['누적 지출금', won(st.spent||0)+'원', ''],
-       ['진행 중 요청', openReq+'건', openReq ? 'hi' : ''],
-       ['발급 서류', docs.length+'건', '']];
-  h += '<div class="kpis money'+(cards.length===3?' k3':'')+'">'
-    + cards.map(function(c){
-        return '<div class="kpi'+(c[2]?' '+c[2]:'')+'"><span>'+esc(c[0])+'</span><b>'+c[1]+'</b></div>'; }).join('')
+  // 들어와서 제일 먼저 궁금한 건 "얼마 남았나"다. 숫자를 맨 위에 둔다.
+  h += '<div class="kpis money k3">'
+    + '<div class="kpi"><span>총지출금</span><b>'+won(st.spent)+'원</b></div>'
+    + '<div class="kpi"><span>중간정산금</span><b>'+won(st.paid)+'원</b></div>'
+    + '<div class="kpi'+(due > 0 ? ' warn' : (due < 0 ? ' ok' : ''))+'"><span>잔여정산금</span>'
+      + '<b>'+(due < 0 ? '−' : '')+won(Math.abs(due))+'원</b></div>'
     + '</div>'
-    + (st.postpaid ? '' : '<p class="hint" style="margin:-14px 0 18px">선불 거래처입니다 — 건별로 결제하고 계셔서 잔여금이 쌓이지 않습니다.</p>');
+    + '<p class="duenote'+(due < 0 ? ' ok' : (due > 0 ? '' : ' zero'))+'">'
+      + (due > 0
+         ? '위 금액만큼 <b>더 정산하셔야 해요.</b>'
+         : due < 0
+           ? '<b>'+won(Math.abs(due))+'원</b>만큼 여유 자금이 남아 있어요. 정산하지 않으셔도 됩니다.'
+           : '정산하실 금액이 없습니다.')
+    + '</p>';
 
   // 아래는 두 열로 — 왼쪽은 내가 지금 할 것, 오른쪽은 지나간 기록
   h += '<div class="dc2"><section>';
-
-  // 계산서 발행 정보 — 한 줄 요약 + 관리
-  var bp = ps.find(function(p){ return p.is_default; }) || ps[0];
-  h += '<div class="billbar">'
-    + (bp
-       ? '<div class="bb"><b>'+esc(bp.company)+'</b>'
-         + '<span>'+esc(bp.biz_no||'—')+'</span><span>'+esc(bp.ceo||'—')+'</span>'
-         + (ps.length>1?'<em>외 '+(ps.length-1)+'건</em>':'') + '</div>'
-       : '<div class="bb none">세금계산서 발행 정보가 없습니다</div>')
-    + '<button class="mini" id="billMng">'+(bp?'관리':'＋ 등록')+'</button></div>';
 
   // 정산 요청 — 이 화면의 본론
   h += reqCards(reqs);
   h += '</section><section>';
 
-  if (st.postpaid){
+  {
     h += fold('거래 내역', lg.length, lg.length
       ? '<table class="cards ledger"><thead><tr><th style="width:96px">일자</th><th>내용</th>'
         + '<th style="width:120px">금액</th><th style="width:130px">잔액</th></tr></thead><tbody>'
