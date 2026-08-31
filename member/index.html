@@ -812,11 +812,12 @@ textarea{min-height:78px;resize:vertical}
 <body>
 
 <!-- 로그인 -->
+<!-- 멤버십 회원 로그인 — 이 화면에는 다른 것을 두지 않는다.
+     주문·정산 링크를 받고 온 사람이 바로 눌러 들어오는 자리다. -->
 <div class="login" id="login" style="display:none">
   <div class="card">
     <div class="bd">실험셋업연구소<small>(이머전트)</small></div>
-    <p>주문 요청과 진행 상황 확인, 견적서·거래명세서 발급을<br>한 곳에서 하실 수 있습니다.</p>
-    <button class="kakao" id="kakaoBtn">카카오로 계속하기</button>
+    <button class="kakao" id="kakaoBtn" style="margin-top:26px">카카오톡 시작하기</button>
   </div>
 </div>
 
@@ -1039,14 +1040,17 @@ async function boot(){
   // 이 페이지는 후불(멤버십) 거래처 전용이다.
   //   로그인 안 했거나 승인 전이면 장바구니로 — 거기서 견적 문의를 할 수 있다.
   //   승인은 됐지만 선불이면 여기서 멈추고 어디로 가야 하는지 알려준다.
-  // 확인 요청 링크를 눌렀는데 로그인이 안 돼 있거나 이 화면 자격이 아니면,
-  // 토큰으로 열리는 읽기 전용 화면으로 그대로 넘긴다 — 어차피 볼 건 그 한 건이다.
-  if ((!r.login || r.member === false) && wantOrd && wantTok){
-    location.replace('/view/order/' + wantOrd + '?t=' + encodeURIComponent(wantTok));
+  // 로그인 전이면 이 화면에서 받는다. 여기서 할 수 있는 건 로그인뿐이다.
+  // 장바구니로 튕기면 눌러서 온 링크를 잃는다 — 로그인 뒤 지금 주소 그대로(?order=…&t=… 포함) 돌아온다.
+  if (!r.login){
+    $('#kakaoBtn').dataset.next = location.pathname + location.search + location.hash;
+    $('#login').style.display = '';
     return;
   }
-  if (!r.login){
-    location.replace('/cart/' + (ref ? '?ref='+encodeURIComponent(ref) : ''));
+  // 로그인은 했지만 이 화면 자격이 아닌 사람이 확인 요청 링크를 눌렀다면,
+  // 토큰으로 열리는 읽기 전용 화면으로 넘긴다 — 어차피 볼 건 그 한 건이다.
+  if (r.member === false && wantOrd && wantTok){
+    location.replace('/view/order/' + wantOrd + '?t=' + encodeURIComponent(wantTok));
     return;
   }
   if (r.member === false){
