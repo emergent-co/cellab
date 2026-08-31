@@ -37,6 +37,9 @@ function shell(title, badge, meta, body) {
   td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   td.l{word-break:keep-all}
   .mob{display:none}
+  .backlink{margin-top:26px;font-size:13px}
+  .backlink a{color:#3b3695;font-weight:700;text-decoration:none}
+  .backlink a:hover{text-decoration:underline}
   .kv{display:flex;gap:12px;font-size:13.5px;padding:7px 0;border-bottom:1px solid #f1f3f6}
   .kv:last-child{border-bottom:0}
   .kv span:first-child{flex:0 0 108px;color:#8a94a3}
@@ -104,7 +107,8 @@ export function orderViewHTML(o, items, customer) {
     <tr><td>합계</td><td class="n">${won(total)} 원</td></tr></table>` : ''}`;
 
   return shell(o.title || '주문 내용', o.status,
-    `${esc(o.order_no || '')} · ${esc(String(o.created_at || '').slice(0, 10))}`, body);
+    `${esc(o.order_no || '')} · ${esc(String(o.created_at || '').slice(0, 10))}`,
+    body + `<p class="backlink"><a href="/member/?order=${o.id}">주문 목록에서 열어보기 →</a></p>`);
 }
 
 export function settleViewHTML(s, items, customer, bill) {

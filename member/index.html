@@ -431,6 +431,9 @@ tbody tr.act td:first-child{box-shadow:inset 3px 0 0 #F59E0B}
 @media(max-width:640px){.kpibtn{padding:14px 12px;font-size:15px}.kpibtn small{display:none}}
 .login .card p.sub{font-size:13px;color:var(--mut);line-height:1.7;margin-top:14px}
 .login .card p.sub2{font-size:12px;color:#9aa1ad;line-height:1.6;margin-top:14px}
+/* 메일 링크로 찾아온 줄 — 3초쯤 깜빡였다가 표시만 남는다 */
+table.cards tbody tr.hl{background:#FFFBF3;box-shadow:inset 3px 0 0 #E8912F;animation:rowflash 1s ease 3}
+@keyframes rowflash{0%,100%{background:#FFFBF3}50%{background:#FCEBCE}}
 .ivlab{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:16px 0 7px;
   font-size:13px;font-weight:800;color:var(--ink)}
 .ivlab em{font-style:normal;font-size:12px;font-weight:600;color:var(--mut);
@@ -1023,6 +1026,9 @@ async function boot(){
   var qs  = new URLSearchParams(location.search);
   var inv = qs.get('inv');    // 실험실 합류 초대
   var ref = qs.get('ref');    // 서비스 추천 (실험실과 무관)
+  // 확인 요청 메일에서 넘어온 주문 — 목록이 길어지면 어느 줄인지 못 찾는다.
+  // 번호를 들고 와서 그 줄을 켜 주고 바로 펼친다.
+  var wantOrd = Number(qs.get('order') || 0) || 0;
   // 추천 링크로 들어온 사람은 대개 아직 회원이 아니다. 로그인·승인을 거치는 동안
   // 주소에서 ref 가 날아가므로 여기서 붙잡아 둔다.
   if (ref){ try { localStorage.setItem('rs_ref', ref); } catch(e){} }
@@ -1080,8 +1086,13 @@ async function boot(){
   $('#whoName').textContent = me.name || '고객';
   $('#whoOrg').textContent = (lab && lab.name) || me.company || '';
   paintLab();
+  if (wantOrd){
+    pendOrder = wantOrd; ordTab = 'list'; tab = '전체'; kw = '';
+    view = 'order';
+    history.replaceState({}, '', '/member/#order');
+  }
   var h0 = location.hash.replace('#','');
-  if (VIEWS.indexOf(h0)>=0) view=h0;
+  if (!wantOrd && VIEWS.indexOf(h0)>=0) view=h0;
   syncNav();
   bootChannel(me);
   render();
@@ -1355,7 +1366,14 @@ function skeleton(){
     +'<div class="skel"><div class="sk" style="height:120px"></div>'
     +'<div class="sk" style="height:260px"></div></div>';
 }
+/* 화면을 바꿀 때마다 세대 번호를 올린다.
+   메뉴를 빠르게 번갈아 누르면 앞 화면이 부르던 응답이 나중에 도착하는데,
+   그때 그리면 지금 보고 있는 화면을 통째로 덮어써 버린다(제목·탭이 사라지는 그 버그).
+   그린 뒤 세대가 달라졌으면 조용히 버린다. */
+var renderSeq = 0;
+
 function render(){
+  renderSeq++;
   // 관리자 화면도 이 셸 안에서 그린다 — 사이드바가 그대로 남는다
   if (ADMVIEWS.indexOf(view) >= 0){
     // 관리자가 아니면 홈으로 되돌린다 — 주소(해시)까지 같이 되돌려야
@@ -1391,8 +1409,10 @@ function render(){
 /* 주문하기 · 주문내역 — 위 탭만 갈아끼우고 본문(#ordBody)만 다시 그린다.
    화면이 통째로 바뀌지 않으니 어디에 있는지 놓치지 않는다. */
 var ordTab = 'new';
-function obox(){ return $('#ordBody') || $('#main'); }
+// 주문 화면의 본문 상자. 없으면 다른 화면으로 넘어간 것이므로 그리지 않는다.
+function obox(){ return $('#ordBody'); }
 function viewOrder(){
+  renderSeq++;
   $('#main').innerHTML = '<div class="ttl">주문</div>'
     + '<div class="tabs otab" id="ordTab">'
       + '<button data-t="new"'+(ordTab==='new'?' class="on"':'')+'>주문하기'
@@ -2173,8 +2193,10 @@ function paintMe(){
 
 /* ---------------- 주문 현황 ---------------- */
 async function viewOrders(){
+  var seq = renderSeq;
   if (cache.orders){ orders = cache.orders; paintOrders(); }
   var r = await fetch('/api/order').then(function(r){return r.json();}).catch(function(){return {};});
+  if (seq !== renderSeq) return;
   if (!r.orders) { if(!cache.orders) paintOrders(); return; }
   orders = r.orders; cache.orders = orders;
   paintOrders();
@@ -2186,7 +2208,8 @@ function paintOrders(){
   var wait = orders.filter(function(o){ return GROUP['확인 필요'].indexOf(o.status)>=0; }).length;
   var amt = orders.reduce(function(s,o){ return s + (o.total_amount||0); },0);
 
-  obox().innerHTML =
+  var _b = obox(); if (!_b) return;
+  _b.innerHTML =
     (org ? '<div class="orgline">'+esc(org)+'</div>' : '')
    +'<div class="tabs" id="tabs">'
      +['전체','확인 필요','진행 중','완료'].map(function(s){
@@ -2250,6 +2273,21 @@ function bindRows(){
   document.querySelectorAll('#listPanel tbody tr').forEach(function(tr){
     tr.onclick = function(){ openOrder(Number(tr.dataset.id)); };
   });
+  flashOrder();
+}
+
+/* 메일에서 넘어온 주문 한 건을 눈에 띄게 켠다.
+   목록이 스무 줄이 넘어가면 «어느 건인지» 부터가 일이라, 찾아주는 것까지가 링크의 몫이다. */
+var pendOrder = null;
+function flashOrder(){
+  if (!pendOrder) return;
+  var tr = document.querySelector('#listPanel tbody tr[data-id="'+pendOrder+'"]');
+  if (!tr) return;                       // 아직 안 왔거나 다른 탭에 있다 — 다음 그리기에서 다시 본다
+  var id = pendOrder; pendOrder = null;
+  document.querySelectorAll('#listPanel tr.hl').forEach(function(x){ x.classList.remove('hl'); });
+  tr.classList.add('hl');
+  try { tr.scrollIntoView({ block:'center', behavior:'smooth' }); } catch(e){ tr.scrollIntoView(); }
+  setTimeout(function(){ openOrder(id); }, 420);   // 어느 줄인지 보고 나서 열리게 한 박자 둔다
 }
 
 function closeOrderModal(){
@@ -2420,8 +2458,10 @@ let sites=[], siteId=null;
 var cache = { orders:null, sites:null, settle:null };
 
 async function viewNew(){
+  var seq = renderSeq;
   if (cache.sites){ sites = cache.sites; pickSite(); paintNew(); }
   var sr = await fetch('/api/order/sites').then(function(r){return r.json();}).catch(function(){return {};});
+  if (seq !== renderSeq) return;             // 그 사이 다른 화면으로 갔다
   sites = sr.sites || [];
   cache.sites = sites;
   pickSite();
@@ -2434,7 +2474,8 @@ function pickSite(){
 }
 function paintNew(){
 
-  obox().innerHTML =
+  var _b = obox(); if (!_b) return;
+  _b.innerHTML =
     // 납품지가 없으면 아무것도 주문할 수 없다 — 맨 위에서 어디로 가야 하는지 알려준다
     (sites.length ? '' :
       '<div class="warnbox guide"><div class="gt"><b>먼저 납품지를 등록해주세요.</b>'
@@ -2953,11 +2994,13 @@ async function submitOrder(){
 
 /* ---------------- 정산하기 ---------------- */
 async function viewSettle(){
+  var seq = renderSeq;
   if (cache.settle) paintSettle(cache.settle);
   var both = await Promise.all([
     fetch('/api/order/settlement').then(function(r){return r.json();}).catch(function(){return null;}),
     fetch('/api/order/settlements').then(function(r){return r.json();}).catch(function(){return {};})
   ]);
+  if (seq !== renderSeq) return;
   var st = both[0];
   if (!st){ if(!cache.settle) paintSettle({}); return; }
   st.requests = (both[1] && both[1].settlements) || [];

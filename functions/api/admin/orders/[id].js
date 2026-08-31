@@ -108,7 +108,9 @@ export async function onRequest({ request, env, params }) {
         kind: 'order', title: order.title || order.order_no,
         company: order.org_name || (customer && customer.company),
         contact: order.orderer_name || (customer && customer.name),
-        total: order.total_amount, viewUrl, to: rawTo, cc: rawCc, memo: b.memo,
+        total: order.total_amount, viewUrl,
+        listUrl: `${new URL(request.url).origin}/member/?order=${order.id}`,
+        to: rawTo, cc: rawCc, memo: b.memo,
       });
       const r = await sendMail(env, {
         to, cc,
