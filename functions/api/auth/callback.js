@@ -55,10 +55,15 @@ export async function onRequestGet({ request, env }) {
     ).bind(name, email, phone, kstISO(), cid).run();
   } else {
     const r = await env.DB.prepare(
-      'INSERT INTO customers (kakao_id, name, email, phone, created_at, updated_at) VALUES (?,?,?,?,?,?)'
+      "INSERT INTO customers (kakao_id, name, email, phone, access, created_at, updated_at) VALUES (?,?,?,?,'승인',?,?)"
     ).bind(kakaoId, name, email, phone, kstISO(), kstISO()).run();
     cid = r.meta.last_row_id;
   }
+
+  // 당분간 멤버십 자동 승인 — 승인제로 전환하려면 이 블록을 제거하고 관리자 승인 플로우만 남긴다.
+  await env.DB.prepare(
+    "UPDATE customers SET access='승인' WHERE id=? AND (access IS NULL OR access='' OR access='대기')"
+  ).bind(cid).run();
 
   const token = await createSession(env, cid);
   return new Response(null, {
