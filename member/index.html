@@ -5120,6 +5120,19 @@ async function dqOpen(id){
                        : '거래처를 지정하면 그 이력에 나타납니다')
         + '</small></div><button class="mini" id="dqRelink">바꾸기</button></div>'
      + '</div>'
+    + (doc.type==='taxinvoice'
+       ? '<div class="sec"><h4>국세청 발행 <i style="font-style:normal;color:var(--mut);font-weight:600">바로빌</i></h4>'
+         + (doc.barobill_mgtkey
+            ? '<div class="kv"><span>관리번호</span><span><b>'+esc(doc.barobill_mgtkey)+'</b></span></div>'
+              + '<div class="kv"><span>상태</span><span id="nsState">'+esc(doc.barobill_state||'—')+'</span></div>'
+              + (doc.barobill_ncid?'<div class="kv"><span>국세청 승인번호</span><span>'+esc(doc.barobill_ncid)+'</span></div>':'')
+              + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="nsCheck">상태 다시 조회</button></div>'
+            : '<div class="dnote">아직 국세청으로 보내지 않았습니다. 누르면 <b>저장과 발급이 한 번에</b> 처리되고, '
+              + '공급받는자에게 바로빌이 국세청 양식으로 메일을 보냅니다.<br>'
+              + '공급받는자 사업자정보는 거래처의 <b>계산서 발행 정보</b>를 씁니다.</div>'
+              + '<div class="dsrc" style="margin-top:10px"><button class="mini ok" id="nsIssue">국세청 발행</button></div>')
+         + '</div>'
+       : '')
     + '<div class="sec"><h4>주문 기록</h4>'
       + (d.order
          ? '<div class="kv"><span>연결된 주문</span><span><b>'+esc(d.order.order_no)+'</b> '

@@ -1066,7 +1066,7 @@
     MODELS.forEach(function (o, i) {
       var op = document.createElement('option');
       op.value = i;
-      op.textContent = lbl(o) + ' — ' + won(o.p);
+      op.textContent = lbl(o) + ' — ' + won(unitOf(o));   // 드롭다운은 제품가격 기준 (배송 제외)
       sel.appendChild(op);
     });
     pick.appendChild(sel);
