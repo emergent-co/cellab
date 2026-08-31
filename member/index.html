@@ -193,6 +193,37 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
 .main{margin-left:var(--side);padding:calc(var(--head) + 26px) 26px 70px}
 .ttl{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
 
+/* ---------- 관리자 홈 ---------- */
+.ah2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+@media(max-width:1000px){.ah2{grid-template-columns:1fr}}
+.ahc{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.ahh{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line)}
+.ahh b{font-size:13.5px;font-weight:800}
+.ahh i{font-style:normal;font-size:11px;font-weight:800;background:#eef1f6;color:var(--mut);border-radius:999px;padding:2px 7px}
+.ahh i.hot{background:#FEF3C7;color:#92400E}
+.ahh .more{margin-left:auto;border:0;background:0;color:var(--mut);font-size:12px;font-weight:700;cursor:pointer}
+.ahh .more:hover{color:var(--navy);text-decoration:underline}
+.ahb{flex:1}
+.ahr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;background:0;
+  padding:11px 16px;border-bottom:1px solid #f1f3f6;cursor:pointer;font:inherit}
+.ahr:last-child{border-bottom:0}
+.ahr:hover{background:var(--bg)}
+.ahr .t{flex:1;min-width:0}
+.ahr .t b{display:block;font-size:13.5px;font-weight:700;line-height:1.4;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ahr .t small{display:block;font-size:11.5px;color:var(--mut);margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ahr .a{flex:0 0 auto;font-size:11.5px;color:var(--mut);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ahr .a.n{font-size:13px;font-weight:800;color:var(--ink)}
+.ahr .k{flex:0 0 auto;font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 8px;
+  background:var(--soft-blue);color:var(--navy);white-space:nowrap}
+.ahr .k.due{background:#FEF3C7;color:#92400E}
+.ahe{padding:26px 16px;text-align:center;font-size:12.5px;color:var(--mut)}
+.kpi.warn{border-color:#F0C98A;background:#FFFBF3}
+.kpi.warn b{color:#92400E}
+.kpi{cursor:pointer}
+.kpi:hover{border-color:#cfcde6}
+
 /* ---------- 할 일 ---------- */
 .tdadd{display:flex;gap:8px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);
   border-radius:12px;padding:12px;margin-bottom:16px}
@@ -650,9 +681,11 @@ textarea{min-height:78px;resize:vertical}
     </nav>
     <nav class="nav adm" id="admNav" hidden>
       <div class="admh">관리자</div>
+      <a data-v="admHome">관리자 홈</a>
       <a data-v="admTodo">할 일<i class="nb" id="nbTodo" hidden></i></a>
       <a data-v="admOps">주문 · 정산<i class="nb" id="nbOps" hidden></i></a>
       <a data-v="admDocs">문서 발행</a>
+      <a data-v="admClients">거래처 관리</a>
       <a data-v="admMembers">멤버십 · 문의<i class="nb" id="nbMem" hidden></i></a>
     </nav>
     <div class="labbox" id="labBox"></div>
@@ -1007,10 +1040,11 @@ function loadKakao(cb){
 }
 
 /* ---------------- 라우팅 ---------------- */
-var VT = { home:'홈', new:'주문하기', orders:'주문 현황', settle:'정산하기',
-           admTodo:'할 일', admOps:'주문 · 정산 관리', admDocs:'문서 발행', admMembers:'멤버십 · 문의' };
-var VIEWS = ['home','new','orders','settle','admTodo','admOps','admDocs','admMembers'];
-var ADMVIEWS = ['admTodo','admOps','admDocs','admMembers'];
+var VT = { home:'홈', new:'주문하기', orders:'주문 현황', settle:'정산하기', admHome:'관리자 홈',
+           admTodo:'할 일', admOps:'주문 · 정산 관리', admDocs:'문서 발행',
+           admClients:'거래처 관리', admMembers:'멤버십 · 문의' };
+var VIEWS = ['home','new','orders','settle','admHome','admTodo','admOps','admDocs','admClients','admMembers'];
+var ADMVIEWS = ['admHome','admTodo','admOps','admDocs','admClients','admMembers'];
 function skeleton(){
   $('#main').innerHTML = '<div class="ttl">'+VT[view]+'</div>'
     +'<div class="skel"><div class="sk" style="height:120px"></div>'
@@ -1026,9 +1060,11 @@ function render(){
       if (location.hash && location.hash!=='#home') location.replace('#home');
       syncNav(); return paintHome();
     }
+    if (view==='admHome') return viewAdmHome();
     if (view==='admTodo') return viewAdmTodo();
     if (view==='admOps')  return viewAdmOps();
     if (view==='admDocs') return viewAdmDocs();
+    if (view==='admClients') return viewAdmClients();
     return viewAdmMembers();
   }
   if (view==='home'){ paintHome(); return; }
@@ -1570,6 +1606,9 @@ var ICON = {
   user:   '<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 20a8 8 0 0 1 16 0"/>',
   chat:   '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.4A8 8 0 1 1 21 12Z"/>',
   invite: '<path d="M16 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2 20a7 7 0 0 1 12 -5M6 8v6M3 11h6"/>',
+  check:  '<path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
+  doc:    '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>',
+  people: '<path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9.5 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M22 20v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
 };
 function tile(v, icon, title, desc, badge, cls){
   return '<button class="tile'+(cls?' '+cls:'')+'" data-go="'+v+'">'
@@ -1613,7 +1652,11 @@ function paintHome(){
   if (isAdm){
     $('#main').insertAdjacentHTML('beforeend',
        '<div class="admrow"><span>관리자</span>'
+      +'<a data-go="admHome">관리자 홈</a>'
+      +'<a data-go="admTodo">할 일</a>'
+      +'<a data-go="admDocs">문서 발행</a>'
       +'<a data-go="admOps">주문 · 정산</a>'
+      +'<a data-go="admClients">거래처</a>'
       +'<a data-go="admMembers">멤버십 · 문의</a></div>');
   }
 
@@ -2797,6 +2840,140 @@ function qtotal(){
   $('#q-sum').innerHTML = h;
 }
 
+/* ==================== 관리자 홈 ====================
+   사용자 홈과 같은 타일 구조. 다만 관리자는 "지금 뭘 해야 하나"가 먼저 보여야 하므로
+   숫자 요약 → 바로가기 → 오늘 할 일 / 새로 들어온 것 → 최근 문서 / 미수금 순으로 놓는다.
+   숫자는 admPoll 이 이미 받아둔 것을 그대로 쓰고, 문서·미수금만 따로 받는다. */
+var ahDocs = [], ahDue = [], ahLoaded = false;
+
+function viewAdmHome(){
+  paintAdmHome();
+  admPoll().then(paintAdmHome).catch(function(){});
+  Promise.all([
+    fetch('/api/admin/issue?list=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};}),
+    fetch('/api/admin/settlement',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};})
+  ]).then(function(both){
+    ahDocs = (both[0].docs||[]).slice(0,6);
+    ahDue  = (both[1].customers||[]).filter(function(c){ return (c.due||0) > 0; })
+               .sort(function(a,b){ return b.due - a.due; }).slice(0,6);
+    ahLoaded = true;
+    if (view==='admHome') paintAdmHome();
+  });
+}
+
+function ahRow(go, title, sub, right, kind, kindHot){
+  return '<button class="ahr" data-go="'+esc(go)+'">'
+    + (kind ? '<span class="k'+(kindHot?' due':'')+'">'+esc(kind)+'</span>' : '')
+    + '<span class="t"><b>'+esc(title||'—')+'</b><small>'+esc(sub||'')+'</small></span>'
+    + '<span class="a'+(right && right.n ? ' n':'')+'">'+esc(right && right.v!=null ? right.v : (right||''))+'</span></button>';
+}
+function ahCard(title, n, hot, moreView, rowsHtml, emptyMsg){
+  return '<section class="ahc"><div class="ahh"><b>'+esc(title)+'</b>'
+    + (n ? '<i'+(hot?' class="hot"':'')+'>'+n+'</i>' : '')
+    + (moreView ? '<button class="more" data-go="'+moreView+'">전체 보기 →</button>' : '')
+    + '</div><div class="ahb">'
+    + (rowsHtml || '<div class="ahe">'+esc(emptyMsg)+'</div>') + '</div></section>';
+}
+
+function paintAdmHome(){
+  var today = new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+  var due   = todoDue();                       // 마감이 오늘까지인 할 일
+  var open  = admFeed.todo || [];
+  var ord   = admFeed.ord || [], set = admFeed.settle || [];
+  var mem   = admFeed.mem || [], inq = admFeed.inq || [];
+
+  // --- 오늘 처리할 것: 마감 지난·오늘까지가 먼저, 없으면 남은 할 일에서 채운다 ---
+  var work = due.concat(open.filter(function(t){ return due.indexOf(t) < 0; })).slice(0,6);
+
+  // --- 새로 들어온 것: 네 갈래를 한 줄로 엮는다 ---
+  var feed = []
+    .concat(ord.map(function(o){ return { k:'주문', go:'admOps', t:o.title||'(제목 없음)',
+        s:[o.company||o.contact, o.orderer_name].filter(Boolean).join(' · '),
+        r:o.total_amount?won(o.total_amount)+'원':'금액 미정', at:o.created_at }; }))
+    .concat(set.map(function(r){ var f=(r.items||[])[0]||{};
+      return { k:'정산', go:'admOps', t:(f.name||'(항목 없음)')+((r.items||[]).length>1?' 외 '+((r.items||[]).length-1)+'건':''),
+        s:[r.company||r.contact, r.status].filter(Boolean).join(' · '),
+        r:won(r.total)+'원', at:r.created_at }; }))
+    .concat(mem.map(function(c){ return { k:'멤버십', go:'admMembers', t:c.company||c.name||'—',
+        s:c.work_email||c.email||'', r:'승인 대기', at:c.created_at }; }))
+    .concat(inq.map(function(q){ return { k:'문의', go:'admMembers', t:q.name+(q.org_name?' · '+q.org_name:''),
+        s:q.email||q.phone||'', r:(q.items||[]).length+'건', at:q.created_at }; }))
+    .sort(function(a,b){ return String(b.at||'').localeCompare(String(a.at||'')); })
+    .slice(0,7);
+
+  var nNew = ord.length + set.length + mem.length + inq.length;
+
+  $('#main').innerHTML =
+     '<div class="hi"><b>'+esc((me && me.name) || '관리자')+'님, 관리자 화면입니다</b>'
+      +'<span>'+esc(today)+' · 처리할 일 '+(due.length+nNew)+'건</span></div>'
+
+    + '<div class="kpis">'
+      + '<div class="kpi'+(due.length?' warn':'')+'" data-go="admTodo"><span>오늘까지 할 일</span>'
+        + '<b>'+due.length+'<i>/ '+open.length+'</i></b></div>'
+      + '<div class="kpi'+(ord.length?' hi':'')+'" data-go="admOps"><span>새 주문</span><b>'+ord.length+'</b></div>'
+      + '<div class="kpi'+(set.length?' hi':'')+'" data-go="admOps"><span>정산 요청</span><b>'+set.length+'</b></div>'
+      + '<div class="kpi'+((mem.length+inq.length)?' hi':'')+'" data-go="admMembers"><span>승인 · 문의</span>'
+        + '<b>'+(mem.length+inq.length)+'</b></div>'
+    + '</div>'
+
+    + '<div class="tiles">'
+      + tile('admTodo',    ICON.check,  '할 일',        '적어두고 견적서로 넘기기', due.length?due.length:'', due.length?'hot':'')
+      + tile('admDocs',    ICON.doc,    '문서 발행',    '견적서 · 거래명세서 · 예약발송', '', 'pri')
+      + tile('admOps',     ICON.money,  '주문 · 정산',  '주문 처리와 잔여금 확인', (ord.length+set.length)||'', (ord.length+set.length)?'hot':'')
+      + tile('admMembers', ICON.people, '멤버십 · 문의','승인 대기와 견적 문의', (mem.length+inq.length)||'', (mem.length+inq.length)?'hot':'')
+    + '</div>'
+    + '<div class="tiles two">'
+      + '<button class="tile sm" data-go="admClients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.user+'</svg>'
+        + '<b>거래처 관리</b><span>정보 · 발행정보 · 이력 한눈에</span></button>'
+      + '<button class="tile sm" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.order+'</svg>'
+        + '<b>고객 화면으로</b><span>회원이 보는 그대로 확인</span></button>'
+    + '</div>'
+
+    + '<div class="ah2">'
+      + ahCard('오늘 처리할 것', due.length, true, 'admTodo',
+          work.map(function(t){
+            return ahRow(t.kind==='견적발행'||t.kind==='거래명세서' ? '@issue:'+t.id : 'admTodo',
+              t.title,
+              [t.company||t.contact, t.memo].filter(Boolean).join(' · ') || (t.kind==='견적발행'?'누르면 견적서 준비 화면으로':''),
+              t.due_date ? '~'+t.due_date.slice(5) : '',
+              t.kind, !!t.overdue); }).join(''),
+          '할 일이 없습니다. 위 타일에서 적어두세요.')
+      + ahCard('새로 들어온 것', nNew, true, 'admOps',
+          feed.map(function(f){ return ahRow(f.go, f.t, f.s, {v:f.r, n:true}, f.k); }).join(''),
+          '새로 들어온 것이 없습니다.')
+    + '</div>'
+
+    + '<div class="ah2">'
+      + ahCard('최근 발행 문서', 0, false, 'admDocs',
+          ahDocs.map(function(d){
+            return ahRow('@doc:'+d.id, d.title||d.doc_no,
+              [d.doc_no, d.company, d.status].filter(Boolean).join(' · '),
+              {v:d.total?won(d.total)+'원':'', n:true},
+              DTYPE[d.type]||d.type); }).join(''),
+          ahLoaded ? '아직 발행한 문서가 없습니다.' : '불러오는 중…')
+      + ahCard('미수금', ahDue.length, false, 'admOps',
+          ahDue.map(function(c){
+            return ahRow('admOps', c.company||c.name||'—',
+              [c.billing_mode, c.phone].filter(Boolean).join(' · '),
+              {v:won(c.due)+'원', n:true}); }).join(''),
+          ahLoaded ? '미수금이 없습니다.' : '불러오는 중…')
+    + '</div>';
+
+  $('#main').onclick = function(e){
+    var t = e.target.closest('[data-go]'); if (!t) return;
+    var g = t.dataset.go;
+    if (g.indexOf('@issue:')===0){                 // 할 일 → 견적서 준비 화면
+      var id = g.slice(7);
+      var td = (admFeed.todo||[]).filter(function(x){ return String(x.id)===id; })[0];
+      return td ? tdToIssue(td) : go('admTodo');
+    }
+    if (g.indexOf('@doc:')===0) return dqOpen(g.slice(5));
+    go(g);
+  };
+}
+
 /* ==================== 할 일 ====================
    적어두면 잊지 않는다. 종류를 '견적발행'으로 적어둔 건은
    버튼 하나로 견적서 준비 화면(거래처·항목까지 채워진 상태)으로 넘어간다. */
@@ -3017,6 +3194,191 @@ function clientPicker(box, picked, onPick){
     }
   }
   paint();
+}
+
+/* ==================== 거래처 관리 ====================
+   한 거래처를 통으로 본다 — 기본정보 · 실험실 · 발행정보 · 주문 · 정산 · 문서 · 잔여금.
+   여기서 바로 견적서를 뽑거나 할 일로 적어둘 수 있다.
+   권한(role)은 이 화면에서 못 바꾼다. 관리자는 DB에서 직접만 준다. */
+var clFilter='전체', clMode='', clKw='', clRows=[], clStats={};
+
+function viewAdmClients(){
+  $('#main').innerHTML = '<div class="ttl">거래처 관리</div>'
+    + '<div class="achips" id="clChips"></div>'
+    + '<div class="tools" style="margin-bottom:12px">'
+      + '<input type="search" id="clQ" placeholder="상호 · 담당자 · 메일 · 전화 · 실험실" value="'+esc(clKw)+'">'
+      + '<div class="right"><select id="clMode" style="border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13.5px;background:#fff">'
+        + '<option value="">결제 전체</option><option value="후불">후불</option><option value="선불">선불</option></select></div>'
+    + '</div>'
+    + '<div class="panel list" id="clList"><div class="empty">불러오는 중…</div></div>';
+  var t; $('#clQ').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ clKw=e.target.value.trim(); clLoad(); },250); };
+  $('#clMode').value = clMode;
+  $('#clMode').onchange = function(e){ clMode = e.target.value; clLoad(); };
+  clLoad();
+}
+
+async function clLoad(){
+  var u = '/api/admin/clients?';
+  if (clFilter!=='전체') u += 'access='+encodeURIComponent(clFilter)+'&';
+  if (clMode) u += 'mode='+encodeURIComponent(clMode)+'&';
+  if (clKw) u += 'q='+encodeURIComponent(clKw);
+  var r = await fetch(u,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
+  clRows = r.clients||[]; clStats = r.stats||{};
+  clChips(); clPaint();
+}
+
+function clChips(){
+  var el = $('#clChips'); if(!el) return;
+  var all = [['전체',clStats.all_||0],['대기',clStats.wait||0],['승인',clStats.ok||0],['거절',clStats.no||0]];
+  el.innerHTML = all.map(function(x){
+    return '<button class="achip'+(x[0]===clFilter?' on':'')+'" data-s="'+esc(x[0])+'">'+esc(x[0])+'<b>'+x[1]+'</b></button>'; }).join('')
+    + (clStats.post ? '<span class="achip" style="border-color:#cfe1f0;background:var(--soft-blue);color:var(--navy)">후불 <b>'+clStats.post+'</b></span>' : '');
+  el.onclick = function(e){ var b=e.target.closest('.achip[data-s]'); if(!b) return; clFilter=b.dataset.s; clLoad(); };
+}
+
+function clPaint(){
+  var el = $('#clList'); if(!el) return;
+  if (!clRows.length){ el.innerHTML='<div class="empty">해당 거래처가 없습니다.</div>'; return; }
+  el.innerHTML = '<table class="cards"><thead><tr><th style="width:78px">멤버십</th><th>거래처</th>'
+    + '<th style="width:80px">주문</th><th style="width:130px">잔여금</th></tr></thead><tbody>'
+    + clRows.map(function(c){
+        var meta = [c.name||'—'];
+        if (c.lab_name) meta.push(c.lab_name);
+        if (c.work_email||c.email) meta.push(c.work_email||c.email);
+        if (c.phone) meta.push(c.phone);
+        return '<tr data-id="'+c.id+'" class="'+(c.access==='대기'?'act':'')+'">'
+          + '<td>'+abadge(c.access||'대기')+'</td>'
+          + '<td class="l ttd"><b>'+esc(c.company||c.name||'—')+'</b>'
+            + '<small class="rmeta">'+esc(meta.join(' · '))+'</small></td>'
+          + '<td class="dt">'+(c.orders_n||0)+'건</td>'
+          + '<td class="n">'+(c.due ? won(c.due)+'원' : '<span class="dim">'+(c.billing_mode==='후불'?'0원':'선불')+'</span>')+'</td></tr>'; }).join('')
+    + '</tbody></table>';
+  el.querySelectorAll('tbody tr').forEach(function(tr){ tr.onclick=function(){ clOpen(tr.dataset.id); }; });
+}
+
+async function clOpen(id){
+  var d = await fetch('/api/admin/clients?id='+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
+  if (!d.client) return toast('불러오지 못했습니다');
+  var c = d.client;
+  var w = amodal('거래처', '<div class="dbody" id="clBody"></div>');
+  var h3 = w.querySelector('h3');
+  if (h3) h3.innerHTML = esc(c.company||c.name||'—')+' '+abadge(c.access||'대기')
+    + (c.is_admin ? ' <span class="badge s2">관리자</span>' : '');
+
+  $('#clBody').innerHTML =
+     '<div class="sec"><h4>기본</h4>'
+      + akv('담당자', c.name) + akv('연락처', c.phone)
+      + akv('업무 메일', c.work_email) + akv('로그인 메일', c.email)
+      + akv('주소', c.address)
+      + akv('실험실', c.lab_name ? c.lab_name+' ('+c.lab_code+') · '+(d.members||[]).length+'명' : '')
+      + akv('가입', String(c.created_at||'').slice(0,10))
+     + '</div>'
+
+    + '<div class="sec"><h4>정산</h4>'
+      + '<div class="kbar"><div><span>지출금</span><b>'+won(d.spent)+'</b></div>'
+      + '<div><span>중간정산금</span><b>'+won(d.paid)+'</b></div>'
+      + '<div class="hi"><span>잔여금</span><b>'+won(d.due)+'</b></div></div>'
+      + '<label style="display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:14px 0 6px">멤버십 · 결제</label>'
+      + '<div class="dsrc">'
+        + ['승인','대기','거절'].map(function(a){
+            return '<button class="mini'+(c.access===a?' ok':'')+'" data-acc="'+a+'">'+a+'</button>'; }).join('')
+        + '<button class="mini" data-mode="'+(c.billing_mode==='후불'?'선불':'후불')+'">'
+          + (c.billing_mode==='후불'?'선불로':'후불로')+' 전환</button>'
+      + '</div>'
+    + '</div>'
+
+    + '<div class="sec"><h4>계산서 발행 정보 <i style="font-style:normal;color:var(--mut);font-weight:600">'+(d.profiles||[]).length+'</i></h4>'
+      + ((d.profiles||[]).length
+        ? d.profiles.map(function(p){
+            return '<div class="itrow" style="background:#fff">'
+              + '<div class="kv"><span>상호</span><span><b>'+esc(p.company||'—')+'</b>'
+                + (p.is_default?' <span class="badge s2">기본</span>':'')+'</span></div>'
+              + '<div class="kv"><span>사업자</span><span>'+esc(p.biz_no||'—')+' · '+esc(p.ceo||'—')+'</span></div>'
+              + (p.tax_email?'<div class="kv"><span>계산서 메일</span><span>'+esc(p.tax_email)+'</span></div>':'')
+              + '</div>'; }).join('')
+        : '<div class="empty" style="padding:16px">등록된 발행 정보가 없습니다.</div>')
+    + '</div>'
+
+    + clFold('주문', d.orders, function(o){
+        return [o.title||o.order_no, o.order_no+' · '+o.status, o.total_amount?won(o.total_amount)+'원':'미정', 'admOps']; })
+    + clFold('정산 요청', d.settlements, function(s){
+        var f=(s.items||[])[0]||{};
+        return [(f.name||'(항목 없음)')+((s.items||[]).length>1?' 외 '+((s.items||[]).length-1)+'건':''),
+                s.status+' · '+String(s.created_at||'').slice(0,10), won(s.total)+'원', '@settle:'+s.id]; })
+    + clFold('발행 문서', d.documents, function(x){
+        return [x.title||x.doc_no, (DTYPE[x.type]||x.type)+' · '+x.doc_no+' · '+x.status,
+                x.total?won(x.total)+'원':'', '@doc:'+x.id]; })
+
+    + '<div class="sec"><h4>메모 <i style="font-style:normal;color:var(--mut);font-weight:600">고객에게 안 보입니다</i></h4>'
+      + '<textarea id="clMemo" rows="2" placeholder="내부 메모">'+esc(c.memo||'')+'</textarea></div>'
+
+    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ghost" id="clTodo">할 일로</button>'
+      + '<button class="btn pri" id="clIssue">견적서 발행</button>'
+      + '<button class="btn ok" id="clSave">저장</button></div>';
+
+  // 멤버십 · 결제
+  $('#clBody').querySelectorAll('[data-acc]').forEach(function(b){
+    b.onclick = async function(){
+      var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,
+        body:JSON.stringify({id:c.id, action:'access', access:b.dataset.acc})})
+        .then(function(r){return r.json();}).catch(function(){return{};});
+      if (!r.ok) return toast('바꾸지 못했습니다');
+      w.remove(); toast('멤버십 '+b.dataset.acc); clLoad(); admPoll(); clOpen(c.id);
+    };
+  });
+  var mb = $('#clBody').querySelector('[data-mode]');
+  if (mb) mb.onclick = async function(){
+    await fetch('/api/admin/clients',{method:'POST',headers:AH,
+      body:JSON.stringify({id:c.id, action:'mode', billing_mode:mb.dataset.mode})});
+    w.remove(); toast(mb.dataset.mode+' 전환'); clLoad(); clOpen(c.id);
+  };
+
+  // 접힌 목록 안의 이동
+  $('#clBody').querySelectorAll('[data-jump]').forEach(function(b){
+    b.onclick = function(){
+      var g = b.dataset.jump;
+      if (g.indexOf('@doc:')===0){ w.remove(); return dqOpen(g.slice(5)); }
+      if (g.indexOf('@settle:')===0){                  // 그 정산 요청으로 견적서 뽑기
+        w.remove();
+        dqPrefill = { type:'quote', customer_id:c.id, settlement_id:Number(g.slice(8)), items:[], title:'' };
+        go('admDocs');
+        setTimeout(function(){ dqPickSource('settlement'); }, 700);
+        return;
+      }
+      w.remove(); go(g);
+    };
+  });
+
+  $('#clIssue').onclick = function(){
+    w.remove();
+    dqPrefill = { type:'quote', customer_id:c.id, items:[], title:'' };
+    go('admDocs');
+  };
+  $('#clTodo').onclick = function(){
+    w.remove();
+    tdForm({ kind:'견적발행', customer_id:c.id, company:c.company, contact:c.name, items:[] });
+  };
+  $('#clSave').onclick = async function(){
+    var b = $('#clSave'); b.disabled = true;
+    await fetch('/api/admin/clients',{method:'POST',headers:AH,
+      body:JSON.stringify({id:c.id, action:'memo', memo:$('#clMemo').value})});
+    b.disabled = false; w.remove(); toast('저장했습니다'); clLoad();
+  };
+}
+
+// 주문·정산·문서처럼 길어지는 목록은 접어둔다 — 상세 모달이 세로로 길어지지 않게
+function clFold(title, rows, fmt){
+  rows = rows || [];
+  return '<details class="fold"><summary>'+esc(title)+(rows.length?'<i>'+rows.length+'</i>':'')+'</summary>'
+    + '<div class="foldin">'
+    + (rows.length
+      ? rows.map(function(r){ var f = fmt(r);
+          return '<button class="ahr" data-jump="'+esc(f[3])+'">'
+            + '<span class="t"><b>'+esc(f[0])+'</b><small>'+esc(f[1])+'</small></span>'
+            + '<span class="a n">'+esc(f[2])+'</span></button>'; }).join('')
+      : '<div class="empty" style="padding:16px">없습니다.</div>')
+    + '</div></details>';
 }
 
 /* ==================== 문서 발행 ====================
