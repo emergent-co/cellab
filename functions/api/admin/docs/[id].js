@@ -56,6 +56,22 @@ export async function onRequest({ request, env, params }) {
     return json({ ok: true });
   }
 
+  /* ---- 문서 삭제 ----
+     «취소»는 기록을 남기는 것이고, 삭제는 흔적까지 지우는 것이다.
+     잘못 만든 문서를 정리하는 용도라, 보낸 이력(doc_events)은 연결만 끊고 남긴다. */
+  if (b.action === 'delete') {
+    await env.DB.batch([
+      env.DB.prepare('DELETE FROM outbox WHERE document_id=?').bind(doc.id),
+      env.DB.prepare('UPDATE doc_events SET document_id=NULL WHERE document_id=?').bind(doc.id),
+      env.DB.prepare('UPDATE todos SET document_id=NULL WHERE document_id=?').bind(doc.id),
+      env.DB.prepare('DELETE FROM documents WHERE id=?').bind(doc.id),
+    ]);
+    if (doc.pdf_key && env.DOCS) { try { await env.DOCS.delete(doc.pdf_key); } catch (e) {} }
+    await logEvent(env, { order_id: doc.order_id, action: 'doc_deleted', actor: 'admin',
+      detail: `문서 삭제 ${doc.doc_no || ''}` });
+    return json({ ok: true, deleted: doc.doc_no });
+  }
+
   if (b.action !== 'send') return json({ error: 'unknown_action' }, 400);
 
   // ---- 발송 ----

@@ -447,6 +447,15 @@ table.cards.ledger tr[data-oid]:hover{background:#f7f8fb}
 .kpi.ok{border-color:#B7E0C6;background:#F2FBF5}
 .kpi.ok b{color:#166534}
 /* 본문 구획 제목 — 형광펜으로 그은 것처럼 눈에 걸리게 */
+/* 거래처 이력 줄 — 체크칸 + 기존 줄 */
+.kv .src{display:block;font-style:normal;font-size:11px;color:var(--mut-2);font-weight:600;margin-top:2px}
+.ahrow{display:flex;align-items:center;gap:9px}
+.ahrow .ahr{flex:1 1 auto;min-width:0}
+.ahck{flex:0 0 auto;width:16px;height:16px;accent-color:var(--navy);cursor:pointer}
+.purgebar{display:flex;align-items:center;gap:10px;background:#FFF7ED;border:1px solid #F0C98A;
+  border-radius:10px;padding:9px 12px;margin:14px 0 2px;font-size:12.5px;font-weight:700;color:#92400E}
+.purgebar span{flex:1 1 auto}
+.mini.no{border-color:#E4A0A0;color:#B42318}
 .sech{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;letter-spacing:-.01em;
   margin:2px 0 12px;min-height:24px}
 .sech b{background:linear-gradient(transparent 58%, #FCE3B8 58%);padding:0 3px 1px}
@@ -2197,9 +2206,10 @@ function paintMe(){
     var ls = (r && r.sites) || [];
     sites = cache.sites = ls;
     $('#m-sites').innerHTML = ls.length
+      // address 에 상세주소까지 합쳐 저장한다 — 또 붙이면 뒷부분이 두 번 찍힌다
       ? ls.map(function(x){
           return '<div class="kv"><span>'+esc(x.org_name||'—')+'</span><span>'+esc(x.address||'')
-            +(x.address_detail?' '+esc(x.address_detail):'')+'</span></div>'; }).join('')
+            +'</span></div>'; }).join('')
       : '<div class="warnbox">등록된 납품지가 없습니다. 주문하려면 하나 이상 필요합니다.</div>';
   }).catch(function(){});
 
@@ -4277,13 +4287,27 @@ async function clOpen(id){
     + ' '+abadge(c.access||'대기')
     + (c.is_admin ? ' <span class="badge s2">관리자</span>' : '');
 
+  // 고객이 채워 넣은 곳(계산서 발행 정보 · 납품지)에서 끌어와 보여준다.
+  // 거래처 기본칸이 비었다고 «—» 만 띄우면, 정작 정보는 옆에 있는데 없는 줄 안다.
+  var bp0 = (d.profiles||[]).filter(function(x){ return x.is_default; })[0] || (d.profiles||[])[0] || null;
+  var st0 = (d.sites||[]).filter(function(x){ return x.is_default; })[0] || (d.sites||[])[0] || null;
+  var pick = function(own, alt, label){
+    if (own) return esc(own);
+    if (alt) return esc(alt) + '<em class="src">'+esc(label)+'</em>';
+    return '';
+  };
+
   $('#clBody').innerHTML =
      '<div class="sec"><h4>기본</h4>'
       + akv('별칭 (검색용)', c.alias)
-      + akv('사업자번호', c.biz_no) + akv('대표자', c.ceo)
+      + akv2('사업자번호', pick(c.biz_no, bp0 && bp0.biz_no, '계산서 발행 정보'))
+      + akv2('대표자', pick(c.ceo, bp0 && bp0.ceo, '계산서 발행 정보'))
       + akv('담당자', c.name) + akv('연락처', c.phone)
       + akv('업무 메일', c.work_email) + akv('로그인 메일', c.email)
-      + akv('주소', c.address)
+      + akv2('주소', pick(c.address, st0 && st0.address, '납품지'))
+      + akv2('납품지', (d.sites||[]).length
+          ? (d.sites||[]).map(function(x){ return esc(x.org_name||'')+' · '+esc(x.address||''); }).join('<br>')
+          : '')
       + akv('실험실', c.lab_name ? c.lab_name+' ('+c.lab_code+') · '+(d.members||[]).length+'명' : '')
       + akv('가입', String(c.created_at||'').slice(0,10))
      + '</div>'
@@ -4328,6 +4352,8 @@ async function clOpen(id){
     + '<div class="sec"><h4>메모 <i style="font-style:normal;color:var(--mut);font-weight:600">고객에게 안 보입니다</i></h4>'
       + '<textarea id="clMemo" rows="2" placeholder="내부 메모">'+esc(c.memo||'')+'</textarea></div>'
 
+    + '<div class="purgebar" id="clPurgeBar" hidden><span id="clPickN"></span>'
+      + '<button class="mini no" id="clPurge">선택 삭제</button></div>'
     + '<div class="mrow"><button class="btn gray" id="clDel">삭제</button>'
       + '<button class="btn gray" data-x>닫기</button>'
       + '<button class="btn ghost" id="clTodo">할 일로</button>'
@@ -4373,6 +4399,47 @@ async function clOpen(id){
     };
   });
 
+  // 체크한 것을 세어 «선택 삭제» 줄을 띄운다
+  function picked(){
+    return [].slice.call($('#clBody').querySelectorAll('.ahck:checked')).map(function(x){ return x.dataset.k; });
+  }
+  function pickSync(){
+    var p = picked(), bar = $('#clPurgeBar');
+    if (!bar) return;
+    bar.hidden = !p.length;
+    var n = { order:0, set:0, doc:0 };
+    p.forEach(function(k){ n[k.split(':')[0].slice(1)]++; });
+    var t = [];
+    if (n.order) t.push('주문 '+n.order);
+    if (n.set)   t.push('정산 '+n.set);
+    if (n.doc)   t.push('문서 '+n.doc);
+    $('#clPickN').textContent = t.join(' · ')+' 선택됨';
+  }
+  $('#clBody').querySelectorAll('.ahck').forEach(function(x){
+    x.onclick = function(e){ e.stopPropagation(); };
+    x.onchange = pickSync;
+  });
+  $('#clPurge').onclick = async function(){
+    var p = picked(); if (!p.length) return;
+    var body = { id:c.id, action:'purge', orders:[], settlements:[], documents:[] };
+    p.forEach(function(k){
+      var v = Number(k.split(':')[1]);
+      if (k.indexOf('@order:')===0) body.orders.push(v);
+      else if (k.indexOf('@set:')===0) body.settlements.push(v);
+      else body.documents.push(v);
+    });
+    if (!confirm($('#clPickN').textContent.replace(' 선택됨','')+' 건을 지울까요?\n\n'
+      + '되돌릴 수 없습니다. 지출금·잔여정산금이 다시 계산됩니다.\n'
+      + '(주문을 지워도 이미 발행한 문서는 연결만 끊고 남습니다)')) return;
+    var bt = $('#clPurge'); bt.disabled = true; bt.textContent = '지우는 중…';
+    var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,body:JSON.stringify(body)})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    bt.disabled = false; bt.textContent = '선택 삭제';
+    if (!r.ok) return alert(r.message || '지우지 못했습니다.');
+    w.remove(); toast('선택한 이력을 지웠습니다');
+    clRefresh(c.id);
+  };
+
   $('#clDel').onclick = async function(){
     if (!confirm('«'+(c.company||c.name||'이 거래처')+'» 를 지울까요?\n\n'
       + '거래처 정보와 계산서 발행 정보·납품지가 함께 지워집니다. 되돌릴 수 없습니다.\n'
@@ -4405,6 +4472,11 @@ async function clOpen(id){
 }
 
 // 주문·정산·문서처럼 길어지는 목록은 접어둔다 — 상세 모달이 세로로 길어지지 않게
+// akv 와 같은 모양이되 값에 표시(HTML)를 그대로 쓴다
+function akv2(k, html){
+  return '<div class="kv"><span>'+esc(k)+'</span><span>'+(html || '<span class="dim">—</span>')+'</span></div>';
+}
+
 function clFold(title, rows, fmt, addKind){
   rows = rows || [];
   return '<details class="fold"><summary>'+esc(title)+(rows.length?'<i>'+rows.length+'</i>':'')+'</summary>'
@@ -4414,9 +4486,13 @@ function clFold(title, rows, fmt, addKind){
         + '<p class="dnote" style="margin:0 0 8px">줄을 누르면 <b>수정·삭제</b>할 수 있습니다.</p>' : '')
     + (rows.length
       ? rows.map(function(r){ var f = fmt(r);
-          return '<button class="ahr" data-jump="'+esc(f[3])+'">'
+          // 지울 수 있는 것(주문·정산·문서)에는 체크칸을 붙인다 — 골라서 한 번에 지운다
+          var pick = /^@(order|set|doc):/.test(f[3]);
+          return '<div class="ahrow">'
+            + (pick ? '<input type="checkbox" class="ahck" data-k="'+esc(f[3])+'">' : '')
+            + '<button class="ahr" data-jump="'+esc(f[3])+'">'
             + '<span class="t"><b>'+esc(f[0])+'</b><small>'+esc(f[1])+'</small></span>'
-            + '<span class="a n">'+esc(f[2])+'</span></button>'; }).join('')
+            + '<span class="a n">'+esc(f[2])+'</span></button></div>'; }).join('')
       : '<div class="empty" style="padding:16px">없습니다.</div>')
     + '</div></details>';
 }

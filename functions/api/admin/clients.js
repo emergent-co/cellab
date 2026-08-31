@@ -30,8 +30,12 @@ async function get(request, env) {
     if (!c) return json({ error: 'not_found' }, 404);
 
     // 아래 다섯 개는 batch 한 번, 합계·원장은 각자 이미 batch 로 묶여 있다
-    const [profiles, orders, settles, docs, members, sum, led] = await Promise.all([
+    const [profiles, sites, orders, settles, docs, members, sum, led] = await Promise.all([
       env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id')
+        .bind(c.id).all().then((r) => r.results || []),
+      // 고객은 사업자정보를 «계산서 발행 정보»에, 주소를 «납품지»에 넣는다.
+      // 거래처 기본칸만 보면 늘 비어 보이므로 둘 다 함께 보낸다.
+      env.DB.prepare('SELECT * FROM sites WHERE customer_id=? ORDER BY is_default DESC, id')
         .bind(c.id).all().then((r) => r.results || []),
       env.DB.prepare(`SELECT id, order_no, title, status, total_amount, manual, created_at
                         FROM orders WHERE customer_id=? ORDER BY id DESC LIMIT 20`)
@@ -56,7 +60,7 @@ async function get(request, env) {
     const { role, kakao_id, ...safeCustomer } = c;   // 카카오 식별자·권한은 화면에 내보내지 않는다
     return json({
       client: { ...safeCustomer, is_admin: role === 'admin' },
-      profiles, orders, members, ledger: led, ...sum,
+      profiles, sites, orders, members, ledger: led, ...sum,
       settlements: settles.map((s) => ({ ...s, items: safe(s.items_json) })),
       documents: docs.map((d) => {
         let p = {}; try { p = JSON.parse(d.payload_json || '{}'); } catch { /* noop */ }
@@ -168,6 +172,56 @@ async function post(request, env) {
     await env.DB.prepare('UPDATE customers SET billing_mode=?, updated_at=? WHERE id=?').bind(mode, now, c.id).run();
     await logEvent(env, { action: 'billing_mode', actor: 'admin', detail: `${who} ${mode} 전환` });
     return json({ ok: true, billing_mode: mode });
+  }
+
+  /* 고른 이력만 한 번에 지운다 — 주문 · 정산 요청 · 발행 문서를 섞어서 넘길 수 있다.
+     남의 거래처 것이 섞여 들어오지 않도록, 모든 DELETE 에 customer_id 를 함께 건다. */
+  if (b.action === 'purge') {
+    const ids = (a) => (Array.isArray(a) ? a : []).map(Number)
+      .filter((n) => Number.isInteger(n) && n > 0).slice(0, 300);
+    const oi = ids(b.orders), si = ids(b.settlements), di = ids(b.documents);
+    if (!oi.length && !si.length && !di.length) return json({ error: 'nothing' }, 400);
+
+    const st = [];
+    // ① 문서 먼저 — 주문을 지우기 전에 없애야 «연결만 끊기»가 헛돌지 않는다
+    if (di.length) {
+      const L = di.join(',');
+      st.push(env.DB.prepare(`DELETE FROM outbox WHERE document_id IN (${L})`));
+      st.push(env.DB.prepare(`UPDATE doc_events SET document_id=NULL WHERE document_id IN (${L})`));
+      st.push(env.DB.prepare(`UPDATE todos SET document_id=NULL WHERE document_id IN (${L})`));
+      st.push(env.DB.prepare(
+        `DELETE FROM documents WHERE id IN (${L})
+           AND (customer_id=?1 OR order_id IN (SELECT id FROM orders WHERE customer_id=?1)
+                OR settlement_id IN (SELECT id FROM settlements WHERE customer_id=?1))`
+      ).bind(c.id));
+    }
+    // ② 주문 — 남은 문서는 연결만 끊고 살려둔다 (이미 고객에게 나갔을 수 있다)
+    if (oi.length) {
+      const L = oi.join(',');
+      const mine = `(SELECT id FROM orders WHERE id IN (${L}) AND customer_id=${c.id})`;
+      st.push(env.DB.prepare(`DELETE FROM order_items WHERE order_id IN ${mine}`));
+      st.push(env.DB.prepare(`UPDATE documents SET order_id=NULL, source='manual' WHERE order_id IN ${mine}`));
+      st.push(env.DB.prepare(`UPDATE outbox SET order_id=NULL WHERE order_id IN ${mine}`));
+      st.push(env.DB.prepare(`UPDATE doc_events SET order_id=NULL WHERE order_id IN ${mine}`));
+      st.push(env.DB.prepare(`UPDATE todos SET order_id=NULL WHERE order_id IN ${mine}`));
+      st.push(env.DB.prepare(`DELETE FROM orders WHERE id IN (${L}) AND customer_id=?`).bind(c.id));
+    }
+    // ③ 정산 요청
+    if (si.length) {
+      const L = si.join(',');
+      const mine = `(SELECT id FROM settlements WHERE id IN (${L}) AND customer_id=${c.id})`;
+      st.push(env.DB.prepare(`UPDATE documents SET settlement_id=NULL WHERE settlement_id IN ${mine}`));
+      st.push(env.DB.prepare(`UPDATE todos SET settlement_id=NULL WHERE settlement_id IN ${mine}`));
+      st.push(env.DB.prepare(`DELETE FROM settlements WHERE id IN (${L}) AND customer_id=?`).bind(c.id));
+    }
+    await env.DB.batch(st);
+    const part = [];
+    if (oi.length) part.push(`주문 ${oi.length}건`);
+    if (si.length) part.push(`정산 ${si.length}건`);
+    if (di.length) part.push(`문서 ${di.length}건`);
+    await logEvent(env, { action: 'history_purged', actor: 'admin',
+      detail: `${who} 이력 삭제 — ${part.join(' · ')}` });
+    return json({ ok: true, removed: { orders: oi.length, settlements: si.length, documents: di.length } });
   }
 
   /* 거래처 삭제.
