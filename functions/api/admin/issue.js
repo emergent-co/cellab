@@ -10,6 +10,8 @@
 import { json, needAdmin, adminOK, kstISO, kstDate, nextDocNo, plusDays,
          randomToken, logEvent, DOC_LABEL } from '../_lib.js';
 import { ISSUER } from '../_doctpl.js';
+import { deliverMany, calcTotals } from '../_send.js';
+import { docMailBody } from '../_mailer.js';
 
 const TYPES = ['quote', 'statement', 'taxinvoice'];
 const round10 = (n) => Math.round(Number(n || 0) / 10) * 10;
@@ -157,10 +159,12 @@ function slimClient(c) {
 /* ============================ 발행 ============================ */
 async function post(request, env) {
   const b = await request.json().catch(() => ({}));
-  const type = TYPES.includes(b.type) ? b.type : 'quote';
-  if (type === 'taxinvoice') {
-    return json({ error: 'not_ready', message: '세금계산서 실발행은 아직 준비 중입니다. 견적서·거래명세서를 이용해주세요.' }, 400);
-  }
+  if (b.action === 'send') return sendBatch(request, env, b);
+
+  // 한 벌로 발행한다 — 견적서·거래명세서·세금계산서를 같은 내용으로 동시에.
+  const types = (Array.isArray(b.types) && b.types.length ? b.types : [b.type || 'quote'])
+    .filter((t) => TYPES.includes(t));
+  if (!types.length) return json({ error: 'no_type', message: '발행할 문서 종류를 골라주세요.' }, 400);
 
   const customer = b.customer_id
     ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(b.customer_id).first()
@@ -197,9 +201,10 @@ async function post(request, env) {
   const { items, totals } = compute(raw, b.vat_included !== false);
 
   const issue = b.issue_date || kstDate();
-  const payload = {
-    type, issue_date: issue,
-    valid_until: b.valid_until || plusDays(issue, 30),
+  // 유효기간은 발행일 + 1개월. 화면에서 따로 받지 않는다 — 견적서에만 뜻이 있고 늘 같은 값이다.
+  const base = {
+    issue_date: issue,
+    valid_until: plusDays(issue, 30),
     title: String(b.title || '').trim(),
     client: {
       company: bill?.company || customer.company || '',
@@ -210,46 +215,113 @@ async function post(request, env) {
       address: bill?.address || customer.address || '',
     },
     items, totals,
-    note: String(b.note || '').trim() || ISSUER.bank,
+    note: String(b.note || '').trim(),   // 입금계좌는 양식이 늘 따로 찍는다
   };
 
   const now = kstISO();
 
-  // ---- 수정 (작성됨 상태만) ----
+  // ---- 수정 (작성됨 상태만) — 한 건씩만 고친다 ----
   if (b.id) {
     const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
     if (!doc) return json({ error: 'not_found' }, 404);
     if (doc.status !== '작성됨') {
       return json({ error: 'locked', message: '이미 발송된 문서는 수정할 수 없습니다. 새로 발행해주세요.' }, 409);
     }
-    payload.doc_no = doc.doc_no;
+    const payload = { ...base, type: doc.type, doc_no: doc.doc_no };
     await env.DB.prepare(
       `UPDATE documents SET customer_id=?, order_id=?, settlement_id=?, source=?, issue_date=?, payload_json=?, updated_at=? WHERE id=?`
     ).bind(customer.id, b.order_id || null, b.settlement_id || null,
            b.source || doc.source || 'manual', issue, JSON.stringify(payload), now, doc.id).run();
     await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'updated', actor: 'admin',
-      detail: `${DOC_LABEL[type]} ${doc.doc_no} 수정` });
-    return json({ ok: true, id: doc.id, doc_no: doc.doc_no, totals,
-                  view: `/doc/${doc.id}?t=${doc.access_token}` });
+      detail: `${DOC_LABEL[doc.type]} ${doc.doc_no} 수정` });
+    return json({ ok: true, id: doc.id, doc_no: doc.doc_no, totals, batch: doc.batch,
+                  view: `/doc/${doc.id}?t=${doc.access_token}`,
+                  docs: [{ id: doc.id, type: doc.type, doc_no: doc.doc_no,
+                           view: `/doc/${doc.id}?t=${doc.access_token}` }] });
   }
 
-  // ---- 신규 ----
-  const docNo = await nextDocNo(env, type);
-  payload.doc_no = docNo;
-  const tok = randomToken();
-  const r = await env.DB.prepare(
-    `INSERT INTO documents (order_id, customer_id, settlement_id, source, type, doc_no, version, status,
-                            issue_date, payload_json, access_token, created_at, updated_at)
-     VALUES (?,?,?,?,?,?,1,'작성됨',?,?,?,?,?)`
-  ).bind(b.order_id || null, customer.id, b.settlement_id || null, b.source || 'manual',
-         type, docNo, issue, JSON.stringify(payload), tok, now, now).run();
+  // ---- 신규 — 고른 종류만큼 같은 내용으로 만든다 ----
+  const batch = types.length > 1 ? randomToken().slice(0, 16) : null;
+  const made = [];
+  for (const type of types) {
+    const docNo = await nextDocNo(env, type);
+    const payload = { ...base, type, doc_no: docNo };
+    const tok = randomToken();
+    const r = await env.DB.prepare(
+      `INSERT INTO documents (order_id, customer_id, settlement_id, source, batch, type, doc_no, version, status,
+                              issue_date, payload_json, access_token, created_at, updated_at)
+       VALUES (?,?,?,?,?,?,?,1,'작성됨',?,?,?,?,?)`
+    ).bind(b.order_id || null, customer.id, b.settlement_id || null, b.source || 'manual', batch,
+           type, docNo, issue, JSON.stringify(payload), tok, now, now).run();
 
-  const id = r.meta.last_row_id;
-  await logEvent(env, {
-    order_id: b.order_id || null, document_id: id, action: 'created', actor: 'admin',
-    detail: `${DOC_LABEL[type]} ${docNo} 발행 (${customer.company || customer.name || ''})`,
+    const id = r.meta.last_row_id;
+    await logEvent(env, {
+      order_id: b.order_id || null, document_id: id, action: 'created', actor: 'admin',
+      detail: `${DOC_LABEL[type]} ${docNo} 발행 (${customer.company || customer.name || ''})`,
+    });
+    made.push({ id, type, doc_no: docNo, view: `/doc/${id}?t=${tok}` });
+  }
+
+  return json({
+    ok: true, batch, totals, docs: made,
+    to: base.client.email,
+    // 예전 호출부 호환 — 첫 문서를 단건처럼 돌려준다
+    id: made[0].id, doc_no: made[0].doc_no, view: made[0].view,
   });
-  return json({ ok: true, id, doc_no: docNo, totals, view: `/doc/${id}?t=${tok}` });
+}
+
+/* ---- 묶음 발송 · 예약 ----
+   한 벌로 뽑은 서류는 고객도 한 통으로 받아야 짝이 맞는다. */
+async function sendBatch(request, env, b) {
+  const ids = (Array.isArray(b.ids) ? b.ids : []).map(Number).filter(Boolean).slice(0, 5);
+  if (!ids.length) return json({ error: 'no_docs', message: '보낼 문서를 골라주세요.' }, 400);
+
+  const docs = [];
+  for (const id of ids) {
+    const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(id).first();
+    if (!doc) continue;
+    if (doc.status === '취소됨') continue;
+    let payload = {};
+    try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
+    docs.push({ doc, payload });
+  }
+  if (!docs.length) return json({ error: 'not_found', message: '보낼 수 있는 문서가 없습니다.' }, 404);
+
+  const first = docs[0];
+  const to = String(b.to || first.payload.client?.email || '').trim();
+  if (!to) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
+
+  const labels = docs.map(({ doc }) => DOC_LABEL[doc.type] || '문서');
+  const subject = String(b.subject || '').trim()
+    || `[실험셋업연구소] ${labels.join(' · ')} ${first.doc.doc_no}`;
+  const totals = calcTotals(first.payload.items, first.payload.totals);
+  const origin = new URL(request.url).origin;
+  const html = docMailBody({
+    label: labels.join(' · '),
+    docNo: docs.map(({ doc }) => doc.doc_no).join(', '),
+    company: first.payload.client?.company,
+    contact: first.payload.client?.contact,
+    total: totals.total,
+    viewUrl: `${origin}${first.doc ? `/doc/${first.doc.id}?t=${first.doc.access_token}` : ''}`,
+  });
+
+  // 예약
+  if (b.send_at) {
+    await env.DB.prepare(
+      `INSERT INTO outbox (document_id, doc_ids, order_id, to_addr, cc_addr, subject, body, send_at, status, created_at)
+       VALUES (?,?,?,?,?,?,?,?, '대기', ?)`
+    ).bind(first.doc.id, JSON.stringify(docs.map(({ doc }) => doc.id)), first.doc.order_id || null,
+           to, b.cc || null, subject, html, b.send_at, kstISO()).run();
+    for (const { doc } of docs) {
+      await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'scheduled',
+        channel: 'email', actor: 'admin', to_addr: to, detail: `${b.send_at} 발송 예약` });
+    }
+    return json({ ok: true, scheduled: b.send_at, count: docs.length });
+  }
+
+  const res = await deliverMany(env, { docs, to, cc: b.cc, subject, html });
+  if (!res.ok) return json({ error: 'send_failed', message: res.error }, 502);
+  return json({ ok: true, sent: true, count: docs.length, attached: res.attached });
 }
 
 /**

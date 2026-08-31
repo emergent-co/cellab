@@ -48,7 +48,7 @@ export async function onRequestPost({ request, env }) {
     items: items.map((i) => ({
       name: i.name, spec: i.spec, qty: i.qty, unit_price: i.unit_price, note: i.note,
     })),
-    note: b.note || ISSUER.bank,
+    note: String(b.note || '').trim(),   // 입금계좌는 양식이 늘 따로 찍는다
   };
 
   const ver = ((await env.DB.prepare('SELECT COUNT(*) AS c FROM documents WHERE order_id=? AND type=?')

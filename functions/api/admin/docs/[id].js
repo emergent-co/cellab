@@ -14,8 +14,20 @@ export async function onRequest({ request, env, params }) {
 
   if (request.method === 'GET') {
     const events = (await env.DB.prepare('SELECT * FROM doc_events WHERE document_id=? ORDER BY id DESC').bind(doc.id).all()).results || [];
-    const queued = (await env.DB.prepare("SELECT * FROM outbox WHERE document_id=? AND status='대기'").bind(doc.id).all()).results || [];
-    return json({ document: doc, payload, events, queued, view: `/doc/${doc.id}?t=${doc.access_token}` });
+    const queued = (await env.DB.prepare(
+      "SELECT * FROM outbox WHERE (document_id=? OR doc_ids LIKE ?) AND status='대기'")
+      .bind(doc.id, `%${doc.id}%`).all()).results || [];
+    // 한 벌로 뽑은 서류는 같이 보여야 한다 — 따로 떼어 보내면 짝이 어긋난다
+    const siblings = doc.batch
+      ? ((await env.DB.prepare(
+          'SELECT id, type, doc_no, status, access_token FROM documents WHERE batch=? ORDER BY id')
+          .bind(doc.batch).all()).results || []).map((d) => ({
+            id: d.id, type: d.type, doc_no: d.doc_no, status: d.status,
+            view: `/doc/${d.id}?t=${d.access_token}`,
+          }))
+      : [];
+    return json({ document: doc, payload, events, queued, siblings,
+                  view: `/doc/${doc.id}?t=${doc.access_token}` });
   }
 
   if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);

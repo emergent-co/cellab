@@ -193,6 +193,32 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
 .main{margin-left:var(--side);padding:calc(var(--head) + 26px) 26px 70px}
 .ttl{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
 
+/* ---------- 문서 종류 다중 선택 · 묶음 ---------- */
+.dtype button{display:flex;align-items:center;justify-content:center;gap:6px}
+.dtype .ck{width:15px;height:15px;border:1.5px solid #c7ccd6;border-radius:4px;background:#fff;
+  font-style:normal;font-size:10px;line-height:13px;color:#fff;flex:0 0 auto}
+.dtype button.on .ck{background:#fff;border-color:#fff;color:var(--navy)}
+.bdoc{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;
+  padding:9px 11px;margin-bottom:7px;background:#fff}
+.bck{display:flex;align-items:center;gap:9px;flex:1;min-width:0;cursor:pointer;margin:0}
+.bck input{width:17px;height:17px;flex:0 0 auto;accent-color:var(--navy)}
+.bck b{display:block;font-size:13.5px;font-weight:700}
+.bck small{display:block;font-size:11.5px;color:var(--mut);margin-top:1px}
+
+/* ---------- 드래그로 순서 바꾸기 ---------- */
+.drag{cursor:grab}
+.drag.dragging{opacity:.4}
+.drag.over{box-shadow:inset 0 2px 0 var(--navy)}
+.tile.drag.over{box-shadow:inset 2px 0 0 var(--navy),0 4px 14px rgba(59,54,149,.10)}
+.nav a.drag::before{content:'';position:absolute;left:6px;top:50%;transform:translateY(-50%);
+  width:9px;height:11px;opacity:0;transition:opacity .12s;
+  background:radial-gradient(circle,#b9bfca 1px,transparent 1px) 0 0/4.5px 3.7px}
+.nav a.drag:hover::before{opacity:1}
+.nav a{position:relative}
+.ordrst{display:block;width:calc(100% - 36px);margin:8px 18px 0;border:1px solid var(--line);
+  background:#fff;color:var(--mut);border-radius:8px;padding:7px;font-size:11.5px;font-weight:700;cursor:pointer}
+.ordrst:hover{color:var(--navy);border-color:#cfe1f0}
+
 /* ---------- 관리자 홈 ---------- */
 .ah2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
 @media(max-width:1000px){.ah2{grid-template-columns:1fr}}
@@ -779,6 +805,7 @@ async function boot(){
     setTimeout(admPoll, 400);
     setInterval(admPoll, 120000);      // 2분마다 조용히 갱신
   }
+  ordNav();                            // 저장해 둔 메뉴 순서를 되살리고 드래그를 건다
 
   if (ref){
     fetch('/api/order/lab',{method:'POST',headers:{'content-type':'application/json'},
@@ -1659,6 +1686,10 @@ function paintHome(){
       +'<a data-go="admClients">거래처</a>'
       +'<a data-go="admMembers">멤버십 · 문의</a></div>');
   }
+
+  var tileKey = function(el){ return el.dataset ? (el.dataset.go || el.dataset.act || null) : null; };
+  ordDrag($('#main').querySelector('.tiles'), 'homeTiles', tileKey);
+  ordDrag($('#main').querySelector('.tiles.two'), 'homeTiles2', tileKey);
 
   $('#main').onclick = function(e){
     var t = e.target.closest('[data-go]');
@@ -2840,6 +2871,95 @@ function qtotal(){
   $('#q-sum').innerHTML = h;
 }
 
+/* ==================== 메뉴 · 타일 순서 바꾸기 ====================
+   사람마다 자주 쓰는 화면이 다르다. 끌어다 놓은 순서를 이 브라우저에 기억해 둔다.
+   서버에 두지 않는 이유: 화면 배치는 그 사람 취향이지 계정 정보가 아니다.
+   저장이 막혀 있어도(사생활 보호 모드 등) 화면은 기본 순서로 멀쩡히 돈다. */
+var ORD_KEY = 'rs_order_v1';
+function ordAll(){
+  try { return JSON.parse(localStorage.getItem(ORD_KEY) || '{}') || {}; } catch(e){ return {}; }
+}
+function ordGet(group){ var a = ordAll()[group]; return Array.isArray(a) ? a : null; }
+function ordSet(group, keys){
+  try { var all = ordAll(); all[group] = keys; localStorage.setItem(ORD_KEY, JSON.stringify(all)); }
+  catch(e){ /* 저장이 막혀 있어도 이번 화면에는 이미 반영돼 있다 */ }
+}
+function ordClear(){ try { localStorage.removeItem(ORD_KEY); } catch(e){} }
+
+// 저장된 순서대로 다시 세운다. 새로 생긴 항목은 뒤로, 없어진 항목은 조용히 버린다.
+function ordApply(box, group, keyOf){
+  var saved = ordGet(group); if (!box || !saved) return;
+  var items = [].slice.call(box.children);
+  var byKey = {};
+  items.forEach(function(el){ var k = keyOf(el); if (k) byKey[k] = el; });
+  var seen = {};
+  saved.forEach(function(k){ if (byKey[k]){ box.appendChild(byKey[k]); seen[k] = 1; } });
+  items.forEach(function(el){ var k = keyOf(el); if (k && !seen[k]) box.appendChild(el); });
+}
+
+/**
+ * 끌어서 순서 바꾸기. HTML5 draggable 을 쓴다 — 터치에서는 동작하지 않으므로
+ * 모바일에서는 그냥 눌러서 이동하는 평소 동작만 남는다(순서는 데스크톱에서 정하면 따라온다).
+ */
+function ordDrag(box, group, keyOf){
+  if (!box) return;
+  ordApply(box, group, keyOf);
+  var items = [].slice.call(box.children).filter(function(el){ return keyOf(el); });
+  var src = null, moved = false;
+
+  items.forEach(function(el){
+    el.setAttribute('draggable', 'true');
+    el.classList.add('drag');
+
+    el.addEventListener('dragstart', function(e){
+      src = el; moved = false;
+      el.classList.add('dragging');
+      try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', keyOf(el)); } catch(x){}
+    });
+    el.addEventListener('dragend', function(){
+      el.classList.remove('dragging');
+      box.querySelectorAll('.over').forEach(function(x){ x.classList.remove('over'); });
+      if (moved) ordSet(group, [].slice.call(box.children).map(keyOf).filter(Boolean));
+      src = null;
+    });
+    el.addEventListener('dragover', function(e){
+      if (!src || src === el) return;
+      e.preventDefault();
+      try { e.dataTransfer.dropEffect = 'move'; } catch(x){}
+      el.classList.add('over');
+      // 마우스가 항목의 앞쪽 절반이면 앞에, 뒤쪽이면 뒤에 꽂는다
+      var r = el.getBoundingClientRect();
+      var horiz = r.width > r.height * 1.6;
+      var before = horiz ? (e.clientX - r.left) < r.width / 2 : (e.clientY - r.top) < r.height / 2;
+      box.insertBefore(src, before ? el : el.nextSibling);
+      moved = true;
+    });
+    el.addEventListener('dragleave', function(){ el.classList.remove('over'); });
+    el.addEventListener('drop', function(e){ e.preventDefault(); el.classList.remove('over'); });
+  });
+}
+
+// 클릭 한 번으로 원래 순서로
+function ordResetBtn(){
+  var side = $('#side'); if (!side || $('#ordRst')) return;
+  var b = document.createElement('button');
+  b.id = 'ordRst'; b.className = 'ordrst'; b.textContent = '메뉴 순서 초기화';
+  b.title = '끌어다 놓은 메뉴·타일 순서를 처음 상태로 되돌립니다';
+  b.onclick = function(){ ordClear(); location.reload(); };
+  var lab = $('#labBox');
+  side.insertBefore(b, lab || null);
+}
+
+// 사이드바 — 사용자 메뉴와 관리자 메뉴를 각각 따로 기억한다
+function ordNav(){
+  var key = function(el){ return el.dataset ? el.dataset.v : null; };
+  ordDrag($('#nav'), 'nav', key);
+  if (isAdm) ordDrag($('#admNav'), 'admNav', function(el){
+    return el.tagName === 'A' ? key(el) : null;      // '관리자' 제목줄은 고정
+  });
+  ordResetBtn();
+}
+
 /* ==================== 관리자 홈 ====================
    사용자 홈과 같은 타일 구조. 다만 관리자는 "지금 뭘 해야 하나"가 먼저 보여야 하므로
    숫자 요약 → 바로가기 → 오늘 할 일 / 새로 들어온 것 → 최근 문서 / 미수금 순으로 놓는다.
@@ -2922,13 +3042,11 @@ function paintAdmHome(){
       + tile('admOps',     ICON.money,  '주문 · 정산',  '주문 처리와 잔여금 확인', (ord.length+set.length)||'', (ord.length+set.length)?'hot':'')
       + tile('admMembers', ICON.people, '멤버십 · 문의','승인 대기와 견적 문의', (mem.length+inq.length)||'', (mem.length+inq.length)?'hot':'')
     + '</div>'
-    + '<div class="tiles two">'
-      + '<button class="tile sm" data-go="admClients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-        + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.user+'</svg>'
+    + '<div class="tiles">'
+      + '<button class="tile sm" data-go="admClients" style="grid-column:span 4">'
+        + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" '
+        + 'stroke-linecap="round" stroke-linejoin="round">'+ICON.user+'</svg>'
         + '<b>거래처 관리</b><span>정보 · 발행정보 · 이력 한눈에</span></button>'
-      + '<button class="tile sm" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-        + 'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+ICON.order+'</svg>'
-        + '<b>고객 화면으로</b><span>회원이 보는 그대로 확인</span></button>'
     + '</div>'
 
     + '<div class="ah2">'
@@ -2960,6 +3078,10 @@ function paintAdmHome(){
               {v:won(c.due)+'원', n:true}); }).join(''),
           ahLoaded ? '미수금이 없습니다.' : '불러오는 중…')
     + '</div>';
+
+  var akey = function(el){ return el.dataset ? el.dataset.go : null; };
+  ordDrag($('#main').querySelector('.kpis'), 'admKpis', akey);
+  ordDrag($('#main').querySelector('.tiles'), 'admTiles', akey);
 
   $('#main').onclick = function(e){
     var t = e.target.closest('[data-go]'); if (!t) return;
@@ -3387,7 +3509,7 @@ function clFold(title, rows, fmt){
    그래야 1.1을 곱하다 1원이 어긋나는 일이 없다. */
 var DTYPE = { quote:'견적서', statement:'거래명세서', taxinvoice:'세금계산서' };
 var dqPrefill = null;                       // 할 일에서 넘어올 때 채워지는 짐
-var dqType='quote', dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTarget=0,
+var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTarget=0,
     dqVat=true, dqDocId=null, dqSrc={}, dqTodo=null, dqHistType='', dqHistKw='',
     dqTitle='', dqOrders=[], dqSettles=[];
 
@@ -3398,7 +3520,7 @@ function viewAdmDocs(){
   // 할 일에서 넘어왔으면 그 내용으로 폼을 새로 짠다
   if (dqPrefill){
     var pf = dqPrefill; dqPrefill = null;
-    dqType = pf.type || 'quote';
+    dqTypes = pf.types && pf.types.length ? pf.types : [pf.type || 'quote'];
     dqTodo = pf.todo_id || null;
     dqSrc = { order_id: pf.order_id||null, settlement_id: pf.settlement_id||null,
               source: pf.settlement_id ? 'settlement' : (pf.order_id ? 'order' : 'manual') };
@@ -3421,9 +3543,11 @@ function paintDocs(){
    + '<section>'
      + '<div class="dcard"><h4>문서 종류</h4>'
        + '<div class="dtype" id="dqTypeBox">'
-         + '<button data-t="quote">견적서</button>'
-         + '<button data-t="statement">거래명세서</button>'
-         + '<button data-t="taxinvoice" disabled title="준비 중">세금계산서</button></div>'
+         + ['quote','statement','taxinvoice'].map(function(t){
+             return '<button data-t="'+t+'"'+(dqTypes.indexOf(t)>=0?' class="on"':'')+'>'
+               + '<i class="ck">'+(dqTypes.indexOf(t)>=0?'✓':'')+'</i>'+esc(DTYPE[t])+'</button>'; }).join('')
+         + '</div>'
+       + '<p class="dnote">여러 개를 고르면 <b>같은 내용으로 한 벌</b>이 만들어지고, 메일도 한 통으로 나갑니다.</p>'
        + (dqTodo ? '<div class="dfrom">할 일에서 넘어왔습니다 — 발행하면 그 할 일이 완료됩니다<button id="dqUnlinkTodo" title="연결 끊기">×</button></div>' : '')
      + '</div>'
      + '<div class="dcard"><h4>거래처</h4><div id="dqCliBox"></div>'
@@ -3435,8 +3559,8 @@ function paintDocs(){
      + '</div>'
      + '<div class="dcard"><h4>내용</h4>'
        + '<label>문서 제목</label><input type="text" id="dqTitle" placeholder="예) 관형 전기로 및 부속 견적" value="'+esc(dqTitle)+'">'
-       + '<div class="d2col"><div><label>발행일</label><input type="date" id="dqIssue" value="'+today+'"></div>'
-         + '<div><label>유효기간</label><input type="date" id="dqValid" value="'+dqPlus(today,30)+'"></div></div>'
+       + '<label>발행일</label><input type="date" id="dqIssue" value="'+today+'">'
+       + '<p class="dnote" id="dqValidHint">견적서 유효기간은 발행일 + 1개월 — <b>'+dqPlus(today,30)+'</b></p>'
        + '<label style="margin-top:18px">단가 기준</label>'
        + '<div class="seg2" id="dqVatSeg"><button data-v="1"'+(dqVat?' class="on"':'')+'>부가세 포함</button>'
          + '<button data-v="0"'+(dqVat?'':' class="on"')+'>부가세 별도</button></div>'
@@ -3448,9 +3572,9 @@ function paintDocs(){
        + '<label style="margin-top:16px">품목</label><div id="dqItems"></div>'
        + '<button class="mini" id="dqAdd" style="margin-top:4px">＋ 품목 추가</button>'
        + '<div class="qsum" id="dqSum"></div>'
-       + '<label>비고</label><textarea id="dqNote" rows="2" placeholder="비워두면 입금 계좌가 들어갑니다"></textarea>'
+       + '<label>비고</label><textarea id="dqNote" rows="2" placeholder="특기사항이 있으면 적어주세요 (선택) — 입금계좌는 항상 자동으로 들어갑니다"></textarea>'
        + '<div class="twobtn"><button class="btn ghost" id="dqPrev">미리보기</button>'
-         + '<button class="btn pri" id="dqSave">'+(dqDocId?'수정 저장':'발행하기')+'</button></div>'
+         + '<button class="btn pri" id="dqSave">'+(dqDocId?'수정 저장':(dqTypes.length>1?dqTypes.length+'종 발행하기':'발행하기'))+'</button></div>'
        + (dqDocId ? '<button class="mini" id="dqNew" style="width:100%;margin-top:10px">새 문서로 시작</button>' : '')
      + '</div>'
    + '</section>'
@@ -3461,8 +3585,14 @@ function paintDocs(){
    + '</section></div>';
 
   document.querySelectorAll('#dqTypeBox button').forEach(function(b){
-    b.classList.toggle('on', b.dataset.t===dqType);
-    if (!b.disabled) b.onclick = function(){ dqType=b.dataset.t; paintDocs(); };
+    b.onclick = function(){
+      var t = b.dataset.t, i = dqTypes.indexOf(t);
+      if (dqDocId) { dqTypes = [t]; }                  // 수정 중에는 한 건만
+      else if (i >= 0) { if (dqTypes.length > 1) dqTypes.splice(i,1); }
+      else dqTypes.push(t);
+      dqTypes = ['quote','statement','taxinvoice'].filter(function(x){ return dqTypes.indexOf(x)>=0; });
+      paintDocs();
+    };
   });
   if ($('#dqUnlinkTodo')) $('#dqUnlinkTodo').onclick = function(){ dqTodo=null; paintDocs(); };
 
@@ -3479,7 +3609,9 @@ function paintDocs(){
     $('#dqTargetBox').hidden = !dqVat;   // 목표 맞추기는 '부가세 포함' 기준에서만 뜻이 있다
     dqPaintItems();
   };
-  $('#dqIssue').onchange = function(e){ if (e.target.value) $('#dqValid').value = dqPlus(e.target.value, 30); };
+  $('#dqIssue').onchange = function(e){
+    if (e.target.value) $('#dqValidHint').innerHTML = '견적서 유효기간은 발행일 + 1개월 — <b>'+dqPlus(e.target.value,30)+'</b>';
+  };
   $('#dqPrev').onclick = function(){ dqSubmit(true); };
   $('#dqSave').onclick = function(){ dqSubmit(false); };
   if ($('#dqNew')) $('#dqNew').onclick = dqReset;
@@ -3497,7 +3629,7 @@ function dqPaintClient(){
 }
 
 function dqReset(){
-  dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
+  dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
   paintDocs();
 }
@@ -3666,26 +3798,84 @@ async function dqSubmit(preview){
   var btn = preview ? $('#dqPrev') : $('#dqSave');
   var was = btn.textContent; btn.disabled = true; btn.textContent = '저장 중…';
   var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
-    id: dqDocId, type: dqType, customer_id: dqCli.id,
+    id: dqDocId, types: dqTypes, customer_id: dqCli.id,
     bill_profile_id: dqBill ? dqBill.id : null,
     order_id: dqSrc.order_id||null, settlement_id: dqSrc.settlement_id||null, source: dqSrc.source||'manual',
-    issue_date: $('#dqIssue').value, valid_until: $('#dqValid').value,
+    issue_date: $('#dqIssue').value,
     title: $('#dqTitle').value, note: $('#dqNote').value,
     vat_included: dqVat, items: items })})
     .then(function(r){return r.json();}).catch(function(){return{};});
   btn.disabled = false; btn.textContent = was;
   if (!r.ok) return alert(r.message || '발행하지 못했습니다.');
 
-  dqDocId = r.id; dqTitle = $('#dqTitle').value;
+  var made = r.docs || [{ id:r.id, type:dqTypes[0], doc_no:r.doc_no, view:r.view }];
+  dqTitle = $('#dqTitle').value;
+
+  if (preview){                      // 미리보기는 저장하지 않고 첫 장만 띄운다
+    dqDocId = made[0].id;
+    window.open(made[0].view, '_blank');
+    paintDocs(); return;
+  }
+
   if (dqTodo){
     await fetch('/api/admin/todos',{method:'POST',headers:AH,
-      body:JSON.stringify({ id:dqTodo, action:'link_doc', document_id:r.id })}).catch(function(){});
+      body:JSON.stringify({ id:dqTodo, action:'link_doc', document_id:made[0].id })}).catch(function(){});
     dqTodo = null; admPoll();
   }
-  if (preview){ window.open(r.view, '_blank'); paintDocs(); return; }
-  toast(DTYPE[dqType]+' '+r.doc_no+' 발행');
-  paintDocs();
-  dqOpen(r.id);
+
+  toast(made.length>1 ? made.length+'종 발행했습니다' : DTYPE[made[0].type]+' '+made[0].doc_no+' 발행');
+  if (made.length > 1){ dqReset(); dqBatch(made, r.to); }
+  else { dqDocId = made[0].id; paintDocs(); dqOpen(made[0].id); }
+}
+
+/* ---- 한 벌로 뽑은 서류: 한 통으로 보내거나 예약한다 ---- */
+function dqBatch(made, to){
+  var pick = made.map(function(d){ return d.id; });
+  var w = amodal('발행 완료', '<div class="dbody" id="dqBBody"></div>');
+  var h3 = w.querySelector('h3');
+  if (h3) h3.innerHTML = made.length+'종 발행 <small style="font-weight:600;color:var(--mut)">'
+    + esc(made.map(function(d){ return DTYPE[d.type]; }).join(' · '))+'</small>';
+
+  $('#dqBBody').innerHTML =
+     '<div class="sec"><h4>발행된 문서</h4>'
+      + made.map(function(d){
+          return '<div class="bdoc"><label class="bck"><input type="checkbox" data-id="'+d.id+'" checked>'
+            + '<span><b>'+esc(DTYPE[d.type])+'</b><small>'+esc(d.doc_no)+'</small></span></label>'
+            + '<button class="mini" data-open="'+esc(d.view)+'">열기</button>'
+            + '<button class="mini" data-open="'+esc(d.view)+'&f=pdf">PDF</button></div>'; }).join('')
+     + '</div>'
+    + '<div class="sec"><h4>메일 발송 <i style="font-style:normal;color:var(--mut);font-weight:600">고른 문서를 한 통에 첨부합니다</i></h4>'
+      + dqField('dqBTo','받는 사람','email', to||'', 'name@company.co.kr')
+      + dqField('dqBCc','참조 (선택)','email','','cc@example.com')
+      + dqField('dqBWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
+      + '<div class="twobtn"><button class="btn gray" data-x>나중에</button>'
+      + '<button class="btn ok" id="dqBSend">발송</button></div></div>';
+
+  $('#dqBBody').querySelectorAll('[data-open]').forEach(function(b){
+    b.onclick = function(){ window.open(b.dataset.open, '_blank'); };
+  });
+  $('#dqBBody').querySelectorAll('input[type=checkbox]').forEach(function(c){
+    c.onchange = function(){
+      pick = [].slice.call($('#dqBBody').querySelectorAll('input[type=checkbox]:checked'))
+        .map(function(x){ return Number(x.dataset.id); });
+    };
+  });
+  $('#dqBSend').onclick = async function(){
+    if (!pick.length) return alert('보낼 문서를 하나 이상 골라주세요.');
+    var addr = $('#dqBTo').value.trim();
+    if (!addr) return alert('받는 사람 이메일을 입력해주세요.');
+    var when = $('#dqBWhen').value;
+    if (when && new Date(when).getTime() < Date.now()) return alert('예약 시각이 이미 지났습니다.');
+    var b = $('#dqBSend'); b.disabled = true; b.textContent = when ? '예약 중…' : '보내는 중…';
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
+      action:'send', ids:pick, to:addr, cc:$('#dqBCc').value.trim()||null,
+      send_at: when ? when.replace('T',' ')+':00' : null })})
+      .then(function(r){return r.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = '발송';
+    if (!r.ok) return alert(r.message || '발송하지 못했습니다.');
+    w.remove(); dqHist();
+    toast(r.scheduled ? pick.length+'종 발송 예약' : pick.length+'종 한 통으로 발송');
+  };
 }
 
 /* ---- 발행 이력 ---- */
@@ -3751,9 +3941,18 @@ async function dqOpen(id){
      + '</div>'
     + (q ? '<div class="dfrom" style="margin:0 0 14px">'+esc(String(q.send_at).replace('T',' ').slice(0,16))
            +' 발송 예약됨 · '+esc(q.to_addr)+'<button id="dqCancel" title="예약 취소">×</button></div>' : '')
-    + '<div class="sec"><h4>보기</h4><div class="twobtn">'
-      + '<button class="btn ghost" id="dqView">문서 열기</button>'
-      + '<button class="btn ghost" id="dqPdf">PDF</button></div></div>'
+    + ((d.siblings||[]).length > 1
+       ? '<div class="sec"><h4>함께 발행된 문서 <i style="font-style:normal;color:var(--mut);font-weight:600">한 통으로 보냅니다</i></h4>'
+         + d.siblings.map(function(x){
+             return '<div class="bdoc"><label class="bck"><input type="checkbox" data-sib="'+x.id+'"'
+               + (x.status==='취소됨'?'':' checked')+(x.status==='취소됨'?' disabled':'')+'>'
+               + '<span><b>'+esc(DTYPE[x.type]||x.type)+'</b><small>'+esc(x.doc_no)+' · '+esc(x.status)+'</small></span></label>'
+               + '<button class="mini" data-open="'+esc(x.view)+'">열기</button>'
+               + '<button class="mini" data-open="'+esc(x.view)+'&f=pdf">PDF</button></div>'; }).join('')
+         + '</div>'
+       : '<div class="sec"><h4>보기</h4><div class="twobtn">'
+         + '<button class="btn ghost" id="dqView">문서 열기</button>'
+         + '<button class="btn ghost" id="dqPdf">PDF</button></div></div>')
     + (doc.status==='취소됨' ? '' :
        '<div class="sec"><h4>메일 발송</h4>'
       + dqField('dqTo','받는 사람','email',(p.client&&p.client.email)||'','name@company.co.kr')
@@ -3770,15 +3969,22 @@ async function dqOpen(id){
       + (doc.status==='작성됨' ? '<button class="btn ghost" id="dqEdit">이어서 수정</button>' : '') + '</div>';
 
   var url = d.view;
-  $('#dqView').onclick = function(){ window.open(url, '_blank'); };
-  $('#dqPdf').onclick  = function(){ window.open(url+'&f=pdf', '_blank'); };
+  if ($('#dqView')) $('#dqView').onclick = function(){ window.open(url, '_blank'); };
+  if ($('#dqPdf'))  $('#dqPdf').onclick  = function(){ window.open(url+'&f=pdf', '_blank'); };
+  $('#dqBody').querySelectorAll('[data-open]').forEach(function(bb){
+    bb.onclick = function(){ window.open(bb.dataset.open, '_blank'); };
+  });
+  function dqPickIds(){
+    var cks = $('#dqBody').querySelectorAll('input[data-sib]:checked');
+    return cks.length ? [].slice.call(cks).map(function(x){ return Number(x.dataset.sib); }) : [doc.id];
+  }
 
   if ($('#dqCancel')) $('#dqCancel').onclick = async function(){
     await fetch('/api/admin/docs/'+doc.id,{method:'POST',headers:AH,body:JSON.stringify({action:'cancel'})});
     w.remove(); toast('예약을 취소했습니다'); dqHist();
   };
   if ($('#dqEdit')) $('#dqEdit').onclick = function(){
-    dqDocId = doc.id; dqType = doc.type; dqTitle = p.title||'';
+    dqDocId = doc.id; dqTypes = [doc.type]; dqTitle = p.title||'';
     dqVat = !!(p.totals && p.totals.vat_included);
     dqTarget = dqVat ? (tot.total||0) : 0;
     dqItems = (p.items||[]).map(function(i){
@@ -3801,15 +4007,17 @@ async function dqOpen(id){
     if (!to) return alert('받는 사람 이메일을 입력해주세요.');
     var when = $('#dqWhen').value;
     if (when && new Date(when).getTime() < Date.now()) return alert('예약 시각이 이미 지났습니다.');
+    var ids = dqPickIds();
     var b = $('#dqSend'); b.disabled = true; b.textContent = when ? '예약 중…' : '보내는 중…';
-    var r = await fetch('/api/admin/docs/'+doc.id,{method:'POST',headers:AH,body:JSON.stringify({
-      action:'send', to:to, cc:$('#dqCc').value.trim()||null,
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
+      action:'send', ids:ids, to:to, cc:$('#dqCc').value.trim()||null,
       send_at: when ? when.replace('T',' ')+':00' : null })})
       .then(function(r){return r.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = '발송';
     if (!r.ok) return alert(r.message || '발송하지 못했습니다.');
     w.remove(); dqHist();
-    toast(r.scheduled ? '발송을 예약했습니다' : '발송했습니다');
+    var n = ids.length > 1 ? ids.length+'종 ' : '';
+    toast(r.scheduled ? n+'발송을 예약했습니다' : n+'발송했습니다');
   };
 }
 

@@ -13,7 +13,19 @@ export const ISSUER = {
   bank: '신한 | 이영현(이머전트) | 110-273-881229',
 };
 
-const TITLE = { quote: '견적서', statement: '거래명세서' };
+const TITLE = { quote: '견적서', statement: '거래명세서', taxinvoice: '세금계산서' };
+
+// 서류마다 머리글 표의 항목 이름이 다르다 — 견적서 문구를 그대로 쓰면 거래명세서가 어색해진다.
+const HEAD = {
+  quote:      { t: '견적명',  no: '견적번호', d1: '발행일자', d2: '유효기간' },
+  statement:  { t: '거래명',  no: '문서번호', d1: '발행일자', d2: '거래일자' },
+  taxinvoice: { t: '품목명',  no: '문서번호', d1: '작성일자', d2: '공급일자' },
+};
+
+// 세금계산서는 국세청 전자세금계산서가 원본이다. 이 출력물이 그걸 대신한다고
+// 오해하지 않도록 문서 안에 못박아 둔다.
+const TAX_NOTE = '본 문서는 거래 내역 확인용 출력본입니다. 법적 효력이 있는 전자세금계산서는 '
+               + '국세청 시스템을 통해 별도로 발행되며, 발행 후 공급받는자 이메일로 전송됩니다.';
 
 function esc(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => (
@@ -45,7 +57,9 @@ export function renderDocHTML(d) {
   const LW = 47, RW = 74;   // 좌/우 박스의 값 영역 폭(mm)
   const L = (v) => `<span class="pv" style="font-size:${fitPt(v, LW)}pt">${esc(v || '')}</span>`;
   const R = (v) => `<span class="pv" style="font-size:${fitPt(v, RW)}pt">${esc(v || '')}</span>`;
-  const type = d.type === 'statement' ? 'statement' : 'quote';
+  const type = TITLE[d.type] ? d.type : 'quote';
+  const H = HEAD[type];
+  const d2 = type === 'quote' ? (d.valid_until || '') : (d.supply_date || d.issue_date || '');
   const items = (d.items || []).filter((i) => String(i.name || '').trim());
 
   let supply = 0;
@@ -124,10 +138,10 @@ export function renderDocHTML(d) {
   <h1>${esc(TITLE[type])}</h1>
 
   <table class="blk">
-    <tr><td class="lb" style="width:14.5%">견적명</td><td style="width:37%">${esc(d.title || '')}</td>
-        <td class="lb" style="width:14.5%">견적번호</td><td>${esc(d.doc_no || '')}</td></tr>
-    <tr><td class="lb">발행일자</td><td>${esc(d.issue_date || '')}</td>
-        <td class="lb">유효기간</td><td>${esc(d.valid_until || '')}</td></tr>
+    <tr><td class="lb" style="width:14.5%">${esc(H.t)}</td><td style="width:37%">${esc(d.title || '')}</td>
+        <td class="lb" style="width:14.5%">${esc(H.no)}</td><td>${esc(d.doc_no || '')}</td></tr>
+    <tr><td class="lb">${esc(H.d1)}</td><td>${esc(d.issue_date || '')}</td>
+        <td class="lb">${esc(H.d2)}</td><td>${esc(d2)}</td></tr>
   </table>
 
   <div class="parties">
@@ -174,7 +188,9 @@ export function renderDocHTML(d) {
       </table>
     </div>
     <table class="foot">
-      <tr><td class="lb">비고</td><td>${esc(d.note || ISSUER.bank)}</td></tr>
+      <tr><td class="lb">입금계좌</td><td>${esc(d.bank || ISSUER.bank)}</td></tr>
+      ${String(d.note || '').trim() ? `<tr><td class="lb">비고</td><td>${esc(d.note)}</td></tr>` : ''}
+      ${type === 'taxinvoice' ? `<tr><td class="lb">안내</td><td class="sm">${esc(TAX_NOTE)}</td></tr>` : ''}
     </table>
   </div>
 </div>

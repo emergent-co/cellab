@@ -16,24 +16,42 @@ export function calcTotals(items, fixed) {
   return { supply, vat, total: supply + vat };
 }
 
+// 문서 한 건 — 아래 deliverMany 를 그대로 쓴다.
 export async function deliver(env, { doc, payload, to, cc, subject, html, actor = 'admin' }) {
-  const label = DOC_LABEL[doc.type] || '문서';
+  return deliverMany(env, { docs: [{ doc, payload }], to, cc, subject, html, actor });
+}
+
+/**
+ * 여러 문서를 메일 '한 통'으로 보낸다.
+ * 견적서·거래명세서·세금계산서를 한 벌로 뽑았으면 고객도 한 통으로 받아야 한다.
+ * 세 통으로 나눠 보내면 받는 쪽에서 어느 게 짝인지 알 수 없다.
+ * @param docs [{ doc, payload }]
+ */
+export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'admin' }) {
+  const list = (docs || []).filter((x) => x && x.doc);
+  if (!list.length) return { ok: false, error: '보낼 문서가 없습니다' };
+
+  const logAll = (e) => Promise.all(list.map(({ doc }) =>
+    logEvent(env, { order_id: doc.order_id, document_id: doc.id, ...e })));
 
   if (!mailConfigured(env)) {
     const err = 'RESEND_API_KEY 미설정';
-    await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'send',
-      channel: 'email', actor, to_addr: to, result: 'fail', detail: err });
+    await logAll({ action: 'send', channel: 'email', actor, to_addr: to, result: 'fail', detail: err });
     return { ok: false, error: err };
   }
 
+  // PDF 한 건이 실패해도 나머지는 보낸다 — 첨부가 하나라도 붙는 편이 낫다.
   const attachments = [];
   if (pdfConfigured(env)) {
-    try {
-      const { bytes } = await getOrMakePdf(env, doc, renderDocHTML(payload));
-      attachments.push({ filename: `${label}_${doc.doc_no}.pdf`, content: b64(bytes) });
-    } catch (e) {
-      await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'pdf',
-        actor: 'system', result: 'fail', detail: String(e?.message || e) });
+    for (const { doc, payload } of list) {
+      const label = DOC_LABEL[doc.type] || '문서';
+      try {
+        const { bytes } = await getOrMakePdf(env, doc, renderDocHTML(payload));
+        attachments.push({ filename: `${label}_${doc.doc_no}.pdf`, content: b64(bytes) });
+      } catch (e) {
+        await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'pdf',
+          actor: 'system', result: 'fail', detail: String(e?.message || e) });
+      }
     }
   }
 
@@ -41,31 +59,34 @@ export async function deliver(env, { doc, payload, to, cc, subject, html, actor 
   const now = kstISO();
 
   if (!r.ok) {
-    await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'send',
-      channel: 'email', actor, to_addr: to, result: 'fail', detail: r.error });
+    await logAll({ action: 'send', channel: 'email', actor, to_addr: to, result: 'fail', detail: r.error });
     return { ok: false, error: r.error };
   }
 
-  await env.DB.prepare("UPDATE documents SET status='발송됨', sent_at=?, updated_at=? WHERE id=?")
-    .bind(now, now, doc.id).run();
+  const names = list.map(({ doc }) => `${DOC_LABEL[doc.type] || '문서'} ${doc.doc_no}`).join(', ');
+  for (const { doc } of list) {
+    await env.DB.prepare("UPDATE documents SET status='발송됨', sent_at=?, updated_at=? WHERE id=?")
+      .bind(now, now, doc.id).run();
 
-  // 주문에서 만든 문서만 주문 상태를 옮긴다 — 단독 발행 건에는 옮길 주문이 없다.
-  if (doc.order_id) {
-    if (doc.type === 'quote') {
-      await env.DB.prepare("UPDATE orders SET status='견적발송', updated_at=? WHERE id=? AND status IN ('요청접수','보류')")
-        .bind(now, doc.order_id).run();
-    } else if (doc.type === 'statement') {
-      await env.DB.prepare("UPDATE orders SET status='배송중', updated_at=? WHERE id=? AND status IN ('발주확정','견적승인')")
-        .bind(now, doc.order_id).run();
+    // 주문에서 만든 문서만 주문 상태를 옮긴다 — 단독 발행 건에는 옮길 주문이 없다.
+    if (doc.order_id) {
+      if (doc.type === 'quote') {
+        await env.DB.prepare("UPDATE orders SET status='견적발송', updated_at=? WHERE id=? AND status IN ('요청접수','보류')")
+          .bind(now, doc.order_id).run();
+      } else if (doc.type === 'statement') {
+        await env.DB.prepare("UPDATE orders SET status='배송중', updated_at=? WHERE id=? AND status IN ('발주확정','견적승인')")
+          .bind(now, doc.order_id).run();
+      }
     }
-  }
 
-  await logEvent(env, {
-    order_id: doc.order_id, document_id: doc.id, action: 'sent', channel: 'email',
-    actor, to_addr: to, result: 'ok',
-    detail: `${label} ${doc.doc_no} 발송${attachments.length ? ' (PDF 첨부)' : ' (PDF 미첨부)'}`,
-  });
-  return { ok: true };
+    await logEvent(env, {
+      order_id: doc.order_id, document_id: doc.id, action: 'sent', channel: 'email',
+      actor, to_addr: to, result: 'ok',
+      detail: (list.length > 1 ? `${names} 한 통으로 발송` : names)
+            + (attachments.length ? ` (PDF ${attachments.length}건 첨부)` : ' (PDF 미첨부)'),
+    });
+  }
+  return { ok: true, sent: list.length, attached: attachments.length };
 }
 
 // 예약 큐 처리 — 발송 시각이 지난 '대기' 건을 보낸다.
@@ -77,16 +98,26 @@ export async function flushOutbox(env, limit = 10) {
 
   let sent = 0, failed = 0;
   for (const job of results || []) {
-    const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(job.document_id).first();
-    if (!doc) {
+    // doc_ids 가 있으면 한 벌로 예약한 건 — 한 통에 모두 첨부해 보낸다
+    let ids = [];
+    try { ids = JSON.parse(job.doc_ids || 'null') || []; } catch { ids = []; }
+    if (!ids.length && job.document_id) ids = [job.document_id];
+
+    const docs = [];
+    for (const id of ids) {
+      const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(id).first();
+      if (!doc) continue;
+      let payload = {};
+      try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
+      docs.push({ doc, payload });
+    }
+    if (!docs.length) {
       await env.DB.prepare("UPDATE outbox SET status='실패', last_error='문서 없음' WHERE id=?").bind(job.id).run();
       failed++; continue;
     }
-    let payload = {};
-    try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
 
-    const r = await deliver(env, {
-      doc, payload, to: job.to_addr, cc: job.cc_addr,
+    const r = await deliverMany(env, {
+      docs, to: job.to_addr, cc: job.cc_addr,
       subject: job.subject, html: job.body, actor: 'system',
     });
 
