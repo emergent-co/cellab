@@ -5,7 +5,7 @@ import { STAMP_PNG } from './_docassets.js';
 export const ISSUER = {
   company: '이머전트',
   ceo: '이영현',
-  reg_no: '3280302926',
+  reg_no: '328-03-02926',
   tel: '070-8983-2600',
   address: '부산시 북구 화명신도시로219, 화명뜨란채 107-1703',
   biz_type: '서비스 | 도소매',
@@ -61,6 +61,13 @@ export function renderDocHTML(d) {
   const H = HEAD[type];
   const d2 = type === 'quote' ? (d.valid_until || '') : (d.supply_date || d.issue_date || '');
   const items = (d.items || []).filter((i) => String(i.name || '').trim());
+  // 품목이 늘면 행을 조금씩 낮춰 한 장에 담는다. 그래도 넘치면 다음 장으로 제대로 넘어간다.
+  // 품목이 늘면 행을 조금씩 낮춘다. 다만 읽기 어려울 만큼 욱여넣지는 않는다 —
+  // 13개를 넘으면 억지로 한 장에 밀어넣는 대신 두 장으로 제대로 넘긴다(머리글은 다시 찍힌다).
+  const n = items.length;
+  const rowMM  = n > 10 ? 6.6 : n > 8 ? 7.8 : 9;
+  const rowPad = n > 10 ? 1.0 : n > 8 ? 1.6 : 2.4;
+  const rowPt  = n > 10 ? 8.8 : 9.6;
 
   let supply = 0;
   const rows = items.map((it, i) => {
@@ -110,18 +117,19 @@ export function renderDocHTML(d) {
   .c{ text-align:center; }
   .blk{ margin-bottom:3.4mm; }
   .parties{ display:flex; gap:5mm; margin-bottom:1mm; align-items:stretch; }
-  .party{ flex:42 1 0; border:.6pt solid #4a4a4a; position:relative; display:flex; flex-direction:column; }
+  /* min-width:0 이 없으면 nowrap 인 긴 값(업태/업종 등)이 칸을 밀어내 페이지 밖으로 튀어나간다 */
+  .party{ flex:42 1 0; min-width:0; border:.6pt solid #4a4a4a; position:relative; display:flex; flex-direction:column; }
   .ph{ background:#f2f2f2; border-bottom:.6pt solid #4a4a4a; text-align:center;
        font-size:9.4pt; font-weight:500; padding:1.7mm 0; letter-spacing:.04em; }
-  .plist{ flex:1; display:flex; flex-direction:column; padding:1.4mm 3mm; }
-  .prow{ flex:1 0 auto; display:flex; align-items:center; min-height:6.4mm; font-size:9.1pt; }
+  .plist{ flex:1; min-width:0; display:flex; flex-direction:column; padding:1.4mm 3mm; }
+  .prow{ flex:1 0 auto; min-width:0; display:flex; align-items:center; min-height:6.4mm; font-size:9.1pt; }
   .pk{ flex:0 0 19mm; color:#555; }
   .pv{ flex:1; line-height:1.3; white-space:nowrap; overflow:hidden; }
   .party.issuer{ flex:58 1 0; }
   .stamp{ position:absolute; right:3mm; top:8.5mm; width:17mm; height:17mm; opacity:.9; }
   .items{ margin-top:5mm; }
   .items th{ font-size:9.6pt; }
-  .items td{ height:9mm; }
+  .items td{ height:${rowMM}mm; padding:${rowPad}mm 2.6mm; font-size:${rowPt}pt; line-height:1.2; }
   .sm{ font-size:7.6pt; }
   .bottom{ margin-top:auto; padding-top:8mm; }
   .sumwrap{ display:flex; justify-content:flex-end; }
@@ -131,6 +139,29 @@ export function renderDocHTML(d) {
   .sum .v{ text-align:left; }
   .foot{ margin-top:5mm; }
   .foot .lb{ width:14.5%; }
+
+  /* ---- 화면으로 볼 때 ----
+     .page 는 210mm(약 793px) 고정이라, 창이 그보다 좁으면 오른쪽이 화면 밖으로 나간다.
+     좁아진 만큼 통째로 줄여서 항상 한눈에 들어오게 한다. 인쇄·PDF에는 영향이 없다. */
+  @media screen {
+    body{ background:#eceef1; padding:14px 0; }
+    .page{ box-shadow:0 2px 14px rgba(15,23,42,.14); }
+  }
+  @media screen and (max-width: 860px){ .page{ zoom:.92; } }
+  @media screen and (max-width: 800px){ .page{ zoom:.85; } }
+  @media screen and (max-width: 720px){ .page{ zoom:.76; } }
+  @media screen and (max-width: 640px){ .page{ zoom:.66; } }
+  @media screen and (max-width: 540px){ .page{ zoom:.55; } }
+  @media screen and (max-width: 450px){ .page{ zoom:.46; } }
+  @media screen and (max-width: 380px){ .page{ zoom:.39; } }
+
+  /* ---- 두 장을 넘어갈 때 ----
+     한 행이 장을 걸쳐 반 토막 나거나, 둘째 장에 머리글이 없으면 읽을 수 없다. */
+  @media print {
+    .items thead{ display:table-header-group; }
+    .items tr{ break-inside:avoid; page-break-inside:avoid; }
+    .bottom{ break-inside:avoid; page-break-inside:avoid; }
+  }
 </style>
 </head>
 <body>

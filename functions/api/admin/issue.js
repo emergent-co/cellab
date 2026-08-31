@@ -34,10 +34,10 @@ async function get(request, env) {
     const rows = q
       ? (await env.DB.prepare(
           `SELECT c.*, l.name AS lab_name FROM customers c LEFT JOIN labs l ON l.id=c.lab_id
-            WHERE c.name LIKE ? OR c.company LIKE ? OR c.email LIKE ?
-               OR c.work_email LIKE ? OR c.phone LIKE ? OR l.name LIKE ?
+            WHERE c.name LIKE ? OR c.company LIKE ? OR c.alias LIKE ? OR c.email LIKE ?
+               OR c.work_email LIKE ? OR c.phone LIKE ? OR c.biz_no LIKE ? OR l.name LIKE ?
             ORDER BY c.id DESC LIMIT 20`)
-          .bind(`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`).all()).results
+          .bind(...Array(8).fill(`%${q}%`)).all()).results
       : (await env.DB.prepare(
           `SELECT c.*, l.name AS lab_name FROM customers c LEFT JOIN labs l ON l.id=c.lab_id
             ORDER BY (c.access='승인') DESC, c.id DESC LIMIT 20`).all()).results;
@@ -149,7 +149,8 @@ async function get(request, env) {
 
 function slimClient(c) {
   return {
-    id: c.id, name: c.name, company: c.company, email: c.email, work_email: c.work_email,
+    id: c.id, name: c.name, company: c.company, alias: c.alias || '',
+    email: c.email, work_email: c.work_email,
     phone: c.phone, address: c.address, biz_no: c.biz_no, ceo: c.ceo,
     tax_email: c.tax_email, billing_mode: c.billing_mode, access: c.access,
     lab_id: c.lab_id, lab_name: c.lab_name || '', lab_code: c.lab_code || '',

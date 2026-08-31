@@ -1,0 +1,16 @@
+# 예약 발송 스케줄러.
+# Cloudflare Pages Functions 에는 cron 트리거가 없다. 그래서 이 작은 Worker 가
+# 5분마다 rndsetup.com 의 큐 처리 엔드포인트를 두드려 준다.
+#
+#   배포:  cd workers/outbox-cron
+#          npx wrangler secret put CRON_SECRET     ← Pages 쪽과 똑같은 값
+#          npx wrangler deploy
+name = "rndsetup-outbox-cron"
+main = "index.js"
+compatibility_date = "2026-01-01"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+TARGET = "https://rndsetup.com/api/cron/outbox"

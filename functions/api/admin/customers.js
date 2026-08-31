@@ -1,4 +1,4 @@
-// GET  /api/admin/customers            → 거래처 목록 (승인 대기가 위로)
+// GET  /api/admin/customers            → 멤버십(로그인 계정) 목록 (승인 대기가 위로)
 // POST /api/admin/customers  {id, access}  → 승인 / 대기 / 거절
 // GET  /api/admin/customers?inquiries=1   → 견적 문의 목록
 import { json, isAdmin, needAdmin, kstISO, logEvent, adminOK} from '../_lib.js';
@@ -19,6 +19,7 @@ export async function onRequest({ request, env }) {
               c.billing_mode, c.created_at, l.name AS lab_name, l.code AS lab_code,
               (SELECT COUNT(*) FROM orders o WHERE o.customer_id=c.id) AS n_orders
          FROM customers c LEFT JOIN labs l ON l.id=c.lab_id
+        WHERE c.access <> '거래처'
         ORDER BY (c.access='대기') DESC, c.id DESC LIMIT 200`
     ).all();
     return json({ customers: results || [] });

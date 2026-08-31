@@ -7,7 +7,9 @@
 import { json, needAdmin, adminOK, kstISO, logEvent } from '../_lib.js';
 import { settlement, ledger } from '../_settle.js';
 
-const ACCESS = ['승인', '대기', '거절'];
+// '거래처' = 로그인 계정이 아니라 서류 발행용으로만 들고 있는 곳(기존 사이트에서 옮겨온 것).
+// 멤버십 권한은 없다 — isMember() 는 '승인' 만 통과시킨다.
+const ACCESS = ['승인', '대기', '거절', '거래처'];
 const safe = (s) => { try { return JSON.parse(s || '[]'); } catch { return []; } };
 
 export async function onRequest({ request, env }) {
@@ -62,6 +64,38 @@ async function get(request, env) {
     });
   }
 
+  // ---------------- 사업자 단위 목록 (거래처 추가에서 '기존 사업자 찾기') ----------------
+  if (u.get('orgs')) {
+    const q = (u.get('q') || '').trim();
+    const w = ["c.biz_no IS NOT NULL", "c.biz_no <> ''"], bind = [];
+    if (q) {
+      w.push('(c.company LIKE ? OR c.alias LIKE ? OR c.biz_no LIKE ? OR c.ceo LIKE ?)');
+      for (let i = 0; i < 4; i++) bind.push(`%${q}%`);
+    }
+    // 같은 사업자번호를 쓰는 곳들을 하나로 묶는다. 대표자·주소는 가장 최근에 적어둔 것.
+    const { results } = await env.DB.prepare(
+      `SELECT c.biz_no,
+              MAX(c.company) AS company,
+              MAX(c.ceo)     AS ceo,
+              MAX(c.address) AS address,
+              COUNT(*)       AS n,
+              MIN(c.id)      AS any_id
+         FROM customers c
+        WHERE ${w.join(' AND ')}
+        GROUP BY c.biz_no
+        ORDER BY n DESC, company
+        LIMIT 30`).bind(...bind).all();
+
+    const orgs = [];
+    for (const o of results || []) {
+      const kids = (await env.DB.prepare(
+        'SELECT id, alias, name, work_email FROM customers WHERE biz_no=? ORDER BY id LIMIT 20')
+        .bind(o.biz_no).all()).results || [];
+      orgs.push({ ...o, children: kids });
+    }
+    return json({ orgs });
+  }
+
   // ---------------- 목록 ----------------
   const w = [], bind = [];
   const access = u.get('access');
@@ -70,13 +104,14 @@ async function get(request, env) {
   if (mode === '후불' || mode === '선불') { w.push('c.billing_mode=?'); bind.push(mode); }
   const q = (u.get('q') || '').trim();
   if (q) {
-    w.push('(c.name LIKE ? OR c.company LIKE ? OR c.email LIKE ? OR c.work_email LIKE ? OR c.phone LIKE ? OR l.name LIKE ?)');
-    for (let i = 0; i < 6; i++) bind.push(`%${q}%`);
+    w.push('(c.name LIKE ? OR c.company LIKE ? OR c.alias LIKE ? OR c.email LIKE ?'
+         + ' OR c.work_email LIKE ? OR c.phone LIKE ? OR c.biz_no LIKE ? OR c.memo LIKE ? OR l.name LIKE ?)');
+    for (let i = 0; i < 9; i++) bind.push(`%${q}%`);
   }
   const where = w.length ? `WHERE ${w.join(' AND ')}` : '';
 
   const { results } = await env.DB.prepare(
-    `SELECT c.id, c.name, c.company, c.phone, c.email, c.work_email, c.billing_mode,
+    `SELECT c.id, c.name, c.company, c.alias, c.biz_no, c.phone, c.email, c.work_email, c.billing_mode,
             c.access, c.memo, c.created_at, l.name AS lab_name,
             COALESCE((SELECT SUM(o.total_amount) FROM orders o
                        WHERE o.customer_id=c.id AND o.status<>'취소'),0) AS spent,
@@ -86,13 +121,14 @@ async function get(request, env) {
             (SELECT COUNT(*) FROM documents d WHERE d.customer_id=c.id) AS docs_n
        FROM customers c LEFT JOIN labs l ON l.id=c.lab_id
        ${where}
-      ORDER BY (c.access='대기') DESC, c.id DESC LIMIT 200`).bind(...bind).all();
+      ORDER BY (c.access='대기') DESC, c.company, c.id LIMIT 300`).bind(...bind).all();
 
   const clients = (results || []).map((r) => ({ ...r, due: (r.spent || 0) - (r.paid || 0) }));
   const stats = (await env.DB.prepare(
     `SELECT SUM(CASE WHEN access='승인' THEN 1 ELSE 0 END) AS ok,
             SUM(CASE WHEN access='대기' THEN 1 ELSE 0 END) AS wait,
             SUM(CASE WHEN access='거절' THEN 1 ELSE 0 END) AS no,
+            SUM(CASE WHEN access='거래처' THEN 1 ELSE 0 END) AS client,
             SUM(CASE WHEN billing_mode='후불' THEN 1 ELSE 0 END) AS post,
             COUNT(*) AS all_ FROM customers`).first()) || {};
   return json({ clients, stats });
@@ -100,6 +136,7 @@ async function get(request, env) {
 
 async function post(request, env) {
   const b = await request.json().catch(() => ({}));
+  if (b.action === 'create') return create(env, b);
   if (!b.id) return json({ error: 'no_id' }, 400);
   const c = await env.DB.prepare('SELECT id, name, company FROM customers WHERE id=?').bind(b.id).first();
   if (!c) return json({ error: 'not_found' }, 404);
@@ -133,12 +170,80 @@ async function post(request, env) {
       return json({ error: 'bad_email', message: '업무 이메일 형식이 올바르지 않습니다.' }, 400);
     }
     await env.DB.prepare(
-      `UPDATE customers SET name=?, company=?, phone=?, work_email=?, address=?, updated_at=? WHERE id=?`
-    ).bind(String(b.name || ''), String(b.company || ''), String(b.phone || ''),
+      `UPDATE customers SET name=?, company=?, alias=?, biz_no=?, ceo=?, phone=?, work_email=?, address=?, updated_at=? WHERE id=?`
+    ).bind(String(b.name || ''), String(b.company || ''), String(b.alias || ''),
+           String(b.biz_no || ''), String(b.ceo || ''), String(b.phone || ''),
            email, String(b.address || ''), now, c.id).run();
     await logEvent(env, { action: 'client_edit', actor: 'admin', detail: `${who} 거래처 정보 수정` });
     return json({ ok: true });
   }
 
   return json({ error: 'unknown_action' }, 400);
+}
+
+/* 거래처 추가.
+   parent_biz_no 를 주면 그 사업자의 상호·사업자번호·대표자·주소를 그대로 물려받고,
+   별칭·담당자·연락처만 새로 받는다 — 같은 기관의 다른 연구실을 다는 흔한 경우다. */
+async function create(env, b) {
+  const now = kstISO();
+  const email = String(b.work_email || '').trim();
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return json({ error: 'bad_email', message: '업무 이메일 형식이 올바르지 않습니다.' }, 400);
+  }
+
+  let company = String(b.company || '').trim();
+  let biz_no  = String(b.biz_no || '').trim();
+  let ceo     = String(b.ceo || '').trim();
+  let address = String(b.address || '').trim();
+
+  // 기존 사업자 아래에 다는 경우 — 상위 정보는 손으로 다시 적지 않는다
+  if (b.parent_biz_no) {
+    const parent = await env.DB.prepare(
+      `SELECT company, biz_no, ceo, address FROM customers
+        WHERE biz_no=? AND company IS NOT NULL AND company <> '' ORDER BY id LIMIT 1`)
+      .bind(String(b.parent_biz_no).trim()).first();
+    if (!parent) return json({ error: 'no_parent', message: '그 사업자번호로 등록된 거래처가 없습니다.' }, 404);
+    company = parent.company;
+    biz_no  = parent.biz_no;
+    ceo     = ceo || parent.ceo || '';
+    address = address || parent.address || '';
+  }
+
+  const alias = String(b.alias || '').trim() || company;
+  if (!company) return json({ error: 'no_company', message: '거래처명을 입력해주세요.' }, 400);
+
+  // 같은 사업자번호에 같은 별칭이 이미 있으면 막는다 — 목록에서 구분이 안 된다
+  if (biz_no) {
+    const dup = await env.DB.prepare(
+      'SELECT id FROM customers WHERE biz_no=? AND alias=? LIMIT 1').bind(biz_no, alias).first();
+    if (dup) {
+      return json({ error: 'duplicate',
+        message: `'${company}' 에 '${alias}' 별칭이 이미 있습니다. 다른 별칭을 써주세요.` }, 409);
+    }
+  }
+
+  const r = await env.DB.prepare(
+    `INSERT INTO customers (company, alias, biz_no, ceo, name, work_email, phone, address, memo,
+                            access, role, billing_mode, created_at, updated_at)
+     VALUES (?,?,?,?,?,?,?,?,?, '거래처','member',?,?,?)`
+  ).bind(company, alias, biz_no || null, ceo || null,
+         String(b.name || '').trim() || null, email || null,
+         String(b.phone || '').trim() || null, address || null,
+         String(b.memo || '').trim() || null,
+         b.billing_mode === '후불' ? '후불' : '선불', now, now).run();
+
+  const id = r.meta.last_row_id;
+
+  // 사업자번호가 있으면 계산서 발행정보도 같이 만들어 둔다 — 견적서를 바로 뽑을 수 있게
+  if (biz_no) {
+    await env.DB.prepare(
+      `INSERT INTO bill_profiles (customer_id, label, company, biz_no, ceo, tax_email, address, is_default, created_at, updated_at)
+       VALUES (?, '기본', ?,?,?,?,?, 1, ?, ?)`
+    ).bind(id, company, biz_no, ceo || null, String(b.tax_email || '').trim() || email || null,
+           address || null, now, now).run();
+  }
+
+  await logEvent(env, { action: 'client_add', actor: 'admin',
+    detail: `거래처 추가 ${company}${alias !== company ? ` (${alias})` : ''}` });
+  return json({ ok: true, id });
 }
