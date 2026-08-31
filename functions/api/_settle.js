@@ -5,27 +5,27 @@
 // 지출을 따로 적어두지 않는다: 장부를 두 벌 두면 반드시 어긋난다.
 
 export async function settlement(env, customerId) {
-  const spent = (await env.DB.prepare(
-    "SELECT COALESCE(SUM(total_amount),0) AS v FROM orders WHERE customer_id=? AND status<>'취소'"
-  ).bind(customerId).first())?.v || 0;
-
-  const paid = (await env.DB.prepare(
-    'SELECT COALESCE(SUM(amount),0) AS v FROM payments WHERE customer_id=?'
-  ).bind(customerId).first())?.v || 0;
-
+  // 두 합계를 한 번의 왕복으로 — 따로 물으면 그만큼 느려진다
+  const r = await env.DB.prepare(
+    `SELECT COALESCE((SELECT SUM(total_amount) FROM orders
+                       WHERE customer_id=?1 AND status<>'취소'),0) AS spent,
+            COALESCE((SELECT SUM(amount) FROM payments WHERE customer_id=?1),0) AS paid`
+  ).bind(customerId).first();
+  const spent = r?.spent || 0;
+  const paid = r?.paid || 0;
   return { spent, paid, due: spent - paid };
 }
 
 // 주문·입금을 한 줄씩 시간순으로 엮은 원장 (잔액 누적 포함)
 export async function ledger(env, customerId, limit = 200) {
-  const os = (await env.DB.prepare(
-    `SELECT id, order_no, title, total_amount, created_at
-       FROM orders WHERE customer_id=? AND status<>'취소' AND total_amount>0`
-  ).bind(customerId).all()).results || [];
-
-  const ps = (await env.DB.prepare(
-    'SELECT id, kind, amount, method, paid_at, memo, created_at FROM payments WHERE customer_id=?'
-  ).bind(customerId).all()).results || [];
+  const rs = await env.DB.batch([
+    env.DB.prepare(`SELECT id, order_no, title, total_amount, created_at
+                      FROM orders WHERE customer_id=? AND status<>'취소' AND total_amount>0`).bind(customerId),
+    env.DB.prepare('SELECT id, kind, amount, method, paid_at, memo, created_at FROM payments WHERE customer_id=?')
+      .bind(customerId),
+  ]);
+  const os = (rs[0] && rs[0].results) || [];
+  const ps = (rs[1] && rs[1].results) || [];
 
   const rows = []
     .concat(os.map((o) => ({

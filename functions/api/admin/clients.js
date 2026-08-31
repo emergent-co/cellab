@@ -29,6 +29,7 @@ async function get(request, env) {
          FROM customers c LEFT JOIN labs l ON l.id=c.lab_id WHERE c.id=?`).bind(u.get('id')).first();
     if (!c) return json({ error: 'not_found' }, 404);
 
+    // 아래 다섯 개는 batch 한 번, 합계·원장은 각자 이미 batch 로 묶여 있다
     const [profiles, orders, settles, docs, members, sum, led] = await Promise.all([
       env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id')
         .bind(c.id).all().then((r) => r.results || []),

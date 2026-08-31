@@ -11,16 +11,25 @@ export async function onRequest({ request, env, params }) {
   if (!order) return json({ error: 'not_found' }, 404);
 
   if (request.method === 'GET') {
-    const customer = order.customer_id
-      ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(order.customer_id).first()
-      : null;
-    const items = (await env.DB.prepare('SELECT * FROM order_items WHERE order_id=? ORDER BY seq, id').bind(order.id).all()).results || [];
-    const docs = (await env.DB.prepare('SELECT * FROM documents WHERE order_id=? ORDER BY id DESC').bind(order.id).all()).results || [];
-    const events = (await env.DB.prepare('SELECT * FROM doc_events WHERE order_id=? ORDER BY id DESC LIMIT 100').bind(order.id).all()).results || [];
-    const queued = (await env.DB.prepare("SELECT * FROM outbox WHERE order_id=? AND status='대기' ORDER BY send_at").bind(order.id).all()).results || [];
-    const profiles = order.customer_id
-      ? (await env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id DESC').bind(order.customer_id).all()).results || []
-      : [];
+    // 여섯 갈래를 batch 로 한 번에 묶는다.
+    // 하나씩 await 하면 D1 왕복이 그만큼 쌓인다 — 왕복 한 번이 60ms 쯤이라 눈에 띄게 굼떠진다.
+    const cid = order.customer_id;
+    const stmts = [
+      env.DB.prepare('SELECT * FROM order_items WHERE order_id=? ORDER BY seq, id').bind(order.id),
+      env.DB.prepare('SELECT * FROM documents WHERE order_id=? ORDER BY id DESC').bind(order.id),
+      env.DB.prepare('SELECT * FROM doc_events WHERE order_id=? ORDER BY id DESC LIMIT 100').bind(order.id),
+      env.DB.prepare("SELECT * FROM outbox WHERE order_id=? AND status='대기' ORDER BY send_at").bind(order.id),
+    ];
+    if (cid) {
+      stmts.push(env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(cid));
+      stmts.push(env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id DESC').bind(cid));
+    }
+    const rs = await env.DB.batch(stmts);
+    const rows = (i) => (rs[i] && rs[i].results) || [];
+
+    const items = rows(0), docs = rows(1), events = rows(2), queued = rows(3);
+    const customer = cid ? (rows(4)[0] || null) : null;
+    const profiles = cid ? rows(5) : [];
     const bill = order.bill_profile_id ? profiles.find((p) => p.id === order.bill_profile_id) || null : null;
     return json({ order, customer, items, documents: docs, events, queued, profiles, bill, statuses: STATUSES });
   }
