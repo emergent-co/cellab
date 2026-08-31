@@ -10,7 +10,7 @@ export async function onRequest({ request, env }) {
   if (request.method === 'GET') {
     const { results } = await env.DB.prepare(
       `SELECT o.id, o.order_no, o.status, o.title, o.org_name, o.total_amount, o.created_at,
-              o.ship_address, o.received_at,
+              o.ship_address, o.received_at, o.orderer_name,
               (SELECT COUNT(*) FROM order_items i WHERE i.order_id=o.id) AS item_count,
               (SELECT i.name FROM order_items i WHERE i.order_id=o.id ORDER BY i.id LIMIT 1) AS first_item
          FROM orders o WHERE o.customer_id=? ORDER BY o.id DESC LIMIT 100`
@@ -27,6 +27,9 @@ export async function onRequest({ request, env }) {
   // 상품 링크와 수량은 필수 — 링크가 있어야 어떤 물건인지 확정되고 단가를 뽑을 수 있다
   const noLink = items.find((i) => !/^https?:\/\//i.test(String(i.link || '').trim()));
   if (noLink) return json({ error: 'no_link', message: `상품 링크가 없는 품목이 있습니다: ${noLink.name}` }, 400);
+  // 규격·옵션도 필수 — 비어 있으면 어떤 물건인지 확정되지 않아 되묻는 왕복이 생긴다
+  const noSpec = items.find((i) => !String(i.spec || '').trim());
+  if (noSpec) return json({ error: 'no_spec', message: `규격 · 옵션이 없는 품목이 있습니다: ${noSpec.name}` }, 400);
   const noQty = items.find((i) => !(Number(i.qty) > 0));
   if (noQty) return json({ error: 'no_qty', message: `수량이 없는 품목이 있습니다: ${noQty.name}` }, 400);
   // 납품지는 반드시 등록된 것 중에서 고른다 (주소 정확도 때문에 직접 입력을 받지 않는다)

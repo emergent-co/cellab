@@ -135,6 +135,22 @@ export async function onRequest({ request, env, params }) {
         detail: b.bill_profile_id ? '계산서 발행 정보 지정' : '계산서 발행 정보 해제' });
       return json({ ok: true });
     }
+    // 지운다 — 잘못 옮겨 적은 이력을 되돌리는 용도.
+    // 서류는 지우지 않고 연결만 끊는다: 이미 고객에게 나간 문서를 같이 없애면 안 된다.
+    if (b.action === 'delete') {
+      const now = kstISO();
+      await env.DB.batch([
+        env.DB.prepare("UPDATE documents SET order_id=NULL, source='manual', updated_at=? WHERE order_id=?")
+          .bind(now, order.id),
+        env.DB.prepare('UPDATE outbox SET order_id=NULL WHERE order_id=?').bind(order.id),
+        env.DB.prepare('UPDATE doc_events SET order_id=NULL WHERE order_id=?').bind(order.id),
+        env.DB.prepare('DELETE FROM order_items WHERE order_id=?').bind(order.id),
+        env.DB.prepare('DELETE FROM orders WHERE id=?').bind(order.id),
+      ]);
+      await logEvent(env, { action: 'order_deleted', actor: 'admin',
+        detail: `주문 삭제 ${order.order_no} · ${order.title || ''} · ${order.total_amount || 0}원` });
+      return json({ ok: true, deleted: order.order_no });
+    }
     if (b.action === 'memo') {
       await env.DB.prepare('UPDATE orders SET admin_memo=?, updated_at=? WHERE id=?').bind(String(b.admin_memo || ''), kstISO(), order.id).run();
       return json({ ok: true });
