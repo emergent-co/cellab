@@ -5152,6 +5152,28 @@ async function dqOpen(id){
     + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
       + (doc.status==='작성됨' ? '<button class="btn ghost" id="dqEdit">이어서 수정</button>' : '') + '</div>';
 
+  if ($('#nsIssue')) $('#nsIssue').onclick = async function(){
+    if (!confirm('국세청으로 세금계산서를 발행합니다.\n\n'
+      + '발행되면 국세청에 전송되고 공급받는자에게 메일이 나갑니다. 되돌리려면 취소 처리가 필요합니다.\n'
+      + '계속할까요?')) return;
+    var bt = $('#nsIssue'); bt.disabled = true; bt.textContent = '발행 중…';
+    var r = await fetch('/api/admin/docs/'+doc.id,{method:'POST',headers:AH,
+      body:JSON.stringify({action:'nts_issue'})}).then(function(x){return x.json();}).catch(function(){return{};});
+    bt.disabled = false; bt.textContent = '국세청 발행';
+    if (!r.ok) return alert(r.message || '발행하지 못했습니다.');
+    toast('국세청 발행 완료 ('+r.mode+')');
+    w.remove(); dqOpen(doc.id); dqHist();
+  };
+  if ($('#nsCheck')) $('#nsCheck').onclick = async function(){
+    var bt = $('#nsCheck'); bt.disabled = true;
+    var r = await fetch('/api/admin/docs/'+doc.id,{method:'POST',headers:AH,
+      body:JSON.stringify({action:'nts_state'})}).then(function(x){return x.json();}).catch(function(){return{};});
+    bt.disabled = false;
+    if (!r.ok) return alert(r.message || '조회하지 못했습니다.');
+    $('#nsState').textContent = r.label + (r.nts_confirm ? ' · 승인번호 '+r.nts_confirm : '');
+    toast(r.label);
+  };
+
   $('#dqRelink').onclick = function(){ dqRelinkForm(doc, d.linked); };
   if ($('#dqToOrder')) $('#dqToOrder').onclick = async function(){
     var b2 = $('#dqToOrder'); b2.disabled = true; b2.textContent = '기록 중…';

@@ -81,7 +81,8 @@ export async function barobillCall(env, method, args = {}) {
   if (!barobillReady(env)) {
     return { ok: false, error: '바로빌 환경변수가 덜 채워졌습니다 (인증키·아이디·사업자번호).' };
   }
-  const body = Object.assign({ CERTKEY: c.certkey, CorpNum: c.corpNum, ID: c.id }, args);
+  // CERTKEY·CorpNum 만 공통이다. ID(ContactID)는 메서드마다 자리가 달라 호출부가 직접 넣는다.
+  const body = Object.assign({ CERTKEY: c.certkey, CorpNum: c.corpNum }, args);
   const xml =
     '<?xml version="1.0" encoding="utf-8"?>'
     + '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
@@ -120,4 +121,123 @@ export async function barobillCall(env, method, args = {}) {
 function unesc(t) {
   return String(t).replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
+}
+
+
+/* ===================== 전자세금계산서 =====================
+   문서(dev.barobill.co.kr) 확인분 —
+     RegistAndIssueTaxInvoice(CERTKEY, CorpNum, Invoice, SendSMS, ForceIssue, MailTitle) → 1 성공 / 음수 오류
+     공급자의 공동인증서가 바로빌에 등록되어 있어야 한다.
+   금액 칸은 전부 string(콤마 없이), 날짜는 YYYYMMDD. */
+export const TI = {
+  ISSUE_DIRECTION: { 정발급: 1, 역발행: 2 },
+  TYPE: { 세금계산서: 1, 계산서: 2 },
+  TAX: { 과세: 1, 영세: 2, 면세: 3 },
+  PURPOSE: { 영수: 1, 청구: 2 },
+};
+
+// 바로빌 상태코드 → 사람이 읽는 말
+export const TI_STATE = {
+  1000: '임시저장', 2010: '발급예정 승인대기', 2011: '발급예정 승인완료',
+  2020: '역발행요청 발급대기', 3011: '발급완료(발급예정)', 3021: '발급완료(역발행)',
+  3014: '발급완료', 4012: '전송중', 6004: '국세청 전송완료',
+};
+
+const digits = (v) => String(v || '').replace(/[^0-9]/g, '');
+const cut = (v, n) => String(v == null ? '' : v).trim().slice(0, n);
+// 국세청은 특수문자를 싫어한다 — ㈜ 같은 글자가 그대로 가면 반려된다
+const corpName = (v) => cut(String(v || '').replace(/㈜/g, '(주)').replace(/[<>&"']/g, ' '), 200);
+const ymd = (v) => digits(v).slice(0, 8);
+
+/**
+ * 우리 문서(payload)를 바로빌 TaxInvoice 로 옮긴다.
+ * @param {object} o { mgtKey, issuer, bill, payload, contactId, writeDate }
+ */
+export function buildTaxInvoice(o) {
+  const p = o.payload || {};
+  const t = p.totals || {};
+  const bill = o.bill || {};
+  const cli = p.client || {};
+  const iss = o.issuer || {};
+
+  const items = (p.items || []).map((i) => {
+    const qty = Number(i.qty) || 0;
+    const up = Math.round(Number(i.unit_price) || 0);
+    const amt = Math.round(Number(i.amount) || qty * up);
+    return {
+      PurchaseExpiry: ymd(o.writeDate),
+      Name: cut(i.name, 100),
+      Information: cut(i.spec, 60),
+      ChargeableUnit: String(qty),
+      UnitPrice: String(up),
+      Amount: String(amt),
+      Tax: String(Math.round(amt * 0.1)),
+      Description: cut(i.note, 40),
+    };
+  });
+
+  return {
+    InvoicerParty: {                       // 공급자 = 우리
+      MgtNum: cut(o.mgtKey, 24),           // 관리번호는 공급자 쪽에 넣는다
+      CorpNum: digits(iss.reg_no),
+      CorpName: corpName(iss.company),
+      CEOName: cut(iss.ceo, 100),
+      Addr: cut(iss.address, 300),
+      BizType: cut(iss.biz_type, 100),     // 업태
+      BizClass: cut(iss.biz_item, 100),    // 업종
+      ContactID: o.contactId,              // 바로빌 회원 아이디 (대소문자 구분)
+      ContactName: cut(iss.ceo, 100),
+      TEL: cut(iss.tel, 20),
+      Email: cut(iss.email, 100),
+    },
+    InvoiceeParty: {                       // 공급받는자 = 거래처의 계산서 발행 정보
+      CorpNum: digits(bill.biz_no || cli.biz_no),
+      CorpName: corpName(bill.company || cli.company),
+      CEOName: cut(bill.ceo || cli.ceo, 100),
+      Addr: cut(bill.address || cli.address, 300),
+      BizType: cut(bill.biz_type, 100),
+      BizClass: cut(bill.biz_item, 100),
+      ContactName: cut(cli.contact || bill.label, 100),
+      TEL: cut(cli.tel, 20),
+      HP: cut(cli.hp, 20),
+      Email: cut(bill.tax_email || cli.email, 100),
+    },
+    IssueDirection: TI.ISSUE_DIRECTION.정발급,
+    TaxInvoiceType: TI.TYPE.세금계산서,
+    TaxType: TI.TAX.과세,
+    PurposeType: TI.PURPOSE.청구,
+    WriteDate: ymd(o.writeDate),
+    AmountTotal: String(Math.round(t.supply || 0)),
+    TaxTotal: String(Math.round(t.vat || 0)),
+    TotalAmount: String(Math.round(t.total || 0)),
+    Remark1: cut(p.note, 150),
+    TaxInvoiceTradeLineItems: { TaxInvoiceTradeLineItem: items },
+  };
+}
+
+/** 저장+발급 (국세청 전송까지 바로빌이 처리한다) */
+export async function issueTaxInvoice(env, invoice, opts = {}) {
+  return barobillCall(env, 'RegistAndIssueTaxInvoice', {
+    Invoice: invoice,
+    SendSMS: opts.sms ? 'true' : 'false',
+    ForceIssue: opts.force ? 'true' : 'false',
+    MailTitle: cut(opts.mailTitle, 200),
+  });
+}
+
+/** 상태 조회 — BarobillState 가 양수면 성공 */
+export async function taxInvoiceState(env, mgtKey) {
+  const r = await barobillCall(env, 'GetTaxInvoiceStateEX', { MgtKey: cut(mgtKey, 24) });
+  if (!r.ok) return r;
+  const pick = (k) => {
+    const m = String(r.raw || '').match(new RegExp(`<${k}>([\\s\\S]*?)</${k}>`));
+    return m ? m[1].trim() : '';
+  };
+  const state = Number(pick('BarobillState') || 0);
+  return {
+    ok: state > 0, state,
+    label: TI_STATE[state] || `상태 ${state}`,
+    nts_confirm: pick('NTSConfirmNum'),
+    mgt_key: pick('MgtKey') || mgtKey,
+  };
 }
