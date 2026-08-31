@@ -1,6 +1,9 @@
-// GET /api/admin/orders?stats=1
-// GET /api/admin/orders?status=&q=&page=&size=
-import { json, isAdmin, needAdmin, STATUSES, adminOK} from '../../_lib.js';
+// GET  /api/admin/orders?stats=1
+// GET  /api/admin/orders?status=&q=&page=&size=
+// POST /api/admin/orders  → 관리자가 주문을 직접 만든다
+//   시스템 쓰기 전에 오가던 거래를 옮겨 적을 때 필요하다. 거래일을 과거로 넣을 수 있다.
+import { json, isAdmin, needAdmin, STATUSES, adminOK, kstISO, kstDate,
+         nextOrderNo, recalcOrder, logEvent } from '../../_lib.js';
 
 export async function onRequestGet({ request, env }) {
   if (!(await adminOK(request, env))) return needAdmin();
@@ -33,4 +36,59 @@ export async function onRequestGet({ request, env }) {
                 ORDER BY o.id DESC LIMIT ? OFFSET ?`;
   const { results } = await env.DB.prepare(sql).bind(...vals, size, (page - 1) * size).all();
   return json({ orders: results || [], page, size });
+}
+
+export async function onRequestPost({ request, env }) {
+  if (!(await adminOK(request, env))) return needAdmin();
+  const b = await request.json().catch(() => ({}));
+
+  const customer = b.customer_id
+    ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(b.customer_id).first()
+    : null;
+  if (!customer) return json({ error: 'no_client', message: '거래처를 선택해주세요.' }, 400);
+
+  const items = (Array.isArray(b.items) ? b.items : [])
+    .map((i) => ({
+      name: String(i.name || '').trim(),
+      spec: String(i.spec || '').trim(),
+      unit: String(i.unit || 'EA').trim() || 'EA',
+      qty: Math.max(0, Number(i.qty) || 0),
+      unit_price: Math.round(Number(i.unit_price) || 0),
+      note: String(i.note || '').trim(),
+    }))
+    .filter((i) => i.name);
+  if (!items.length) return json({ error: 'no_items', message: '품목을 1개 이상 넣어주세요.' }, 400);
+
+  const status = STATUSES.includes(b.status) ? b.status : '완료';
+  // 거래일(created_at)을 직접 정한다 — 옮겨 적는 이력은 오늘 날짜가 아니다
+  const day = String(b.trade_date || '').slice(0, 10) || kstDate();
+  const at = /^\d{4}-\d{2}-\d{2}$/.test(day) ? `${day} 00:00:00` : kstISO();
+
+  const order_no = await nextOrderNo(env);
+  const r = await env.DB.prepare(
+    `INSERT INTO orders (order_no, customer_id, status, title, org_name, ship_address,
+                         request_note, admin_memo, orderer_name, orderer_email, orderer_phone,
+                         manual, created_at, updated_at)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?, 1, ?, ?)`
+  ).bind(order_no, customer.id, status, String(b.title || '').trim() || '(제목 없음)',
+         String(b.org_name || customer.company || ''), String(b.ship_address || customer.address || ''),
+         String(b.request_note || ''), String(b.admin_memo || ''),
+         String(b.orderer_name || customer.name || ''),
+         String(b.orderer_email || customer.work_email || customer.email || ''),
+         String(b.orderer_phone || customer.phone || ''),
+         at, kstISO()).run();
+
+  const id = r.meta.last_row_id;
+  let seq = 1;
+  for (const it of items) {
+    await env.DB.prepare(
+      `INSERT INTO order_items (order_id, seq, name, spec, unit, qty, unit_price, amount, note)
+       VALUES (?,?,?,?,?,?,?,?,?)`
+    ).bind(id, seq++, it.name, it.spec, it.unit, it.qty, it.unit_price,
+           Math.round(it.qty * it.unit_price), it.note).run();
+  }
+  const sums = await recalcOrder(env, id);
+  await logEvent(env, { order_id: id, action: 'created', actor: 'admin',
+    detail: `주문 직접 입력 ${order_no} · ${day} (${customer.company || customer.name || ''})` });
+  return json({ ok: true, id, order_no, ...sums });
 }

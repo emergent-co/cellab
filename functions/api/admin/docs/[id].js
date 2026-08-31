@@ -26,7 +26,11 @@ export async function onRequest({ request, env, params }) {
             view: `/doc/${d.id}?t=${d.access_token}`,
           }))
       : [];
-    return json({ document: doc, payload, events, queued, siblings,
+    const linked = doc.customer_id
+      ? await env.DB.prepare('SELECT id, company, alias, name, work_email, access FROM customers WHERE id=?')
+          .bind(doc.customer_id).first()
+      : null;
+    return json({ document: doc, payload, events, queued, siblings, linked,
                   view: `/doc/${doc.id}?t=${doc.access_token}` });
   }
 

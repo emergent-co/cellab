@@ -29,8 +29,13 @@ export async function onRequest({ request, env, params }) {
     const b = await request.json().catch(() => ({}));
 
     const sets = [], vals = [];
-    for (const f of ['title', 'org_name', 'want_date', 'ship_address', 'request_note', 'admin_memo', 'status']) {
+    for (const f of ['title', 'org_name', 'want_date', 'ship_address', 'request_note', 'admin_memo', 'status',
+                     'orderer_name', 'orderer_email', 'orderer_phone']) {
       if (b[f] !== undefined) { sets.push(`${f}=?`); vals.push(String(b[f])); }
+    }
+    // 거래일을 고칠 수 있다 — 옮겨 적은 이력은 날짜가 틀리면 쓸모가 없다
+    if (b.trade_date && /^\d{4}-\d{2}-\d{2}$/.test(String(b.trade_date).slice(0, 10))) {
+      sets.push('created_at=?'); vals.push(`${String(b.trade_date).slice(0, 10)} 00:00:00`);
     }
     if (sets.length) {
       sets.push('updated_at=?'); vals.push(kstISO(), order.id);

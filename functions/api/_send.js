@@ -40,8 +40,10 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
     return { ok: false, error: err };
   }
 
-  // PDF 한 건이 실패해도 나머지는 보낸다 — 첨부가 하나라도 붙는 편이 낫다.
+  // 첨부는 전부 붙거나, 아예 안 보내거나 둘 중 하나다.
+  // 두 장 중 한 장만 간 메일은 받는 쪽에서 알아챌 방법이 없다 — 그게 제일 나쁘다.
   const attachments = [];
+  const missing = [];
   if (pdfConfigured(env)) {
     for (const { doc, payload } of list) {
       const label = DOC_LABEL[doc.type] || '문서';
@@ -49,9 +51,16 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
         const { bytes } = await getOrMakePdf(env, doc, renderDocHTML(payload));
         attachments.push({ filename: `${label}_${doc.doc_no}.pdf`, content: b64(bytes) });
       } catch (e) {
+        missing.push(`${label} ${doc.doc_no}`);
         await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'pdf',
           actor: 'system', result: 'fail', detail: String(e?.message || e) });
       }
+    }
+    if (missing.length) {
+      const err = `${missing.join(', ')} 의 PDF를 만들지 못해 발송을 멈췄습니다. `
+                + '잠시 뒤 다시 시도해주세요. (Cloudflare 브라우저 사용량 한도일 수 있습니다)';
+      await logAll({ action: 'send', channel: 'email', actor, to_addr: to, result: 'fail', detail: err });
+      return { ok: false, error: err };
     }
   }
 

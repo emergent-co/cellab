@@ -28,6 +28,16 @@ export async function onRequest({ request, env }) {
   if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);
 
   const b = await request.json().catch(() => ({}));
+
+  // 견적 문의 처리 상태
+  if (b.action === 'inquiry') {
+    const st = ['접수', '처리중', '완료', '보류'].includes(b.status) ? b.status : null;
+    if (!b.id || !st) return json({ error: 'bad_request' }, 400);
+    await env.DB.prepare('UPDATE inquiries SET status=? WHERE id=?').bind(st, b.id).run();
+    await logEvent(env, { action: 'inquiry_status', actor: 'admin', detail: `견적 문의 #${b.id} → ${st}` });
+    return json({ ok: true, status: st });
+  }
+
   const id = Number(b.id);
   const access = ['대기', '승인', '거절'].includes(b.access) ? b.access : null;
   if (!id || !access) return json({ error: 'bad_request' }, 400);

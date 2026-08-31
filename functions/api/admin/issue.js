@@ -11,7 +11,7 @@ import { json, needAdmin, adminOK, kstISO, kstDate, nextDocNo, plusDays,
          randomToken, logEvent, DOC_LABEL } from '../_lib.js';
 import { ISSUER } from '../_doctpl.js';
 import { deliverMany, calcTotals } from '../_send.js';
-import { docMailBody } from '../_mailer.js';
+import { docMailBody, splitAddr } from '../_mailer.js';
 
 const TYPES = ['quote', 'statement', 'taxinvoice'];
 const round10 = (n) => Math.round(Number(n || 0) / 10) * 10;
@@ -340,8 +340,14 @@ async function sendBatch(request, env, b) {
   if (!docs.length) return json({ error: 'not_found', message: '보낼 수 있는 문서가 없습니다.' }, 404);
 
   const first = docs[0];
-  const to = String(b.to || first.payload.client?.email || '').trim();
-  if (!to) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
+  // '홍길동 <a@b.com>' 로 적어도 되게 — 본문에는 이름, 실제 발송에는 주소만 쓴다
+  const rawTo = String(b.to || first.payload.client?.email || '').trim();
+  if (!rawTo) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
+  const to = splitAddr(rawTo).addr;
+  const rawCc = String(b.cc || '').trim();
+  const cc = rawCc
+    ? rawCc.split(/[,;]/).map((x) => splitAddr(x).addr).filter(Boolean).join(', ')
+    : null;
 
   const labels = docs.map(({ doc }) => DOC_LABEL[doc.type] || '문서');
   const subject = String(b.subject || '').trim()
@@ -355,6 +361,7 @@ async function sendBatch(request, env, b) {
     contact: first.payload.client?.contact,
     total: totals.total,
     viewUrl: `${origin}${first.doc ? `/doc/${first.doc.id}?t=${first.doc.access_token}` : ''}`,
+    to: rawTo, cc: rawCc,
   });
 
   // 예약
@@ -363,7 +370,7 @@ async function sendBatch(request, env, b) {
       `INSERT INTO outbox (document_id, doc_ids, order_id, to_addr, cc_addr, subject, body, send_at, status, created_at)
        VALUES (?,?,?,?,?,?,?,?, '대기', ?)`
     ).bind(first.doc.id, JSON.stringify(docs.map(({ doc }) => doc.id)), first.doc.order_id || null,
-           to, b.cc || null, subject, html, b.send_at, kstISO()).run();
+           to, cc, subject, html, b.send_at, kstISO()).run();
     for (const { doc } of docs) {
       await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'scheduled',
         channel: 'email', actor: 'admin', to_addr: to, detail: `${b.send_at} 발송 예약` });
@@ -371,7 +378,7 @@ async function sendBatch(request, env, b) {
     return json({ ok: true, scheduled: b.send_at, count: docs.length });
   }
 
-  const res = await deliverMany(env, { docs, to, cc: b.cc, subject, html });
+  const res = await deliverMany(env, { docs, to, cc, subject, html });
   if (!res.ok) return json({ error: 'send_failed', message: res.error }, 502);
   return json({ ok: true, sent: true, count: docs.length, attached: res.attached });
 }

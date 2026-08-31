@@ -54,7 +54,9 @@ a{color:inherit;text-decoration:none}
 .nav.adm a{padding:11px 22px;font-size:13.5px;font-weight:600;color:var(--mut);border-left:4px solid transparent}
 .nav.adm a:hover{background:var(--soft-blue);color:var(--navy)}
 /* 관리자 화면 */
-.ops2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+.ops2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,.9fr);gap:18px;align-items:start}
+@media(max-width:1500px){.ops2{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  .ops2>section:last-child{grid-column:1/-1}}
 /* 헤더 알림 */
 .head .bell{position:relative;background:0;border:0;width:36px;height:36px;border-radius:50%;
   cursor:pointer;color:var(--mut);margin-left:auto;flex:0 0 auto;display:flex;
@@ -219,6 +221,20 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
   background:#fff;color:var(--mut);border-radius:8px;padding:7px;font-size:11.5px;font-weight:700;cursor:pointer}
 .ordrst:hover{color:var(--navy);border-color:#cfe1f0}
 
+.cliline{display:flex;align-items:center;gap:10px;border:1px solid #cfe1f0;background:var(--soft-blue);
+  border-radius:10px;padding:9px 11px}
+.cliline .c1{flex:1 1 42%;min-width:0}
+.cliline .c1 b{display:block;font-size:13.5px;font-weight:800;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cliline .c1 small{display:block;font-size:11.5px;color:var(--mut);margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cliline .c2{flex:1 1 58%;min-width:0}
+.cliline select{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 9px;
+  font-size:12.5px;background:#fff;box-sizing:border-box}
+.cliline .nobill{display:block;font-size:11.5px;color:#92400E;background:#FEF3C7;
+  border-radius:7px;padding:6px 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cliline .mini{flex:0 0 auto}
+@media(max-width:640px){.cliline{flex-wrap:wrap}.cliline .c1,.cliline .c2{flex:1 1 100%}}
 .drow{display:flex;align-items:center;gap:10px;margin-bottom:7px}
 .drow>span{flex:0 0 84px;font-size:12.5px;font-weight:700;color:var(--mut)}
 .drow>input{flex:1;min-width:0}
@@ -717,10 +733,9 @@ textarea{min-height:78px;resize:vertical}
       <div class="admh">관리자</div>
       <a data-v="admHome">관리자 홈</a>
       <a data-v="admTodo">할 일<i class="nb" id="nbTodo" hidden></i></a>
-      <a data-v="admOps">주문 · 정산<i class="nb" id="nbOps" hidden></i></a>
+      <a data-v="admOps">주문 · 정산 · 문의<i class="nb" id="nbOps" hidden></i></a>
       <a data-v="admDocs">문서 발행</a>
-      <a data-v="admClients">거래처 관리</a>
-      <a data-v="admMembers">멤버십 · 문의<i class="nb" id="nbMem" hidden></i></a>
+      <a data-v="admClients">거래처 관리<i class="nb" id="nbMem" hidden></i></a>
     </nav>
     <div class="labbox" id="labBox"></div>
     <div class="foot">070-8983-2600<br>info@rndsetup.com</div>
@@ -812,6 +827,14 @@ async function boot(){
     $('#admNav').hidden = false;
     setTimeout(admPoll, 400);
     setInterval(function(){ admPoll(true); }, 120000);   // 2분마다 조용히 갱신
+    // 예약 발송 큐는 따로 돈다. PDF 를 만드느라 몇 초 걸릴 수 있어서
+    // 화면을 옮길 때마다 부르면 클릭이 굼떠진다.
+    var flush = function(){
+      fetch('/api/cron/outbox',{headers:AH}).then(function(r){return r.json();})
+        .then(function(x){ if (x && x.sent) toast('예약 발송 '+x.sent+'건 나갔습니다'); })
+        .catch(function(){});
+    };
+    setTimeout(flush, 4000); setInterval(flush, 180000);
   }
   ordNav();                            // 저장해 둔 메뉴 순서를 되살리고 드래그를 건다
 
@@ -1076,8 +1099,8 @@ function loadKakao(cb){
 
 /* ---------------- 라우팅 ---------------- */
 var VT = { home:'홈', new:'주문하기', orders:'주문 현황', settle:'정산하기', admHome:'관리자 홈',
-           admTodo:'할 일', admOps:'주문 · 정산 관리', admDocs:'문서 발행',
-           admClients:'거래처 관리', admMembers:'멤버십 · 문의' };
+           admTodo:'할 일', admOps:'주문 · 정산 · 문의', admDocs:'문서 발행',
+           admClients:'거래처 관리', admMembers:'거래처 관리' };
 var VIEWS = ['home','new','orders','settle','admHome','admTodo','admOps','admDocs','admClients','admMembers'];
 var ADMVIEWS = ['admHome','admTodo','admOps','admDocs','admClients','admMembers'];
 function skeleton(){
@@ -1099,8 +1122,10 @@ function render(){
     if (view==='admTodo') return viewAdmTodo();
     if (view==='admOps')  return viewAdmOps();
     if (view==='admDocs') return viewAdmDocs();
-    if (view==='admClients') return viewAdmClients();
-    return viewAdmMembers();
+    if (view==='admMembers'){                                   // 옛 주소 호환
+      view='admClients'; location.replace('#admClients'); syncNav();
+    }
+    return viewAdmClients();
   }
   if (view==='home'){ paintHome(); return; }
   skeleton();
@@ -1111,10 +1136,10 @@ function render(){
 // 별도 페이지를 두지 않고 이 셸 안에서 전환한다. 인증은 카카오 세션 쿠키가 한다.
 var AH = { 'content-type': 'application/json' };
 // 사이드바 메뉴에 '기다리는 건수'를 띄운다 — 다른 화면에 있어도 눈에 들어온다
-var admPend = { ord:0, settle:0, mem:0, todo:0 };
+var admPend = { ord:0, settle:0, mem:0, inq:0, todo:0 };
 function admBadges(){
   function set(id, n){ var el=$(id); if(!el) return; el.textContent = n||''; el.hidden = !n; }
-  set('#nbOps', admPend.ord + admPend.settle);
+  set('#nbOps', admPend.ord + admPend.settle + admPend.inq);
   set('#nbMem', admPend.mem);
   set('#nbTodo', admPend.todo);
 }
@@ -1146,15 +1171,11 @@ async function admPoll(force){
 
       admPend.ord = admFeed.ord.length;
       admPend.settle = admFeed.settle.length;
-      admPend.mem = admFeed.mem.length + admFeed.inq.length;
+      admPend.mem = admFeed.mem.length;          // 멤버십 승인 대기 → 거래처 관리
+      admPend.inq = admFeed.inq.length;          // 견적 문의 → 주문·정산·문의
       admPend.todo = admFeed.todo.length;
       admPollAt = Date.now();
       admBadges(); paintNotif();
-      // 예약 발송 큐를 함께 비운다. Pages 에는 cron 이 없어서,
-      // 스케줄러가 붙기 전까지는 관리자가 화면을 열어둔 동안이 유일한 발송 기회다.
-      fetch('/api/cron/outbox',{headers:AH}).then(function(r){return r.json();})
-        .then(function(x){ if (x && x.sent) toast('예약 발송 '+x.sent+'건 나갔습니다'); })
-        .catch(function(){});
     } catch(e){}
     admPolling = null;
   })();
@@ -1184,8 +1205,8 @@ function paintNotif(){
     ['정산 요청',    admFeed.settle, 'admOps',     function(r){ var i=(r.items||[])[0];
         return [(i?i.name:'(항목 없음)')+((r.items||[]).length>1?' 외 '+((r.items||[]).length-1)+'건':''),
                 (r.company||r.contact||'')+' · '+won(r.total)+'원', String(r.created_at||'').slice(5,16)]; }],
-    ['멤버십 승인',  admFeed.mem,    'admMembers', function(c){ return [c.company||c.name||'—', c.work_email||c.email||'', String(c.created_at||'').slice(5,16)]; }],
-    ['견적 문의',    admFeed.inq,    'admMembers', function(q){ return [q.name+(q.org_name?' · '+q.org_name:''),
+    ['멤버십 승인',  admFeed.mem,    'admClients', function(c){ return [c.company||c.name||'—', c.work_email||c.email||'', String(c.created_at||'').slice(5,16)]; }],
+    ['견적 문의',    admFeed.inq,    'admOps',     function(q){ return [q.name+(q.org_name?' · '+q.org_name:''),
                 (q.items||[]).length+'건 · '+(q.email||q.phone||''), String(q.created_at||'').slice(5,16)]; }],
   ];
 
@@ -1231,10 +1252,98 @@ function viewAdmOps(){
         + '<div class="achips" id="asChips"></div>'
         + '<div class="tools" style="margin-bottom:10px"><input type="search" id="asQ" placeholder="거래처 · 담당자" value="'+esc(asKw)+'"></div>'
         + '<div class="panel list" id="asList"><div class="empty">불러오는 중…</div></div></section>'
+      + '<section class="opscol"><h3 class="opsh">견적 문의<i class="cnt" id="amI" hidden></i></h3>'
+        + '<div class="panel list" id="amInqs"><div class="empty">불러오는 중…</div></div></section>'
     + '</div>';
   var t; $('#aoQ').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ aoKw=e.target.value.trim(); aoList(); },300); };
   var t2; $('#asQ').oninput = function(e){ clearTimeout(t2); t2=setTimeout(function(){ asKw=e.target.value.trim(); asPaint(); },200); };
-  aoChips(); aoList(); asLoad();
+  // 세 칸은 서로 다른 곳을 그린다 — 줄줄이 기다릴 이유가 없다
+  aoChips(); aoList(); asLoad(); inqLoad();
+}
+
+/* ---- 견적 문의 ---- */
+var amInq = [];
+async function inqLoad(){
+  var r = await fetch('/api/admin/customers?inquiries=1',{headers:AH})
+    .then(function(r){return r.json();}).catch(function(){return{};});
+  amInq = r.inquiries || [];
+  inqPaint();
+}
+function inqPaint(){
+  var b = $('#amInqs'); if (!b) return;
+  var open = amInq.filter(function(q){ return q.status==='접수'; }).length;
+  var c = $('#amI'); if (c){ c.textContent = open||''; c.hidden = !open; }
+  if (!amInq.length){ b.innerHTML = '<div class="empty">들어온 문의가 없습니다.</div>'; return; }
+  b.innerHTML = '<table class="cards"><thead><tr><th style="width:74px">상태</th><th>문의</th>'
+    + '<th style="width:84px">받은날</th></tr></thead><tbody>'
+    + amInq.map(function(q){
+        var its = q.items||[];
+        return '<tr data-q="'+q.id+'" class="'+(q.status==='접수'?'act':'')+'">'
+          + '<td>'+abadge(q.status||'접수')+'</td>'
+          + '<td class="l ttd"><b>'+esc(q.name||'—')+(q.org_name?' · '+esc(q.org_name):'')+'</b>'
+            + '<small class="rmeta">'+esc([its.length+'건', q.email||q.phone].filter(Boolean).join(' · '))+'</small></td>'
+          + '<td class="dt">'+esc(String(q.created_at||'').slice(5,10))+'</td></tr>'; }).join('')
+    + '</tbody></table>';
+  b.querySelectorAll('tbody tr').forEach(function(tr){
+    tr.onclick = function(){ inqOpen(amInq.filter(function(q){ return String(q.id)===tr.dataset.q; })[0]); };
+  });
+}
+
+// 문의는 읽고 끝나는 게 아니다 — 거래처로 올리고 견적서까지 이어져야 한다
+function inqOpen(q){
+  if (!q) return;
+  var its = q.items||[];
+  var w = amodal('견적 문의', '<div class="dbody" id="inqBody"></div>');
+  var h3 = w.querySelector('h3');
+  if (h3) h3.innerHTML = esc(q.name||'—') + (q.org_name?' <em class="alias">'+esc(q.org_name)+'</em>':'')
+    + ' ' + abadge(q.status||'접수');
+
+  $('#inqBody').innerHTML =
+     '<div class="sec"><h4>보낸 사람</h4>'
+      + akv('이름', q.name) + akv('소속', q.org_name)
+      + akv('이메일', q.email) + akv('연락처', q.phone)
+      + akv('받은 날', String(q.created_at||'').slice(0,16))
+     + '</div>'
+    + (its.length ? '<div class="sec"><h4>문의 품목 '+its.length+'건</h4>'
+        + its.map(function(i){
+            return '<div class="ahr" style="cursor:default"><span class="t"><b>'+esc(i.name||'—')+'</b>'
+              + (i.spec?'<small>'+esc(i.spec)+'</small>':'')+'</span>'
+              + '<span class="a n">'+(i.qty||1)+'개</span></div>'; }).join('')
+        + '</div>' : '')
+    + (q.note ? '<div class="sec"><h4>남긴 말</h4><div class="inqnote">'+esc(q.note)+'</div></div>' : '')
+    + '<div class="sec"><h4>처리</h4><div class="dsrc">'
+      + ['접수','처리중','완료','보류'].map(function(st){
+          return '<button class="mini'+(q.status===st?' ok':'')+'" data-st="'+st+'">'+st+'</button>'; }).join('')
+      + '</div></div>'
+    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ghost" id="inqClient">거래처로 등록</button>'
+      + '<button class="btn pri" id="inqQuote">견적서 발행</button></div>';
+
+  $('#inqBody').querySelectorAll('[data-st]').forEach(function(bt){
+    bt.onclick = async function(){
+      var r = await fetch('/api/admin/customers',{method:'POST',headers:AH,
+        body:JSON.stringify({action:'inquiry', id:q.id, status:bt.dataset.st})})
+        .then(function(x){return x.json();}).catch(function(){return{};});
+      if (!r.ok) return toast('바꾸지 못했습니다');
+      q.status = r.status; w.remove(); toast('견적 문의 '+r.status); inqLoad(); admPoll(true);
+    };
+  });
+
+  // 문의한 곳을 그대로 거래처로 올린다
+  $('#inqClient').onclick = function(){
+    w.remove();
+    clAddForm({ company: q.org_name || q.name || '',
+      onDone: function(c){ toast(c.company+' 등록됨'); } });
+  };
+
+  // 문의 품목을 그대로 견적서 초안으로
+  $('#inqQuote').onclick = function(){
+    w.remove();
+    dqPrefill = { type:'quote', title:(its[0]&&its[0].name)||('견적 문의 · '+(q.name||'')),
+      items: its.map(function(i){ return { name:i.name, spec:i.spec||'', qty:i.qty||1, price:0, note:'' }; }) };
+    go('admDocs');
+    toast('거래처를 고르고 단가를 넣어주세요');
+  };
 }
 async function aoChips(){
   var r = await fetch('/api/admin/orders?stats=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
@@ -1374,7 +1483,7 @@ async function aoMakeDoc(type){
   toast((DT[type]||type)+' 만드는 중…');
   var r = await fetch('/api/admin/docs',{method:'POST',headers:AH,
     body:JSON.stringify({order_id:aoCur.order.id,type:type})}).then(function(r){return r.json();});
-  if(r.ok){ toast(r.doc_no+' 생성됨'); await aoOpen(aoCur.order.id); aoChips(); aoList(); }
+  if(r.ok){ toast(r.doc_no+' 생성됨'); await aoOpen(aoCur.order.id); aoChips(); aoList(); admPoll(true); }
   else toast('실패: '+(r.message||r.error||''));
 }
 function aoSendForm(docId){
@@ -1396,7 +1505,7 @@ function aoSendForm(docId){
     var r = await fetch('/api/admin/docs/'+docId,{method:'POST',headers:AH,body:JSON.stringify(body)})
       .then(function(x){return x.json();});
     btn.disabled=false; btn.textContent='보내기';
-    if(r.ok){ w.remove(); toast(r.scheduled?'예약 완료':'발송 완료'); await aoOpen(aoCur.order.id); aoChips(); aoList(); }
+    if(r.ok){ w.remove(); toast(r.scheduled?'예약 완료':'발송 완료'); await aoOpen(aoCur.order.id); aoChips(); aoList(); admPoll(true); }
     else toast('실패: '+(r.message||r.error||''));
   };
 }
@@ -1406,7 +1515,7 @@ async function aoSave(){
     body:JSON.stringify({ items:aoItems, status:$('#aoSt').value, admin_memo:$('#aoMemo').value })})
     .then(function(x){return x.json();});
   btn.disabled=false; btn.textContent='저장';
-  if(r.ok){ toast('저장했습니다'); closeOrderModal(); document.querySelectorAll('.amodal').forEach(function(m){m.remove();}); aoChips(); aoList(); }
+  if(r.ok){ toast('저장했습니다'); closeOrderModal(); document.querySelectorAll('.amodal').forEach(function(m){m.remove();}); aoChips(); aoList(); admPoll(true); }
   else toast('저장 실패: '+(r.message||r.error||''));
 }
 
@@ -1414,10 +1523,13 @@ async function aoSave(){
 var asAll = [], asReq = [], asFilter = '전체', asKw = '';
 var SQPEND = ['정산요청','처리중'];   // 아직 내 손을 기다리는 상태
 async function asLoad(){
-  var r = await fetch('/api/admin/settlement',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
-  asAll = r.customers || [];
-  var q = await fetch('/api/admin/settlement?requests=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
-  asReq = q.requests || [];
+  // 둘을 한꺼번에 부른다 — 줄줄이 기다리면 그만큼 화면이 늦게 뜬다
+  var both = await Promise.all([
+    fetch('/api/admin/settlement',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};}),
+    fetch('/api/admin/settlement?requests=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};}),
+  ]);
+  asAll = both[0].customers || [];
+  asReq = both[1].requests || [];
   asChips(); asPaint(); admBadges();
 }
 function asMatch(c){
@@ -1575,77 +1687,6 @@ function asPayForm(){
 }
 function kstToday(){ return new Date(Date.now()+9*3600000).toISOString().slice(0,10); }
 
-/* ---- 멤버십 · 문의 ---- */
-var amCust=[], amInq=[];
-function viewAdmMembers(){
-  $('#main').innerHTML = '<div class="ttl">멤버십 · 문의</div>'
-    + '<div class="ops2">'
-      + '<section class="opscol"><h3 class="opsh">멤버십<i class="cnt" id="amW"></i></h3>'
-        + '<div class="panel list" id="amCust"><div class="empty">불러오는 중…</div></div></section>'
-      + '<section class="opscol"><h3 class="opsh">견적 문의<i class="cnt" id="amI"></i></h3>'
-        + '<div class="panel list" id="amInqs"><div class="empty">불러오는 중…</div></div></section>'
-    + '</div>';
-  amLoad();
-}
-async function amLoad(){
-  var a = await fetch('/api/admin/customers',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
-  amCust = a.customers||[];
-  var b = await fetch('/api/admin/customers?inquiries=1',{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
-  amInq = b.inquiries||[];
-  var w = amCust.filter(function(c){ return c.access==='대기'; }).length;
-  if($('#amW')){ $('#amW').textContent = w||''; $('#amW').hidden = !w; }
-  if($('#amI')){ $('#amI').textContent = amInq.length||''; $('#amI').hidden = !amInq.length; }
-  amPaint(); admBadges();
-}
-var ATAG = {'대기':'s0','승인':'s2','거절':'s8'};
-function amPaint(){
-  var a=$('#amCust'), b=$('#amInqs');
-  if(a){
-    a.innerHTML = !amCust.length ? '<div class="empty">회원이 없습니다.</div>'
-      : '<table class="cards"><thead><tr><th style="width:78px">상태</th><th>회원</th>'
-        +'<th style="width:150px">처리</th></tr></thead><tbody>'
-      + amCust.map(function(c){
-          var meta=[esc(c.name||'—')];
-          meta.push(c.work_email ? esc(c.work_email)
-            : '<em class="warn">업무 메일 미입력</em>' + (c.email?' ('+esc(c.email)+')':''));
-          if(c.lab_name) meta.push('실험실 '+esc(c.lab_name));
-          return '<tr class="'+(c.access==='대기'?'act':'')+'" style="cursor:default">'
-            +'<td><span class="badge '+(ATAG[c.access]||'s7')+'">'+esc(c.access||'대기')+'</span></td>'
-            +'<td class="l"><b>'+esc(c.company||c.name||'—')+'</b>'
-              +(c.n_orders?' <span class="rmeta">주문 '+c.n_orders+'</span>':'')
-              +'<small class="rmeta">'+meta.join(' · ')+'</small></td>'
-            +'<td class="amact">'
-              +(c.access!=='승인'?'<button class="mini ok" data-id="'+c.id+'" data-a="승인">승인</button>':'')
-              +(c.access!=='대기'?'<button class="mini" data-id="'+c.id+'" data-a="대기">대기</button>':'')
-              +(c.access!=='거절'?'<button class="mini no" data-id="'+c.id+'" data-a="거절">거절</button>':'')
-            +'</td></tr>'; }).join('')
-      +'</tbody></table>';
-    a.querySelectorAll('.amact button').forEach(function(btn){ btn.onclick=async function(){
-      var act=btn.dataset.a;
-      if(act!=='승인' && !confirm('이 회원을 "'+act+'" 상태로 바꿀까요?')) return;
-      btn.disabled=true;
-      var r = await fetch('/api/admin/customers',{method:'POST',headers:AH,
-        body:JSON.stringify({id:Number(btn.dataset.id),access:act})}).then(function(x){return x.json();});
-      if(r.ok){ toast(act+' 처리했습니다'); amLoad(); } else { btn.disabled=false; alert(r.message||'실패'); }
-    }; });
-  }
-  if(b){
-    b.innerHTML = !amInq.length ? '<div class="empty">들어온 문의가 없습니다.</div>'
-      : amInq.map(function(q){
-          var its=q.items||[];
-          return '<div class="inqrow"><div class="r1"><b>'+esc(q.name||'—')+'</b>'
-            +(q.org_name?'<span class="badge s7">'+esc(q.org_name)+'</span>':'')
-            +'<span class="badge s1">'+its.length+'건</span>'
-            +'<span class="rmeta" style="margin-left:auto">'+esc(String(q.created_at||'').slice(0,16))+'</span></div>'
-            +'<div class="rmeta">'+(q.email?esc(q.email):'')+(q.phone?' · '+esc(q.phone):'')+'</div>'
-            +(its.length?'<div class="inqit">'+its.map(function(i){
-                return '<div>'+esc(i.name)+(i.spec?' <small>'+esc(i.spec)+'</small>':'')
-                  +'<b>'+(i.qty||1)+'개</b></div>'; }).join('')+'</div>':'')
-            +(q.note?'<div class="inqnote">'+esc(q.note)+'</div>':'')
-            +'</div>'; }).join('');
-  }
-}
-
 /* ---------------- 홈 (바로가기) ---------------- */
 // 아이콘은 외부 파일 없이 인라인 SVG로 — 로딩 실패할 게 없다
 var ICON = {
@@ -1704,9 +1745,8 @@ function paintHome(){
       +'<a data-go="admHome">관리자 홈</a>'
       +'<a data-go="admTodo">할 일</a>'
       +'<a data-go="admDocs">문서 발행</a>'
-      +'<a data-go="admOps">주문 · 정산</a>'
-      +'<a data-go="admClients">거래처</a>'
-      +'<a data-go="admMembers">멤버십 · 문의</a></div>');
+      +'<a data-go="admOps">주문 · 정산 · 문의</a>'
+      +'<a data-go="admClients">거래처 관리</a></div>');
   }
 
   var tileKey = function(el){ return el.dataset ? (el.dataset.go || el.dataset.act || null) : null; };
@@ -3037,9 +3077,9 @@ function paintAdmHome(){
       return { k:'정산', go:'admOps', t:(f.name||'(항목 없음)')+((r.items||[]).length>1?' 외 '+((r.items||[]).length-1)+'건':''),
         s:[r.company||r.contact, r.status].filter(Boolean).join(' · '),
         r:won(r.total)+'원', at:r.created_at }; }))
-    .concat(mem.map(function(c){ return { k:'멤버십', go:'admMembers', t:c.company||c.name||'—',
+    .concat(mem.map(function(c){ return { k:'멤버십', go:'admClients', t:c.company||c.name||'—',
         s:c.work_email||c.email||'', r:'승인 대기', at:c.created_at }; }))
-    .concat(inq.map(function(q){ return { k:'문의', go:'admMembers', t:q.name+(q.org_name?' · '+q.org_name:''),
+    .concat(inq.map(function(q){ return { k:'문의', go:'admOps', t:q.name+(q.org_name?' · '+q.org_name:''),
         s:q.email||q.phone||'', r:(q.items||[]).length+'건', at:q.created_at }; }))
     .sort(function(a,b){ return String(b.at||'').localeCompare(String(a.at||'')); })
     .slice(0,7);
@@ -3055,21 +3095,14 @@ function paintAdmHome(){
         + '<b>'+due.length+'<i>/ '+open.length+'</i></b></div>'
       + '<div class="kpi'+(ord.length?' hi':'')+'" data-go="admOps"><span>새 주문</span><b>'+ord.length+'</b></div>'
       + '<div class="kpi'+(set.length?' hi':'')+'" data-go="admOps"><span>정산 요청</span><b>'+set.length+'</b></div>'
-      + '<div class="kpi'+((mem.length+inq.length)?' hi':'')+'" data-go="admMembers"><span>승인 · 문의</span>'
-        + '<b>'+(mem.length+inq.length)+'</b></div>'
+      + '<div class="kpi'+(inq.length?' hi':'')+'" data-go="admOps"><span>견적 문의</span><b>'+inq.length+'</b></div>'
     + '</div>'
 
     + '<div class="tiles">'
       + tile('admTodo',    ICON.check,  '할 일',        '적어두고 견적서로 넘기기', due.length?due.length:'', due.length?'hot':'')
       + tile('admDocs',    ICON.doc,    '문서 발행',    '견적서 · 거래명세서 · 예약발송', '', 'pri')
-      + tile('admOps',     ICON.money,  '주문 · 정산',  '주문 처리와 잔여금 확인', (ord.length+set.length)||'', (ord.length+set.length)?'hot':'')
-      + tile('admMembers', ICON.people, '멤버십 · 문의','승인 대기와 견적 문의', (mem.length+inq.length)||'', (mem.length+inq.length)?'hot':'')
-    + '</div>'
-    + '<div class="tiles">'
-      + '<button class="tile sm" data-go="admClients" style="grid-column:span 4">'
-        + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" '
-        + 'stroke-linecap="round" stroke-linejoin="round">'+ICON.user+'</svg>'
-        + '<b>거래처 관리</b><span>정보 · 발행정보 · 이력 한눈에</span></button>'
+      + tile('admOps',     ICON.money,  '주문 · 정산 · 문의', '들어온 일 처리', (ord.length+set.length+inq.length)||'', (ord.length+set.length+inq.length)?'hot':'')
+      + tile('admClients', ICON.people, '거래처 관리', '정보 · 발행정보 · 이력 · 멤버십', mem.length||'', mem.length?'hot':'')
     + '</div>'
 
     + '<div class="ah2">'
@@ -3305,10 +3338,12 @@ function tdForm(t){
 }
 
 /* 거래처 고르기 — 할 일과 문서 발행에서 같이 쓴다 */
-function clientPicker(box, picked, onPick){
+function clientPicker(box, picked, onPick, renderPicked){
   if (!box) return;
   function paint(){
     if (picked){
+      // 고른 뒤 모양을 화면마다 다르게 그릴 수 있게 열어둔다 (문서 발행은 한 줄로 압축)
+      if (renderPicked) return renderPicked(box, picked, function(){ picked=null; onPick(null); paint(); });
       var pal = (picked.alias && picked.alias !== picked.company) ? ' <em class="alias">'+esc(picked.alias)+'</em>' : '';
       box.innerHTML = '<div class="clipick"><div class="t"><b>'+esc(picked.company||picked.name||'—')+pal+'</b>'
         +'<small>'+esc([picked.name, picked.lab_name, picked.work_email||picked.email].filter(Boolean).join(' · ')||'—')+'</small></div>'
@@ -3390,10 +3425,16 @@ async function clLoad(){
 
 function clChips(){
   var el = $('#clChips'); if(!el) return;
-  var all = [['전체',clStats.all_||0],['대기',clStats.wait||0],['승인',clStats.ok||0],
-             ['거래처',clStats.client||0],['거절',clStats.no||0]];
+  // '승인'은 로그인해서 쓰는 멤버십 회원, '거래처'는 서류 발행용으로만 들고 있는 곳.
+  // 이름이 비슷하면 헷갈리니 화면에는 풀어서 적는다.
+  var all = [['전체','전체',clStats.all_||0], ['대기','승인 대기',clStats.wait||0],
+             ['승인','멤버십',clStats.ok||0], ['거래처','거래처',clStats.client||0],
+             ['거절','거절',clStats.no||0]];
   el.innerHTML = all.map(function(x){
-    return '<button class="achip'+(x[0]===clFilter?' on':'')+'" data-s="'+esc(x[0])+'">'+esc(x[0])+'<b>'+x[1]+'</b></button>'; }).join('')
+    return '<button class="achip'+(x[0]===clFilter?' on':'')+'" data-s="'+esc(x[0])+'" '
+      + 'title="'+esc(x[0]==='승인'?'승인된 멤버십 회원 — 로그인해서 직접 주문·정산합니다'
+                     : x[0]==='거래처'?'서류 발행용으로만 등록해 둔 곳 — 로그인 계정이 아닙니다':'')+'">'
+      + esc(x[1])+'<b>'+x[2]+'</b></button>'; }).join('')
     + (clStats.post ? '<span class="achip" style="border-color:#cfe1f0;background:var(--soft-blue);color:var(--navy)">후불 <b>'+clStats.post+'</b></span>' : '');
   el.onclick = function(e){ var b=e.target.closest('.achip[data-s]'); if(!b) return; clFilter=b.dataset.s; clLoad(); };
 }
@@ -3420,6 +3461,182 @@ function clPaint(){
           + '<td class="n">'+(c.due ? won(c.due)+'원' : '<span class="dim">'+(c.billing_mode==='후불'?'0원':'선불')+'</span>')+'</td></tr>'; }).join('')
     + '</tbody></table>';
   el.querySelectorAll('tbody tr').forEach(function(tr){ tr.onclick=function(){ clOpen(tr.dataset.id); }; });
+}
+
+/* ==================== 이력 직접 입력 ====================
+   시스템을 쓰기 전에 오가던 거래를 옮겨 적을 때 쓴다.
+   직접 넣은 건은 manual=1 로 표시해 시스템을 타고 들어온 것과 구분한다 — 나중에 장부를 맞출 때 필요하다. */
+
+function mItems(box, items, opts){
+  opts = opts || {};
+  function paint(){
+    box.innerHTML = items.map(function(it,i){
+      return '<div class="dq" data-i="'+i+'">'
+        +'<div class="r1"><input class="nm" placeholder="품명" value="'+esc(it.name||'')+'">'
+        + (opts.spec ? '<input class="sp" placeholder="규격" value="'+esc(it.spec||'')+'">' : '') +'</div>'
+        +'<div class="r2"><input class="qy" type="number" min="1" value="'+(it.qty||1)+'" title="수량">'
+        +'<input class="pr" type="text" inputmode="numeric" value="'+(it.price?won(it.price):'')+'" title="'+esc(opts.priceLabel||'단가')+'" placeholder="'+esc(opts.priceLabel||'단가')+'">'
+        +'<span class="sb">'+won(Math.round((it.qty||0)*(it.price||0)))+'원</span>'
+        +(items.length>1?'<button class="dx">×</button>':'')+'</div></div>'; }).join('');
+    box.querySelectorAll('.dq').forEach(function(el){
+      var i = Number(el.dataset.i);
+      el.querySelector('.nm').oninput = function(e){ items[i].name = e.target.value; };
+      var sp = el.querySelector('.sp'); if (sp) sp.oninput = function(e){ items[i].spec = e.target.value; };
+      el.querySelector('.qy').oninput = function(e){ items[i].qty = Math.max(1,Number(e.target.value)||1); sum(el,i); };
+      el.querySelector('.pr').oninput = function(e){ items[i].price = numFmt(e.target); sum(el,i); };
+      el.querySelector('.pr').onblur  = function(e){
+        items[i].price = numVal(e.target);
+        e.target.value = items[i].price ? won(items[i].price) : ''; sum(el,i); };
+      var x = el.querySelector('.dx'); if (x) x.onclick = function(){ items.splice(i,1); paint(); };
+    });
+    if (opts.onChange) opts.onChange();
+  }
+  function sum(el,i){
+    el.querySelector('.sb').textContent = won(Math.round((items[i].qty||0)*(items[i].price||0)))+'원';
+    if (opts.onChange) opts.onChange();
+  }
+  paint();
+  return { add: function(){ items.push({name:'',spec:'',qty:1,price:0}); paint(); }, paint: paint };
+}
+
+/* ---- 주문 직접 입력 · 수정 ---- */
+async function ordForm(client, orderId){
+  var o = null, items = [];
+  if (orderId){
+    var d = await fetch('/api/admin/orders/'+orderId,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
+    if (!d.order) return toast('불러오지 못했습니다');
+    o = d.order;
+    items = (d.items||[]).map(function(i){ return { name:i.name, spec:i.spec||'', qty:Number(i.qty)||1, price:Number(i.unit_price)||0 }; });
+  }
+  if (!items.length) items = [{name:'',spec:'',qty:1,price:0}];
+
+  var w = amodal(orderId ? '주문 수정' : '주문 직접 입력',
+     '<div class="dcard" style="border:0;padding:0">'
+    +'<div class="dnote" style="margin-bottom:12px">'+esc(client.company||client.name||'—')
+      +((client.alias && client.alias!==client.company)?' · '+esc(client.alias):'')
+      +' 의 거래로 기록됩니다.</div>'
+    +'<div class="d2col"><div><label>거래일</label><input type="date" id="of-date" value="'
+      + esc(o ? String(o.created_at||'').slice(0,10) : kstToday()) +'"></div>'
+      +'<div><label>상태</label><select id="of-st">'
+      + ST.map(function(x){ return '<option'+((o?o.status:'완료')===x?' selected':'')+'>'+x+'</option>'; }).join('')
+      +'</select></div></div>'
+    +'<label class="req">제목</label><input type="text" id="of-t" value="'+esc(o?(o.title||''):'')+'" placeholder="예) 관형 전기로 및 부속">'
+    +'<label>품목 <span class="hint" style="font-weight:600">(단가는 부가세 별도)</span></label>'
+    +'<div id="of-items"></div>'
+    +'<button class="mini" id="of-add" style="margin-top:4px">＋ 품목 추가</button>'
+    +'<div class="qsum" id="of-sum"></div>'
+    +'<label>메모</label><textarea id="of-m" rows="2" placeholder="내부 메모">'+esc(o?(o.admin_memo||''):'')+'</textarea>'
+    +'</div>'
+    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="of-go">'+(orderId?'저장':'추가')+'</button></div>');
+
+  function sums(){
+    var sup = items.reduce(function(a,i){ return a + Math.round((i.qty||0)*(i.price||0)); }, 0);
+    var vat = Math.round(sup*0.1);
+    $('#of-sum').innerHTML = '<div><span>공급가액</span><b>'+won(sup)+'원</b></div>'
+      + '<div><span>부가세</span><b>'+won(vat)+'원</b></div>'
+      + '<div class="tt"><span>합계</span><b>'+won(sup+vat)+'원</b></div>';
+  }
+  var box = mItems($('#of-items'), items, { spec:true, priceLabel:'단가 (VAT 별도)', onChange:sums });
+  $('#of-add').onclick = box.add;
+
+  $('#of-go').onclick = async function(){
+    var rows = items.filter(function(i){ return (i.name||'').trim(); });
+    if (!rows.length) return alert('품목을 1개 이상 넣어주세요.');
+    if (!$('#of-t').value.trim()) return alert('제목을 입력해주세요.');
+    var body = {
+      customer_id: client.id, title:$('#of-t').value, status:$('#of-st').value,
+      trade_date:$('#of-date').value, admin_memo:$('#of-m').value,
+      items: rows.map(function(i){ return { name:i.name, spec:i.spec||'', qty:i.qty, unit_price:i.price }; }),
+    };
+    var b = $('#of-go'); b.disabled = true;
+    var r = orderId
+      ? await fetch('/api/admin/orders/'+orderId,{method:'PUT',headers:AH,body:JSON.stringify(body)})
+          .then(function(x){return x.json();}).catch(function(){return{};})
+      : await fetch('/api/admin/orders',{method:'POST',headers:AH,body:JSON.stringify(body)})
+          .then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false;
+    if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
+    w.remove(); toast(orderId?'주문을 수정했습니다':'주문을 추가했습니다');
+    document.querySelectorAll('.modal').forEach(function(m){ m.remove(); });
+    clOpen(client.id); admPoll(true);
+  };
+}
+
+/* ---- 정산 요청 직접 입력 · 수정 ---- */
+function setForm(client, st, profiles){
+  var items = (st && st.items || []).map(function(i){ return { name:i.name, qty:i.qty||1, price:i.price||0 }; });
+  if (!items.length) items = [{name:'',qty:1,price:0}];
+  var ps = profiles || [];
+  var billId = st ? st.bill_profile_id : ((ps.filter(function(p){return p.is_default;})[0]||ps[0]||{}).id || null);
+
+  var w = amodal(st ? '정산 요청 수정' : '정산 요청 직접 입력',
+     '<div class="dcard" style="border:0;padding:0">'
+    +'<div class="dnote" style="margin-bottom:12px">'+esc(client.company||client.name||'—')+' 의 정산으로 기록됩니다.</div>'
+    +'<div class="d2col"><div><label>요청일</label><input type="date" id="sf-date" value="'
+      + esc(st ? String(st.created_at||'').slice(0,10) : kstToday()) +'"></div>'
+      +'<div><label>상태</label><select id="sf-st">'
+      + ['정산요청','처리중','서류발급 완료','입금완료','반려'].map(function(x){
+          return '<option'+((st?st.status:'입금완료')===x?' selected':'')+'>'+x+'</option>'; }).join('')
+      +'</select></div>'
+      +'<div><label>결제</label><select id="sf-m">'
+      + ['통장','카드'].map(function(x){ return '<option'+((st?st.method:'통장')===x?' selected':'')+'>'+x+'</option>'; }).join('')
+      +'</select></div></div>'
+    +'<label>항목 <span class="hint" style="font-weight:600">(단가는 부가세 포함)</span></label>'
+    +'<div id="sf-items"></div>'
+    +'<button class="mini" id="sf-add" style="margin-top:4px">＋ 항목 추가</button>'
+    +'<div class="qsum" id="sf-sum"></div>'
+    +'<label>서류 날짜 <span class="hint" style="font-weight:600">(선택)</span></label>'
+    +'<div class="drow"><span>견적서</span><input type="date" id="sf-d1" value="'+esc(st&&st.quote_date||'')+'"></div>'
+    +'<div class="drow"><span>거래명세서</span><input type="date" id="sf-d2" value="'+esc(st&&st.statement_date||'')+'"></div>'
+    +'<div class="drow"><span>세금계산서</span><input type="date" id="sf-d3" value="'+esc(st&&st.taxinvoice_date||'')+'"></div>'
+    + (ps.length ? '<label>계산서 발행 정보</label><select id="sf-bill">'
+        + ps.map(function(p){ return '<option value="'+p.id+'"'+(billId===p.id?' selected':'')+'>'
+            + esc([p.company,p.biz_no].filter(Boolean).join(' · ')) + (p.is_default?' (기본)':'') + '</option>'; }).join('')
+        + '</select>' : '')
+    +'<label>메모</label><textarea id="sf-m2" rows="2">'+esc(st&&st.admin_memo||'')+'</textarea>'
+    +'</div>'
+    +'<div class="mrow">'+(st?'<button class="btn gray" id="sf-del">삭제</button>':'')
+      +'<button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="sf-go">'+(st?'저장':'추가')+'</button></div>');
+
+  function sums(){
+    var tot = items.reduce(function(a,i){ return a + r10((i.qty||0)*(i.price||0)); }, 0);
+    var sup = Math.round(tot/1.1);
+    $('#sf-sum').innerHTML = '<div><span>공급가액</span><b>'+won(sup)+'원</b></div>'
+      + '<div><span>부가세</span><b>'+won(tot-sup)+'원</b></div>'
+      + '<div class="tt"><span>총계 (VAT 포함)</span><b>'+won(tot)+'원</b></div>';
+  }
+  var box = mItems($('#sf-items'), items, { priceLabel:'단가 (VAT 포함)', onChange:sums });
+  $('#sf-add').onclick = box.add;
+
+  if ($('#sf-del')) $('#sf-del').onclick = async function(){
+    if (!confirm('이 정산 기록을 지울까요?')) return;
+    await fetch('/api/admin/settlement',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'settle_delete', settlement_id:st.id})});
+    w.remove(); toast('지웠습니다');
+    document.querySelectorAll('.modal').forEach(function(m){ m.remove(); });
+    clOpen(client.id); admPoll(true);
+  };
+
+  $('#sf-go').onclick = async function(){
+    var rows = items.filter(function(i){ return (i.name||'').trim(); });
+    if (!rows.length) return alert('항목을 1개 이상 넣어주세요.');
+    var b = $('#sf-go'); b.disabled = true;
+    var r = await fetch('/api/admin/settlement',{method:'POST',headers:AH,body:JSON.stringify({
+      action:'settle_save', settlement_id: st?st.id:null, customer_id: client.id,
+      items: rows, status:$('#sf-st').value, method:$('#sf-m').value, trade_date:$('#sf-date').value,
+      quote_date:$('#sf-d1').value, statement_date:$('#sf-d2').value, taxinvoice_date:$('#sf-d3').value,
+      bill_profile_id: $('#sf-bill') ? Number($('#sf-bill').value) : null,
+      admin_memo:$('#sf-m2').value,
+      reply_email: client.work_email || client.email || '' })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false;
+    if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
+    w.remove(); toast(st?'정산을 수정했습니다':'정산을 추가했습니다');
+    document.querySelectorAll('.modal').forEach(function(m){ m.remove(); });
+    clOpen(client.id); admPoll(true);
+  };
 }
 
 /* ---- 거래처 추가 ----
@@ -3565,11 +3782,13 @@ async function clOpen(id){
     + '</div>'
 
     + clFold('주문', d.orders, function(o){
-        return [o.title||o.order_no, o.order_no+' · '+o.status, o.total_amount?won(o.total_amount)+'원':'미정', 'admOps']; })
+        return [(o.manual?'✎ ':'')+(o.title||o.order_no),
+                String(o.created_at||'').slice(0,10)+' · '+o.status,
+                o.total_amount?won(o.total_amount)+'원':'미정', '@order:'+o.id]; }, 'order')
     + clFold('정산 요청', d.settlements, function(s){
         var f=(s.items||[])[0]||{};
-        return [(f.name||'(항목 없음)')+((s.items||[]).length>1?' 외 '+((s.items||[]).length-1)+'건':''),
-                s.status+' · '+String(s.created_at||'').slice(0,10), won(s.total)+'원', '@settle:'+s.id]; })
+        return [(s.manual?'✎ ':'')+(f.name||'(항목 없음)')+((s.items||[]).length>1?' 외 '+((s.items||[]).length-1)+'건':''),
+                String(s.created_at||'').slice(0,10)+' · '+s.status, won(s.total)+'원', '@set:'+s.id]; }, 'settle')
     + clFold('발행 문서', d.documents, function(x){
         return [x.title||x.doc_no, (DTYPE[x.type]||x.type)+' · '+x.doc_no+' · '+x.status,
                 x.total?won(x.total)+'원':'', '@doc:'+x.id]; })
@@ -3604,14 +3823,20 @@ async function clOpen(id){
     b.onclick = function(){
       var g = b.dataset.jump;
       if (g.indexOf('@doc:')===0){ w.remove(); return dqOpen(g.slice(5)); }
-      if (g.indexOf('@settle:')===0){                  // 그 정산 요청으로 견적서 뽑기
-        w.remove();
-        dqPrefill = { type:'quote', customer_id:c.id, settlement_id:Number(g.slice(8)), items:[], title:'' };
-        go('admDocs');
-        setTimeout(function(){ dqPickSource('settlement'); }, 700);
-        return;
+      if (g.indexOf('@order:')===0) return ordForm(c, Number(g.slice(7)));
+      if (g.indexOf('@set:')===0){
+        var st = (d.settlements||[]).filter(function(x){ return String(x.id)===g.slice(5); })[0];
+        return setForm(c, st, d.profiles);
       }
       w.remove(); go(g);
+    };
+  });
+  // 직접 입력 — 시스템 밖에서 오간 거래를 옮겨 적는다
+  $('#clBody').querySelectorAll('[data-add]').forEach(function(b){
+    b.onclick = function(e){
+      e.preventDefault(); e.stopPropagation();
+      if (b.dataset.add === 'order') ordForm(c, null);
+      else setForm(c, null, d.profiles);
     };
   });
 
@@ -3633,10 +3858,12 @@ async function clOpen(id){
 }
 
 // 주문·정산·문서처럼 길어지는 목록은 접어둔다 — 상세 모달이 세로로 길어지지 않게
-function clFold(title, rows, fmt){
+function clFold(title, rows, fmt, addKind){
   rows = rows || [];
   return '<details class="fold"><summary>'+esc(title)+(rows.length?'<i>'+rows.length+'</i>':'')+'</summary>'
     + '<div class="foldin">'
+    + (addKind ? '<button class="mini" data-add="'+addKind+'" style="width:100%;margin-bottom:8px">'
+        + '＋ '+esc(title)+' 직접 입력</button>' : '')
     + (rows.length
       ? rows.map(function(r){ var f = fmt(r);
           return '<button class="ahr" data-jump="'+esc(f[3])+'">'
@@ -3697,8 +3924,7 @@ function paintDocs(){
        + '<p class="dnote">여러 개를 고르면 <b>같은 내용으로 한 벌</b>이 만들어지고, 메일도 한 통으로 나갑니다.</p>'
        + (dqTodo ? '<div class="dfrom">할 일에서 넘어왔습니다 — 발행하면 그 할 일이 완료됩니다<button id="dqUnlinkTodo" title="연결 끊기">×</button></div>' : '')
      + '</div>'
-     + '<div class="dcard"><h4>거래처</h4><div id="dqCliBox"></div>'
-       + '<div id="dqBillBox"></div>'
+     + '<div class="dcard"><h4>거래처 · 계산서 발행정보</h4><div id="dqCliBox"></div>'
        + '<div class="dsrc" id="dqSrcBox" hidden>'
          + '<button class="mini" id="dqFromOrder">주문에서 가져오기</button>'
          + '<button class="mini" id="dqFromSettle">정산 요청에서 가져오기</button></div>'
@@ -3719,7 +3945,7 @@ function paintDocs(){
          + '<button data-v="0"'+(dqVat?'':' class="on"')+'>부가세 별도</button></div>'
        + '<div id="dqTargetBox"'+(dqVat?'':' hidden')+'>'
          + '<label>목표 총액 <span class="hint" style="font-weight:600">(부가세 포함 · 선택)</span></label>'
-         + '<div class="d2col"><input type="number" id="dqTarget" inputmode="numeric" placeholder="예) 3,300,000" value="'+(dqTarget||'')+'">'
+         + '<div class="d2col"><input type="text" id="dqTarget" inputmode="numeric" placeholder="예) 3,300,000" value="'+(dqTarget?won(dqTarget):'')+'">'
            + '<button class="btn gray" id="dqFit" style="flex:0 0 90px">맞추기</button></div>'
          + '<p class="dnote">총액을 넣고 <b>맞추기</b>를 누르면 단가가 빈 항목에 금액을 나눠 채워 합계를 정확히 맞춥니다.</p></div>'
        + '<label style="margin-top:16px">품목</label><div id="dqItems"></div>'
@@ -3755,7 +3981,12 @@ function paintDocs(){
   dqPaintBill(); dqSrcButtons(); dqSrcTag();
 
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
-  $('#dqTarget').oninput = function(e){ dqTarget = r10(e.target.value); dqSum(); };
+  $('#dqTarget').oninput = function(e){ dqTarget = numFmt(e.target); dqSum(); };
+  $('#dqTarget').onblur  = function(e){          // 칸을 벗어날 때 10원 단위로 맞춘다
+    dqTarget = r10(numVal(e.target));
+    e.target.value = dqTarget ? won(dqTarget) : '';
+    dqSum();
+  };
   $('#dqFit').onclick = dqFit;
   $('#dqVatSeg').onclick = function(e){
     var b = e.target.closest('button[data-v]'); if(!b) return;
@@ -3796,7 +4027,19 @@ function dqPaintClient(){
     dqCli = c; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
     dqPaintBill(); dqSrcButtons();
     if (c) dqLoadClient(c.id, true);
-  });
+  }, dqCliLine);
+}
+
+// 거래처와 계산서 발행정보를 한 줄에 나란히 — 두 블록으로 나누면 화면만 길어진다
+function dqCliLine(box, c, unpick){
+  var al = (c.alias && c.alias !== c.company) ? ' <em class="alias">'+esc(c.alias)+'</em>' : '';
+  box.innerHTML = '<div class="cliline">'
+    + '<div class="c1"><b>'+esc(c.company||c.name||'—')+al+'</b>'
+      + '<small>'+esc([c.name, c.lab_name, c.work_email||c.email].filter(Boolean).join(' · ')||'—')+'</small></div>'
+    + '<div class="c2" id="dqBillInline"></div>'
+    + '<button class="mini" data-chg>바꾸기</button></div>';
+  box.querySelector('[data-chg]').onclick = unpick;
+  dqPaintBill();
 }
 
 function dqReset(){
@@ -3815,20 +4058,22 @@ async function dqLoadClient(id, keep){
 }
 
 function dqPaintBill(){
-  var box = $('#dqBillBox'); if(!box) return;
+  // 거래처 줄 안쪽에 붙는다. 여러 개여도 한 칸(select)으로 끝낸다.
+  var box = $('#dqBillInline') || $('#dqBillBox'); if(!box) return;
   if (!dqCli){ box.innerHTML=''; return; }
   if (!dqProfiles.length){
-    box.innerHTML = '<div class="dnote" style="margin-top:12px">등록된 세금계산서 발행 정보가 없습니다 — 거래처 정보로 발행합니다.</div>';
+    box.innerHTML = '<span class="nobill">발행정보 없음 — 거래처 정보로 발행</span>';
     return;
   }
-  box.innerHTML = '<label>계산서 발행 정보</label>' + dqProfiles.map(function(p){
-    return '<label class="radio'+(dqBill && dqBill.id===p.id?' on':'')+'">'
-      +'<input type="radio" name="dqbill" value="'+p.id+'"'+(dqBill && dqBill.id===p.id?' checked':'')+'>'
-      +'<div><b>'+esc(p.company||'—')+(p.is_default?' <span class="badge s2">기본</span>':'')+'</b>'
-      +'<small>'+esc([p.biz_no,p.ceo,p.tax_email].filter(Boolean).join(' · ')||'—')+'</small></div></label>'; }).join('');
-  box.querySelectorAll('input[name=dqbill]').forEach(function(r){
-    r.onchange = function(){ dqBill = dqProfiles.filter(function(p){ return String(p.id)===r.value; })[0]||null; dqPaintBill(); };
-  });
+  box.innerHTML = '<select id="dqBillSel" title="계산서 발행 정보">'
+    + dqProfiles.map(function(p){
+        return '<option value="'+p.id+'"'+(dqBill && dqBill.id===p.id?' selected':'')+'>'
+          + esc([p.company||'—', p.biz_no, p.ceo].filter(Boolean).join(' · '))
+          + (p.is_default?' (기본)':'') + '</option>'; }).join('')
+    + '</select>';
+  $('#dqBillSel').onchange = function(e){
+    dqBill = dqProfiles.filter(function(p){ return String(p.id)===e.target.value; })[0] || null;
+  };
 }
 
 function dqSrcButtons(){
@@ -3887,6 +4132,18 @@ function dqPickSource(kind){
   });
 }
 
+/* 금액 칸은 치는 동안 쉼표를 붙여준다. 0 이 몇 개인지 세고 있을 수는 없다.
+   type=number 로는 쉼표를 못 넣어서 text + inputmode=numeric 으로 받고 직접 찍는다. */
+function numVal(el){ return Number(String(el && el.value || '').replace(/[^\d]/g,'')) || 0; }
+function numFmt(el){
+  var end = el.value.length - (el.selectionStart == null ? el.value.length : el.selectionStart);
+  var d = el.value.replace(/[^\d]/g,'');
+  el.value = d ? Number(d).toLocaleString('ko-KR') : '';
+  var pos = Math.max(0, el.value.length - end);
+  try { el.setSelectionRange(pos, pos); } catch(e){}
+  return Number(d || 0);
+}
+
 function dqLine(it){ return dqVat ? r10((it.qty||0)*(it.price||0)) : Math.round((it.qty||0)*(it.price||0)); }
 function dqTotal(){ return dqItems.reduce(function(a,i){ return a + dqLine(i); }, 0); }
 
@@ -3898,7 +4155,7 @@ function dqPaintItems(){
       +'<div class="r1"><input class="nm" placeholder="품명" value="'+esc(it.name||'')+'">'
         +'<input class="sp" placeholder="규격 · 모델" value="'+esc(it.spec||'')+'"></div>'
       +'<div class="r2"><input class="qy" type="number" min="1" value="'+(it.qty||1)+'" title="수량">'
-        +'<input class="pr" type="number" step="10" inputmode="numeric" value="'+(it.price||0)+'" title="'+lbl+'" placeholder="'+lbl+'">'
+        +'<input class="pr" type="text" inputmode="numeric" value="'+(it.price?won(it.price):'')+'" title="'+lbl+'" placeholder="'+lbl+'">'
         +'<span class="sb">'+won(dqLine(it))+'원</span>'
         +(dqItems.length>1?'<button class="dx" aria-label="삭제">×</button>':'')+'</div></div>';
   }).join('');
@@ -3907,9 +4164,13 @@ function dqPaintItems(){
     el.querySelector('.nm').oninput = function(e){ dqItems[i].name = e.target.value; };
     el.querySelector('.sp').oninput = function(e){ dqItems[i].spec = e.target.value; };
     el.querySelector('.qy').oninput = function(e){ dqItems[i].qty = Math.max(1,Number(e.target.value)||1); dqRow(el,i); };
-    el.querySelector('.pr').oninput = function(e){ dqItems[i].price = Number(e.target.value)||0; dqRow(el,i); };
+    el.querySelector('.pr').oninput = function(e){ dqItems[i].price = numFmt(e.target); dqRow(el,i); };
     el.querySelector('.pr').onblur  = function(e){
-      if (dqVat){ dqItems[i].price = r10(e.target.value); e.target.value = dqItems[i].price; dqRow(el,i); } };
+      // 부가세 포함 기준이면 10원 단위로 맞춘다 — 그래야 소계·총계가 0으로 끝난다
+      dqItems[i].price = dqVat ? r10(numVal(e.target)) : numVal(e.target);
+      e.target.value = dqItems[i].price ? won(dqItems[i].price) : '';
+      dqRow(el,i);
+    };
     var x = el.querySelector('.dx'); if (x) x.onclick = function(){ dqItems.splice(i,1); dqPaintItems(); };
   });
   dqSum();
@@ -3934,7 +4195,7 @@ function dqSum(){
 
 // 목표 총액에 맞춰 단가가 빈 항목을 채운다 — 정산 요청과 같은 규칙
 function dqFit(){
-  var t = r10($('#dqTarget').value);
+  var t = r10(numVal($('#dqTarget')));
   if (!t) return alert('목표 총액을 먼저 입력해주세요.');
   if (!dqVat) return alert('‘부가세 포함’ 기준일 때만 맞출 수 있습니다.');
   dqTarget = t;

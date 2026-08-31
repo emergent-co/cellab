@@ -42,10 +42,37 @@ export async function sendMail(env, m) {
 }
 
 // 문서 발송 기본 메일 본문
-export function docMailBody({ label, docNo, company, contact, total, viewUrl }) {
+// '홍길동 <a@b.com>' 처럼 이름을 붙여 적을 수 있게 한다. 없으면 메일 앞부분을 이름으로 쓴다.
+export function splitAddr(v) {
+  const raw = String(v || '').trim();
+  const m = raw.match(/^\s*(.*?)\s*<\s*([^>]+)\s*>\s*$/);
+  const addr = (m ? m[2] : raw).trim();
+  let name = (m ? m[1] : '').replace(/^["']|["']$/g, '').trim();
+  if (!name) name = addr.split('@')[0] || '';
+  return { name, addr };
+}
+
+export function docMailBody({ label, docNo, company, contact, total, viewUrl, to, cc }) {
   const won = (n) => Number(n || 0).toLocaleString('ko-KR');
+  const esc = (t) => String(t == null ? '' : t)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  // 수신 / 참조 — 누구에게 가는 메일인지 첫 줄에서 바로 보이게
+  const t = to ? splitAddr(to) : null;
+  const toName = contact || (t && t.name) || '담당자';
+  const line = (k, nm, ad) =>
+    `<tr><td style="padding:2px 12px 2px 0;color:#5a6779;white-space:nowrap">${k}</td>`
+    + `<td style="padding:2px 0"><b>${esc(nm)} 님</b>`
+    + (ad ? ` <span style="color:#8a94a3;font-size:13px">&lt;${esc(ad)}&gt;</span>` : '') + '</td></tr>';
+
+  const ccList = String(cc || '').split(/[,;]/).map((x) => x.trim()).filter(Boolean).map(splitAddr);
+
   return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:15px;color:#1a2332;line-height:1.65">
-  <p>${company || ''} ${contact ? contact + ' 님' : '담당자님'}, 안녕하세요.<br>실험셋업연구소(이머전트)입니다.</p>
+  <table style="border-collapse:collapse;font-size:14px;margin-bottom:20px">
+    ${line('수신', toName, t && t.addr)}
+    ${ccList.map((c) => line('참조', c.name, c.addr)).join('')}
+  </table>
+  <p>${esc(company || '')} ${esc(toName)} 님, 안녕하세요.<br>실험셋업연구소(이머전트)입니다.</p>
   <p>요청하신 <b>${label}</b>를 보내드립니다. 첨부 PDF를 확인해주세요.</p>
   <table style="border-collapse:collapse;margin:18px 0;font-size:14px">
     <tr><td style="padding:5px 14px 5px 0;color:#5a6779">문서번호</td><td style="padding:5px 0"><b>${docNo}</b></td></tr>

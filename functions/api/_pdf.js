@@ -5,30 +5,39 @@ export function pdfConfigured(env) {
   return !!(env.CF_ACCOUNT_ID && env.CF_BROWSER_TOKEN);
 }
 
-/** @returns {Promise<ArrayBuffer>} PDF 바이트 */
-export async function htmlToPdf(env, html) {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/** @returns {Promise<ArrayBuffer>} PDF 바이트
+ *  서류를 여러 장 연달아 만들면 429(Rate limit)가 난다. 몇 초 쉬었다 다시 걸면 대개 통과한다. */
+export async function htmlToPdf(env, html, tries = 3) {
   if (!pdfConfigured(env)) {
     throw new Error('PDF 생성 미설정 — CF_ACCOUNT_ID / CF_BROWSER_TOKEN 환경변수가 필요합니다.');
   }
   const url = `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/browser-rendering/pdf`;
-  const r = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${env.CF_BROWSER_TOKEN}`,
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      html,
-      gotoOptions: { waitUntil: 'networkidle0', timeout: 25000 },
-      pdfOptions: { format: 'a4', printBackground: true, preferCSSPageSize: true },
-    }),
-  });
-  if (!r.ok) {
+  let last = '';
+  for (let i = 0; i < tries; i++) {
+    if (i) await sleep(i * 2500);                 // 2.5초 → 5초
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.CF_BROWSER_TOKEN}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        html,
+        gotoOptions: { waitUntil: 'networkidle0', timeout: 25000 },
+        pdfOptions: { format: 'a4', printBackground: true, preferCSSPageSize: true },
+      }),
+    });
+    if (r.ok) return await r.arrayBuffer();
+
     let detail = '';
-    try { detail = (await r.text()).slice(0, 400); } catch { /* noop */ }
-    throw new Error(`PDF 생성 실패 (${r.status}) ${detail}`);
+    try { detail = (await r.text()).slice(0, 300); } catch { /* noop */ }
+    last = `PDF 생성 실패 (${r.status}) ${detail}`;
+    // 429(한도)·5xx(일시 장애)만 다시 시도한다. 401·400 은 다시 걸어도 똑같다.
+    if (r.status !== 429 && r.status < 500) break;
   }
-  return await r.arrayBuffer();
+  throw new Error(last);
 }
 
 // R2 버킷(env.DOCS)이 연결돼 있으면 캐시, 없으면 매번 생성.

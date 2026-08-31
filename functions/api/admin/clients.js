@@ -32,10 +32,13 @@ async function get(request, env) {
     const [profiles, orders, settles, docs, members, sum, led] = await Promise.all([
       env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id')
         .bind(c.id).all().then((r) => r.results || []),
-      env.DB.prepare(`SELECT id, order_no, title, status, total_amount, created_at
+      env.DB.prepare(`SELECT id, order_no, title, status, total_amount, manual, created_at
                         FROM orders WHERE customer_id=? ORDER BY id DESC LIMIT 20`)
         .bind(c.id).all().then((r) => r.results || []),
-      env.DB.prepare(`SELECT id, status, items_json, supply, vat, total, method, created_at
+      // 수정 폼에서 그대로 쓸 수 있게 필요한 칸을 다 실어 보낸다
+      env.DB.prepare(`SELECT id, status, items_json, supply, vat, total, method, manual,
+                             quote_date, statement_date, taxinvoice_date, bill_profile_id,
+                             memo, admin_memo, created_at
                         FROM settlements WHERE customer_id=? ORDER BY id DESC LIMIT 20`)
         .bind(c.id).all().then((r) => r.results || []),
       env.DB.prepare(`SELECT id, type, doc_no, status, issue_date, access_token, payload_json
