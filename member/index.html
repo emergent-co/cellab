@@ -1569,7 +1569,8 @@ async function aoSave(){
 }
 
 /* ---- 정산 관리 ---- */
-var asAll = [], asReq = [], asFilter = '전체', asKw = '';
+var asAll = [], asReq = [], asFilter = '전체', asKw = '', asMore = false;
+var AS_TOP = 3;      // 정산은 필요할 때 들여다보는 화면이다 — 평소엔 급한 곳만 위에 둔다
 var SQPEND = ['정산요청','처리중'];   // 아직 내 손을 기다리는 상태
 async function asLoad(){
   // 둘을 한꺼번에 부른다 — 줄줄이 기다리면 그만큼 화면이 늦게 뜬다
@@ -1606,19 +1607,34 @@ function asChips(){
 function asPaint(){
   asNew();
   var el=$('#asList'); if(!el) return;
-  var cs = asAll.filter(asMatch);
+  // 정산 순위 = 받을 돈이 많은 곳부터. 같으면 후불이 위로 (선불은 미리 받아 급할 게 없다)
+  var cs = asAll.filter(asMatch).slice().sort(function(a,b){
+    return (b.due||0) - (a.due||0)
+        || ((b.billing_mode==='후불') - (a.billing_mode==='후불'))
+        || (b.spent||0) - (a.spent||0);
+  });
   if(!cs.length){ el.innerHTML='<div class="empty">'+(asAll.length?'해당하는 거래처가 없습니다.':'거래처가 없습니다.')+'</div>'; return; }
   var sumDue = cs.reduce(function(a,c){ return a + (c.due||0); },0);
+  // 찾으러 온 것이면(필터·검색) 다 보여준다. 그냥 들른 것이면 위 세 곳만.
+  var narrow = (asFilter !== '전체') || !!asKw;
+  var show = (asMore || narrow) ? cs : cs.slice(0, AS_TOP);
+  var hidden = cs.length - show.length;
   el.innerHTML = '<table class="cards"><thead><tr><th>거래처</th><th style="width:126px">잔여</th></tr></thead><tbody>'
-    + cs.map(function(c){
+    + show.map(function(c){
         return '<tr data-id="'+c.id+'"><td class="l"><b>'+esc(c.company||c.name||'—')+'</b>'
           +(c.billing_mode==='후불'?' <span class="badge s0">후불</span>':'')
           +'<small class="rmeta">지출 '+won(c.spent)+' · 정산 '+won(c.paid)+'</small></td>'
           +'<td class="n"><b'+(c.due?' style="color:#B45309"':'')+'>'+won(c.due)+'원</b></td></tr>'; }).join('')
+    + (hidden > 0
+        ? '<tr class="asfoot" style="cursor:default"><td colspan="2" style="padding:0">'
+          + '<button class="mini" id="asMoreBtn" style="width:100%;margin:8px 0 2px">'
+          + '남은 '+hidden+'곳 더 보기</button></td></tr>'
+        : '')
     + '<tr class="asfoot" style="cursor:default"><td class="l">'+cs.length+'곳 합계</td>'
       + '<td class="n"><b>'+won(sumDue)+'원</b></td></tr>'
     +'</tbody></table>';
   el.querySelectorAll('tbody tr[data-id]').forEach(function(tr){ tr.onclick=function(){ asOpen(tr.dataset.id); }; });
+  if ($('#asMoreBtn')) $('#asMoreBtn').onclick = function(){ asMore = true; asPaint(); };
 }
 // 새로 들어온 정산 요청 — 놓치면 안 되는 것이라 목록 위에 띄운다
 function asNew(){

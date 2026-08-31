@@ -1,6 +1,9 @@
 // GET  /api/order        → 내 주문 목록
 // POST /api/order        → 주문요청 생성
-import { json, currentCustomer, kstISO, nextOrderNo, recalcOrder, logEvent, replyEmail, memberGate} from '../_lib.js';
+import { json, currentCustomer, kstISO, nextOrderNo, recalcOrder, logEvent, replyEmail, memberGate,
+         randomToken } from '../_lib.js';
+import { notifyCustomer, orderReceivedHtml, newOrderAdminHtml } from '../_notify.js';
+import { sendMail, mailConfigured } from '../_mailer.js';
 
 export async function onRequest({ request, env }) {
   const me = await currentCustomer(request, env);
@@ -106,6 +109,47 @@ export async function onRequest({ request, env }) {
 
   await recalcOrder(env, orderId);
   await logEvent(env, { order_id: orderId, action: 'created', actor: 'customer', detail: `주문요청 접수 (${items.length}개 품목)` });
+
+  // 접수 알림 — 고객에겐 "접수했습니다", 나에겐 "새 주문이 들어왔습니다".
+  // 메일이 실패해도 주문은 이미 저장됐다. 여기서 주문을 물리지 않는다.
+  try {
+    const token = randomToken();
+    await env.DB.prepare('UPDATE orders SET access_token=? WHERE id=?').bind(token, orderId).run();
+    const origin = new URL(request.url).origin;
+    const viewUrl = `${origin}/view/order/${orderId}?t=${token}`;
+    const order = { id: orderId, orderer_email: oEmail, orderer_phone: oPhone };
+
+    await Promise.allSettled([
+      // 고객: 알림톡이 열려 있으면 알림톡, 아니면 이메일로 떨어진다
+      notifyCustomer(env, {
+        customer: me, order,
+        template: 'ORDER_RECEIVED',
+        text: `${title} 주문이 접수되었습니다. (${orderNo})`,
+        buttons: [{ name: '주문 내용 보기', linkMo: viewUrl, linkPc: viewUrl }],
+        subject: `[접수] ${title} — ${orderNo}`,
+        html: orderReceivedHtml({ orderNo, title, items, ship, url: viewUrl }),
+      }),
+      // 관리자: 받는 주소는 ADMIN_EMAIL, 없으면 info@rndsetup.com
+      mailConfigured(env)
+        ? sendMail(env, {
+            to: env.ADMIN_EMAIL || 'info@rndsetup.com',
+            reply_to: oEmail,
+            subject: `[새 주문] ${org || oName} — ${title} (${orderNo})`,
+            html: newOrderAdminHtml({
+              orderNo, company: org, orderer: [oName, oEmail, oPhone].filter(Boolean).join(' · '),
+              items, ship, note: '', url: `${origin}/member/#admOps`,
+            }),
+          }).then((r) => logEvent(env, {
+            order_id: orderId, action: 'notify', channel: 'email', actor: 'system',
+            to_addr: env.ADMIN_EMAIL || 'info@rndsetup.com', result: r.ok ? 'ok' : 'fail',
+            detail: r.ok ? '관리자 새 주문 알림' : `관리자 알림 실패: ${r.error}`,
+          }))
+        : Promise.resolve(),
+    ]);
+  } catch (err) {
+    await logEvent(env, { order_id: orderId, action: 'notify', actor: 'system', result: 'fail',
+      detail: `접수 알림 실패: ${String(err?.message || err)}` });
+  }
 
   return json({ ok: true, order_no: orderNo, order_id: orderId });
 }

@@ -79,6 +79,55 @@ async function sendAlimtalk(env, m) {
   }
 }
 
+function e(v){ return String(v == null ? '' : v)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function itemRows(items) {
+  return (items || []).map((i, n) => `<tr>
+    <td style="padding:7px 8px;border-bottom:1px solid #eee;color:#8a94a6">${n + 1}</td>
+    <td style="padding:7px 8px;border-bottom:1px solid #eee">${e(i.name)}
+      ${i.spec ? `<br><small style="color:#8a94a6">${e(i.spec)}</small>` : ''}
+      ${i.link ? `<br><a href="${e(i.link)}" style="font-size:12px;color:#3b3695">${e(String(i.link).slice(0, 60))}</a>` : ''}</td>
+    <td style="padding:7px 8px;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">${e(i.qty)}</td>
+  </tr>`).join('');
+}
+
+const TABLE = (items) => `<table style="border-collapse:collapse;width:100%;margin-top:12px;font-size:14px">
+  <thead><tr style="background:#f6f7fa">
+    <th style="text-align:left;padding:7px 8px;width:28px">#</th>
+    <th style="text-align:left;padding:7px 8px">품목 · 규격</th>
+    <th style="text-align:right;padding:7px 8px;width:52px">수량</th>
+  </tr></thead><tbody>${itemRows(items)}</tbody></table>`;
+
+// 주문 접수 확인 — 고객에게
+export function orderReceivedHtml({ orderNo, title, items, ship, url }) {
+  return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:15px;color:#1a2332;line-height:1.65">
+  <p><b>${e(title)}</b> 주문이 접수되었습니다.</p>
+  <p style="color:#5a6779;font-size:14px">주문번호 ${e(orderNo)}</p>
+  ${TABLE(items)}
+  ${ship ? `<p style="color:#5a6779;font-size:13.5px;margin-top:12px">납품지 · ${e(ship)}</p>` : ''}
+  <p style="margin-top:16px">단가와 납기를 확인해 <b>견적서를 보내드립니다.</b> 아래에서 접수 내용을 다시 볼 수 있습니다.</p>
+  <p><a href="${e(url)}" style="display:inline-block;background:#1a6e56;color:#fff;text-decoration:none;
+     padding:12px 22px;border-radius:9px;font-weight:700">주문 내용 보기</a></p>
+  <p style="color:#5a6779;font-size:13px;margin-top:22px">내용이 다르면 답장 주시거나 070-8983-2600 으로 알려주세요.</p>
+</div>`;
+}
+
+// 새 주문 알림 — 관리자에게
+export function newOrderAdminHtml({ orderNo, company, orderer, items, ship, note, url }) {
+  return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:14px;color:#1a2332;line-height:1.6">
+  <h2 style="font-size:17px;margin:0 0 6px">새 주문이 들어왔습니다</h2>
+  <p style="margin:0"><b>${e(company || '—')}</b><br>
+     <span style="color:#5a6779">${e(orderer)}</span></p>
+  ${TABLE(items)}
+  ${ship ? `<p style="color:#5a6779;margin-top:10px">납품지 · ${e(ship)}</p>` : ''}
+  ${note ? `<p style="margin-top:10px;white-space:pre-wrap">${e(note)}</p>` : ''}
+  <p style="margin-top:16px"><a href="${e(url)}" style="display:inline-block;background:#3b3695;color:#fff;
+     text-decoration:none;padding:11px 20px;border-radius:9px;font-weight:700">주문 열기</a></p>
+  <p style="color:#8a94a6;font-size:12px;margin-top:18px">${e(orderNo)}</p>
+</div>`;
+}
+
 // 배송중 알림 본문
 export function shipHtml({ orderNo, title, url }) {
   return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:15px;color:#1a2332;line-height:1.65">
