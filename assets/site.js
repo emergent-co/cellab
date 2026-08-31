@@ -1085,37 +1085,34 @@
     var i = sel ? +sel.value : 0;
     return MODELS[i] || { m: '', s: '', p: 0, x: 0 };
   }
-  var QTY_ASK = 10;   // 이 수량부터는 배송료를 따로 안내
-  /* 합계 = 1개 기준가(배송료 포함) + 추가분 × (수량-1)
-     배송료는 주문당 1회라 수량에 비례시키지 않는다 */
-  function sum(o, q) {
-    if (!o.p) return 0;
-    var extra = (o.x != null ? o.x : o.p);
-    return o.p + extra * (q - 1);
-  }
+  var QTY_ASK = 10;      // 이 수량부터는 배송료를 따로 안내
+  /* 합계 = 제품가격 x 수량 + 해외배송료
+     제품가격(개당) = o.x , 배송료 = o.p - o.x  (주문당 1회, 수량에 비례하지 않음)
+     행 구성은 수량과 무관하게 항상 동일 — 클릭해도 높이가 변하지 않는다 */
+  function unitOf(o) { return (o.x != null ? o.x : o.p) || 0; }
+  function shipOf(o) { return o.p ? Math.max(0, o.p - unitOf(o)) : 0; }
+  function sum(o, q) { return o.p ? unitOf(o) * q + shipOf(o) : 0; }
   function render() {
     var o = cur();
     var q = Math.max(1, +(document.getElementById('pdQty') || {}).value || 1);
     var many = q >= QTY_ASK;
+    var head = !o.p ? '문의'
+             : many ? '문의<small>10개 이상</small>'
+                    : won(sum(o, q)) + '<small>합계 · VAT 별도</small>';
     box.innerHTML =
-      '<div class="bb-price">' + (o.p ? (many ? '문의' : won(sum(o, q))) : '문의')
-        + (o.p && !many ? '<small>VAT 별도</small>' : '') + '</div>'
-    + (!o.p ? '<p class="bb-extra">규격을 알려주시면 금액을 안내드립니다.</p>'
-       : many ? '<p class="bb-extra"><b>10개 이상은 배송료를 따로 안내드립니다.</b> 수량을 알려주시면 확정 금액으로 회신드립니다.</p>'
-              : '<p class="bb-extra">배송료 10만원 · 관세 10% · 수수료 10% <b>포함</b> · <b>VAT 별도</b><br>'
-                + '2개째부터는 배송료가 다시 붙지 않습니다.</p>')
+      '<div class="bb-price">' + head + '</div>'
+    + (o.p ? '' : '<p class="bb-extra">규격을 알려주시면 금액을 안내드립니다.</p>')
     + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
-    + (o.p && q > 1 && !many
-        ? '<div class="bb-row"><span class="k">1개 기준</span><span class="v">' + won(o.p) + '</span></div>'
-        + '<div class="bb-row"><span class="k">추가 ' + (q - 1) + '개</span><span class="v">' + won((o.x != null ? o.x : o.p) * (q - 1)) + '</span></div>'
-        : '')
-    + '<div class="bb-row"><span class="k">배송</span><span class="v">해외 발주 · 국내 배송</span></div>'
+    + '<div class="bb-row"><span class="k">제품가격 (1개)</span><span class="v">' + (o.p ? won(unitOf(o)) : '문의') + '</span></div>'
+    + '<div class="bb-row"><span class="k">배송</span><span class="v">'
+    +   (!o.p ? '문의' : many ? '해외배송 확인 필요' : '해외배송 ' + won(shipOf(o)))
+    +   '</span></div>'
     + '<div class="bb-row"><span class="k">예상 배송일</span><span class="v">주문 확정 후 안내</span></div>'
     + '<div class="bb-qty"><label for="pdQty">수량</label>'
     +   '<input type="number" id="pdQty" min="1" value="' + q + '"></div>'
     + '<button type="button" class="bb-btn bb-cart" id="bbCart">장바구니 담기</button>'
     + '<button type="button" class="bb-btn bb-buy" id="bbBuy">' + (many ? '수량 문의하기' : '구매하기') + '</button>'
-    + '<p class="bb-note">담으신 품목은 장바구니에서 확인하실 수 있습니다.</p>';
+    + '<p class="bb-note">배송료는 주문당 1회입니다. 담으신 품목은 장바구니에서 확인하실 수 있습니다.</p>';
   }
   function toast(m) {
     var t = document.querySelector('.bb-toast');

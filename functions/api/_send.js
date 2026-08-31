@@ -44,6 +44,7 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
   // 두 장 중 한 장만 간 메일은 받는 쪽에서 알아챌 방법이 없다 — 그게 제일 나쁘다.
   const attachments = [];
   const missing = [];
+  let linkOnly = '';        // PDF 를 못 만들어 링크로만 보낸 경우의 사유
   if (pdfConfigured(env)) {
     for (const { doc, payload } of list) {
       const label = DOC_LABEL[doc.type] || '문서';
@@ -57,14 +58,24 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
       }
     }
     if (missing.length) {
-      const err = `${missing.join(', ')} 의 PDF를 만들지 못해 발송을 멈췄습니다. `
-                + '잠시 뒤 다시 시도해주세요. (Cloudflare 브라우저 사용량 한도일 수 있습니다)';
-      await logAll({ action: 'send', channel: 'email', actor, to_addr: to, result: 'fail', detail: err });
-      return { ok: false, error: err };
+      // 한 장만 붙은 메일은 받는 쪽에서 빠진 걸 알 방법이 없다 — 그래서 첨부는 전부 아니면 전무다.
+      // 다만 «아예 못 보냄»으로 끝내지는 않는다. 메일 본문에는 문서 링크가 이미 들어 있으니,
+      // 첨부를 모두 떼고 링크로 보낸다. 고객은 열어볼 수 있고, 나중에 PDF 로 다시 보낼 수도 있다.
+      attachments.length = 0;
+      linkOnly = `${missing.join(', ')} 의 PDF를 만들지 못했습니다`;
+      await logAll({ action: 'pdf', actor: 'system', result: 'fail',
+        detail: `${linkOnly} — 첨부 없이 링크로 보냅니다` });
     }
   }
 
-  const r = await sendMail(env, { to, cc, subject, html, attachments });
+  const body = linkOnly
+    ? String(html || '').replace(/<\/div>\s*$/,
+        '<p style="color:#92400E;font-size:13px;background:#FFFBF3;border:1px solid #F0C98A;'
+        + 'border-radius:9px;padding:11px 13px">PDF 파일 첨부가 준비되지 않아 <b>문서 링크로 보내드립니다.</b> '
+        + '위 버튼으로 열어보실 수 있고, 필요하시면 PDF 로 다시 보내드리겠습니다.</p></div>')
+    : html;
+
+  const r = await sendMail(env, { to, cc, subject, html: body, attachments });
   const now = kstISO();
 
   if (!r.ok) {
@@ -95,7 +106,8 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
             + (attachments.length ? ` (PDF ${attachments.length}건 첨부)` : ' (PDF 미첨부)'),
     });
   }
-  return { ok: true, sent: list.length, attached: attachments.length };
+  return { ok: true, sent: list.length, attached: attachments.length,
+           link_only: linkOnly || null };
 }
 
 // 예약 큐 처리 — 발송 시각이 지난 '대기' 건을 보낸다.

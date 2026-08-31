@@ -81,24 +81,25 @@ def head(h1, sub, answer, summary, quote):
 #     · 1개 기준 표시가  unit  = (P + SHIP) × K
 #     · 2개째부터 추가분  extra = P × K
 #     · 10개 이상은 배송료 문의
-SHIP = 100000      # 기본 배송료
-DUTY = 1.1         # 관세
-FEE  = 1.1         # 우리 수수료
-VAT  = 1.0         # 부가세 — VAT 별도 표기 유지
-K    = DUTY * FEE * VAT
+SHIP = 100000      # 해외배송비 (원가 기준)
+K    = 1.45        # 관세·수수료 등 일괄 계수 (2026-08-29 확정) — 부가세는 별도 표기
 QTY_ASK = 10       # 이 수량 이상이면 배송료 문의
+#   제품가격(1개 표시) = P × K
+#   배송 표시          = SHIP × K = 145,000원
+#   합계               = 제품가격 × 수량 + 배송 = (P + SHIP) × K  (수량 1일 때)
 
-def landed(p):
-    """1개 기준 판매가 (배송료 포함) — 1,000원 단위 반올림"""
-    return int(round((p + SHIP) * K / 1000.0)) * 1000 if p else 0
+SHIP_SHOWN = int(round(SHIP * K / 1000.0)) * 1000   # 표시 배송비 = 145,000원
 
 def landed_extra(p):
-    """2개째부터 추가되는 1개분 (배송료 제외)"""
+    """제품가격 1개 (배송 제외) — 1,000원 단위 반올림"""
     return int(round(p * K / 1000.0)) * 1000 if p else 0
 
-PRICE_NOTE = ('1개 기준 판매가입니다. <b>배송료 10만원 · 관세 10% · 수수료 10%</b>가 포함돼 있으며 <b>VAT는 별도</b>입니다. '
-              '배송료는 주문당 1회라 <b>2개째부터는 배송료가 다시 붙지 않습니다</b>. '
-              '<b>10개 이상</b>은 배송료를 따로 안내드립니다.')
+def landed(p):
+    """1개 주문 시 합계 = 제품가격 + 배송비. 두 값을 각각 반올림한 뒤 더해
+       화면의 '제품가격 + 배송 = 합계'가 항상 정확히 맞아떨어지게 한다."""
+    return landed_extra(p) + SHIP_SHOWN if p else 0
+
+PRICE_NOTE = '제품가격 1개 기준입니다. <b>해외배송비는 주문당 1회</b> 별도로 더해지며, <b>VAT는 별도</b>입니다. <b>10개 이상</b>은 따로 안내드립니다.'
 
 def buybox(h1, models_json):
     """3번째 그리드 열 — 제품문의 버튼 오른쪽"""
@@ -110,10 +111,10 @@ def spec_tbl(rows):
             + ''.join('<tr><th>%s</th><td>%s</td></tr>'%r for r in rows)
             + '</tbody></table></div>')
 
-def price_tbl(rows, headers=('모델','규격','판매가 1개 (VAT 별도)')):
+def price_tbl(rows, headers=('모델','규격','제품가격 1개 (VAT 별도)')):
     h='<div class="pkg-tblwrap"><table class="pkg-tbl pkg-opt"><thead><tr>'+''.join('<th>%s</th>'%x for x in headers)+'</tr></thead><tbody>'
     for m,spec,p in rows:
-        pr = ('<b>%s원</b>'%format(landed(p),',')) if p else '<b>문의</b>'
+        pr = ('<b>%s원</b>'%format(landed_extra(p),',')) if p else '<b>문의</b>'
         sp = '' if spec==m else spec          # 모델명과 규격이 같으면 규격칸을 비운다
         h+='<tr><td><b>%s</b></td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,sp,pr)
     h+='</tbody></table></div>'

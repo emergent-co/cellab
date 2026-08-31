@@ -869,6 +869,7 @@ textarea{min-height:78px;resize:vertical}
       <a data-v="home" class="on">홈</a>
       <a data-v="order">주문하기</a>
       <a data-v="settle">정산하기 · 거래내역</a>
+      <a data-v="@me">회원정보</a>
     </nav>
     <nav class="nav adm" id="admNav" hidden>
       <div class="admh">관리자</div>
@@ -1224,8 +1225,10 @@ $('#burger').onclick = function(){ $('#side').classList.toggle('on'); $('#scrim'
 $('#scrim').onclick = function(){ $('#side').classList.remove('on'); $('#scrim').classList.remove('on'); };
 document.querySelector('.side').onclick = function(e){
   var a = e.target.closest('a[data-v]'); if(!a) return;
-  view = a.dataset.v; cur=null; location.hash = '#'+view;
   $('#side').classList.remove('on'); $('#scrim').classList.remove('on');
+  // 회원정보는 화면이 아니라 팝업이다 — 보던 화면을 두고 그 위에 띄운다
+  if (a.dataset.v === '@me') return meModal();
+  view = a.dataset.v; cur=null; location.hash = '#'+view;
   syncNav(); render();
 };
 function syncNav(){
@@ -5000,7 +5003,13 @@ function dqBatch(made, to){
     if (!r.ok) return alert(r.message || '발송하지 못했습니다.');
     w.remove(); dqHist();
     if (r.scheduled) fetch('/api/cron/outbox',{headers:AH}).catch(function(){});
-    toast(r.scheduled ? pick.length+'종 발송 예약' : pick.length+'종 한 통으로 발송');
+    if (r.link_only){
+      alert('보내긴 했습니다만 — '+r.link_only+'.\n\n'
+        + 'PDF 없이 문서 링크로 보냈습니다. 고객은 링크로 열어볼 수 있습니다.\n'
+        + 'Cloudflare 브라우저 하루 한도(무료 10분)에 걸린 것으로, 한도가 풀리면 PDF로 다시 보낼 수 있습니다.');
+    }
+    toast(r.scheduled ? pick.length+'종 발송 예약'
+                      : pick.length+'종 '+(r.link_only ? '링크로 발송' : '한 통으로 발송'));
   };
 }
 
