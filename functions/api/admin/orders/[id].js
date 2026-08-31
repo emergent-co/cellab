@@ -99,7 +99,11 @@ export async function onRequest({ request, env, params }) {
         await env.DB.prepare('UPDATE orders SET access_token=? WHERE id=?').bind(token, order.id).run();
       }
       const origin = new URL(request.url).origin;
-      const viewUrl = `${origin}/view/order/${order.id}?t=${token}`;
+      // 「내용 확인하기」는 곧장 그 건으로 간다.
+      //   로그인해 있으면 주문 목록에서 그 줄이 켜지고, 아니면 토큰으로 읽기 전용 화면이 열린다.
+      //   판단은 /member/ 가 한다 — 링크는 하나면 된다.
+      const viewUrl = `${origin}/member/?order=${order.id}&t=${token}`;
+      const plainUrl = `${origin}/view/order/${order.id}?t=${token}`;
       const to = splitAddr(rawTo).addr;
       const rawCc = String(b.cc || '').trim();
       const cc = rawCc ? rawCc.split(/[,;]/).map((x) => splitAddr(x).addr).filter(Boolean).join(', ') : null;
@@ -108,8 +112,7 @@ export async function onRequest({ request, env, params }) {
         kind: 'order', title: order.title || order.order_no,
         company: order.org_name || (customer && customer.company),
         contact: order.orderer_name || (customer && customer.name),
-        total: order.total_amount, viewUrl,
-        listUrl: `${new URL(request.url).origin}/member/?order=${order.id}`,
+        total: order.total_amount, viewUrl, listUrl: plainUrl,
         to: rawTo, cc: rawCc, memo: b.memo,
       });
       const r = await sendMail(env, {

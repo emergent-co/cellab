@@ -1029,6 +1029,7 @@ async function boot(){
   // 확인 요청 메일에서 넘어온 주문 — 목록이 길어지면 어느 줄인지 못 찾는다.
   // 번호를 들고 와서 그 줄을 켜 주고 바로 펼친다.
   var wantOrd = Number(qs.get('order') || 0) || 0;
+  var wantTok = qs.get('t') || '';          // 로그인 못 한 사람을 위한 읽기 전용 열쇠
   // 추천 링크로 들어온 사람은 대개 아직 회원이 아니다. 로그인·승인을 거치는 동안
   // 주소에서 ref 가 날아가므로 여기서 붙잡아 둔다.
   if (ref){ try { localStorage.setItem('rs_ref', ref); } catch(e){} }
@@ -1038,6 +1039,12 @@ async function boot(){
   // 이 페이지는 후불(멤버십) 거래처 전용이다.
   //   로그인 안 했거나 승인 전이면 장바구니로 — 거기서 견적 문의를 할 수 있다.
   //   승인은 됐지만 선불이면 여기서 멈추고 어디로 가야 하는지 알려준다.
+  // 확인 요청 링크를 눌렀는데 로그인이 안 돼 있거나 이 화면 자격이 아니면,
+  // 토큰으로 열리는 읽기 전용 화면으로 그대로 넘긴다 — 어차피 볼 건 그 한 건이다.
+  if ((!r.login || r.member === false) && wantOrd && wantTok){
+    location.replace('/view/order/' + wantOrd + '?t=' + encodeURIComponent(wantTok));
+    return;
+  }
   if (!r.login){
     location.replace('/cart/' + (ref ? '?ref='+encodeURIComponent(ref) : ''));
     return;
