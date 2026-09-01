@@ -1041,8 +1041,9 @@
   + '.bb-extra{margin:6px 0 0;font-size:12.5px;color:#7a6f68;line-height:1.65}'
   + '.bb-extra b{color:#0F69AF}'
   + '.bb-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #F1EDE9}'
-  + '.bb-row .k{color:#7a6f68;flex:0 0 auto}.bb-was{color:#9A9A9A;font-weight:500;margin-right:5px}
-.bb-row .v{text-align:right;font-weight:700;color:#17202A}'
+  + '.bb-row .k{color:#7a6f68;flex:0 0 auto}'
+  + '.bb-was{color:#9A9A9A;font-weight:500;margin-right:5px}'
+  + '.bb-row .v{text-align:right;font-weight:700;color:#17202A}'
   + '.bb-qty{display:flex;align-items:center;gap:8px;margin:12px 0 10px}'
   + '.bb-qty label{color:#7a6f68;font-size:12.5px}'
   + '.bb-qty input{width:74px;padding:8px 9px;border:1px solid #D9D4CE;border-radius:8px;'
