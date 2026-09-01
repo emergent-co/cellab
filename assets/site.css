@@ -580,3 +580,13 @@ html.embed body{padding-top:0!important}
 .chrome-footer .cf-col a:hover{ color:#8fe6a3 !important; }
 .chrome-footer .cf-co, .chrome-footer .cf-cp{ color:#6a7482 !important; border-color:#232a34 !important; }
 .chrome-footer .cf-co strong{ color:#e7ecf2 !important; }
+/* ===== green header restore ===== */
+.ch-brand::before{ content:""; display:inline-block; width:16px; height:16px; margin-right:7px; vertical-align:-2px; background:#39b54a; -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 15c5-1 8.5-9 17-11-2.2 8.5-9.5 12.5-17 11z'/%3E%3C/svg%3E") center/contain no-repeat; mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 15c5-1 8.5-9 17-11-2.2 8.5-9.5 12.5-17 11z'/%3E%3C/svg%3E") center/contain no-repeat; }
+.tn-link:hover, .tn-link.active{ color:#2f9d3f !important; }
+.tn-link.active{ border-bottom-color:#39b54a !important; }
+.tn-dd a:hover, .tn-dd a.active{ color:#2f9d3f !important; }
+.s-item.active, .s-sub a.active{ color:#2f9d3f !important; }
+.ch-msearch button{ background:#39b54a !important; }
+.ch-msearch input:focus{ border-color:#39b54a !important; }
+.ch-ic:hover{ color:#2f9d3f !important; }
+.ch-cnt{ background:#39b54a !important; }
