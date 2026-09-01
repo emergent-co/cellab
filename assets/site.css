@@ -112,11 +112,11 @@ body{ padding-top:106px; }
 
 /* 본문 좌우 여백 15% — 주요 콘텐츠 래퍼 폭 70% */
 @media(min-width:901px){
-  body .hwrap, body .hub-wrap, body .mg-wrap, body .stwrap, body .sd-wrap{ max-width:70%; }
+  body .hwrap, body .hub-wrap, body .mg-wrap, body .stwrap{ max-width:70%; }
 }
 /* 매거진 본문 우측 '관련 제품' 레일 (site.js가 article.sd-wrap 페이지에 주입) */
-.art-layout{ display:grid; grid-template-columns:210px minmax(0,1fr) 340px; gap:34px; max-width:82%; margin:0 auto; align-items:start; }
-.art-layout .sd-wrap{ max-width:none !important; margin:0 !important; }
+.art-layout{ display:grid; grid-template-columns:210px minmax(0,1fr) 340px; gap:34px; max-width:min(82%,1280px); margin:0 auto; align-items:start; }
+.art-layout .sd-wrap{ max-width:700px !important; margin:0 auto !important; }
 /* 좌측 목차 가이드 (IBM Think식 스크롤 스파이) */
 .art-toc{ position:sticky; top:120px; padding-top:26px; }
 .art-toc .at-h{ font-size:11px; font-weight:800; letter-spacing:.08em; color:#9aa3ad; margin:0 0 10px 13px; }
