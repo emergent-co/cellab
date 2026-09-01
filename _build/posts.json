@@ -3,6 +3,54 @@
  "posts": [
   {
    "type": "magazine",
+   "slug": "insitu-cell-005",
+   "title": "극저온 인시츄 셀 CIS-OM-005 — In-situ Microscopic Observation System 시리즈",
+   "summary": "설계온도 −100~100℃의 극저온형 인시츄 셀. PEEK+구리 몸체, 석영창 Φ10 mm·초점거리 <2 mm로 통전 상태의 전극 표면 형상을 관찰한다. 액체·폴리머 리튬전지 대응, 대기압~약한 양압 설계.",
+   "date": "2026-09-01",
+   "tags": [
+    "인시츄 셀",
+    "덴드라이트",
+    "CIS-OM-005"
+   ],
+   "url": "/magazine/insitu-cell-005/",
+   "model_focus": "CIS-OM-005 인시츄 관찰 셀",
+   "application": "인시츄 셀 · 시리즈",
+   "image": "/img/magazine/insitu-005-hero.jpg"
+  },
+  {
+   "type": "magazine",
+   "slug": "insitu-cell-004",
+   "title": "고저온 인시츄 셀 CIS-OM-004 — In-situ Microscopic Observation System 시리즈",
+   "summary": "−30~150℃를 ±1℃ 프로그램 제어하며 전지 계면을 관찰하는 온도 제어형 인시츄 셀. 냉각·가열 플랫폼 분리 교체식(밀봉 무관), 표준형과 같은 석영창·주액 피팅 골격, 가압 전고체 모듈(최대 6 MPa) 옵션.",
+   "date": "2026-09-01",
+   "tags": [
+    "인시츄 셀",
+    "덴드라이트",
+    "CIS-OM-004"
+   ],
+   "url": "/magazine/insitu-cell-004/",
+   "model_focus": "CIS-OM-004 인시츄 관찰 셀",
+   "application": "인시츄 셀 · 시리즈",
+   "image": "/img/magazine/insitu-004-hero.jpg"
+  },
+  {
+   "type": "magazine",
+   "slug": "insitu-cell-002",
+   "title": "석영 비커형 인시츄 셀 CIS-OM-002 — In-situ Microscopic Observation System 시리즈",
+   "summary": "석영 비커 5 mL·순티타늄 전극 3 mm 간격의 입문형 인시츄 셀. 비커 측벽이 그대로 광학 경로가 되어 아연 대칭 전지 등 수계 전지의 덴드라이트·계면 변화를 글러브박스 없이 관찰한다. PTFE 셸·O링 밀봉.",
+   "date": "2026-09-01",
+   "tags": [
+    "인시츄 셀",
+    "덴드라이트",
+    "CIS-OM-002"
+   ],
+   "url": "/magazine/insitu-cell-002/",
+   "model_focus": "CIS-OM-002 인시츄 관찰 셀",
+   "application": "인시츄 셀 · 시리즈",
+   "image": "/img/magazine/insitu-002-hero.jpg"
+  },
+  {
+   "type": "magazine",
    "slug": "insitu-li-dendrite-observation",
    "title": "측면 관찰용 인시츄 셀 CIS-OM-003 — In-situ Microscopic Observation System 시리즈",
    "summary": "현미경용 인시츄 셀 시리즈 003편. 셀 구조·조립 영상, 격벽(PEEK)이 덴드라이트가 자랄 공간을 만드는 이유, 별도 주액 피팅·주사기 음압 기포 제거, 창 스펙(0.05mm)·현미경 호환, 전고체 가압(최대 6 MPa) 겸용과 시료 커스텀까지 정리했다.",

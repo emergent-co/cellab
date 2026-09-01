@@ -6,7 +6,31 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Tue, 01 Sep 2026 23:24:30 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 23:29:20 +0900</lastBuildDate>
+    <item>
+      <title>극저온 인시츄 셀 CIS-OM-005 — In-situ Microscopic Observation System 시리즈</title>
+      <link>https://rndsetup.com/magazine/insitu-cell-005/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-cell-005/</guid>
+      <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[설계온도 −100~100℃의 극저온형 인시츄 셀. PEEK+구리 몸체, 석영창 Φ10 mm·초점거리 <2 mm로 통전 상태의 전극 표면 형상을 관찰한다. 액체·폴리머 리튬전지 대응, 대기압~약한 양압 설계.]]></description>
+      <category>인시츄 셀</category><category>덴드라이트</category><category>CIS-OM-005</category>
+    </item>
+    <item>
+      <title>고저온 인시츄 셀 CIS-OM-004 — In-situ Microscopic Observation System 시리즈</title>
+      <link>https://rndsetup.com/magazine/insitu-cell-004/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-cell-004/</guid>
+      <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[−30~150℃를 ±1℃ 프로그램 제어하며 전지 계면을 관찰하는 온도 제어형 인시츄 셀. 냉각·가열 플랫폼 분리 교체식(밀봉 무관), 표준형과 같은 석영창·주액 피팅 골격, 가압 전고체 모듈(최대 6 MPa) 옵션.]]></description>
+      <category>인시츄 셀</category><category>덴드라이트</category><category>CIS-OM-004</category>
+    </item>
+    <item>
+      <title>석영 비커형 인시츄 셀 CIS-OM-002 — In-situ Microscopic Observation System 시리즈</title>
+      <link>https://rndsetup.com/magazine/insitu-cell-002/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-cell-002/</guid>
+      <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[석영 비커 5 mL·순티타늄 전극 3 mm 간격의 입문형 인시츄 셀. 비커 측벽이 그대로 광학 경로가 되어 아연 대칭 전지 등 수계 전지의 덴드라이트·계면 변화를 글러브박스 없이 관찰한다. PTFE 셸·O링 밀봉.]]></description>
+      <category>인시츄 셀</category><category>덴드라이트</category><category>CIS-OM-002</category>
+    </item>
     <item>
       <title>측면 관찰용 인시츄 셀 CIS-OM-003 — In-situ Microscopic Observation System 시리즈</title>
       <link>https://rndsetup.com/magazine/insitu-li-dendrite-observation/</link>
