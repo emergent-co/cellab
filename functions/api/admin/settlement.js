@@ -65,14 +65,46 @@ export async function onRequest({ request, env }) {
     return json({ ok: true, ...s });
   }
 
-  // 정산 요청 상태 변경
+  /* 정산 요청 상태 변경
+     «입금완료»가 되는 순간이 돈이 실제로 들어온 순간이다 — 그때 중간정산금(입금) 한 줄을 만든다.
+     발행할 때 미리 잡아두면 아직 안 들어온 돈만큼 잔여정산금이 틀어진다.
+     되돌리면(입금완료 → 다른 상태) 그 줄을 지운다. 장부는 통장과 같아야 한다. */
   if (b.action === 'settle_status') {
     const ok = ['정산요청', '처리중', '서류발급 완료', '입금완료', '반려'].includes(b.status);
     if (!ok) return json({ error: 'bad_status' }, 400);
-    const done = b.status === '입금완료' ? kstISO() : null;
-    await env.DB.prepare('UPDATE settlements SET status=?, admin_memo=?, done_at=?, updated_at=? WHERE id=?')
-      .bind(b.status, String(b.admin_memo || ''), done, kstISO(), b.settlement_id).run();
-    return json({ ok: true });
+    const st = await env.DB.prepare('SELECT * FROM settlements WHERE id=?').bind(b.settlement_id).first();
+    if (!st) return json({ error: 'not_found' }, 404);
+
+    const paid = b.status === '입금완료';
+    const done = paid ? kstISO() : null;
+    let payment = null;
+
+    if (paid && !st.payment_id && Number(st.total) > 0) {
+      const day = String(st.taxinvoice_date || st.statement_date || st.quote_date || '').slice(0, 10);
+      const r = await env.DB.prepare(
+        'INSERT INTO payments (customer_id, kind, amount, method, paid_at, memo, created_at, created_by) VALUES (?,?,?,?,?,?,?,?)'
+      ).bind(st.customer_id, '입금', Math.round(st.total), st.method || '통장',
+             /^\d{4}-\d{2}-\d{2}$/.test(day) ? day : kstDate(),
+             `중간정산금 · 정산요청 #${st.id}`, kstISO(), 'admin').run();
+      payment = { id: r.meta.last_row_id, amount: Math.round(st.total) };
+    }
+
+    if (!paid && st.payment_id) {
+      await env.DB.prepare('DELETE FROM payments WHERE id=?').bind(st.payment_id).run();
+    }
+
+    await env.DB.prepare(
+      'UPDATE settlements SET status=?, admin_memo=?, done_at=?, payment_id=?, updated_at=? WHERE id=?')
+      .bind(b.status, String(b.admin_memo || ''), done,
+            paid ? (payment ? payment.id : st.payment_id) : null, kstISO(), st.id).run();
+
+    await logEvent(env, { action: 'settle_status', actor: 'admin',
+      detail: `정산 #${st.id} → ${b.status}`
+        + (payment ? ` · 중간정산금 ${payment.amount.toLocaleString('ko-KR')}원 기록` : '')
+        + (!paid && st.payment_id ? ' · 중간정산금 기록 취소' : '') });
+
+    const sm = await settlement(env, st.customer_id);
+    return json({ ok: true, payment, ...sm });
   }
 
   // 정산 요청을 관리자가 직접 만들거나 고친다 — 옮겨 적는 이력, 전화로 받은 요청 등

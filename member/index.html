@@ -659,6 +659,18 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
+/* 발행 목적 고르기 — 무엇으로 기록할지는 여기서 정해진다 */
+.purp{display:grid;gap:8px}
+.purp button{font:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:11px;
+  padding:12px 13px;cursor:pointer;transition:.15s;display:block;width:100%}
+.purp button:hover{border-color:var(--navy);background:var(--soft-blue)}
+.purp button.on{border-color:var(--navy);background:var(--soft-blue)}
+.purp b{display:block;font-size:13.5px;font-weight:800;color:var(--ink)}
+.purp small{display:block;margin-top:3px;font-size:11.5px;font-weight:600;color:var(--mut);line-height:1.55}
+.purp em{font-style:normal;color:var(--navy-dk);font-weight:800}
+.purpnow{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.purpnow b{font-size:13.5px;font-weight:800}
+.purpnow small{display:block;margin-top:2px;font-size:11.5px;font-weight:600;color:var(--mut)}
 .ofvat{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
 .ofvat select{width:auto;flex:0 0 auto;font-size:12.5px;padding:6px 8px}
 .dhint{margin:5px 0 0;font-size:11.5px;font-weight:600;color:var(--mut);line-height:1.55}
@@ -4605,6 +4617,30 @@ var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTar
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
     dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
     dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
+var dqPurpose = null;    // quote | delivery | advance | settle — 고르기 전에는 폼을 열지 않는다
+var PURP = {
+  quote:    { t:'견적서만',        d:'견적서 하나만 뽑습니다. <em>아무 기록도 만들지 않습니다.</em>',
+              types:['quote'] },
+  delivery: { t:'납품 서류',       d:'이미 나간 견적서대로 거래명세서 · 세금계산서를 발행합니다. <em>→ 주문으로 기록 (총지출금 +)</em>',
+              types:['statement','taxinvoice'] },
+  advance:  { t:'중간정산금 청구', d:'중도금 · 선입금을 받으려고 3종을 발행합니다. <em>→ 정산요청 「입금 대기」로 등록</em>',
+              types:['quote','statement','taxinvoice'] },
+  settle:   { t:'정산요청 처리',   d:'고객이 올린 정산요청서를 보고 3종을 발행합니다. <em>→ 그 요청에 연결 · 「서류발급 완료」</em>',
+              types:['quote','statement','taxinvoice'] },
+};
+
+function dqBindPurp(){
+  var box = $('#dqPurp'); if (!box) return;
+  box.querySelectorAll('button[data-p]').forEach(function(b){
+    b.onclick = function(){
+      dqPurpose = b.dataset.p;
+      dqTypes = PURP[dqPurpose].types.slice();
+      paintDocs();
+      // 정산요청 처리는 그 요청에서 내용을 끌어오는 것이 출발점이다 — 바로 고르게 연다
+      if (dqPurpose === 'settle' && $('#dqFromSettle')) $('#dqFromSettle').click();
+    };
+  });
+}
 
 function dqToday(){ return new Date(Date.now()+9*3600000).toISOString().slice(0,10); }
 function dqPlus(d, n){ var t=new Date(d+'T00:00:00Z'); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); }
@@ -4641,7 +4677,38 @@ function paintDocs(){
   var head = '<div class="ttlrow"><div class="ttl" style="margin:0">문서 발행</div>'
      + (editing ? '<span class="editing">수정 중 · 저장하면 이 문서가 바뀝니다</span>' : '')
      + '</div>';
-  var cards = '<div class="dcard"><h4>문서 종류</h4>'
+  var purpCards = '<div class="purp" id="dqPurp">'
+    + Object.keys(PURP).map(function(k){
+        return '<button data-p="'+k+'"'+(dqPurpose===k?' class="on"':'')+'>'
+          + '<b>'+esc(PURP[k].t)+'</b><small>'+PURP[k].d+'</small></button>'; }).join('')
+    + '</div>';
+
+  if (!dqPurpose && dqInq){ dqPurpose = 'quote'; dqTypes = ['quote']; }   // 문의 답변은 견적서다
+
+  // 목적을 고르기 전에는 아무것도 열지 않는다 — 나중에 «이게 뭐였지» 하고 되묻지 않으려고 앞에 세운 문이다
+  if (!dqPurpose && !dqDocId){
+    var gate = '<div class="dcard"><h4>발행 목적 <i style="font-style:normal;color:var(--mut);font-weight:600">먼저 고르세요</i></h4>'
+      + purpCards
+      + '<p class="dnote">고른 목적에 따라 <b>서류 종류와 기록 방식이 자동으로 맞춰집니다.</b> '
+      + '발행하고 나서 «주문인가 정산인가»를 다시 고르지 않으셔도 됩니다.</p></div>';
+    if (dqHost) dqHost.innerHTML = gate;
+    else $('#main').innerHTML = head + '<div class="dc2"><section>' + gate + '</section>' + hist0() + '</div>';
+    dqBindPurp();
+    if (!dqHost){
+      var t0; $('#dqHQ').oninput = function(e){ clearTimeout(t0); t0=setTimeout(function(){ dqHistKw=e.target.value.trim(); dqHist(); },250); };
+      dqHist();
+    }
+    return;
+  }
+
+  var cards = '<div class="dcard"><h4>발행 목적</h4>'
+       + (dqPurpose
+          ? '<div class="purpnow"><div><b>'+esc(PURP[dqPurpose].t)+'</b>'
+            + '<small>'+PURP[dqPurpose].d.replace(/<\/?em>/g,'')+'</small></div>'
+            + '<button class="mini" id="dqPurpChg">바꾸기</button></div>'
+          : '<div class="dnote">수정 중인 문서입니다.</div>')
+     + '</div>'
+     + '<div class="dcard"><h4>문서 종류</h4>'
        + (dqHost ? '' : '<button class="btn ghost" id="dqNew2" style="width:100%;margin-bottom:10px">＋ 새로 작성</button>')
        + '<div class="dtype" id="dqTypeBox">'
          + ['quote','statement','taxinvoice'].map(function(t){
@@ -4681,12 +4748,12 @@ function paintDocs(){
        + '<button class="mini" id="dqAdd" style="margin-top:4px">＋ 품목 추가</button>'
        + '<div class="qsum" id="dqSum"></div>'
        + '<label>비고</label><textarea id="dqNote" rows="2" placeholder="특기사항이 있으면 적어주세요 (선택) — 입금계좌는 항상 자동으로 들어갑니다"></textarea>'
-       + '<div class="ordsw"><label class="swrow"><input type="checkbox" id="dqMakeOrder"'+(dqMakeOrder?' checked':'')+'>'
-         + '<span><b>이 발행을 주문으로도 기록</b>'
-         + '<small>물건이 실제로 나가는 건일 때만 켜세요. 견적만 보내는 건은 꺼두면 장부에 안 잡힙니다.</small></span></label>'
-         + '<div id="dqOrdSt"'+(dqMakeOrder?'':' hidden')+'><label>주문 상태</label><select id="dqOrderStatus">'
-           + ST.map(function(x){ return '<option'+(x===dqOrderStatus?' selected':'')+'>'+x+'</option>'; }).join('')
-         + '</select></div></div>'
+       + (dqPurpose==='delivery'
+          ? '<div class="ordsw"><label>주문 상태 <span class="hint" style="font-weight:600">(주문으로 기록됩니다)</span></label>'
+            + '<select id="dqOrderStatus">'
+            + ST.map(function(x){ return '<option'+(x===dqOrderStatus?' selected':'')+'>'+x+'</option>'; }).join('')
+            + '</select></div>'
+          : '')
        + (dqInq ? '<label class="swrow" style="margin:14px 0 2px"><input type="checkbox" id="dqInqDone" checked>'
            + '<span><b>발행하면 이 문의를 완료로 표시</b></span></label>' : '')
        + '<div class="twobtn"><button class="btn ghost" id="dqPrev">미리보기</button>'
@@ -4696,11 +4763,12 @@ function paintDocs(){
            + '</button></div>'
        + (editing ? '<button class="mini" id="dqNew" style="width:100%;margin-top:10px">수정 그만두고 새로 작성</button>' : '')
      + '</div>';
-  var hist = '<section><h3 class="opsh">발행 이력</h3>'
+  var hist = hist0();
+  function hist0(){ return '<section><h3 class="opsh">발행 이력</h3>'
      + '<div class="achips" id="dqHChips"></div>'
      + '<div class="tools" style="margin-bottom:10px"><input type="search" id="dqHQ" placeholder="문서번호 · 거래처 · 제목" value="'+esc(dqHistKw)+'"></div>'
      + '<div class="panel list dhist" id="dqHist"><div class="empty">불러오는 중…</div></div>'
-   + '</section>';
+   + '</section>'; }
 
   if (dqHost) dqHost.innerHTML = cards;
   else $('#main').innerHTML = head + '<div class="dc2"><section>' + cards + '</section>' + hist + '</div>';
@@ -4721,10 +4789,8 @@ function paintDocs(){
   dqPaintBill(); dqSrcButtons(); dqSrcTag();
 
   $('#dqTitle').oninput = function(e){ dqTitleAuto = !e.target.value.trim(); dqTitle = e.target.value; };
-  $('#dqMakeOrder').onchange = function(e){
-    dqMakeOrder = e.target.checked; $('#dqOrdSt').hidden = !dqMakeOrder;
-  };
-  $('#dqOrderStatus').onchange = function(e){ dqOrderStatus = e.target.value; };
+  if ($('#dqPurpChg')) $('#dqPurpChg').onclick = function(){ dqPurpose = null; paintDocs(); };
+  if ($('#dqOrderStatus')) $('#dqOrderStatus').onchange = function(e){ dqOrderStatus = e.target.value; };
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
   $('#dqTarget').oninput = function(e){ dqTarget = numFmt(e.target); dqSum(); };
   $('#dqTarget').onblur  = function(e){          // 칸을 벗어날 때 10원 단위로 맞춘다
@@ -4802,7 +4868,7 @@ function dqCliLine(box, c, unpick){
 function dqClear(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
-  dqMakeOrder=false; dqOrderStatus='발주확정';
+  dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
 }
 function dqReset(){ dqClear(); paintDocs(); }
@@ -5007,7 +5073,7 @@ async function dqSubmit(preview){
     dates: (function(){ var o={}; document.querySelectorAll('#dqDateBox input[data-d]')
               .forEach(function(el){ if (el.value) o[el.dataset.d] = el.value; }); return o; })(),
     title: $('#dqTitle').value, note: $('#dqNote').value,
-    make_order: dqMakeOrder, order_status: dqOrderStatus,
+    purpose: dqPurpose, make_order: dqPurpose==='delivery', order_status: dqOrderStatus,
     vat_included: dqVat, items: items })})
     .then(function(r){return r.json();}).catch(function(){return{};});
   btn.disabled = false; btn.textContent = was;
@@ -5034,7 +5100,8 @@ async function dqSubmit(preview){
   }
 
   toast((made.length>1 ? made.length+'종 발행' : DTYPE[made[0].type]+' '+made[0].doc_no+' 발행')
-        + (r.order ? ' · 주문 '+r.order.order_no+' 기록' : ''));
+        + (r.order ? ' · 주문 '+r.order.order_no+' 기록' : '')
+        + (r.settlement ? ' · 정산요청 #'+r.settlement.id+' ('+r.settlement.status+')' : ''));
   // 발행이 끝나면 폼을 비운다. 그대로 두면 다음 건을 쓰려 할 때 '수정 모드'에 갇힌다.
   if (dqHostWin){        // 팝업 안에서 발행했다 — 팝업만 닫는다. 뒤 화면은 그대로 둔다.
     dqHostWin.remove(); dqHost = null; dqHostWin = null; dqInq = null; dqClear();
