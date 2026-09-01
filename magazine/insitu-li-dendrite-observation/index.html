@@ -41,6 +41,11 @@
 .msc-tbl .hot{background:#EAF4FB}
 .msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
 .hl{background:#D9EBFA;color:#173A63;padding:1px 5px;border-radius:4px;font-weight:700}
+.msc-acc{margin:8px 0 6px}
+.msc-acc summary{cursor:pointer;font-size:13.5px;font-weight:700;color:#0F69AF;background:#F4F8FC;border:1px solid #D8E4F2;border-radius:8px;padding:10px 14px;list-style:none}
+.msc-acc summary::before{content:'▸ ';color:#8aa0bd}
+.msc-acc[open] summary::before{content:'▾ '}
+.msc-acc summary::-webkit-details-marker{display:none}
 .bx-spec{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:14px;line-height:1.55}
 .bx-spec>span:nth-child(odd){font-size:12.5px;font-weight:800;color:#3B3695;white-space:nowrap;padding-top:1px}
 .stackline{display:flex;align-items:center;flex-wrap:wrap;gap:4px;font-size:12.5px}
@@ -185,7 +190,7 @@
     </div>
 
     <div style="background:#F4F8FC;border:1px solid #D8E4F2;border-radius:12px;padding:14px 16px;margin:0 0 14px">
-      <div style="font-weight:800;color:#3B3695;font-size:13.5px;margin-bottom:9px">셀 내부 적층 — 코인셀 샌드위치를 눕혀 창 아래 둔 구조</div>
+      <div style="font-weight:800;color:#3B3695;font-size:13.5px;margin-bottom:9px">셀 내부 적층 — 사각 셀 샌드위치를 세워 둔 구조 (창 너머로 적층 단면이 보입니다)</div>
       <div class="stackline">
         <i>Ti 전극</i><em>›</em><i>Ti 판</i><em>›</em><b>리튬메탈/샘플</b><em>›</em><i>격벽</i><em>›</em><b>샘플</b><em>›</em><i>Ti 판</i><em>›</em><i>Ti 전극</i>
       </div>
@@ -206,13 +211,21 @@
       <thead><tr><th>모델</th><th>형식 · 구성</th><th>관찰창 · 광학</th><th>온도 · 가압</th><th>시료 · 기타</th></tr></thead>
       <tbody>
         <tr class="hot"><td><b>CIS-OM-003</b><br>표준형</td><td>PEEK 몸체 · 고순도 티타늄 가동 전극(악어클립 체결)</td><td>석영창 Φ24 mm · 두께 <b>0.05 mm</b> · 시료-창 상면 약 <b>0.6 mm</b>(더 얇게 커스텀 가능) · 최소 작동거리 1 mm</td><td>상온 · 가압 전고체 모듈 옵션 <b>최대 6 MPa(60 kg)</b>, 상향 커스텀</td><td>시료 10×10 mm · 두께 0.6~2 mm · 가스 퍼지 + 별도 주액 피팅 · 본체 약 60×70×30 mm</td></tr>
-        <tr><td><b>CIS-OM-003-1</b><br>수평형</td><td>003과 동일 · 관찰면 수평 배치</td><td>003과 동일</td><td>003과 동일</td><td>도립현미경 대응 · 창 아래 기포 회피</td></tr>
-        <tr><td><b>CIS-OM-004</b><br>고저온형</td><td>가열·냉각 스테이지 분리 구성</td><td>상부 석영창 관찰</td><td><b>−30~150℃</b> · ±1℃ · 프로그램 온도 제어</td><td>시료실 ≤35 mm · 온도별 도금·박리 거동 관찰</td></tr>
-        <tr><td><b>CIS-OM-005</b><br>극저온형</td><td>PEEK + 구리 몸체</td><td>석영창 Φ10 mm · 초점거리 &lt;2 mm</td><td><b>−100~100℃</b></td><td>저온 전해액 스크리닝 · 저온 도금 관찰</td></tr>
-        <tr><td><b>CIS-OM-002</b><br>비커형</td><td>석영 비커 5 mL · Ti 전극(Φ3 mm)</td><td>비커 측벽 개방 광학 경로</td><td>상온</td><td>아연계·수계 전지 관찰 입문용</td></tr>
-        <tr><td><b>OPR-DM01</b><br>전용 광학계</td><td>삼안(분할 80:20) · LED 반사광 · 0.5× C마운트</td><td>줌 0.7~4.5×(WD 82~179 mm) + 플랜 아크로매틱 10/20/40/50× 대물 · 미동 0.01 mm</td><td>—</td><td>스테이지 140×140 mm(XY 75×50 mm) · SONY CMOS 16 Mpx · 심도융합·타임랩스 SW</td></tr>
       </tbody>
     </table>
+    <details class="msc-acc">
+      <summary>변형 모델·전용 광학계 사양 펼치기 — 003-1 수평형 · 004 고저온 · 005 극저온 · 002 비커형 · OPR-DM01</summary>
+      <table class="msc-tbl">
+        <thead><tr><th>모델</th><th>형식 · 구성</th><th>관찰창 · 광학</th><th>온도 · 가압</th><th>시료 · 기타</th></tr></thead>
+        <tbody>
+          <tr><td><b>CIS-OM-003-1</b><br>수평형</td><td>003과 동일 · 관찰면 수평 배치</td><td>003과 동일</td><td>003과 동일</td><td>도립현미경 대응 · 창 아래 기포 회피</td></tr>
+          <tr><td><b>CIS-OM-004</b><br>고저온형</td><td>가열·냉각 스테이지 분리 구성</td><td>상부 석영창 관찰</td><td><b>−30~150℃</b> · ±1℃ · 프로그램 온도 제어</td><td>시료실 ≤35 mm · 온도별 도금·박리 거동 관찰</td></tr>
+          <tr><td><b>CIS-OM-005</b><br>극저온형</td><td>PEEK + 구리 몸체</td><td>석영창 Φ10 mm · 초점거리 &lt;2 mm</td><td><b>−100~100℃</b></td><td>저온 전해액 스크리닝 · 저온 도금 관찰</td></tr>
+          <tr><td><b>CIS-OM-002</b><br>비커형</td><td>석영 비커 5 mL · Ti 전극(Φ3 mm)</td><td>비커 측벽 개방 광학 경로</td><td>상온</td><td>아연계·수계 전지 관찰 입문용</td></tr>
+          <tr><td><b>OPR-DM01</b><br>전용 광학계</td><td>삼안(분할 80:20) · LED 반사광 · 0.5× C마운트</td><td>줌 0.7~4.5×(WD 82~179 mm) + 플랜 아크로매틱 10/20/40/50× 대물 · 미동 0.01 mm</td><td>—</td><td>스테이지 140×140 mm(XY 75×50 mm) · SONY CMOS 16 Mpx · 심도융합·타임랩스 SW</td></tr>
+        </tbody>
+      </table>
+    </details>
     <p class="msc-note">셀 내부 적층: 티타늄 전극(단자) → 티타늄 판 → 리튬메탈/샘플 → 격벽(세퍼레이터) → 샘플 → 티타늄 판 → 티타늄 전극. 제조사 카탈로그 원문 사양은 아래 이미지·카탈로그 PDF 참조.</p>
 
     <figure style="margin:18px 0 6px">
