@@ -73,21 +73,10 @@
   };
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/product/', label:'툴·실험장비', icon:'devices', noclick:true, sub:[
-        ['/product/', '통합 카탈로그'],
-        ['/manuals/', '메뉴얼']
-      ] },
-    { href:'/materials/', label:'소재', icon:'guide' },
-    { href:'/magazine/', label:'셋업 사례', icon:'feed' },
-    { href:'/info/', label:'유용한 정보', icon:'pick', noclick:true, sub:[
-        ['/info/', '제품 정보'],
-        ['/wiki/', '배터리 사전']
-      ] },
-    { href:'/contact/', label:'문의하기', icon:'contact', noclick:true, sub:[
-        ['#chat',     '문의하기'],
-        ['/contact/', 'FAQ'],
-        ['/about/',   '회사소개']
-      ] }
+    { href:'/materials/', label:'Products', icon:'guide' },
+    { href:'/product/', label:'Equipments', icon:'devices' },
+    { href:'/magazine/', label:'Setup Blog', icon:'feed' },
+    { href:'/about/', label:'Company', icon:'contact' }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
@@ -154,27 +143,13 @@
     '<div class="ch-scrim" id="chScrim"></div>';
 
   var FOOTER =
-    '<section style="background:#2A2570;padding:26px 20px;text-align:center">' +
-      '<div style="max-width:560px;margin:0 auto">' +
-        '<div style="color:#fff;font-weight:800;font-size:16px;line-height:1.4;margin-bottom:4px">새 논문 셋업이 올라오면 이메일로 알려드립니다</div>' +
-        '<div style="color:#C9D4E2;font-size:13px;margin-bottom:14px">실험 셋업 매거진 구독 · 새 글 알림만, 스팸 없음</div>' +
-        '<form action="https://formspree.io/f/mnjkzppj" method="POST" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap" data-ga="subscribe">' +
-          '<input type="hidden" name="_subject" value="[매거진 구독] 새 구독 신청">' +
-          '<input type="hidden" name="구분" value="실험 셋업 매거진 구독">' +
-          '<input type="hidden" name="_next" value="https://rndsetup.com/?subscribed=1">' +
-          '<input type="email" name="email" required placeholder="이메일 주소" style="flex:1;min-width:220px;max-width:320px;height:44px;border:none;border-radius:9px;padding:0 14px;font-size:14px;font-family:inherit">' +
-          '<button type="submit" style="height:44px;padding:0 24px;border:none;border-radius:9px;background:#EF9F27;color:#1a1a1a;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit">구독</button>' +
-        '</form>' +
-        '<div style="color:#8fa3ba;font-size:12px;margin-top:10px">RSS로도 구독 가능 · <a href="/feed.xml" style="color:#C9D4E2;text-decoration:underline">feed.xml</a></div>' +
-      '</div>' +
-    '</section>' +
     '<footer class="chrome-footer">' +
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/product/?q=리드플루이드">제품·모델</a><a href="/about/">회사소개</a><a href="/trust/">정품·인증</a><a href="/repair/">A/S·수리</a></div>' +
+            '<a href="/product/">제품·모델</a><a href="/manuals/">메뉴얼</a><a href="/about/">회사소개</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
-            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a><a href="/contact/">자주 묻는 질문(FAQ)</a></div>' +
+            '<a href="/contact/">일반 문의</a><a href="/contact/#quote">견적 문의</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
