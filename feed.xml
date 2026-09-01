@@ -6,13 +6,13 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Tue, 01 Sep 2026 21:47:42 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 22:07:06 +0900</lastBuildDate>
     <item>
-      <title>리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀 (ACS Cent. Sci. 2016 · Sci. Adv. 2022)</title>
+      <title>리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — 현미경용 인시츄 셀 CIS-OM-003</title>
       <link>https://rndsetup.com/magazine/insitu-li-dendrite-observation/</link>
       <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-li-dendrite-observation/</guid>
       <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
-      <description><![CDATA[액체계는 별도 주액 피팅으로 기포를 제거한 석영창 가시화 셀 + 전압-영상 동기, 전고체는 정압 가압(5 MPa급)을 유지한 채 단면을 보는 몰드 셀. 현미경 호환 수치(WD 0.65mm+·클리어런스 30mm+)와 Ti 전극 적층 구성, 관찰 셀·광학계 10종을 정리했다.]]></description>
+      <description><![CDATA[현미경용 인시츄 셀 시리즈 003편. 셀 구조·조립 영상, 격벽(PEEK)이 덴드라이트가 자랄 공간을 만드는 이유, 별도 주액 피팅·주사기 음압 기포 제거, 창 스펙(0.05mm)·현미경 호환, 전고체 가압(최대 6 MPa) 겸용과 시료 커스텀까지 정리했다.]]></description>
       <category>인시츄 셀</category><category>리튬메탈</category><category>덴드라이트</category><category>전고체</category><category>operando</category>
     </item>
     <item>

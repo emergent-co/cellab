@@ -3,33 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀 (ACS Cent. Sci. 2016 · Sci. Adv. 2022) | 실험셋업연구소</title>
-<meta name="description" content="리튬메탈 덴드라이트 in-situ 광학 관찰 셋업 구성법. 액체 전해질은 별도 주액 피팅으로 기포를 제거한 석영창 가시화 셀 + 전압-영상 동기, 전고체는 정압 가압(5 MPa급) 몰드 셀 + 단면 관찰. 현미경 호환 확인 수치(WD·클리어런스·스테이지)와 관찰 셀(석영창 0.05mm) 사양 10종을 정리했습니다.">
+<title>리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — 현미경용 인시츄 셀 CIS-OM-003 | 실험셋업연구소</title>
+<meta name="description" content="리튬메탈 덴드라이트 관찰용 현미경용 인시츄 셀 CIS-OM-003 셋업 가이드. 셀 구조·조립, 격벽(PEEK)의 역할, 별도 주액 피팅과 주사기 음압 기포 제거, 창 스펙(석영 0.05mm)·현미경 호환, 전고체 가압(최대 6 MPa) 겸용까지 — 액체·전고체 한 셀로 관찰하는 방법을 정리했습니다.">
 <link rel="canonical" href="https://rndsetup.com/magazine/insitu-li-dendrite-observation/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀">
-<meta property="og:description" content="액체계는 별도 주액 피팅으로 기포 제거, 전고체는 정압 가압 유지 + 단면 관찰. 현미경 호환 수치(WD·클리어런스)까지 — in-situ 덴드라이트 관찰 셋업 구성법.">
+<meta property="og:title" content="리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — 현미경용 인시츄 셀 CIS-OM-003">
+<meta property="og:description" content="셀 구조·격벽의 역할·기포 제거·창 스펙·전고체 가압까지 — 현미경용 인시츄 셀 CIS-OM-003으로 리튬 덴드라이트를 관찰하는 방법.">
 <meta property="og:url" content="https://rndsetup.com/magazine/insitu-li-dendrite-observation/">
 <meta property="og:image" content="https://rndsetup.com/img/magazine/hefei-cis-om-cells.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
-"headline":"리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀",
+"headline":"리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — 현미경용 인시츄 셀 CIS-OM-003",
 "datePublished":"2026-09-01",
 "inLanguage":"ko",
 "image":"https://rndsetup.com/img/magazine/hefei-cis-om-cells.jpg",
 "about":{"@type":"Thing","name":"리튬메탈 덴드라이트 in-situ 광학 관찰 셋업","url":"https://rndsetup.com/magazine/insitu-li-dendrite-observation/"},
-"citation":[
-{"@type":"ScholarlyArticle","name":"Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy","author":"Wood, K. N. et al.","isPartOf":{"@type":"Periodical","name":"ACS Central Science"},"datePublished":"2016","sameAs":"https://doi.org/10.1021/acscentsci.6b00260"},
-{"@type":"ScholarlyArticle","name":"Void formation at the lithium | solid electrolyte interface during stripping and its impact on cell performance","isPartOf":{"@type":"Periodical","name":"Science Advances"},"datePublished":"2022","sameAs":"https://doi.org/10.1126/sciadv.add0510"}],
 "author":{"@type":"Person","@id":"https://rndsetup.com/#yhlee","name":"이영현","url":"https://rndsetup.com/about/#author","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
 "publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
 "mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/magazine/insitu-li-dendrite-observation/"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"리튬 덴드라이트를 실시간으로 관찰하려면 어떤 셋업이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"석영 관찰창이 있는 밀봉형 in-situ 전기화학 셀을 광학현미경 아래 두고, 정전류 사이클의 전압 곡선과 영상을 타임스탬프로 동기화해 기록합니다. Wood 등(ACS Central Science, 2016)은 Li–Li 대칭 가시화 셀을 아르곤 글러브박스(수분·산소 1 ppm 미만)에서 조립하고 5 mA/cm²로 사이클하며 반주기당 90프레임을 촬영해, 전압 피크가 덴드라이트 성장→피트 용해로의 전환점임을 보였습니다."}},
+{"@type":"Question","name":"리튬 덴드라이트를 실시간으로 관찰하려면 어떤 셋업이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"석영 관찰창이 있는 밀봉형 인시츄 전기화학 셀을 광학현미경 아래 두고, 정전류 사이클의 전압 곡선과 영상을 타임스탬프로 동기화해 기록합니다. 글러브박스에서 조립한 셀을 스테이지에 거치하고, 전압 곡선의 변곡(덴드라이트 성장↔피트 전환 등)을 영상과 1:1로 대응시키는 방식입니다."}},
 {"@type":"Question","name":"액체 전해질 관찰 셀에서 기포는 어떻게 관리하나요?","acceptedAnswer":{"@type":"Answer","text":"관찰창 아래 기포는 시야를 가리고 국부 전류밀도를 왜곡하므로, 전해액을 넣는 피팅(주액 포트)이 별도로 있는 셀을 써야 합니다. 글러브박스에서 건조 조립·밀봉한 뒤 주액 포트로 전해액을 주입하고, 안에 남은 기포는 주사기로 포트에 음압을 걸어 제거합니다. 그래도 창 아래 기포가 남는 형상이면 관찰면이 옆으로 눕는 수평형 셀(CIS-OM-003-1)을 씁니다."}},
-{"@type":"Question","name":"전고체 관찰 셋업은 액체계와 무엇이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"기포 대신 압력이 문제가 됩니다. 고체-고체 계면은 스택 압력이 풀리면 접촉이 떨어지므로 정압 가압(논문 5 MPa, 시판 모듈 최대 6 MPa)을 유지한 채 관찰해야 하고, 스프링·토크 볼트식 지그는 크리프로 압력이 흘러내려 부적합합니다. 보는 방향도 다릅니다 — 액체계는 전극 상면을 내려다보지만, 전고체는 Li|고체전해질|전극 3층 단면을 몰드 측면으로 노출시켜 관찰합니다. 시료도 포일 펀칭이 아니라 펠릿 성형·단면 정리가 필요합니다."}},
+{"@type":"Question","name":"전고체 관찰 셋업은 액체계와 무엇이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"기포 대신 압력이 문제가 됩니다. 고체-고체 계면은 스택 압력이 풀리면 접촉이 떨어지므로 정압 가압(5 MPa급, 모듈 최대 6 MPa)을 유지한 채 관찰해야 하고, 스프링·토크 볼트식 지그는 크리프로 압력이 흘러내려 부적합합니다. 보는 방향도 다릅니다 — 액체계는 전극 상면을 내려다보지만, 전고체는 Li|고체전해질|전극 3층 단면을 몰드 측면으로 노출시켜 관찰합니다. 시료도 포일 펀칭이 아니라 펠릿 성형·단면 정리가 필요합니다."}},
 {"@type":"Question","name":"보유 현미경과 호환되는지 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"셀 스펙 세 가지로 확인합니다. 본체 크기 약 60×70×30 mm(스테이지·대물 아래 클리어런스), 석영창 두께 0.05 mm, 창-샘플 거리 약 0.6 mm(더 얇게 커스텀 가능). 보유 현미경의 작동거리와 스테이지 공간을 이 수치와 대조하면 됩니다. 도립현미경은 수평형 003-1로 대응합니다."}}
 ,{"@type":"Question","name":"격벽(세퍼레이터)은 분리막인가요? 교체가 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 격벽은 소모품 분리막이 아니라 반영구 PEEK 부품으로, 두 전극 사이에 덴드라이트가 자랄 공간을 확보하는 역할입니다. 시판 분리막으로 대체하면 틈이 사라져 덴드라이트 관찰이 어려워집니다. 관찰 간격이 다르게 필요하면 격벽 두께를 커스텀 제작할 수 있고, 전고체 관찰에서는 격벽 없이 적층해 보이드·들뜸을 관찰합니다."}}]}
 </script>
@@ -113,18 +110,18 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
 
 <article class="sd-wrap">
   <div class="sd-crumb"><a href="/">홈</a> › <a href="/magazine/">매거진</a> › 인시츄 셀 · 덴드라이트 관찰</div>
-  <h1>리튬메탈 덴드라이트, 눈으로 확인하는 셋업<br>— in-situ 광학 관찰 셀</h1>
-  <div class="sd-meta">2016 · ACS Central Science (NREL·Michigan) &nbsp;+&nbsp; 2022 · Science Advances</div>
+  <h1>리튬메탈 덴드라이트, 눈으로 확인하는 셋업<br>— 현미경용 인시츄 셀 CIS-OM-003</h1>
+  <div class="sd-meta">현미경용 인시츄 셀 시리즈 · CIS-OM-003 편 — 002 · 004 · 005 편 연재 예정</div>
   <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:4px 0 2px">실험셋업연구소 매거진 · 글 <a href="/about/#author" style="color:inherit;text-decoration:underline;text-underline-offset:2px">이영현</a> · <time datetime="2026-09-01">2026년 9월 1일</time> 발행 · 읽는 시간 약 8분</div>
 
   <div class="sd-summary">
     <h3>셋업 요약</h3>
-    <div class="row"><span class="k">논문 ①</span><span>Dendrites and Pits: … Lithium Metal Anodes through Operando Video Microscopy</span></div>
-    <div class="row"><span class="k">논문 ②</span><span>Void formation at the lithium | solid electrolyte interface during stripping …</span></div>
-    <div class="row"><span class="k">핵심 장비</span><span><b>밀봉형 in-situ 광학 관찰 셀(석영창) + 반사광 현미경 + 정전류 사이클러</b></span></div>
+    <div class="row"><span class="k">시리즈</span><span>현미경용 인시츄 셀 (In-situ Microscopic Observation System)</span></div>
+    <div class="row"><span class="k">이 편</span><span><b>CIS-OM-003</b> — 액체·전고체 겸용 표준형</span></div>
+    <div class="row"><span class="k">핵심 장비</span><span><b>CIS-OM-003 관찰 셀 + 덴드라이트 관찰 전용 현미경 + 정전류 사이클러</b></span></div>
     <div class="row"><span class="k">제어</span><span>정전류 도금·박리 · 전압-영상 타임스탬프 동기 · (전고체) 정압 가압</span></div>
-    <div class="row"><span class="k">분야</span><span>#리튬메탈 #덴드라이트 #인시츄셀 #전고체 #operando</span></div>
-    <div class="row"><span class="k">DOI</span><span><a href="https://doi.org/10.1021/acscentsci.6b00260" target="_blank" rel="noopener">10.1021/acscentsci.6b00260 ↗</a> · <a href="https://doi.org/10.1126/sciadv.add0510" target="_blank" rel="noopener">10.1126/sciadv.add0510 ↗</a></span></div>
+    <div class="row"><span class="k">분야</span><span>#리튬메탈 #덴드라이트 #인시츄셀 #전고체</span></div>
+  </div>
   </div>
 
   <div class="sd-answer">
@@ -140,7 +137,7 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
 
   <div class="sd-bridge">
     <h2>관찰 셀의 구조 — CIS-OM-003</h2>
-    <p>이 실험에 쓰는 관찰 셀입니다 — <b>기밀 · 별도 주액 피팅 · 얇은 관찰창 · 정압 가압</b>을 갖춘 표준형. 실험셋업연구소가 Hefei In-situ Technology에서 소싱합니다.</p>
+    <p><b>현미경용 인시츄 셀 시리즈(CIS-OM)</b>는 광학현미경 아래에서 전지 계면을 실시간 관찰하는 밀봉 셀 라인업입니다. 이 편은 그 표준형 — <b>기밀 · 별도 주액 피팅 · 얇은 관찰창 · 정압 가압</b>을 갖춘 <b>CIS-OM-003</b>입니다. 실험셋업연구소가 Hefei In-situ Technology에서 소싱합니다.</p>
 
     <div style="background:#fff;border:1px solid #D8E4F2;border-radius:12px;padding:16px 18px;margin:4px 0 14px">
       <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:10px">
@@ -148,7 +145,7 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
         <a href="/brands/hefei/om003-microscope-cell/" style="font-weight:800;color:#0F69AF;font-size:13.5px;background:none;padding:0">제품 상세·가격 보기 →</a>
       </div>
       <div class="bx-spec">
-        <span>몸체 · 전극</span><span>PEEK 몸체 · 고순도 티타늄 <b>가동 전극</b>(악어클립 체결)</span>
+        <span>몸체 · 전극</span><span>PEEK 몸체 · 고순도 티타늄 <b>가동 전극</b>(다른 재질 커스텀 가능)</span>
         <span>관찰창</span><span>석영 Φ24 mm · 두께 <b>0.05 mm</b></span>
         <span>시료-창 상면</span><span><b>약 0.6 mm</b> — 더 얇게 커스텀 가능</span>
         <span>주액 · 퍼지</span><span><b>별도 주액 피팅</b> + 가스 퍼지 → 주사기 기포 제거 대응</span>
@@ -181,42 +178,30 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
     <p>적층 가운데의 <b>격벽(세퍼레이터 자리)</b>은 소모품 분리막이 아니라 <span class="hl">반영구 PEEK 부품</span>입니다. 역할도 절연이 아니라 두 전극 사이에 <b>덴드라이트가 자랄 공간을 확보</b>하는 것. 그래서 시판 분리막을 끼우면 틈이 사라져 <b>덴드라이트 관찰 자체가 어려워집니다</b>. 관찰 간격을 바꾸고 싶으면 <b>격벽 두께를 커스텀 제작</b>하면 됩니다. 한쪽을 리튬 대신 다른 전극(양극 등)으로 바꾸는 구성도 전기 접촉만 잡히면 가능합니다.</p>
 
     <h2>전해액 주입과 기포 제거 — 가장 흔한 실수</h2>
-    <p>보통은 이렇게 셋팅합니다. 글러브박스(H₂O·O₂ &lt; 1 ppm)에서 O링 밀봉으로 조립한 Li–Li 가시화 셀을 반사광 현미경(5× 대물, WD 31 mm) 아래 두고, 정전류(5 mA/cm²급)로 사이클을 돌리며 <b>반주기당 수십 프레임</b>을 촬영해 전압 로그와 타임스탬프로 묶습니다. <span style="font-size:12.5px;color:#8a8f98">(셋업 출처: ACS Cent. Sci. 2016)</span></p>
+    <p>보통은 이렇게 셋팅합니다. 글러브박스(H₂O·O₂ &lt; 1 ppm)에서 O링 밀봉으로 조립한 Li–Li 가시화 셀을 반사광 현미경(5× 대물, WD 31 mm) 아래 두고, 정전류(5 mA/cm²급)로 사이클을 돌리며 <b>반주기당 수십 프레임</b>을 촬영해 전압 로그와 타임스탬프로 묶습니다.</p>
     <p><span class="hl">가장 흔한 실수는 기포</span>입니다. 창 아래 기포는 시야를 가리고, 전해액이 끊긴 자리는 <b>국부 전류밀도가 왜곡</b>돼 가짜 결과를 만듭니다. 그래서 <span class="hl">전해액 주입 피팅이 별도로 있는 셀</span>이 필수입니다 — 건조 조립·밀봉 → 포트로 주액 → <span class="hl">잔류 기포는 주사기로 음압을 걸어 제거</span>. 그래도 기포가 남는 형상이면 수평형 셀로 갑니다.</p>
     <figure style="margin:14px 0 4px">
       <img src="/img/magazine/insitu-bubble-syringe.jpg" alt="주사기 음압으로 in-situ 관찰 셀 잔류 기포를 제거하는 방법 — 주액 포트에 주사기를 꽂고 피스톤을 천천히 위로 당기면 음압이 걸려 셀 안 기포가 주사기 쪽으로 빠져나온다" loading="lazy" style="display:block;width:100%;max-width:300px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
       <figcaption style="font-size:12.5px;color:#777;max-width:480px;margin:6px auto 0;line-height:1.5;text-align:center">주액 포트에 주사기를 꽂고 <b>피스톤을 천천히 위로 당기면</b> 음압으로 셀 안 잔류 기포가 빨려 나온다.</figcaption>
     </figure>
 
-    <h2>셋업 조건 ① — 액체 전해질 (논문 수치 기준)</h2>
-    <table class="msc-tbl">
-      <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
-      <tbody>
-        <tr class="hot"><td>관찰 셀</td><td><b>석영창 가시화 셀, O링 밀봉</b></td><td>Ar 글러브박스(&lt;1 ppm) 조립</td></tr>
-        <tr><td>전류밀도 · 용량</td><td>5 mA/cm² · 반주기 4.5 C/cm²</td><td>10사이클, 휴지 30 s</td></tr>
-        <tr class="hot"><td>광학계</td><td>반사광 5× (NA 0.10 · WD 31 mm)</td><td>반주기 90프레임, 100배속 재생</td></tr>
-        <tr><td>전해액 3종</td><td>1 M LiPF₆ EC:DMC / 4 M LiFSI DME / 1 M LiTFSI DOL:DME + 0.18 M Li₂S₈ + 2% LiNO₃</td><td>동일 조건 비교</td></tr>
-        <tr><td>코인셀 검증</td><td>CR2032 Li(50 µm)–Cu, 전해액 45 µL</td><td>1 mA/cm² × 20사이클</td></tr>
-      </tbody>
-    </table>
+    <h2 style="margin-top:26px">창 스펙과 현미경 호환</h2>
+    <p>보유 현미경과의 호환은 위 카드의 세 수치 — <b>창 두께 0.05 mm(Φ24) · 창-샘플 거리 0.6 mm · 본체 60×70×30 mm</b> — 를 대물 작동거리·스테이지 공간과 대조하면 됩니다.</p>
 
-    <h2 style="margin-top:26px">창 스펙과 현미경 환경</h2>
-    <p>보유 현미경과의 호환은 위 카드의 세 수치 — <b>창 두께 0.05 mm(Φ24) · 창-샘플 거리 0.6 mm · 본체 60×70×30 mm</b> — 를 대물 작동거리·스테이지 공간과 대조하면 됩니다. 아래는 실제 관찰에 쓰는 전용 광학계 예시입니다.</p>
-    <h3 style="font-size:16px;color:#2A2570;margin:18px 0 4px">사용된 광학계 예시 — OPR-DM01</h3>
+    <h2 style="margin-top:26px">공통 광학계 — 덴드라이트 관찰 전용 현미경</h2>
+    <p>시리즈 전 모델이 함께 쓰는 전용 광학계입니다. <b>덴드라이트 관찰 전용 대물 5종(5~100×)</b>과 <b>인시츄 배터리 클램프가 달린 2층 스테이지</b>가 일반 금속현미경과의 차이입니다.</p>
     <figure style="margin:12px 0 10px">
-      <img src="/img/magazine/hefei-opr-dm01.jpg" alt="OPR-DM01 전용 광학계 — 줌 0.7~4.5배 삼안 현미경, 140×140mm 스테이지, SONY CMOS 16Mpx 카메라 구성" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
+      <img src="/img/magazine/hefei-dendrite-scope.jpg" alt="덴드라이트 관찰 전용 현미경 — 삼안 경통, 5공 터렛(5~100배 덴드라이트 관찰 대물), 인시츄 배터리 클램프 스테이지, U820 카메라" loading="lazy" style="display:block;width:100%;max-width:360px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
     </figure>
-    <div class="bx-spec" style="max-width:520px;margin:6px 0 4px">
-      <span>줌</span><span>0.7~4.5× · 작동거리 82~179 mm</span>
-      <span>대물렌즈</span><span>플랜 아크로매틱 10 / 20 / 40 / 50×</span>
-      <span>초점</span><span>미동 0.01 mm</span>
-      <span>스테이지</span><span>140×140 mm · XY 이동 75×50 mm</span>
-      <span>경통 · 조명</span><span>삼안(분할 80:20) · LED 반사광 · 0.5× C마운트</span>
-      <span>카메라</span><span>SONY CMOS <b>16 Mpx</b></span>
-      <span>소프트웨어</span><span>심도융합(depth fusion) · 타임랩스</span>
+    <div class="bx-spec" style="max-width:560px;margin:6px 0 4px">
+      <span>대물렌즈</span><span><b>5 / 10 / 20 / 50 / 100×</b> 덴드라이트 관찰 전용 · 수동 5공 터렛</span>
+      <span>접안 · 경통</span><span>10× 초광시야(시야수 25 mm) · 삼안 20° 틸트 · 분할 100:0 / 50:50</span>
+      <span>조명</span><span>반사·투과 <b>6.6 W 풀스펙트럼 LED</b> · 편광판 내장 · NA 1.25 집광기</span>
+      <span>초점</span><span>동축 조동·미동 · 미동 <b>1 µm</b> · 조동 잠금장치</span>
+      <span>스테이지</span><span>2층 기계식 — 브래킷 + 유리판 + <b>인시츄 배터리 클램프</b></span>
+      <span>카메라</span><span><b>U820</b> · SONY CMOS 5472×3648(약 20 Mpx) · 15 fps · Type-C</span>
     </div>
-
-    <figure style="margin:18px 0 6px">
+<figure style="margin:18px 0 6px">
       <img src="/img/magazine/hefei-depth-fusion.jpg" alt="OPR-DM01 심도융합(depth fusion) 촬영 예 — 굴곡진 전극 표면 전체에 초점이 맞은 합성 이미지" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
       <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">심도융합 촬영 예(제조사 자료). 초점면을 스캔해 합성하므로 덴드라이트처럼 높낮이가 큰 표면도 전체가 선명하다.</figcaption>
     </figure>
@@ -226,32 +211,20 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
     </figure>
 
     <h2>전고체까지 같은 셀로 — 압력·시료·관찰 포인트</h2>
-    <p>전고체는 기포 대신 두 가지를 챙깁니다. ① <b>압력</b>: 고체-고체 계면은 가압이 풀리면 접촉이 떨어지므로 <span class="hl">5 MPa급 정압을 유지한 채</span> 관찰해야 합니다. 스프링·토크 볼트 지그는 크리프로 압력이 흘러내려 부적합합니다. ② <b>보는 방향</b>: 사건(보이드·덴드라이트)은 Li|고체전해질|전극 <b>경계면</b>에서 일어나므로, 상면이 아니라 <span class="hl">몰드 측면으로 3층 단면을 노출</span>시켜 봅니다. 시료도 포일 펀칭이 아닌 펠릿 성형·단면 정리가 필요합니다. <span style="font-size:12.5px;color:#8a8f98">(셋업 출처: Sci. Adv. 2022)</span></p>
+    <p>전고체는 기포 대신 두 가지를 챙깁니다. ① <b>압력</b>: 고체-고체 계면은 가압이 풀리면 접촉이 떨어지므로 <span class="hl">5 MPa급 정압을 유지한 채</span> 관찰해야 합니다. 스프링·토크 볼트 지그는 크리프로 압력이 흘러내려 부적합합니다. ② <b>보는 방향</b>: 사건(보이드·덴드라이트)은 Li|고체전해질|전극 <b>경계면</b>에서 일어나므로, 상면이 아니라 <span class="hl">몰드 측면으로 3층 단면을 노출</span>시켜 봅니다. 시료도 포일 펀칭이 아닌 펠릿 성형·단면 정리가 필요합니다.</p>
 
     <p>압력은 정압 가압 모듈(<b>최대 6 MPa</b>, 고압 오더메이드 가능)로 걸고, 체결 압력은 <b>토크 렌치 값으로 판단</b>합니다. 셀이 사각 구조라 전고체 시료도 사각으로 만들어야 하는데, 원형 펠릿 프레스뿐이라면 <b>사각 성형용 필렛 다이 제공·원형 시료 가이드 제작</b> 같은 커스텀으로 지원합니다. 전고체 관찰에서는 <b>격벽 없이 적층</b>하고, 계면의 <span class="hl">보이드·들뜸(박리)</span>을 위주로 봅니다.</p>
 
-    <h2>셋업 조건 ② — 전고체 (논문 수치 기준)</h2>
-    <table class="msc-tbl">
-      <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
-      <tbody>
-        <tr class="hot"><td>셀 · 가압</td><td><b>Li–Li₇P₃S₁₁–In 몰드 셀, 5 MPa</b></td><td>Li 33 µm · In 100 µm · 25℃</td></tr>
-        <tr><td>전기화학</td><td>GEIS 1~10 mA/cm², 0.25 mAh/cm² 간격</td><td>1 MHz~0.1 Hz · 10 mV · DRT 분해</td></tr>
-        <tr class="hot"><td>광학 관찰</td><td>측면 노출 광학 몰드 셀 + 스테레오 현미경</td><td>0.5 mA/cm² 박리 추적</td></tr>
-        <tr><td>계면 사건</td><td>0.83~1.17 mAh/cm²에서 점 결함→보이드 확장</td><td>초기 0~0.67 mAh/cm² 무변화</td></tr>
-        <tr><td>사후 검증</td><td>PFIB-SEM(Xe⁺ 30 kV) · TOF-SIMS</td><td>광학 관찰과 일치</td></tr>
-      </tbody>
-    </table>
-    <p class="msc-note">보이드 임계 핵 반경 ∝ 1/전류밀도 — 고전류일수록 작은 결함도 보이드로 자란다. 관찰 전류·가압 조건을 실사용 조건과 맞춰야 하는 근거.</p>
-  <h2 style="margin-top:26px">변형 모델 사양</h2>
+    <h2 style="margin-top:26px">시리즈 라인업 — 어떤 모델을 고르나</h2>
+    <p>같은 관찰 방식에 시료·온도 조건만 다릅니다. 각 모델은 별도 편으로 연재합니다.</p>
     <details class="msc-acc">
-      <summary>변형 모델 사양 펼치기 — 003-1 수평형 · 004 고저온 · 005 극저온 · 002 비커형</summary>
+      <summary>시리즈 사양 비교 펼치기 — 002 비커형 · 004 고저온 · 005 극저온</summary>
       <table class="msc-tbl">
-        <thead><tr><th>모델</th><th>형식 · 구성</th><th>관찰창 · 광학</th><th>온도 · 가압</th><th>시료 · 기타</th></tr></thead>
+        <thead><tr><th>모델</th><th>몸체 · 전극</th><th>관찰창 · 광학</th><th>온도 · 압력</th><th>시료 · 용도</th></tr></thead>
         <tbody>
-          <tr><td><b>CIS-OM-003-1</b><br>수평형</td><td>003과 동일 · 관찰면 수평 배치</td><td>003과 동일</td><td>003과 동일</td><td>도립현미경 대응 · 창 아래 기포 회피</td></tr>
-          <tr><td><b>CIS-OM-004</b><br>고저온형</td><td>가열·냉각 스테이지 분리 구성</td><td>상부 석영창 관찰</td><td><b>−30~150℃</b> · ±1℃ · 프로그램 온도 제어</td><td>시료실 ≤35 mm · 온도별 도금·박리 거동 관찰</td></tr>
-          <tr><td><b>CIS-OM-005</b><br>극저온형</td><td>PEEK + 구리 몸체</td><td>석영창 Φ10 mm · 초점거리 &lt;2 mm</td><td><b>−100~100℃</b></td><td>저온 전해액 스크리닝 · 저온 도금 관찰</td></tr>
-          <tr><td><b>CIS-OM-002</b><br>비커형</td><td>석영 비커 5 mL · Ti 전극(Φ3 mm)</td><td>비커 측벽 개방 광학 경로</td><td>상온</td><td>아연계·수계 전지 관찰 입문용</td></tr>
+          <tr><td><b>CIS-OM-002</b><br>비커형</td><td>석영 비커 5 mL · PTFE 셸(O링 밀봉) · 순티타늄 전극</td><td>비커 측벽 개방 광학 경로 · 전극 간격 3 mm</td><td>상온</td><td>아연 대칭 전지 등 수계 입문</td></tr>
+          <tr><td><b>CIS-OM-004</b><br>고저온형</td><td>PEEK · 기본 유리질 탄소(GC) 전극</td><td>석영창 Φ24 mm · 최소 작동거리 1 mm</td><td><b>−30~150℃</b> · ±1℃ 프로그램 — 냉각·가열 플랫폼 분리(교체식, 실링 무관)</td><td>시료 10×10 mm · 0.6~2 mm · 본체 두께 33 mm · 가압 모듈 옵션</td></tr>
+          <tr><td><b>CIS-OM-005</b><br>극저온형</td><td>PEEK + 구리 · 냉각·가열 유닛 분리</td><td>석영창 Φ10 mm · 초점거리 &lt;2 mm</td><td><b>−100~100℃</b> · 대기압~약한 양압</td><td>본체 약 60×70×50 mm · 액체·폴리머 리튬전지, 전극+분리막 &lt;10×10 mm</td></tr>
         </tbody>
       </table>
     </details>
@@ -270,11 +243,9 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
   <button class="msc-cta" id="msc-open">필요한 장비 선택해 문의하기</button>
 
   <div class="sd-sources">
-    <h4>출처</h4>
-    Wood, K. N. et al., "Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy", <i>ACS Central Science</i> 2, 790–801 (2016). DOI: 10.1021/acscentsci.6b00260<br>
-    "Void formation at the lithium | solid electrolyte interface during stripping and its impact on cell performance", <i>Science Advances</i> 8, eadd0510 (2022). DOI: 10.1126/sciadv.add0510<br>
-    제품 사진·카탈로그·영상: Hefei In-situ Technology Co., Ltd. 공식 자료 (사용 허가).<br>
-    ※ 본 페이지는 논문에 명시된 장비·조건 사실을 정리한 것으로, 저자·저널의 보증이나 제휴를 의미하지 않습니다. 실험셋업연구소는 이머전트가 운영하는 에너지·소재 공정 셋업 매거진이며, CIS-OM 시리즈 관찰 셀은 실험셋업연구소가 소싱·공급하고 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다.
+    <h4>출처·안내</h4>
+    제품 사진·사양·카탈로그·영상: Hefei In-situ Technology Co., Ltd. 공식 자료 (사용 허가).<br>
+    ※ 본 페이지는 제조사 공식 자료와 실험셋업연구소의 셋업 경험을 정리한 것입니다. CIS-OM 시리즈 관찰 셀은 실험셋업연구소가 소싱·공급하고 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다.
   </div>
 
   <div class="sd-tags"><span>#리튬메탈</span><span>#덴드라이트</span><span>#인시츄셀</span><span>#operando</span><span>#전고체</span><span>#보이드</span><span>#가시화셀</span><span>#논문셋업</span></div>
@@ -326,11 +297,11 @@ article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
   var specs=[
     ["CIS-OM-003 관찰 셀(표준)","PEEK·Ti 가동전극, 석영창 Φ24mm·두께 0.05mm, 시료-상면 ~0.6mm(커스텀 가능)"],
     ["CIS-OM-003-1 수평형","도립현미경·기포 회피용, 003과 동일 사양"],
-    ["가압 전고체 모듈(003 옵션)","정압 최대 6 MPa(60 kg), 상향 커스텀 — Sci. Adv. 5 MPa 재현"],
+    ["가압 전고체 모듈(003 옵션)","정압 최대 6 MPa(60 kg), 상향 커스텀"],
     ["CIS-OM-004 고저온 관찰 셀","−30~150℃ ±1℃ 프로그램 제어, 시료실 ≤35mm"],
     ["CIS-OM-005 극저온 관찰 셀","−100~100℃, 창 Φ10mm, 초점거리 <2mm"],
     ["CIS-OM-002 석영 비커형 셀","5 mL·Ti 전극, 아연계·수계 관찰 입문"],
-    ["OPR-DM01 전용 광학계","줌 0.7~4.5×(WD 82~179mm) + 10/20/40/50× 대물, 16 Mpx"],
+    ["덴드라이트 관찰 전용 현미경","대물 5~100× 5종 · 인시츄 배터리 클램프 스테이지 · U820 20Mpx"],
     ["심도융합·타임랩스 소프트웨어","전압-영상 동기 기록·초점 합성"],
     ["전기화학 워크스테이션 연동","정전류 사이클·GEIS 구성(문의)"],
     ["글러브박스 이송·가스 퍼지","Ar 기밀 조립·별도 주액 피팅·주사기 기포 제거 액세서리"]
