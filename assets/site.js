@@ -321,7 +321,7 @@
         { u:'/brands/alicat/', i:'/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg', n:'Alicat 질량유량계(MFC)', d:'가스 유량 sccm 정밀 제어·기록.', d2:'다기체 대응 · Modbus·RS-485 로그', p:'견적 문의' }
       ];
       var ECHEM_PRODS = [
-        { u:'/brands/hefei/om003-microscope-cell/', i:'/img/hefei/hefei-om003-1.jpg', n:'CIS-OM-003 인시츄 관찰 셀', d:'석영창 0.05 mm — 리튬 덴드라이트 광학 관찰 표준.', d2:'별도 주액 피팅 · 가압 전고체 모듈 옵션', p:'500만 원~' },
+        { u:'/brands/hefei/om003-microscope-cell/', i:'/img/hefei/hefei-cis-om-003.jpg', n:'CIS-OM-003 인시츄 관찰 셀', d:'석영창 0.05 mm — 리튬 덴드라이트 광학 관찰 표준.', d2:'별도 주액 피팅 · 가압 전고체 모듈 옵션', p:'500만 원~' },
         { u:'/brands/gaossunion/special-cell-dendrite/', i:'/img/gaossunion/spcell-1.jpg', n:'C031-5 덴드라이트 관찰 셀', d:'코인셀 모사 — 사파이어 창 2종 구성.', d2:'가오스유니온 · 인시츄 광학 관찰', p:'253만 원~' },
         { u:'/brands/gaossunion/agcl-reference-electrode/', i:'/img/gaossunion/agcl-reference-electrode-1.jpg', n:'Ag/AgCl 기준전극', d:'염화은 단염교 — 전기화학 측정 기본.', d2:'유리 Φ3.8/6.0 · PCTFE · PEEK', p:'10만 원~' }
       ];
