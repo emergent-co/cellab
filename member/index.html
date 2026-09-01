@@ -5345,15 +5345,25 @@ async function dqOpen(id){
               + '<div class="dsrc" style="margin-top:10px"><button class="mini ok" id="nsIssue">국세청 발행</button></div>')
          + '</div>'
        : '')
-    + '<div class="sec"><h4>주문 기록</h4>'
-      + (d.order
+    + '<div class="sec"><h4>주문 · 중간정산금 <i style="font-style:normal;color:var(--mut);font-weight:600">둘 중 하나입니다</i></h4>'
+      + (d.payment
+         ? '<div class="kv"><span>중간정산금</span><span><b>'+won(d.payment.amount)+'원</b> · '
+           + esc(d.payment.paid_at||'')+' '+esc(d.payment.method||'')+'</span></div>'
+           + '<div class="dnote" style="margin-top:8px">돈이 들어온 것으로 잡혀 <b>잔여정산금이 그만큼 줄어듭니다</b>. '
+           + '지출금에는 들어가지 않습니다.</div>'
+           + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="dqUndoPay">중간정산금 기록 취소</button></div>'
+         : d.order
          ? '<div class="kv"><span>연결된 주문</span><span><b>'+esc(d.order.order_no)+'</b> '
            + abadge(d.order.status)+' · '+won(d.order.total_amount)+'원</span></div>'
-         : '<div class="dnote">이 발행은 <b>주문으로 잡히지 않았습니다</b> — 지출금·미수금에 들어가지 않습니다.'
-           + '<br>물건이 실제로 나간 건이면 아래에서 주문으로 올리세요.</div>'
+           + '<div class="dnote" style="margin-top:8px">물건이 나간 건이 아니라 <b>중도금·선입금 같은 중간정산금</b>이면 '
+           + '아래에서 바꾸세요. 이 문서로 만든 주문은 지워지고, 같은 금액이 입금으로 들어갑니다.</div>'
+           + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="dqToPay">중간정산금으로 바꾸기</button></div>'
+         : '<div class="dnote">이 발행은 <b>주문으로도 중간정산금으로도 잡히지 않았습니다</b> — 정산 계산에 들어가지 않습니다.'
+           + '<br>물건이 나간 건이면 주문으로, 돈이 들어온 건이면 중간정산금으로 올리세요.</div>'
            + '<div class="dsrc" style="margin-top:10px"><select id="dqOrdSt2" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
            + ST.map(function(x){ return '<option'+(x==='발주확정'?' selected':'')+'>'+x+'</option>'; }).join('')
-           + '</select><button class="mini" id="dqToOrder">주문으로 기록</button></div>')
+           + '</select><button class="mini" id="dqToOrder">주문으로 기록</button></div>'
+           + '<div class="dsrc" style="margin-top:6px"><button class="mini" id="dqToPay">중간정산금으로 기록</button></div>')
      + '</div>'
     + '<div class="sec"><h4>정산 기록</h4>'
       + (d.settlement
@@ -5443,6 +5453,32 @@ async function dqOpen(id){
 
   fxBind();
   if ($('#nsPre')) nsPreview(doc.id);
+
+  if ($('#dqToPay')) $('#dqToPay').onclick = async function(){
+    if (d.order && !confirm('주문 '+d.order.order_no+' 을 지우고 중간정산금(입금)으로 바꿉니다.\n\n'
+      + '지출금에서 빠지고 같은 금액이 입금으로 들어갑니다. 계속할까요?')) return;
+    var b4 = $('#dqToPay'); b4.disabled = true; b4.textContent = '기록 중…';
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
+      body:JSON.stringify({ action:'to_payment', id:doc.id })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b4.disabled = false; b4.textContent = '중간정산금으로 기록';
+    if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
+    w.remove(); toast('중간정산금 '+won(r.payment.amount)+'원으로 기록했습니다'
+      + (r.removed_order ? ' (주문 '+r.removed_order+' 취소)' : ''));
+    dqHist(); admPoll(true); dqOpen(doc.id);
+  };
+
+  if ($('#dqUndoPay')) $('#dqUndoPay').onclick = async function(){
+    if (!confirm('중간정산금 기록을 취소합니다.\n\n입금 줄이 지워집니다. 계속할까요?')) return;
+    var b5 = $('#dqUndoPay'); b5.disabled = true; b5.textContent = '취소 중…';
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
+      body:JSON.stringify({ action:'undo_payment', id:doc.id })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b5.disabled = false; b5.textContent = '중간정산금 기록 취소';
+    if (!r.ok) return alert(r.message || '취소하지 못했습니다.');
+    w.remove(); toast('중간정산금 기록을 취소했습니다');
+    dqHist(); admPoll(true); dqOpen(doc.id);
+  };
 
   if ($('#dqToSettle')) $('#dqToSettle').onclick = async function(){
     var b3 = $('#dqToSettle'); b3.disabled = true; b3.textContent = '기록 중…';

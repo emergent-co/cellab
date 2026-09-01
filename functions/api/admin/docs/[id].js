@@ -38,11 +38,15 @@ export async function onRequest({ request, env, params }) {
       ? await env.DB.prepare('SELECT id, order_no, status, total_amount FROM orders WHERE id=?')
           .bind(doc.order_id).first()
       : null;
+    const payment = doc.payment_id
+      ? await env.DB.prepare('SELECT id, amount, method, paid_at, memo FROM payments WHERE id=?')
+          .bind(doc.payment_id).first()
+      : null;
     const settle = doc.settlement_id
       ? await env.DB.prepare('SELECT id, status, total, created_at FROM settlements WHERE id=?')
           .bind(doc.settlement_id).first()
       : null;
-    return json({ document: doc, payload, events, queued, siblings, linked, order, settlement: settle,
+    return json({ document: doc, payload, events, queued, siblings, linked, order, settlement: settle, payment,
                   view: `/doc/${doc.id}?t=${doc.access_token}` });
   }
 

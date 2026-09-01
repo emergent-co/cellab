@@ -167,6 +167,8 @@ async function post(request, env) {
   if (b.action === 'relink') return relink(env, b);
   if (b.action === 'to_order') return toOrder(env, b);
   if (b.action === 'to_settlement') return toSettlement(env, b);
+  if (b.action === 'to_payment') return toPayment(env, b);
+  if (b.action === 'undo_payment') return undoPayment(env, b);
 
   // 한 벌로 발행한다 — 견적서·거래명세서·세금계산서를 같은 내용으로 동시에.
   const types = (Array.isArray(b.types) && b.types.length ? b.types : [b.type || 'quote'])
@@ -366,6 +368,78 @@ async function toOrder(env, b) {
     status: b.status, issueDate: payload.issue_date, docIds: sibs.length ? sibs : [doc.id],
   });
   return json({ ok: true, order, linked: sibs.length || 1 });
+}
+
+/* ---- 발행한 서류를 «중간정산금»(입금)으로 기록한다 ----
+   중도금·선입금처럼 물건이 새로 나간 게 아니라 돈이 들어온 건이 있다. 그걸 주문으로 잡으면
+   지출금이 두 번 올라 잔여정산금이 틀어진다. 이미 주문으로 잡아둔 것도 여기서 바꾼다.
+
+   주문을 «떼기만» 하면 지출금은 그대로 남아 아무것도 고쳐지지 않는다. 그래서 이 문서에서
+   만들어진 주문이면 지운다. 고객이 직접 넣은 주문은 손대지 않고 거절한다 — 남의 기록이다. */
+async function toPayment(env, b) {
+  const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
+  if (!doc) return json({ error: 'not_found' }, 404);
+  if (doc.payment_id) return json({ error: 'already', message: '이미 중간정산금으로 기록된 문서입니다.' }, 409);
+  if (!doc.customer_id) {
+    return json({ error: 'no_client', message: '거래처가 연결돼 있지 않습니다. 먼저 거래처를 지정해주세요.' }, 400);
+  }
+
+  let payload = {};
+  try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
+  const amount = Math.round(Number(payload?.totals?.total) || 0);
+  if (!amount) return json({ error: 'no_amount', message: '문서에 금액이 없습니다.' }, 400);
+
+  let removed = null;
+  if (doc.order_id) {
+    const order = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(doc.order_id).first();
+    if (order) {
+      if (!order.manual) {
+        return json({ error: 'customer_order',
+          message: `${order.order_no} 는 고객이 넣은 주문입니다. 여기서 지울 수 없으니 주문 화면에서 처리해주세요.` }, 400);
+      }
+      const docs = ((await env.DB.prepare('SELECT id FROM documents WHERE order_id=?')
+        .bind(order.id).all()).results || []).map((x) => x.id);
+      await env.DB.batch([
+        ...docs.map((id) => env.DB.prepare(
+          "UPDATE documents SET order_id=NULL, source='issue', updated_at=? WHERE id=?").bind(kstISO(), id)),
+        env.DB.prepare('DELETE FROM order_items WHERE order_id=?').bind(order.id),
+        env.DB.prepare('DELETE FROM orders WHERE id=?').bind(order.id),
+      ]);
+      removed = order.order_no;
+    }
+  }
+
+  const day = String(doc.issue_date || '').slice(0, 10);
+  const label = DOC_LABEL[doc.type] || '문서';
+  const r = await env.DB.prepare(
+    'INSERT INTO payments (customer_id, kind, amount, method, paid_at, memo, created_at, created_by) VALUES (?,?,?,?,?,?,?,?)'
+  ).bind(doc.customer_id, '입금', amount, String(b.method || '통장'),
+         /^\d{4}-\d{2}-\d{2}$/.test(day) ? day : kstDate(),
+         `중간정산금 · ${label} ${doc.doc_no}`, kstISO(), 'admin').run();
+
+  const pid = r.meta.last_row_id;
+  await env.DB.prepare('UPDATE documents SET payment_id=?, updated_at=? WHERE id=?')
+    .bind(pid, kstISO(), doc.id).run();
+
+  await logEvent(env, { document_id: doc.id, action: 'to_payment', actor: 'admin',
+    detail: `중간정산금으로 기록 ${amount.toLocaleString('ko-KR')}원`
+      + (removed ? ` (주문 ${removed} 취소)` : '') });
+  return json({ ok: true, payment: { id: pid, amount }, removed_order: removed });
+}
+
+/* 잘못 눌렀을 때 되돌린다 — 입금 줄을 지우고 연결을 끊는다.
+   지웠던 주문까지 되살리지는 않는다. 필요하면 «주문으로 기록»을 다시 누르면 된다. */
+async function undoPayment(env, b) {
+  const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
+  if (!doc) return json({ error: 'not_found' }, 404);
+  if (!doc.payment_id) return json({ error: 'not_linked', message: '중간정산금으로 기록된 문서가 아닙니다.' }, 400);
+  await env.DB.batch([
+    env.DB.prepare('DELETE FROM payments WHERE id=?').bind(doc.payment_id),
+    env.DB.prepare('UPDATE documents SET payment_id=NULL, updated_at=? WHERE id=?').bind(kstISO(), doc.id),
+  ]);
+  await logEvent(env, { document_id: doc.id, action: 'undo_payment', actor: 'admin',
+    detail: '중간정산금 기록 취소' });
+  return json({ ok: true });
 }
 
 /* ---- 발행한 서류를 정산 요청으로 올린다 ----
