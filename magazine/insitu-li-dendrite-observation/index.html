@@ -30,7 +30,7 @@
 {"@type":"Question","name":"리튬 덴드라이트를 실시간으로 관찰하려면 어떤 셋업이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"석영 관찰창이 있는 밀봉형 in-situ 전기화학 셀을 광학현미경 아래 두고, 정전류 사이클의 전압 곡선과 영상을 타임스탬프로 동기화해 기록합니다. Wood 등(ACS Central Science, 2016)은 Li–Li 대칭 가시화 셀을 아르곤 글러브박스(수분·산소 1 ppm 미만)에서 조립하고 5 mA/cm²로 사이클하며 반주기당 90프레임을 촬영해, 전압 피크가 덴드라이트 성장→피트 용해로의 전환점임을 보였습니다."}},
 {"@type":"Question","name":"액체 전해질 관찰 셀에서 기포는 어떻게 관리하나요?","acceptedAnswer":{"@type":"Answer","text":"관찰창 아래 기포는 시야를 가리고 국부 전류밀도를 왜곡하므로, 전해액을 넣는 피팅(주액 포트)이 별도로 있는 셀을 써야 합니다. 글러브박스에서 건조 조립·밀봉한 뒤 주액 포트로 전해액을 주입하고, 안에 남은 기포는 주사기로 포트에 음압을 걸어 제거합니다. 그래도 창 아래 기포가 남는 형상이면 관찰면이 옆으로 눕는 수평형 셀(CIS-OM-003-1)을 씁니다."}},
 {"@type":"Question","name":"전고체 관찰 셋업은 액체계와 무엇이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"기포 대신 압력이 문제가 됩니다. 고체-고체 계면은 스택 압력이 풀리면 접촉이 떨어지므로 정압 가압(논문 5 MPa, 시판 모듈 최대 6 MPa)을 유지한 채 관찰해야 하고, 스프링·토크 볼트식 지그는 크리프로 압력이 흘러내려 부적합합니다. 보는 방향도 다릅니다 — 액체계는 전극 상면을 내려다보지만, 전고체는 Li|고체전해질|전극 3층 단면을 몰드 측면으로 노출시켜 관찰합니다. 시료도 포일 펀칭이 아니라 펠릿 성형·단면 정리가 필요합니다."}},
-{"@type":"Question","name":"보유 현미경과 호환되는지 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"숫자 세 개로 확인합니다. ① 초점: 석영창 0.05 mm + 시료-창 상면 약 0.6 mm이므로 대물 작동거리(WD)가 0.65 mm 이상이면 시료에 초점이 닿습니다. WD 1 mm 미만 단초점 대물은 창-시료 거리를 더 얇게 커스텀합니다. ② 클리어런스: 셀 본체 높이 약 30 mm(가압 모듈 시 그 이상)가 대물 아래로 들어가야 합니다. ③ 스테이지: 풋프린트 약 60×70 mm를 올릴 평판 스테이지와 수십 mm의 XY 이동량이 필요합니다. 도립현미경만 있으면 수평형 003-1을 선택합니다."}}
+{"@type":"Question","name":"보유 현미경과 호환되는지 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"셀 스펙 세 가지로 확인합니다. 본체 크기 약 60×70×30 mm(스테이지·대물 아래 클리어런스), 석영창 두께 0.05 mm, 창-샘플 거리 약 0.6 mm(더 얇게 커스텀 가능). 보유 현미경의 작동거리와 스테이지 공간을 이 수치와 대조하면 됩니다. 도립현미경은 수평형 003-1로 대응합니다."}}
 ]}
 </script>
 <link rel="stylesheet" href="/assets/site.css">
@@ -40,6 +40,10 @@
 .msc-tbl thead th{background:#F4F8FC;color:#555;font-weight:700;font-size:12.5px;border-top:none}
 .msc-tbl .hot{background:#EAF4FB}
 .msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
+.lbx{display:none;position:fixed;inset:0;background:rgba(10,14,25,.86);z-index:10000;align-items:center;justify-content:center;padding:26px;cursor:zoom-out}
+.lbx.on{display:flex}
+.lbx img{max-width:min(96vw,1100px);max-height:92vh;border-radius:10px;box-shadow:0 18px 60px rgba(0,0,0,.5)}
+article.sd-wrap figure img,.sd-bridge img{cursor:zoom-in}
 .hl{background:#D9EBFA;color:#173A63;padding:1px 5px;border-radius:4px;font-weight:700}
 .msc-acc{margin:8px 0 6px}
 .msc-acc summary{cursor:pointer;font-size:13.5px;font-weight:700;color:#0F69AF;background:#F4F8FC;border:1px solid #D8E4F2;border-radius:8px;padding:10px 14px;list-style:none}
@@ -124,7 +128,7 @@
   </div>
 
   <div class="sd-answer">
-    <b>리튬 덴드라이트는 석영창이 있는 밀봉 가시화 셀에서 전압 곡선과 영상을 동기화해 관찰합니다.</b> 액체 전해질은 <b>별도 주액 피팅으로 기포를 제거</b>한 Li–Li 가시화 셀, 전고체는 <b>정압 가압(5 MPa급)을 유지한 채 단면을 보는</b> 몰드 셀이 기준 셋업입니다. 도입 전에는 보유 현미경과의 호환을 확인합니다 — 대물 렌즈의 초점거리(WD)가 0.65 mm 이상인지, 대물 아래에 셀 높이(약 30 mm)가 들어가는지, 셀을 올릴 평판형 스테이지가 있는지.
+    <b>리튬 덴드라이트는 석영창이 있는 밀봉 가시화 셀에서 전압 곡선과 영상을 동기화해 관찰합니다.</b> 액체 전해질은 <b>별도 주액 피팅으로 기포를 제거</b>한 Li–Li 가시화 셀, 전고체는 <b>정압 가압(5 MPa급)을 유지한 채 단면을 보는</b> 몰드 셀이 기준 셋업입니다. 도입 전 확인은 셀 스펙 세 가지 — 본체 60×70×30 mm · 창 두께 0.05 mm · 창-샘플 거리 0.6 mm.
   </div>
 
   <div class="sd-body">
@@ -151,7 +155,6 @@
         <tr><td>코인셀 검증</td><td>CR2032 Li(50 µm)–Cu, 전해액 45 µL</td><td>1 mA/cm² × 20사이클</td></tr>
       </tbody>
     </table>
-    <p class="msc-note">관찰의 목적은 전압 곡선의 변곡과 계면 사건(덴드라이트 성장 ↔ 피트 전환)을 같은 시간축에 놓는 것 — 프레임 타임스탬프와 사이클러 로그의 동기가 셋업의 마지막 조각이다.</p>
 
     <h2>전고체 — 포인트는 압력과 보는 방향</h2>
     <p>전고체는 기포 대신 두 가지를 챙깁니다. ① <b>압력</b>: 고체-고체 계면은 가압이 풀리면 접촉이 떨어지므로 <span class="hl">5 MPa급 정압을 유지한 채</span> 관찰해야 합니다. 스프링·토크 볼트 지그는 크리프로 압력이 흘러내려 부적합합니다. ② <b>보는 방향</b>: 사건(보이드·덴드라이트)은 Li|고체전해질|전극 <b>경계면</b>에서 일어나므로, 상면이 아니라 <span class="hl">몰드 측면으로 3층 단면을 노출</span>시켜 봅니다. 시료도 포일 펀칭이 아닌 펠릿 성형·단면 정리가 필요합니다. <span style="font-size:12.5px;color:#8a8f98">(셋업 출처: Sci. Adv. 2022)</span></p>
@@ -186,6 +189,7 @@
         <span>주액 · 퍼지</span><span><b>별도 주액 피팅</b> + 가스 퍼지 → 주사기 기포 제거 대응</span>
         <span>전고체 옵션</span><span>정압 가압 모듈 <b>최대 6 MPa</b>(60 kg) · 상향 커스텀</span>
         <span>시료</span><span>최대 10×10 mm · 두께 0.6~2 mm</span>
+        <span>본체 크기</span><span>약 <b>60 × 70 × 30 mm</b> — 현미경 스테이지 호환 확인용</span>
       </div>
     </div>
 
@@ -199,15 +203,9 @@
   </div>
 
   <div class="sd-body">
-    <h2 style="margin-top:26px">CIS-OM 시리즈 사양표</h2>
-    <table class="msc-tbl">
-      <thead><tr><th>모델</th><th>형식 · 구성</th><th>관찰창 · 광학</th><th>온도 · 가압</th><th>시료 · 기타</th></tr></thead>
-      <tbody>
-        <tr class="hot"><td><b>CIS-OM-003</b><br>표준형</td><td>PEEK 몸체 · 고순도 티타늄 가동 전극(악어클립 체결)</td><td>석영창 Φ24 mm · 두께 <b>0.05 mm</b> · 시료-창 상면 약 <b>0.6 mm</b>(더 얇게 커스텀 가능) · 최소 작동거리 1 mm</td><td>상온 · 가압 전고체 모듈 옵션 <b>최대 6 MPa(60 kg)</b>, 상향 커스텀</td><td>시료 10×10 mm · 두께 0.6~2 mm · 가스 퍼지 + 별도 주액 피팅 · 본체 약 60×70×30 mm</td></tr>
-      </tbody>
-    </table>
+    <h2 style="margin-top:26px">변형 모델 사양</h2>
     <details class="msc-acc">
-      <summary>변형 모델·전용 광학계 사양 펼치기 — 003-1 수평형 · 004 고저온 · 005 극저온 · 002 비커형 · OPR-DM01</summary>
+      <summary>변형 모델 사양 펼치기 — 003-1 수평형 · 004 고저온 · 005 극저온 · 002 비커형</summary>
       <table class="msc-tbl">
         <thead><tr><th>모델</th><th>형식 · 구성</th><th>관찰창 · 광학</th><th>온도 · 가압</th><th>시료 · 기타</th></tr></thead>
         <tbody>
@@ -215,31 +213,16 @@
           <tr><td><b>CIS-OM-004</b><br>고저온형</td><td>가열·냉각 스테이지 분리 구성</td><td>상부 석영창 관찰</td><td><b>−30~150℃</b> · ±1℃ · 프로그램 온도 제어</td><td>시료실 ≤35 mm · 온도별 도금·박리 거동 관찰</td></tr>
           <tr><td><b>CIS-OM-005</b><br>극저온형</td><td>PEEK + 구리 몸체</td><td>석영창 Φ10 mm · 초점거리 &lt;2 mm</td><td><b>−100~100℃</b></td><td>저온 전해액 스크리닝 · 저온 도금 관찰</td></tr>
           <tr><td><b>CIS-OM-002</b><br>비커형</td><td>석영 비커 5 mL · Ti 전극(Φ3 mm)</td><td>비커 측벽 개방 광학 경로</td><td>상온</td><td>아연계·수계 전지 관찰 입문용</td></tr>
-          <tr><td><b>OPR-DM01</b><br>전용 광학계</td><td>삼안(분할 80:20) · LED 반사광 · 0.5× C마운트</td><td>줌 0.7~4.5×(WD 82~179 mm) + 플랜 아크로매틱 10/20/40/50× 대물 · 미동 0.01 mm</td><td>—</td><td>스테이지 140×140 mm(XY 75×50 mm) · SONY CMOS 16 Mpx · 심도융합·타임랩스 SW</td></tr>
         </tbody>
       </table>
     </details>
-
-    <figure style="margin:18px 0 6px">
-      <img src="/img/magazine/hefei-cis-om-cells.jpg" alt="Hefei In-situ Technology CIS-OM 시리즈 in-situ 광학 관찰 셀 — CIS-OM-002 석영 비커형, CIS-OM-003 표준형(PEEK·티타늄 전극·석영창), CIS-OM-003-1 수평형 제품 사진과 구조" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
-      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">CIS-OM 관찰 셀 시리즈(제조사 카탈로그). 표준형 003은 석영창 두께 <b>0.05 mm</b>, 시료-창 상면 거리 <b>약 0.6 mm</b> — 요청 시 더 얇게 커스텀할 수 있다.</figcaption>
-    </figure>
-    <figure style="margin:18px 0 6px">
-      <img src="/img/magazine/hefei-cis-om-temp.jpg" alt="CIS-OM-004 고저온 in-situ 관찰 셀(−30~150℃ 프로그램 제어)과 CIS-OM-005 극저온 관찰 셀(−100~100℃) 제품 사진" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
-      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">온도 제어형 — CIS-OM-004(−30~150℃ ±1℃ 프로그램)와 CIS-OM-005(−100~100℃). 저온 전해액·저온 도금 거동 관찰용.</figcaption>
-    </figure>
 
     <h2 style="margin-top:26px">조립 영상 — CIS-OM-003 설치</h2>
     <p>전극 체결 → 시료 장착 → 창 밀봉 → 스테이지 거치까지, 실제 조립 과정입니다.</p>
     <div class="msc-vid"><iframe src="https://player.bilibili.com/player.html?isOutside=true&bvid=BV1vnYFeNESP&p=1&autoplay=0" scrolling="no" frameborder="no" allowfullscreen="true" title="CIS-OM-003 in-situ 관찰 셀 설치 영상"></iframe></div>
     <p class="msc-note">영상: Hefei In-situ Technology 공식 채널(bilibili) — 원위현미관찰지(顕微観察池) 003 설치.</p>
 
-    <h2 style="margin-top:26px">보유 현미경과 맞는지 — 셀 스펙</h2>
-    <div class="bx-spec" style="max-width:420px;margin:10px 0 4px">
-      <span>본체 크기</span><span>약 <b>60 × 70 × 30 mm</b> (가로×세로×높이)</span>
-      <span>창 두께</span><span><b>0.05 mm</b> (석영 Φ24 mm)</span>
-      <span>창-샘플 거리</span><span>약 <b>0.6 mm</b> — 더 얇게 커스텀 가능</span>
-    </div>
+    
 
     <h2 style="margin-top:26px">사용된 광학계 예시 — OPR-DM01</h2>
     <figure style="margin:12px 0 10px">
@@ -384,6 +367,19 @@
       .catch(function(){alert('전송에 실패했습니다. 네트워크를 확인하고 다시 시도해 주세요.');})
       .finally(function(){btn.disabled=false;btn.textContent='문의 전송';});
   });
+})();
+</script>
+
+<div class="lbx" id="lbx" role="dialog" aria-label="이미지 확대"><img id="lbxImg" src="" alt=""></div>
+<script>
+(function(){
+  var lbx=document.getElementById('lbx'),im=document.getElementById('lbxImg');
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(t.tagName==='IMG'&&t.closest('article.sd-wrap')&&!t.closest('.lbx')){im.src=t.src;im.alt=t.alt||'';lbx.classList.add('on');}
+    else if(lbx.classList.contains('on')){lbx.classList.remove('on');im.src='';}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lbx.classList.remove('on');im.src='';}});
 })();
 </script>
 </body>

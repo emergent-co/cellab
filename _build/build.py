@@ -1797,6 +1797,39 @@ def build_search_index():
     site.js가 fetch해 수동 SEARCH_INDEX와 병합한다. 새 페이지는 빌드만 하면 검색에 잡힘."""
     SKIP_DIRS = {'_build', '_to_delete', '.git', 'admin', 'api', 'functions',
                  'node_modules', 'img', 'assets', 'out', '.wrangler'}
+    # 검색 동의어 — 한 그룹의 말이 페이지에 하나라도 있으면 나머지 말을 색인에 덧붙인다.
+    # 사이트 표기가 'in-situ'인데 사람은 '인시츄'로 찾는 문제를 한 곳에서 해결한다.
+    SEARCH_SYN = [
+        ['인시츄', '인시추', '인시투', 'in-situ', 'in situ', 'insitu', '오퍼란도', 'operando', '실시간 관찰'],
+        ['덴드라이트', 'dendrite', '수지상', '수지상정'],
+        ['전기화학', 'electrochemical', 'echem'],
+        ['기준전극', 'reference electrode', '레퍼런스 전극'],
+        ['상대전극', 'counter electrode', '카운터 전극'],
+        ['작업전극', 'working electrode', '워킹 전극'],
+        ['회전전극', 'rde', 'rrde', '회전원판전극', '회전링원판전극'],
+        ['유리탄소', 'gc', 'glassy carbon', '글라시카본', '글래시카본'],
+        ['전해셀', '전해조', '전기화학 셀', 'electrochemical cell'],
+        ['코인셀', 'coin cell', '2032', '2032형'],
+        ['수전해', '물분해', 'water splitting', 'electrolysis', '전기분해'],
+        ['이차전지', '배터리', 'battery', '리튬이온', 'li-ion'],
+        ['전고체', 'solid-state', 'solid state', '고체전해질'],
+        ['퍼니스', '전기로', '튜브퍼니스', '관상로', 'furnace'],
+        ['질량유량계', 'mfc', 'mass flow controller', '유량제어기'],
+        ['연동펌프', '페리스탈틱', 'peristaltic', '정량펌프'],
+        ['사파이어', 'sapphire'],
+        ['석영', '쿼츠', 'quartz', 'fused silica', '용융석영'],
+        ['라만', 'raman'],
+        ['현미경', 'microscope', '광학관찰'],
+    ]
+
+    def syn_expand(text):
+        low = text.lower()
+        extra = []
+        for grp in SEARCH_SYN:
+            if any(g.lower() in low for g in grp):
+                extra += [g for g in grp if g.lower() not in low]
+        return (' ' + ' '.join(dict.fromkeys(extra))) if extra else ''
+
     redirected = _redirect_sources()
     entries = []
     for dirpath, filenames in html_tree():
@@ -1861,6 +1894,7 @@ def build_search_index():
             else:
                 cat = '페이지'
             k = ' '.join(x for x in (h1, desc, kw) if x)[:400]
+            k += syn_expand(title + ' ' + k)   # 동의어는 400자 컷 뒤에 붙인다
             entries.append({'t': title[:90], 'u': url, 'k': k, 'c': cat})
     entries.sort(key=lambda e: e['u'])
     write(os.path.join(ROOT_DIR, 'search-index.json'),
