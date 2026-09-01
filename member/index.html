@@ -5464,7 +5464,8 @@ async function dqOpen(id){
     b4.disabled = false; b4.textContent = '중간정산금으로 기록';
     if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
     w.remove(); toast('중간정산금 '+won(r.payment.amount)+'원으로 기록했습니다'
-      + (r.removed_order ? ' (주문 '+r.removed_order+' 취소)' : ''));
+      + (r.linked>1 ? ' (서류 '+r.linked+'건)' : '')
+      + (r.removed_order ? ' · 주문 '+r.removed_order+' 취소' : ''));
     dqHist(); admPoll(true); dqOpen(doc.id);
   };
 

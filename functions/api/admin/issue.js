@@ -389,6 +389,14 @@ async function toPayment(env, b) {
   const amount = Math.round(Number(payload?.totals?.total) || 0);
   if (!amount) return json({ error: 'no_amount', message: '문서에 금액이 없습니다.' }, 400);
 
+  // 한 벌로 뽑은 서류는 같은 건이다 — 하나만 바꾸고 나머지를 남겨두면
+  // 나중에 견적서를 열어 «아무 데도 안 잡힘»으로 보고 또 누르게 된다. 그러면 두 번 계산된다.
+  const family = new Set([doc.id]);
+  if (doc.batch) {
+    for (const x of (await env.DB.prepare('SELECT id FROM documents WHERE batch=?')
+      .bind(doc.batch).all()).results || []) family.add(x.id);
+  }
+
   let removed = null;
   if (doc.order_id) {
     const order = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(doc.order_id).first();
@@ -399,6 +407,7 @@ async function toPayment(env, b) {
       }
       const docs = ((await env.DB.prepare('SELECT id FROM documents WHERE order_id=?')
         .bind(order.id).all()).results || []).map((x) => x.id);
+      for (const id of docs) family.add(id);          // 그 주문에 붙어 있던 서류도 같은 건이다
       await env.DB.batch([
         ...docs.map((id) => env.DB.prepare(
           "UPDATE documents SET order_id=NULL, source='issue', updated_at=? WHERE id=?").bind(kstISO(), id)),
@@ -418,13 +427,15 @@ async function toPayment(env, b) {
          `중간정산금 · ${label} ${doc.doc_no}`, kstISO(), 'admin').run();
 
   const pid = r.meta.last_row_id;
-  await env.DB.prepare('UPDATE documents SET payment_id=?, updated_at=? WHERE id=?')
-    .bind(pid, kstISO(), doc.id).run();
+  const ids = [...family];
+  await env.DB.batch(ids.map((id) => env.DB.prepare(
+    'UPDATE documents SET payment_id=?, updated_at=? WHERE id=?').bind(pid, kstISO(), id)));
 
   await logEvent(env, { document_id: doc.id, action: 'to_payment', actor: 'admin',
     detail: `중간정산금으로 기록 ${amount.toLocaleString('ko-KR')}원`
-      + (removed ? ` (주문 ${removed} 취소)` : '') });
-  return json({ ok: true, payment: { id: pid, amount }, removed_order: removed });
+      + (ids.length > 1 ? ` (서류 ${ids.length}건)` : '')
+      + (removed ? ` · 주문 ${removed} 취소` : '') });
+  return json({ ok: true, payment: { id: pid, amount }, removed_order: removed, linked: ids.length });
 }
 
 /* 잘못 눌렀을 때 되돌린다 — 입금 줄을 지우고 연결을 끊는다.
@@ -433,9 +444,11 @@ async function undoPayment(env, b) {
   const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
   if (!doc) return json({ error: 'not_found' }, 404);
   if (!doc.payment_id) return json({ error: 'not_linked', message: '중간정산금으로 기록된 문서가 아닙니다.' }, 400);
+  // 붙일 때 한 벌을 다 붙였으니 뗄 때도 다 뗀다
   await env.DB.batch([
     env.DB.prepare('DELETE FROM payments WHERE id=?').bind(doc.payment_id),
-    env.DB.prepare('UPDATE documents SET payment_id=NULL, updated_at=? WHERE id=?').bind(kstISO(), doc.id),
+    env.DB.prepare('UPDATE documents SET payment_id=NULL, updated_at=? WHERE payment_id=?')
+      .bind(kstISO(), doc.payment_id),
   ]);
   await logEvent(env, { document_id: doc.id, action: 'undo_payment', actor: 'admin',
     detail: '중간정산금 기록 취소' });
