@@ -256,6 +256,11 @@ async function post(request, env) {
   }
 
   // ---- 신규 — 고른 종류만큼 같은 내용으로 만든다 ----
+  // 발행 목적 — 무엇으로 기록할지는 여기서 정해진다. 발행하고 나서 되묻지 않는다.
+  //   quote 견적서만 (기록 없음) · delivery 납품 서류(주문) · advance 중간정산금 청구(정산요청)
+  //   settle 고객 정산요청 처리(기존 정산요청에 연결)
+  const purpose = ['quote', 'delivery', 'advance', 'settle'].includes(b.purpose) ? b.purpose : null;
+
   const batch = types.length > 1 ? randomToken().slice(0, 16) : null;
   const made = [];
   for (const type of types) {
@@ -266,10 +271,10 @@ async function post(request, env) {
     const tok = randomToken();
     const r = await env.DB.prepare(
       `INSERT INTO documents (order_id, customer_id, settlement_id, source, batch, type, doc_no, version, status,
-                              issue_date, payload_json, access_token, created_at, updated_at)
-       VALUES (?,?,?,?,?,?,?,1,'작성됨',?,?,?,?,?)`
+                              issue_date, payload_json, access_token, purpose, created_at, updated_at)
+       VALUES (?,?,?,?,?,?,?,1,'작성됨',?,?,?,?,?,?)`
     ).bind(b.order_id || null, customer.id, b.settlement_id || null, b.source || 'manual', batch,
-           type, docNo, issue, JSON.stringify(payload), tok, now, now).run();
+           type, docNo, issue, JSON.stringify(payload), tok, purpose, now, now).run();
 
     const id = r.meta.last_row_id;
     await logEvent(env, {
@@ -279,18 +284,42 @@ async function post(request, env) {
     made.push({ id, type, doc_no: docNo, issue_date: issue, view: `/doc/${id}?t=${tok}` });
   }
 
-  // 기본은 '주문 아님'. 물건이 실제로 나가는 건일 때만 켠다.
-  let order = null;
-  if (b.make_order) {
+  // 목적이 정해졌으면 그대로 기록한다. (purpose 없이 오는 옛 호출은 make_order 로 동작)
+  const docIds = made.map((m) => m.id);
+  let order = null, settle = null;
+
+  if (purpose === 'delivery' || (!purpose && b.make_order)) {
     order = await makeOrder(env, {
       customer, payload: { ...base, title: base.title },
       items, totals, status: b.order_status, issueDate: dateOf(types[0]),
-      docIds: made.map((m) => m.id),
+      docIds,
     });
   }
 
+  if (purpose === 'advance') {
+    // 아직 돈은 안 들어왔다 — «입금 대기» 상태의 정산요청만 만든다.
+    // 중간정산금(입금)은 나중에 이 요청을 «입금완료»로 바꾸는 순간 자동으로 잡힌다.
+    settle = await makeSettlement(env, {
+      customer, base, items, totals, made, docIds, status: '서류발급 완료',
+    });
+  }
+
+  if (purpose === 'settle' && b.settlement_id) {
+    const st = await env.DB.prepare('SELECT id, customer_id FROM settlements WHERE id=?')
+      .bind(b.settlement_id).first();
+    if (st && Number(st.customer_id) === Number(customer.id)) {
+      await env.DB.batch([
+        ...docIds.map((id) => env.DB.prepare(
+          'UPDATE documents SET settlement_id=?, updated_at=? WHERE id=?').bind(st.id, now, id)),
+        env.DB.prepare("UPDATE settlements SET status='서류발급 완료', updated_at=? WHERE id=?")
+          .bind(now, st.id),
+      ]);
+      settle = { id: st.id, status: '서류발급 완료' };
+    }
+  }
+
   return json({
-    ok: true, batch, totals, docs: made, order,
+    ok: true, batch, totals, docs: made, order, settlement: settle, purpose,
     to: base.client.email,
     // 예전 호출부 호환 — 첫 문서를 단건처럼 돌려준다
     id: made[0].id, doc_no: made[0].doc_no, view: made[0].view,
@@ -368,6 +397,41 @@ async function toOrder(env, b) {
     status: b.status, issueDate: payload.issue_date, docIds: sibs.length ? sibs : [doc.id],
   });
   return json({ ok: true, order, linked: sibs.length || 1 });
+}
+
+/* ---- 발행과 동시에 «입금 대기» 정산요청을 만든다 ----
+   중간정산금 청구는 «돈을 달라»는 서류다. 발행하는 순간엔 아직 안 들어왔으니
+   입금으로 잡으면 잔여정산금이 실제 통장과 어긋난다. 여기서는 대기 줄만 세운다. */
+async function makeSettlement(env, { customer, base, items, totals, made, docIds, status }) {
+  const now = kstISO();
+  const rows = (items || []).map((i) => ({
+    name: String(i.name || '').trim(),
+    qty: Math.max(1, Number(i.qty) || 1),
+    price: Math.round(Number(i.unit_price ?? i.price) || 0),
+  })).filter((i) => i.name);
+
+  const dateOfType = (t) => (made.find((m) => m.type === t) || {}).issue_date || null;
+  const bill = await env.DB.prepare(
+    'SELECT id FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1')
+    .bind(customer.id).first();
+
+  const r = await env.DB.prepare(
+    `INSERT INTO settlements (customer_id, status, items_json, supply, vat, total, method,
+            quote_date, statement_date, taxinvoice_date, reply_email, memo, admin_memo,
+            bill_profile_id, manual, created_at, updated_at, done_at)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?, 1, ?,?, NULL)`
+  ).bind(customer.id, status, JSON.stringify(rows),
+         totals.supply, totals.vat, totals.total, '통장',
+         dateOfType('quote'), dateOfType('statement'), dateOfType('taxinvoice'),
+         String(base?.client?.email || ''), '', '중간정산금 청구 — 발행과 함께 등록',
+         bill?.id || null, now, now).run();
+
+  const sid = r.meta.last_row_id;
+  await env.DB.batch(docIds.map((id) => env.DB.prepare(
+    'UPDATE documents SET settlement_id=?, updated_at=? WHERE id=?').bind(sid, now, id)));
+  await logEvent(env, { action: 'settle_add', actor: 'admin',
+    detail: `중간정산금 청구 정산요청 #${sid} · ${Number(totals.total || 0).toLocaleString('ko-KR')}원 (입금 대기)` });
+  return { id: sid, status, total: totals.total };
 }
 
 /* ---- 발행한 서류를 «중간정산금»(입금)으로 기록한다 ----
