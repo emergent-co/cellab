@@ -74,7 +74,7 @@
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
     { href:'/materials/', label:'Products', icon:'guide' },
-    { href:'/product/', label:'Equipments', icon:'devices' },
+    { href:'/product/', label:'Equipments', icon:'devices', noclick:true, sub:[['/product/', '통합 카탈로그'],['/manuals/', '메뉴얼']] },
     { href:'/magazine/', label:'Setup Blog', icon:'feed' },
     { href:'/about/', label:'Company', icon:'contact' }
   ];
