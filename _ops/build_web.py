@@ -7,6 +7,22 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TPL  = io.open(os.path.join(ROOT,'_ops','tpl','product.html'), encoding='utf-8').read()
 OUT  = os.path.join(ROOT,'brands','gaossunion')
 
+# ══ 브랜드 정의 — cfg에 brand='hefei' 를 주면 그 브랜드로 찍는다 ══
+BRANDS = {
+ 'gaossunion': dict(slug='gaossunion', ko='가오스유니온', en='Gaoss Union',
+                    hub='가오스유니온 전기화학 전체', imgdir='gaossunion',
+                    kw=['가오스유니온','전기화학']),
+ 'hefei':      dict(slug='hefei', ko='허페이 인시츄', en='Hefei In-Situ Technology',
+                    hub='허페이 인시츄 전체', imgdir='hefei',
+                    kw=['허페이인시츄','인시츄셀']),
+}
+_B = BRANDS['gaossunion']          # 현재 빌드 중인 브랜드
+def _use(name):
+    global _B, OUT
+    _B = BRANDS[name]
+    OUT = os.path.join(ROOT,'brands',_B['slug'])
+    os.makedirs(OUT, exist_ok=True)
+
 def esc(t): return html.escape(t, quote=True)
 
 
@@ -50,8 +66,8 @@ def rows_by(sobun=None, name_has=None, model_re=None):
 
 # ---------- 조각 생성기 ----------
 def autoimgs(slug):
-    """img/gaossunion/<slug>-N.jpg 를 번호순으로 자동 수집 — cfg에 imgs를 적지 않아도 된다"""
-    d=os.path.join(ROOT,'img','gaossunion')
+    """img/<브랜드>/<slug>-N.jpg 를 번호순으로 자동 수집 — cfg에 imgs를 적지 않아도 된다"""
+    d=os.path.join(ROOT,'img',_B['imgdir'])
     fs=[f for f in os.listdir(d) if re.match(r'^%s-\d+\.jpg$'%re.escape(slug), f)]
     return sorted(fs, key=lambda f:int(re.search(r'-(\d+)\.jpg$',f).group(1)))
 
@@ -59,13 +75,14 @@ def hero(slug, alt, imgs):
     """imgs: [파일명] — 첫 장이 대표. 비어 있으면 갤러리 자체를 넣지 않는다"""
     if not imgs:
         return ''
-    h = ('<div class="dt-img"><img src="/img/gaossunion/%s" alt="%s 제품 사진 (가오스유니온 Gaoss Union)" '
+    D = _B['imgdir']; BR = _B['ko'] + ' ' + _B['en']
+    h = ('<div class="dt-img"><img src="/img/%s/%s" alt="%s 제품 사진 (%s)" '
          'loading="lazy" onerror="this.closest(\'.dt-img\').style.display=\'none\'"></div>\n'
-         '<div class="dt-thumbs">' % (imgs[0], esc(alt)))
+         '<div class="dt-thumbs">' % (D, imgs[0], esc(alt), esc(BR)))
     for n,f in enumerate(imgs,1):
-        h += ('<button type="button" data-src="/img/gaossunion/%s" onclick="agSwap(this)">'
-              '<img src="/img/gaossunion/%s" alt="%s 제품 사진 %d" loading="lazy" '
-              'onerror="this.parentElement.style.display=\'none\'"></button>' % (f,f,esc(alt),n))
+        h += ('<button type="button" data-src="/img/%s/%s" onclick="agSwap(this)">'
+              '<img src="/img/%s/%s" alt="%s 제품 사진 %d" loading="lazy" '
+              'onerror="this.parentElement.style.display=\'none\'"></button>' % (D,f,D,f,esc(alt),n))
     h += '</div>\n<script>function agSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>\n'
     return h
 
@@ -90,9 +107,13 @@ QTY_ASK = 10       # 이 수량 이상이면 배송료 문의
 
 SHIP_SHOWN = int(round(SHIP * K / 1000.0)) * 1000   # 표시 배송비 = 145,000원
 
+_KOFF = [False]   # True면 cfg['price']가 이미 판매가라 K를 곱하지 않는다
+
 def landed_extra(p):
     """제품가격 1개 (배송 제외) — 1,000원 단위 반올림"""
-    return int(round(p * K / 1000.0)) * 1000 if p else 0
+    if not p: return 0
+    k = 1.0 if _KOFF[0] else K
+    return int(round(p * k / 1000.0)) * 1000
 
 def landed(p):
     """1개 주문 시 합계 = 제품가격 + 배송비. 두 값을 각각 반올림한 뒤 더해
@@ -126,7 +147,7 @@ def feat(items):
     return '<ul class="pkg-feat">'+''.join('<li>%s</li>'%i for i in items)+'</ul>'
 
 def body(cfg):
-    s  = '<section class="pkg"><div class="wrap">\n<a class="ds-back" href="/brands/gaossunion/">← 가오스유니온 전기화학 전체</a>\n'
+    s  = '<section class="pkg"><div class="wrap">\n<a class="ds-back" href="/brands/%s/">← %s</a>\n'%(_B['slug'],_B['hub'])
     s += '<h2 class="pkg-h">특징</h2>' + feat(cfg['feat'])
     s += '<h2 class="pkg-h">사양</h2>' + spec_tbl(cfg['spec'])
     if cfg.get('price'):
@@ -135,6 +156,8 @@ def body(cfg):
         s += '<p class="pkg-note" style="margin-top:16px">%s</p>' % cfg['note']
     if cfg.get('warn'):
         s += '<p class="pkg-note" style="background:#FDF6E9;border:1px solid #F3E0BC;border-radius:10px;padding:12px 14px;color:#3a3330">%s</p>'%cfg['warn']
+    if cfg.get('extra'):
+        s += cfg['extra']
     if cfg.get('cross'):
         s += '<p class="pkg-note" style="margin-top:14px">%s</p>'%cfg['cross']
     s += '<p style="margin-top:16px"><button type="button" class="qbtn" data-quote="%s">견적문의</button></p>\n</div></section>\n'%esc(cfg['quote'])
@@ -147,17 +170,20 @@ def faq_block(title, items):
     return s+'</div>'
 
 def ld(cfg, slug, faq):
-    prices=[landed(p) for _,_,p in (cfg.get('price') or []) if p]
+    prices=[landed_extra(p) for _,_,p in (cfg.get('price') or []) if p]   # LD 가격 = 제품가격(배송 별도)
     prod={"@context":"https://schema.org","@type":"Product",
       "name":cfg['ldname'],
-      "brand":{"@type":"Brand","name":"Gaoss Union","alternateName":"가오스유니온"},
+      "brand":{"@type":"Brand","name":_B['en'],"alternateName":_B['ko']},
       "category":"전기화학 · "+cfg['cat'],
-      "url":"https://rndsetup.com/brands/gaossunion/%s/"%slug,
+      "url":"https://rndsetup.com/brands/%s/%s/"%(_B['slug'],slug),
       "description":cfg['desc']}
     if cfg.get('imgs'):
-        prod["image"]="https://rndsetup.com/img/gaossunion/%s"%cfg['imgs'][0]
+        prod["image"]="https://rndsetup.com/img/%s/%s"%(_B['imgdir'],cfg['imgs'][0])
     if cfg.get('models'): prod["model"]=cfg['models']
-    if prices:
+    if len(prices)==1 and len(cfg.get('price') or [])==1:
+        prod["offers"]={"@type":"Offer","priceCurrency":"KRW","price":prices[0],
+          "availability":"https://schema.org/InStock","seller":{"@id":"https://rndsetup.com/#org"}}
+    elif prices:
         prod["offers"]={"@type":"AggregateOffer","priceCurrency":"KRW",
           "lowPrice":min(prices),"highPrice":max(prices),
           "offerCount":len(cfg['price']),"availability":"https://schema.org/InStock",
@@ -167,13 +193,15 @@ def ld(cfg, slug, faq):
          "acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in faq]}
     bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"브랜드","item":"https://rndsetup.com/brands/"},
-        {"@type":"ListItem","position":2,"name":"가오스유니온","item":"https://rndsetup.com/brands/gaossunion/"},
-        {"@type":"ListItem","position":3,"name":cfg['h1'],"item":"https://rndsetup.com/brands/gaossunion/%s/"%slug}]}
+        {"@type":"ListItem","position":2,"name":_B['ko'],"item":"https://rndsetup.com/brands/%s/"%_B['slug']},
+        {"@type":"ListItem","position":3,"name":cfg['h1'],"item":"https://rndsetup.com/brands/%s/%s/"%(_B['slug'],slug)}]}
     j=lambda d: '<script type="application/ld+json">'+json.dumps(d,ensure_ascii=False)+'</script>\n'
     return j(prod)+j(fq)+j(bc)
 
 # ---------- 페이지 조립 ----------
 def build(cfg):
+    _use(cfg.get('brand','gaossunion'))
+    _KOFF[0]=bool(cfg.get('landed'))
     slug=cfg['slug']
     s=TPL
     if not cfg.get('imgs'): cfg['imgs']=autoimgs(slug)
@@ -190,18 +218,34 @@ def build(cfg):
     # 헤드 메타
     s=re.sub(r'<title>[^<]*</title>', '<title>%s</title>'%esc(cfg['title']), s, count=1)
     s=re.sub(r'(<meta name="description" content=")[^"]*(")', lambda m:m.group(1)+esc(cfg['desc'])+m.group(2), s)
-    s=re.sub(r'(<meta property="og:title" content=")[^"]*(")', lambda m:m.group(1)+esc(cfg['h1']+' — 가오스유니온 정품')+m.group(2), s)
+    s=re.sub(r'(<meta property="og:title" content=")[^"]*(")', lambda m:m.group(1)+esc(cfg['h1']+' — '+_B['ko']+' 정품')+m.group(2), s)
     s=re.sub(r'(<meta property="og:description" content=")[^"]*(")', lambda m:m.group(1)+esc(cfg['desc'])+m.group(2), s)
-    s=re.sub(r'(<link rel="canonical" href="https://rndsetup\.com/brands/gaossunion/)[a-z0-9-]+(/")',
-             lambda m:m.group(1)+slug+m.group(2), s)
-    s=re.sub(r'(<meta property="og:url" content="https://rndsetup\.com/brands/gaossunion/)[a-z0-9-]+(/")',
-             lambda m:m.group(1)+slug+m.group(2), s)
+    s=re.sub(r'(<link rel="canonical" href="https://rndsetup\.com/brands/)[a-z0-9-]+/[a-z0-9-]+(/")',
+             lambda m:m.group(1)+_B['slug']+'/'+slug+m.group(2), s)
+    s=re.sub(r'(<meta property="og:url" content="https://rndsetup\.com/brands/)[a-z0-9-]+/[a-z0-9-]+(/")',
+             lambda m:m.group(1)+_B['slug']+'/'+slug+m.group(2), s)
+    s=s.replace('<a href="/brands/gaossunion/">가오스유니온</a>',
+                '<a href="/brands/%s/">%s</a>'%(_B['slug'],_B['ko']))
+    # 브랜드 표기·해시태그·트위터 카드
+    s=s.replace('<div class="dt-brand">가오스유니온 · Gaoss Union</div>',
+                '<div class="dt-brand">%s · %s</div>'%(esc(_B['ko']),esc(_B['en'])))
+    s=re.sub(r'<div class="dt-kw">.*?</div>',
+             '<div class="dt-kw">%s<a href="/product/">#실험장비카탈로그</a></div>'
+             % ''.join('<a href="/brands/%s/">#%s</a>'%(_B['slug'],esc(k)) for k in _B['kw']),
+             s, count=1, flags=re.S)
+    s=re.sub(r'(<meta name="twitter:title" content=")[^"]*(")',
+             lambda m:m.group(1)+esc(cfg['h1']+' — '+_B['ko'])+m.group(2), s)
+    s=re.sub(r'(<meta name="twitter:description" content=")[^"]*(")',
+             lambda m:m.group(1)+esc(cfg['desc'])+m.group(2), s)
+    _og=('https://rndsetup.com/img/%s/%s'%(_B['imgdir'],cfg['imgs'][0])) if cfg.get('imgs') else ''
+    if _og:
+        s=re.sub(r'((?:og:image|twitter:image)" content=")[^"]*(")', lambda m:m.group(1)+_og+m.group(2), s)
     s=s.replace('{{CRUMB}}', cfg['h1'])
     # 아직 만들지 않은 슬러그로 가는 링크는 자동 해제 (죽은 내부 링크 0 규칙)
     have={d for d in os.listdir(OUT) if os.path.isdir(os.path.join(OUT,d))} | {slug}
     def _unlink(m):
         return m.group(0) if m.group(1) in have else m.group(2)
-    s=re.sub(r'<a href="/brands/gaossunion/([a-z0-9-]+)/">([^<]*)</a>', _unlink, s)
+    s=re.sub(r'<a href="/brands/'+_B['slug']+r'/([a-z0-9-]+)/">([^<]*)</a>', _unlink, s)
     assert '{{' not in s, '치환 안 된 자리표시자'
     assert s.count('</html>')==1
     d=os.path.join(OUT,slug); os.makedirs(d,exist_ok=True)

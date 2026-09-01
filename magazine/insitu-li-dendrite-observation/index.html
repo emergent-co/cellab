@@ -40,6 +40,7 @@
 .msc-tbl thead th{background:#F4F8FC;color:#555;font-weight:700;font-size:12.5px;border-top:none}
 .msc-tbl .hot{background:#EAF4FB}
 .msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
+.hl{background:#D9EBFA;color:#173A63;padding:1px 5px;border-radius:4px;font-weight:700}
 .msc-res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 18px}
 .msc-res div{background:#F4F8FC;border-radius:8px;padding:12px 14px}
 .msc-res .k{font-size:12.5px;color:#777}
@@ -107,17 +108,21 @@
   </div>
 
   <div class="sd-answer">
-    <b>리튬 덴드라이트는 석영창이 있는 밀봉 가시화 셀에서 전압 곡선과 영상을 동기화해 관찰합니다.</b> 액체 전해질은 <b>별도 주액 피팅으로 기포를 제거</b>한 Li–Li 가시화 셀, 전고체는 <b>정압 가압(5 MPa급)을 유지한 채 단면을 보는</b> 몰드 셀이 기준 셋업입니다. 도입 전 체크는 세 숫자 — 대물 WD 0.65 mm 이상, 클리어런스 30 mm+, 평판 스테이지.
+    <b>리튬 덴드라이트는 석영창이 있는 밀봉 가시화 셀에서 전압 곡선과 영상을 동기화해 관찰합니다.</b> 액체 전해질은 <b>별도 주액 피팅으로 기포를 제거</b>한 Li–Li 가시화 셀, 전고체는 <b>정압 가압(5 MPa급)을 유지한 채 단면을 보는</b> 몰드 셀이 기준 셋업입니다. 도입 전에는 보유 현미경과의 호환을 확인합니다 — 대물 렌즈의 초점거리(WD)가 0.65 mm 이상인지, 대물 아래에 셀 높이(약 30 mm)가 들어가는지, 셀을 올릴 평판형 스테이지가 있는지.
   </div>
 
   <div class="sd-body">
     <h2>무슨 실험인가 — 계면을 전압과 같은 시간축에서 본다</h2>
     <p>코인셀은 전압과 효율 숫자만 남깁니다. 쿨롱 효율 하락이 <b>덴드라이트</b> 때문인지 <b>데드 리튬</b> 때문인지, 전압이 출렁일 때 계면에서 무슨 일이 났는지는 곡선만으로 구분되지 않습니다.</p>
-    <p><b>in-situ(operando) 광학 관찰</b>이 그 답입니다. 밀봉 전기화학 셀에 얇은 석영창을 내고, 도금·박리 중인 계면을 <b>전압 곡선과 같은 시간축</b>에서 촬영합니다. 필요한 것은 넷 — <b>관찰 셀(석영창·주액 피팅) · 반사광 현미경 · 정전류 사이클러 · 글러브박스</b>. 액체 전해질과 전고체는 같은 골격에서 챙길 포인트가 달라집니다.</p>
+    <p><b>in-situ(operando) 광학 관찰</b>이 그 답입니다. 밀봉 전기화학 셀에 얇은 석영창을 내고, 도금·박리 중인 계면을 <span class="hl">전압 곡선과 같은 시간축</span>에서 촬영합니다. 필요한 것은 넷 — <b>관찰 셀(석영창·주액 피팅) · 반사광 현미경 · 정전류 사이클러 · 글러브박스</b>. 액체 전해질과 전고체는 같은 골격에서 챙길 포인트가 달라집니다.</p>
 
     <h2>액체 전해질 — 포인트는 기포</h2>
-    <p>골격은 Wood 등(<i>ACS Central Science</i> 2016) 그대로입니다. 글러브박스(H₂O·O₂ &lt; 1 ppm)에서 O링 밀봉 조립한 Li–Li 가시화 셀을 5× 반사광 대물(WD 31 mm) 아래 두고, 정전류 5 mA/cm² 사이클과 <b>반주기당 90프레임</b> 촬영을 타임스탬프로 묶습니다.</p>
-    <p>가장 흔한 실수는 <b>기포</b>입니다. 창 아래 기포는 시야를 가리고, 전해액이 끊긴 자리는 <b>국부 전류밀도가 왜곡</b>돼 가짜 결과를 만듭니다. 그래서 <b>전해액 주입 피팅이 별도로 있는 셀</b>이 필수입니다 — 건조 조립·밀봉 → 포트로 주액 → <b>잔류 기포는 주사기로 음압을 걸어 제거</b>. 그래도 기포가 남는 형상이면 수평형 셀로 갑니다.</p>
+    <p>보통은 이렇게 셋팅합니다. 글러브박스(H₂O·O₂ &lt; 1 ppm)에서 O링 밀봉으로 조립한 Li–Li 가시화 셀을 반사광 현미경(5× 대물, WD 31 mm) 아래 두고, 정전류(5 mA/cm²급)로 사이클을 돌리며 <b>반주기당 수십 프레임</b>을 촬영해 전압 로그와 타임스탬프로 묶습니다. <span style="font-size:12.5px;color:#8a8f98">(셋업 출처: ACS Cent. Sci. 2016)</span></p>
+    <p><span class="hl">가장 흔한 실수는 기포</span>입니다. 창 아래 기포는 시야를 가리고, 전해액이 끊긴 자리는 <b>국부 전류밀도가 왜곡</b>돼 가짜 결과를 만듭니다. 그래서 <span class="hl">전해액 주입 피팅이 별도로 있는 셀</span>이 필수입니다 — 건조 조립·밀봉 → 포트로 주액 → <span class="hl">잔류 기포는 주사기로 음압을 걸어 제거</span>. 그래도 기포가 남는 형상이면 수평형 셀로 갑니다.</p>
+    <figure style="margin:14px 0 4px">
+      <img src="/img/magazine/insitu-bubble-syringe.jpg" alt="주사기 음압으로 in-situ 관찰 셀 잔류 기포를 제거하는 방법 — 주액 포트에 주사기를 꽂고 피스톤을 천천히 위로 당기면 음압이 걸려 셀 안 기포가 주사기 쪽으로 빠져나온다" loading="lazy" style="display:block;width:100%;max-width:300px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;max-width:480px;margin:6px auto 0;line-height:1.5;text-align:center">주액 포트에 주사기를 꽂고 <b>피스톤을 천천히 위로 당기면</b> 음압으로 셀 안 잔류 기포가 빨려 나온다.</figcaption>
+    </figure>
 
     <h2>셋업 조건 ① — 액체 전해질 (논문 수치 기준)</h2>
     <table class="msc-tbl">
@@ -133,7 +138,7 @@
     <p class="msc-note">관찰의 목적은 전압 곡선의 변곡과 계면 사건(덴드라이트 성장 ↔ 피트 전환)을 같은 시간축에 놓는 것 — 프레임 타임스탬프와 사이클러 로그의 동기가 셋업의 마지막 조각이다.</p>
 
     <h2>전고체 — 포인트는 압력과 보는 방향</h2>
-    <p>전고체(<i>Science Advances</i> 2022 셋업 기준)는 기포 대신 두 가지를 챙깁니다. ① <b>압력</b>: 고체-고체 계면은 가압이 풀리면 접촉이 떨어지므로 <b>5 MPa급 정압을 유지한 채</b> 관찰해야 합니다. 스프링·토크 볼트 지그는 크리프로 압력이 흘러내려 부적합합니다. ② <b>보는 방향</b>: 사건(보이드·덴드라이트)은 Li|고체전해질|전극 <b>경계면</b>에서 일어나므로, 상면이 아니라 <b>몰드 측면으로 3층 단면을 노출</b>시켜 봅니다. 시료도 포일 펀칭이 아닌 펠릿 성형·단면 정리가 필요합니다.</p>
+    <p>전고체는 기포 대신 두 가지를 챙깁니다. ① <b>압력</b>: 고체-고체 계면은 가압이 풀리면 접촉이 떨어지므로 <span class="hl">5 MPa급 정압을 유지한 채</span> 관찰해야 합니다. 스프링·토크 볼트 지그는 크리프로 압력이 흘러내려 부적합합니다. ② <b>보는 방향</b>: 사건(보이드·덴드라이트)은 Li|고체전해질|전극 <b>경계면</b>에서 일어나므로, 상면이 아니라 <span class="hl">몰드 측면으로 3층 단면을 노출</span>시켜 봅니다. 시료도 포일 펀칭이 아닌 펠릿 성형·단면 정리가 필요합니다. <span style="font-size:12.5px;color:#8a8f98">(셋업 출처: Sci. Adv. 2022)</span></p>
 
     <h2>셋업 조건 ② — 전고체 (논문 수치 기준)</h2>
     <table class="msc-tbl">
@@ -158,6 +163,22 @@
       양쪽 Ti 전극은 <b>가동식</b>이라 시료 두께(0.6~2 mm, 최대 10×10 mm)에 맞춰 조여 접촉을 잡고, 단자에 악어클립을 물려 사이클러·워크스테이션에 연결합니다.
     </div>
     <p>변형: 도립현미경·기포 회피용 <b>수평형 003-1</b> · 고저온 <b>004</b>(−30~150℃ ±1℃ 프로그램) · 극저온 <b>005</b>(−100~100℃, 창 Φ10 mm) · 아연계·수계 입문용 석영 비커형 <b>002</b>(5 mL).</p>
+  </div>
+
+  <div class="sd-body">
+    <h2 style="margin-top:26px">CIS-OM 시리즈 사양표</h2>
+    <table class="msc-tbl">
+      <thead><tr><th>모델</th><th>형식 · 구성</th><th>관찰창 · 광학</th><th>온도 · 가압</th><th>시료 · 기타</th></tr></thead>
+      <tbody>
+        <tr class="hot"><td><b>CIS-OM-003</b><br>표준형</td><td>PEEK 몸체 · 고순도 티타늄 가동 전극(악어클립 체결)</td><td>석영창 Φ24 mm · 두께 <b>0.05 mm</b> · 시료-창 상면 약 <b>0.6 mm</b>(더 얇게 커스텀 가능) · 최소 작동거리 1 mm</td><td>상온 · 가압 전고체 모듈 옵션 <b>최대 6 MPa(60 kg)</b>, 상향 커스텀</td><td>시료 10×10 mm · 두께 0.6~2 mm · 가스 퍼지 + 별도 주액 피팅 · 본체 약 60×70×30 mm</td></tr>
+        <tr><td><b>CIS-OM-003-1</b><br>수평형</td><td>003과 동일 · 관찰면 수평 배치</td><td>003과 동일</td><td>003과 동일</td><td>도립현미경 대응 · 창 아래 기포 회피</td></tr>
+        <tr><td><b>CIS-OM-004</b><br>고저온형</td><td>가열·냉각 스테이지 분리 구성</td><td>상부 석영창 관찰</td><td><b>−30~150℃</b> · ±1℃ · 프로그램 온도 제어</td><td>시료실 ≤35 mm · 온도별 도금·박리 거동 관찰</td></tr>
+        <tr><td><b>CIS-OM-005</b><br>극저온형</td><td>PEEK + 구리 몸체</td><td>석영창 Φ10 mm · 초점거리 &lt;2 mm</td><td><b>−100~100℃</b></td><td>저온 전해액 스크리닝 · 저온 도금 관찰</td></tr>
+        <tr><td><b>CIS-OM-002</b><br>비커형</td><td>석영 비커 5 mL · Ti 전극(Φ3 mm)</td><td>비커 측벽 개방 광학 경로</td><td>상온</td><td>아연계·수계 전지 관찰 입문용</td></tr>
+        <tr><td><b>OPR-DM01</b><br>전용 광학계</td><td>삼안(분할 80:20) · LED 반사광 · 0.5× C마운트</td><td>줌 0.7~4.5×(WD 82~179 mm) + 플랜 아크로매틱 10/20/40/50× 대물 · 미동 0.01 mm</td><td>—</td><td>스테이지 140×140 mm(XY 75×50 mm) · SONY CMOS 16 Mpx · 심도융합·타임랩스 SW</td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">셀 내부 적층: 티타늄 전극(단자) → 티타늄 판 → 리튬메탈/샘플 → 격벽(세퍼레이터) → 샘플 → 티타늄 판 → 티타늄 전극. 제조사 카탈로그 원문 사양은 아래 이미지·카탈로그 PDF 참조.</p>
 
     <figure style="margin:18px 0 6px">
       <img src="/img/magazine/hefei-cis-om-cells.jpg" alt="Hefei In-situ Technology CIS-OM 시리즈 in-situ 광학 관찰 셀 — CIS-OM-002 석영 비커형, CIS-OM-003 표준형(PEEK·티타늄 전극·석영창), CIS-OM-003-1 수평형 제품 사진과 구조" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
@@ -174,10 +195,10 @@
     <p class="msc-note">영상: Hefei In-situ Technology 공식 채널(bilibili) — 원위현미관찰지(顕微観察池) 003 설치.</p>
 
     <h2 style="margin-top:26px">도입 전 확인 — 보유 현미경과 맞는지, 숫자 셋</h2>
-    <p>① <b>초점</b>: 창 0.05 mm + 시료-창 0.6 mm → 대물 작동거리 <b>WD ≥ 0.65 mm</b>면 시료에 초점이 닿습니다. WD 1 mm 미만 단초점 고배율 대물은 창에 닿을 수 있어 <b>창-시료 거리 커스텀</b> 대상입니다. ② <b>클리어런스</b>: 셀 높이 약 30 mm(가압 모듈 시 그 이상) → 스테이지-대물 사이 <b>30 mm+</b> 필요. 슬라이드 전용의 낮은 정립현미경은 여기서 걸립니다. ③ <b>스테이지</b>: 풋프린트 60×70 mm를 올릴 평판 스테이지 + XY 이동 수십 mm. 도립현미경뿐이면 <b>수평형 003-1</b>로 맞춥니다.</p>
+    <p>① <b>초점</b>: 창 0.05 mm + 시료-창 0.6 mm → 대물 작동거리 <span class="hl">WD ≥ 0.65 mm</span>면 시료에 초점이 닿습니다. WD 1 mm 미만 단초점 고배율 대물은 창에 닿을 수 있어 <b>창-시료 거리 커스텀</b> 대상입니다. ② <b>클리어런스</b>: 셀 높이 약 30 mm(가압 모듈 시 그 이상) → 스테이지-대물 사이 <span class="hl">30 mm+</span> 필요. 슬라이드 전용의 낮은 정립현미경은 여기서 걸립니다. ③ <b>스테이지</b>: 풋프린트 60×70 mm를 올릴 평판 스테이지 + XY 이동 수십 mm. 도립현미경뿐이면 <b>수평형 003-1</b>로 맞춥니다.</p>
 
     <h2 style="margin-top:26px">광학계는 어느 정도면 충분한가</h2>
-    <p>두 논문 모두 5× 대물·스테레오 현미경 수준에서 끝났습니다 — <b>벤치탑 광학계면 충분</b>합니다. 참고 기준인 전용 광학계 <b>OPR-DM01</b>: 줌 0.7~4.5×(WD 82~179 mm) · 10/20/40/50× 대물 · 140×140 mm 스테이지(XY 75×50) · <b>16 Mpx</b> 카메라. <b>심도융합</b>으로 굴곡진 표면 전체가 선명한 정지 이미지를, <b>타임랩스</b>로 전압 곡선과 나란히 놓을 시퀀스를 얻습니다. 보유 현미경이 위 숫자를 통과하면 셀만, 아니면 광학계까지 묶어 안내해 드립니다.</p>
+    <p>실제 검증된 관찰은 5× 대물·스테레오 현미경 수준에서 이뤄졌습니다 — <b>벤치탑 광학계면 충분</b>합니다. 참고 기준인 전용 광학계 <b>OPR-DM01</b>: 줌 0.7~4.5×(WD 82~179 mm) · 10/20/40/50× 대물 · 140×140 mm 스테이지(XY 75×50) · <b>16 Mpx</b> 카메라. <b>심도융합</b>으로 굴곡진 표면 전체가 선명한 정지 이미지를, <b>타임랩스</b>로 전압 곡선과 나란히 놓을 시퀀스를 얻습니다. 보유 현미경이 위 숫자를 통과하면 셀만, 아니면 광학계까지 묶어 안내해 드립니다.</p>
 
     <figure style="margin:18px 0 6px">
       <img src="/img/magazine/hefei-depth-fusion.jpg" alt="OPR-DM01 심도융합(depth fusion) 촬영 예 — 굴곡진 전극 표면 전체에 초점이 맞은 합성 이미지" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
@@ -185,7 +206,7 @@
     </figure>
     <figure style="margin:18px 0 6px">
       <img src="/img/magazine/hefei-timelapse.jpg" alt="OPR-DM01 타임랩스 촬영 예 — 시간 간격을 두고 기록한 전극 계면 변화 시퀀스" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
-      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">타임랩스 촬영 예(제조사 자료). 정전류 사이클과 같은 시간축으로 남기면 Wood 논문의 전압-영상 동기 분석을 그대로 재현할 수 있다.</figcaption>
+      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">타임랩스 촬영 예(제조사 자료). 정전류 사이클과 같은 시간축으로 남기면 전압-영상 동기 분석을 그대로 재현할 수 있다.</figcaption>
     </figure>
 
     <div class="msc-dl">
