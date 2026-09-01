@@ -267,6 +267,17 @@ export async function issueTaxInvoice(env, invoice, opts = {}) {
   });
 }
 
+/** 국세청으로 나간 그 한 건을 바로빌 양식으로 보는 주소.
+ *  읽기 전용이고 오래 살지 않는다 — 저장하지 말고 볼 때마다 새로 받는다. */
+export async function taxInvoiceViewUrl(env, mgtKey) {
+  const c = barobillConfig(env);
+  const r = await barobillCall(env, 'GetTaxInvoicePopUpURLReadonly', { MgtKey: cut(mgtKey, 24), ID: c.id });
+  if (!r.ok) return r;
+  const u = String(r.value || '').trim();
+  if (!/^https?:\/\//i.test(u)) return { ok: false, error: '바로빌이 열람 주소를 주지 않았습니다.', raw: r.raw };
+  return { ok: true, url: u };
+}
+
 /** 상태 조회 — BarobillState 가 양수면 성공 */
 export async function taxInvoiceState(env, mgtKey) {
   const r = await barobillCall(env, 'GetTaxInvoiceStateEX', { MgtKey: cut(mgtKey, 24) });

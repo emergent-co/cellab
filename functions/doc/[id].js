@@ -4,6 +4,7 @@
 import { isAdmin, currentCustomer, kstISO, logEvent, DOC_LABEL, adminOK} from '../api/_lib.js';
 import { renderDocHTML } from '../api/_doctpl.js';
 import { getOrMakePdf, pdfConfigured } from '../api/_pdf.js';
+import { taxInvoiceViewUrl } from '../api/_barobill.js';
 
 export async function onRequestGet({ request, env, params }) {
   const url = new URL(request.url);
@@ -42,6 +43,15 @@ export async function onRequestGet({ request, env, params }) {
       channel: viewer === 'link' ? 'email' : 'web', actor: 'customer',
       detail: `${DOC_LABEL[doc.type] || doc.type} ${doc.doc_no} 열람`,
     });
+  }
+
+  // 국세청으로 나간 세금계산서는 우리 출력본을 보여줄 자리가 아니다 — 바로빌 양식으로 넘긴다.
+  // ?ours=1 은 우리 보관용 출력본을 일부러 볼 때만.
+  if (doc.type === 'taxinvoice' && doc.barobill_mgtkey
+      && url.searchParams.get('f') !== 'pdf' && url.searchParams.get('ours') !== '1') {
+    const v = await taxInvoiceViewUrl(env, doc.barobill_mgtkey);
+    if (v.ok) return Response.redirect(v.url, 302);
+    // 바로빌이 안 열어주면 빈 화면 대신 우리 출력본이라도 보여준다
   }
 
   if (url.searchParams.get('f') === 'pdf') {

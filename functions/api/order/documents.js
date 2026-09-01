@@ -8,6 +8,7 @@ export async function onRequestGet({ request, env }) {
 
   const { results } = await env.DB.prepare(
     `SELECT d.id, d.type, d.doc_no, d.status, d.issue_date, d.sent_at, d.opened_at, d.created_at,
+            d.barobill_mgtkey,
             o.id AS order_id, o.order_no, o.title, o.total_amount
        FROM documents d JOIN orders o ON o.id = d.order_id
       WHERE o.customer_id = ?

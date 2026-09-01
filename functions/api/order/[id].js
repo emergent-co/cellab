@@ -13,7 +13,7 @@ export async function onRequest({ request, env, params }) {
 
   if (request.method === 'GET') {
     const items = (await env.DB.prepare('SELECT id, seq, name, spec, unit, qty, unit_price, amount, note, link FROM order_items WHERE order_id=? ORDER BY seq').bind(order.id).all()).results || [];
-    const docs = (await env.DB.prepare('SELECT id, type, doc_no, version, status, issue_date, pdf_key, created_at FROM documents WHERE order_id=? ORDER BY id DESC').bind(order.id).all()).results || [];
+    const docs = (await env.DB.prepare('SELECT id, type, doc_no, version, status, issue_date, pdf_key, barobill_mgtkey, created_at FROM documents WHERE order_id=? ORDER BY id DESC').bind(order.id).all()).results || [];
     const events = (await env.DB.prepare("SELECT action, channel, actor, result, detail, created_at FROM doc_events WHERE order_id=? AND actor<>'admin_internal' ORDER BY id DESC LIMIT 50").bind(order.id).all()).results || [];
     const profiles = (await env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id DESC').bind(me.id).all()).results || [];
     const bill = order.bill_profile_id ? profiles.find((p) => p.id === order.bill_profile_id) || null : null;

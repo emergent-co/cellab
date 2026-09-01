@@ -207,6 +207,7 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
   padding:9px 11px;margin-bottom:7px;background:#fff}
 .bck{display:flex;align-items:center;gap:9px;flex:1;min-width:0;cursor:pointer;margin:0}
 .bck input{width:17px;height:17px;flex:0 0 auto;accent-color:var(--navy)}
+.bck.nock{padding-left:26px;cursor:default}
 .bck b{display:block;font-size:13.5px;font-weight:700}
 .bck small{display:block;font-size:11.5px;color:var(--mut);margin-top:1px}
 
@@ -655,6 +656,30 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 .recent .cartrow .cn small{color:#6f7aa8}
 .recent .cartrow .radd{background:#fff;border-color:#cfe1f0;color:var(--navy);font-weight:700}
 .recent .cartrow .radd:hover{background:#dcecf7}
+
+/* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
+.rcz{margin-top:18px}
+.rcz:empty{margin:0}
+.rch{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-top:1px solid var(--line);padding-top:14px;margin-bottom:10px}
+.rch b{font-size:13px;font-weight:800;letter-spacing:-.01em}
+.rch .rcn{font-size:11.5px;font-weight:600;color:var(--mut);margin-left:7px}
+.rcdots{display:flex;gap:5px;flex:0 0 auto}
+.rcdots i{width:6px;height:6px;border-radius:50%;background:#d6dbe6;cursor:pointer;
+  transition:width .25s,background .25s}
+.rcdots i.on{width:16px;border-radius:3px;background:var(--navy)}
+.rcwin{overflow:hidden}
+.rctrack{display:flex;transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+.rcpage{flex:0 0 100%;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:stretch}
+.rcard{font:inherit;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;
+  padding:9px 10px;cursor:pointer;min-width:0;display:flex;flex-direction:column;gap:3px;transition:.15s}
+.rcard:hover{border-color:var(--navy);background:var(--soft-blue)}
+.rcard b{font-size:12px;font-weight:700;line-height:1.35;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rcard small{font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rcard em{font-style:normal;font-size:10.5px;color:#9aa3b4;margin-top:auto;padding-top:4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:760px){.rcpage{grid-template-columns:repeat(2,1fr)}}
 .sug div.mrow2{background:#F7FAFC}
 
 .kbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#fff;border:1px solid var(--line);border-radius:12px;
@@ -2413,8 +2438,11 @@ async function openOrder(id){
      ? '<div class="sec"><h4>문서</h4>'
        + d.documents.map(function(x){
            return '<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)
-             +(x.status==='취소됨'?'':' &nbsp;<a class="lnk" href="/doc/'+x.id+'" target="_blank">보기</a>'
-               +'<a class="lnk" href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>')+'</span></div>'; }).join('')
+             +(x.status==='취소됨' ? ''
+               : x.barobill_mgtkey
+                 ? ' &nbsp;<a class="lnk" href="/doc/'+x.id+'" target="_blank">국세청 양식</a>'
+                 : ' &nbsp;<a class="lnk" href="/doc/'+x.id+'" target="_blank">보기</a>'
+                   +'<a class="lnk" href="/doc/'+x.id+'?f=pdf" target="_blank">PDF</a>')+'</span></div>'; }).join('')
        +'</div>'
      : '')
    +'<div class="sec"><h4>진행 이력</h4>'
@@ -2542,9 +2570,9 @@ function paintNew(){
        +'<div class="seg" id="seg">'
          +'<button data-m="one" class="on">단건 주문</button>'
          +'<button data-m="bulk" class="soon">여러 건 주문</button>'
-         +'<button data-m="recent">최근 주문</button>'
        +'</div>'
        +'<div id="inputArea"></div>'
+       +'<div class="rcz" id="rcz"></div>'
      +'</div>'
      +'<div class="panel pad" id="cartPanel">'+cartBlock()+'</div>'
    +'</div>';
@@ -2563,11 +2591,11 @@ function paintNew(){
       return;
     }
     document.querySelectorAll('#seg button').forEach(function(x){ x.classList.toggle('on', x.dataset.m===m); });
-    if (m==='recent') return recentTab();
     oneForm();
   };
   oneForm();
   bindCart();
+  recentStrip();
   var gs = $('#goSite'); if (gs) gs.onclick = meModal;
 }
 
@@ -2753,45 +2781,69 @@ function parseBulk(){
   };
 }
 
-/* --- 최근 주문(같은 소속 공유) --- */
-async function recentTab(){
-  $('#inputArea').innerHTML = '<div class="skel" style="margin-top:14px"><div class="sk" style="height:220px"></div></div>';
+/* --- 최근 주문 슬라이드 (담기 아래) — 같은 소속이 산 것을 최근 순으로 4개씩 --- */
+var rcRows = [], rcPage = 0, rcPages = 0, rcTmr = null;
+
+async function recentStrip(){
+  if (!$('#rcz')) return;
   var r = await fetch('/api/order/recent').then(function(r){return r.json();}).catch(function(){return {};});
-  var rows = r.items || [];
-  if (!rows.length){
-    $('#inputArea').innerHTML = '<div class="empty" style="padding:40px 10px">아직 주문 이력이 없습니다.</div>';
-    return;
+  var box = $('#rcz'); if (!box) return;        // 응답을 기다리는 사이 화면이 바뀌었을 수 있다
+  var rows = (r.items || []).slice(0, 12);      // 4개씩 3페이지
+  if (!rows.length){ box.innerHTML = ''; return; }
+  rcRows = rows; rcPage = 0; rcPages = Math.ceil(rows.length / 4);
+
+  var pages = '';
+  for (var p = 0; p < rcPages; p++){
+    pages += '<div class="rcpage">' + rows.slice(p*4, p*4+4).map(function(x, j){
+      return '<button class="rcard" data-i="'+(p*4+j)+'">'
+        + '<b>'+esc(x.name)+'</b>'
+        + '<small>'+esc(x.spec || '규격 없음')+'</small>'
+        + '<em>'+esc(String(x.last_at||'').slice(5,10))+' · '+esc(x.orderer||'')
+          + (x.times>1 ? ' · '+x.times+'회' : '')+'</em></button>';
+    }).join('') + '</div>';
   }
-  recentRows = rows;
-  $('#inputArea').innerHTML =
-     '<p class="hint" style="margin:14px 0 10px">같은 소속에서 주문한 품목입니다. 눌러서 바로 담을 수 있습니다.</p>'
-    +'<input type="search" id="r-q" placeholder="품명으로 좁히기" style="margin-bottom:10px">'
-    +'<div id="r-list" class="recent"></div>';
-  var t; $('#r-q').oninput = function(e){ clearTimeout(t); t=setTimeout(function(){ paintRecent(e.target.value.trim()); },200); };
-  paintRecent('');
-}
-var recentRows = [];
-function paintRecent(kw2){
-  var rows = recentRows.filter(function(x){
-    if (!kw2) return true;
-    return ((x.name||'')+' '+(x.spec||'')).toLowerCase().indexOf(kw2.toLowerCase())>=0; });
-  $('#r-list').innerHTML = rows.length
-    ? '<div class="cartlist">' + rows.map(function(x,i){
-        return '<div class="cartrow"><div class="cn"><b>'+esc(x.name)+'</b>'
-          +(x.spec?'<small>'+esc(x.spec)+'</small>':'')
-          +'<small>'+esc(String(x.last_at||'').slice(0,10))+' · '+esc(x.orderer||'')
-          +(x.times>1?' · '+x.times+'회':'')+'</small></div>'
-          +'<button class="btn ghost radd" data-i="'+i+'" style="padding:8px 12px;font-size:12.5px">담기</button></div>';
-      }).join('') + '</div>'
-    : '<div class="empty" style="padding:30px 10px">해당하는 품목이 없습니다.</div>';
-  $('#r-list').querySelectorAll('.radd').forEach(function(b){
-    b.onclick = function(){
-      var x = rows[Number(b.dataset.i)];
-      if (!x.link){ toast('이 품목엔 상품 링크가 없습니다 — 단건 주문에서 링크를 넣어주세요'); return; }
-      cart.push({ name:x.name, spec:x.spec||'', link:x.link, qty:x.qty||1, note:'' });
-      saveCart(); refreshCart(); toast('담았습니다 ('+cart.length+'건)');
-    };
+
+  box.innerHTML =
+     '<div class="rch"><span><b>최근 주문한 제품</b><span class="rcn">눌러서 담기</span></span>'
+     + (rcPages > 1
+        ? '<span class="rcdots">' + rows.slice(0, rcPages).map(function(_, i){
+            return '<i data-p="'+i+'"'+(i ? '' : ' class="on"')+'></i>'; }).join('') + '</span>'
+        : '')
+     + '</div>'
+    + '<div class="rcwin"><div class="rctrack" id="rctrack">'+pages+'</div></div>';
+
+  box.querySelectorAll('.rcard').forEach(function(b){
+    b.onclick = function(){ rcAdd(rcRows[Number(b.dataset.i)]); };
   });
+  box.querySelectorAll('.rcdots i').forEach(function(d){
+    d.onclick = function(){ rcGo(Number(d.dataset.p)); rcTimer(); };
+  });
+  box.onmouseenter = function(){ clearInterval(rcTmr); };   // 읽는 중에 넘어가면 짜증난다
+  box.onmouseleave = function(){ rcTimer(); };
+  rcTimer();
+}
+
+function rcGo(p){
+  var track = $('#rctrack'); if (!track || !rcPages) return;
+  rcPage = ((p % rcPages) + rcPages) % rcPages;
+  track.style.transform = 'translateX(-'+(rcPage*100)+'%)';
+  document.querySelectorAll('.rcdots i').forEach(function(d, i){ d.classList.toggle('on', i === rcPage); });
+}
+
+function rcTimer(){
+  clearInterval(rcTmr);
+  if (rcPages < 2) return;
+  rcTmr = setInterval(function(){
+    if (!document.getElementById('rctrack')){ clearInterval(rcTmr); return; }  // 화면이 바뀌면 스스로 멈춘다
+    rcGo(rcPage + 1);
+  }, 4000);
+}
+
+function rcAdd(x){
+  if (!x) return;
+  if (!x.link){ toast('이 품목엔 상품 링크가 없습니다 — 위에서 링크를 넣어 담아주세요'); return; }
+  cart.push({ name:x.name, spec:x.spec||'', link:x.link, qty:x.qty||1, note:'' });
+  saveCart(); refreshCart(); toast('담았습니다 ('+cart.length+'건)');
 }
 
 /* --- 오른쪽: 담은 품목 + 납품지 --- */
@@ -3124,8 +3176,11 @@ function paintSettle(st){
           return '<tr style="cursor:default"><td>'+esc(DT[d.type]||d.type)+'</td>'
             +'<td class="l"><b>'+esc(d.doc_no||'')+'</b><br><small style="color:var(--mut)">'+esc(d.title||d.order_no)+'</small></td>'
             +'<td>'+esc(d.issue_date||'')+'</td><td>'+badge(d.status)+'</td>'
-            +'<td>'+(d.status==='취소됨'?'—':'<a class="lnk" href="/doc/'+d.id+'" target="_blank">보기</a>'
-              +'<a class="lnk" href="/doc/'+d.id+'?f=pdf" target="_blank">PDF</a>')+'</td></tr>'; }).join('')
+            +'<td>'+(d.status==='취소됨' ? '—'
+                : d.barobill_mgtkey
+                  ? '<a class="lnk" href="/doc/'+d.id+'" target="_blank">국세청 양식</a>'
+                  : '<a class="lnk" href="/doc/'+d.id+'" target="_blank">보기</a>'
+                    +'<a class="lnk" href="/doc/'+d.id+'?f=pdf" target="_blank">PDF</a>')+'</td></tr>'; }).join('')
       + '</tbody></table>'
     : '<div class="empty">아직 발급된 서류가 없습니다.</div>');
 
@@ -4960,6 +5015,8 @@ function dqBatch(made, to){
   // 진짜 전자세금계산서는 바로빌이 국세청 양식으로 고객에게 직접 보낸다.
   // 우리 출력본까지 같이 보내면 비슷하게 생긴 문서가 두 통 가서 헷갈린다 — 기본은 빼둔다.
   var pick = made.filter(function(d){ return d.type !== 'taxinvoice'; }).map(function(d){ return d.id; });
+  // 국세청 발행은 이 팝업 안에서 바로 누를 수 있어야 한다 — 문서 상세까지 들어가게 만들면 빠뜨린다
+  var tdoc = made.filter(function(d){ return d.type === 'taxinvoice'; })[0] || null;
   var w = amodal('발행 완료', '<div class="dbody" id="dqBBody"></div>');
   var h3 = w.querySelector('h3');
   if (h3) h3.innerHTML = made.length+'종 발행 <small style="font-weight:600;color:var(--mut)">'
@@ -4969,16 +5026,15 @@ function dqBatch(made, to){
      '<div class="sec"><h4>발행된 문서</h4>'
       + made.map(function(d){
           var tax = d.type === 'taxinvoice';
-          return '<div class="bdoc"><label class="bck"><input type="checkbox" data-id="'+d.id+'"'+(tax?'':' checked')+'>'
-            + '<span><b>'+esc(DTYPE[d.type])+'</b><small>'+esc(d.doc_no)
-              + (tax ? ' · 국세청 발행은 따로' : '')+'</small></span></label>'
+          var name = '<span><b>'+esc(DTYPE[d.type])+'</b><small>'+esc(d.doc_no)+'</small></span>';
+          // 세금계산서 출력본은 메일에 넣지 않는다 — 고를 것이 없으니 체크박스도 두지 않는다
+          return '<div class="bdoc">'
+            + (tax ? '<span class="bck nock">'+name+'</span>'
+                   : '<label class="bck"><input type="checkbox" data-id="'+d.id+'" checked>'+name+'</label>')
             + '<button class="mini" data-open="'+esc(d.view)+'">열기</button>'
-            + '<button class="mini" data-open="'+esc(d.view)+'&f=pdf">PDF</button></div>'; }).join('')
-     + (made.some(function(d){ return d.type==='taxinvoice'; })
-        ? '<p class="dnote" style="margin-top:8px">세금계산서는 <b>빼둔 채로</b> 보냅니다 — 법적 효력이 있는 '
-          + '전자세금계산서는 문서 상세의 <b>국세청 발행</b>으로 내보내면 바로빌이 국세청 양식으로 직접 메일을 보냅니다. '
-          + '우리 출력본은 확인용이라 같이 보내면 비슷한 문서가 두 통 갑니다.</p>'
-        : '')
+            + '<button class="mini" data-open="'+esc(d.view)+'&f=pdf">PDF</button>'
+            + (tax ? '<button class="mini ok" id="dqBNts">국세청 발행</button>' : '')
+            + '</div>'; }).join('')
      + '</div>'
     + '<div class="sec"><h4>메일 발송 <i style="font-style:normal;color:var(--mut);font-weight:600">고른 문서를 한 통에 첨부합니다</i></h4>'
       + dqField('dqBTo','받는 사람','email', to||'', 'name@company.co.kr')
@@ -4997,6 +5053,22 @@ function dqBatch(made, to){
         .map(function(x){ return Number(x.dataset.id); });
     };
   });
+  if ($('#dqBNts')) $('#dqBNts').onclick = async function(){
+    if (!confirm('국세청으로 세금계산서를 발행합니다.\n\n'
+      + '발행되면 국세청에 전송되고 공급받는자에게 바로빌이 메일을 보냅니다. 되돌리려면 취소 처리가 필요합니다.\n'
+      + '계속할까요?')) return;
+    var bt = $('#dqBNts'); bt.disabled = true; bt.textContent = '발행 중…';
+    var r = await fetch('/api/admin/docs/'+tdoc.id,{method:'POST',headers:AH,
+      body:JSON.stringify({action:'nts_issue'})}).then(function(x){return x.json();}).catch(function(){return{};});
+    if (!r.ok){
+      bt.disabled = false; bt.textContent = '국세청 발행';
+      return alert('국세청 발행 실패\n\n' + (r.message || '알 수 없는 오류')
+        + (r.code ? '\n\n(바로빌 오류코드 '+r.code+')' : ''));
+    }
+    bt.textContent = '발행됨'; bt.classList.remove('ok'); bt.disabled = true;
+    toast('국세청 발행 완료 ('+r.mode+')');
+    dqHist();
+  };
   $('#dqBSend').onclick = async function(){
     if (!pick.length) return alert('보낼 문서를 하나 이상 골라주세요.');
     var addr = $('#dqBTo').value.trim();
