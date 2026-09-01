@@ -1041,7 +1041,8 @@
   + '.bb-extra{margin:6px 0 0;font-size:12.5px;color:#7a6f68;line-height:1.65}'
   + '.bb-extra b{color:#0F69AF}'
   + '.bb-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #F1EDE9}'
-  + '.bb-row .k{color:#7a6f68;flex:0 0 auto}.bb-row .v{text-align:right;font-weight:700;color:#17202A}'
+  + '.bb-row .k{color:#7a6f68;flex:0 0 auto}.bb-was{color:#9A9A9A;font-weight:500;margin-right:5px}
+.bb-row .v{text-align:right;font-weight:700;color:#17202A}'
   + '.bb-qty{display:flex;align-items:center;gap:8px;margin:12px 0 10px}'
   + '.bb-qty label{color:#7a6f68;font-size:12.5px}'
   + '.bb-qty input{width:74px;padding:8px 9px;border:1px solid #D9D4CE;border-radius:8px;'
@@ -1099,6 +1100,15 @@
   function unitOf(o) { return (o.x != null ? o.x : o.p) || 0; }
   function shipOf(o) { return o.p ? Math.max(0, o.p - unitOf(o)) : 0; }
   function sum(o, q) { return o.p ? unitOf(o) * q + shipOf(o) : 0; }
+  /* o.d = 정가(할인 전). 국내 브랜드는 정가 대비 3% 상시 할인가를 제품가격으로 쓰고
+     정가는 취소선으로 함께 보여준다. 해외 발주(가오스·허페이)는 o.d 가 없다. */
+  function hasDisc(o) { return o.d && o.d > unitOf(o); }
+  function unitHtml(o) {
+    if (!o.p) return '문의';
+    return hasDisc(o)
+      ? '<s class="bb-was">' + won(o.d) + '</s> ' + won(unitOf(o))
+      : won(unitOf(o));
+  }
   function render() {
     var o = cur();
     var q = Math.max(1, +(document.getElementById('pdQty') || {}).value || 1);
@@ -1110,16 +1120,20 @@
       '<div class="bb-price">' + head + '</div>'
     + (o.p ? '' : '<p class="bb-extra">규격을 알려주시면 금액을 안내드립니다.</p>')
     + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
-    + '<div class="bb-row"><span class="k">제품가격 (1개)</span><span class="v">' + (o.p ? won(unitOf(o)) : '문의') + '</span></div>'
+    + '<div class="bb-row"><span class="k">제품가격 (1개)</span><span class="v">' + unitHtml(o) + '</span></div>'
     + '<div class="bb-row"><span class="k">배송</span><span class="v">'
-    +   (!o.p ? '문의' : many ? '해외배송 확인 필요' : '해외배송 ' + won(shipOf(o)))
+    +   (!o.p ? '문의'
+             : shipOf(o) ? (many ? '해외배송 확인 필요' : '해외배송 ' + won(shipOf(o)))
+                         : '국내배송 · 주문 시 안내')
     +   '</span></div>'
     + '<div class="bb-row"><span class="k">예상 배송일</span><span class="v">주문 확정 후 안내</span></div>'
     + '<div class="bb-qty"><label for="pdQty">수량</label>'
     +   '<input type="number" id="pdQty" min="1" value="' + q + '"></div>'
     + '<button type="button" class="bb-btn bb-cart" id="bbCart">장바구니 담기</button>'
     + '<button type="button" class="bb-btn bb-buy" id="bbBuy">' + (many ? '수량 문의하기' : '구매하기') + '</button>'
-    + '<p class="bb-note">배송료는 주문당 1회입니다. 담으신 품목은 장바구니에서 확인하실 수 있습니다.</p>';
+    + '<p class="bb-note">' + (hasDisc(o) ? '정가 대비 3% 상시 할인가입니다. ' : '')
+    +   (shipOf(o) ? '배송료는 주문당 1회입니다. ' : '')
+    +   '담으신 품목은 장바구니에서 확인하실 수 있습니다.</p>';
   }
   function toast(m) {
     var t = document.querySelector('.bb-toast');
