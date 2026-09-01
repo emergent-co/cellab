@@ -17,8 +17,8 @@ export function calcTotals(items, fixed) {
 }
 
 // 문서 한 건 — 아래 deliverMany 를 그대로 쓴다.
-export async function deliver(env, { doc, payload, to, cc, subject, html, actor = 'admin' }) {
-  return deliverMany(env, { docs: [{ doc, payload }], to, cc, subject, html, actor });
+export async function deliver(env, { doc, payload, to, cc, subject, html, actor = 'admin', files }) {
+  return deliverMany(env, { docs: [{ doc, payload }], to, cc, subject, html, actor, files });
 }
 
 /**
@@ -27,7 +27,7 @@ export async function deliver(env, { doc, payload, to, cc, subject, html, actor 
  * 세 통으로 나눠 보내면 받는 쪽에서 어느 게 짝인지 알 수 없다.
  * @param docs [{ doc, payload }]
  */
-export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'admin' }) {
+export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'admin', files }) {
   const list = (docs || []).filter((x) => x && x.doc);
   if (!list.length) return { ok: false, error: '보낼 문서가 없습니다' };
 
@@ -75,7 +75,12 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
         + '위 버튼으로 열어보실 수 있고, 필요하시면 PDF 로 다시 보내드리겠습니다.</p></div>')
     : html;
 
-  const r = await sendMail(env, { to, cc, subject, html: body, attachments });
+  // 손으로 붙인 파일은 서류 PDF 와 운명을 같이하지 않는다 —
+  // PDF 생성이 실패해 첨부를 다 떼는 경우에도 이건 그대로 나가야 한다.
+  const extra = (files || [])
+    .map((f) => ({ filename: String(f.name || 'file').slice(0, 120), content: String(f.b64 || '') }))
+    .filter((f) => f.content);
+  const r = await sendMail(env, { to, cc, subject, html: body, attachments: attachments.concat(extra) });
   const now = kstISO();
 
   if (!r.ok) {

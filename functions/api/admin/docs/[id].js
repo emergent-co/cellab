@@ -23,9 +23,10 @@ export async function onRequest({ request, env, params }) {
     // 한 벌로 뽑은 서류는 같이 보여야 한다 — 따로 떼어 보내면 짝이 어긋난다
     const siblings = doc.batch
       ? ((await env.DB.prepare(
-          'SELECT id, type, doc_no, status, access_token FROM documents WHERE batch=? ORDER BY id')
+          'SELECT id, type, doc_no, status, access_token, barobill_mgtkey FROM documents WHERE batch=? ORDER BY id')
           .bind(doc.batch).all()).results || []).map((d) => ({
             id: d.id, type: d.type, doc_no: d.doc_no, status: d.status,
+            barobill_mgtkey: d.barobill_mgtkey,
             view: `/doc/${d.id}?t=${d.access_token}`,
           }))
       : [];
@@ -37,7 +38,11 @@ export async function onRequest({ request, env, params }) {
       ? await env.DB.prepare('SELECT id, order_no, status, total_amount FROM orders WHERE id=?')
           .bind(doc.order_id).first()
       : null;
-    return json({ document: doc, payload, events, queued, siblings, linked, order,
+    const settle = doc.settlement_id
+      ? await env.DB.prepare('SELECT id, status, total, created_at FROM settlements WHERE id=?')
+          .bind(doc.settlement_id).first()
+      : null;
+    return json({ document: doc, payload, events, queued, siblings, linked, order, settlement: settle,
                   view: `/doc/${doc.id}?t=${doc.access_token}` });
   }
 
@@ -59,6 +64,54 @@ export async function onRequest({ request, env, params }) {
     return json({ ok: true });
   }
 
+  /* ---- 국세청으로 나갈 내용을 만든다 ----
+     미리보기와 실제 발행이 다른 값을 쓰면 미리보기가 거짓말이 된다. 그래서 한 함수로 묶는다. */
+  const ntsBuild = async () => {
+    const cfg = barobillConfig(env);
+    const bill = doc.customer_id
+      ? await env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1')
+          .bind(doc.customer_id).first()
+      : null;
+    const mgtKey = String(doc.doc_no || `D${doc.id}`).slice(0, 24);
+    const invoice = buildTaxInvoice({
+      mgtKey,
+      issuer: { ...ISSUER, email: env.MAIL_FROM_ADDR || 'info@rndsetup.com' },
+      bill: bill || {},
+      payload,
+      contactId: cfg.id,
+      writeDate: doc.issue_date || kstISO().slice(0, 10),
+    });
+    return { cfg, bill, mgtKey, invoice };
+  };
+
+  /* ---- 발행될 내용 미리보기 ----
+     국세청으로 나가기 전에는 서류를 보여줄 수 없다 — 아직 «있는 서류»가 아니기 때문이다.
+     대신 무엇이 나갈지를 그대로 펼쳐 보여준다. */
+  if (b.action === 'nts_preview') {
+    if (doc.type !== 'taxinvoice') return json({ error: 'not_taxinvoice' }, 400);
+    const { cfg, invoice, mgtKey } = await ntsBuild();
+    const A = invoice.InvoicerParty, B = invoice.InvoiceeParty;
+    const missing = [];
+    if (!B.CorpNum || B.CorpNum.length < 10) missing.push('공급받는자 사업자번호');
+    if (!B.CorpName) missing.push('공급받는자 상호명');
+    if (!B.CEOName) missing.push('공급받는자 대표자명');
+    if (!B.Email) missing.push('공급받는자 이메일 — 계산서가 갈 곳이 없습니다');
+    if (!Number(invoice.TotalAmount)) missing.push('금액');
+    return json({
+      ok: true, mode: cfg.mode, mgt_key: mgtKey,
+      write_date: invoice.WriteDate,
+      issuer: { biz_no: A.CorpNum, company: A.CorpName, ceo: A.CEOName,
+                contact: A.ContactName, email: A.Email, addr: A.Addr },
+      invoicee: { biz_no: B.CorpNum, company: B.CorpName, ceo: B.CEOName,
+                  contact: B.ContactName, email: B.Email, addr: B.Addr,
+                  biz_type: B.BizType, biz_class: B.BizClass },
+      amount: { supply: Number(invoice.AmountTotal || 0), vat: Number(invoice.TaxTotal || 0),
+                total: Number(invoice.TotalAmount || 0) },
+      items: ((invoice.TaxInvoiceTradeLineItems || {}).TaxInvoiceTradeLineItem || []).length,
+      missing,
+    });
+  }
+
   /* ---- 국세청 발행 (바로빌) ----
      세금계산서만. 우리 문서 번호를 바로빌 관리번호로 그대로 쓴다 — 한 건이 두 곳에서 같은 이름을 갖는다. */
   if (b.action === 'nts_issue') {
@@ -73,22 +126,7 @@ export async function onRequest({ request, env, params }) {
       return json({ error: 'not_configured', message: '바로빌 환경변수가 덜 채워졌습니다.' }, 400);
     }
 
-    const cfg = barobillConfig(env);
-    // 공급받는자 사업자정보 — 문서에 붙은 계산서 발행 정보를 쓴다
-    const bill = doc.customer_id || payload?.client?.bill_profile_id
-      ? await env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1')
-          .bind(doc.customer_id).first()
-      : null;
-
-    const mgtKey = String(doc.doc_no || `D${doc.id}`).slice(0, 24);
-    const invoice = buildTaxInvoice({
-      mgtKey,
-      issuer: { ...ISSUER, email: env.MAIL_FROM_ADDR || 'info@rndsetup.com' },
-      bill: bill || {},
-      payload,
-      contactId: cfg.id,
-      writeDate: doc.issue_date || kstISO().slice(0, 10),
-    });
+    const { cfg, mgtKey, invoice } = await ntsBuild();
 
     if (!invoice.InvoiceeParty.CorpNum || invoice.InvoiceeParty.CorpNum.length < 10) {
       return json({ error: 'no_bizno',

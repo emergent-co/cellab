@@ -166,6 +166,7 @@ async function post(request, env) {
   if (b.action === 'send') return sendBatch(request, env, b);
   if (b.action === 'relink') return relink(env, b);
   if (b.action === 'to_order') return toOrder(env, b);
+  if (b.action === 'to_settlement') return toSettlement(env, b);
 
   // 한 벌로 발행한다 — 견적서·거래명세서·세금계산서를 같은 내용으로 동시에.
   const types = (Array.isArray(b.types) && b.types.length ? b.types : [b.type || 'quote'])
@@ -367,6 +368,67 @@ async function toOrder(env, b) {
   return json({ ok: true, order, linked: sibs.length || 1 });
 }
 
+/* ---- 발행한 서류를 정산 요청으로 올린다 ----
+   주문으로 잡는 것과는 다른 일이다. 물건이 나간 기록은 주문, 돈을 받을 기록은 정산이다.
+   둘 다 필요한 건도 있고 하나만 필요한 건도 있어서 각각 따로 누를 수 있게 둔다. */
+async function toSettlement(env, b) {
+  const doc = await env.DB.prepare('SELECT * FROM documents WHERE id=?').bind(b.id).first();
+  if (!doc) return json({ error: 'not_found' }, 404);
+  if (doc.settlement_id) return json({ error: 'already', message: '이미 정산에 연결된 문서입니다.' }, 409);
+  if (!doc.customer_id) {
+    return json({ error: 'no_client', message: '거래처가 연결돼 있지 않습니다. 먼저 거래처를 지정해주세요.' }, 400);
+  }
+
+  let payload = {};
+  try { payload = JSON.parse(doc.payload_json || '{}'); } catch { /* noop */ }
+  const items = (payload.items || []).map((i) => ({
+    name: String(i.name || '').trim(),
+    qty: Math.max(1, Number(i.qty) || 1),
+    price: Math.round(Number(i.unit_price) || 0),
+  })).filter((i) => i.name);
+  if (!items.length) return json({ error: 'no_items', message: '품목이 없습니다.' }, 400);
+
+  const t = payload.totals || {};
+  const total = Math.round(Number(t.total) || 0);
+  const supply = Math.round(Number(t.supply) || Math.round(total / 1.1));
+  const vat = Math.round(Number(t.vat) || (total - supply));
+
+  const ok = ['정산요청', '처리중', '서류발급 완료', '입금완료', '반려'];
+  const status = ok.includes(b.status) ? b.status : '서류발급 완료';
+  const done = status === '입금완료' ? kstISO() : null;
+
+  const bill = await env.DB.prepare(
+    'SELECT id FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1')
+    .bind(doc.customer_id).first();
+
+  // 같은 벌로 뽑은 서류는 같이 붙인다 — 견적서·거래명세서·세금계산서가 한 정산 건이다
+  const sibs = doc.batch
+    ? ((await env.DB.prepare('SELECT id, type, issue_date FROM documents WHERE batch=? AND settlement_id IS NULL')
+        .bind(doc.batch).all()).results || [])
+    : [{ id: doc.id, type: doc.type, issue_date: doc.issue_date }];
+  const dateOf = (ty) => (sibs.find((x) => x.type === ty) || {}).issue_date || null;
+
+  const r = await env.DB.prepare(
+    `INSERT INTO settlements (customer_id, status, items_json, supply, vat, total, method,
+            quote_date, statement_date, taxinvoice_date, reply_email, memo, admin_memo,
+            bill_profile_id, manual, created_at, updated_at, done_at)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?, 1, ?,?,?)`
+  ).bind(doc.customer_id, status, JSON.stringify(items), supply, vat, total, '통장',
+         dateOf('quote'), dateOf('statement'), dateOf('taxinvoice'),
+         String(payload?.client?.email || ''), '',
+         `발행 서류에서 기록 (${DOC_LABEL[doc.type] || doc.type} ${doc.doc_no})`,
+         bill?.id || null, doc.issue_date ? `${doc.issue_date} 00:00:00` : kstISO(), kstISO(), done).run();
+
+  const sid = r.meta.last_row_id;
+  const ids = sibs.length ? sibs.map((x) => x.id) : [doc.id];
+  await env.DB.batch(ids.map((id) => env.DB.prepare(
+    'UPDATE documents SET settlement_id=?, updated_at=? WHERE id=?').bind(sid, kstISO(), id)));
+
+  await logEvent(env, { document_id: doc.id, action: 'to_settlement', actor: 'admin',
+    detail: `정산 #${sid} 으로 기록 · ${total.toLocaleString('ko-KR')}원 (${status})` });
+  return json({ ok: true, settlement: { id: sid, status, total }, linked: ids.length });
+}
+
 /* ---- 문서를 다른 거래처로 옮기기 ----
    서류를 먼저 뽑고 거래처를 나중에 등록하는 일이 흔하다. 그러면 문서가 엉뚱한 곳에 매여
    거래처 이력에 안 보인다. 여기서 연결을 옮긴다.
@@ -452,6 +514,20 @@ async function sendBatch(request, env, b) {
     to: rawTo, cc: rawCc,
   });
 
+  // 손으로 붙인 첨부 — 총 10MB, 5개까지. base64 는 원본의 약 4/3 이라 그만큼 여유를 둔다.
+  const files = (Array.isArray(b.files) ? b.files : []).slice(0, 5)
+    .map((f) => ({ name: String(f.name || 'file').slice(0, 120), b64: String(f.b64 || '') }))
+    .filter((f) => f.b64);
+  const fbytes = files.reduce((n, f) => n + Math.floor(f.b64.length * 3 / 4), 0);
+  if (fbytes > 10 * 1024 * 1024) {
+    return json({ error: 'too_big', message: '첨부 파일이 총 10MB를 넘습니다.' }, 400);
+  }
+  // 예약 발송은 나중에 큐가 꺼내 보낸다 — 파일을 담아둘 자리가 아직 없다.
+  if (b.send_at && files.length) {
+    return json({ error: 'no_attach_schedule',
+      message: '예약 발송에는 파일을 붙일 수 없습니다. 지금 보내시거나, 파일을 빼고 예약해주세요.' }, 400);
+  }
+
   // 예약
   if (b.send_at) {
     await env.DB.prepare(
@@ -466,7 +542,7 @@ async function sendBatch(request, env, b) {
     return json({ ok: true, scheduled: b.send_at, count: docs.length });
   }
 
-  const res = await deliverMany(env, { docs, to, cc, subject, html });
+  const res = await deliverMany(env, { docs, to, cc, subject, html, files });
   if (!res.ok) return json({ error: 'send_failed', message: res.error }, 502);
   return json({ ok: true, sent: true, count: docs.length, attached: res.attached });
 }

@@ -659,6 +659,22 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
+.nsh{margin:12px 0 4px;font-size:11.5px;font-weight:800;color:var(--mut);letter-spacing:.02em}
+/* 메일에 손으로 붙이는 첨부 */
+.fxz{margin:2px 0 14px}
+.fxdrop{border:1.5px dashed var(--line);border-radius:10px;padding:16px 12px;text-align:center;
+  cursor:pointer;font-size:12.5px;color:var(--mut);transition:.15s;background:#fbfcfd}
+.fxdrop:hover,.fxdrop.on{border-color:var(--navy);background:var(--soft-blue);color:var(--navy-dk)}
+.fxdrop b{font-weight:800;color:var(--navy)}
+.fxdrop small{display:block;margin-top:3px;font-size:11px;color:var(--mut)}
+.fxrow{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;
+  padding:7px 9px;margin-top:6px;background:#fff}
+.fxrow b{flex:1 1 auto;min-width:0;font-size:12.5px;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fxrow small{flex:0 0 auto;font-size:11px;color:var(--mut)}
+.fxx{flex:0 0 auto;border:0;background:none;cursor:pointer;font-size:16px;line-height:1;
+  color:var(--mut);padding:0 2px}
+.fxx:hover{color:#c0392b}
 .rcz:empty{margin:0}
 .rch{display:flex;align-items:center;justify-content:space-between;gap:10px;
   border-top:1px solid var(--line);padding-top:14px;margin-bottom:10px}
@@ -5039,11 +5055,13 @@ function dqBatch(made, to){
     + '<div class="sec"><h4>메일 발송 <i style="font-style:normal;color:var(--mut);font-weight:600">고른 문서를 한 통에 첨부합니다</i></h4>'
       + dqField('dqBTo','받는 사람','email', to||'', 'name@company.co.kr')
       + dqField('dqBCc','참조 (선택)','email','','cc@example.com')
+      + fxBlock()
       + dqField('dqBWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
       + '<div class="twobtn"><button class="btn gray" data-x>나중에</button>'
       + '<button class="btn ok" id="dqBSend">발송</button></div></div>';
 
+  fxBind();
   $('#dqBBody').querySelectorAll('[data-open]').forEach(function(b){
     b.onclick = function(){ window.open(b.dataset.open, '_blank'); };
   });
@@ -5075,9 +5093,11 @@ function dqBatch(made, to){
     if (!addr) return alert('받는 사람 이메일을 입력해주세요.');
     var when = $('#dqBWhen').value;
     if (when && new Date(when).getTime() < Date.now()) return alert('예약 시각이 이미 지났습니다.');
+    if (!fxGuard(when)) return;
     var b = $('#dqBSend'); b.disabled = true; b.textContent = when ? '예약 중…' : '보내는 중…';
     var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
       action:'send', ids:pick, to:addr, cc:$('#dqBCc').value.trim()||null,
+      files: fxPayload(),
       send_at: when ? when.replace('T',' ')+':00' : null })})
       .then(function(r){return r.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = '발송';
@@ -5170,6 +5190,127 @@ function dqRelinkForm(doc, linked){
   };
 }
 
+/* ---- 메일 첨부 (드래그&드롭) ----
+   서류 PDF 는 서버가 알아서 붙인다. 여기는 «그 밖에 같이 보낼 파일» 자리다. */
+var fxFiles = [];
+var FX_MAX = 10*1024*1024, FX_N = 5;
+
+function fxBlock(){
+  return '<label style="display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:12px 0 6px">'
+    + '첨부 파일 (선택)</label>'
+    + '<div class="fxz"><input type="file" id="fxin" multiple hidden>'
+    + '<div class="fxdrop" id="fxdrop">파일을 여기로 끌어다 놓거나 <b>눌러서 고르기</b>'
+    + '<small>총 10MB · 5개까지 · 예약 발송에는 붙일 수 없습니다</small></div>'
+    + '<div id="fxlist"></div></div>';
+}
+
+function fxBind(){
+  fxFiles = [];
+  var z = $('#fxdrop'), inp = $('#fxin');
+  if (!z || !inp) return;
+  z.onclick = function(){ inp.click(); };
+  inp.onchange = function(){ fxAdd(inp.files); inp.value = ''; };
+  ['dragenter','dragover'].forEach(function(ev){
+    z.addEventListener(ev, function(e){ e.preventDefault(); e.stopPropagation(); z.classList.add('on'); }); });
+  ['dragleave','dragend'].forEach(function(ev){
+    z.addEventListener(ev, function(e){ e.preventDefault(); z.classList.remove('on'); }); });
+  z.addEventListener('drop', function(e){
+    e.preventDefault(); e.stopPropagation(); z.classList.remove('on');
+    fxAdd(e.dataTransfer && e.dataTransfer.files);
+  });
+  fxPaint();
+}
+
+async function fxAdd(list){
+  var arr = [].slice.call(list || []);
+  for (var i = 0; i < arr.length; i++){
+    var f = arr[i];
+    if (fxFiles.length >= FX_N){ toast('첨부는 '+FX_N+'개까지입니다'); break; }
+    var sum = fxFiles.reduce(function(a2, x){ return a2 + x.size; }, 0);
+    if (sum + f.size > FX_MAX){ toast(f.name + ' — 총 10MB를 넘어 뺐습니다'); continue; }
+    var b64 = await fxRead(f).catch(function(){ return ''; });
+    if (!b64){ toast(f.name + ' — 읽지 못했습니다'); continue; }
+    fxFiles.push({ name: f.name, size: f.size, b64: b64 });
+  }
+  fxPaint();
+}
+
+function fxRead(f){
+  return new Promise(function(res, rej){
+    var r = new FileReader();
+    r.onload = function(){ res(String(r.result).split(',')[1] || ''); };
+    r.onerror = rej;
+    r.readAsDataURL(f);
+  });
+}
+
+function fxPaint(){
+  var el = $('#fxlist'); if (!el) return;
+  el.innerHTML = fxFiles.map(function(f, i){
+    return '<div class="fxrow"><b>'+esc(f.name)+'</b><small>'+fxSize(f.size)+'</small>'
+      + '<button class="fxx" data-i="'+i+'" title="빼기">×</button></div>'; }).join('');
+  el.querySelectorAll('.fxx').forEach(function(b){
+    b.onclick = function(){ fxFiles.splice(Number(b.dataset.i), 1); fxPaint(); };
+  });
+}
+
+function fxSize(n){
+  return n < 1024*1024 ? Math.max(1, Math.round(n/1024))+'KB' : (n/1048576).toFixed(1)+'MB';
+}
+
+/* 발송 직전에 부르는 검사 — 예약과 첨부는 같이 갈 수 없다 */
+function fxGuard(when){
+  if (when && fxFiles.length){
+    alert('예약 발송에는 파일을 붙일 수 없습니다.\n\n지금 보내시거나, 첨부를 빼고 예약해주세요.');
+    return false;
+  }
+  return true;
+}
+function fxPayload(){
+  return fxFiles.map(function(f){ return { name: f.name, b64: f.b64 }; });
+}
+
+function ymdDash(v){ v=String(v||''); return v.length===8 ? v.slice(0,4)+'-'+v.slice(4,6)+'-'+v.slice(6) : (v||'—'); }
+function bizFmt(v){ v=String(v||'').replace(/[^0-9]/g,'');
+  return v.length===10 ? v.slice(0,3)+'-'+v.slice(3,5)+'-'+v.slice(5) : (v||'—'); }
+
+/* 국세청으로 나가기 전에는 서류 대신 «나갈 내용»을 보여준다.
+   발행과 똑같은 함수가 만든 값이라, 여기 보이는 것이 곧 국세청에 찍힌다. */
+async function nsPreview(id){
+  var r = await fetch('/api/admin/docs/'+id,{method:'POST',headers:AH,
+    body:JSON.stringify({action:'nts_preview'})}).then(function(x){return x.json();}).catch(function(){return{};});
+  var el = $('#nsPre'); if (!el) return;
+  if (!r.ok){ el.innerHTML = '<div class="dnote">발행될 내용을 불러오지 못했습니다. '+esc(r.message||'')+'</div>'; return; }
+  var A = r.issuer||{}, B = r.invoicee||{}, M = r.amount||{};
+  el.innerHTML =
+     (r.missing && r.missing.length
+      ? '<div class="warnbox" style="margin:0 0 10px;display:block"><b>이대로는 발행되지 않습니다</b><br>'
+        + r.missing.map(function(x){ return esc(x); }).join('<br>') + '</div>' : '')
+   + '<div class="kv"><span>작성일자</span><span><b>'+esc(ymdDash(r.write_date))+'</b></span></div>'
+   + '<div class="kv"><span>관리번호</span><span>'+esc(r.mgt_key||'')+'</span></div>'
+   + '<h5 class="nsh">공급받는자</h5>'
+   + '<div class="kv"><span>사업자번호</span><span>'+esc(bizFmt(B.biz_no))+'</span></div>'
+   + '<div class="kv"><span>상호명</span><span><b>'+esc(B.company||'—')+'</b></span></div>'
+   + '<div class="kv"><span>대표자명</span><span>'+esc(B.ceo||'—')+'</span></div>'
+   + '<div class="kv"><span>담당자</span><span>'+esc(B.contact||'—')+'</span></div>'
+   + '<div class="kv"><span>이메일</span><span>'+esc(B.email||'—')+'</span></div>'
+   + (B.addr ? '<div class="kv"><span>주소</span><span>'+esc(B.addr)+'</span></div>' : '')
+   + ((B.biz_type||B.biz_class)
+      ? '<div class="kv"><span>업태 · 종목</span><span>'
+        + esc([B.biz_type,B.biz_class].filter(Boolean).join(' · '))+'</span></div>' : '')
+   + '<h5 class="nsh">공급자 (우리)</h5>'
+   + '<div class="kv"><span>사업자번호</span><span>'+esc(bizFmt(A.biz_no))+'</span></div>'
+   + '<div class="kv"><span>상호 · 대표</span><span>'+esc(A.company||'')
+     + (A.ceo ? ' · '+esc(A.ceo) : '')+'</span></div>'
+   + '<div class="kv"><span>이메일</span><span>'+esc(A.email||'')+'</span></div>'
+   + '<h5 class="nsh">금액 <i style="font-style:normal;font-weight:600">'+(r.items||0)+'개 품목</i></h5>'
+   + '<div class="kv"><span>공급가액</span><span>'+won(M.supply)+'원</span></div>'
+   + '<div class="kv"><span>부가세</span><span>'+won(M.vat)+'원</span></div>'
+   + '<div class="kv"><span>합계</span><span><b>'+won(M.total)+'원</b></span></div>';
+  var bt = $('#nsIssue');
+  if (bt && r.missing && r.missing.length){ bt.disabled = true; bt.title = r.missing.join(' · '); }
+}
+
 async function dqOpen(id){
   var w = waitModal('문서');
   var d = await fetch('/api/admin/docs/'+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
@@ -5199,9 +5340,8 @@ async function dqOpen(id){
               + '<div class="kv"><span>상태</span><span id="nsState">'+esc(doc.barobill_state||'—')+'</span></div>'
               + (doc.barobill_ncid?'<div class="kv"><span>국세청 승인번호</span><span>'+esc(doc.barobill_ncid)+'</span></div>':'')
               + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="nsCheck">상태 다시 조회</button></div>'
-            : '<div class="dnote">아직 국세청으로 보내지 않았습니다. 누르면 <b>저장과 발급이 한 번에</b> 처리되고, '
-              + '공급받는자에게 바로빌이 국세청 양식으로 메일을 보냅니다.<br>'
-              + '공급받는자 사업자정보는 거래처의 <b>계산서 발행 정보</b>를 씁니다.</div>'
+            : '<div class="dnote">아직 국세청으로 보내지 않았습니다. 아래가 <b>그대로 나갈 내용</b>입니다.</div>'
+              + '<div id="nsPre" style="margin-top:8px"><div class="mskel"><i></i><i></i><i></i></div></div>'
               + '<div class="dsrc" style="margin-top:10px"><button class="mini ok" id="nsIssue">국세청 발행</button></div>')
          + '</div>'
        : '')
@@ -5214,6 +5354,17 @@ async function dqOpen(id){
            + '<div class="dsrc" style="margin-top:10px"><select id="dqOrdSt2" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
            + ST.map(function(x){ return '<option'+(x==='발주확정'?' selected':'')+'>'+x+'</option>'; }).join('')
            + '</select><button class="mini" id="dqToOrder">주문으로 기록</button></div>')
+     + '</div>'
+    + '<div class="sec"><h4>정산 기록</h4>'
+      + (d.settlement
+         ? '<div class="kv"><span>연결된 정산</span><span><b>#'+d.settlement.id+'</b> '
+           + abadge(d.settlement.status)+' · '+won(d.settlement.total)+'원</span></div>'
+         : '<div class="dnote">이 발행은 <b>정산으로 잡히지 않았습니다</b> — 정산 요청 목록에 뜨지 않습니다.'
+           + '<br>돈을 받을 건이면 아래에서 정산으로 올리세요. 주문 기록과는 별개입니다.</div>'
+           + '<div class="dsrc" style="margin-top:10px"><select id="dqStSt" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
+           + ['서류발급 완료','정산요청','처리중','입금완료'].map(function(x){
+               return '<option'+(x==='서류발급 완료'?' selected':'')+'>'+x+'</option>'; }).join('')
+           + '</select><button class="mini" id="dqToSettle">정산으로 기록</button></div>')
      + '</div>'
     + '<div class="sec"><h4>내용</h4>'
       + akv('제목', p.title)
@@ -5233,16 +5384,25 @@ async function dqOpen(id){
              return '<div class="bdoc"><label class="bck"><input type="checkbox" data-sib="'+x.id+'"'
                + (x.status==='취소됨'?'':' checked')+(x.status==='취소됨'?' disabled':'')+'>'
                + '<span><b>'+esc(DTYPE[x.type]||x.type)+'</b><small>'+esc(x.doc_no)+' · '+esc(x.status)+'</small></span></label>'
-               + '<button class="mini" data-open="'+esc(x.view)+'">열기</button>'
-               + '<button class="mini" data-open="'+esc(x.view)+'&f=pdf">PDF</button></div>'; }).join('')
+               // 국세청으로 나가기 전 세금계산서는 아직 «있는 서류»가 아니다 — 보여줄 것이 없다
+               + (x.type==='taxinvoice' && !x.barobill_mgtkey
+                  ? '<small style="color:var(--mut);font-size:11px">국세청 발행 전</small>'
+                  : '<button class="mini" data-open="'+esc(x.view)+'">열기</button>'
+                    + '<button class="mini" data-open="'+esc(x.view)+'&f=pdf">PDF</button>')
+               + '</div>'; }).join('')
          + '</div>'
-       : '<div class="sec"><h4>보기</h4><div class="twobtn">'
-         + '<button class="btn ghost" id="dqView">문서 열기</button>'
-         + '<button class="btn ghost" id="dqPdf">PDF</button></div></div>')
+       : (doc.type==='taxinvoice' && !doc.barobill_mgtkey
+          ? ''                                   // 발행 전에는 보여줄 서류가 없다
+          : '<div class="sec"><h4>보기</h4><div class="twobtn">'
+            + '<button class="btn ghost" id="dqView">'
+              + (doc.type==='taxinvoice' ? '국세청 양식 열기' : '문서 열기')+'</button>'
+            + '<button class="btn ghost" id="dqPdf">'
+              + (doc.type==='taxinvoice' ? '보관용 PDF' : 'PDF')+'</button></div></div>'))
     + (doc.status==='취소됨' ? '' :
        '<div class="sec"><h4>메일 발송</h4>'
       + dqField('dqTo','받는 사람','email',(p.client&&p.client.email)||'','name@company.co.kr')
       + dqField('dqCc','참조 (선택)','email','','cc@example.com')
+      + fxBlock()
       + dqField('dqWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
       + '<div class="twobtn"><button class="btn gray" id="dqVoid">문서 취소</button>'
@@ -5279,6 +5439,21 @@ async function dqOpen(id){
     if (!r.ok) return alert(r.message || '조회하지 못했습니다.');
     $('#nsState').textContent = r.label + (r.nts_confirm ? ' · 승인번호 '+r.nts_confirm : '');
     toast(r.label);
+  };
+
+  fxBind();
+  if ($('#nsPre')) nsPreview(doc.id);
+
+  if ($('#dqToSettle')) $('#dqToSettle').onclick = async function(){
+    var b3 = $('#dqToSettle'); b3.disabled = true; b3.textContent = '기록 중…';
+    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
+      body:JSON.stringify({ action:'to_settlement', id:doc.id, status:$('#dqStSt').value })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b3.disabled = false; b3.textContent = '정산으로 기록';
+    if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
+    w.remove(); toast('정산 #'+r.settlement.id+' 으로 기록했습니다'
+      + (r.linked>1 ? ' (서류 '+r.linked+'건 연결)' : ''));
+    dqHist(); admPoll(true); dqOpen(doc.id);
   };
 
   $('#dqRelink').onclick = function(){ dqRelinkForm(doc, d.linked); };
@@ -5334,10 +5509,12 @@ async function dqOpen(id){
     if (!to) return alert('받는 사람 이메일을 입력해주세요.');
     var when = $('#dqWhen').value;
     if (when && new Date(when).getTime() < Date.now()) return alert('예약 시각이 이미 지났습니다.');
+    if (!fxGuard(when)) return;
     var ids = dqPickIds();
     var b = $('#dqSend'); b.disabled = true; b.textContent = when ? '예약 중…' : '보내는 중…';
     var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
       action:'send', ids:ids, to:to, cc:$('#dqCc').value.trim()||null,
+      files: fxPayload(),
       send_at: when ? when.replace('T',' ')+':00' : null })})
       .then(function(r){return r.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = '발송';
