@@ -659,6 +659,10 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
+.ofvat{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.ofvat select{width:auto;flex:0 0 auto;font-size:12.5px;padding:6px 8px}
+.dhint{margin:5px 0 0;font-size:11.5px;font-weight:600;color:var(--mut);line-height:1.55}
+.dhint b{color:var(--navy-dk);font-weight:800}
 .nsh{margin:12px 0 4px;font-size:11.5px;font-weight:800;color:var(--mut);letter-spacing:.02em}
 /* 메일에 손으로 붙이는 첨부 */
 .fxz{margin:2px 0 14px}
@@ -4115,7 +4119,9 @@ async function ordForm(client, orderId){
     +'<input type="text" id="of-org" value="'+esc(o ? (o.org_name||'') : (client.company||''))+'" placeholder="비우면 거래처의 기본 납품지 소속으로 채웁니다">'
     +'<label>납품지</label>'
     +'<input type="text" id="of-addr" value="'+esc(o ? (o.ship_address||'') : (client.address||''))+'" placeholder="비우면 거래처의 기본 납품지 주소로 채웁니다">'
-    +'<label>품목 <span class="hint" style="font-weight:600">(단가는 VAT 포함)</span></label>'
+    +'<div class="ofvat"><label style="margin:0">품목</label>'
+      +'<select id="of-vat"><option value="inc" selected>단가 VAT 포함</option>'
+      +'<option value="ex">단가 VAT 미포함</option></select></div>'
     +'<div id="of-items"></div>'
     +'<button class="mini" id="of-add" style="margin-top:4px">＋ 품목 추가</button>'
     +'<div class="qsum" id="of-sum"></div>'
@@ -4139,16 +4145,32 @@ async function ordForm(client, orderId){
     clRefresh(client.id);
   };
 
-  // 여기서 치는 단가는 VAT 포함이다 — 총액을 먼저 확정하고 공급가액을 역산한다
+  // 단가를 VAT 포함으로 칠지 미포함으로 칠지는 사람마다 다르다 — 어느 쪽이든 받고, 저장은 공급가로 한다.
+  //   포함: 총액을 먼저 확정하고 공급가액을 역산한다 (거래처가 보는 숫자가 총액이라서)
+  //   미포함: 친 값이 곧 공급가액이고 부가세를 얹는다
+  var vatInc = true;
   function sums(){
-    var tot = items.reduce(function(a,i){ return a + Math.round((i.qty||0)*(i.price||0)); }, 0);
-    var sup = supOf(tot), vat = tot - sup;
+    var raw = items.reduce(function(a,i){ return a + Math.round((i.qty||0)*(i.price||0)); }, 0);
+    var sup, vat, tot;
+    if (vatInc){ tot = raw; sup = supOf(tot); vat = tot - sup; }
+    else       { sup = raw; vat = Math.round(sup*0.1); tot = sup + vat; }
     $('#of-sum').innerHTML = '<div><span>공급가액</span><b>'+won(sup)+'원</b></div>'
       + '<div><span>부가세</span><b>'+won(vat)+'원</b></div>'
       + '<div class="tt"><span>합계 (VAT 포함)</span><b>'+won(tot)+'원</b></div>';
   }
-  var box = mItems($('#of-items'), items, { spec:true, priceLabel:'단가 (VAT 포함)', onChange:sums });
+  var iopts = { spec:true, priceLabel:'단가 (VAT 포함)', onChange:sums };
+  var box = mItems($('#of-items'), items, iopts);
   $('#of-add').onclick = box.add;
+
+  // 기준을 바꾸면 «금액»이 아니라 «표기»가 바뀌는 것이다 — 친 숫자를 그대로 두면 총액이 달라져 버린다.
+  $('#of-vat').onchange = function(e){
+    var inc = e.target.value === 'inc';
+    if (inc === vatInc) return;
+    items.forEach(function(i){ i.price = inc ? incOf(i.price) : supOf(i.price); });
+    vatInc = inc;
+    iopts.priceLabel = inc ? '단가 (VAT 포함)' : '단가 (VAT 미포함)';
+    box.paint();
+  };
 
   $('#of-go').onclick = async function(){
     var rows = items.filter(function(i){ return (i.name||'').trim(); });
@@ -4158,7 +4180,8 @@ async function ordForm(client, orderId){
       customer_id: client.id, title:$('#of-t').value, status:$('#of-st').value,
       org_name:$('#of-org').value.trim(), ship_address:$('#of-addr').value.trim(),
       trade_date:$('#of-date').value, admin_memo:$('#of-m').value,
-      items: rows.map(function(i){ return { name:i.name, spec:i.spec||'', qty:i.qty, unit_price:supOf(i.price) }; }),
+      items: rows.map(function(i){
+        return { name:i.name, spec:i.spec||'', qty:i.qty, unit_price: vatInc ? supOf(i.price) : i.price }; }),
     };
     var b = $('#of-go'); b.disabled = true;
     var r = orderId
@@ -5345,7 +5368,7 @@ async function dqOpen(id){
               + '<div class="dsrc" style="margin-top:10px"><button class="mini ok" id="nsIssue">국세청 발행</button></div>')
          + '</div>'
        : '')
-    + '<div class="sec"><h4>주문 · 중간정산금 <i style="font-style:normal;color:var(--mut);font-weight:600">둘 중 하나입니다</i></h4>'
+    + '<div class="sec"><h4>돈 계산에 넣기 <i style="font-style:normal;color:var(--mut);font-weight:600">둘 중 하나입니다</i></h4>'
       + (d.payment
          ? '<div class="kv"><span>중간정산금</span><span><b>'+won(d.payment.amount)+'원</b> · '
            + esc(d.payment.paid_at||'')+' '+esc(d.payment.method||'')+'</span></div>'
@@ -5358,23 +5381,24 @@ async function dqOpen(id){
            + '<div class="dnote" style="margin-top:8px">물건이 나간 건이 아니라 <b>중도금·선입금 같은 중간정산금</b>이면 '
            + '아래에서 바꾸세요. 이 문서로 만든 주문은 지워지고, 같은 금액이 입금으로 들어갑니다.</div>'
            + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="dqToPay">중간정산금으로 바꾸기</button></div>'
-         : '<div class="dnote">이 발행은 <b>주문으로도 중간정산금으로도 잡히지 않았습니다</b> — 정산 계산에 들어가지 않습니다.'
-           + '<br>물건이 나간 건이면 주문으로, 돈이 들어온 건이면 중간정산금으로 올리세요.</div>'
+         : '<div class="dnote">이 발행은 <b>어느 쪽에도 잡히지 않았습니다</b> — 지출금에도 중간정산금에도 없습니다.</div>'
            + '<div class="dsrc" style="margin-top:10px"><select id="dqOrdSt2" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
            + ST.map(function(x){ return '<option'+(x==='발주확정'?' selected':'')+'>'+x+'</option>'; }).join('')
            + '</select><button class="mini" id="dqToOrder">주문으로 기록</button></div>'
-           + '<div class="dsrc" style="margin-top:6px"><button class="mini" id="dqToPay">중간정산금으로 기록</button></div>')
+           + '<p class="dhint">물건이 나간 건 — 총지출금 <b>+'+won(tot.total||0)+'원</b>, 잔여정산금이 그만큼 늘어납니다.</p>'
+           + '<div class="dsrc" style="margin-top:12px"><button class="mini" id="dqToPay">중간정산금으로 기록</button></div>'
+           + '<p class="dhint">돈이 들어온 건 — 중간정산금 <b>+'+won(tot.total||0)+'원</b>, 잔여정산금이 그만큼 줄어듭니다.</p>')
      + '</div>'
-    + '<div class="sec"><h4>정산 기록</h4>'
+    + '<div class="sec"><h4>정산 진행 기록 <i style="font-style:normal;color:var(--mut);font-weight:600">금액 계산과는 무관합니다</i></h4>'
       + (d.settlement
          ? '<div class="kv"><span>연결된 정산</span><span><b>#'+d.settlement.id+'</b> '
            + abadge(d.settlement.status)+' · '+won(d.settlement.total)+'원</span></div>'
-         : '<div class="dnote">이 발행은 <b>정산으로 잡히지 않았습니다</b> — 정산 요청 목록에 뜨지 않습니다.'
-           + '<br>돈을 받을 건이면 아래에서 정산으로 올리세요. 주문 기록과는 별개입니다.</div>'
+         : '<div class="dnote">정산 요청 목록에 뜨지 않습니다 — 서류 발급 · 입금 확인 같은 <b>진행 상황을 남기는 칸</b>입니다.'
+           + '<br>지출금 · 중간정산금 · 잔여정산금 숫자는 <b>이것과 무관하게</b> 위에서만 움직입니다.</div>'
            + '<div class="dsrc" style="margin-top:10px"><select id="dqStSt" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
            + ['서류발급 완료','정산요청','처리중','입금완료'].map(function(x){
                return '<option'+(x==='서류발급 완료'?' selected':'')+'>'+x+'</option>'; }).join('')
-           + '</select><button class="mini" id="dqToSettle">정산으로 기록</button></div>')
+           + '</select><button class="mini" id="dqToSettle">정산 요청으로 올리기</button></div>')
      + '</div>'
     + '<div class="sec"><h4>내용</h4>'
       + akv('제목', p.title)
@@ -5486,7 +5510,7 @@ async function dqOpen(id){
     var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
       body:JSON.stringify({ action:'to_settlement', id:doc.id, status:$('#dqStSt').value })})
       .then(function(x){return x.json();}).catch(function(){return{};});
-    b3.disabled = false; b3.textContent = '정산으로 기록';
+    b3.disabled = false; b3.textContent = '정산 요청으로 올리기';
     if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
     w.remove(); toast('정산 #'+r.settlement.id+' 으로 기록했습니다'
       + (r.linked>1 ? ' (서류 '+r.linked+'건 연결)' : ''));
