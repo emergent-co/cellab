@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀 (ACS Cent. Sci. 2016 · Sci. Adv. 2022) | 실험셋업연구소</title>
+<meta name="description" content="리튬메탈 덴드라이트 in-situ 광학 관찰 셋업을 논문 2편으로 분석했습니다. 액체 전해질은 석영창 가시화 셀 + 전압-영상 동기(5 mA/cm², 전해액 3종 비교), 전고체는 5 MPa 가압 몰드 셀에서 보이드 형성 관찰. 재현에 필요한 관찰 셀(석영창 0.05mm)·광학계 사양 10종을 정리했습니다.">
+<link rel="canonical" href="https://rndsetup.com/magazine/insitu-li-dendrite-observation/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀">
+<meta property="og:description" content="액체 전해질은 석영창 가시화 셀 + 전압-영상 동기, 전고체는 가압 몰드 셀. 논문 2편의 실제 조건과 재현에 필요한 관찰 셀·광학계 사양을 정리했습니다.">
+<meta property="og:url" content="https://rndsetup.com/magazine/insitu-li-dendrite-observation/">
+<meta property="og:image" content="https://rndsetup.com/img/magazine/hefei-cis-om-cells.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"headline":"리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀",
+"datePublished":"2026-09-01",
+"inLanguage":"ko",
+"image":"https://rndsetup.com/img/magazine/hefei-cis-om-cells.jpg",
+"about":{"@type":"Thing","name":"리튬메탈 덴드라이트 in-situ 광학 관찰 셋업","url":"https://rndsetup.com/magazine/insitu-li-dendrite-observation/"},
+"citation":[
+{"@type":"ScholarlyArticle","name":"Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy","author":"Wood, K. N. et al.","isPartOf":{"@type":"Periodical","name":"ACS Central Science"},"datePublished":"2016","sameAs":"https://doi.org/10.1021/acscentsci.6b00260"},
+{"@type":"ScholarlyArticle","name":"Void formation at the lithium | solid electrolyte interface during stripping and its impact on cell performance","isPartOf":{"@type":"Periodical","name":"Science Advances"},"datePublished":"2022","sameAs":"https://doi.org/10.1126/sciadv.add0510"}],
+"author":{"@type":"Person","@id":"https://rndsetup.com/#yhlee","name":"이영현","url":"https://rndsetup.com/about/#author","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
+"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/magazine/insitu-li-dendrite-observation/"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"리튬 덴드라이트를 실시간으로 관찰하려면 어떤 셋업이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"석영 관찰창이 있는 밀봉형 in-situ 전기화학 셀을 광학현미경 아래 두고, 정전류 사이클의 전압 곡선과 영상을 타임스탬프로 동기화해 기록합니다. Wood 등(ACS Central Science, 2016)은 Li–Li 대칭 가시화 셀을 아르곤 글러브박스(수분·산소 1 ppm 미만)에서 조립하고 5 mA/cm²로 사이클하며 반주기당 90프레임을 촬영해, 전압 피크가 덴드라이트 성장→피트 용해로의 전환점임을 보였습니다."}},
+{"@type":"Question","name":"코인셀 데이터만으로는 왜 덴드라이트 거동을 알 수 없나요?","acceptedAnswer":{"@type":"Answer","text":"코인셀은 전압과 효율만 남기고 계면은 보여주지 않습니다. 같은 전압 피크가 덴드라이트 시작인지, 피트 형성인지, 데드 리튬 축적인지 곡선만으로는 구분되지 않습니다. 가시화 셀에서 전압-영상을 동기화하면 곡선의 각 변곡이 어떤 계면 사건에 대응하는지 1:1로 확인할 수 있고, Wood 등은 이렇게 확보한 해석을 CR2032 코인셀 데이터 읽기에 역적용했습니다."}},
+{"@type":"Question","name":"전고체 전지에서도 광학 관찰이 가능한가요?","acceptedAnswer":{"@type":"Answer","text":"가능합니다. 다만 전고체는 계면 접촉 유지를 위해 가압 상태로 관찰해야 합니다. Science Advances(2022) 논문은 Li–Li₇P₃S₁₁–In 셀을 5 MPa로 가압한 광학 몰드 셀 측면에서 스트리핑 중 보이드(공극) 형성을 관찰했고, 덴드라이트 이전에 보이드가 먼저 열화를 이끈다는 것을 보였습니다. 시판 in-situ 관찰 셀은 최대 6 MPa 정압 가압 모듈을 옵션으로 지원합니다."}},
+{"@type":"Question","name":"in-situ 관찰용 현미경은 어느 정도 사양이면 되나요?","acceptedAnswer":{"@type":"Answer","text":"논문 관찰은 5×~50× 대물, 작동거리 수십 mm급 반사광 현미경으로 수행됐습니다. 줌 0.7–4.5×에 50× 대물까지 걸 수 있고 심도융합·타임랩스 소프트웨어가 있는 16 Mpx급 디지털 현미경이면 논문 수준의 덴드라이트·보이드 관찰이 가능합니다. 관찰 셀의 석영창 두께(0.05 mm)와 시료-상면 거리(약 0.6 mm)가 짧아 고배율 초점도 확보됩니다."}}
+]}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.msc-tbl{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px;border:1px solid #D8E4F2;border-radius:8px;overflow:hidden}
+.msc-tbl th,.msc-tbl td{padding:9px 12px;text-align:left;border-top:1px solid #E4EDF7;vertical-align:top}
+.msc-tbl thead th{background:#F4F8FC;color:#555;font-weight:700;font-size:12.5px;border-top:none}
+.msc-tbl .hot{background:#EAF4FB}
+.msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
+.msc-res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 18px}
+.msc-res div{background:#F4F8FC;border-radius:8px;padding:12px 14px}
+.msc-res .k{font-size:12.5px;color:#777}
+.msc-res .v{font-size:15px;font-weight:700;color:#3B3695;margin-top:3px}
+.msc-spec{border:1px solid #D8E4F2;border-radius:10px;overflow:hidden;margin:10px 0 0;font-size:14px}
+.msc-sr{display:grid;grid-template-columns:auto 1fr 1.4fr;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #E4EDF7}
+.msc-sr:first-child{border-top:none}
+.msc-sn{width:20px;height:20px;border-radius:50%;background:#EAF4FB;color:#3B3695;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none}
+.msc-sr b{color:#222}.msc-sr span.d{color:#666}
+.msc-cta{width:100%;height:48px;font-size:15px;font-weight:700;background:#3B3695;color:#fff;border:none;border-radius:10px;cursor:pointer;margin-top:16px}
+.msc-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:flex-start;justify-content:center;padding:24px;overflow:auto}
+.msc-ov.on{display:flex}
+.msc-mc{width:100%;max-width:560px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
+.msc-mh{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid #E4EDF7}
+.msc-mh b{font-size:15px}.msc-mh .s{font-size:12px;color:#888;margin-top:2px}
+.msc-x{border:none;background:transparent;font-size:22px;line-height:1;color:#888;cursor:pointer}
+.msc-cl{padding:6px 18px;max-height:44vh;overflow:auto}
+.msc-cl label{display:flex;align-items:center;gap:10px;padding:9px 2px;cursor:pointer;border-top:1px solid #EEF3F9}
+.msc-cl label:first-child{border-top:none}
+.msc-cl input{width:16px;height:16px;flex:none}
+.msc-cl .n{font-size:13.5px;font-weight:700}.msc-cl .d{font-size:12px;color:#888}
+.msc-nt{padding:12px 18px;border-top:1px solid #E4EDF7}
+.msc-nt textarea{width:100%;min-height:60px;font-size:13px;font-family:inherit;border:1px solid #C9D6E6;border-radius:8px;padding:8px;box-sizing:border-box}
+.msc-fb{display:flex;gap:8px;padding:12px 18px 16px;border-top:1px solid #E4EDF7}
+.msc-c{flex:1;height:42px;background:#fff;border:1px solid #C9D6E6;border-radius:8px;color:#666;cursor:pointer}
+.msc-s{flex:2;height:42px;font-weight:700;background:#3B3695;color:#fff;border:none;border-radius:8px;cursor:pointer}
+.msc-ok{display:none;padding:20px 18px 22px;text-align:center}
+.msc-ok .ttl{font-size:15px;font-weight:700;margin-top:8px}
+.msc-ok .sub{font-size:12.5px;color:#888;margin-top:3px}
+.msc-ok .lst{margin-top:14px;background:#F4F8FC;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.9;text-align:left}
+.msc-f2{padding:12px 18px 4px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.msc-fld{margin:0}
+.msc-fld.full{grid-column:1 / -1}
+.msc-fld label{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:4px}
+.msc-fld input{width:100%;height:40px;font-size:14px;font-family:inherit;border:1px solid #C9D6E6;border-radius:8px;padding:0 11px;box-sizing:border-box}
+.msc-fld input:focus{outline:none;border-color:#3B3695}
+.msc-pick{margin:8px 18px 0;background:#F4F8FC;border-radius:8px;padding:9px 12px;font-size:12px;color:#666;line-height:1.5}
+.msc-dl{display:flex;align-items:center;gap:14px;border:1px solid #D8E4F2;background:#EAF4FB;border-radius:12px;padding:16px 18px;margin:20px 0}
+.msc-dl .ic{width:42px;height:42px;border-radius:10px;background:#3B3695;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex:none}
+.msc-dl .t{font-size:14.5px;font-weight:700;color:#222}
+.msc-dl .d{font-size:12.5px;color:#666;margin-top:2px}
+.msc-dl a.btn{margin-left:auto;flex:none;background:#3B3695;color:#fff;font-size:13px;font-weight:700;padding:10px 16px;border-radius:9px;text-decoration:none}
+.msc-vid{position:relative;width:100%;max-width:680px;margin:14px auto 4px;aspect-ratio:16/9;border:1px solid #D8E4F2;border-radius:12px;overflow:hidden;background:#000}
+.msc-vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media(max-width:640px){.msc-res{grid-template-columns:1fr}.msc-dl{flex-wrap:wrap}.msc-dl a.btn{margin-left:0;width:100%;text-align:center;box-sizing:border-box}}
+</style>
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 셋업 매거진", "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진을 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "마그네틱 펌프", "질량유량계(MFC)", "질량유량계 다기체 보정", "sccm·slm 가스 유량 제어", "압력 컨트롤러", "배압 레귤레이터(BPR)", "관류배양", "연속배양(chemostat)", "flow chemistry 연속흐름 반응", "열처리로(전기로·튜브퍼니스)", "튜브퍼니스(관상로)", "머플로(박스형 전기로)", "진공 전기로", "회전 튜브로(로터리 킬른)", "엘리베이터 전기로", "3존 튜브퍼니스", "소성(firing)", "하소(calcination)", "소결(sintering)", "어닐링(소둔)", "가스 분위기 제어", "산소 분압(pO2) 제어", "동적 분위기 제어(DCA)", "CVD 탄소 코팅", "열산화", "배터리 양극재 전구체 공침", "전해액 순환", "수전해·전기화학 셋업", "전기화학 셀(H셀·GDE·MEA)", "기준전극·작업전극·상대전극", "CO2 환원(CO2RR) 촉매", "배터리 테스트 셀(코인·in-situ)", "배터리 용어 사전", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "실험 셋업 정보"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://rndsetup.com/"}, {"@type": "ListItem", "position": 2, "name": "셋업 사례", "item": "https://rndsetup.com/magazine/"}, {"@type": "ListItem", "position": 3, "name": "리튬메탈 덴드라이트, 눈으로 확인하는 셋업", "item": "https://rndsetup.com/magazine/insitu-li-dendrite-observation/"}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<article class="sd-wrap">
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/magazine/">매거진</a> › 인시츄 셀 · 덴드라이트 관찰</div>
+  <h1>리튬메탈 덴드라이트, 눈으로 확인하는 셋업<br>— in-situ 광학 관찰 셀</h1>
+  <div class="sd-meta">2016 · ACS Central Science (NREL·Michigan) &nbsp;+&nbsp; 2022 · Science Advances</div>
+  <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:4px 0 2px">실험셋업연구소 매거진 · 글 <a href="/about/#author" style="color:inherit;text-decoration:underline;text-underline-offset:2px">이영현</a> · <time datetime="2026-09-01">2026년 9월 1일</time> 발행 · 읽는 시간 약 8분</div>
+
+  <div class="sd-summary">
+    <h3>셋업 요약</h3>
+    <div class="row"><span class="k">논문 ①</span><span>Dendrites and Pits: … Lithium Metal Anodes through Operando Video Microscopy</span></div>
+    <div class="row"><span class="k">논문 ②</span><span>Void formation at the lithium | solid electrolyte interface during stripping …</span></div>
+    <div class="row"><span class="k">핵심 장비</span><span><b>밀봉형 in-situ 광학 관찰 셀(석영창) + 반사광 현미경 + 정전류 사이클러</b></span></div>
+    <div class="row"><span class="k">제어</span><span>정전류 도금·박리 · 전압-영상 타임스탬프 동기 · (전고체) 정압 가압</span></div>
+    <div class="row"><span class="k">분야</span><span>#리튬메탈 #덴드라이트 #인시츄셀 #전고체 #operando</span></div>
+    <div class="row"><span class="k">DOI</span><span><a href="https://doi.org/10.1021/acscentsci.6b00260" target="_blank" rel="noopener">10.1021/acscentsci.6b00260 ↗</a> · <a href="https://doi.org/10.1126/sciadv.add0510" target="_blank" rel="noopener">10.1126/sciadv.add0510 ↗</a></span></div>
+  </div>
+
+  <div class="sd-answer">
+    <b>리튬 덴드라이트는 석영창이 있는 밀봉 가시화 셀에서 전압 곡선과 영상을 동기화해 관찰합니다.</b> 액체 전해질은 Li–Li 대칭 가시화 셀(글러브박스 조립, 5 mA/cm²급), 전고체는 정압 가압(5 MPa급) 광학 몰드 셀이 기준 셋업입니다. 같은 전압 피크라도 영상이 있어야 덴드라이트 시작·피트 전환·보이드 형성을 구분할 수 있습니다.
+  </div>
+
+  <div class="sd-body">
+    <h2>코인셀 데이터만으로는 알 수 없는 것</h2>
+    <p>리튬메탈 음극을 다루는 연구실이 실제로 궁금해하는 지점은 대체로 세 갈래로 모입니다. 쿨롱 효율이 떨어질 때 그 원인이 <b>덴드라이트 성장</b>인지 <b>데드 리튬 축적</b>인지 곡선만으로 구분할 수 있는가. 사이클 중 전압이 갑자기 출렁일 때 계면에서는 <b>무슨 사건</b>이 일어나고 있는가. 그리고 전해액을 바꾸거나 전고체로 넘어가면 이 문제가 <b>정말 해결되는가</b>. 세 질문의 공통분모는 하나입니다 — 코인셀은 전압과 효율 숫자만 남기고, <b>계면은 끝내 보여주지 않는다</b>는 것.</p>
+    <p>그래서 등장하는 것이 <b>in-situ(operando) 광학 관찰 셀</b>입니다. 밀봉된 전기화학 셀에 얇은 석영 관찰창을 내고, 그 너머로 현미경을 걸어 <b>도금·박리가 진행되는 계면을 전압 곡선과 같은 시간축 위에서</b> 촬영하는 셋업입니다. 아래 두 논문이 이 방법론의 기준점입니다. 하나는 액체 전해질에서, 하나는 전고체에서.</p>
+
+    <h2>기준점 ① 액체 전해질 — 전압 곡선과 영상을 겹쳐 읽는다</h2>
+    <p>NREL·미시간대 연구진(Wood et al., <i>ACS Central Science</i> 2016)은 석영창 가시화 셀을 <b>아르곤 글러브박스(H₂O·O₂ &lt; 1 ppm)</b>에서 O링 밀봉으로 조립하고, Li–Li 대칭 구성으로 <b>5 mA/cm²</b> 정전류 사이클(반주기 4.5 C/cm², 10사이클, 휴지 30 s)을 걸었습니다. 촬영은 Nikon LV150N 반사광 현미경에 5× 대물(NA 0.10, 작동거리 31 mm), <b>반주기당 90프레임</b>을 담아 100배속 타임랩스로 재생했습니다. 전해액은 관행의 1 M LiPF₆ EC:DMC, 고농도 4 M LiFSI DME, 그리고 Li₂S₈·LiNO₃ 첨가 1 M LiTFSI DOL:DME 세 종을 같은 조건에서 비교했습니다.</p>
+    <div class="sd-quote">전압 트레이스의 급격한 피크는 계면 반응이 <mark>덴드라이트 성장에서 피트(pit) 용해로 전환되는 순간</mark>과 정확히 일치했고, 다음 반주기의 도금은 <mark>피트가 있던 자리에서 다시 시작</mark>됐다 — 영상 없이는 어느 쪽도 곡선만으로 단정할 수 없는 사건이다.</div>
+    <div class="sd-cite">근거: Wood, K. N. et al., <i>ACS Central Science</i> 2, 790–801 (2016) · <a href="https://doi.org/10.1021/acscentsci.6b00260" target="_blank" rel="noopener">원문 보기 ↗</a></div>
+
+    <h2>공정 조건 ① (논문 실제 수치 — 액체 전해질)</h2>
+    <table class="msc-tbl">
+      <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr class="hot"><td>관찰 셀</td><td><b>석영창 가시화 셀, O링 밀봉</b></td><td>Ar 글러브박스(&lt;1 ppm) 조립</td></tr>
+        <tr><td>전류밀도 · 용량</td><td>5 mA/cm² · 반주기 4.5 C/cm²</td><td>10사이클, 휴지 30 s</td></tr>
+        <tr class="hot"><td>광학계</td><td>반사광 5× (NA 0.10 · WD 31 mm)</td><td>반주기 90프레임, 100배속 재생</td></tr>
+        <tr><td>전해액 3종</td><td>1 M LiPF₆ EC:DMC / 4 M LiFSI DME / 1 M LiTFSI DOL:DME + 0.18 M Li₂S₈ + 2% LiNO₃</td><td>동일 조건 비교</td></tr>
+        <tr><td>코인셀 검증</td><td>CR2032 Li(50 µm)–Cu, 전해액 45 µL</td><td>1 mA/cm² × 20사이클</td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">가시화 셀에서 세운 해석을 CR2032에 역적용: 반주기당 리튬 계면이 4.8 µm씩 이동한다는 계산으로 코인셀 전압 변화를 설명했다.</p>
+
+    <div class="msc-res">
+      <div><div class="k">평균 쿨롱 효율 (전해액 3종)</div><div class="v">82% → 93% → 98%</div></div>
+      <div><div class="k">전압 피크의 정체</div><div class="v">덴드라이트 ↔ 피트 경로 전환점</div></div>
+    </div>
+    <p>같은 5 mA/cm²에서도 전해액에 따라 계면의 모습과 효율(82·93·98%)이 갈렸습니다. 중요한 것은 이 서열이 아니라, <b>전압 곡선의 어느 변곡이 어떤 계면 사건인지를 영상으로 못박아 두면 이후 코인셀 스크리닝의 해석력이 달라진다</b>는 점입니다. 가시화 셀 실험 한 세트가 코인셀 수십 개의 곡선을 읽는 사전이 되는 구조입니다.</p>
+
+    <h2>기준점 ② 전고체 — 덴드라이트보다 보이드가 먼저다</h2>
+    <p>전고체로 넘어가면 관찰 대상이 하나 늘어납니다. <i>Science Advances</i>(2022) 연구진은 Li–Li₇P₃S₁₁–In 셀을 <b>5 MPa로 가압한 몰드 셀</b>(Li 33 µm ≈ 6.6 mAh/cm², In 100 µm, 25℃)에서 박리(stripping) 중 계면을 추적했습니다. 전기화학 신호는 <b>정전류 EIS(GEIS)</b> — 1~10 mA/cm² 각 조건에서 0.25 mAh/cm² 간격으로 1 MHz~0.1 Hz 스펙트럼을 찍고 DRT로 분해 — 로, 계면 형상은 <b>3층 구조가 측면으로 노출된 광학 몰드 셀</b>을 스테레오 현미경(0.5 mA/cm² 조건)으로 촬영해 얻었습니다.</p>
+    <p>결과는 통념과 순서가 다릅니다. 박리 초기(0~0.67 mAh/cm²)에는 계면에 아무 변화가 없다가, <b>0.83~1.17 mAh/cm² 구간에서 점 결함이 나타나 보이드(공극)로 확장</b>됐고, 이것이 접촉 면적을 갉아먹으며 계면 저항을 키웠습니다. 이후 PFIB-SEM(Xe⁺ 30 kV)·TOF-SIMS 단면 분석이 광학 관찰과 같은 그림을 확인해 줬습니다. 보이드 임계 핵 반경이 전류밀도에 반비례한다는 모델까지 더하면 — <b>전고체의 수명 문제는 덴드라이트가 뚫기 전에, 보이드가 먼저 연다</b>는 결론입니다. 가압(스택 압력)을 유지한 채 관찰해야 하는 이유이기도 합니다.</p>
+
+    <h2>공정 조건 ② (논문 실제 수치 — 전고체)</h2>
+    <table class="msc-tbl">
+      <thead><tr><th>항목</th><th>값</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr class="hot"><td>셀 · 가압</td><td><b>Li–Li₇P₃S₁₁–In 몰드 셀, 5 MPa</b></td><td>Li 33 µm · In 100 µm · 25℃</td></tr>
+        <tr><td>전기화학</td><td>GEIS 1~10 mA/cm², 0.25 mAh/cm² 간격</td><td>1 MHz~0.1 Hz · 10 mV · DRT 분해</td></tr>
+        <tr class="hot"><td>광학 관찰</td><td>측면 노출 광학 몰드 셀 + 스테레오 현미경</td><td>0.5 mA/cm² 박리 추적</td></tr>
+        <tr><td>계면 사건</td><td>0.83~1.17 mAh/cm²에서 점 결함→보이드 확장</td><td>초기 0~0.67 mAh/cm² 무변화</td></tr>
+        <tr><td>사후 검증</td><td>PFIB-SEM(Xe⁺ 30 kV) · TOF-SIMS</td><td>광학 관찰과 일치</td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">보이드 임계 핵 반경 ∝ 1/전류밀도 — 고전류일수록 작은 결함도 보이드로 자란다. 관찰 전류·가압 조건을 실사용 조건과 맞춰야 하는 근거.</p>
+  </div>
+
+  <div class="sd-bridge">
+    <h2>이 관찰을 실험실 벤치로 — CIS-OM 시리즈 관찰 셀</h2>
+    <p>두 논문의 셋업은 자작 셀이지만, 요구 조건은 명확합니다. <b>기밀(글러브박스 조립·가스 퍼지) · 얇은 관찰창 · 짧은 작동거리 · 전극 위치 조절 · (전고체) 정압 가압</b>. 실험셋업연구소가 소싱하는 <b>Hefei In-situ Technology CIS-OM 시리즈</b>는 이 조건을 제품화한 관찰 셀입니다. 표준형 <b>CIS-OM-003</b>은 PEEK 몸체에 가동식 티타늄 전극(악어클립 체결), <b>Φ24 mm 석영창은 두께 0.05 mm</b>, 시료에서 창 상면까지 <b>약 0.6 mm</b>(더 얇게 커스텀 가능)라 단초점 고배율 대물도 그대로 닿습니다. 시료 10×10 mm(두께 0.6~2 mm), 가스 퍼지 포트와 전해액 온라인 주입을 지원하고, 본체는 약 60×70×30 mm로 현미경 스테이지에 그대로 올라갑니다. 전고체용으로는 <b>최대 6 MPa(60 kg) 정압 가압 모듈</b>을 옵션으로 걸 수 있어(상향 커스텀 가능) Sci. Adv. 셋업의 5 MPa 조건을 그대로 재현합니다.</p>
+    <p>변형도 준비되어 있습니다. 도립현미경·기포 회피용 <b>수평형 CIS-OM-003-1</b>, −30~150℃(±1℃) 프로그램 온도 제어의 <b>CIS-OM-004</b>, −100~100℃ 극저온 관찰의 <b>CIS-OM-005</b>(창 Φ10 mm, 초점거리 &lt;2 mm), 그리고 아연계·수계 입문용 석영 비커형 <b>CIS-OM-002</b>(5 mL, Ti 전극)까지 — 액체 전해질의 Wood 셋업도, 저온 전해액 스크리닝도 같은 시리즈 안에서 해결됩니다.</p>
+
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/hefei-cis-om-cells.jpg" alt="Hefei In-situ Technology CIS-OM 시리즈 in-situ 광학 관찰 셀 — CIS-OM-002 석영 비커형, CIS-OM-003 표준형(PEEK·티타늄 전극·석영창), CIS-OM-003-1 수평형 제품 사진과 구조" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">CIS-OM 관찰 셀 시리즈(제조사 카탈로그). 표준형 003은 석영창 두께 <b>0.05 mm</b>, 시료-창 상면 거리 <b>약 0.6 mm</b> — 요청 시 더 얇게 커스텀할 수 있다.</figcaption>
+    </figure>
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/hefei-cis-om-temp.jpg" alt="CIS-OM-004 고저온 in-situ 관찰 셀(−30~150℃ 프로그램 제어)과 CIS-OM-005 극저온 관찰 셀(−100~100℃) 제품 사진" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">온도 제어형 — CIS-OM-004(−30~150℃ ±1℃ 프로그램)와 CIS-OM-005(−100~100℃). 저온 전해액·저온 도금 거동 관찰용.</figcaption>
+    </figure>
+
+    <h2 style="margin-top:26px">설치는 10분이면 끝난다 — 조립 영상</h2>
+    <p>CIS-OM-003의 실제 조립·설치 과정입니다. 전극 체결 → 시료 장착 → 창 밀봉 → 스테이지 거치 순서를 영상으로 확인할 수 있습니다.</p>
+    <div class="msc-vid"><iframe src="//player.bilibili.com/player?bvid=BV1vnYFeNESP&p=1&autoplay=0" scrolling="no" frameborder="no" allowfullscreen="true" title="CIS-OM-003 in-situ 관찰 셀 설치 영상"></iframe></div>
+    <p class="msc-note">영상: Hefei In-situ Technology 공식 채널(bilibili) — 원위현미관찰지(顕微観察池) 003 설치.</p>
+
+    <h2 style="margin-top:26px">광학계는 어느 정도면 충분한가</h2>
+    <p>Wood 논문은 5× 대물·반주기 90프레임, Sci. Adv.는 스테레오 현미경으로 관찰을 끝냈습니다. 즉 <b>공초점이나 SEM급 장비 없이도 벤치탑 반사광 현미경으로 논문 수준의 관찰이 가능</b>하다는 뜻입니다. 참고 기준으로, 같은 제조사의 전용 광학계 <b>OPR-DM01</b>은 줌 0.7~4.5×(작동거리 82~179 mm)에 플랜 아크로매틱 10/20/40/50× 대물, 0.01 mm 미동 초점, 140×140 mm 스테이지, SONY CMOS <b>16 Mpx</b> 카메라 구성입니다. 이 정도 사양이면 아래와 같은 결과물이 나옵니다 — 소프트웨어의 <b>심도융합(depth fusion)</b>으로 굴곡진 리튬 표면 전체에 초점이 맞은 정지 이미지를, <b>타임랩스</b>로 전압 곡선과 나란히 놓을 성장 시퀀스를 얻는 식입니다. 이미 보유한 현미경이 있다면 창 두께 0.05 mm·작동거리 조건만 맞으면 되고, 광학계까지 묶은 구성도 함께 안내해 드립니다.</p>
+
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/hefei-depth-fusion.jpg" alt="OPR-DM01 심도융합(depth fusion) 촬영 예 — 굴곡진 전극 표면 전체에 초점이 맞은 합성 이미지" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">심도융합 촬영 예(제조사 자료). 초점면을 스캔해 합성하므로 덴드라이트처럼 높낮이가 큰 표면도 전체가 선명하다.</figcaption>
+    </figure>
+    <figure style="margin:18px 0 6px">
+      <img src="/img/magazine/hefei-timelapse.jpg" alt="OPR-DM01 타임랩스 촬영 예 — 시간 간격을 두고 기록한 전극 계면 변화 시퀀스" loading="lazy" style="display:block;width:100%;max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:12px">
+      <figcaption style="font-size:12.5px;color:#777;max-width:640px;margin:6px auto 0;line-height:1.5">타임랩스 촬영 예(제조사 자료). 정전류 사이클과 같은 시간축으로 남기면 Wood 논문의 전압-영상 동기 분석을 그대로 재현할 수 있다.</figcaption>
+    </figure>
+
+    <div class="msc-dl">
+      <div class="ic">PDF</div>
+      <div><div class="t">Hefei In-situ Technology 전체 제품 카탈로그</div><div class="d">in-situ 관찰 셀 전 시리즈·광학계·라만/XRD용 셀 등 29쪽 · 영문</div></div>
+      <a class="btn" href="/files/hefei-insitu-catalog.pdf" download>카탈로그 다운로드</a>
+    </div>
+  </div>
+
+  <h2 style="font-family:var(--serif);font-size:19px;margin:26px 0 4px;color:#3B3695">이 셋업에 필요한 장비</h2>
+  <p class="msc-note">아래 사양에서 필요한 항목을 골라 바로 견적 문의할 수 있습니다.</p>
+  <div class="msc-spec" id="msc-spec"></div>
+  <button class="msc-cta" id="msc-open">필요한 장비 선택해 문의하기</button>
+
+  <div class="sd-sources">
+    <h4>출처</h4>
+    Wood, K. N. et al., "Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy", <i>ACS Central Science</i> 2, 790–801 (2016). DOI: 10.1021/acscentsci.6b00260<br>
+    "Void formation at the lithium | solid electrolyte interface during stripping and its impact on cell performance", <i>Science Advances</i> 8, eadd0510 (2022). DOI: 10.1126/sciadv.add0510<br>
+    제품 사진·카탈로그·영상: Hefei In-situ Technology Co., Ltd. 공식 자료 (사용 허가).<br>
+    ※ 본 페이지는 논문에 명시된 장비·조건 사실을 정리한 것으로, 저자·저널의 보증이나 제휴를 의미하지 않습니다. 실험셋업연구소는 이머전트가 운영하는 에너지·소재 공정 셋업 매거진이며, CIS-OM 시리즈 관찰 셀은 실험셋업연구소가 소싱·공급하고 구매·수리·국내 A/S는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡습니다.
+  </div>
+
+  <div class="sd-tags"><span>#리튬메탈</span><span>#덴드라이트</span><span>#인시츄셀</span><span>#operando</span><span>#전고체</span><span>#보이드</span><span>#가시화셀</span><span>#논문셋업</span></div>
+
+  <div class="sd-related">
+    <h3>관련 콘텐츠</h3>
+    <div class="sd-rel-grid">
+      <a class="sd-rc" href="/brands/gaossunion/"><div class="cat">전기화학 · 전극</div><div class="t">가오스유니온 전기화학 셀·전극</div><div class="d">기준전극·작업전극·RDE 등 전기화학 실험 구성품.</div></a>
+      <a class="sd-rc" href="/magazine/electrode-vacuum-post-drying-moisture/"><div class="cat">배터리 · 전극</div><div class="t">전극 진공 후건조·잔류 수분 관리 셋업</div><div class="d">압력 사이클과 노점 관리로 재현성 확보.</div></a>
+      <a class="sd-rc" href="/info/compare-echem-cell/"><div class="cat">비교 가이드</div><div class="t">전기화학 셀 비교</div><div class="d">H셀·GDE·MEA 등 셀 유형별 선택 기준.</div></a>
+    </div>
+  </div>
+</article>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/product/">제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 (삼흥에너지·리드플루이드·Alicat·가오스유니온)</a></li><li><a href="/brands/gaossunion/co2rr-catalyst/">CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/guides/">선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/materials/">소재 — 전기화학 재료·소모품, CO2RR 촉매, 멤브레인, 연마용품</a></li><li><a href="/info/">제품 정보 — 부품·장비 소개, 브랜드별 장비 비교, FAQ·제품상담</a></li><li><a href="/wiki/">배터리 사전 — 공정·재료·전기화학·장비 용어를 위키형으로 설명</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/magazine/pump-selection-wizard/">펌프 선택 위저드 — 종류·유량·용도로 고르기</a></li><li><a href="/magazine/">셋업 사례 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)</a></li><li><a href="/magazine/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/magazine/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/magazine/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/magazine/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/magazine/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/magazine/nickel-hydroxide-coprecipitation-cstr/">배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)</a></li><li><a href="/magazine/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/magazine/guide-calcination-furnace-atmosphere/">소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</a></li><li><a href="/magazine/troubleshooting-calcination-batch-variation/">소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅</a></li><li><a href="/magazine/glossary-heat-gas-terms/">하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/guide-pump-selection-energy-fluids/">전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)</a></li><li><a href="/magazine/glossary-pump-fluid-terms/">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)</a></li><li><a href="/magazine/si-anode-cvd-carbon-coating/">실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)</a></li><li><a href="/magazine/electrode-slurry-mixing-thick-cathode/">초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)</a></li><li><a href="/magazine/electrode-vacuum-post-drying-moisture/">전극 진공 후건조·잔류 수분 관리 셋업 — 압력 사이클과 노점 (Batteries &amp; Supercaps 2021)</a></li><li><a href="/magazine/cuo-nanowire-thermal-oxidation/">구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/contact/">문의하기 · 자주 묻는 질문(FAQ) — 견적·수리 A/S·제어 소프트웨어</a></li></ul></div></nav><!--CNAV_END--></div>
+
+<div class="msc-ov" id="msc-ov" role="dialog" aria-modal="true" aria-label="장비 문의">
+  <div class="msc-mc">
+    <div class="msc-mh"><div><b>장비 문의</b><div class="s" id="msc-sub">1/2 · 필요한 사양을 선택하세요</div></div><button class="msc-x" id="msc-close" aria-label="닫기">×</button></div>
+
+    <div id="msc-step1">
+      <div class="msc-cl" id="msc-checks"></div>
+      <div class="msc-nt"><textarea id="msc-note" placeholder="실험 조건·수량·문의 내용을 적어주세요 (예: 전고체 5 MPa 가압 관찰, 창 두께 커스텀 등)"></textarea></div>
+      <div class="msc-fb"><button class="msc-c" id="msc-cancel">취소</button><button class="msc-s" id="msc-next"><span id="msc-count"></span> 다음 →</button></div>
+    </div>
+
+    <form id="msc-step2" style="display:none">
+      <div class="msc-pick" id="msc-pick"></div>
+      <div class="msc-f2">
+        <div class="msc-fld"><label>이름 *</label><input type="text" name="이름" required autocomplete="name"></div>
+        <div class="msc-fld"><label>소속 *</label><input type="text" name="소속" required autocomplete="organization"></div>
+        <div class="msc-fld"><label>이메일 *</label><input type="email" name="email" required autocomplete="email"></div>
+        <div class="msc-fld"><label>전화 *</label><input type="tel" name="전화" required autocomplete="tel"></div>
+      </div>
+      <input type="hidden" name="선택장비" id="msc-h-eq">
+      <input type="hidden" name="문의내용" id="msc-h-note">
+      <input type="hidden" name="_subject" value="[매거진] 장비 문의 — in-situ 리튬 덴드라이트 관찰 셋업">
+      <input type="hidden" name="문의출처" value="매거진 · in-situ 리튬 덴드라이트 관찰 (/magazine/insitu-li-dendrite-observation/)">
+      <div class="msc-fb"><button type="button" class="msc-c" id="msc-back">← 이전</button><button type="submit" class="msc-s" id="msc-send">문의 전송</button></div>
+    </form>
+
+    <div class="msc-ok" id="msc-ok"><div style="font-size:32px;color:#2A2570">✓</div><div class="ttl">문의가 전송되었습니다</div><div class="sub">보내주신 연락처로 회신드리겠습니다. 감사합니다.</div><div class="lst" id="msc-oklist"></div></div>
+  </div>
+</div>
+
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+  var specs=[
+    ["CIS-OM-003 관찰 셀(표준)","PEEK·Ti 가동전극, 석영창 Φ24mm·두께 0.05mm, 시료-상면 ~0.6mm(커스텀 가능)"],
+    ["CIS-OM-003-1 수평형","도립현미경·기포 회피용, 003과 동일 사양"],
+    ["가압 전고체 모듈(003 옵션)","정압 최대 6 MPa(60 kg), 상향 커스텀 — Sci. Adv. 5 MPa 재현"],
+    ["CIS-OM-004 고저온 관찰 셀","−30~150℃ ±1℃ 프로그램 제어, 시료실 ≤35mm"],
+    ["CIS-OM-005 극저온 관찰 셀","−100~100℃, 창 Φ10mm, 초점거리 <2mm"],
+    ["CIS-OM-002 석영 비커형 셀","5 mL·Ti 전극, 아연계·수계 관찰 입문"],
+    ["OPR-DM01 전용 광학계","줌 0.7~4.5×(WD 82~179mm) + 10/20/40/50× 대물, 16 Mpx"],
+    ["심도융합·타임랩스 소프트웨어","전압-영상 동기 기록·초점 합성"],
+    ["전기화학 워크스테이션 연동","정전류 사이클·GEIS 구성(문의)"],
+    ["글러브박스 이송·가스 퍼지","Ar 기밀 조립·온라인 전해액 주입 액세서리"]
+  ];
+  var spec=document.getElementById('msc-spec'),checks=document.getElementById('msc-checks');
+  spec.innerHTML=specs.map(function(s,i){return '<div class="msc-sr"><span class="msc-sn">'+(i+1)+'</span><b>'+s[0]+'</b><span class="d">'+s[1]+'</span></div>';}).join('');
+  checks.innerHTML=specs.map(function(s){return '<label><input type="checkbox" class="msc-cb" data-name="'+s[0]+'" checked><span class="n">'+s[0]+'</span><span class="d">'+s[1]+'</span></label>';}).join('');
+  var ov=document.getElementById('msc-ov');
+  var step1=document.getElementById('msc-step1'),step2=document.getElementById('msc-step2'),ok=document.getElementById('msc-ok'),sub=document.getElementById('msc-sub');
+  var cbs=function(){return Array.prototype.slice.call(document.querySelectorAll('.msc-cb'));};
+  var cnt=document.getElementById('msc-count');
+  function rf(){cnt.textContent='('+cbs().filter(function(c){return c.checked;}).length+')';}
+  rf();checks.addEventListener('change',rf);
+  function show1(){step1.style.display='';step2.style.display='none';ok.style.display='none';sub.textContent='1/2 · 필요한 사양을 선택하세요';}
+  function open(){ov.classList.add('on');show1();}
+  function close(){ov.classList.remove('on');}
+  document.getElementById('msc-open').onclick=open;
+  document.getElementById('msc-close').onclick=close;
+  document.getElementById('msc-cancel').onclick=close;
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+
+  document.getElementById('msc-next').onclick=function(){
+    var sel=cbs().filter(function(c){return c.checked;}).map(function(c){return c.getAttribute('data-name');});
+    if(sel.length===0){alert('사양을 하나 이상 선택하세요.');return;}
+    var note=document.getElementById('msc-note').value.trim();
+    document.getElementById('msc-h-eq').value=sel.join(', ');
+    document.getElementById('msc-h-note').value=note;
+    document.getElementById('msc-pick').innerHTML='<b>선택 장비 '+sel.length+'개</b> — '+sel.join(', ')+(note?'<br>메모: '+note.replace(/</g,'&lt;'):'');
+    step1.style.display='none';step2.style.display='';ok.style.display='none';sub.textContent='2/2 · 연락처를 입력하세요';
+  };
+  document.getElementById('msc-back').onclick=show1;
+
+  step2.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=document.getElementById('msc-send');btn.disabled=true;btn.textContent='전송 중…';
+    fetch('https://formspree.io/f/mnjkzppj',{method:'POST',body:new FormData(step2),headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){
+          var eq=document.getElementById('msc-h-eq').value;
+          document.getElementById('msc-oklist').innerHTML='<div style="font-weight:700;margin-bottom:4px">문의한 장비</div><div>'+eq+'</div>';
+          step2.style.display='none';ok.style.display='block';sub.textContent='전송 완료';step2.reset();
+        }else{alert('전송에 실패했습니다. 잠시 후 다시 시도하거나 070-8983-2600으로 연락 주세요.');}
+      })
+      .catch(function(){alert('전송에 실패했습니다. 네트워크를 확인하고 다시 시도해 주세요.');})
+      .finally(function(){btn.disabled=false;btn.textContent='문의 전송';});
+  });
+})();
+</script>
+</body>
+</html>

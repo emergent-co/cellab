@@ -6,7 +6,15 @@
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Tue, 01 Sep 2026 10:40:19 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 11:15:36 +0900</lastBuildDate>
+    <item>
+      <title>리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀 (ACS Cent. Sci. 2016 · Sci. Adv. 2022)</title>
+      <link>https://rndsetup.com/magazine/insitu-li-dendrite-observation/</link>
+      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-li-dendrite-observation/</guid>
+      <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
+      <description><![CDATA[코인셀 곡선만으로는 덴드라이트·피트·보이드를 구분할 수 없다. 석영창 가시화 셀로 전압-영상을 동기화한 액체 전해질 셋업(5 mA/cm², 효율 82→98%)과 5 MPa 가압 전고체 몰드 셀의 보이드 관찰을 분석하고, 재현용 관찰 셀(석영창 0.05mm)·광학계 10종을 정리했다.]]></description>
+      <category>인시츄 셀</category><category>리튬메탈</category><category>덴드라이트</category><category>전고체</category><category>operando</category>
+    </item>
     <item>
       <title>실험용 퍼니스는 어떻게 선택해야 할까 — 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준</title>
       <link>https://rndsetup.com/magazine/guide-furnace-selection-box-vs-tube/</link>

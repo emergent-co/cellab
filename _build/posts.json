@@ -3,6 +3,24 @@
  "posts": [
   {
    "type": "magazine",
+   "slug": "insitu-li-dendrite-observation",
+   "title": "리튬메탈 덴드라이트, 눈으로 확인하는 셋업 — in-situ 광학 관찰 셀 (ACS Cent. Sci. 2016 · Sci. Adv. 2022)",
+   "summary": "코인셀 곡선만으로는 덴드라이트·피트·보이드를 구분할 수 없다. 석영창 가시화 셀로 전압-영상을 동기화한 액체 전해질 셋업(5 mA/cm², 효율 82→98%)과 5 MPa 가압 전고체 몰드 셀의 보이드 관찰을 분석하고, 재현용 관찰 셀(석영창 0.05mm)·광학계 10종을 정리했다.",
+   "date": "2026-09-01",
+   "tags": [
+    "인시츄 셀",
+    "리튬메탈",
+    "덴드라이트",
+    "전고체",
+    "operando"
+   ],
+   "url": "/magazine/insitu-li-dendrite-observation/",
+   "model_focus": "CIS-OM in-situ 관찰 셀 · OPR-DM01 광학계",
+   "application": "인시츄 셀 · 덴드라이트 관찰",
+   "image": "/img/magazine/hefei-cis-om-cells.jpg"
+  },
+  {
+   "type": "magazine",
    "slug": "guide-furnace-selection-box-vs-tube",
    "title": "실험용 퍼니스는 어떻게 선택해야 할까 — 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준",
    "summary": "사용 온도(발열체 등급)·시료 처리량·분위기 제어, 세 질문으로 퍼니스를 고르는 법. 칸탈 1200℃·SiC 1500℃·MoSi₂ 1700~1900℃ 등급표와 선택 체크리스트 5·사용 주의 3.",

@@ -2665,6 +2665,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/magazine/insitu-li-dendrite-observation/</loc>
+    <lastmod>2026-09-01</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/magazine/guide-furnace-selection-box-vs-tube/</loc>
     <lastmod>2026-08-24</lastmod>
     <priority>0.9</priority>
