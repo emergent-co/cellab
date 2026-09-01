@@ -660,7 +660,10 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
 /* 발행 목적 고르기 — 무엇으로 기록할지는 여기서 정해진다 */
-.purp{display:grid;gap:8px}
+.purp{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:760px){.purp{grid-template-columns:1fr}}
+.purp button[data-p="order"]{grid-column:1/-1;background:#fbfcfd;border-style:dashed}
+.purp button[data-p="order"]:hover{border-style:solid}
 .purp button{font:inherit;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:11px;
   padding:12px 13px;cursor:pointer;transition:.15s;display:block;width:100%}
 .purp button:hover{border-color:var(--navy);background:var(--soft-blue)}
@@ -4627,13 +4630,33 @@ var PURP = {
               types:['quote','statement','taxinvoice'] },
   settle:   { t:'정산요청 처리',   d:'고객이 올린 정산요청서를 보고 3종을 발행합니다. <em>→ 그 요청에 연결 · 「서류발급 완료」</em>',
               types:['quote','statement','taxinvoice'] },
+  // 서류를 뽑는 게 아니라 장부에 한 줄 올리는 일이다 — 목적 고르는 자리에 같이 두되 폼은 따로 연다
+  order:    { t:'주문 생성',       d:'서류 없이 주문만 만듭니다. <em>→ 지출금에 바로 반영</em>', form:true },
 };
+
+/* 서류 없이 주문만 올린다 — 물건은 나갔는데 서류는 나중에 나가는 건이 흔하다.
+   거래처만 고르면 곧바로 「주문 직접 입력」으로 넘긴다. */
+function dqOrderOnly(){
+  var w = amodal('주문 생성',
+     '<p class="hint" style="margin:2px 0 12px;line-height:1.7">서류는 만들지 않고 <b>주문만 기록</b>합니다. '
+    + '고른 거래처의 <b>총지출금</b>에 바로 반영됩니다.</p>'
+    + '<label style="display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:0 0 6px">거래처</label>'
+    + '<div id="ooCli"></div>'
+    + '<div class="mrow"><button class="btn gray" data-x>닫기</button></div>');
+  clientPicker($('#ooCli'), null, function(c){
+    if (!c) return;
+    w.remove();
+    ordForm(c, null);
+  });
+}
 
 function dqBindPurp(){
   var box = $('#dqPurp'); if (!box) return;
   box.querySelectorAll('button[data-p]').forEach(function(b){
     b.onclick = function(){
-      dqPurpose = b.dataset.p;
+      var k = b.dataset.p;
+      if (PURP[k].form) return dqOrderOnly();      // 발행이 아니라 주문 입력으로 빠진다
+      dqPurpose = k;
       dqTypes = PURP[dqPurpose].types.slice();
       paintDocs();
       // 정산요청 처리는 그 요청에서 내용을 끌어오는 것이 출발점이다 — 바로 고르게 연다
