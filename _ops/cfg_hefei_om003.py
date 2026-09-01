@@ -5,23 +5,22 @@ import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import build_web as B
 
-BV = 'BV1vnYFeNESP'
-# bilibili 외부 임베드 플레이어가 bvid만으로는 영상을 못 찾는다(aid·cid 필요, 지역 제한 가능).
-# 깨진 검은 상자를 두지 않고, 포스터가 있는 링크 카드로 내보낸다.
+# bilibili 외부 임베드 — bvid만으로는 재생되지 않는다. aid·cid까지 넣어야 한다.
+# (2026-09-01 브라우저에서 실제 재생 확인: 03:37 재생됨)
 VIDEO = (
  '<h2 class="pkg-h">설치 영상</h2>\n'
  '<div class="det-imgs"><figure>'
- '<a href="https://www.bilibili.com/video/' + BV + '/" target="_blank" rel="noopener" '
- 'style="display:block;position:relative;max-width:760px;margin:0 auto;border:1px solid #D8E4F2;'
- 'border-radius:10px;overflow:hidden;background:#EAF4FB;text-decoration:none">'
- '<img src="/img/hefei/hefei-cis-om-003.jpg" alt="CIS-0M-003 설치 영상 — bilibili에서 재생" '
- 'loading="lazy" style="display:block;width:100%;border:0;border-radius:0">'
- '<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">'
- '<span style="display:flex;align-items:center;gap:10px;background:rgba(59,54,149,.92);color:#fff;'
- 'font-weight:700;font-size:15px;padding:12px 20px;border-radius:999px">'
- '<span style="font-size:13px">▶</span> 설치 영상 재생 (bilibili)</span></span></a>'
- '<figcaption>제조사 설치 영상 — 관찰 셀 003 조립 순서 (合肥原位科技有限公司). '
- '새 창에서 bilibili로 이동합니다.</figcaption>'
+ '<div style="position:relative;width:100%;max-width:760px;margin:0 auto;aspect-ratio:16/9;'
+ 'border:1px solid #ECECEC;border-radius:10px;overflow:hidden;background:#000">'
+ '<iframe src="https://player.bilibili.com/player.html?isOutside=true'
+ '&amp;aid=112908298095343&amp;bvid=BV1vnYFeNESP&amp;cid=500001639003496'
+ '&amp;p=1&amp;autoplay=0&amp;danmaku=0&amp;high_quality=1" '
+ 'style="position:absolute;inset:0;width:100%;height:100%;border:0" '
+ 'scrolling="no" frameborder="no" framespacing="0" allowfullscreen="true" '
+ 'allow="autoplay; fullscreen; encrypted-media" '
+ 'title="합비원위과기 원위현미관찰지003 설치"></iframe></div>'
+ '<figcaption>제조사 설치 영상 3분 37초 — 부품 확인부터 셀 조립까지 (合肥原位科技有限公司). '
+ '왼쪽 아래 재생 버튼을 누르면 이 자리에서 바로 재생됩니다.</figcaption>'
  '</figure></div>\n')
 
 FIGS = (
@@ -37,6 +36,31 @@ FIGS = (
  '<img src="/img/hefei/hefei-om003-spec1.jpg" alt="CIS-OM-003 제조사 영문 사양 시트" loading="lazy">'
  '<figcaption>제조사 게시 사양 (CIS-0M-003 · CIS-0M-003-1)</figcaption></figure>'
  '</div>\n')
+
+SPEC004 = (
+ '<h2 class="pkg-h">형제 모델 — CIS-OM-004 (온도 제어형)</h2>\n'
+ '<p class="pkg-note" style="margin:0 0 12px">003과 같은 관찰 구조에 '
+ '<b>−30 ~ +150 °C 온도 스테이지</b>를 얹은 모델입니다. 저온 리튬 도금·고온 열화처럼 '
+ '온도를 변수로 두는 실험에 씁니다. 전극이 <b>유리탄소(GC)</b>로 바뀌고 셀이 두꺼워집니다.</p>\n'
+ + B.spec_tbl([
+   ('셀 본체 재질','<b>PEEK</b>'),
+   ('전극','<b>표준 유리탄소(GC) 전극</b> · 주문 시 변경'),
+   ('관찰창','용융 석영 (fused silica) · <b>Ø24 mm</b>'),
+   ('최소 작동거리','<b>1 mm 이상</b>'),
+   ('시료 챔버','10 × 10 mm · 두께 <b>0.6 ~ 2 mm</b>'),
+   ('셀 전체 두께','<b>35 mm 이하</b>'),
+   ('온도 범위','<b>−30 °C ~ +150 °C</b>'),
+   ('온도 정확도','<b>±1 °C</b>'),
+   ('온도 제어','<b>프로그래머블 PID 컨트롤러</b>'),
+   ('열 설계','<b>모듈형 냉각·가열 스테이지</b> — 셀 밀봉을 풀지 않고 교체 / 저온용·고온용 베이스 플레이트 별도'),
+   ('대응 계','<b>모든 이차전지 계</b>'),
+   ('공통 기능','덴드라이트 성장 관찰 · 불활성 가스 퍼지 · 인시츄 전해액 주입 · 헬륨 리크 시험 밀봉'),
+   ('옵션','고체전해질 가압 모듈 — <b>최대 60 kgf (약 6 MPa)</b>, 그 이상 주문 제작'),
+   ('가격','<b>문의</b>'),
+ ])
+ + '<div class="det-imgs"><figure>'
+   '<img src="/img/hefei/hefei-om003-spec2.jpg" alt="CIS-0M-004 제조사 영문 사양 시트" loading="lazy">'
+   '<figcaption>제조사 게시 사양 (CIS-0M-004 In-situ Observation Cell)</figcaption></figure></div>\n')
 
 B.build(dict(
  brand='hefei', slug='om003-microscope-cell', cat='인시츄 관찰 셀',
@@ -80,9 +104,9 @@ B.build(dict(
   ('모델','CIS-OM-003 · CIS-OM-003-1'),
  ],
  price=[('CIS-OM-003','석영창 Ø24 mm · 시료 10 × 10 mm · 창 0.05 mm',5000000)],
- extra=FIGS+VIDEO,
+ extra=FIGS+VIDEO+SPEC004,
  warn='<b>창이 0.05 mm입니다.</b> 조립·세척 때 핀셋이나 손톱이 닿으면 바로 깨집니다. 커버를 조일 때는 대각선 순서로 조금씩, 가스켓이 고르게 눌리는 정도까지만 조이십시오.',
- cross='온도 제어가 필요하면 <b>CIS-OM-004</b>(−30 ~ +150 °C, ±1 °C PID, 유리탄소 전극, 전체 두께 ≤ 35 mm)를 안내드립니다. 라만·XRD 등 다른 인시츄 셀도 취급합니다 — 문의 주십시오.',
+ cross='허페이 인시츄는 라만·XRD 등 다른 인시츄 셀도 만듭니다. 필요한 분석 장비와 시료 조건을 알려주시면 맞는 셀을 안내드립니다.',
  faq=[
   ('제 현미경 대물렌즈로 초점이 잡힐까요?','창 바깥면에서 시료까지가 약 0.6 mm입니다. 작동거리 1 mm 이상인 대물렌즈면 들어갑니다. 100배급 고배율은 작동거리가 0.3 mm 안팎인 경우가 많으니, 쓰시는 렌즈의 WD를 먼저 확인해 주십시오. 더 얇은 창으로 주문 제작도 됩니다.'),
   ('리튬 말고 나트륨·아연도 되나요?','됩니다. 금속 음극의 덴드라이트 성장·용해 관찰이 목적이라 리튬·나트륨·아연 모두 같은 방식으로 씁니다.'),

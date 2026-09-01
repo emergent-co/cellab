@@ -41,6 +41,17 @@
 .msc-tbl .hot{background:#EAF4FB}
 .msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
 .hl{background:#D9EBFA;color:#173A63;padding:1px 5px;border-radius:4px;font-weight:700}
+.bx-spec{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:14px;line-height:1.55}
+.bx-spec>span:nth-child(odd){font-size:12.5px;font-weight:800;color:#3B3695;white-space:nowrap;padding-top:1px}
+.stackline{display:flex;align-items:center;flex-wrap:wrap;gap:4px;font-size:12.5px}
+.stackline i,.stackline b{font-style:normal;background:#fff;border:1px solid #C9D6E6;border-radius:7px;padding:5px 9px;white-space:nowrap}
+.stackline b{background:#3B3695;border-color:#3B3695;color:#fff;font-weight:700}
+.stackline em{font-style:normal;color:#8aa0bd;font-weight:800}
+.bx-var{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 4px}
+.bx-var>div{background:#fff;border:1px solid #D8E4F2;border-radius:10px;padding:10px 13px;font-size:13px;display:flex;gap:9px;align-items:baseline}
+.bx-var b{color:#2A2570;font-size:14px;flex:none}
+.bx-var span{color:#5a6570;line-height:1.5}
+@media(max-width:560px){.bx-var{grid-template-columns:1fr}.bx-spec{grid-template-columns:1fr;gap:2px 0}.bx-spec>span:nth-child(even){margin-bottom:6px}}
 .msc-res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 18px}
 .msc-res div{background:#F4F8FC;border-radius:8px;padding:12px 14px}
 .msc-res .k{font-size:12.5px;color:#777}
@@ -156,13 +167,37 @@
 
   <div class="sd-bridge">
     <h2>이 관찰을 실험실 벤치로 — CIS-OM 시리즈 관찰 셀</h2>
-    <p>이 조건 — <b>기밀 · 별도 주액 피팅 · 얇은 관찰창 · 정압 가압</b> — 을 제품화한 것이 실험셋업연구소가 소싱하는 <b>Hefei In-situ Technology CIS-OM 시리즈</b>입니다. 표준형 <a href="/brands/hefei/om003-microscope-cell/" style="font-weight:800;color:#0F69AF">CIS-OM-003 →</a>: PEEK 몸체 · <b>Φ24 mm 석영창(두께 0.05 mm)</b> · 시료-창 상면 <b>약 0.6 mm</b>(더 얇게 커스텀 가능) · 가스 퍼지 + 별도 주액 피팅(주사기 기포 제거 대응) · 전고체용 <b>최대 6 MPa(60 kg) 정압 가압 모듈</b> 옵션(상향 커스텀 가능).</p>
-    <div style="background:#F4F8FC;border:1px solid #D8E4F2;border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.8">
-      <b style="color:#3B3695">셀 내부 적층 구성</b> — 창 아래에 코인셀 샌드위치를 눕혀 둔 구조입니다:<br>
-      <span style="font-weight:700">티타늄 전극(단자) → 티타늄 판 → 리튬메탈 또는 샘플 → 격벽(세퍼레이터) → 샘플 → 티타늄 판 → 티타늄 전극(단자)</span><br>
-      양쪽 Ti 전극은 <b>가동식</b>이라 시료 두께(0.6~2 mm, 최대 10×10 mm)에 맞춰 조여 접촉을 잡고, 단자에 악어클립을 물려 사이클러·워크스테이션에 연결합니다.
+    <p>위 조건 — <b>기밀 · 별도 주액 피팅 · 얇은 관찰창 · 정압 가압</b> — 을 그대로 제품화한 관찰 셀입니다. 실험셋업연구소가 Hefei In-situ Technology에서 소싱합니다.</p>
+
+    <div style="background:#fff;border:1px solid #D8E4F2;border-radius:12px;padding:16px 18px;margin:4px 0 14px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+        <b style="font-size:16px;color:#2A2570">표준형 CIS-OM-003</b>
+        <a href="/brands/hefei/om003-microscope-cell/" style="font-weight:800;color:#0F69AF;font-size:13.5px;background:none;padding:0">제품 상세·가격 보기 →</a>
+      </div>
+      <div class="bx-spec">
+        <span>몸체 · 전극</span><span>PEEK 몸체 · 고순도 티타늄 <b>가동 전극</b>(악어클립 체결)</span>
+        <span>관찰창</span><span>석영 Φ24 mm · 두께 <b>0.05 mm</b></span>
+        <span>시료-창 상면</span><span><b>약 0.6 mm</b> — 더 얇게 커스텀 가능</span>
+        <span>주액 · 퍼지</span><span><b>별도 주액 피팅</b> + 가스 퍼지 → 주사기 기포 제거 대응</span>
+        <span>전고체 옵션</span><span>정압 가압 모듈 <b>최대 6 MPa</b>(60 kg) · 상향 커스텀</span>
+        <span>시료</span><span>최대 10×10 mm · 두께 0.6~2 mm</span>
+      </div>
     </div>
-    <p>변형: 도립현미경·기포 회피용 <b>수평형 003-1</b> · 고저온 <b>004</b>(−30~150℃ ±1℃ 프로그램) · 극저온 <b>005</b>(−100~100℃, 창 Φ10 mm) · 아연계·수계 입문용 석영 비커형 <b>002</b>(5 mL).</p>
+
+    <div style="background:#F4F8FC;border:1px solid #D8E4F2;border-radius:12px;padding:14px 16px;margin:0 0 14px">
+      <div style="font-weight:800;color:#3B3695;font-size:13.5px;margin-bottom:9px">셀 내부 적층 — 코인셀 샌드위치를 눕혀 창 아래 둔 구조</div>
+      <div class="stackline">
+        <i>Ti 전극</i><em>›</em><i>Ti 판</i><em>›</em><b>리튬메탈/샘플</b><em>›</em><i>격벽</i><em>›</em><b>샘플</b><em>›</em><i>Ti 판</i><em>›</em><i>Ti 전극</i>
+      </div>
+      <div style="font-size:12.5px;color:#5a6570;line-height:1.6;margin-top:9px">양쪽 Ti 전극은 가동식 — 시료 두께에 맞춰 조여 접촉을 잡고, 단자에 악어클립을 물려 사이클러에 연결.</div>
+    </div>
+
+    <div class="bx-var">
+      <div><b>003-1</b><span>수평형 — 도립현미경 · 기포 회피</span></div>
+      <div><b>004</b><span>고저온 −30~150℃ · ±1℃ 프로그램</span></div>
+      <div><b>005</b><span>극저온 −100~100℃ · 창 Φ10 mm</span></div>
+      <div><b>002</b><span>석영 비커 5 mL — 아연계·수계 입문</span></div>
+    </div>
   </div>
 
   <div class="sd-body">
