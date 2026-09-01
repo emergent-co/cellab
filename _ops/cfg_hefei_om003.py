@@ -5,15 +5,23 @@ import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import build_web as B
 
+BV = 'BV1vnYFeNESP'
+# bilibili 외부 임베드 플레이어가 bvid만으로는 영상을 못 찾는다(aid·cid 필요, 지역 제한 가능).
+# 깨진 검은 상자를 두지 않고, 포스터가 있는 링크 카드로 내보낸다.
 VIDEO = (
  '<h2 class="pkg-h">설치 영상</h2>\n'
  '<div class="det-imgs"><figure>'
- '<div style="position:relative;width:100%;max-width:760px;margin:0 auto;aspect-ratio:16/9;'
- 'border:1px solid #ECECEC;border-radius:10px;overflow:hidden">'
- '<iframe src="//player.bilibili.com/player.html?bvid=BV1vnYFeNESP&amp;autoplay=0" '
- 'style="position:absolute;inset:0;width:100%;height:100%;border:0" '
- 'allowfullscreen loading="lazy" title="합비원위과기 원위현미관찰지003 설치"></iframe></div>'
- '<figcaption>제조사 설치 영상 — 관찰 셀 003 조립 순서 (合肥原位科技有限公司)</figcaption>'
+ '<a href="https://www.bilibili.com/video/' + BV + '/" target="_blank" rel="noopener" '
+ 'style="display:block;position:relative;max-width:760px;margin:0 auto;border:1px solid #D8E4F2;'
+ 'border-radius:10px;overflow:hidden;background:#EAF4FB;text-decoration:none">'
+ '<img src="/img/hefei/hefei-cis-om-003.jpg" alt="CIS-0M-003 설치 영상 — bilibili에서 재생" '
+ 'loading="lazy" style="display:block;width:100%;border:0;border-radius:0">'
+ '<span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">'
+ '<span style="display:flex;align-items:center;gap:10px;background:rgba(59,54,149,.92);color:#fff;'
+ 'font-weight:700;font-size:15px;padding:12px 20px;border-radius:999px">'
+ '<span style="font-size:13px">▶</span> 설치 영상 재생 (bilibili)</span></span></a>'
+ '<figcaption>제조사 설치 영상 — 관찰 셀 003 조립 순서 (合肥原位科技有限公司). '
+ '새 창에서 bilibili로 이동합니다.</figcaption>'
  '</figure></div>\n')
 
 FIGS = (
@@ -41,7 +49,7 @@ B.build(dict(
  answer='광학현미경 아래에 그대로 올려 두고 충·방전을 걸어, 리튬·나트륨·아연 금속 음극에서 덴드라이트가 자라고 녹는 과정을 실시간으로 보는 밀폐 셀입니다.',
  summary='<b>PEEK 본체 · 용융 석영창 0.05 mm · 시료 10 × 10 mm · 시료~창 0.6 mm · 최소 작동거리 1 mm · 헬륨 리크 밀봉</b> · 5,000,000원 (VAT 별도)',
  quote='허페이 인시츄 CIS-OM-003 광학관찰 셀',
- imgs=['hefei-om003-1.jpg','hefei-om003-2.jpg','hefei-om003-3.jpg'],
+ imgs=['hefei-cis-om-003.jpg','hefei-cis-om-003-1.jpg','hefei-cis-om-004.jpg'],
  models=['CIS-OM-003','CIS-OM-003-1'],
  feat=[
   '<b>창이 0.05 mm</b>입니다 — 시료 표면에서 창 바깥면까지 약 <b>0.6 mm</b>라 고배율 대물렌즈의 작동거리(WD 1 mm) 안에 들어옵니다. 더 얇게도 주문 제작됩니다',
