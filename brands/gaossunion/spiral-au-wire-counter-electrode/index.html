@@ -20,7 +20,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
   .hero{padding:40px 0 6px}
   .hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:12px}
   .hero .crumb a{color:#0F69AF;text-decoration:none}
@@ -103,14 +103,14 @@
   .warn-h{ font-size:14px; font-weight:800; color:var(--ink); margin:0 0 6px; }
   .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
   .warn b{ color:var(--ink); }
-  .detail-top .wrap{max-width:1040px}
+  .detail-top .wrap{max-width:920px}
   .dt-grid{display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);gap:24px;align-items:start;margin-top:6px}
   @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
   /* 우측 여백 레일 — 본문 폭은 그대로 두고 바깥 여백만 사용, 스크롤 추종 */
   body{position:relative}
   .buyrail{display:none}
-  @media(min-width:1560px){
-    .buyrail{display:block;position:absolute;left:calc(50% + 520px);width:250px;pointer-events:none}
+  @media(min-width:1440px){
+    .buyrail{display:block;position:absolute;left:calc(50% + 462px);width:250px;pointer-events:none}
     .buyrail .dt-buy{position:sticky;top:86px;pointer-events:auto}
   }
   .dt-info .dt-buy{margin:16px 0 0;max-width:420px}
