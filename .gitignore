@@ -55,3 +55,4 @@ _ops/_extract/
 # wrangler 빌드 산출물 / 임시 정리함
 .wrangler/
 _to_delete/
+_preview_*.html
