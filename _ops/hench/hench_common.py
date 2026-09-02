@@ -126,6 +126,15 @@ def render(p):
     body += CTBAR + '\n'
     body += ('<script type="application/ld+json">'
              + json.dumps(p['ld'], ensure_ascii=False).replace('</', '<\\/') + '</script>\n')
+    # 브랜드 상세(4단 경로)는 build.py의 _breadcrumb_ld 가 처리하지 않는다(2~3단만 지원).
+    # → 페이지가 직접 BreadcrumbList 를 들고 있어야 한다 (가오스 기준본과 동일).
+    _bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "홈", "item": "https://rndsetup.com/"},
+        {"@type": "ListItem", "position": 2, "name": "제품", "item": "https://rndsetup.com/product/"},
+        {"@type": "ListItem", "position": 3, "name": p['crumb'],
+         "item": 'https://rndsetup.com/brands/hench/%s/' % p['slug']}]}
+    body += ('<script type="application/ld+json">'
+             + json.dumps(_bc, ensure_ascii=False).replace('</', '<\\/') + '</script>\n')
     body += ('<section class="faq-sec"><div class="wrap"><hr class="pkg-hr">'
              '<h2 class="faq-h">%s FAQ</h2>\n%s</div></section>\n' % (p['h1'], _faq_html(p['faqs'])))
     body += _faq_ld(p['faqs']) + '\n' + FOOT

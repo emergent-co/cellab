@@ -445,6 +445,8 @@ CRAWLER_LINKS = [
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
     ('/product/', '제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 (삼흥에너지·리드플루이드·Alicat·가오스유니온)'),
     ('/brands/gaossunion/co2rr-catalyst/', 'CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드'),
+    ('/brands/hench/pellet-press-yp-15/', 'Hench YP-15 수동 유압 펠릿 프레스 15T — IR(KBr)·XRD 시료 압편기'),
+    ('/brands/hench/cylindrical-die-hmy-11-14/', 'Hench HMY 원통형 펠릿 다이 Φ11–14mm — KBr 펠릿·XRD 분말 시료 성형 몰드'),
     ('/manuals/', '메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼'),
     ('/guides/', '선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법'),
     ('/requests/', '소프트웨어 제어'),
@@ -1042,7 +1044,7 @@ ALLPROD_BRANDS = [
     ('hefei', '허페이 인시츄', 'echem'),
     ('aida', '아이다', 'echem'),
     ('dodochem', 'DodoChem', 'echem'),
-    ('hench', 'Hench', 'mix'),
+    ('hench', 'Hench', 'prep'),
     ('neware', '뉴웨어', 'echem'),
 ]  # (슬러그, 표기명, 매핑 실패 시 기본 카테고리)
 # 브랜드별 data-cat 어휘 → 통합 카테고리
@@ -1050,7 +1052,8 @@ ALLPROD_CATMAP = {
     'furnace': 'heat',
     'drying': 'dry', 'distill': 'dry',
     'incubator': 'culture', 'waterbath': 'culture', 'chamber': 'culture', 'sterilizer': 'culture',
-    'mixing': 'mix', 'pellet': 'mix', 'die': 'mix',
+    'mixing': 'mix',
+    'pellet': 'prep', 'die': 'prep',   # 시료 전처리(펠릿 프레스·다이)
     'vacuumpump': 'vacuum', 'vac': 'vacuum',
     'pump': 'pump', 'peri': 'pump', 'syr': 'pump', 'gear': 'pump', 'ex': 'pump', 'head': 'pump',
     'mfc': 'gas', 'std': 'gas', 'hp': 'gas', 'bio': 'gas', 'corr': 'gas', 'dual': 'gas', 'press': 'gas',
@@ -1325,6 +1328,7 @@ def build_all_products():
         return out
 
     CAT_LABEL = {'heat': '열처리', 'dry': '건조·농축', 'culture': '배양·항온', 'mix': '교반·분쇄',
+                 'prep': '시료 전처리',
                  'vacuum': '진공', 'pump': '펌프', 'gas': '가스유량 MFC', 'echem': '전기화학', 'safety': '안전·측정'}
 
     # 네거티브 규칙 — 제목이 왼쪽 패턴이면 오른쪽 어휘(소문자 부분일치)를 검색 텍스트·키워드에서 제거
