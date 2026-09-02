@@ -15,6 +15,9 @@ BRANDS = {
  'hefei':      dict(slug='hefei', ko='허페이 인시츄', en='Hefei In-Situ Technology',
                     hub='허페이 인시츄 전체', imgdir='hefei',
                     kw=['허페이인시츄','인시츄셀']),
+ 'aida':       dict(slug='aida', ko='아이다 헝성', en='TianJin AIDA Science-Technology',
+                    hub='아이다 전기화학 전체', imgdir='aida',
+                    kw=['아이다','전기화학']),
 }
 _B = BRANDS['gaossunion']          # 현재 빌드 중인 브랜드
 def _use(name):

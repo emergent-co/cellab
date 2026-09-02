@@ -1135,6 +1135,36 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/aida/gc-disc-working-electrode/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/aida/pt-disc-working-electrode/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/aida/pt-sheet-counter-electrode/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/aida/rde-rrde/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/aida/reference-electrode/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/alicat/basis-series/</loc>
     <lastmod>2026-09-02</lastmod>
     <priority>0.8</priority>
@@ -1196,6 +1226,12 @@
   </url>
   <url>
     <loc>https://rndsetup.com/brands/alicat/pcd-series/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/ls-009-lithium-sulfur-electrolyte/</loc>
     <lastmod>2026-09-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
