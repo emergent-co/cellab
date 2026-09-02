@@ -70,8 +70,12 @@ async function get(request, env) {
           .bind(c.lab_id).all()).results || []
       : [];
 
+    // 서류에 찍히고 메일을 받는 사람 — 없으면 거래처 대표 연락처를 임시 후보로 보여준다
+    const contacts = (await env.DB.prepare(
+      'SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id').bind(c.id).all()).results || [];
+
     return json({
-      client: slimClient(c), profiles, members, orders,
+      client: slimClient(c), profiles, members, orders, contacts,
       settlements: settles.map((s) => ({ ...s, items: safe(s.items_json) })),
     });
   }

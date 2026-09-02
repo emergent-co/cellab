@@ -282,6 +282,49 @@ async function post(request, env) {
     return json({ ok: true });
   }
 
+  /* 담당자 — 한 거래처에 여러 명이 있다. 서류에 찍히는 이름과 메일이 사람마다 다르다.
+     customers 한 줄에 우겨넣으면 «지난번엔 누구 앞으로 보냈더라»를 기억으로 때워야 한다. */
+  if (b.action === 'contact_save') {
+    const name = String(b.name || '').trim();
+    const email = String(b.email || '').trim();
+    if (!name) return json({ error: 'no_name', message: '담당자 이름을 입력해주세요.' }, 400);
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return json({ error: 'bad_email', message: '이메일 형식이 올바르지 않습니다.' }, 400);
+    }
+    const def = b.is_default ? 1 : 0;
+    let id = Number(b.contact_id) || null;
+    if (id) {
+      const own = await env.DB.prepare('SELECT id FROM contacts WHERE id=? AND customer_id=?')
+        .bind(id, c.id).first();
+      if (!own) return json({ error: 'not_found' }, 404);
+      await env.DB.prepare(
+        'UPDATE contacts SET name=?, email=?, phone=?, role=?, is_default=?, updated_at=? WHERE id=?')
+        .bind(name, email, String(b.phone || ''), String(b.role || ''), def, now, id).run();
+    } else {
+      const r = await env.DB.prepare(
+        'INSERT INTO contacts (customer_id, name, email, phone, role, is_default, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?)')
+        .bind(c.id, name, email, String(b.phone || ''), String(b.role || ''), def, now, now).run();
+      id = r.meta.last_row_id;
+    }
+    // 기본은 한 명뿐이다
+    if (def) {
+      await env.DB.prepare('UPDATE contacts SET is_default=0 WHERE customer_id=? AND id<>?')
+        .bind(c.id, id).run();
+    }
+    await logEvent(env, { action: 'contact_save', actor: 'admin', detail: `${who} 담당자 ${name} 저장` });
+    const rows = (await env.DB.prepare(
+      'SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id').bind(c.id).all()).results || [];
+    return json({ ok: true, id, contacts: rows });
+  }
+
+  if (b.action === 'contact_delete') {
+    await env.DB.prepare('DELETE FROM contacts WHERE id=? AND customer_id=?')
+      .bind(Number(b.contact_id) || 0, c.id).run();
+    const rows = (await env.DB.prepare(
+      'SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id').bind(c.id).all()).results || [];
+    return json({ ok: true, contacts: rows });
+  }
+
   return json({ error: 'unknown_action' }, 400);
 }
 

@@ -662,6 +662,17 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
 /* 발행 목적 고르기 — 무엇으로 기록할지는 여기서 정해진다 */
+.ctrow{display:flex;align-items:center;gap:8px;margin-top:10px}
+.ctrow label{flex:0 0 auto;font-size:12.5px;font-weight:700;color:var(--mut)}
+.ctrow select{flex:1 1 auto;min-width:0;border:1px solid var(--line);border-radius:9px;
+  padding:9px 10px;font-size:13.5px;background:#fff}
+.ctlist{display:grid;gap:7px;margin-bottom:12px}
+.ctcard{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.ctcard .t{flex:1 1 auto;min-width:0}
+.ctcard b{display:block;font-size:13px;font-weight:700}
+.ctcard small{display:block;font-size:11.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctcard .df{flex:0 0 auto;font-size:10.5px;font-weight:800;color:var(--navy);background:var(--soft-blue);
+  border-radius:5px;padding:2px 6px}
 .purp{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 @media(max-width:760px){.purp{grid-template-columns:1fr}}
 .purp button[data-p="order"]{grid-column:1/-1;background:#fbfcfd;border-style:dashed}
@@ -4620,6 +4631,7 @@ var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTar
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
     dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
     dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
+var dqContacts = [], dqContact = null;   // 서류에 찍히고 메일을 받는 사람
 var dqPurpose = null;    // quote | delivery | advance | settle — 고르기 전에는 폼을 열지 않는다
 var PURP = {
   quote:    { t:'견적서만',        d:'견적서 하나만 뽑습니다. <em>아무 기록도 만들지 않습니다.</em>',
@@ -4744,6 +4756,7 @@ function paintDocs(){
            + (dqInq.back ? '<button id="dqInqBack" title="문의 내용으로 돌아가기">↩</button>' : '')+'</div>' : '')
      + '</div>'
      + '<div class="dcard"><h4>거래처 · 계산서 발행정보</h4><div id="dqCliBox"></div>'
+       + '<div id="dqContactBox"></div>'
        + '<div class="dsrc" id="dqSrcBox" hidden>'
          + '<button class="mini" id="dqFromOrder">주문에서 가져오기</button>'
          + '<button class="mini" id="dqFromSettle">정산 요청에서 가져오기</button></div>'
@@ -4868,10 +4881,120 @@ function dqAutoTitle(){
   var el = $('#dqTitle'); if (el) el.value = dqTitle;
 }
 
+/* 담당자 목록을 세우고 보낼 사람을 정한다.
+   등록된 담당자가 없으면 거래처에 적힌 대표 연락처를 임시 후보(id 0)로 세운다 —
+   «담당자를 먼저 등록하세요»로 막으면 급할 때 발행이 멈춘다. */
+function dqSetContacts(list){
+  dqContacts = (list || []).slice();
+  if (!dqContacts.length && dqCli){
+    dqContacts = [{ id:0, name: dqCli.name || '', role:'거래처 대표 연락처',
+                    email: dqCli.work_email || dqCli.email || '', phone: dqCli.phone || '' }];
+  }
+  var keep = dqContact && dqContacts.filter(function(c){ return c.id === dqContact.id; })[0];
+  dqContact = keep || dqContacts.filter(function(c){ return c.is_default; })[0] || dqContacts[0] || null;
+}
+
+function dqPaintContacts(){
+  var box = $('#dqContactBox'); if (!box) return;
+  if (!dqCli){ box.innerHTML = ''; return; }
+  box.innerHTML = '<div class="ctrow"><label>받는 담당자</label>'
+    + '<select id="dqCt">' + dqContacts.map(function(c){
+        return '<option value="'+c.id+'"'+(dqContact && c.id===dqContact.id ? ' selected':'')+'>'
+          + esc([c.name, c.role, c.email].filter(Boolean).join(' · ')) + '</option>'; }).join('')
+    + '</select><button class="mini" id="dqCtMng">담당자 관리</button></div>'
+    + (dqContact && !dqContact.email
+       ? '<p class="dhint" style="color:#B45309">이 담당자에게 메일 주소가 없습니다 — 서류는 나가지만 메일은 보낼 수 없습니다.</p>'
+       : '');
+  $('#dqCt').onchange = function(e){
+    dqContact = dqContacts.filter(function(c){ return String(c.id)===e.target.value; })[0] || null;
+    dqPaintContacts();
+  };
+  $('#dqCtMng').onclick = function(){
+    contactForm(dqCli, dqContacts, function(rows){ dqSetContacts(rows); dqPaintContacts(); });
+  };
+}
+
+/* 담당자 추가 · 수정 · 삭제 — 한 팝업 안에서 끝낸다 */
+function contactForm(client, list, onDone){
+  var rows = (list || []).filter(function(c){ return c.id; });   // 임시 후보(id 0)는 목록에 안 넣는다
+  var w = amodal('담당자 관리',
+     '<p class="hint" style="margin:2px 0 12px;line-height:1.7">'+esc(client.company||client.name||'—')
+    + ' 의 담당자입니다. 서류에 찍히는 이름과 메일 받는 사람이 됩니다.</p>'
+    + '<div class="ctlist" id="ctList"></div>'
+    + '<div class="dcard" style="border:0;padding:0">'
+      + '<label class="req">이름</label><input type="text" id="ct-name" placeholder="예) 김철수">'
+      + '<label>직함 · 부서</label><input type="text" id="ct-role" placeholder="예) 책임연구원 · 구매팀">'
+      + '<label>이메일</label><input type="email" id="ct-email" placeholder="name@company.co.kr">'
+      + '<label>전화</label><input type="text" id="ct-phone" placeholder="010-0000-0000">'
+      + '<label class="swrow" style="margin:12px 0 2px"><input type="checkbox" id="ct-def">'
+        + '<span><b>기본 담당자로</b></span></label>'
+    + '</div>'
+    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ok" id="ct-go">추가</button></div>');
+
+  var editing = null;
+
+  function paint(){
+    $('#ctList').innerHTML = rows.length
+      ? rows.map(function(c, i){
+          return '<div class="ctcard"><div class="t"><b>'+esc(c.name||'—')+'</b>'
+            + '<small>'+esc([c.role, c.email, c.phone].filter(Boolean).join(' · ')||'—')+'</small></div>'
+            + (c.is_default ? '<span class="df">기본</span>' : '')
+            + '<button class="mini" data-e="'+i+'">수정</button>'
+            + '<button class="mini" data-d="'+i+'">삭제</button></div>'; }).join('')
+      : '<div class="empty" style="padding:18px 10px">아직 등록된 담당자가 없습니다.</div>';
+    $('#ctList').querySelectorAll('[data-e]').forEach(function(b){
+      b.onclick = function(){ load(rows[Number(b.dataset.e)]); };
+    });
+    $('#ctList').querySelectorAll('[data-d]').forEach(function(b){
+      b.onclick = function(){ del(rows[Number(b.dataset.d)]); };
+    });
+  }
+  function load(c){
+    editing = c;
+    $('#ct-name').value = c.name||''; $('#ct-role').value = c.role||'';
+    $('#ct-email').value = c.email||''; $('#ct-phone').value = c.phone||'';
+    $('#ct-def').checked = !!c.is_default;
+    $('#ct-go').textContent = '저장';
+    $('#ct-name').focus();
+  }
+  function clear(){
+    editing = null;
+    ['ct-name','ct-role','ct-email','ct-phone'].forEach(function(id){ $('#'+id).value=''; });
+    $('#ct-def').checked = false; $('#ct-go').textContent = '추가';
+  }
+  async function del(c){
+    if (!confirm(c.name+' 담당자를 지울까요?')) return;
+    var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,
+      body:JSON.stringify({ id:client.id, action:'contact_delete', contact_id:c.id })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    if (!r.ok) return alert(r.message || '지우지 못했습니다.');
+    rows = r.contacts || []; paint(); clear(); onDone(rows);
+  }
+
+  paint();
+  $('#ct-go').onclick = async function(){
+    var name = $('#ct-name').value.trim();
+    if (!name){ $('#ct-name').focus(); return alert('담당자 이름을 입력해주세요.'); }
+    var b = $('#ct-go'); var was = b.textContent; b.disabled = true; b.textContent = '저장 중…';
+    var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,body:JSON.stringify({
+      id: client.id, action:'contact_save', contact_id: editing ? editing.id : null,
+      name: name, role: $('#ct-role').value.trim(), email: $('#ct-email').value.trim(),
+      phone: $('#ct-phone').value.trim(), is_default: $('#ct-def').checked })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = was;
+    if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
+    rows = r.contacts || []; paint(); clear(); onDone(rows);
+    toast('담당자를 저장했습니다');
+  };
+  return w;
+}
+
 function dqPaintClient(){
   clientPicker($('#dqCliBox'), dqCli, function(c){
     dqCli = c; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
-    dqPaintBill(); dqSrcButtons();
+    dqContacts = []; dqContact = null;
+    dqPaintBill(); dqSrcButtons(); dqPaintContacts();
     if (c) dqLoadClient(c.id, true);
   }, dqCliLine);
 }
@@ -4892,6 +5015,7 @@ function dqClear(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
   dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
+  dqContacts=[]; dqContact=null;
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
 }
 function dqReset(){ dqClear(); paintDocs(); }
@@ -4901,8 +5025,9 @@ async function dqLoadClient(id, keep){
   if (!r.client) return;
   dqCli = r.client; dqProfiles = r.profiles||[]; dqOrders = r.orders||[]; dqSettles = r.settlements||[];
   dqBill = dqProfiles.filter(function(p){ return p.is_default; })[0] || dqProfiles[0] || null;
+  dqSetContacts(r.contacts || []);
   if (!keep) dqPaintClient();
-  dqPaintBill(); dqSrcButtons();
+  dqPaintBill(); dqSrcButtons(); dqPaintContacts();
 }
 
 function dqPaintBill(){
@@ -5096,6 +5221,7 @@ async function dqSubmit(preview){
     dates: (function(){ var o={}; document.querySelectorAll('#dqDateBox input[data-d]')
               .forEach(function(el){ if (el.value) o[el.dataset.d] = el.value; }); return o; })(),
     title: $('#dqTitle').value, note: $('#dqNote').value,
+    contact: dqContact ? dqContact.name : null, email: dqContact ? dqContact.email : null,
     purpose: dqPurpose, make_order: dqPurpose==='delivery', order_status: dqOrderStatus,
     vat_included: dqVat, items: items })})
     .then(function(r){return r.json();}).catch(function(){return{};});

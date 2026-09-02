@@ -169,3 +169,7 @@
 .dt-buy .bb-price{white-space:nowrap;line-height:1.25}
 .dt-buy .bb-price small{display:block;margin-left:0;margin-top:3px;white-space:nowrap}
 .dt-buy .bb-row .v{white-space:nowrap}
+
+/* 헤더 있는 목록·비교표는 본문을 왼쪽 정렬하고 마지막 열(가격·링크)만 가운데 */
+.pkg-tbl thead + tbody td{text-align:left}
+.pkg-tbl thead + tbody td:last-child{text-align:center;white-space:nowrap}

@@ -74,34 +74,52 @@
         [
           "브랜드",
           "DodoChem · 원산지 중국"
+        ],
+        [
+          "가격 조건",
+          "VAT 별도 · 국제 배송료 100,000원 (주문당 1회)"
+        ],
+        [
+          "커스텀",
+          "농도 · 용매비 · 첨가제 변경 가능 — <a href=\"/contact/\">견적</a>"
         ]
       ],
       "sections": [
         {
-          "h": "이 제품의 대표 논문",
+          "h": "DodoChem 제품을 쓴 논문",
           "head": [
             "논문 제목",
             "저널",
+            "DodoChem에서 구매한 것",
             "링크"
           ],
           "rows": [
             [
-              "On the Surface Chemical Aspects of Very High Energy Density, Rechargeable Li–Sulfur Batteries",
-              "<i>J. Electrochem. Soc.</i> <b>156</b>, A694 (2009)",
-              "<a href=\"https://doi.org/10.1149/1.3148721\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
+              "Artificial dual solid-electrolyte interfaces based on in situ organothiol transformation in lithium sulfur battery",
+              "<i>Nat. Commun.</i> <b>12</b>, 3031 (2021)",
+              "<b>Li–S 전해액</b> — 1 M LiTFSI · DOL:DME 1:1 v/v · LiNO₃ 0.15 M",
+              "<a href=\"https://doi.org/10.1038/s41467-021-23155-3\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
             ],
             [
-              "Building better lithium–sulfur batteries: from LiNO₃ to solid oxide catalyst",
-              "<i>Sci. Rep.</i> <b>6</b>, 33154 (2016)",
-              "<a href=\"https://doi.org/10.1038/srep33154\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
+              "Multifunctional electrolyte additive for high power lithium metal batteries at ultra-low temperatures",
+              "<i>Nat. Commun.</i> <b>16</b>, 3344 (2025)",
+              "LiFSI · LiNO₃ · DEE · DME",
+              "<a href=\"https://doi.org/10.1038/s41467-025-58627-3\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
             ],
             [
-              "Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy",
-              "<i>ACS Cent. Sci.</i> <b>2</b>, 790 (2016)",
-              "<a href=\"https://doi.org/10.1021/acscentsci.6b00260\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
+              "Revisiting Fluorobenzene as Diluents in Ether-Based Electrolytes for Lithium Metal Batteries",
+              "<i>Nat. Commun.</i> <b>16</b>, 9813 (2025)",
+              "LiFSI (99.9%) · DME (99.9%)",
+              "<a href=\"https://doi.org/10.1038/s41467-025-64784-2\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
+            ],
+            [
+              "Advancing lithium metal electrode beyond 99.9% coulombic efficiency via super-saturated electrolyte with compressed solvation structure",
+              "<i>Nat. Commun.</i> <b>16</b>, 4229 (2025)",
+              "LiFSI · DME · DMC · PVDF · NMP <small>(법인명 Suzhou Duoduo Chemical Technology 표기)</small>",
+              "<a href=\"https://doi.org/10.1038/s41467-025-59563-y\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
             ]
           ],
-          "note": "※ 논문 인용은 이 배합의 학술적 사용 예를 안내하기 위한 것으로, 저자·저널의 보증이나 제휴를 의미하지 않습니다."
+          "note": "※ 각 논문 Methods 원문에 DodoChem 구매가 명시된 건입니다. LS-009(LiNO₃ 2%)를 지정한 논문은 아닙니다."
         }
       ],
       "related": "배터리 재료: <a href=\"/materials/\">전기화학 재료·소모품</a> · <a href=\"/brands/dodochem/\">DodoChem 전체</a> · <a href=\"/magazine/insitu-li-dendrite-observation/\">인시츄 셀 003편 — 리튬 덴드라이트 관찰 셋업</a> · <a href=\"/wiki/\">배터리 사전</a>",
@@ -182,8 +200,7 @@
             "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3",
             "알루미늄 병"
           ]
-        ],
-        "note": "규격별 금액은 <b>오른쪽 주문정보</b>에서 규격을 고르시면 바로 나옵니다. 부가세 별도이며 <b>국제 배송료 100,000원</b>이 주문당 1회 더해집니다. 커스텀 배합(농도·용매비·첨가제)은 <a href=\"/contact/\">견적</a>으로 안내합니다."
+        ]
       }
     }
   ]
