@@ -258,7 +258,6 @@ for p in P:
         answer=p['answer'], summary=p['summary'], quote='허페이 인시츄 %s'%p['h1'],
         imgs=[], models=[p['sub']],
         feat=p['feat'], spec=p['spec'],
-        price=[(p['h1'], p['summary'].split(' · 가격')[0].replace('<b>','').replace('</b>',''), 0)],
-        extra=sheet(p.get('cn')), cross=p['cross'], faq=p['faq']))
+        extra='', cross=p['cross'], faq=p['faq']))
     made+=1
 print('생성 완료:', made, '종')

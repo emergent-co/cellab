@@ -1058,6 +1058,62 @@ ALLPROD_CATMAP = {
     'fumehood': 'safety', 'measuring': 'safety',
 }
 
+# ── 통합 카탈로그 상세필터: 브랜드 무관 '계열' 토큰(fam:*) ────────────────────
+# 기존 gu:* 는 가오스유니온 URL 전용이라 AIDA·허페이·DodoChem 카드가 필터에서 통째로
+# 사라졌다. URL 마지막 세그먼트로 브랜드와 무관하게 계열을 판정한다. 먼저 맞는 규칙이 이긴다.
+ALLPROD_FAM_RULES = [
+    ('fam:rde',       r'(^|-)r?rde($|[-0-9])'),
+    ('fam:rhe',       r'(^|-)rhe($|-)'),
+    ('fam:ref',       r'reference-electrode|salt-bridge|luggin|rotating-ag-ion'),
+    ('fam:counter',   r'counter-electrode'),
+    ('fam:working',   r'working-electrode|carbon-paste|dual-electrode|electrode-drying'),
+    ('fam:holder',    r'clamp|holder|electrode-stand|sample-holder'),
+    ('fam:polish',    r'polish'),
+    ('fam:catalyst',  r'catalyst'),
+    ('fam:insitu',    r'(^|-)(insitu|in-situ|afm|raman|xrd|xafs|uv|sfg|ir|ms|om\d*)($|-)'
+                      r'|spectro|imaging|observation|microscope'),
+    ('fam:material',  r'(^|-)series-|(^|-)p-|electrolyte|solvent|(^|-)salts($|-)|binder|separator'
+                      r'|current-collector|lifsi|litfsi|pvdf|ceramic-disc|whatman|additive'
+                      r'|(^|-)cases($|-)|anhydrous|battery-grade|echem-materials'),
+    ('fam:cell',      r'cell|reactor'),
+    ('fam:die',       r'(^|-)die($|-)|cylindrical-die'),
+    ('fam:press',     r'press'),
+]
+ALLPROD_FAM_RX = [(k, re.compile(rx)) for k, rx in ALLPROD_FAM_RULES]
+
+
+def allprod_fam(href, cat):
+    """URL 슬러그로 계열(fam:*) 판정. echem/mix 카테고리에만 붙인다."""
+    if cat not in ('echem', 'mix'):
+        return ''
+    seg = [x for x in href.strip('/').split('/') if x]
+    slug = seg[-1] if seg else ''
+    for key, rx in ALLPROD_FAM_RX:
+        if rx.search(slug):
+            return key
+    return 'fam:instrument' if cat == 'echem' else ''
+
+
+# ── 검색 색인(data-k) 한글·별칭 보강 ─────────────────────────────────────────
+# 표기명이 영문뿐인 브랜드(DodoChem 등)와 한글 일반명이 없는 품목(금형·펠릿프레스 등)이
+# 검색되지 않던 문제. href 에 매칭되면 해당 어휘를 data-k 에 덧붙인다(화면 노출 없음).
+ALLPROD_KEY_ALIASES = [
+    (r'/brands/dodochem/',   '도도켐 도도캠 dodochem 배터리소재 전지소재 시약 케미컬'),
+    (r'/brands/hefei/',      '허페이 허페이인시츄 hefei 인시츄 in-situ operando 오퍼란도 원위관찰'),
+    (r'/brands/aida/',       '아이다 aida'),
+    (r'/brands/hench/',      '헨치 hench 시료성형 분말성형'),
+    (r'/brands/gaossunion/', '가오스유니온 gaossunion'),
+    (r'cylindrical-die',     '금형 몰드 다이 원통금형 펠릿금형 압축금형 tablet die'),
+    (r'pellet-press',        '펠릿프레스 펠릿메이커 분말압축기 유압프레스 정제성형기'),
+    (r'electrolyte',         '전해액 전해질'),
+    (r'anhydrous|solvent',   '무수용매 용매'),
+    (r'separator',           '분리막 세퍼레이터'),
+    (r'binder',              '바인더 결착제'),
+    (r'current-collector',   '집전체 집전판'),
+    (r'series-salts|lifsi|litfsi', '리튬염 전해질염'),
+]
+ALLPROD_KEY_ALIASES_RX = [(re.compile(rx), w) for rx, w in ALLPROD_KEY_ALIASES]
+
 
 def build_all_products():
     """전 제품 통합 카탈로그 — 브랜드 허브 dscard에서 데이터만 추출해 표준 카드로 정규화 주입.
@@ -1474,7 +1530,13 @@ def build_all_products():
                 seg = [x for x in href.strip('/').split('/') if x]
                 if len(seg) >= 3:
                     sub_tokens.append('gu:' + seg[2])
+            _fam = allprod_fam(href, cat)
+            if _fam:
+                sub_tokens.append(_fam)
             keys = ' '.join([title, model, label, slug, kw_raw.group(1) if kw_raw else '']).lower()
+            for _rx, _al in ALLPROD_KEY_ALIASES_RX:
+                if _rx.search(href):
+                    keys += ' ' + _al.lower()
 
             detail = detail_of(href)
             _sub1 = (cat_raw.group(1).split()[0] if cat_raw and cat_raw.group(1).split() else '')
