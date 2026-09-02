@@ -1862,12 +1862,26 @@ async function aoOpen(id){
       +'<select id="aoSt">'+ST.map(function(s){ return '<option'+(s===o.status?' selected':'')+'>'+s+'</option>'; }).join('')+'</select>'
       +'<textarea id="aoMemo" rows="2" placeholder="내부 메모 — 고객에게 안 보입니다" style="margin-top:8px">'+esc(o.admin_memo||'')+'</textarea></div>'
     +'<div class="sec"><h4>문서</h4><div id="aoDocs"></div></div>'
-    +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+    +'<div class="mrow"><button class="btn gray" id="aoDel">삭제</button>'
+      +'<button class="btn gray" data-x>닫기</button>'
       +'<button class="btn ghost" id="aoConfirm">내용 확인 요청</button>'
       +'<button class="btn ok" id="aoSave">저장</button></div>';
 
   $('#aoAdd').onclick = function(){ aoItems.push({name:'',spec:'',unit:'EA',qty:1,unit_price:0}); aoRenderItems(); };
   $('#aoSave').onclick = aoSave;
+  // 테스트로 넣은 주문이 지워지지 않으면 «안 끝난 일» 배지가 영원히 남는다
+  $('#aoDel').onclick = async function(){
+    if (!confirm('주문 '+o.order_no+' 을 지울까요?\n\n'
+      + '지출금·잔여금에서 빠집니다. 되돌릴 수 없습니다.\n'
+      + '(발행한 서류는 남고 연결만 끊깁니다)')) return;
+    var b2 = $('#aoDel'); b2.disabled = true; b2.textContent = '지우는 중…';
+    var r = await fetch('/api/admin/orders/'+o.id,{method:'POST',headers:AH,
+      body:JSON.stringify({action:'delete'})}).then(function(x){return x.json();}).catch(function(){return{};});
+    b2.disabled = false; b2.textContent = '삭제';
+    if (!r.ok) return alert(r.message || '지우지 못했습니다.');
+    w.remove(); toast('주문을 지웠습니다');
+    admPoll(true); aoChips(); aoList();
+  };
   $('#aoConfirm').onclick = function(){
     confirmForm('order', o.id, { to: o.orderer_email || c.work_email || c.email || '' });
   };
