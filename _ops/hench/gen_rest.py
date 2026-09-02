@@ -109,27 +109,27 @@ CFG = {
    nm='디지털 수동 유압 펠릿 프레스',
    ans='레버로 가압하되 압력을 디지털 게이지로 읽는 펠릿 프레스입니다. 지침식보다 판독 오차가 작아 성형압 재현이 쉽습니다.',
    why='수동 유압 구조는 같고 <b>압력 표시가 디지털</b>입니다. 눈금 사이를 읽어 어림하던 지침식과 달리 수치가 그대로 찍혀, 같은 성형압을 반복할 때 유리합니다.'),
- 'P3-electric': dict(kind='press', crumb='전동 유압 펠릿 프레스', sub='press-e',
+ 'P3-electric': dict(kind='press', crumb='전동 유압 펠릿 프레스', sub='pellet',
    nm='전동 유압 펠릿 프레스',
    ans='모터 유압으로 가압하는 펠릿 프레스입니다. 레버를 젓지 않아도 되고 설정 압력까지 자동으로 올라갑니다.',
    why='레버 펌핑이 없습니다. <b>PCB 프로그램 완충 가압</b>으로 설정값까지 올린 뒤, 가압 후 압력이 떨어지면 <b>실시간 자동 보정</b>합니다. 반복 작업량이 많을 때 손이 덜 갑니다.'),
- 'P4-auto': dict(kind='press', crumb='자동 유압 펠릿 프레스', sub='press-a',
+ 'P4-auto': dict(kind='press', crumb='자동 유압 펠릿 프레스', sub='pellet',
    nm='자동 유압 펠릿 프레스',
    ans='가압·유지·탈형을 프로그램으로 돌리는 자동 펠릿 프레스입니다. 터치 화면에서 압력과 유지 시간을 설정합니다.',
    why='가압 → 유지 → 감압을 <b>프로그램이 순서대로</b> 수행합니다. 작업자가 붙어 있지 않아도 되고, 같은 조건을 그대로 다시 불러 쓸 수 있습니다.'),
- 'P5-isostatic': dict(kind='press', crumb='등온압축(Isostatic) 펠릿 프레스', sub='press-iso',
+ 'P5-isostatic': dict(kind='press', crumb='등온압축(Isostatic) 펠릿 프레스', sub='pellet',
    nm='등온압축 펠릿 프레스',
    ans='시료를 유체로 감싸 사방에서 균일하게 누르는 등온압축 프레스입니다. 밀도 편차가 작은 성형체를 만듭니다.',
    why='단축 프레스는 위아래로만 눌러 시료 안에 밀도 구배가 생깁니다. 등온압축은 <b>압력 매체가 시료를 전방향으로 균일하게</b> 눌러 밀도 편차를 줄입니다. 세라믹·고체전해질처럼 소결 후 변형이 문제되는 시료에 씁니다.'),
- 'P6-hot': dict(kind='press', crumb='가열(Hot) 펠릿 프레스', sub='press-hot',
+ 'P6-hot': dict(kind='press', crumb='가열(Hot) 펠릿 프레스', sub='pellet',
    nm='가열 펠릿 프레스',
    ans='열판으로 다이를 데우면서 동시에 가압하는 프레스입니다. 상온에서 안 눌리는 고분자·복합재 시료에 씁니다.',
    why='열판이 다이를 데운 상태로 가압합니다. 상온 성형이 안 되는 <b>고분자 필름·복합재·박막</b>에서 온도와 압력을 함께 걸어야 할 때 필요합니다.'),
- 'P7-fluoro': dict(kind='press', crumb='형광분석(XRF) 전용 자동 펠릿 프레스', sub='press-xrf',
+ 'P7-fluoro': dict(kind='press', crumb='형광분석(XRF) 전용 자동 펠릿 프레스', sub='pellet',
    nm='형광분석 전용 자동 펠릿 프레스',
    ans='XRF 시료컵 규격에 맞춰 펠릿을 찍는 자동 프레스입니다. 압력·유지·탈형이 프로그램으로 돌아갑니다.',
    why='XRF는 시료 표면 상태가 결과를 좌우합니다. 이 계열은 <b>형광분석용 몰드 규격(40–32 mm 등)에 맞춰</b> 자동 가압·탈형까지 프로그램으로 처리해 표면 재현성을 확보합니다.'),
- 'P8-cellseal': dict(kind='press', crumb='버튼셀 실링기', sub='cell',
+ 'P8-cellseal': dict(kind='press', crumb='버튼셀 실링기', sub='pellet',
    nm='버튼셀 전지 실링기',
    ans='코인셀 케이스를 눌러 밀봉하는 전용 유압 실링기입니다. 분해용 다이로 되열 수도 있습니다.',
    why='코인셀 조립의 마지막 공정 전용기입니다. <b>실링 다이로 밀봉</b>하고 <b>분해 다이로 되열</b> 수 있어, 셀 재사용·사후 분석까지 한 대로 처리합니다.'),
@@ -149,11 +149,11 @@ CFG = {
    nm='초경합금 펠릿 다이',
    ans='초경합금(YT15)으로 만든 고경도 성형 다이입니다. 경도 HRC85~90으로 마모와 변형에 훨씬 강합니다.',
    why='재질이 <b>초경합금 YT15</b>, 경도 <b>HRC85~90</b>입니다. 공구강 다이(HRC60~70)보다 훨씬 단단해 고압 반복 사용과 경질 분말에서 캐비티 마모가 적습니다.'),
- 'D6-hotdie': dict(kind='die', crumb='가열 펠릿 다이', sub='die-hot',
+ 'D6-hotdie': dict(kind='die', crumb='가열 펠릿 다이', sub='die',
    nm='가열 펠릿 다이',
    ans='다이 자체를 가열해 시료를 데우면서 성형하는 다이입니다. 가열 프레스와 함께 씁니다.',
    why='다이에 열원이 들어 있어 <b>시료를 데운 상태로 성형</b>합니다. 상온에서 성형되지 않는 고분자·필름 시료에 필요합니다.'),
- 'D7-cellmold': dict(kind='die', crumb='버튼셀·전고체 전지 몰드', sub='cell',
+ 'D7-cellmold': dict(kind='die', crumb='버튼셀·전고체 전지 몰드', sub='pellet',
    nm='버튼셀 전지 몰드',
    ans='코인셀 실링·분해와 전고체 전지 가압 평가에 쓰는 전용 몰드입니다.',
    why='전지 조립·평가 전용 몰드입니다. 실링/분해용과, 전고체 전지처럼 <b>가압 상태를 유지한 채 측정</b>해야 하는 용도가 나뉩니다.'),
@@ -162,3 +162,194 @@ CFG = {
    ans='XRF 시료 성형 전용 다이입니다. 붕산 링·스틸 링으로 시료 가장자리를 잡아 줍니다.',
    why='XRF는 시료가 커서 그대로 누르면 가장자리가 무너집니다. <b>붕산 또는 스틸 링으로 테두리를 지지</b>해 평탄한 분석면을 만듭니다.'),
 }
+
+
+BYFAM = collections.defaultdict(list)
+for _o in F.out: BYFAM[_o['fam']].append(_o)
+
+def variant(name):
+    v = []
+    if 'Protection' in name: v.append('보호커버')
+    if '4 Columns' in name or '4 columns' in name.lower(): v.append('4컬럼')
+    m = re.search(r'(\d{3})\s*°?[C℃]', name)
+    if m: v.append('%s℃' % m.group(1))
+    if 'Split' in name: v.append('분할형')
+    if 'Double Hot Plates' in name: v.append('양면 열판')
+    if 'Manual' in name and 'Split' in name: v.append('수동')
+    if 'Electric' in name and 'Split' in name: v.append('전동')
+    return ' · '.join(dict.fromkeys(v))
+
+def head_bits(o, cfg, tail_txt):
+    name, r = o['name'], o['row']
+    vr = variant(name)
+    h1 = '%s %s' % (o['model'], cfg['nm'])
+    t = ton_of(r)
+    if t: h1 += ' %g T' % t
+    if vr: h1 += ' (%s)' % vr
+    return h1, vr, t
+
+def xlinks_of(o, limit=8):
+    sib = [x for x in BYFAM[o['fam']] if x['slug'] != o['slug']]
+    return [('/brands/hench/%s/' % x['slug'],
+             '%s%s' % (x['model'], (' %g T' % ton_of(x['row'])) if ton_of(x['row']) else '')) for x in sib[:limit]]
+
+def common(o, cfg, h1, ans, summ, spec, feats, faqs, incl, warn, models, opt='', figs=()):
+    slug = o['slug']; img = '/img/hench/%s-1.jpg' % slug
+    kwsub = cfg['crumb'].replace(' ', '')
+    return dict(models=models, slug=slug, crumb=cfg['crumb'],
+      title='Hench %s — %s | 실험셋업연구소' % (h1, cfg['crumb']),
+      desc=re.sub(r'<[^>]+>', '', '%s — %s %s' % (h1, summ, ans))[:155],
+      h1=h1, ans=ans, summ=summ, quote='Hench %s' % h1,
+      kws=[('/product/', '#실험장비카탈로그'), ('/brands/hench/%s/' % slug, '#%s' % kwsub),
+           ('/brands/hench/%s/' % slug, '#시료전처리'), ('/brands/hench/%s/' % slug, '#Hench')],
+      img=img,
+      thumbs=[(img, o['model'], '제품'), ('/img/hench/%s-2.jpg' % slug, o['model'], '상세'),
+              ('/img/hench/%s-3.jpg' % slug, o['model'], '구성')],
+      feats=feats, incl=incl, spec=spec, opt_tbl=opt, figures=list(figs),
+      price='<b>구성별 견적(문의)</b>입니다. 구성·수량·다이 규격을 알려주시면 함께 잡아 견적해 드립니다.',
+      notes=notes_common(), warn_h=warn[0], warn_p=warn[1],
+      xlinks=xlinks_of(o), faqs=faqs,
+      ld={"@context":"https://schema.org","@type":"Product","name":h1,
+          "brand":{"@type":"Brand","name":"Hench","alternateName":["HENCH","天津恒创立达"]},
+          "category":"시료 전처리 · %s" % cfg['crumb'],
+          "url":'https://rndsetup.com/brands/hench/%s/' % slug,
+          "image":'https://rndsetup.com' + img, "model":o['model']})
+
+def press_page(o):
+    cfg = CFG[o['fam']]; r = o['row']
+    h1, vr, t = head_bits(o, cfg, '')
+    cyl = g(r,'Cylinder diameter','Piston diameter'); stab = g(r,'Pressure stability')
+    space = g(r,'Effective space','Valid space','Available space','Work space')
+    dim = g(r,'Dimensions','Size','Machine size'); wt = g(r,'Weight','Equipment weight')
+    pwr = g(r,'Power supply','Device power supply'); heat = g(r,'Heating range','Heating temperature')
+    dmax = H.max_dia(t, MPA) if t else 0
+    summ = ' · '.join(x for x in [
+        ('최대하중 <b>%g T</b>' % t) if t else '', ('실린더 %s' % cyl) if cyl!='—' else '',
+        ('가열 %s' % heat) if heat!='—' else '', ('유효공간 %s' % space) if space!='—' else '',
+        ('전원 %s' % pwr) if pwr!='—' else '', ('무게 %s' % wt) if wt!='—' else ''] if x)
+    feats = [cfg['why']]
+    if t: feats.append('<b>최대하중 %g T</b> — 성형압 700 MPa 기준으로 지름 <b>Φ%.1f mm</b>까지 낼 수 있습니다. IR 표준 Φ13 mm에는 약 9.5 T가 필요합니다.' % (t, dmax))
+    if stab!='—': feats.append('<b>압력 안정도 %s</b> — 유지 구간에서 압력 강하가 작아 성형 조건을 재현하기 쉽습니다.' % stab)
+    if heat!='—': feats.append('<b>가열 범위 %s</b> — 온도와 압력을 동시에 걸어야 하는 시료에 대응합니다.' % heat)
+    if space!='—': feats.append('<b>유효공간 %s</b> — 다이 높이와 부속을 감안해 확인하십시오.' % space)
+    if pwr!='—': feats.append('<b>전원 %s</b> — 국내 설치 시 전원 사양을 반드시 확인해 주십시오.' % pwr)
+    feats.append('<b>다이 별매</b> — 목표 펠릿 규격에 맞는 다이를 함께 고르셔야 합니다.')
+    incl = [('본체 1대','in','포함'), ('다이(몰드) — 규격에 맞춰 별도 선택','ex','미포함·별매'),
+            ('사진 속 다이·시료는 연출용','ex','미포함')]
+    faqs = [('계열', '%s는 어떤 프레스인가요?' % o['model'], cfg['why'])]
+    if t:
+        faqs.append(('톤수 선택','이 모델로 만들 수 있는 펠릿 지름은 어디까지인가요?',
+          '성형압 700 MPa 기준 최대 <b>Φ%.1f mm</b>입니다. 표준인 Φ13 mm(132.7 mm²)에는 약 <b>9.5 T</b>가 필요하므로 %s'
+          % (dmax, '이 모델로 여유가 있습니다.' if t>=11 else '이 모델로는 부족합니다 — 상위 톤수를 권합니다.')))
+        faqs.append(('압력 환산','최대하중을 Φ13 mm 다이에 걸면 시료 압력은?',
+          '%g T = %.1f kN을 132.7 mm²에 걸면 <b>약 %.0f MPa</b>입니다. KBr 표준(700 MPa) 대비 %s'
+          % (t, t*9.80665, H.sample_mpa(t,13), ('%.1f배로 여유가 큽니다.' % (H.sample_mpa(t,13)/700)) if H.sample_mpa(t,13)>700 else '못 미치므로 더 작은 직경을 쓰십시오.')))
+    if stab!='—': faqs.append(('운용','압력 유지는 얼마나 되나요?','압력 안정도 사양이 <b>%s</b>입니다. 수 분 단위 유지 공정에서는 압력 강하가 사실상 무시할 수준입니다.' % stab))
+    if pwr!='—': faqs.append(('설치','전원은 어떻게 되나요?','제조사 표기는 <b>%s</b>입니다. 국내 220 V 환경과 맞는지, 커스텀 전압이 필요한지 주문 전 확인해 드립니다.' % pwr))
+    if heat!='—': faqs.append(('가열','승온과 온도 제어는 어떻게 되나요?','가열 범위는 <b>%s</b>이고 온도 정밀도는 <b>%s</b>입니다. 다이와 열판 규격은 사양표를 확인하십시오.' % (heat, g(r,'Temperature control accuracy','Pressure and temperature control accuracy'))))
+    faqs.append(('구성','다이가 포함되나요?','포함되지 않습니다(별매). 목표 펠릿 규격을 알려주시면 <a href="/brands/hench/cylindrical-die-hmy-11-14/">원통형 다이</a> 등에서 함께 구성해 드립니다.'))
+    faqs.append(('가격','가격이 왜 문의인가요?','제조사가 정가를 공개하지 않는 품목이라 구성·수량을 확인한 뒤 안내드립니다. 부가세 별도이며 해외 발주라 해외배송비가 주문당 1회 더해집니다.'))
+    warn = ('안전 — 허용 하중과 전원을 확인하십시오',
+      '다이의 허용 하중을 넘겨 가압하지 마십시오. 압력 해제는 단계적으로 진행하고, 성형 중에는 다이 정면에 서지 마십시오.'
+      + (' 가열 계열은 열판·다이가 고온이므로 냉각 전 접촉을 피하십시오.' if heat!='—' else ''))
+    models = [{"m": o['model'], "s": summ.replace('<b>','').replace('</b>','')[:70]}]
+    return common(o, cfg, h1, cfg['ans'], summ, spec_rows(r), feats, faqs, incl, warn, models)
+
+def die_page(o):
+    cfg = CFG[o['fam']]; r = o['row']
+    ss = g(r,'Sample size'); mat = g(r,'Material'); hard = g(r,'Indenter hardness')
+    dep = g(r,'Cavity depth'); dim = g(r,'Dimensions'); wt = g(r,'Weight')
+    h1 = '%s %s' % (o['model'], cfg['nm'])
+    band = re.sub(r'\s*\(.*$','', ss) if ss!='—' else ''
+    if band: h1 += ' %s' % band[:26]
+    dmin, dmax = dias(r)
+    summ = ' · '.join(x for x in [('성형 규격 <b>%s</b>' % ss) if ss!='—' else '',
+        ('재질 %s' % mat) if mat!='—' else '', ('경도 <b>%s</b>' % hard) if hard!='—' else '',
+        ('캐비티 깊이 %s' % dep) if dep!='—' else '', ('외형 %s' % dim) if dim!='—' else '',
+        ('무게 %s' % wt) if wt!='—' else ''] if x)
+    feats = [cfg['why']]
+    if mat!='—': feats.append('<b>재질 %s</b> — 열처리 후 치수 안정성이 높아 캐비티와 인덴터의 클리어런스가 유지됩니다.' % mat)
+    if hard!='—': feats.append('<b>인덴터 경도 %s</b> — 고압 성형에서도 인덴터 단면이 눌리지 않아 펠릿 표면이 평활합니다.' % hard)
+    if dep!='—': feats.append('<b>캐비티 깊이 %s</b> — 분말 충전량 여유를 보고 고르십시오.' % dep)
+    feats.append('<b>표준 유압 프레스 호환</b> — <a href="/brands/hench/pellet-press-yp-15/">YP 시리즈</a> 등에 올려 씁니다. 프레스는 별매입니다.')
+    incl = [('다이 본체 1세트 (캐비티 · 인덴터 · 받침)','in','포함'), ('프레스 본체 — 별도 선택','ex','미포함·별매')]
+    faqs = [('계열','%s는 어떤 다이인가요?' % o['model'], cfg['why'])]
+    if ss!='—': faqs.append(('규격','성형 규격이 어떻게 되나요?','<b>%s</b>입니다. 캐비티 깊이 %s, 외형 %s, 무게 %s.' % (ss, dep, dim, wt)))
+    if dmax: faqs.append(('프레스 호환','몇 톤짜리 프레스가 필요한가요?',
+        '성형압 700 MPa 기준으로 최대 규격 %g mm에 <b>약 %.1f T</b>가 필요합니다. %s'
+        % (dmax, H.need_ton(dmax, MPA), '<a href="/brands/hench/pellet-press-yp-15/">YP-15</a>(15 T)로 소화됩니다.' if H.need_ton(dmax,MPA)<=15 else 'YP-15(15 T)로는 부족하므로 상위 톤수 프레스가 필요하거나, XRD용 저압 성형 전제로 쓰셔야 합니다.')))
+    if hard!='—': faqs.append(('재질·경도','경도가 왜 중요한가요?','KBr 펠릿 성형압은 통상 0.7 GPa 이상입니다. 이 다이는 경도 <b>%s</b>라 그 압력대에서 인덴터가 영구변형되지 않습니다. Hench 다이는 밴드·계열마다 재질이 다르니 사양표를 확인하십시오.' % hard))
+    faqs.append(('용도 구분','IR과 XRD 어느 쪽에 쓰나요?','둘 다 대응합니다. IR은 투광이 목적이라 고압·유지가 필요하고, XRD는 표면 평탄도가 목적이라 저압으로 충분합니다.'))
+    faqs.append(('관리','청소와 보관은?','KBr은 흡습성이 강해 잔류 분말이 부식·고착의 원인이 됩니다. 사용 후 무수 알코올로 닦고 완전히 건조한 뒤 건조 보관하십시오.'))
+    faqs.append(('구성','프레스가 포함되나요?','포함되지 않습니다. 다이는 단품이며 프레스는 <a href="/brands/hench/pellet-press-yp-15/">YP 시리즈</a>에서 별도로 고르십시오.'))
+    faqs.append(('가격','가격이 왜 문의인가요?','제조사가 정가를 공개하지 않는 품목이라 구성·수량을 확인한 뒤 안내드립니다. 부가세 별도이며 해외 발주라 해외배송비가 주문당 1회 더해집니다.'))
+    warn = ('안전 — 규격별 허용 하중이 다릅니다',
+      '소구경 다이에 프레스 최대 하중을 그대로 가하면 시료면 압력이 수 GPa에 달해 인덴터·캐비티가 손상될 수 있습니다. 매 사용 후 잔류 분말을 청소하십시오.')
+    models = [{"m": o['model'], "s": (ss if ss!='—' else cfg['nm'])[:70]}]
+    return common(o, cfg, h1, cfg['ans'], summ, spec_rows(r), feats, faqs, incl, warn, models)
+
+
+SLICER = dict(kind='slicer', crumb='전극 슬라이서', sub='slicer', nm='수동 전극 슬라이서',
+  ans='리튬 전극 시트와 분리막을 원판으로 타발하는 수동 슬라이서입니다. 코인셀 조립 전 단계에 씁니다.',
+  why='코인셀을 만들려면 전극 시트를 정해진 지름으로 잘라야 합니다. 가위·펀치로 자르면 가장자리가 눌려 단락 원인이 되는데, 이 장비는 <b>레버 펀칭으로 깔끔한 단면</b>을 냅니다.')
+
+def slicer_page(o):
+    cfg = SLICER; r = o['row']
+    h1 = '%s 수동 전극 슬라이서' % o['model']
+    ss = g(r,'Slice size'); pf = g(r,'Punching pressure'); st = g(r,'Punch stroke')
+    summ = '슬라이스 규격 <b>%s</b> · 펀칭 하중 %s · 스트로크 %s · 적용 시료 리튬 양·음극 시트, 분리막 · 무게 %s' % (ss, pf, st, g(r,'Weight'))
+    feats = [cfg['why'],
+      '<b>슬라이스 규격 %s</b> — 툴헤드 교체로 지름을 바꿉니다. 기본 툴헤드는 %s입니다.' % (ss, g(r,'Standard tool head')),
+      '<b>펀칭 하중 %s · 스트로크 %s</b> — 수동 레버 구동이라 전원이 필요 없습니다.' % (pf, st),
+      '<b>몰드 재질 %s</b> — 반복 타발에서 날 끝이 무뎌지는 것을 늦춥니다.' % g(r,'Mold material'),
+      '<b>정전기 방지 수집함</b> — %s. 타발된 전극이 달라붙지 않게 받아 냅니다.' % g(r,'Receiving box')]
+    incl = [('본체 1대 + 기본 툴헤드','in','포함'), ('추가 지름 툴헤드','ex','별매')]
+    faqs = [
+     ('용도','무엇에 쓰는 장비인가요?', cfg['why']),
+     ('규격','자를 수 있는 지름 범위는?','<b>%s</b>입니다. 기본 툴헤드는 %s이며, 다른 지름은 툴헤드를 추가하면 됩니다.' % (ss, g(r,'Standard tool head'))),
+     ('적용','어떤 시료에 쓰나요?','<b>%s</b>입니다. 집전체에 도포된 전극 시트와 분리막을 대상으로 합니다.' % g(r,'Suitable material')),
+     ('운용','전원이 필요한가요?','필요 없습니다. 수동 레버 구동이며 펀칭 하중 %s, 스트로크 %s입니다.' % (pf, st)),
+     ('구성','툴헤드는 몇 개 오나요?','기본 툴헤드 %s가 포함됩니다. 추가 지름은 별매이며, 필요한 지름을 알려주시면 함께 구성해 드립니다.' % g(r,'Standard tool head')),
+     ('가격','가격이 왜 문의인가요?','제조사가 정가를 공개하지 않는 품목이라 구성·수량을 확인한 뒤 안내드립니다. 부가세 별도이며 해외 발주라 해외배송비가 주문당 1회 더해집니다.'),
+    ]
+    warn = ('안전 — 날 끝에 손을 대지 마십시오','타발 날은 매우 날카롭습니다. 시료를 놓거나 뺄 때 레버가 내려오지 않도록 고정하고, 툴헤드 교체는 반드시 하중을 완전히 해제한 뒤 진행하십시오.')
+    return common(o, cfg, h1, cfg['ans'], summ, spec_rows(r), feats, faqs, incl, warn,
+                  [{"m": o['model'], "s": '슬라이스 %s' % ss}])
+
+def build_page(o):
+    k = (CFG.get(o['fam']) or SLICER)['kind'] if o['fam'] != 'Z-slicer' else 'slicer'
+    if k == 'press': return press_page(o)
+    if k == 'die':   return die_page(o)
+    return slicer_page(o)
+
+# ── 허브(119장) ──────────────────────────────────────────────
+def card_of(o):
+    slug = o['slug']
+    if o['done']:
+        s = io.open(os.path.join(H.ROOT, 'brands', 'hench', slug, 'index.html'), encoding='utf-8').read()
+        h1 = re.sub(r'<[^>]+>', '', re.search(r'<h1 class="dt-name">([\s\S]*?)</h1>', s).group(1)).strip()
+        d = re.sub(r'<[^>]+>', '', re.search(r'<p class="dt-ans">([\s\S]*?)</p>', s).group(1)).strip()
+        sub = 'pellet' if 'pellet-press' in slug else 'die'
+        bdg = '펠릿 프레스' if sub == 'pellet' else '펠릿 다이'
+    else:
+        cfg = CFG.get(o['fam']) or SLICER
+        pg = build_page(o); h1 = pg['h1']; d = re.sub(r'<[^>]+>', '', pg['ans'])
+        sub = cfg['sub']; bdg = cfg['crumb']
+    return dict(cat=sub, img='/img/hench/%s-1.jpg' % slug, bdg=bdg[:14],
+                href='/brands/hench/%s/' % slug, title=h1, nm=o['model'],
+                d=d[:112],
+                text=('%s %s %s hench 헨치 천진항창립달 시료 전처리 펠릿 프레스 다이 압편 kbr ir xrd %s'
+                      % (h1, o['model'], slug.replace('-', ' '), o['name'])).lower())
+
+def main():
+    made = 0
+    for o in F.out:
+        if o['done']: continue
+        H.write(o['slug'], H.render(build_page(o))); made += 1
+    cards = [card_of(o) for o in F.out]
+    hp = os.path.join(H.ROOT, 'brands', 'hench', 'index.html')
+    io.open(hp, 'w', encoding='utf-8', newline='\n').write(G.hub(cards))
+    print('신규 %d장 · 허브 dscard %d장' % (made, len(cards)))
+
+if __name__ == '__main__':
+    main()
