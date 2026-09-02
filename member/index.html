@@ -181,10 +181,11 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
 .head{position:fixed;left:0;right:0;top:0;height:var(--head);background:#fff;
   border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;
   padding:0 22px;z-index:35}
-.head .hbrand{font-size:21px;font-weight:700;letter-spacing:-.01em;color:var(--ink);
-  text-decoration:none;flex:0 0 auto;line-height:1}
+.head .hbrand{display:block;text-decoration:none;color:var(--ink);flex:0 0 auto;line-height:1.25}
 .head .hbrand:hover{color:var(--navy)}
-.head .hbrand em{font-style:normal;font-size:12.5px;font-weight:600;color:var(--mut);margin-left:7px}
+.head .hbrand b{display:block;font-size:17px;font-weight:800;letter-spacing:-.015em}
+.head .hbrand b span{font-weight:700;color:var(--navy)}
+.head .hbrand em{display:block;font-style:normal;font-size:11.5px;font-weight:600;color:var(--mut);margin-top:1px}
 .head h1{font-size:14px;font-weight:700;color:var(--mut);padding-left:16px;
   border-left:1px solid var(--line);line-height:1.2;flex:0 0 auto}
 .head .who{margin-left:12px;font-size:13.5px;color:var(--mut);white-space:nowrap}
@@ -842,7 +843,8 @@ textarea{min-height:78px;resize:vertical}
   .side.on{transform:none}
   .head{padding:0 14px;gap:10px}
   .head .burger{display:flex;align-items:center;justify-content:center}
-  .head .hbrand{font-size:17px}
+  .head .hbrand b{font-size:14.5px}
+  .head .hbrand b span{display:block;font-size:12px}
   .head .hbrand em{display:none}
   .head h1{display:none}
   .side{top:var(--head)}
@@ -945,7 +947,7 @@ textarea{min-height:78px;resize:vertical}
 
   <header class="head">
     <button class="burger" id="burger">☰</button>
-    <a class="hbrand" href="/" title="실험셋업연구소 홈페이지로">실험셋업연구소<em>주문·정산</em></a>
+    <a class="hbrand" href="/" title="실험셋업연구소 홈페이지로"><b>실험셋업연구소 <span>멤버십 전용 페이지</span></b><em>(이머전트)</em></a>
     <button class="backbtn" id="backBtn" title="홈으로 (백스페이스)" hidden>←</button>
     <h1 id="headTitle">대시보드</h1>
     <button class="bell" id="bell" hidden aria-label="알림" title="알림">
@@ -2619,9 +2621,6 @@ function paintNew(){
     if (m==='bulk'){
       modal('여러 건 주문',
          '<p class="hint" style="margin:2px 0 0;line-height:1.7">아직 준비 중입니다.</p>'
-        +'<p class="hint" style="line-height:1.7">지금은 <b>단건 주문</b>으로 하나씩 담아주세요. '
-        +'품목이 많으시면 목록을 <b>070-8983-2600</b> 또는 <b>info@rndsetup.com</b> 으로 보내주시면 '
-        +'저희가 대신 담아 견적을 보내드립니다.</p>'
         +'<div class="mrow"><button class="btn pri" data-x>알겠습니다</button></div>');
       return;
     }
