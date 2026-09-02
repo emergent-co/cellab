@@ -109,7 +109,9 @@
 - **디자인 수정 지점은 딱 2곳**: `assets/detail.css` 또는 `_pp_render()`. 페이지 파일을 직접 고치지 않는다.
 - 문의 CTA 바(전화·채널톡 QR)는 `_build/partial_ctbar.html` 1곳.
 
-**빌드 린터 `lint_detail_pages()`** — 빌드마다 `brands/*/*/index.html`을 검사해 warn만 출력(중단 없음):
+**빌드 린터 `lint_detail_pages()` — 신규 위반은 빌드를 세운다(커밋 불가).**
+`_build/lint_allow.txt` 에 적힌 기존 부채만 경고로 넘어가고, 새로 생긴 위반이 있으면 `build.py` 가 **파일을 쓰지 않고 exit 1** → `go.ps1` 이 "빌드 실패"로 중단해 커밋·푸시가 막힌다. 위반 메시지에 유예 목록에 넣을 줄이 그대로 찍히니, 의도한 예외면 그 줄을 `lint_allow.txt` 에 추가한다.
+검사 항목(코드): `STYLE_INLINE` `NO_DETAIL_CSS` `MISSING_BLOCK` `ORDER` `IMG_OUTSIDE` `BAD_COLOR` `BORDER_LEFT` `BAD_PHRASE` `NO_BUYBOX` `NO_SPEC_CTA` `HTML_END` —
 필수 블록(크럼·h1·대표사진·정답블록) 존재와 순서, 가격표/견적 CTA 부재, 금지 색상(`#1E3A5F`·`#1a6e56`·`#C2410C`·`#E8632C`), `border-left` 3~4px 좌측 색 바, 인라인 `<style>` 잔존, `detail.css` 링크 누락, `</html>` 누락.
 구형 브랜드(삼흥·리드플루이드·Alicat)는 순차 이관 부채라 검사 제외(`LINT_SKIP_BRANDS`).
 

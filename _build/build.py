@@ -19,6 +19,7 @@ sitemap.xml 빌드 스크립트 (카테고리 페이지는 2026-05-15에 폐기)
 import json
 import os
 import re
+import sys
 from html import escape
 from urllib.parse import quote
 
@@ -2159,7 +2160,7 @@ def lint_detail_pages():
 
             # 1) </html> 누락
             if not html.rstrip().endswith('</html>'):
-                warns.append((rel, '</html> 누락 — 파일 잘림 의심'))
+                warns.append((rel, 'HTML_END', '</html> 누락 — 파일 잘림 의심'))
 
             # 2) 필수 블록 존재·순서
             at = {}
@@ -2169,11 +2170,11 @@ def lint_detail_pages():
                     at[label] = m.start()
             missing = [k for k in ('크럼', 'h1', '대표사진', '정답블록') if k not in at]
             if missing:
-                warns.append((rel, '필수 블록 없음: ' + ' · '.join(missing)))
+                warns.append((rel, 'MISSING_BLOCK', '필수 블록 없음: ' + ' · '.join(missing)))
             if '규격표' not in at and 'class="qbtn"' not in body:
-                warns.append((rel, '규격표도 견적 CTA도 없음'))
+                warns.append((rel, 'NO_SPEC_CTA', '규격표도 견적 CTA도 없음'))
             if '규격표' in at and 'id="buybox"' not in body:
-                warns.append((rel, '오른쪽 주문정보(#buybox) 없음 — 규격표만 있고 주문 경로가 없다'))
+                warns.append((rel, 'NO_BUYBOX', '오른쪽 주문정보(#buybox) 없음 — 규격표만 있고 주문 경로가 없다'))
 
             twocol = 'class="dt-grid"' in body      # 2단 레이아웃이면 상단 3블록은 순서 자유
             seq = ['크럼', 'h1', '정답블록', '규격표'] if twocol \
@@ -2181,47 +2182,66 @@ def lint_detail_pages():
             seq = [k for k in seq if k in at]
             for i in range(1, len(seq)):
                 if at[seq[i]] < at[seq[i - 1]]:
-                    warns.append((rel, '블록 순서 어긋남: %s 가 %s 보다 앞에 있음 '
+                    warns.append((rel, 'ORDER', '블록 순서 어긋남: %s 가 %s 보다 앞에 있음 '
                                        '(표준=크럼→h1+영문명→대표사진→정답블록→특징→사양→규격표)'
                                   % (seq[i], seq[i - 1])))
                     break
             if twocol and '대표사진' in at and 'class="detail-top"' in body:
                 top = body.split('class="detail-top"', 1)[1].split('</section>', 1)[0]
                 if not re.search(LINT_PAT['대표사진'], top):
-                    warns.append((rel, '대표사진이 상단 블록(.detail-top) 밖에 있음'))
+                    warns.append((rel, 'IMG_OUTSIDE', '대표사진이 상단 블록(.detail-top) 밖에 있음'))
 
             # 3) 금지 색상
             low = body.lower()
             bad = [c for c in LINT_BAD_COLORS if c.lower() in low]
             if bad:
-                warns.append((rel, '금지 색상 사용: ' + ' · '.join(bad)))
+                warns.append((rel, 'BAD_COLOR', '금지 색상 사용: ' + ' · '.join(bad)))
 
             # 3-1) 페이지 자기설명 메타 문구
             bad_ph = [x for x in LINT_BAD_PHRASES if x in body]
             if bad_ph:
-                warns.append((rel, '안내 문장(메타 문구) 사용: ' + ' · '.join(bad_ph)))
+                warns.append((rel, 'BAD_PHRASE', '안내 문장(메타 문구) 사용: ' + ' · '.join(bad_ph)))
 
             # 4) border-left 3~4px 색 바
             for m in re.finditer(r'border-left(?:-width)?\s*:\s*([^;"}]*)', body, re.I):
                 v = m.group(1)
                 if re.search(r'\b[34]px\b', v):
-                    warns.append((rel, '좌측 포인트 바 금지: border-left:%s' % v.strip()))
+                    warns.append((rel, 'BORDER_LEFT', '좌측 포인트 바 금지: border-left:%s' % v.strip()))
                     break
 
             # 5) 인라인 <style> 스냅샷 재발
             if '<style' in html:
-                warns.append((rel, '인라인 <style> 잔존 — /assets/detail.css 로 옮길 것'))
+                warns.append((rel, 'STYLE_INLINE', '인라인 <style> 잔존 — /assets/detail.css 로 옮길 것'))
             elif '/assets/detail.css' not in html:
-                warns.append((rel, '/assets/detail.css 링크 없음'))
+                warns.append((rel, 'NO_DETAIL_CSS', '/assets/detail.css 링크 없음'))
 
-    if warns:
-        print('  [warn] 상세페이지 표준 위반 %d건 (검사 %d개)' % (len(warns), checked))
-        for rel, msg in warns[:40]:
+    # 유예 목록(_build/lint_allow.txt) 에 있는 기존 부채는 경고만, 새 위반은 빌드를 세운다.
+    allow = set()
+    ap = os.path.join(SCRIPT_DIR, 'lint_allow.txt')
+    if os.path.exists(ap):
+        for line in read(ap).splitlines():
+            line = line.split('#')[0].strip()
+            if line:
+                allow.add(' '.join(line.split()))
+    old_w = [w for w in warns if '%s %s' % (w[0], w[1]) in allow]
+    new_w = [w for w in warns if '%s %s' % (w[0], w[1]) not in allow]
+    if old_w:
+        print('  [warn] 이관 대기 부채 %d건 (유예 목록)' % len(old_w))
+        for rel, code, msg in old_w[:40]:
             print('    - %s : %s' % (rel, msg))
-        if len(warns) > 40:
-            print('    ... 외 %d건' % (len(warns) - 40))
-    else:
+    if new_w:
+        print('')
+        print('  [X] 상세페이지 표준 위반(신규) %d건 — 커밋할 수 없습니다' % len(new_w))
+        for rel, code, msg in new_w:
+            print('    - %s [%s] : %s' % (rel, code, msg))
+        print('')
+        print('  고치거나, 의도한 예외라면 _build/lint_allow.txt 에 아래 줄을 추가하십시오:')
+        for rel, code, msg in new_w:
+            print('    %s %s' % (rel, code))
+        return len(new_w)
+    if not warns:
         print('  상세페이지 린터: %d개 검사, 위반 0건' % checked)
+    return 0
 
 
 def build_wiki():
@@ -2809,7 +2829,13 @@ def main():
     build_new_research()  # 홈 최신연구 레일 — posts.json 자동 렌더
     build_prices()        # 가격 SSOT — SQL 최저가를 index.html·site.js 마커에 주입
     build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔 (301 소스 제외)
-    lint_detail_pages()   # 상세페이지 디자인 표준 검사 (경고만, 빌드 중단 없음)
+    lint_fail = lint_detail_pages()   # 상세페이지 디자인 표준 검사 (신규 위반이면 빌드 중단)
+
+    if lint_fail:
+        print('\n' + '=' * 60)
+        print('  빌드 중단 — 파일을 쓰지 않았습니다 (신규 표준 위반 %d건)' % lint_fail)
+        print('=' * 60)
+        sys.exit(1)
 
     saved = flush_writes()
 

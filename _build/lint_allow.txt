@@ -1,0 +1,27 @@
+# 상세페이지 린터 유예 목록 — 여기 적힌 것만 경고로 넘어가고, 나머지 신규 위반은 빌드를 세운다.
+# 형식:  <경로> <코드>          (# 뒤는 주석)
+# 코드:  STYLE_INLINE(인라인 style 잔존) · NO_DETAIL_CSS · MISSING_BLOCK(필수 블록 없음)
+#        ORDER(블록 순서) · IMG_OUTSIDE · BAD_COLOR(금지 색상) · BORDER_LEFT(좌측 색 바)
+#        BAD_PHRASE(안내 메타 문구) · NO_BUYBOX(주문정보 없음) · NO_SPEC_CTA · HTML_END
+#
+# ── 2026-09-02 시점 이관 대기 부채. 이관하면서 한 줄씩 지운다. ──
+
+# aida 5장 — detail.css 이관 대기
+brands/aida/gc-disc-working-electrode/   STYLE_INLINE
+brands/aida/pt-disc-working-electrode/   STYLE_INLINE
+brands/aida/pt-sheet-counter-electrode/  STYLE_INLINE
+brands/aida/rde-rrde/                    STYLE_INLINE
+brands/aida/reference-electrode/         STYLE_INLINE
+
+# hench 2장 — detail.css 이관 대기 (.hx-note 등 페이지 고유 규칙 이관 필요)
+brands/hench/cylindrical-die-hmy/        STYLE_INLINE
+brands/hench/manual-pellet-press-yp/     STYLE_INLINE
+
+# neware 2장 — detail.css 이관 + 제품 사진 확보 대기
+brands/neware/ct-4008q/                  STYLE_INLINE
+brands/neware/ct-4008q/                  MISSING_BLOCK
+brands/neware/wgdw-chamber/              STYLE_INLINE
+brands/neware/wgdw-chamber/              MISSING_BLOCK
+
+# 가오스 1장 — 제품 사진 확보 대기
+brands/gaossunion/custom-material-working-electrode/  MISSING_BLOCK
