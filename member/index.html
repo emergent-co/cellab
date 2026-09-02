@@ -4885,13 +4885,18 @@ function dqAutoTitle(){
    등록된 담당자가 없으면 거래처에 적힌 대표 연락처를 임시 후보(id 0)로 세운다 —
    «담당자를 먼저 등록하세요»로 막으면 급할 때 발행이 멈춘다. */
 function dqSetContacts(list){
-  dqContacts = (list || []).slice();
-  if (!dqContacts.length && dqCli){
-    dqContacts = [{ id:0, name: dqCli.name || '', role:'거래처 대표 연락처',
-                    email: dqCli.work_email || dqCli.email || '', phone: dqCli.phone || '' }];
+  var rows = (list || []).slice();
+  // 거래처에 적힌 대표 연락처는 «항상» 후보로 남는다.
+  // 담당자를 하나 등록했다고 대표가 목록에서 사라지면, 원래 보내던 사람에게 되돌릴 방법이 없어진다.
+  if (dqCli && (dqCli.name || dqCli.work_email || dqCli.email)){
+    rows.unshift({ id:0, name: dqCli.name || '거래처 대표', role:'거래처 대표 연락처',
+                   email: dqCli.work_email || dqCli.email || '', phone: dqCli.phone || '' });
   }
+  dqContacts = rows;
   var keep = dqContact && dqContacts.filter(function(c){ return c.id === dqContact.id; })[0];
-  dqContact = keep || dqContacts.filter(function(c){ return c.is_default; })[0] || dqContacts[0] || null;
+  dqContact = keep
+    || dqContacts.filter(function(c){ return c.is_default; })[0]
+    || dqContacts[0] || null;
 }
 
 function dqPaintContacts(){
@@ -4900,7 +4905,8 @@ function dqPaintContacts(){
   box.innerHTML = '<div class="ctrow"><label>받는 담당자</label>'
     + '<select id="dqCt">' + dqContacts.map(function(c){
         return '<option value="'+c.id+'"'+(dqContact && c.id===dqContact.id ? ' selected':'')+'>'
-          + esc([c.name, c.role, c.email].filter(Boolean).join(' · ')) + '</option>'; }).join('')
+          + esc([c.name, c.role, c.email].filter(Boolean).join(' · '))
+          + (c.is_default ? ' (기본)' : '') + '</option>'; }).join('')
     + '</select><button class="mini" id="dqCtMng">담당자 관리</button></div>'
     + (dqContact && !dqContact.email
        ? '<p class="dhint" style="color:#B45309">이 담당자에게 메일 주소가 없습니다 — 서류는 나가지만 메일은 보낼 수 없습니다.</p>'
@@ -4910,7 +4916,11 @@ function dqPaintContacts(){
     dqPaintContacts();
   };
   $('#dqCtMng').onclick = function(){
-    contactForm(dqCli, dqContacts, function(rows){ dqSetContacts(rows); dqPaintContacts(); });
+    contactForm(dqCli, dqContacts, function(rows, justSaved){
+      if (justSaved) dqContact = { id: justSaved };   // 방금 저장한 사람으로 옮겨준다
+      dqSetContacts(rows);
+      dqPaintContacts();
+    });
   };
 }
 
@@ -4984,7 +4994,7 @@ function contactForm(client, list, onDone){
       .then(function(x){return x.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = was;
     if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
-    rows = r.contacts || []; paint(); clear(); onDone(rows);
+    rows = r.contacts || []; paint(); clear(); onDone(rows, r.id);
     toast('담당자를 저장했습니다');
   };
   return w;
