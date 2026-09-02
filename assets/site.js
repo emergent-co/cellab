@@ -184,7 +184,8 @@
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> (이머전트) · 이영현 · 070-8983-2600 · 사업자등록 328-03-02926<br>' +
           '부산광역시 · 서비스·도매/소매업 · 정밀·과학기기 도매, 화학제품 도매, 전기·전자·정밀기기 수리</div>' +
-        '<div class="cf-cp">© 2026 실험셋업연구소. All Rights Reserved.</div>' +
+        '<div class="cf-cp">© 2026 실험셋업연구소. All Rights Reserved.' +
+          '<a class="cf-admin" href="/member/#admHome" rel="nofollow">\u2699 관리자</a></div>' +
       '</div></footer>';
 
   var CTA_FAB =

@@ -1041,13 +1041,15 @@ ALLPROD_BRANDS = [
     ('hefei', '허페이 인시츄', 'echem'),
     ('aida', '아이다', 'echem'),
     ('dodochem', 'DodoChem', 'echem'),
+    ('hench', 'Hench', 'mix'),
+    ('neware', '뉴웨어', 'echem'),
 ]  # (슬러그, 표기명, 매핑 실패 시 기본 카테고리)
 # 브랜드별 data-cat 어휘 → 통합 카테고리
 ALLPROD_CATMAP = {
     'furnace': 'heat',
     'drying': 'dry', 'distill': 'dry',
     'incubator': 'culture', 'waterbath': 'culture', 'chamber': 'culture', 'sterilizer': 'culture',
-    'mixing': 'mix',
+    'mixing': 'mix', 'pellet': 'mix', 'die': 'mix',
     'vacuumpump': 'vacuum', 'vac': 'vacuum',
     'pump': 'pump', 'peri': 'pump', 'syr': 'pump', 'gear': 'pump', 'ex': 'pump', 'head': 'pump',
     'mfc': 'gas', 'std': 'gas', 'hp': 'gas', 'bio': 'gas', 'corr': 'gas', 'dual': 'gas', 'press': 'gas',
@@ -1111,6 +1113,8 @@ def build_all_products():
         'chamber':    [('온도범위', ['온도']), ('습도범위', ['습도']), ('내부크기', ['내부', '크기', '용량'])],
         'sterilizer': [('온도', ['온도']), ('용량·챔버', ['용량', '챔버']), ('방식', ['방식', '진공', '멸균', '제어'])],
         'mixing':     [('회전수', ['회전']), ('용량·용기', ['용량', '용기']), ('방식', ['방식', '분쇄', '믹서', '모터'])],
+        'pellet':     [('최대하중', ['최대하중', '하중']), ('압력', ['압력']), ('대응 몰드', ['몰드'])],
+        'die':        [('성형 직경', ['직경']), ('재질', ['재질']), ('경도', ['경도'])],
         'vacuumpump': [('도달압력', ['도달', '진공도']), ('배기속도', ['배기', '펌핑']), ('구성', ['플랜지', '모터', '소음', '오일'])],
         'fumehood':   [('크기', ['크기', '폭', '치수']), ('풍속', ['풍속', '배기']), ('구성', ['필터', '구성', '용도', '재질'])],
         'measuring':  [('측정범위', ['측정', '범위', '최대']), ('정밀도', ['정밀', '분해능', '정확']), ('구성', ['플랫폼', '팬', '크기', '표시'])],
@@ -1208,6 +1212,8 @@ def build_all_products():
         'chamber':    ['항온항습기', '환경챔버', '온습도 챔버', '신뢰성시험', '환경시험기', '시험 챔버'],
         'sterilizer': ['오토클레이브', '멸균기', '고압증기멸균', '실험실 멸균', '스팀멸균기', 'autoclave', '배지 멸균', '기구 멸균'],
         'mixing':     ['믹싱', '교반·분쇄', '실험실 교반·분쇄 장비'],
+        'pellet':     ['펠릿프레스', '압편기', '시료 압편', 'KBr 펠릿', 'IR 시료 전처리', 'XRD 분말 성형', '유압프레스', '시료 전처리 장비', '분말 성형', 'pellet press'],
+        'die':        ['펠릿 다이', '성형 몰드', 'KBr 다이', 'IR 펠릿 몰드', 'XRD 시료 다이', '분말 성형 다이', '압편 몰드', '시료 전처리', '다이 세트', 'pellet die'],
         'vacuumpump': ['진공펌프', '진공도', '실험실 진공', '진공 배기', '도달압력', 'vacuum pump'],
         'fumehood':   ['실험실 안전 장비', '실험실 환기·안전'],
         'measuring':  ['측정기기', '계측기', '실험실 측정', '정밀 측정'],
@@ -1391,7 +1397,8 @@ def build_all_products():
         seg = [x for x in href.strip('/').split('/') if x]
         page_slug = seg[-1] if seg else ''
         # SQL에 대응 상품이 없는 페이지: 잘못된 근사 매칭 방지 (견적 유지)
-        if page_slug in ('rotary-tube-furnace', 'rotary-tube-furnace-pro', 'vacuum-tube-turnkey'):
+        if page_slug in ('rotary-tube-furnace', 'rotary-tube-furnace-pro', 'vacuum-tube-turnkey',
+                        'manual-pellet-press-yp', 'cylindrical-die-hmy'):
             return None
         rule = SLUG_SQL.get(page_slug)
         if rule:
@@ -1592,6 +1599,8 @@ def build_all_products():
             ('볼밀', ['ball mill', '분쇄기', '유성밀', '볼 밀']),
             ('행성믹서', ['플래니터리 믹서', 'planetary mixer', '탈포믹서', '자전공전 믹서']),
             ('3롤밀', ['삼롤밀', 'three roll mill', '롤밀']),
+            ('펠릿프레스', ['압편기', 'pellet press', '펠릿 프레스', '유압프레스', '시료 압편기']),
+            ('펠릿 다이', ['성형 몰드', 'pellet die', 'KBr 다이', '펠릿몰드', '압편 몰드']),
             ('제트밀', ['jet mill', '기류분쇄기']),
             ('진공펌프', ['vacuum pump', '로터리펌프', '진공 펌프']),
             ('흄후드', ['흄 후드', 'fume hood', '배기후드', '후드']),
@@ -1635,6 +1644,394 @@ def build_all_products():
               json.dumps(_sug, ensure_ascii=False, separators=(',', ':')))
         print(f'  검색 자동완성 어휘: {{}}개 (assets/search-terms.json)'.format(min(len(_sug), 200)))
         print(f'  전 제품 통합 카탈로그: {{}}개 표준 카드 주입 (product/index.html)'.format(len(cards)))
+
+# ============================================================================
+# 제품 상세페이지 데이터 주도 생성 — SSOT = _build/products/<brand>.json
+# ----------------------------------------------------------------------------
+# 신규 상세페이지 = JSON 1건 추가 + 빌드. 손 HTML 작성 금지.
+# 디자인 수정 = assets/detail.css 또는 아래 _pp_render() 템플릿 1곳.
+# 레이아웃 표준(CLAUDE.md 4.5):
+#   크럼 -> h1+영문명 -> 대표사진 -> 정답블록 -> 모델별 가격표 -> 상세 -> 관련링크/CTA
+# ============================================================================
+
+PP_DIR = 'products'          # _build/products/
+PP_CSS = '<link rel="stylesheet" href="/assets/detail.css">'
+
+
+def _pp_text(s):
+    """마크업 허용 필드에서 순수 텍스트만 뽑는다(메타·JSON-LD용)."""
+    return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', s or '')).strip()
+
+
+def _pp_ctbar():
+    p = os.path.join(SCRIPT_DIR, 'partial_ctbar.html')
+    return read(p).strip() if os.path.exists(p) else ''
+
+
+def _pp_img(brand, fn):
+    if fn.startswith('/') or fn.startswith('http'):
+        return fn
+    return brand.get('img_dir', '/img/%s/' % brand['slug']).rstrip('/') + '/' + fn
+
+
+def _pp_collapse(head, rows):
+    """모든 행에서 값이 같은 열은 표에서 빼고 '공통' 줄로 접는다(동일 내용 표 합치기).
+    반환: (남은 head, 남은 rows, [(열이름, 공통값), ...])"""
+    if not head or len(rows) < 2:
+        return head, rows, []
+    same = []
+    for c in range(1, len(head)):          # 0열(식별자)은 항상 남긴다
+        vals = {r[c] for r in rows if c < len(r)}
+        if len(vals) == 1:
+            same.append(c)
+    if not same:
+        return head, rows, []
+    common = [(head[c], rows[0][c]) for c in sorted(same)]
+    keep = [c for c in range(len(head)) if c not in same]
+    return ([head[c] for c in keep],
+            [[r[c] for c in keep if c < len(r)] for r in rows],
+            common)
+
+
+def _pp_table(rows, head=None, cls='pkg-tbl', minw=None):
+    """rows = [[셀, 셀, ...], ...] — 셀 안 마크업은 그대로 통과(작성자 책임)."""
+    st = ' style="min-width:%dpx"' % minw if minw else ''
+    out = ['<div class="pkg-tblwrap"><table class="%s"%s>' % (cls, st)]
+    if head:
+        out.append('<thead><tr>' + ''.join('<th>%s</th>' % h for h in head) + '</tr></thead>')
+    out.append('<tbody>')
+    for r in rows:
+        if head:
+            out.append('<tr>' + ''.join('<td>%s</td>' % c for c in r) + '</tr>')
+        else:                                    # 2열 = 라벨/값 사양표
+            out.append('<tr><th>%s</th><td>%s</td></tr>' % (r[0], r[1]))
+    out.append('</tbody></table></div>')
+    return ''.join(out)
+
+
+def _pp_render(brand, p):
+    """제품 1건 -> 상세페이지 HTML 전문."""
+    bslug, bko = brand['slug'], brand.get('name_ko', brand['slug'])
+    ben = brand.get('name_en', bko)
+    hub = brand.get('hub', '/brands/%s/' % bslug)
+    url = '/brands/%s/%s/' % (bslug, p['slug'])
+    full = 'https://rndsetup.com' + url
+
+    name, name_en = p['name'], p.get('name_en', '')
+    cat = p.get('category', name)
+    title = p.get('title') or '%s %s%s | 실험셋업연구소' % (
+        bko, name, (' — ' + p['sub']) if p.get('sub') else '')
+    desc = p.get('desc') or _pp_text(p.get('summary', ''))[:155]
+    ogt = p.get('og_title') or '%s — %s 정품' % (name, bko)
+    ogd = p.get('og_desc') or desc
+    imgs = p.get('images', [])
+    img1 = _pp_img(brand, imgs[0]) if imgs else ''
+    ialt = p.get('image_alt') or '%s 제품 사진 (%s %s)' % (name, bko, ben)
+
+    # ---------- head ----------
+    h = ['<!DOCTYPE html>', '<html lang="ko">', '<head>',
+         '<meta charset="UTF-8">',
+         '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+         '<title>%s</title>' % escape(title),
+         '<meta name="description" content="%s">' % escape(desc),
+         '<link rel="canonical" href="%s">' % full,
+         '<meta property="og:type" content="product">',
+         '<meta property="og:title" content="%s">' % escape(ogt),
+         '<meta property="og:description" content="%s">' % escape(ogd),
+         '<meta property="og:url" content="%s">' % full]
+    if img1:
+        h.append('<meta property="og:image" content="https://rndsetup.com%s">' % img1)
+        h.append('<meta name="twitter:card" content="summary_large_image">')
+        h.append('<meta name="twitter:image" content="https://rndsetup.com%s">' % img1)
+    h.append('<meta name="twitter:title" content="%s">' % escape(ogt))
+    h.append('<meta name="twitter:description" content="%s">' % escape(ogd))
+    h.append('<link rel="preconnect" href="https://fonts.googleapis.com">')
+    h.append('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>')
+    h.append('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">')
+    h.append('<link rel="stylesheet" href="/assets/site.css">')
+    h.append(PP_CSS)
+    h.append('</head>')
+
+    # ---------- body ----------
+    b = ['<body>', '<div id="pumplab-header"></div>']
+
+    if p.get('buybox'):
+        b.append('<div class="buyrail"><div id="buybox" class="bb dt-buy" data-name="%s" data-models=\'%s\'></div></div>'
+                 % (escape(name), json.dumps(p['buybox'], ensure_ascii=False)))
+
+    b.append('<section class="detail-top"><div class="wrap">')
+    # 1. 크럼
+    b.append('<div class="crumb"><a href="/">홈</a> › <a href="/product/">제품</a> › <a href="%s">%s</a> › %s</div>'
+             % (hub, escape(bko), escape(cat)))
+    b.append('<div class="dt-grid">')
+    # 3. 대표사진 (+썸네일)
+    b.append('<div class="dt-col">')
+    if img1:
+        b.append('<div class="dt-img"><img src="%s" alt="%s" loading="lazy" '
+                 'onerror="this.closest(\'.dt-img\').style.display=\'none\'"></div>' % (img1, escape(ialt)))
+        if len(imgs) > 1:
+            th = ['<div class="dt-thumbs">']
+            for i, fn in enumerate(imgs, 1):
+                src = _pp_img(brand, fn)
+                th.append('<button type="button" data-src="%s" onclick="ppSwap(this)">'
+                          '<img src="%s" alt="%s %d" loading="lazy" '
+                          'onerror="this.parentElement.style.display=\'none\'"></button>'
+                          % (src, src, escape('%s 제품 사진' % name), i))
+            th.append('</div>')
+            b.append(''.join(th))
+            b.append('<script>function ppSwap(b){var i=b.closest(".dt-col").querySelector(".dt-img img");if(i)i.src=b.dataset.src;}</script>')
+    b.append('</div>')
+    # 2. h1 + 영문명 / 4. 정답블록
+    b.append('<div class="dt-info">')
+    b.append('<div class="dt-brand">%s</div>'
+             % escape(bko if bko == ben else '%s · %s' % (bko, ben)))
+    b.append('<h1 class="dt-name">%s</h1>' % escape(name))
+    if name_en:
+        b.append('<div class="dt-en">%s</div>' % escape(name_en))
+    if p.get('sub'):
+        b.append('<div class="dt-sub">%s</div>' % escape(p['sub']))
+    if p.get('answer'):
+        b.append('<p class="dt-ans">%s</p>' % p['answer'])
+    if p.get('summary'):
+        b.append('<p class="dt-sum">%s</p>' % p['summary'])
+    b.append('<button type="button" class="qbtn" data-quote="%s %s">제품문의</button>' % (escape(bko), escape(name)))
+    kw = p.get('keywords') or [['#' + bko, hub], ['#실험장비카탈로그', '/product/']]
+    b.append('<div class="dt-kw">%s</div>' % ''.join('<a href="%s">%s</a>' % (hrf, escape(lb)) for lb, hrf in kw))
+    b.append('</div></div></div></section>')
+
+    # ---------- 본문 ----------
+    b.append('<section class="pkg"><div class="wrap">')
+    b.append('<a class="ds-back" href="%s">← %s</a>' % (hub, escape(brand.get('hub_label', bko + ' 전체'))))
+
+    # 5. 상세 — 특징 -> 사양
+    if p.get('features'):
+        b.append('<h2 class="pkg-h">특징</h2><ul class="pkg-feat">%s</ul>'
+                 % ''.join('<li>%s</li>' % f for f in p['features']))
+    if p.get('specs'):
+        b.append('<h2 class="pkg-h">사양</h2>' + _pp_table(p['specs']))
+        if p.get('specs_note'):
+            b.append('<p class="pkg-note">%s</p>' % p['specs_note'])
+
+    # 6. 규격 비교표 — 값이 전부 같은 열은 '모든 규격 공통' 한 줄로 접는다.
+    #    소비자가는 표에 적지 않는다(가격 = 우측 주문정보 buybox 한 곳).
+    va = p.get('variants') or p.get('price')
+    if va:
+        b.append('<h2 class="pkg-h">%s</h2>' % escape(va.get('heading', '규격 비교')))
+        head, rows, common = _pp_collapse(va.get('head'), va['rows'])
+        if head and len(head) == 1:
+            # 구분되는 열이 하나뿐 — 표를 쪼개지 말고 라벨/값 한 표로 합친다
+            merged = [[head[0], ' · '.join(r[0] for r in rows)]]
+            merged += [[k, v] for k, v in common]
+            b.append(_pp_table(merged, cls='pkg-tbl pkg-opt'))
+        else:
+            b.append(_pp_table(rows, head=head, cls='pkg-tbl pkg-opt'))
+            if common:
+                b.append('<p class="pkg-common"><b>모든 규격 공통</b> — %s</p>'
+                         % ' · '.join('%s %s' % (escape(k), v) for k, v in common))
+        if va.get('note'):
+            b.append('<p class="pkg-note">%s</p>' % va['note'])
+    for sec in p.get('sections', []):
+        b.append('<h2 class="pkg-h" style="margin-top:26px">%s</h2>' % escape(sec['h']))
+        if sec.get('rows'):
+            b.append(_pp_table(sec['rows'], head=sec.get('head')))
+        if sec.get('html'):
+            b.append(sec['html'])
+        if sec.get('note'):
+            b.append('<p class="pkg-note">%s</p>' % sec['note'])
+
+    # 7. 관련 링크 + 문의 CTA
+    if p.get('related'):
+        b.append('<p class="pkg-note" style="margin-top:14px">%s</p>' % p['related'])
+    b.append('<p style="margin-top:16px"><button type="button" class="qbtn" data-quote="%s %s">견적문의</button></p>'
+             % (escape(bko), escape(name)))
+    b.append('</div></section>')
+    b.append(_pp_ctbar())
+
+    # FAQ
+    faq = p.get('faq') or []
+    if faq:
+        b.append('<section class="faq-sec"><div class="wrap"><h2 class="faq-h">%s FAQ</h2>' % escape(name))
+        for f in faq:
+            tag = '<span class="faq-tag">%s</span>' % escape(f['tag']) if f.get('tag') else ''
+            b.append('<div class="faq-item"><p class="faq-q">%s%s</p><p class="faq-a">%s</p></div>'
+                     % (tag, escape(f['q']), f['a']))
+        b.append('</div></section>')
+
+    # ---------- JSON-LD ----------
+    ld = p.get('ld', {})
+    prod = {"@context": "https://schema.org", "@type": "Product",
+            "name": ld.get('name') or '%s %s' % (bko, name),
+            "brand": {"@type": "Brand", "name": ben, "alternateName": bko},
+            "url": full,
+            "description": _pp_text(ld.get('description') or desc)}
+    if ld.get('sku'):
+        prod['sku'] = ld['sku']
+    if ld.get('category'):
+        prod['category'] = ld['category']
+    if img1:
+        prod['image'] = 'https://rndsetup.com' + img1
+    if ld.get('models'):
+        prod['model'] = ld['models']
+    if ld.get('low'):
+        prod['offers'] = {"@type": "AggregateOffer", "priceCurrency": "KRW",
+                          "lowPrice": ld['low'], "highPrice": ld.get('high', ld['low']),
+                          "offerCount": ld.get('count', 1),
+                          "availability": "https://schema.org/InStock",
+                          "seller": {"@id": "https://rndsetup.com/#org"}}
+    b.append('<script type="application/ld+json">%s</script>'
+             % json.dumps(prod, ensure_ascii=False).replace('</', '<\\/'))
+    if faq:
+        fp = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": _pp_text(f['q']),
+             "acceptedAnswer": {"@type": "Answer", "text": _pp_text(f['a'])}} for f in faq]}
+        b.append('<script type="application/ld+json">%s</script>'
+                 % json.dumps(fp, ensure_ascii=False).replace('</', '<\\/'))
+    bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "브랜드", "item": "https://rndsetup.com/brands/"},
+        {"@type": "ListItem", "position": 2, "name": bko, "item": "https://rndsetup.com" + hub},
+        {"@type": "ListItem", "position": 3, "name": name, "item": full}]}
+    b.append('<script type="application/ld+json">%s</script>'
+             % json.dumps(bc, ensure_ascii=False).replace('</', '<\\/'))
+
+    b.append('<div id="pumplab-footer"></div>')
+    b.append('<script src="/assets/site.js" defer></script>')
+    b.append('</body>')
+    b.append('</html>')
+    return '\n'.join(h) + '\n' + '\n'.join(b) + '\n'
+
+
+def build_product_pages():
+    """_build/products/<brand>.json (SSOT) -> brands/<brand>/<slug>/index.html 생성.
+    신규 상세페이지 = JSON 1건 추가 + 빌드. 페이지 HTML을 손으로 만들지 않는다."""
+    pdir = os.path.join(SCRIPT_DIR, PP_DIR)
+    if not os.path.isdir(pdir):
+        print('  [skip] _build/products/ 없음')
+        return
+    total = 0
+    for fn in sorted(os.listdir(pdir)):
+        if not fn.endswith('.json') or fn.startswith('_'):
+            continue
+        data = json.load(open(os.path.join(pdir, fn), encoding='utf-8'))
+        brand = data['brand']
+        for p in data.get('products', []):
+            html = _pp_render(brand, p)
+            if not html.rstrip().endswith('</html>'):
+                print('  [ERR] %s/%s: </html> 누락 — 쓰기 중단' % (brand['slug'], p['slug']))
+                continue
+            out = os.path.join(ROOT_DIR, 'brands', brand['slug'], p['slug'], 'index.html')
+            write(out, html)
+            total += 1
+    print('  제품 상세페이지 생성: %d개 (_build/products/*.json SSOT)' % total)
+
+
+# ============================================================================
+# 상세페이지 빌드 린터 — 디자인 표준(CLAUDE.md 4.5) 위반을 warn 으로 검출
+# 검사만 하고 빌드를 중단하지 않는다. 구형 브랜드는 순차 이관 부채이므로 제외.
+# ============================================================================
+
+LINT_SKIP_BRANDS = {'sh-scientific', 'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
+LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
+
+# 블록 탐지 정규식. 표준 순서 = 크럼 -> h1+영문명 -> 대표사진 -> 정답블록 -> 특징 -> 사양 -> 규격표.
+# 2단 레이아웃(.dt-grid)에서는 사진 칼럼이 DOM상 h1보다 앞에 오는 것이 정상이므로,
+# 사진/h1/정답블록이 모두 상단 블록(.detail-top) 안에 있으면 그 셋의 앞뒤는 따지지 않는다.
+LINT_PAT = {
+    '크럼':     r'class="crumb"',
+    'h1':       r'<h1[\s>]',
+    '대표사진': r'class="dt-img"|<figure[^>]*>\s*<img',
+    '정답블록': r'class="dt-ans"|class="dt-sum"|class="pkg-ans"',
+    '규격표':   r'class="pkg-tbl pkg-opt"|class="pkg-opt',
+}
+
+
+def _lint_body(html):
+    """<body> 이후 본문만. JSON-LD·script 는 제외해 오탐을 줄인다."""
+    body = html.split('<body>', 1)[-1]
+    body = re.sub(r'<script.*?</script>', '', body, flags=re.S)
+    return body
+
+
+def lint_detail_pages():
+    root = os.path.join(ROOT_DIR, 'brands')
+    if not os.path.isdir(root):
+        return
+    warns, checked = [], 0
+    for brand in sorted(os.listdir(root)):
+        bdir = os.path.join(root, brand)
+        if not os.path.isdir(bdir) or brand in LINT_SKIP_BRANDS:
+            continue
+        for slug in sorted(os.listdir(bdir)):
+            p = os.path.join(bdir, slug, 'index.html')
+            if not os.path.isfile(p):
+                continue
+            html = read(p)
+            if 'http-equiv="refresh"' in html or 'class="dt-name"' not in html:
+                continue          # 리다이렉트 스텁·허브·비상세 페이지는 제외
+            checked += 1
+            rel = 'brands/%s/%s/' % (brand, slug)
+            body = _lint_body(html)
+
+            # 1) </html> 누락
+            if not html.rstrip().endswith('</html>'):
+                warns.append((rel, '</html> 누락 — 파일 잘림 의심'))
+
+            # 2) 필수 블록 존재·순서
+            at = {}
+            for label, pat in LINT_PAT.items():
+                m = re.search(pat, body)
+                if m:
+                    at[label] = m.start()
+            missing = [k for k in ('크럼', 'h1', '대표사진', '정답블록') if k not in at]
+            if missing:
+                warns.append((rel, '필수 블록 없음: ' + ' · '.join(missing)))
+            if '규격표' not in at and 'class="qbtn"' not in body:
+                warns.append((rel, '규격표도 견적 CTA도 없음'))
+            if '규격표' in at and 'id="buybox"' not in body:
+                warns.append((rel, '오른쪽 주문정보(#buybox) 없음 — 규격표만 있고 주문 경로가 없다'))
+
+            twocol = 'class="dt-grid"' in body      # 2단 레이아웃이면 상단 3블록은 순서 자유
+            seq = ['크럼', 'h1', '정답블록', '규격표'] if twocol \
+                else ['크럼', 'h1', '대표사진', '정답블록', '규격표']
+            seq = [k for k in seq if k in at]
+            for i in range(1, len(seq)):
+                if at[seq[i]] < at[seq[i - 1]]:
+                    warns.append((rel, '블록 순서 어긋남: %s 가 %s 보다 앞에 있음 '
+                                       '(표준=크럼→h1+영문명→대표사진→정답블록→특징→사양→규격표)'
+                                  % (seq[i], seq[i - 1])))
+                    break
+            if twocol and '대표사진' in at and 'class="detail-top"' in body:
+                top = body.split('class="detail-top"', 1)[1].split('</section>', 1)[0]
+                if not re.search(LINT_PAT['대표사진'], top):
+                    warns.append((rel, '대표사진이 상단 블록(.detail-top) 밖에 있음'))
+
+            # 3) 금지 색상
+            low = body.lower()
+            bad = [c for c in LINT_BAD_COLORS if c.lower() in low]
+            if bad:
+                warns.append((rel, '금지 색상 사용: ' + ' · '.join(bad)))
+
+            # 4) border-left 3~4px 색 바
+            for m in re.finditer(r'border-left(?:-width)?\s*:\s*([^;"}]*)', body, re.I):
+                v = m.group(1)
+                if re.search(r'\b[34]px\b', v):
+                    warns.append((rel, '좌측 포인트 바 금지: border-left:%s' % v.strip()))
+                    break
+
+            # 5) 인라인 <style> 스냅샷 재발
+            if '<style' in html:
+                warns.append((rel, '인라인 <style> 잔존 — /assets/detail.css 로 옮길 것'))
+            elif '/assets/detail.css' not in html:
+                warns.append((rel, '/assets/detail.css 링크 없음'))
+
+    if warns:
+        print('  [warn] 상세페이지 표준 위반 %d건 (검사 %d개)' % (len(warns), checked))
+        for rel, msg in warns[:40]:
+            print('    - %s : %s' % (rel, msg))
+        if len(warns) > 40:
+            print('    ... 외 %d건' % (len(warns) - 40))
+    else:
+        print('  상세페이지 린터: %d개 검사, 위반 0건' % checked)
+
 
 def build_wiki():
     """배터리 사전 — _build/wiki.json(SSOT) → /wiki/ 인덱스 + 항목 페이지 정적 생성.
@@ -2213,6 +2610,7 @@ def main():
     build_rss()  # feed.xml (RSS 2.0) — 매거진 구독·애그리게이터
     inject_setup_cta()  # 논문 셋업 글 하단 '이 셋업 그대로 견적·솔루션' CTA(?setup= 전달)
     build_all_products()  # 전 제품 통합 카탈로그 (브랜드 허브 카드 자동 수집)
+    build_product_pages()  # 제품 상세페이지 (products/<brand>.json SSOT · 손 HTML 금지)
     build_wiki()  # 배터리 사전 (wiki.json SSOT)
     inject_static_nav()
     inject_head_schema()
@@ -2220,6 +2618,7 @@ def main():
     build_new_research()  # 홈 최신연구 레일 — posts.json 자동 렌더
     build_prices()        # 가격 SSOT — SQL 최저가를 index.html·site.js 마커에 주입
     build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔 (301 소스 제외)
+    lint_detail_pages()   # 상세페이지 디자인 표준 검사 (경고만, 빌드 중단 없음)
 
     saved = flush_writes()
 

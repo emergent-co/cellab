@@ -18,6 +18,9 @@ BRANDS = {
  'aida':       dict(slug='aida', ko='아이다', en='TianJin AIDA Science-Technology',
                     hub='아이다 전기화학 전체', imgdir='aida',
                     kw=['아이다','전기화학']),
+ 'neware':     dict(slug='neware', ko='뉴웨어', en='NEWARE',
+                    hub='뉴웨어 배터리 시험장비 전체', imgdir='neware',
+                    kw=['뉴웨어','배터리테스터']),
 }
 _B = BRANDS['gaossunion']          # 현재 빌드 중인 브랜드
 def _use(name):
@@ -153,12 +156,13 @@ def body(cfg):
     s  = '<section class="pkg"><div class="wrap">\n<a class="ds-back" href="/brands/%s/">← %s</a>\n'%(_B['slug'],_B['hub'])
     s += '<h2 class="pkg-h">특징</h2>' + feat(cfg['feat'])
     s += '<h2 class="pkg-h">사양</h2>' + spec_tbl(cfg['spec'])
+    s += cfg.get('spec_extra','')          # 모델별 사양표 등 — 사양 요약표 바로 뒤
     if cfg.get('price'):
         s += '<h2 class="pkg-h">모델 · 규격 · 정가 (%d종)</h2>'%len(cfg['price']) + price_tbl(cfg['price'])
     if cfg.get('note'):
         s += '<p class="pkg-note" style="margin-top:16px">%s</p>' % cfg['note']
     if cfg.get('warn'):
-        s += '<p class="pkg-note" style="background:#FDF6E9;border:1px solid #F3E0BC;border-radius:10px;padding:12px 14px;color:#3a3330">%s</p>'%cfg['warn']
+        s += '<p class="pkg-note" style="background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:10px;padding:12px 14px;color:#3a3330">%s</p>'%cfg['warn']
     if cfg.get('extra'):
         s += cfg['extra']
     if cfg.get('cross'):
@@ -166,10 +170,15 @@ def body(cfg):
     s += '<p style="margin-top:16px"><button type="button" class="qbtn" data-quote="%s">견적문의</button></p>\n</div></section>\n'%esc(cfg['quote'])
     return s
 
+def fq3(items):
+    """FAQ 항목 정규화 — (질문,답) 또는 (카테고리칩,질문,답) 둘 다 허용."""
+    return [(i[0],i[1],i[2]) if len(i)==3 else ('',i[0],i[1]) for i in items]
+
 def faq_block(title, items):
     s='<section class="faq-sec"><div class="wrap"><h2 class="faq-h">%s</h2>'%title
-    for q,a in items:
-        s+='<div class="faq-item"><p class="faq-q">%s</p><p class="faq-a">%s</p></div>'%(q,a)
+    for tag,q,a in fq3(items):
+        chip='<span class="faq-tag">%s</span>'%tag if tag else ''
+        s+='<div class="faq-item"><p class="faq-q">%s%s</p><p class="faq-a">%s</p></div>'%(chip,q,a)
     return s+'</div>'
 
 def ld(cfg, slug, faq):
@@ -193,7 +202,7 @@ def ld(cfg, slug, faq):
           "seller":{"@id":"https://rndsetup.com/#org"}}
     fq={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
         {"@type":"Question","name":re.sub('<[^>]+>','',q),
-         "acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in faq]}
+         "acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for _t,q,a in fq3(faq)]}
     bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"브랜드","item":"https://rndsetup.com/brands/"},
         {"@type":"ListItem","position":2,"name":_B['ko'],"item":"https://rndsetup.com/brands/%s/"%_B['slug']},

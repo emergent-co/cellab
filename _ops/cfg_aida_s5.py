@@ -24,7 +24,6 @@ B.build(dict(
  answer='전극을 돌려 확산층 두께를 회전수로 고정하는 전극입니다. ORR 촉매의 전자수와 과산화수소 생성률을 정량하는 표준 도구입니다.',
  summary='<b>PINE 호환 · E3 · E5 · RRDE GC-Pt · Pt-Pt · 디스크 교체형</b> 7종 · %s원부터'%C.lo(ROWS),
  quote='아이다 회전원판전극(RDE)·회전링원판전극(RRDE)',
- imgs=[],
  feat=[
   '<b>PINE 회전기에 맞는 규격</b>입니다 — 쓰시는 회전기 모델을 알려주시면 체결부를 확인해 드립니다',
   '<b>RDE</b>는 Koutecký–Levich 해석으로 전자수(n)를 구합니다 — 회전수를 바꿔가며 잰 전류를 ω<sup>-1/2</sup>로 그립니다',

@@ -65,8 +65,39 @@
 - 신규 상세페이지 작성·기존 수정 시 이 구성을 따르고, 다른 세션/작업에서도 상세 레이아웃을 임의 변형하지 말 것. 삼흥·리드플루이드·Alicat 구형 레이아웃은 순차적으로 가오스 템플릿에 맞춰 통일한다(진행 중 부채).
 - **좌측 포인트 바 금지**(2026-08-29 확정): `.dt-sum`·`.pkg-ans`·`.warn`·정답블록 등 어떤 박스에도 `border-left` 색 바(3~4px)를 쓰지 않는다. 배경+1px 테두리 박스로만 표현.
 - 색상 팔레트(2026-08 머크풍): 프라이머리 퍼플 `#3B3695` / 진한 `#2A2570` / **링크·강조 블루 `#0F69AF`** / 연배경 `#EAF4FB` / 테두리 `#D8E4F2`. 옐로 포인트 `#EF9F27`은 경고 박스(`#FDF6E9`+`#F3E0BC`)에만. 구 네이비(#1E3A5F)·틸(#1a6e56)·테라코타(#C2410C) 금지.
+- **색은 토큰 1곳에서만**(2026-09-02 확정): 팔레트 실값은 `assets/site.css` `:root` 의 `--merck / --merck-d / --merck-link / --merck-soft / --merck-line / --merck-yellow / --warn-bg / --warn-line / --danger` 9줄에만 둔다. 상세페이지 인라인 `<style>`·`style=""` 와 생성기(`_ops/build_web.py`·`build_page.py`·`tpl/product.html`)는 hex 대신 `var(--merck-*)` 만 쓴다. 색을 바꿀 일이 생기면 site.css 9줄만 고치면 전 상세페이지에 반영된다. 일괄 점검·재적용은 `python _ops\patch_merck_palette.py` (멱등, 잔여 금지색이 있으면 종료코드 1).
 - **주황 글씨 금지**(2026-08-29 확정): 링크·강조 텍스트는 전부 `#0F69AF`. 오렌지 `#E8632C`는 상세페이지에서 퇴출했고 허브/통합 카탈로그 카드 가격에만 잔존(정리 대기).
 - **좌측 포인트 바 금지**(2026-08-29 확정): `.dt-sum`·`.pkg-ans`·`.warn`·`.pkg-note`의 `border-left:3~4px` 색 바를 쓰지 않는다. 배경+1px 테두리 박스로 표현.
+
+## 4.6 상세페이지 디자인 강제 (2026-09 신설 — 여기서만 바꾼다)
+
+**디자인 SSOT 2층**
+
+- **색 = `assets/site.css`의 `--merck-*` 토큰** (`--merck` `#3B3695` · `--merck-d` `#2A2570` · `--merck-link` `#0F69AF` · `--merck-soft` `#EAF4FB` · `--merck-line` `#D8E4F2` · `--warn-bg` `#FDF6E9` · `--warn-line` `#F3E0BC`). 색 바꾸기 = 이 토큰 8줄.
+- **레이아웃·컴포넌트 = `assets/detail.css`** (기준 = 가오스유니온 상세). 상세페이지는 `<link rel="stylesheet" href="/assets/detail.css">` **1줄만** 쓴다. 본문 폭 `.wrap{max-width:920px}`.
+- **페이지에 `<style>` 블록을 복사해 넣지 말 것.** 그게 지금까지 페이지마다 디자인이 갈린 원인이다(스냅샷 노화). 빌드 린터가 잔존 `<style>`을 warn으로 잡는다.
+
+**본문 순서(2026-09-02 확정 — §4.5의 "정답블록 → 정가표" 순서를 이걸로 갱신)**
+
+크럼 → h1 → 영문명 → 보조문구 → 대표사진 → 정답블록 → **특징 → 사양 → 규격 비교표** → 추가 섹션 → 관련링크 → 견적 CTA → 문의바 → FAQ.
+
+- **소비자가는 본문 표에 적지 않는다.** 가격은 오른쪽 주문정보(`#buybox`) 한 곳에서만 노출한다. 규격표가 있는데 `#buybox`가 없으면 린터가 warn.
+- **동일한 내용이면 표를 합친다.** 규격 비교표에서 모든 행 값이 같은 열은 자동으로 접히고, 구분되는 열이 하나만 남으면 라벨/값 2열 표 하나로 합쳐진다.
+- 대표 논문은 **논문 제목 자체에 DOI 링크**를 건다.
+- 구매박스 금액은 자릿수가 바뀌어도 줄바뀜·높이 변화가 없다(`detail.css`의 `.dt-buy .bb-price` 고정). 좁은 sticky 레일(250px)까지 검증.
+
+**신규 상세페이지 = `_build/products/<brand>.json` 1건 추가 + 빌드. 손 HTML 작성 금지.**
+
+- 스키마·필드 설명 = `_build/products/_SCHEMA.md`
+- 생성기 = `_build/build.py`의 `build_product_pages()` / 템플릿 함수 `_pp_render()`
+- **디자인 수정 지점은 딱 2곳**: `assets/detail.css` 또는 `_pp_render()`. 페이지 파일을 직접 고치지 않는다.
+- 문의 CTA 바(전화·채널톡 QR)는 `_build/partial_ctbar.html` 1곳.
+
+**빌드 린터 `lint_detail_pages()`** — 빌드마다 `brands/*/*/index.html`을 검사해 warn만 출력(중단 없음):
+필수 블록(크럼·h1·대표사진·정답블록) 존재와 순서, 가격표/견적 CTA 부재, 금지 색상(`#1E3A5F`·`#1a6e56`·`#C2410C`·`#E8632C`), `border-left` 3~4px 좌측 색 바, 인라인 `<style>` 잔존, `detail.css` 링크 누락, `</html>` 누락.
+구형 브랜드(삼흥·리드플루이드·Alicat)는 순차 이관 부채라 검사 제외(`LINT_SKIP_BRANDS`).
+
+**이관 현황(2026-09-02)**: detail.css 적용 = 가오스유니온·hefei·dodochem 125장. 이관 대기 = aida 5 · hench 2 · neware 2(린터가 매 빌드 warn), 그리고 구형 3개 브랜드.
 
 ## 5. 운영 원칙 (스프롤 방지)
 - **갱신 1곳 원칙**: 새 기능·섹션은 "이게 바뀔 때 수정 지점이 1곳인가?"를 통과해야 추가한다. 통과 못 하면 build.py 자동화부터.

@@ -1,0 +1,182 @@
+{
+  "brand": {
+    "slug": "dodochem",
+    "name_ko": "DodoChem",
+    "name_en": "DodoChem",
+    "hub": "/brands/dodochem/",
+    "hub_label": "DodoChem 배터리 재료 전체",
+    "img_dir": "/img/dodochem/"
+  },
+  "products": [
+    {
+      "slug": "ls-009-lithium-sulfur-electrolyte",
+      "name": "리튬황 전해액 LS-009",
+      "name_en": "DodoChem Lithium-Sulfur Electrolyte LS-009",
+      "sub": "1M LiTFSI · DME:DOL 1:1 · 2% LiNO₃",
+      "category": "배터리 재료 · 전해액",
+      "title": "DodoChem 리튬황 전해액 LS-009 — 1M LiTFSI in DME:DOL 1:1 + 2% LiNO3 | 실험셋업연구소",
+      "desc": "DodoChem 리튬황 전해액 LS-009 — 배합 1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3. 리튬-황 전지 표준 전해액, 규격 50g~1kg. 소비자가 101,800원~, 국제 배송료 100,000원 별도.",
+      "og_title": "리튬황 전해액 LS-009 — DodoChem 정품",
+      "og_desc": "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3 — 리튬-황 전지 표준 전해액. 50g~1kg.",
+      "buybox": [
+        {
+          "m": "50 g",
+          "s": "LS-009",
+          "p": 201800,
+          "x": 101800
+        },
+        {
+          "m": "100 g",
+          "s": "LS-009",
+          "p": 241400,
+          "x": 141400
+        },
+        {
+          "m": "250 g",
+          "s": "LS-009",
+          "p": 382800,
+          "x": 282800
+        },
+        {
+          "m": "500 g",
+          "s": "LS-009",
+          "p": 580700,
+          "x": 480700
+        },
+        {
+          "m": "1000 g",
+          "s": "LS-009",
+          "p": 778600,
+          "x": 678600
+        }
+      ],
+      "images": [
+        "ls-009-1.jpg"
+      ],
+      "image_alt": "DodoChem 리튬황 전해액 LS-009 제품 사진 — 알루미늄 병 포장",
+      "answer": "리튬황 전해액 LS-009는 <b>1M LiTFSI in DME:DOL=1:1 + 2% LiNO₃</b> 배합의 리튬-황 전지 표준 전해액입니다.",
+      "summary": "리튬-황 전지의 <b>표준 전해액</b>입니다. LiNO₃ 2%가 리튬 음극 표면에 보호막을 만들어 폴리설파이드 셔틀 효과를 억제합니다. 규격 <b>50 g ~ 1 kg</b> 5종, 배합은 전 규격 동일합니다.",
+      "features": [
+        "<b>LiNO₃ 2%</b>가 리튬 음극 표면에 보호막을 만들어 폴리설파이드 셔틀 효과를 억제합니다",
+        "DME:DOL <b>1:1 Vol%</b> — 리튬-황 전지 문헌에서 가장 널리 쓰이는 표준 용매 조합입니다",
+        "<b>50 g ~ 1 kg</b> 5규격이라 소량 스크리닝부터 셀 다량 조립까지 같은 배합으로 맞출 수 있습니다",
+        "농도·용매비·첨가제를 바꾼 <b>커스텀 배합</b>은 견적으로 안내합니다"
+      ],
+      "specs": [
+        [
+          "용도",
+          "리튬-황(Li-S) 전지 · Li–Li 대칭 셀 전해액"
+        ],
+        [
+          "보관·취급",
+          "Ar 글러브박스 취급 권장 · 수분 민감"
+        ],
+        [
+          "브랜드",
+          "DodoChem · 원산지 중국"
+        ]
+      ],
+      "sections": [
+        {
+          "h": "이 배합을 쓴 대표 논문",
+          "rows": [
+            [
+              "<span style=\"white-space:nowrap\">LiNO₃ 첨가의 원리</span>",
+              "Aurbach, D. et al., <a href=\"https://doi.org/10.1149/1.3148721\" target=\"_blank\" rel=\"noopener\">“On the Surface Chemical Aspects of Very High Energy Density, Rechargeable Li–Sulfur Batteries”</a>, <i>J. Electrochem. Soc.</i> <b>156</b>, A694 (2009) — LiNO₃가 리튬 표면 보호막을 만들어 셔틀 효과를 억제함을 규명."
+            ],
+            [
+              "<span style=\"white-space:nowrap\">동일 배합 사용 예</span>",
+              "<a href=\"https://doi.org/10.1038/srep33154\" target=\"_blank\" rel=\"noopener\">“Building better lithium–sulfur batteries: from LiNO₃ to solid oxide catalyst”</a>, <i>Sci. Rep.</i> <b>6</b>, 33154 (2016) — <b>1M LiTFSI in DOL/DME(1:1) + 2.0 wt% LiNO₃</b> 전해액으로 Li–S 셀 사이클 평가."
+            ],
+            [
+              "<span style=\"white-space:nowrap\">관찰 실험 예</span>",
+              "Wood, K. N. et al., <a href=\"https://doi.org/10.1021/acscentsci.6b00260\" target=\"_blank\" rel=\"noopener\">“Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy”</a>, <i>ACS Cent. Sci.</i> <b>2</b>, 790 (2016) — Li₂S₈·2% LiNO₃ 첨가 DOL:DME 전해액으로 리튬 계면을 operando 관찰. 셋업은 <a href=\"/magazine/insitu-li-dendrite-observation/\">인시츄 셀 003편</a> 참고."
+            ]
+          ],
+          "note": "※ 논문 인용은 배합의 학술적 사용 예를 안내하기 위한 것으로, 저자·저널의 보증이나 제휴를 의미하지 않습니다."
+        }
+      ],
+      "related": "배터리 재료: <a href=\"/materials/\">전기화학 재료·소모품</a> · <a href=\"/brands/dodochem/\">DodoChem 전체</a> · <a href=\"/wiki/\">배터리 사전</a>",
+      "keywords": [
+        [
+          "#DodoChem",
+          "/brands/dodochem/"
+        ],
+        [
+          "#리튬황전해액",
+          "/materials/"
+        ],
+        [
+          "#배터리재료",
+          "/materials/"
+        ],
+        [
+          "#실험장비카탈로그",
+          "/product/"
+        ]
+      ],
+      "faq": [
+        {
+          "tag": "배합",
+          "q": "다른 배합도 주문할 수 있나요?",
+          "a": "네. LiNO3 비율, 염 농도, 용매비를 바꾼 커스텀 배합이 가능합니다. 원하는 배합식을 견적 문의에 그대로 적어 주세요."
+        },
+        {
+          "tag": "취급",
+          "q": "보관은 어떻게 하나요?",
+          "a": "수분에 민감하므로 아르곤 글러브박스에서 개봉·취급하시길 권장합니다. 밀봉 알루미늄 병으로 배송됩니다."
+        },
+        {
+          "tag": "가격",
+          "q": "표기 가격 기준이 어떻게 되나요?",
+          "a": "표기 가격은 소비자가이며 부가세 별도입니다. 국제 배송료 100,000원이 별도이고, 해외 직수입 품목으로 상시 할인 대상이 아닙니다."
+        }
+      ],
+      "ld": {
+        "name": "DodoChem 리튬황 전해액 LS-009",
+        "sku": "LS-009",
+        "category": "배터리 재료 · 전해액",
+        "description": "리튬-황 전지 표준 전해액 — 1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3. 규격 50g~1kg.",
+        "low": 101800,
+        "high": 678600,
+        "count": 5
+      },
+      "variants": {
+        "heading": "규격 · 배합 비교",
+        "head": [
+          "규격",
+          "배합",
+          "포장"
+        ],
+        "rows": [
+          [
+            "50 g",
+            "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3",
+            "알루미늄 병"
+          ],
+          [
+            "100 g",
+            "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3",
+            "알루미늄 병"
+          ],
+          [
+            "250 g",
+            "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3",
+            "알루미늄 병"
+          ],
+          [
+            "500 g",
+            "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3",
+            "알루미늄 병"
+          ],
+          [
+            "1000 g",
+            "1M LiTFSI in DME:DOL=1:1 Vol% with 2%LiNO3",
+            "알루미늄 병"
+          ]
+        ],
+        "note": "규격별 금액은 <b>오른쪽 주문정보</b>에서 규격을 고르시면 바로 나옵니다. 부가세 별도이며 <b>국제 배송료 100,000원</b>이 주문당 1회 더해집니다. 커스텀 배합(농도·용매비·첨가제)은 <a href=\"/contact/\">견적</a>으로 안내합니다."
+      }
+    }
+  ]
+}

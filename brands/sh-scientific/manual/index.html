@@ -37,7 +37,7 @@
 ]}
 </script>
 <style>
-  :root{--ink:#1B1A18;--gray:#6B6560;--gray-2:#9C958D;--line:#E7E3DE;--ember:#2A2570;--ember-2:#3B3695;--ember-bg:#FBF2EC;--panel:#FAF8F5;
+  :root{--ink:#1B1A18;--gray:#6B6560;--gray-2:#9C958D;--line:#E7E3DE;--ember:var(--merck-d);--ember-2:var(--merck);--ember-bg:#FBF2EC;--panel:#FAF8F5;
     --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
@@ -64,7 +64,7 @@
   .st .n::before{content:counter(s)}
   .st .sc b{color:var(--ink)}
   .st .sc{font-size:15px;color:#2a2826}
-  .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:16px 18px;margin:16px 0}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:16px 18px;margin:16px 0}
   .warn h3{font-size:15px;color:var(--ember-2);margin-bottom:8px}
   .warn ul{margin:0 0 0 18px}
   .cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 6px}
