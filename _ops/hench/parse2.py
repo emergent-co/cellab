@@ -40,6 +40,12 @@ LABELS = [
  'Sealing method','Safety protection','Machine size','Net weight','Gross weight','Voltage','Frequency',
  'Motor power','Control mode','Operation mode','Applicable model','Applicable mold','Note','Remark',
  'Mould material','Punch material','Base material','Surface treatment','Precision','Accuracy',
+ # 값 안에 라벨이 묻혀 다음 항목을 삼키던 것들
+ 'Equipment protection','Data management','Cylinder limit protection','Intelligent operation',
+ 'Host protection','Pressure process','Number of pressurized sections','Active safety','Limit function',
+ 'Device display','Limit protection','Pressure relief die','Holding time','Equipment safety',
+ 'Safety performance','Boundary dimension','Supplementary pressure setting','Release die','Device power',
+ 'Configuration instructions','Pressure sensor','Pressure unit','Operation record','Return mode',
 ]
 LABELS = sorted(set(LABELS), key=len, reverse=True)
 RX = re.compile('(' + '|'.join(re.escape(l) for l in LABELS) + r')\s*[:：]?\s*', re.I)
