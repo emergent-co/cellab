@@ -4631,7 +4631,7 @@ var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTar
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
     dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
     dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
-var dqContacts = [], dqContact = null;   // 서류에 찍히고 메일을 받는 사람
+var dqContacts = [], dqContact = null, dqContactCid = null;   // 서류에 찍히고 메일을 받는 사람
 var dqPurpose = null;    // quote | delivery | advance | settle — 고르기 전에는 폼을 열지 않는다
 var PURP = {
   quote:    { t:'견적서만',        d:'견적서 하나만 뽑습니다. <em>아무 기록도 만들지 않습니다.</em>',
@@ -4888,11 +4888,17 @@ function dqSetContacts(list){
   var rows = (list || []).slice();
   // 거래처에 적힌 대표 연락처는 «항상» 후보로 남는다.
   // 담당자를 하나 등록했다고 대표가 목록에서 사라지면, 원래 보내던 사람에게 되돌릴 방법이 없어진다.
+  // 다만 «맨 아래»에 둔다 — 등록된 담당자가 있으면 그쪽이 이 거래처의 진짜 창구다.
   if (dqCli && (dqCli.name || dqCli.work_email || dqCli.email)){
-    rows.unshift({ id:0, name: dqCli.name || '거래처 대표', role:'거래처 대표 연락처',
-                   email: dqCli.work_email || dqCli.email || '', phone: dqCli.phone || '' });
+    rows.push({ id:0, name: dqCli.name || '거래처 대표', role:'거래처 대표 연락처',
+                email: dqCli.work_email || dqCli.email || '', phone: dqCli.phone || '' });
   }
   dqContacts = rows;
+
+  // 거래처가 바뀌면 고르던 사람은 버린다.
+  // 대표(id 0)는 어느 거래처에나 있어서, 그냥 두면 «아까 고른 대표»가 새 거래처의 기본 담당자를 이겨버린다.
+  if (dqCli && dqContactCid !== dqCli.id){ dqContact = null; dqContactCid = dqCli ? dqCli.id : null; }
+
   var keep = dqContact && dqContacts.filter(function(c){ return c.id === dqContact.id; })[0];
   dqContact = keep
     || dqContacts.filter(function(c){ return c.is_default; })[0]
@@ -5003,7 +5009,7 @@ function contactForm(client, list, onDone){
 function dqPaintClient(){
   clientPicker($('#dqCliBox'), dqCli, function(c){
     dqCli = c; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
-    dqContacts = []; dqContact = null;
+    dqContacts = []; dqContact = null; dqContactCid = null;
     dqPaintBill(); dqSrcButtons(); dqPaintContacts();
     if (c) dqLoadClient(c.id, true);
   }, dqCliLine);
@@ -5026,7 +5032,7 @@ function dqClear(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
   dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
-  dqContacts=[]; dqContact=null;
+  dqContacts=[]; dqContact=null; dqContactCid=null;
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
 }
 function dqReset(){ dqClear(); paintDocs(); }

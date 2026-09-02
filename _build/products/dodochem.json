@@ -57,7 +57,7 @@
       "answer": "리튬황 전해액 LS-009는 <b>1M LiTFSI in DME:DOL=1:1 + 2% LiNO₃</b> 배합의 리튬-황 전지 표준 전해액입니다.",
       "summary": "리튬-황 전지의 <b>표준 전해액</b>입니다. LiNO₃ 2%가 리튬 음극 표면에 보호막을 만들어 폴리설파이드 셔틀 효과를 억제합니다. 규격 <b>50 g ~ 1 kg</b> 5종, 배합은 전 규격 동일합니다.",
       "features": [
-        "<b>LiNO₃ 2%</b>가 리튬 음극 표면에 보호막을 만들어 폴리설파이드 셔틀 효과를 억제합니다 <small>(원리: <a href=\"https://doi.org/10.1149/1.3148721\" target=\"_blank\" rel=\"noopener\">Aurbach 2009, <i>J. Electrochem. Soc.</i> 156, A694</a>)</small>",
+        "<b>LiNO₃ 2%</b>가 리튬 음극 표면에 보호막을 만들어 폴리설파이드 셔틀 효과를 억제합니다",
         "DME:DOL <b>1:1 Vol%</b> — 리튬-황 전지 문헌에서 가장 널리 쓰이는 표준 용매 조합입니다",
         "<b>50 g ~ 1 kg</b> 5규격이라 소량 스크리닝부터 셀 다량 조립까지 같은 배합으로 맞출 수 있습니다",
         "농도·용매비·첨가제를 바꾼 <b>커스텀 배합</b>은 견적으로 안내합니다"
@@ -99,29 +99,6 @@
           "커스텀",
           "농도 · 용매비 · 첨가제 변경 가능 — <a href=\"/contact/\">견적</a>"
         ]
-      ],
-      "sections": [
-        {
-          "h": "LS-009를 쓴 논문",
-          "head": [
-            "논문",
-            "논문에 적힌 LS009",
-            "링크"
-          ],
-          "rows": [
-            [
-              "Selective Adsorption and Electrocatalysis of Polysulfides through Hexatomic Nickel Clusters Embedded in N-Doped Graphene toward High-Performance Li-S Batteries<br><small><i>Research</i> <b>2020</b>, 5714349 · Ji, J. et al.</small>",
-              "<span style=\"color:#5a5550\">“Lithium sulfur electrolyte <b>(LS009)</b> containing 1.0 M LiTFSI in a mixed solvent of DME/DOL (1 : 1 volume ratio) with <b>2 wt% of lithium nitrate</b> was purchased from the <b>DoDoChem</b>.”</span><br><small>Materials and Methods §4.1 Reagents</small>",
-              "<a href=\"https://doi.org/10.34133/2020/5714349\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
-            ],
-            [
-              "Electrochemical Atomic Force Microscopy Study on the Dynamic Evolution of Lithium Deposition<br><small><i>Materials</i> <b>16</b>(6), 2278 (2023) · Shi, X. et al.</small>",
-              "표 1의 비교 전해질 중 하나가 <b>LS009</b> — 1 M LiTFSI in DOL:DME 1:1 + <b>2% LiNO₃</b>. <span style=\"color:#5a5550\">“…both were purchased from the <b>DodoChem</b>, Suzhou, China.”</span><br><small>Experimental §2.1 Preparation of Electrolytes</small>",
-              "<a href=\"https://doi.org/10.3390/ma16062278\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
-            ]
-          ],
-          "note": "※ 두 논문 모두 Methods에 DodoChem 구매가 명시돼 있습니다. 저자·저널의 보증·제휴를 뜻하지 않습니다."
-        }
       ],
       "related": "배터리 재료: <a href=\"/materials/\">전기화학 재료·소모품</a> · <a href=\"/brands/dodochem/\">DodoChem 전체</a> · <a href=\"/magazine/insitu-li-dendrite-observation/\">인시츄 셀 003편 — 리튬 덴드라이트 관찰 셋업</a> · <a href=\"/wiki/\">배터리 사전</a>",
       "keywords": [
@@ -281,6 +258,36 @@
       "source": {
         "url": "https://www.dodochem.com/",
         "label": "DodoChem 제품 페이지"
+      },
+      "papers": {
+        "heading": "관련 논문",
+        "items": [
+          {
+            "title": "Selective Adsorption and Electrocatalysis of Polysulfides through Hexatomic Nickel Clusters Embedded in N-Doped Graphene toward High-Performance Li-S Batteries",
+            "journal": "<i>Research</i> <b>2020</b>, 5714349",
+            "authors": "Ji, J. et al.",
+            "grade": "LS-009 지정",
+            "doi": "10.34133/2020/5714349",
+            "evidence": "<span style=\"color:#5a5550\">“Lithium sulfur electrolyte <b>(LS009)</b> containing 1.0 M LiTFSI in a mixed solvent of DME/DOL (1 : 1 volume ratio) with <b>2 wt% of lithium nitrate</b> was purchased from the <b>DoDoChem</b>.”</span><br><small>Materials and Methods §4.1 Reagents</small>"
+          },
+          {
+            "title": "Electrochemical Atomic Force Microscopy Study on the Dynamic Evolution of Lithium Deposition",
+            "journal": "<i>Materials</i> <b>16</b>(6), 2278 (2023)",
+            "authors": "Shi, X. et al.",
+            "grade": "LS-009 지정",
+            "doi": "10.3390/ma16062278",
+            "evidence": "비교 전해질 중 하나가 <b>LS009</b> (1 M LiTFSI in DOL:DME 1:1 + 2% LiNO₃)<br><span style=\"color:#5a5550\">“…both were purchased from the <b>DodoChem</b>, Suzhou, China.”</span><br><small>Experimental §2.1</small>"
+          },
+          {
+            "title": "On the Surface Chemical Aspects of Very High Energy Density, Rechargeable Li–Sulfur Batteries",
+            "journal": "<i>J. Electrochem. Soc.</i> <b>156</b>, A694 (2009)",
+            "authors": "Aurbach, D. et al.",
+            "grade": "같은 배합",
+            "doi": "10.1149/1.3148721",
+            "evidence": "LiTFSI · DOL:DME · <b>LiNO₃</b> 계 전해액에서 LiNO₃가 리튬 음극 표면 보호막을 만들어 셔틀 효과를 억제함을 규명한 원전. 제품을 지정한 논문은 아님."
+          }
+        ],
+        "note": "※ ‘LS-009 지정’ = 논문 Methods에 제품명과 DodoChem 구매가 적힌 건. ‘같은 배합’ = 배합만 같은 대표 논문. 저자·저널의 보증·제휴를 뜻하지 않습니다."
       }
     }
   ]

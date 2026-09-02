@@ -173,3 +173,4 @@
 /* 헤더 있는 목록·비교표는 본문을 왼쪽 정렬하고 마지막 열(가격·링크)만 가운데 */
 .pkg-tbl thead + tbody td{text-align:left}
 .pkg-tbl thead + tbody td:last-child{text-align:center;white-space:nowrap}
+.pp-grade{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.02em;color:#fff;background:var(--merck);border-radius:5px;padding:2px 7px;margin-right:7px;vertical-align:middle;white-space:nowrap}

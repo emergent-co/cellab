@@ -1778,6 +1778,34 @@ def _pp_safety(sf):
     return ''.join(out)
 
 
+PP_PAPER_MAX = 3          # 논문은 최대 3편. 없으면 섹션을 아예 내지 않는다.
+PP_PAPER_GRADES = ('제품 지정', '같은 배합', '같은 사양')   # 근거 등급 — 반드시 표기
+
+
+def _pp_papers(pp):
+    """관련 논문 블록. 제품 코드가 논문에 나온 것을 위로 두고, 근거 등급을 배지로 붙인다."""
+    items = (pp.get('items') or [])[:PP_PAPER_MAX]
+    if not items:
+        return ''
+    out = ['<h2 class="pkg-h" style="margin-top:26px">%s</h2>'
+           % escape(pp.get('heading', '관련 논문'))]
+    rows = []
+    for it in items:
+        grade = ('<span class="pp-grade">%s</span>' % escape(it['grade'])) if it.get('grade') else ''
+        title = escape(it['title'])
+        meta = ' · '.join(x for x in [it.get('journal', ''), escape(it.get('authors', ''))] if x)
+        rows.append([
+            '%s%s<br><small>%s</small>' % (grade, title, meta),
+            it.get('evidence', ''),
+            ('<a href="https://doi.org/%s" target="_blank" rel="noopener">DOI ↗</a>' % it['doi'])
+            if it.get('doi') else (it.get('link', '')),
+        ])
+    out.append(_pp_table(rows, head=['논문', '근거', '링크']))
+    if pp.get('note'):
+        out.append('<p class="pkg-note">%s</p>' % pp['note'])
+    return ''.join(out)
+
+
 def _pp_render(brand, p):
     """제품 1건 -> 상세페이지 HTML 전문."""
     bslug, bko = brand['slug'], brand.get('name_ko', brand['slug'])
@@ -1901,6 +1929,8 @@ def _pp_render(brand, p):
             b.append('<p class="pkg-note">%s</p>' % va['note'])
     if p.get('safety'):
         b.append(_pp_safety(p['safety']))
+    if p.get('papers'):
+        b.append(_pp_papers(p['papers']))
 
     for sec in p.get('sections', []):
         b.append('<h2 class="pkg-h" style="margin-top:26px">%s</h2>' % escape(sec['h']))
