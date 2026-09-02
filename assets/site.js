@@ -73,7 +73,7 @@
   };
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/materials/', label:'Products', icon:'guide',
+    { href:'/materials/', label:'Materials', icon:'guide',
       sub:[['/product/?q=%EC%A0%84%ED%95%B4%EC%95%A1','전해액'],['/product/?q=%EC%8B%9C%EC%95%BD','화학 시약'],['/product/?q=%EB%B0%B0%ED%84%B0%EB%A6%AC%20%EC%86%8C%EC%9E%AC','배터리 소재'],['/product/?q=%EC%A0%84%EA%B7%B9%20%EC%8B%9C%ED%8A%B8','전극 시트·배터리 셀'],['/materials/','전기화학 소재']],
       mega:[
         ['리튬이온 전해액','/product/?q=%EC%A0%84%ED%95%B4%EC%95%A1',[['리튬-황','/product/?q=%EB%A6%AC%ED%8A%AC%ED%99%A9%20%EC%A0%84%ED%95%B4%EC%95%A1'],['리튬-공기','/product/?q=%EB%A6%AC%ED%8A%AC%EA%B3%B5%EA%B8%B0%20%EC%A0%84%ED%95%B4%EC%95%A1'],['리튬 1차','/product/?q=%EB%A6%AC%ED%8A%AC%201%EC%B0%A8%20%EC%A0%84%ED%95%B4%EC%95%A1'],['리튬 2차','/product/?q=%EB%A6%AC%ED%8A%AC%202%EC%B0%A8%20%EC%A0%84%ED%95%B4%EC%95%A1']]],
