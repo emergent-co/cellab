@@ -181,11 +181,12 @@ em.warn{font-style:normal;color:#B45309;font-weight:700}
 .head{position:fixed;left:0;right:0;top:0;height:var(--head);background:#fff;
   border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;
   padding:0 22px;z-index:35}
-.head .hbrand{display:block;text-decoration:none;color:var(--ink);flex:0 0 auto;line-height:1.25}
+.head .hbrand{display:block;text-decoration:none;color:var(--ink);flex:0 0 auto;
+  text-align:center;line-height:1.2}
 .head .hbrand:hover{color:var(--navy)}
-.head .hbrand b{display:block;font-size:17px;font-weight:800;letter-spacing:-.015em}
-.head .hbrand b span{font-weight:700;color:var(--navy)}
-.head .hbrand em{display:block;font-style:normal;font-size:11.5px;font-weight:600;color:var(--mut);margin-top:1px}
+.head .hbrand b{display:block;font-size:15px;font-weight:800;letter-spacing:-.015em}
+.head .hbrand em{display:block;font-style:normal;font-size:10.5px;font-weight:600;color:var(--mut)}
+.head .hbrand span{display:block;font-size:11px;font-weight:700;color:var(--navy);margin-top:1px}
 .head h1{font-size:14px;font-weight:700;color:var(--mut);padding-left:16px;
   border-left:1px solid var(--line);line-height:1.2;flex:0 0 auto}
 .head .who{margin-left:12px;font-size:13.5px;color:var(--mut);white-space:nowrap}
@@ -843,8 +844,8 @@ textarea{min-height:78px;resize:vertical}
   .side.on{transform:none}
   .head{padding:0 14px;gap:10px}
   .head .burger{display:flex;align-items:center;justify-content:center}
-  .head .hbrand b{font-size:14.5px}
-  .head .hbrand b span{display:block;font-size:12px}
+  .head .hbrand b{font-size:13.5px}
+  .head .hbrand span{font-size:10.5px}
   .head .hbrand em{display:none}
   .head h1{display:none}
   .side{top:var(--head)}
@@ -947,7 +948,7 @@ textarea{min-height:78px;resize:vertical}
 
   <header class="head">
     <button class="burger" id="burger">☰</button>
-    <a class="hbrand" href="/" title="실험셋업연구소 홈페이지로"><b>실험셋업연구소 <span>멤버십 전용 페이지</span></b><em>(이머전트)</em></a>
+    <a class="hbrand" href="/" title="실험셋업연구소 홈페이지로"><b>실험셋업연구소</b><em>(이머전트)</em><span>멤버십 전용 페이지</span></a>
     <button class="backbtn" id="backBtn" title="홈으로 (백스페이스)" hidden>←</button>
     <h1 id="headTitle">대시보드</h1>
     <button class="bell" id="bell" hidden aria-label="알림" title="알림">

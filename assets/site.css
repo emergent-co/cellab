@@ -85,6 +85,16 @@ body{ padding-top:106px; }
 .tn-dd a{ display:block; padding:9px 12px; border-radius:8px; font-size:13.5px; color:var(--gray); text-decoration:none; font-weight:600; }
 .tn-dd a:hover{ background:var(--soft); color:var(--ink); }
 .tn-dd a.active{ color:var(--green); font-weight:700; }
+/* 메가 메뉴 — 카테고리 행 + 인라인 하위 링크 */
+.tn-mega{ position:absolute; top:100%; left:0; width:min(620px,calc(100vw - 40px)); background:#fff; border:1px solid var(--line); border-radius:0 0 14px 14px; box-shadow:0 18px 40px rgba(10,37,64,.16); padding:14px 18px; display:none; z-index:41; }
+.tn-item:hover .tn-mega, .tn-item:focus-within .tn-mega{ display:block; }
+.tm-row{ display:grid; grid-template-columns:150px 1fr; gap:14px; align-items:baseline; padding:9px 2px; border-top:1px solid #EEF3F9; }
+.tm-row:first-child{ border-top:none; }
+.tm-cat{ font-size:13.5px; font-weight:800; color:#2A2570; text-decoration:none; line-height:1.4; }
+.tm-cat:hover{ color:#0F69AF; }
+.tm-links{ display:flex; flex-wrap:wrap; gap:4px 14px; }
+.tm-links a{ font-size:13px; color:#7a828c; text-decoration:none; line-height:1.6; }
+.tm-links a:hover{ color:#0F69AF; }
 
 /* 메인 검색창(CacheBy형) + 장바구니·로그인 아이콘 */
 .ch-msearch{ position:relative; flex:1; min-width:0; max-width:760px; margin:0 auto; display:flex; align-items:stretch; height:40px; border:2px solid var(--green); border-radius:10px; background:#fff; }

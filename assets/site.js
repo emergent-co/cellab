@@ -73,8 +73,24 @@
   };
   // 규칙: 하위 메뉴가 있는 상위 메뉴는 클릭 불가(noclick) — 이동은 하위 메뉴로만.
   var NAV = [
-    { href:'/materials/', label:'Products', icon:'guide' },
-    { href:'/product/', label:'Equipments', icon:'devices', noclick:true, sub:[['/product/', '통합 카탈로그'],['/manuals/', '메뉴얼']] },
+    { href:'/materials/', label:'Products', icon:'guide',
+      sub:[['/brands/gaossunion/echem-materials/','전기화학 재료·소모품'],['/brands/gaossunion/co2rr-catalyst/','CO₂RR 촉매·전극'],['/brands/gaossunion/electrode-polishing/','전극 연마용품'],['/brands/gaossunion/simple-electrode-holder/','전극 홀더·클램프']],
+      mega:[
+        ['전기화학 재료·소모품','/brands/gaossunion/echem-materials/',[['65종 전체 보기','/brands/gaossunion/echem-materials/']]],
+        ['CO₂RR 촉매·전극','/brands/gaossunion/co2rr-catalyst/',[['Ag','/brands/gaossunion/co2rr-catalyst/'],['Sn','/brands/gaossunion/co2rr-catalyst/'],['Bi₂O₃','/brands/gaossunion/co2rr-catalyst/'],['Cu','/brands/gaossunion/co2rr-catalyst/'],['GDE 캐소드','/brands/gaossunion/co2rr-catalyst/'],['IrO₂ 애노드','/brands/gaossunion/co2rr-catalyst/']]],
+        ['전극 연마용품','/brands/gaossunion/electrode-polishing/',[['연마 분말·패드','/brands/gaossunion/electrode-polishing/']]],
+        ['전극 홀더·클램프','/brands/gaossunion/simple-electrode-holder/',[['간이 홀더','/brands/gaossunion/simple-electrode-holder/'],['Pt 클램프','/brands/gaossunion/pt-clamp-ptfe/'],['GC 클램프','/brands/gaossunion/gc-electrode-clamp/'],['Ti 클램프','/brands/gaossunion/ti-electrode-clamp/']]],
+        ['소재 허브','/materials/',[['전체 보기','/materials/']]]
+      ] },
+    { href:'/product/', label:'Equipments', icon:'devices', noclick:true, sub:[['/product/', '통합 카탈로그'],['/manuals/', '메뉴얼']],
+      mega:[
+        ['전기로·퍼니스','/product/?q=%EC%A0%84%EA%B8%B0%EB%A1%9C',[['튜브퍼니스','/product/?q=%ED%8A%9C%EB%B8%8C%ED%8D%BC%EB%8B%88%EC%8A%A4'],['머플로','/product/?q=%EB%A8%B8%ED%94%8C%EB%A1%9C'],['진공로','/product/?q=%EC%A7%84%EA%B3%B5'],['회전 튜브로','/product/?q=%ED%9A%8C%EC%A0%84'],['가스플로 패키지','/product/?q=%EA%B0%80%EC%8A%A4%ED%94%8C%EB%A1%9C']]],
+        ['펌프','/product/?q=%ED%8E%8C%ED%94%84',[['연동펌프','/product/?q=%EC%97%B0%EB%8F%99%ED%8E%8C%ED%94%84'],['정량펌프','/product/?q=%EC%A0%95%EB%9F%89%ED%8E%8C%ED%94%84'],['시린지펌프','/product/?q=%EC%8B%9C%EB%A6%B0%EC%A7%80'],['기어펌프','/product/?q=%EA%B8%B0%EC%96%B4%ED%8E%8C%ED%94%84']]],
+        ['유량·압력','/product/?q=MFC',[['질량유량계(MFC)','/product/?q=MFC'],['압력 컨트롤러','/product/?q=%EC%95%95%EB%A0%A5']]],
+        ['전기화학 셀·전극','/product/?q=%EC%A0%84%EA%B7%B9',[['기준전극','/product/?q=%EA%B8%B0%EC%A4%80%EC%A0%84%EA%B7%B9'],['작업전극','/product/?q=%EC%9E%91%EC%97%85%EC%A0%84%EA%B7%B9'],['상대전극','/product/?q=%EC%83%81%EB%8C%80%EC%A0%84%EA%B7%B9'],['RDE·RRDE','/product/?q=RDE'],['전해셀','/product/?q=%EC%85%80']]],
+        ['인시츄 관찰','/magazine/insitu-li-dendrite-observation/',[['CIS-OM-003 표준형','/magazine/insitu-li-dendrite-observation/'],['002 비커형','/magazine/insitu-cell-002/'],['004 고저온','/magazine/insitu-cell-004/'],['005 극저온','/magazine/insitu-cell-005/']]],
+        ['카탈로그·메뉴얼','/product/',[['통합 카탈로그','/product/'],['메뉴얼','/manuals/']]]
+      ] },
     { href:'/magazine/', label:'Setup Blog', icon:'feed' },
     { href:'/about/', label:'Company', icon:'contact' }
   ];
@@ -114,7 +130,14 @@
     var html = '<div class="tn-item">' +
       '<a class="tn-link' + (cur ? ' active' : '') + '" href="' + n.href + '"' +
       (cur ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
-    if (n.sub) {
+    if (n.mega) {
+      html += '<div class="tn-mega">' + n.mega.map(function (g) {
+        return '<div class="tm-row"><a class="tm-cat" href="' + g[1] + '">' + g[0] + '</a>' +
+          '<div class="tm-links">' + g[2].map(function (s) {
+            return '<a href="' + s[1] + '">' + s[0] + '</a>';
+          }).join('') + '</div></div>';
+      }).join('') + '</div>';
+    } else if (n.sub) {
       html += '<div class="tn-dd">' + n.sub.map(function (s) {
         var sc = matches(s[0]);
         return '<a class="' + (sc ? 'active' : '') + '" href="' + s[0] + '">' + s[1] + '</a>';
