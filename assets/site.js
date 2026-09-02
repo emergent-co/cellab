@@ -1135,9 +1135,9 @@
     +   '<input type="number" id="pdQty" min="1" value="' + q + '"></div>'
     + '<button type="button" class="bb-btn bb-cart" id="bbCart">장바구니 담기</button>'
     + '<button type="button" class="bb-btn bb-buy" id="bbBuy">' + (many ? '수량 문의하기' : '구매하기') + '</button>'
-    + '<p class="bb-note">' + (hasDisc(o) ? '정가 대비 3% 상시 할인가입니다. ' : '')
-    +   (shipOf(o) ? '배송료는 주문당 1회입니다. ' : '')
-    +   '담으신 품목은 장바구니에서 확인하실 수 있습니다.</p>';
+    /* 안내문은 정가 할인 고지만 남긴다. 배송료·장바구니 안내 문구는 2026-09-02 삭제
+       (배송 조건은 상세 본문 규격표 아래 note 에서 이미 안내한다) */
+    + (hasDisc(o) ? '<p class="bb-note">정가 대비 3% 상시 할인가입니다.</p>' : '');
   }
   function toast(m) {
     var t = document.querySelector('.bb-toast');

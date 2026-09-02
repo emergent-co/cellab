@@ -78,25 +78,33 @@
       ],
       "sections": [
         {
-          "h": "이 배합을 쓴 대표 논문",
+          "h": "이 제품의 대표 논문",
+          "head": [
+            "논문 제목",
+            "저널",
+            "링크"
+          ],
           "rows": [
             [
-              "<span style=\"white-space:nowrap\">LiNO₃ 첨가의 원리</span>",
-              "Aurbach, D. et al., <a href=\"https://doi.org/10.1149/1.3148721\" target=\"_blank\" rel=\"noopener\">“On the Surface Chemical Aspects of Very High Energy Density, Rechargeable Li–Sulfur Batteries”</a>, <i>J. Electrochem. Soc.</i> <b>156</b>, A694 (2009) — LiNO₃가 리튬 표면 보호막을 만들어 셔틀 효과를 억제함을 규명."
+              "On the Surface Chemical Aspects of Very High Energy Density, Rechargeable Li–Sulfur Batteries",
+              "<i>J. Electrochem. Soc.</i> <b>156</b>, A694 (2009)",
+              "<a href=\"https://doi.org/10.1149/1.3148721\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
             ],
             [
-              "<span style=\"white-space:nowrap\">동일 배합 사용 예</span>",
-              "<a href=\"https://doi.org/10.1038/srep33154\" target=\"_blank\" rel=\"noopener\">“Building better lithium–sulfur batteries: from LiNO₃ to solid oxide catalyst”</a>, <i>Sci. Rep.</i> <b>6</b>, 33154 (2016) — <b>1M LiTFSI in DOL/DME(1:1) + 2.0 wt% LiNO₃</b> 전해액으로 Li–S 셀 사이클 평가."
+              "Building better lithium–sulfur batteries: from LiNO₃ to solid oxide catalyst",
+              "<i>Sci. Rep.</i> <b>6</b>, 33154 (2016)",
+              "<a href=\"https://doi.org/10.1038/srep33154\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
             ],
             [
-              "<span style=\"white-space:nowrap\">관찰 실험 예</span>",
-              "Wood, K. N. et al., <a href=\"https://doi.org/10.1021/acscentsci.6b00260\" target=\"_blank\" rel=\"noopener\">“Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy”</a>, <i>ACS Cent. Sci.</i> <b>2</b>, 790 (2016) — Li₂S₈·2% LiNO₃ 첨가 DOL:DME 전해액으로 리튬 계면을 operando 관찰. 셋업은 <a href=\"/magazine/insitu-li-dendrite-observation/\">인시츄 셀 003편</a> 참고."
+              "Dendrites and Pits: Untangling the Complex Behavior of Lithium Metal Anodes through Operando Video Microscopy",
+              "<i>ACS Cent. Sci.</i> <b>2</b>, 790 (2016)",
+              "<a href=\"https://doi.org/10.1021/acscentsci.6b00260\" target=\"_blank\" rel=\"noopener\">DOI ↗</a>"
             ]
           ],
-          "note": "※ 논문 인용은 배합의 학술적 사용 예를 안내하기 위한 것으로, 저자·저널의 보증이나 제휴를 의미하지 않습니다."
+          "note": "※ 논문 인용은 이 배합의 학술적 사용 예를 안내하기 위한 것으로, 저자·저널의 보증이나 제휴를 의미하지 않습니다."
         }
       ],
-      "related": "배터리 재료: <a href=\"/materials/\">전기화학 재료·소모품</a> · <a href=\"/brands/dodochem/\">DodoChem 전체</a> · <a href=\"/wiki/\">배터리 사전</a>",
+      "related": "배터리 재료: <a href=\"/materials/\">전기화학 재료·소모품</a> · <a href=\"/brands/dodochem/\">DodoChem 전체</a> · <a href=\"/magazine/insitu-li-dendrite-observation/\">인시츄 셀 003편 — 리튬 덴드라이트 관찰 셋업</a> · <a href=\"/wiki/\">배터리 사전</a>",
       "keywords": [
         [
           "#DodoChem",
