@@ -158,17 +158,30 @@ async function post(request, env) {
   const now = kstISO();
   const who = c.company || c.name || `#${c.id}`;
 
+  /* 담당자가 하나도 없으면 로그인 계정 정보로 첫 줄을 만들어 둔다.
+     «계정 주인»을 따로 다루지 않기로 했으니, 그 사람도 그냥 담당자 한 명이어야 한다.
+     여기가 아니면 발행 화면에서 보낼 사람이 없어 멈춘다. */
+  const seedContact = async () => {
+    const has = await env.DB.prepare('SELECT id FROM contacts WHERE customer_id=? LIMIT 1').bind(c.id).first();
+    if (has) return;
+    const nm = String(c.name || '').trim();
+    const em = String(c.work_email || c.email || '').trim();
+    if (!nm && !em) return;
+    await env.DB.prepare(
+      `INSERT INTO contacts (customer_id, name, email, phone, role, is_default, is_tax, created_at, updated_at)
+       VALUES (?,?,?,?,'',1,0,?,?)`)
+      .bind(c.id, nm || '담당자', em, String(c.phone || ''), now, now).run();
+  };
+
   if (b.action === 'access') {
     if (!ACCESS.includes(b.access)) return json({ error: 'bad_access' }, 400);
-    // 멤버십 승인 = 후불. /member/ 는 후불 전제로 짜여 있어, 승인만 하고 선불로 두면 못 들어온다.
-    const toPostpaid = b.access === '승인' && (c.billing_mode || '선불') !== '후불';
-    await env.DB.prepare(
-      toPostpaid
-        ? "UPDATE customers SET access=?, billing_mode='후불', updated_at=? WHERE id=?"
-        : 'UPDATE customers SET access=?, updated_at=? WHERE id=?'
-    ).bind(b.access, now, c.id).run();
+    // 결제방식은 여기서 정하지 않는다 — 화면에서 «멤버십(후불)»과 «일반(선불)»을 사람이 골라 따로 보낸다.
+    // 예전처럼 승인만 하면 후불로 밀어버리면, 선불로 받으려던 거래처가 조용히 후불 장부에 올라간다.
+    await env.DB.prepare('UPDATE customers SET access=?, updated_at=? WHERE id=?')
+      .bind(b.access, now, c.id).run();
+    if (b.access === '승인') await seedContact();
     await logEvent(env, { action: 'member_access', actor: 'admin',
-      detail: `${who} 멤버십 ${b.access}${toPostpaid ? ' · 후불 전환' : ''}` });
+      detail: `${who} 멤버십 ${b.access}` });
     return json({ ok: true, access: b.access, billing_mode: toPostpaid ? '후불' : c.billing_mode });
   }
 
@@ -176,6 +189,7 @@ async function post(request, env) {
     const mode = b.billing_mode === '후불' ? '후불' : '선불';
     await env.DB.prepare('UPDATE customers SET billing_mode=?, updated_at=? WHERE id=?').bind(mode, now, c.id).run();
     await logEvent(env, { action: 'billing_mode', actor: 'admin', detail: `${who} ${mode} 전환` });
+    await seedContact();
     return json({ ok: true, billing_mode: mode });
   }
 
@@ -336,15 +350,9 @@ async function post(request, env) {
           .bind(email, now, c.id, c.id).run();
       }
     }
-    // 거래처 대표 연락처로 — 카카오 로그인 계정은 그대로 두고, 기본칸의 사람만 바꾼다
-    if (b.make_primary) {
-      await env.DB.prepare('UPDATE customers SET name=?, phone=?, work_email=?, updated_at=? WHERE id=?')
-        .bind(name, String(b.phone || ''), email || c.work_email || '', now, c.id).run();
-    }
-
     await logEvent(env, { action: 'contact_save', actor: 'admin',
       detail: `${who} 담당자 ${name} 저장`
-        + (def ? ' · 기본' : '') + (tax ? ' · 계산서 메일' : '') + (b.make_primary ? ' · 대표 연락처' : '') });
+        + (def ? ' · 기본' : '') + (tax ? ' · 계산서 메일' : '') });
     const rows = (await env.DB.prepare(
       `SELECT ct.*, s.org_name AS site_name, s.address AS site_addr
          FROM contacts ct LEFT JOIN sites s ON s.id = ct.site_id

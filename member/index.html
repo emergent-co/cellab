@@ -662,6 +662,20 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
 /* 발행 목적 고르기 — 무엇으로 기록할지는 여기서 정해진다 */
+.rec3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rec3 .rc{border:1px solid var(--line);border-radius:11px;padding:11px 11px 12px;background:#fff;
+  display:flex;flex-direction:column;gap:4px}
+.rec3 .rc.on{border-color:var(--navy);background:var(--soft-blue)}
+.rec3 .rc b{font-size:13px;font-weight:800;letter-spacing:-.01em}
+.rec3 .rc small{font-size:11px;font-weight:600;color:var(--mut)}
+.rec3 .rc em.v{font-style:normal;font-size:11.5px;font-weight:600;color:var(--navy-dk);
+  line-height:1.5;margin:5px 0 auto;padding-bottom:6px}
+.rec3 .rc em.v.mut{color:var(--mut);font-weight:600}
+.rec3 .rc em.v b{font-size:12.5px;font-weight:800}
+.rec3 .rc select{width:100%;border:1px solid var(--line);border-radius:8px;padding:6px 7px;
+  font-size:12px;background:#fff;margin-bottom:5px}
+.rec3 .rc .mini{width:100%;margin:0;text-align:center;padding:7px 6px;font-size:12px}
+@media(max-width:640px){.rec3{grid-template-columns:1fr}}
 .ctrow{display:flex;align-items:center;gap:8px;margin-top:10px}
 .ctrow label{flex:0 0 auto;font-size:12.5px;font-weight:700;color:var(--mut)}
 .ctrow select{flex:1 1 auto;min-width:0;border:1px solid var(--line);border-radius:9px;
@@ -4426,8 +4440,8 @@ async function clOpen(id){
       + akv('별칭 (검색용)', c.alias)
       + akv2('사업자번호', pick(c.biz_no, bp0 && bp0.biz_no, '계산서 발행 정보'))
       + akv2('대표자', pick(c.ceo, bp0 && bp0.ceo, '계산서 발행 정보'))
-      // 담당자는 아래 「담당자」 구획 하나에서만 관리한다 — 여기 또 박아두면 두 벌이 되어 반드시 어긋난다
-      + akv('계정 주인', [c.name, c.phone, c.work_email || c.email].filter(Boolean).join(' · '))
+      // 사람은 아래 「담당자」 구획 하나에서만 관리한다 — 여기 또 박아두면 두 벌이 되어 반드시 어긋난다
+      + akv('로그인 계정', [c.name, c.email || c.work_email].filter(Boolean).join(' · '))
       + akv2('주소', pick(c.address, st0 && st0.address, '납품지'))
       + akv2('납품지', (d.sites||[]).length
           ? (d.sites||[]).map(function(x){ return esc(x.org_name||'')+' · '+esc(x.address||''); }).join('<br>')
@@ -4470,21 +4484,18 @@ async function clOpen(id){
 
     // 담당자는 문서 발행에서도 같은 팝업(contactForm)으로 고친다 — 손보는 자리가 둘이면 반드시 어긋난다
     + '<div class="sec"><h4>담당자 <i style="font-style:normal;color:var(--mut);font-weight:600">'
-      + '계정 주인 + ' + (d.contacts||[]).length + '</i>'
+      + (d.contacts||[]).length + '</i>'
       + '<button class="mini" id="clCt" style="float:right">관리</button></h4>'
-      + [{ name: c.name, role: '', email: c.work_email || c.email, phone: c.phone, _own: 1 }]
-          .concat(d.contacts || [])
-          .filter(function(x){ return x.name || x.email; })
-          .map(function(x){
-            return '<div class="ctcard" style="background:#fff'+(x._own?'':';cursor:pointer')+'"'
-              + (x._own ? '' : ' data-ct="'+x.id+'"') + '><div class="t">'
+      + ((d.contacts||[]).length
+        ? d.contacts.map(function(x){
+            return '<div class="ctcard" style="background:#fff;cursor:pointer" data-ct="'+x.id+'"><div class="t">'
               + '<b>'+esc(x.name||'—')
-                + (x._own ? ' <span class="badge s1">계정 주인</span>' : '')
                 + (x.is_default ? ' <span class="badge s2">기본</span>' : '')
                 + (x.is_tax ? ' <span class="badge s3">계산서</span>' : '') + '</b>'
               + '<small>'+esc([x.role, x.email, x.phone].filter(Boolean).join(' · ')||'—')+'</small>'
               + (x.site_name ? '<small>'+esc([x.site_name, x.site_addr].filter(Boolean).join(' · '))+'</small>' : '')
               + '</div></div>'; }).join('')
+        : '<div class="empty" style="padding:16px">등록된 담당자가 없습니다 — 「관리」에서 추가해주세요.</div>')
     + '</div>'
 
     + clFold('주문', d.orders, function(o){
@@ -4935,20 +4946,9 @@ function dqAutoTitle(){
    등록된 담당자가 없으면 거래처에 적힌 대표 연락처를 임시 후보(id 0)로 세운다 —
    «담당자를 먼저 등록하세요»로 막으면 급할 때 발행이 멈춘다. */
 function dqSetContacts(list){
-  var rows = (list || []).slice();
-  // 거래처에 적힌 대표 연락처는 «항상» 후보로 남는다.
-  // 담당자를 하나 등록했다고 대표가 목록에서 사라지면, 원래 보내던 사람에게 되돌릴 방법이 없어진다.
-  // 다만 «맨 아래»에 둔다 — 등록된 담당자가 있으면 그쪽이 이 거래처의 진짜 창구다.
-  if (dqCli && (dqCli.name || dqCli.work_email || dqCli.email)){
-    rows.push({ id:0, name: dqCli.name || '거래처 대표', role:'거래처 대표 연락처',
-                email: dqCli.work_email || dqCli.email || '', phone: dqCli.phone || '' });
-  }
-  dqContacts = rows;
-
-  // 거래처가 바뀌면 고르던 사람은 버린다.
-  // 대표(id 0)는 어느 거래처에나 있어서, 그냥 두면 «아까 고른 대표»가 새 거래처의 기본 담당자를 이겨버린다.
-  if (dqCli && dqContactCid !== dqCli.id){ dqContact = null; dqContactCid = dqCli ? dqCli.id : null; }
-
+  dqContacts = (list || []).slice();
+  // 거래처가 바뀌면 고르던 사람은 버린다 — 앞 거래처의 선택이 새 거래처의 기본 담당자를 이기면 안 된다
+  if (dqCli && dqContactCid !== dqCli.id){ dqContact = null; dqContactCid = dqCli.id; }
   var keep = dqContact && dqContacts.filter(function(c){ return c.id === dqContact.id; })[0];
   dqContact = keep
     || dqContacts.filter(function(c){ return c.is_default; })[0]
@@ -4979,14 +4979,17 @@ function dqPaintContacts(){
   }).join('');
 
   box.innerHTML = '<div class="ctrow"><label>받는 담당자</label>'
-    + '<select id="dqCt">' + opts + '</select>'
+    + (dqContacts.length
+       ? '<select id="dqCt">' + opts + '</select>'
+       : '<span style="flex:1 1 auto;font-size:12.5px;color:#B45309;font-weight:600">'
+         + '등록된 담당자가 없습니다 — 오른쪽에서 먼저 추가해주세요.</span>')
     + '<button class="mini" id="dqCtMng">담당자 관리</button></div>'
     + (dqContact && !dqContact.email
        ? '<p class="dhint" style="color:#B45309">이 담당자에게 메일 주소가 없습니다 — 서류는 나가지만 메일은 보낼 수 없습니다.</p>'
        : (dqContact && dqContact.site_name
           ? '<p class="dhint">납품지 <b>'+esc([dqContact.site_name, dqContact.site_addr].filter(Boolean).join(' · '))+'</b></p>'
           : ''));
-  $('#dqCt').onchange = function(e){
+  if ($('#dqCt')) $('#dqCt').onchange = function(e){
     dqContact = dqContacts.filter(function(c){ return String(c.id)===e.target.value; })[0] || null;
     dqPaintContacts();
   };
@@ -5002,7 +5005,7 @@ function dqPaintContacts(){
 /* 담당자 추가 · 수정 · 삭제 — 한 팝업 안에서 끝낸다.
    거래처 관리와 문서 발행이 «같은» 팝업을 연다. 손보는 자리가 둘이면 반드시 어긋난다. */
 function contactForm(client, list, sites, onDone){
-  var rows = (list || []).filter(function(c){ return c.id; });   // 계정 주인(id 0)은 목록에 안 넣는다
+  var rows = (list || []).slice();
   var ss = sites || [];
   var w = amodal('담당자 관리',
      '<p class="hint" style="margin:2px 0 12px;line-height:1.7">'+esc(client.company||client.name||'—')
@@ -5024,8 +5027,6 @@ function contactForm(client, list, sites, onDone){
         + '<span><b>기본 담당자</b><small>서류·메일이 기본으로 이 사람에게 나갑니다.</small></span></label>'
       + '<label class="swrow" style="margin:8px 0 2px"><input type="checkbox" id="ct-tax">'
         + '<span><b>계산서 메일 수신</b><small>세금계산서가 이 사람 메일로 갑니다 — 발행정보의 계산서 메일도 같이 바뀝니다.</small></span></label>'
-      + '<label class="swrow" style="margin:8px 0 2px"><input type="checkbox" id="ct-pri">'
-        + '<span><b>거래처 대표 연락처로</b><small>거래처 기본칸의 이름·전화·메일을 이 사람으로 바꿉니다. 로그인 계정은 그대로입니다.</small></span></label>'
     + '</div>'
     + '<div class="mrow"><button class="btn gray" id="ct-new">새로 입력</button>'
       + '<button class="btn gray" data-x>닫기</button>'
@@ -5057,7 +5058,6 @@ function contactForm(client, list, sites, onDone){
     $('#ct-email').value = c.email||''; $('#ct-phone').value = c.phone||'';
     $('#ct-site').value = c.site_id ? String(c.site_id) : '';
     $('#ct-def').checked = !!c.is_default; $('#ct-tax').checked = !!c.is_tax;
-    $('#ct-pri').checked = false;
     $('#ct-go').textContent = '저장';
     $('#ct-name').focus();
   }
@@ -5065,7 +5065,7 @@ function contactForm(client, list, sites, onDone){
     editing = null;
     ['ct-name','ct-role','ct-email','ct-phone'].forEach(function(id){ $('#'+id).value=''; });
     $('#ct-site').value = '';
-    $('#ct-def').checked = false; $('#ct-tax').checked = false; $('#ct-pri').checked = false;
+    $('#ct-def').checked = false; $('#ct-tax').checked = false;
     $('#ct-go').textContent = '추가';
   }
   async function del(c){
@@ -5082,17 +5082,16 @@ function contactForm(client, list, sites, onDone){
   $('#ct-go').onclick = async function(){
     var name = $('#ct-name').value.trim();
     if (!name){ $('#ct-name').focus(); return alert('담당자 이름을 입력해주세요.'); }
-    if (($('#ct-tax').checked || $('#ct-pri').checked) && !$('#ct-email').value.trim()){
+    if ($('#ct-tax').checked && !$('#ct-email').value.trim()){
       $('#ct-email').focus();
-      return alert('계산서 메일·대표 연락처로 쓰려면 이메일이 있어야 합니다.');
+      return alert('계산서 메일로 쓰려면 이메일이 있어야 합니다.');
     }
     var b = $('#ct-go'); var was = b.textContent; b.disabled = true; b.textContent = '저장 중…';
     var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,body:JSON.stringify({
       id: client.id, action:'contact_save', contact_id: editing ? editing.id : null,
       name: name, role: $('#ct-role').value.trim(), email: $('#ct-email').value.trim(),
       phone: $('#ct-phone').value.trim(), site_id: Number($('#ct-site').value) || null,
-      is_default: $('#ct-def').checked, is_tax: $('#ct-tax').checked,
-      make_primary: $('#ct-pri').checked })})
+      is_default: $('#ct-def').checked, is_tax: $('#ct-tax').checked })})
       .then(function(x){return x.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = was;
     if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
@@ -5699,38 +5698,6 @@ async function dqOpen(id){
               + '<div class="dsrc" style="margin-top:10px"><button class="mini ok" id="nsIssue">국세청 발행</button></div>')
          + '</div>'
        : '')
-    + '<div class="sec"><h4>돈 계산에 넣기 <i style="font-style:normal;color:var(--mut);font-weight:600">둘 중 하나입니다</i></h4>'
-      + (d.payment
-         ? '<div class="kv"><span>중간정산금</span><span><b>'+won(d.payment.amount)+'원</b> · '
-           + esc(d.payment.paid_at||'')+' '+esc(d.payment.method||'')+'</span></div>'
-           + '<div class="dnote" style="margin-top:8px">돈이 들어온 것으로 잡혀 <b>잔여정산금이 그만큼 줄어듭니다</b>. '
-           + '지출금에는 들어가지 않습니다.</div>'
-           + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="dqUndoPay">중간정산금 기록 취소</button></div>'
-         : d.order
-         ? '<div class="kv"><span>연결된 주문</span><span><b>'+esc(d.order.order_no)+'</b> '
-           + abadge(d.order.status)+' · '+won(d.order.total_amount)+'원</span></div>'
-           + '<div class="dnote" style="margin-top:8px">물건이 나간 건이 아니라 <b>중도금·선입금 같은 중간정산금</b>이면 '
-           + '아래에서 바꾸세요. 이 문서로 만든 주문은 지워지고, 같은 금액이 입금으로 들어갑니다.</div>'
-           + '<div class="dsrc" style="margin-top:10px"><button class="mini" id="dqToPay">중간정산금으로 바꾸기</button></div>'
-         : '<div class="dnote">이 발행은 <b>어느 쪽에도 잡히지 않았습니다</b> — 지출금에도 중간정산금에도 없습니다.</div>'
-           + '<div class="dsrc" style="margin-top:10px"><select id="dqOrdSt2" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
-           + ST.map(function(x){ return '<option'+(x==='발주확정'?' selected':'')+'>'+x+'</option>'; }).join('')
-           + '</select><button class="mini" id="dqToOrder">주문으로 기록</button></div>'
-           + '<p class="dhint">물건이 나간 건 — 총지출금 <b>+'+won(tot.total||0)+'원</b>, 잔여정산금이 그만큼 늘어납니다.</p>'
-           + '<div class="dsrc" style="margin-top:12px"><button class="mini" id="dqToPay">중간정산금으로 기록</button></div>'
-           + '<p class="dhint">돈이 들어온 건 — 중간정산금 <b>+'+won(tot.total||0)+'원</b>, 잔여정산금이 그만큼 줄어듭니다.</p>')
-     + '</div>'
-    + '<div class="sec"><h4>정산 진행 기록 <i style="font-style:normal;color:var(--mut);font-weight:600">금액 계산과는 무관합니다</i></h4>'
-      + (d.settlement
-         ? '<div class="kv"><span>연결된 정산</span><span><b>#'+d.settlement.id+'</b> '
-           + abadge(d.settlement.status)+' · '+won(d.settlement.total)+'원</span></div>'
-         : '<div class="dnote">정산 요청 목록에 뜨지 않습니다 — 서류 발급 · 입금 확인 같은 <b>진행 상황을 남기는 칸</b>입니다.'
-           + '<br>지출금 · 중간정산금 · 잔여정산금 숫자는 <b>이것과 무관하게</b> 위에서만 움직입니다.</div>'
-           + '<div class="dsrc" style="margin-top:10px"><select id="dqStSt" style="flex:1 1 auto;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-size:13.5px;background:#fff">'
-           + ['서류발급 완료','정산요청','처리중','입금완료'].map(function(x){
-               return '<option'+(x==='서류발급 완료'?' selected':'')+'>'+x+'</option>'; }).join('')
-           + '</select><button class="mini" id="dqToSettle">정산 요청으로 올리기</button></div>')
-     + '</div>'
     + '<div class="sec"><h4>내용</h4>'
       + akv('제목', p.title)
       + akv('서류상 공급받는자', (p.client&&p.client.company)||'')
@@ -5772,6 +5739,50 @@ async function dqOpen(id){
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
       + '<div class="twobtn"><button class="btn gray" id="dqVoid">문서 취소</button>'
       + '<button class="btn ok" id="dqSend">발송</button></div></div>')
+
+    /* 보내고 나서 «이건 뭐로 잡을까»를 묻는다 — 순서가 그렇다.
+       왼쪽 둘은 장부의 숫자를 반대로 움직이고, 오른쪽은 숫자를 건드리지 않는다.
+       세 갈래를 나란히 놓아야 어느 쪽인지 한눈에 고른다. */
+    + '<div class="sec"><h4>이 발행을 무엇으로 기록할까요'
+      + '<i style="font-style:normal;color:var(--mut);font-weight:600"> 왼쪽 둘은 배타적</i></h4>'
+      + '<div class="rec3">'
+
+        // ── 주문 ──
+        + '<div class="rc'+(d.order?' on':'')+'">'
+          + '<b>주문</b><small>물건이 나간 건</small>'
+          + (d.order
+             ? '<em class="v">'+esc(d.order.order_no)+'<br>'+abadge(d.order.status)+'</em>'
+               + '<button class="mini" id="dqToPay">중간정산금으로 바꾸기</button>'
+             : d.payment ? '<em class="v mut">중간정산금으로 잡혀 있습니다</em>'
+             : '<em class="v">총지출금 <b>+'+won(tot.total||0)+'원</b><br>잔여정산금 그만큼 증가</em>'
+               + '<select id="dqOrdSt2">'
+               + ST.map(function(x){ return '<option'+(x==='발주확정'?' selected':'')+'>'+x+'</option>'; }).join('')
+               + '</select><button class="mini" id="dqToOrder">주문으로 기록</button>')
+        + '</div>'
+
+        // ── 중간정산금 ──
+        + '<div class="rc'+(d.payment?' on':'')+'">'
+          + '<b>중간정산금</b><small>돈이 들어온 건</small>'
+          + (d.payment
+             ? '<em class="v"><b>'+won(d.payment.amount)+'원</b><br>'+esc(d.payment.paid_at||'')+'</em>'
+               + '<button class="mini" id="dqUndoPay">기록 취소</button>'
+             : d.order ? '<em class="v mut">주문으로 잡혀 있습니다</em>'
+             : '<em class="v">중간정산금 <b>+'+won(tot.total||0)+'원</b><br>잔여정산금 그만큼 감소</em>'
+               + '<button class="mini" id="dqToPay">중간정산금으로 기록</button>')
+        + '</div>'
+
+        // ── 정산 요청 ──
+        + '<div class="rc'+(d.settlement?' on':'')+'">'
+          + '<b>정산 요청</b><small>진행 상황만</small>'
+          + (d.settlement
+             ? '<em class="v">#'+d.settlement.id+'<br>'+abadge(d.settlement.status)+'</em>'
+             : '<em class="v mut">금액 계산에는<br>영향이 없습니다</em>'
+               + '<select id="dqStSt">'
+               + ['서류발급 완료','정산요청','처리중','입금완료'].map(function(x){
+                   return '<option'+(x==='서류발급 완료'?' selected':'')+'>'+x+'</option>'; }).join('')
+               + '</select><button class="mini" id="dqToSettle">올리기</button>')
+        + '</div>'
+      + '</div></div>'
     + ((d.events&&d.events.length) ? '<div class="sec"><h4>이력</h4>'
         + d.events.slice(0,8).map(function(e){
             return '<div class="kv"><span>'+esc(String(e.created_at||'').slice(5,16))+'</span><span>'
