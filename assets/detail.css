@@ -109,14 +109,8 @@
   .detail-top .wrap{max-width:920px}
   .dt-grid{display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);gap:24px;align-items:start;margin-top:6px}
   @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
-  /* 우측 여백 레일 — 본문 폭은 그대로 두고 바깥 여백만 사용, 스크롤 추종 */
-  body{position:relative}
-  .buyrail{display:none}
-  @media(min-width:1440px){
-    .buyrail{display:block;position:absolute;left:calc(50% + 462px);width:250px;pointer-events:none}
-    .buyrail .dt-buy{position:sticky;top:86px;pointer-events:auto}
-  }
-  .dt-info .dt-buy{margin:16px 0 0;max-width:420px}
+  /* 우측 주문정보 레일(.buyrail)의 CSS 는 assets/site.css 에 있다.
+     site.js 가 레일을 제어하고, detail.css 로 아직 이관 안 된 페이지도 레일이 떠야 하기 때문. */
   .dt-col:empty{display:none}
   .dt-grid:has(.dt-col:empty){grid-template-columns:1fr}
   .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}

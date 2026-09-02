@@ -1717,7 +1717,7 @@ PP_REQUIRED = [
     ('features', '특징',            False),
     ('specs',    '사양(물성)',      False),
     ('variants', '규격 비교표',      False),
-    ('buybox',   '주문정보',        False),
+    ('buybox',   '주문정보(가격)',  False),
     ('faq',      'FAQ',            False),
     ('source',   '제조사 원문 출처', False),
     ('safety',   '안전정보(GHS)',   True),
@@ -1739,6 +1739,11 @@ def _pp_audit(bslug, p):
         if chem_only and not chem:
             continue
         v = p.get(key)
+        if key == 'buybox':
+            # "buybox": []  = 가격 미공개(견적 전용)를 의도적으로 표시한 것 -> 통과
+            if key not in p:
+                miss.append(label + ' — 가격을 넣거나 "buybox": [] 로 견적 전용 표시')
+            continue
         if not v:
             miss.append(label)
         elif key == 'specs' and len(v) < 3:
@@ -1909,9 +1914,9 @@ def _pp_render(brand, p):
     # ---------- body ----------
     b = ['<body>', '<div id="pumplab-header"></div>']
 
-    if p.get('buybox'):
-        b.append('<div class="buyrail"><div id="buybox" class="bb dt-buy" data-name="%s" data-models=\'%s\'></div></div>'
-                 % (escape(name), json.dumps(p['buybox'], ensure_ascii=False)))
+    # 오른쪽 주문정보는 항상 낸다. 가격이 없으면 site.js 가 견적문의 창으로 렌더한다.
+    b.append('<div class="buyrail"><div id="buybox" class="bb dt-buy" data-name="%s" data-models=\'%s\'></div></div>'
+             % (escape(name), json.dumps(p.get('buybox') or [], ensure_ascii=False)))
 
     b.append('<section class="detail-top"><div class="wrap">')
     # 1. 크럼

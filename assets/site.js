@@ -1031,6 +1031,9 @@
   var MODELS = [];
   try { MODELS = JSON.parse(box.dataset.models || '[]'); } catch (e) { MODELS = []; }
 
+  /* 가격이 하나도 공개되지 않은 제품 — 오른쪽 열을 견적문의 창으로 낸다 */
+  var ASK_ONLY = !MODELS.some(function (o) { return o.p; });
+
   var css = document.createElement('style');
   css.textContent =
     '.pd-pick{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:18px 0 0}'
@@ -1116,6 +1119,19 @@
   function render() {
     var o = cur();
     var q = Math.max(1, +(document.getElementById('pdQty') || {}).value || 1);
+    if (ASK_ONLY) {                       /* 가격 미공개 — 견적문의 창 */
+      box.innerHTML =
+        '<div class="bb-price">가격 문의<small>규격·수량 확인 후 회신</small></div>'
+      + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
+      + '<div class="bb-row"><span class="k">제품가격</span><span class="v">문의</span></div>'
+      + '<div class="bb-row"><span class="k">배송</span><span class="v">문의</span></div>'
+      + '<div class="bb-row"><span class="k">예상 배송일</span><span class="v">주문 확정 후 안내</span></div>'
+      + '<div class="bb-qty"><label for="pdQty">수량</label>'
+      +   '<input type="number" id="pdQty" min="1" value="' + q + '"></div>'
+      + '<button type="button" class="bb-btn bb-buy" id="bbAsk" data-inquiry="'
+      +   String(NAME).replace(/"/g, '&quot;') + '">견적문의</button>';
+      return;
+    }
     var many = q >= QTY_ASK;
     var head = !o.p ? '문의'
              : many ? '문의<small>10개 이상</small>'

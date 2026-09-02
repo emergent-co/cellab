@@ -652,3 +652,15 @@ html.embed body{padding-top:0!important}
 .chrome-footer .cf-admin{ margin-left:10px; color:#4a5462 !important; text-decoration:none; font-size:11.5px; }
 .chrome-footer .cf-admin::before{ content:"\00b7"; margin-right:10px; color:#39414d; }
 .chrome-footer .cf-admin:hover{ color:#8fe6a3 !important; }
+
+/* ── 제품 상세 우측 주문정보 레일 ─────────────────────────────────
+   site.js 의 buybox 가 여기에 그린다. 화면이 넓으면 본문 바깥 여백에 sticky 로 붙고,
+   좁으면 site.js 가 .dt-info(오른쪽 열) 안으로 옮긴다.
+   detail.css 가 아니라 여기 두는 이유: 아직 이관 안 된 상세페이지도 레일이 떠야 한다. */
+body{ position:relative; }
+.buyrail{ display:none; }
+@media(min-width:1440px){
+  .buyrail{ display:block; position:absolute; left:calc(50% + 462px); width:250px; pointer-events:none; }
+  .buyrail .dt-buy{ position:sticky; top:86px; pointer-events:auto; }
+}
+.dt-info .dt-buy{ margin:16px 0 0; max-width:420px; }
