@@ -1429,7 +1429,79 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/dodochem/ceramic-disc-18mm/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/dmc-anhydrous-solvent/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/dme-anhydrous-solvent/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/lb-002-lithium-ion-electrolyte/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/lb-008-lithium-ion-electrolyte/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/lifsi-battery-grade/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/litfsi-battery-grade/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/ls-002-lithium-sulfur-electrolyte/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/dodochem/ls-009-lithium-sulfur-electrolyte/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/nc-004-naclo4-electrolyte/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/np-005-napf6-electrolyte/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/pvdf-hsv900-binder/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/dodochem/whatman-gfd-125mm/</loc>
     <lastmod>2026-09-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
@@ -2173,13 +2245,103 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/hefei/afm-aqueous-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/afm-solidstate-li-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/hefei/om003-microscope-cell/</loc>
     <lastmod>2026-09-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/brands/hefei/raman-li-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/raman-li-vartemp-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/raman-liair-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/raman-thermalbattery-ht-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/uv-linaelectrolyte-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xafs-fuelcell-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xafs-li-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xafs-li-vartemp-trans-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xafs-znair-3e-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/brands/hefei/xrd-li-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xrd-li-vartemp-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xrd-solidstate-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xrd-thermalbattery-ht-cell/</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/brands/hefei/xrd-znaq-3e-cell/</loc>
     <lastmod>2026-09-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>

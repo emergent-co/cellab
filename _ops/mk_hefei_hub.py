@@ -9,8 +9,44 @@ SRC  = os.path.join(ROOT, 'brands', 'gaossunion', 'index.html')
 OUT  = os.path.join(ROOT, 'brands', 'hefei', 'index.html')
 PAGE = os.path.join(ROOT, 'brands', 'hefei')
 
-ITEMS = [('om003-microscope-cell', '인시츄 관찰 셀')]
-NM = {'om003-microscope-cell': 'CIS-OM-003 · CIS-OM-003-1'}
+ITEMS = [
+    ('om003-microscope-cell', '인시츄 관찰 셀'),
+    ('xrd-li-cell', '인시츄 XRD 셀'),
+    ('raman-li-cell', '인시츄 라만 셀'),
+    ('xafs-li-cell', '인시츄 XAFS 셀'),
+    ('xafs-fuelcell-cell', '인시츄 XAFS 셀'),
+    ('xrd-li-vartemp-cell', '고저온 XRD 셀'),
+    ('raman-li-vartemp-cell', '고저온 라만 셀'),
+    ('xafs-li-vartemp-trans-cell', '고저온 XAFS 셀'),
+    ('xafs-znair-3e-cell', '3전극 XAFS 셀'),
+    ('raman-thermalbattery-ht-cell', '고온 라만 셀'),
+    ('xrd-znaq-3e-cell', '3전극 XRD 셀'),
+    ('xrd-thermalbattery-ht-cell', '고온 XRD 셀'),
+    ('uv-linaelectrolyte-cell', '자외선 전해액 셀'),
+    ('xrd-solidstate-cell', '고체 XRD 셀'),
+    ('afm-aqueous-cell', '인시츄 AFM 셀'),
+    ('afm-solidstate-li-cell', '인시츄 AFM 셀'),
+    ('raman-liair-cell', '인시츄 라만 셀'),
+]
+NM = {
+    'om003-microscope-cell': 'CIS-OM-003 · CIS-OM-003-1',
+    'xrd-li-cell': 'Li In-situ XRD',
+    'raman-li-cell': 'Li In-situ Raman',
+    'xafs-li-cell': 'Li In-situ XAFS',
+    'xafs-fuelcell-cell': 'Fuel-cell XAFS',
+    'xrd-li-vartemp-cell': 'Var-Temp Li XRD',
+    'raman-li-vartemp-cell': 'Var-Temp Li Raman',
+    'xafs-li-vartemp-trans-cell': 'Var-Temp Li XAFS (Trans.)',
+    'xafs-znair-3e-cell': 'Zn-air 3E XAFS',
+    'raman-thermalbattery-ht-cell': 'Thermal-battery HT Raman',
+    'xrd-znaq-3e-cell': 'Aqueous Zn 3E XRD',
+    'xrd-thermalbattery-ht-cell': 'Thermal-battery HT XRD',
+    'uv-linaelectrolyte-cell': 'Li/Na UV Electrolyte',
+    'xrd-solidstate-cell': 'Solid-State XRD',
+    'afm-aqueous-cell': 'Aqueous In-situ AFM',
+    'afm-solidstate-li-cell': 'Solid-State Li AFM',
+    'raman-liair-cell': 'Li-Air In-situ Raman',
+}
 
 def strip(s): return re.sub(r'<[^>]+>', '', s).strip()
 

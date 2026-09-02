@@ -6,14 +6,7 @@
 #
 # ── 2026-09-02 시점 이관 대기 부채. 이관하면서 한 줄씩 지운다. ──
 
-# aida 5장 — detail.css 이관 대기
-brands/aida/gc-disc-working-electrode/   STYLE_INLINE
-brands/aida/pt-disc-working-electrode/   STYLE_INLINE
-brands/aida/pt-sheet-counter-electrode/  STYLE_INLINE
-brands/aida/rde-rrde/                    STYLE_INLINE
-brands/aida/reference-electrode/         STYLE_INLINE
 
-# hench 2장 — detail.css 이관 대기 (.hx-note 등 페이지 고유 규칙 이관 필요)
 brands/hench/cylindrical-die-hmy/        STYLE_INLINE
 brands/hench/manual-pellet-press-yp/     STYLE_INLINE
 
@@ -25,44 +18,22 @@ brands/neware/wgdw-chamber/              MISSING_BLOCK
 
 # 가오스 1장 — 제품 사진 확보 대기
 brands/gaossunion/custom-material-working-electrode/  MISSING_BLOCK
-# aida 신규 5장 — detail.css 이관 대기 (기존 5장과 동일 사유)
-brands/aida/sem-dual-electrode/           STYLE_INLINE
-brands/aida/pt-mesh-counter-electrode/    STYLE_INLINE
-brands/aida/pt-wire-counter-electrode/    STYLE_INLINE
-brands/aida/graphite-rod-counter-electrode/ STYLE_INLINE
-brands/aida/electrode-holder/             STYLE_INLINE
-# aida 전해셀 6장 — detail.css 이관 대기 (기존 aida 10장과 동일 사유)
-brands/aida/glass-cell-c002/         STYLE_INLINE
-brands/aida/sealed-cell-c001/        STYLE_INLINE
-brands/aida/jacket-cell-c003/        STYLE_INLINE
-brands/aida/five-port-cell-c010/     STYLE_INLINE
-brands/aida/h-cell-ch2001/           STYLE_INLINE
-brands/aida/membrane-cell-ch2010/    STYLE_INLINE
 # hefei/xrd-li-cell — 병렬 세션 작업 중. 대표사진 미수집 상태로 빌드를 막고 있어 임시 예외.
 #   사진이 붙으면 MISSING_BLOCK 줄을 지울 것.
 brands/hefei/xrd-li-cell/            MISSING_BLOCK
 brands/hefei/xrd-li-cell/            STYLE_INLINE
-# aida 셀·광전기화학·인시츄 23장 — detail.css 이관 대기 (기존 aida와 동일 사유)
-brands/aida/battery-cell-e200/         STYLE_INLINE
-brands/aida/battery-imaging-e001/      STYLE_INLINE
-brands/aida/battery-observation-e003/  STYLE_INLINE
-brands/aida/cell-c040/                 STYLE_INLINE
-brands/aida/coating-cell-f011/         STYLE_INLINE
-brands/aida/corrosion-cell-f500/       STYLE_INLINE
-brands/aida/double-flat-cell/          STYLE_INLINE
-brands/aida/electrode-stand-t0101/     STYLE_INLINE
-brands/aida/flat-cell-f029/            STYLE_INLINE
-brands/aida/gde-cell-e023/             STYLE_INLINE
-brands/aida/h-cell-ch2003/             STYLE_INLINE
-brands/aida/half-cell-e025/            STYLE_INLINE
-brands/aida/membrane-cell-ch2015/      STYLE_INLINE
-brands/aida/multifunction-cell-m005/   STYLE_INLINE
-brands/aida/photo-cell-k020/           STYLE_INLINE
-brands/aida/photo-cell-k040/           STYLE_INLINE
-brands/aida/photo-cell-k050/           STYLE_INLINE
-brands/aida/photo-reactor-k010/        STYLE_INLINE
-brands/aida/raman-battery-cell/        STYLE_INLINE
-brands/aida/raman-cell-k004/           STYLE_INLINE
-brands/aida/spectro-cell-k003/         STYLE_INLINE
-brands/aida/xrd-cell-e602/             STYLE_INLINE
-brands/aida/zinc-air-cell-e100/        STYLE_INLINE
+brands/hefei/afm-aqueous-cell/ STYLE_INLINE
+brands/hefei/afm-solidstate-li-cell/ STYLE_INLINE
+brands/hefei/raman-li-cell/ STYLE_INLINE
+brands/hefei/raman-li-vartemp-cell/ STYLE_INLINE
+brands/hefei/raman-liair-cell/ STYLE_INLINE
+brands/hefei/raman-thermalbattery-ht-cell/ STYLE_INLINE
+brands/hefei/uv-linaelectrolyte-cell/ STYLE_INLINE
+brands/hefei/xafs-fuelcell-cell/ STYLE_INLINE
+brands/hefei/xafs-li-cell/ STYLE_INLINE
+brands/hefei/xafs-li-vartemp-trans-cell/ STYLE_INLINE
+brands/hefei/xafs-znair-3e-cell/ STYLE_INLINE
+brands/hefei/xrd-li-vartemp-cell/ STYLE_INLINE
+brands/hefei/xrd-solidstate-cell/ STYLE_INLINE
+brands/hefei/xrd-thermalbattery-ht-cell/ STYLE_INLINE
+brands/hefei/xrd-znaq-3e-cell/ STYLE_INLINE

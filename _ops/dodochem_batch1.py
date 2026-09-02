@@ -25,7 +25,7 @@ META = [
  ('NE-000183','pvdf-hsv900-binder','DodoChem PVDF 바인더 HSV900','PVDF Binder HSV900 (Arkema)','mat','폴리불화비닐리덴(PVDF) · Arkema HSV900 · 전극 슬러리 바인더','g','양극 슬러리 바인더(NMP 용해)','바인더'),
 ]
 
-STYLE = re.search(r'<style>.*?</style>', open('brands/gaossunion/agcl-reference-electrode/index.html', encoding='utf-8').read(), re.S).group(0)
+STYLE = '<link rel="stylesheet" href="/assets/detail.css">'
 
 FAQS = {
  'elec': [('배합','다른 배합도 주문할 수 있나요?','네. 염 농도·용매비·첨가제를 바꾼 커스텀 배합이 가능합니다. 원하는 배합식을 견적 문의에 그대로 적어 주세요.'),
@@ -58,6 +58,8 @@ for m in META:
     drop = [x for x in skus if x[2] < 50000]
     assert vis, code
     lows[code] = vis[0][2]
+    imgslug = {'LS-009':'ls-009','LS-002':'ls-002','LB-002':'lb-002','LB-008':'lb-008','NC-004':'nc-004','NP-005':'np-005','NE-000027':'lifsi','NE-000014':'litfsi','NE-000063':'dme','NE-000061':'dmc','NE-000675':'whatman-gfd','NE-000608':'ceramic-disc-18','NE-000183':'pvdf-hsv900'}[code]
+    img = f'/img/dodochem/{imgslug}-1.jpg'
     # SQL
     for v, c, w in vis:
         vv = v.replace("'", '')
@@ -65,11 +67,8 @@ for m in META:
             "INSERT INTO products (sku,group_no,brand,maker,origin,daebun,sobun,model,opt_name,opt_value,name,features,detail,unit,supply_price,retail_price,image_url,product_url,lead_time,cert,stock,attr1_n,attr1_v,attr2_n,attr2_v,attr3_n,attr3_v,attr4_n,attr4_v,status) VALUES "
             f"('DD-{code.replace('NE-','NE').replace('-','')}-{vv}',910,'DodoChem','DodoChem','중국','배터리 소재','{sobun}','{code}','규격','{vv}{u}',"
             f"'{kname} {vv}{u}','1.{desc.split('·')[0].strip()} | 2.용도 {use} | 3.규격 {vv}{u}','','ea',0,{w},"
-            f"'https://rndsetup.com/img/dodochem/{slug.split('-lithium')[0].split('-naclo4')[0].split('-napf6')[0].split('-battery')[0].split('-anhydrous')[0].split('-125mm')[0].split('-binder')[0] if False else ''}','',"
-            "'','','','카탈로그가','CNY %s','계열','%s','','','','','판매중');" % (c, sobun))
-    # 상세페이지
-    imgslug = {'LS-009':'ls-009','LS-002':'ls-002','LB-002':'lb-002','LB-008':'lb-008','NC-004':'nc-004','NP-005':'np-005','NE-000027':'lifsi','NE-000014':'litfsi','NE-000063':'dme','NE-000061':'dmc','NE-000675':'whatman-gfd','NE-000608':'ceramic-disc-18','NE-000183':'pvdf-hsv900'}[code]
-    img = f'/img/dodochem/{imgslug}-1.jpg'
+            f"'https://rndsetup.com{img}','https://rndsetup.com/brands/dodochem/{slug}/',"
+            f"'','','','카탈로그가','CNY {c}','계열','{sobun}','','','','','판매중');")
     tbl = '\n'.join(f'<tr><td><b>{code}</b> · {v} {u}</td><td>{desc if typ=="elec" else use}</td><td style="text-align:center"><b>{w:,}원</b></td></tr>' for v, c, w in vis)
     dropnote = (f' {len(drop)}개 소액 규격({", ".join(v+u for v,_,_ in drop)})은 단품 판매가 어려워 본체·타 품목과 합산 견적으로 안내합니다.' if drop else '')
     smallnote = ' 30만원 미만 소액 품목은 다른 품목과 합산 주문을 권장합니다.' if lows[code] < 300000 else ''
