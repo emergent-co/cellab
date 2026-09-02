@@ -2,14 +2,17 @@
 """AIDA 샘플 1 — 유리탄소(GC) 디스크 작업전극 (카탈로그 p1)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('GC120','Φ2 mm',97), ('GC130','Φ3 mm',93), ('GC140','Φ4 mm',108),
  ('GC150','Φ5 mm',108), ('GC160','Φ6 mm',135), ('GC370','Φ7 mm',194),
  ('GC380','Φ8 mm',290), ('GC390','Φ9 mm',425), ('GC310','Φ10 mm',580),
  ('GC315','Φ15 mm',1160), ('GC321','Φ20 mm',1935),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('gc-disc-working-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('gc-disc-working-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)

@@ -2,9 +2,9 @@
 """AIDA 샘플 3 — 기준전극 (카탈로그 p3)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('R0302','Ag/AgCl · 유리관 Φ4 mm',23),
  ('R0303','Ag/AgCl · 유리관 Φ6 mm',23),
  ('R0305','Ag/AgCl · 소형',29),
@@ -15,6 +15,9 @@ ROWS = C.rows([
  ('R0401','Hg/Hg₂SO₄ (황산제일수은)',29),
  ('R0501','Hg/HgO (산화수은)',70),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('reference-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('reference-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)

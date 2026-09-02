@@ -2,12 +2,15 @@
 """AIDA 8 — 흑연봉 상대전극 (카탈로그 p6)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('C303','흑연봉 Φ3 mm',29), ('C304','흑연봉 Φ4 mm',29),
  ('C305','흑연봉 Φ5 mm',29), ('C306','흑연봉 Φ6 mm',29),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('graphite-rod-counter-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('graphite-rod-counter-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True, brand='aida', slug='graphite-rod-counter-electrode', cat='상대전극',

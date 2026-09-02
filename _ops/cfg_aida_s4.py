@@ -2,9 +2,9 @@
 """AIDA 샘플 4 — 백금판 상대전극 (카탈로그 p8)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('Pt213','2 × 5 × 0.1 mm',61),   ('Pt251','5 × 5 × 0.1 mm',77),
  ('Pt252','5 × 5 × 0.2 mm',89),   ('Pt253','5 × 10 × 0.1 mm',89),
  ('Pt254','5 × 10 × 0.2 mm',112), ('Pt255','5 × 10 × 0.3 mm',137),
@@ -21,6 +21,9 @@ ROWS = C.rows([
  ('Pt230','10 × 30 × 0.1 mm',208),('Pt231','10 × 30 × 0.2 mm',352),
  ('Pt261','30 × 30 × 0.1 mm',496),('Pt262','30 × 30 × 0.2 mm',930),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('pt-sheet-counter-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('pt-sheet-counter-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)

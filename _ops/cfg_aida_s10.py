@@ -2,13 +2,16 @@
 """AIDA 10 — 전극 홀더 · 시료 지지대 (카탈로그 p2, p13)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('J110','전극 홀더 (PTFE) · Φ6 × 80 mm',97),
  ('J120','전극 홀더 (STS304) · Φ6 × 80 mm',29),
  ('J210','시료 지지대 · 작용면적 1 cm² · 전극봉 길이 10 cm',194),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('electrode-holder', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('electrode-holder', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True, brand='aida', slug='electrode-holder', cat='전극 부속',

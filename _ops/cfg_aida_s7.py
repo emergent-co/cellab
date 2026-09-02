@@ -2,13 +2,16 @@
 """AIDA 7 — 백금망 상대전극 (카탈로그 p6~7)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('Pt305','5 × 10 mm',116),  ('Pt310','10 × 10 mm',138), ('Pt315','10 × 15 mm',160),
  ('Pt312','10 × 20 mm',183), ('Pt350','15 × 15 mm',189), ('Pt320','20 × 20 mm',250),
  ('Pt330','30 × 30 mm',410), ('Pt321','Φ20 mm (원형)',213), ('Pt313','10 × 30 mm',226),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('pt-mesh-counter-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('pt-mesh-counter-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True, brand='aida', slug='pt-mesh-counter-electrode', cat='상대전극',

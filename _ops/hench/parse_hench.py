@@ -47,8 +47,12 @@ LABELS = sorted(set(list(vocab.keys()) + EXTRA), key=len, reverse=True)
 LAB_RX = re.compile('(' + '|'.join(re.escape(l) for l in LABELS) + ')')
 
 def parse(body):
-    b = body.replace('：', ':')
-    if re.search(r'[A-Za-z]\s*:\s*\S', b):
+    # 전각 콜론(：)은 값 안(Alloy tool steel：Cr12MoV)에도 쓰여서 형식 판별에 쓰면 안 된다.
+    b = body
+    n_colon = len(re.findall(r'[A-Z][A-Za-z.\s/()\-]{1,34}?\s*:\s*\S', b))
+    n_label = len(LAB_RX.findall(b))
+    if n_colon >= 3 and n_colon >= n_label * 0.6:
+        b = b.replace('：', ':')
         parts = re.split(r'(?=[A-Z][A-Za-z.\s/()\-]{1,34}?\s*:)', b)
         out = []
         for p in parts:

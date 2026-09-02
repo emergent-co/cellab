@@ -1114,7 +1114,7 @@ def build_all_products():
         'chamber':    [('온도범위', ['온도']), ('습도범위', ['습도']), ('내부크기', ['내부', '크기', '용량'])],
         'sterilizer': [('온도', ['온도']), ('용량·챔버', ['용량', '챔버']), ('방식', ['방식', '진공', '멸균', '제어'])],
         'mixing':     [('회전수', ['회전']), ('용량·용기', ['용량', '용기']), ('방식', ['방식', '분쇄', '믹서', '모터'])],
-        'pellet':     [('최대하중', ['최대하중', '하중']), ('압력', ['압력']), ('대응 몰드', ['몰드'])],
+        'pellet':     [('최대하중', ['최대하중', '하중']), ('실린더', ['실린더']), ('유효공간', ['유효공간'])],
         'die':        [('성형 직경', ['직경']), ('재질', ['재질']), ('경도', ['경도'])],
         'vacuumpump': [('도달압력', ['도달', '진공도']), ('배기속도', ['배기', '펌핑']), ('구성', ['플랜지', '모터', '소음', '오일'])],
         'fumehood':   [('크기', ['크기', '폭', '치수']), ('풍속', ['풍속', '배기']), ('구성', ['필터', '구성', '용도', '재질'])],
@@ -1398,8 +1398,8 @@ def build_all_products():
         seg = [x for x in href.strip('/').split('/') if x]
         page_slug = seg[-1] if seg else ''
         # SQL에 대응 상품이 없는 페이지: 잘못된 근사 매칭 방지 (견적 유지)
-        if page_slug in ('rotary-tube-furnace', 'rotary-tube-furnace-pro', 'vacuum-tube-turnkey',
-                        'manual-pellet-press-yp', 'cylindrical-die-hmy'):
+        if page_slug in ('rotary-tube-furnace', 'rotary-tube-furnace-pro', 'vacuum-tube-turnkey') \
+                or page_slug.startswith(('pellet-press-yp', 'cylindrical-die-hmy')):
             return None
         rule = SLUG_SQL.get(page_slug)
         if rule:

@@ -2,9 +2,9 @@
 """AIDA 샘플 2 — 백금 · 금 · 은 디스크 작업전극 (카탈로그 p1)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('Pt105','백금 Φ0.5 mm',63), ('Pt110','백금 Φ1 mm',78), ('Pt120','백금 Φ2 mm',110),
  ('Pt130','백금 Φ3 mm',177), ('Pt140','백금 Φ4 mm',208), ('Pt150','백금 Φ5 mm',293),
  ('Pt160','백금 Φ6 mm',397),
@@ -13,6 +13,9 @@ ROWS = C.rows([
  ('Au160','금 Φ6 mm',705),
  ('Ag120','은 Φ2 · Φ3 mm',35), ('Ag140','은 Φ4 mm',42), ('Ag150','은 Φ5 mm',45),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('pt-disc-working-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('pt-disc-working-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)

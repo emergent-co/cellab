@@ -2,9 +2,9 @@
 """AIDA 9 — 전자현미경 겸용 작업전극 (카탈로그 p4)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('DAu120','나사형 · 금 Φ2 mm',176), ('DAu130','나사형 · 금 Φ3 mm',290),
  ('DAu140','나사형 · 금 Φ4 mm',352), ('DAu150','나사형 · 금 Φ5 mm',535),
  ('DPt120','나사형 · 백금 Φ2 mm',130), ('DPt130','나사형 · 백금 Φ3 mm',200),
@@ -19,6 +19,9 @@ ROWS = C.rows([
  ('DGC145','푸시풀형 · 유리탄소 Φ4 mm',151), ('DGC155','푸시풀형 · 유리탄소 Φ5 mm',151),
  ('DGC165','푸시풀형 · 유리탄소 Φ6 mm',178),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('sem-dual-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('sem-dual-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True, brand='aida', slug='sem-dual-electrode', cat='작업전극',

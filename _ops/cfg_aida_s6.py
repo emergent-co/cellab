@@ -2,15 +2,18 @@
 """AIDA 6 — 백금선·백금봉·나선 백금선 상대전극 (카탈로그 p5)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('Pt005','백금선 Φ0.5 × 37 mm',74),
  ('Pt017','백금선 Φ1 × 37 mm',216),
  ('Pt015','백금봉 Φ1 × 5 mm',73),
  ('Pt010','백금봉 Φ1 × 10 mm',100),
  ('Pt505','나선 백금선 Φ0.5 × 150 mm',180),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('pt-wire-counter-electrode', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('pt-wire-counter-electrode', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True, brand='aida', slug='pt-wire-counter-electrode', cat='상대전극',

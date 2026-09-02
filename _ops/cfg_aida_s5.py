@@ -2,9 +2,9 @@
 """AIDA 샘플 5 — 회전원판전극 RDE · 회전링원판전극 RRDE (카탈로그 p9~12)"""
 import os,sys
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
-import build_web as B, cfg_aida_common as C
+import build_web as B, cfg_aida_common as C, cfg_aida_floor as F
 
-ROWS = C.rows([
+_RAW = ([
  ('E3-PTFE','RDE E3 시리즈 · GC 디스크 Φ3·4·5 mm · PTFE 외피',348),
  ('E3-PEEK','RDE E3 시리즈 · GC 디스크 Φ3·4·5 mm · PEEK 외피',368),
  ('E5-PTFE','RDE E5 시리즈 · GC 디스크 Φ3·4·5 mm · PTFE 외피',445),
@@ -13,6 +13,9 @@ ROWS = C.rows([
  ('RRDE Pt-Pt','RRDE · 백금 디스크 + 백금 링 · Φ5.61 mm · PTFE',3600),
  ('Change-Disk RRDE','디스크 교체형 RRDE · GC 디스크 Φ5 mm · PTFE',800),
 ])
+ROWS = C.rows(_RAW)
+ROWS = F.floor('rde-rrde', ROWS)   # 가오스 동일 제품 −5,000원 하한
+for _l in F.report('rde-rrde', C.rows(_RAW)): print(_l)
 
 B.build(dict(
  landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)
