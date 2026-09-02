@@ -1709,6 +1709,75 @@ def _pp_table(rows, head=None, cls='pkg-tbl', minw=None):
     return ''.join(out)
 
 
+# 제조사 제품 페이지에서 반드시 옮겨 담아야 하는 항목 (원문 수집 체크리스트).
+# (JSON 키, 사람이 읽는 이름, 화학품 전용인가)
+PP_REQUIRED = [
+    ('answer',   '정답블록',        False),
+    ('images',   '대표사진',        False),
+    ('features', '특징',            False),
+    ('specs',    '사양(물성)',      False),
+    ('variants', '규격 비교표',      False),
+    ('buybox',   '주문정보',        False),
+    ('faq',      'FAQ',            False),
+    ('source',   '제조사 원문 출처', False),
+    ('safety',   '안전정보(GHS)',   True),
+]
+# 이 낱말이 카테고리·이름에 있으면 화학품으로 보고 안전정보를 필수로 요구한다
+PP_CHEM_HINTS = ('전해액', '용액', '시약', '재료', '소재', '촉매', '분말', '슬러리', '바인더', '용매', '염')
+
+
+def _pp_is_chem(p):
+    t = (p.get('category', '') + p.get('name', '')).replace(' ', '')
+    return any(k in t for k in PP_CHEM_HINTS)
+
+
+def _pp_audit(bslug, p):
+    """제조사 원문에서 안 옮긴 항목을 찾아 이름 목록으로 돌려준다."""
+    chem = _pp_is_chem(p)
+    miss = []
+    for key, label, chem_only in PP_REQUIRED:
+        if chem_only and not chem:
+            continue
+        v = p.get(key)
+        if not v:
+            miss.append(label)
+        elif key == 'specs' and len(v) < 3:
+            miss.append(label + '(3행 미만)')
+        elif key == 'features' and len(v) < 2:
+            miss.append(label + '(2개 미만)')
+        elif key == 'faq' and len(v) < 2:
+            miss.append(label + '(2개 미만)')
+    return miss
+
+
+def _pp_safety(sf):
+    """안전정보(GHS) 표준 블록 — 제조사 표기를 그대로 옮겨 담는 자리."""
+    out = ['<h2 class="pkg-h" style="margin-top:26px">안전 정보 (GHS)</h2>']
+    w = sf.get('warn')
+    if w:
+        out.append('<div class="warn"><p class="warn-h">%s</p><p>%s</p></div>'
+                   % (escape(w.get('h', '취급 주의')), w.get('p', '')))
+    rows = []
+    if sf.get('pictograms'):
+        rows.append(['그림문자', ' · '.join(sf['pictograms'])])
+    if sf.get('h_codes'):
+        rows.append(['유해·위험문구 (H)',
+                     '<br>'.join('<b>%s</b> %s' % (c, t) for c, t in sf['h_codes'])])
+    if sf.get('p_codes'):
+        rows.append(['예방조치 (P)', ' · '.join(sf['p_codes'])])
+    if sf.get('storage_codes'):
+        rows.append(['저장 · 비상대응', ' · '.join(sf['storage_codes'])])
+    if sf.get('disposal_codes'):
+        rows.append(['폐기', ' · '.join(sf['disposal_codes'])])
+    for extra in sf.get('extra', []):
+        rows.append(extra)
+    if rows:
+        out.append(_pp_table(rows))
+    out.append('<p class="pkg-note">%s</p>'
+               % sf.get('note', '※ 제조사 표기 기준입니다. 실제 취급 전 MSDS를 확인하십시오.'))
+    return ''.join(out)
+
+
 def _pp_render(brand, p):
     """제품 1건 -> 상세페이지 HTML 전문."""
     bslug, bko = brand['slug'], brand.get('name_ko', brand['slug'])
@@ -1830,6 +1899,9 @@ def _pp_render(brand, p):
                          % ' · '.join('%s %s' % (escape(k), v) for k, v in common))
         if va.get('note'):
             b.append('<p class="pkg-note">%s</p>' % va['note'])
+    if p.get('safety'):
+        b.append(_pp_safety(p['safety']))
+
     for sec in p.get('sections', []):
         b.append('<h2 class="pkg-h" style="margin-top:26px">%s</h2>' % escape(sec['h']))
         if sec.get('rows'):
@@ -1839,7 +1911,12 @@ def _pp_render(brand, p):
         if sec.get('note'):
             b.append('<p class="pkg-note">%s</p>' % sec['note'])
 
-    # 7. 관련 링크 + 문의 CTA
+    # 7. 제조사 원문 출처 + 관련 링크 + 문의 CTA
+    src = p.get('source')
+    if src:
+        b.append('<p class="pkg-note" style="margin-top:18px">자료 출처 — %s</p>'
+                 % (('<a href="%s" target="_blank" rel="noopener">%s</a>' % (src['url'], escape(src.get('label', src['url']))))
+                    if isinstance(src, dict) and src.get('url') else escape(str(src))))
     if p.get('related'):
         b.append('<p class="pkg-note" style="margin-top:14px">%s</p>' % p['related'])
     b.append('<p style="margin-top:16px"><button type="button" class="qbtn" data-quote="%s %s">견적문의</button></p>'
@@ -1907,7 +1984,7 @@ def build_product_pages():
     if not os.path.isdir(pdir):
         print('  [skip] _build/products/ 없음')
         return
-    total = 0
+    total, audit = 0, []
     for fn in sorted(os.listdir(pdir)):
         if not fn.endswith('.json') or fn.startswith('_'):
             continue
@@ -1921,7 +1998,12 @@ def build_product_pages():
             out = os.path.join(ROOT_DIR, 'brands', brand['slug'], p['slug'], 'index.html')
             write(out, html)
             total += 1
+            miss = _pp_audit(brand['slug'], p)
+            if miss:
+                audit.append('%s/%s — 원문 미수집: %s' % (brand['slug'], p['slug'], ' · '.join(miss)))
     print('  제품 상세페이지 생성: %d개 (_build/products/*.json SSOT)' % total)
+    for a in audit:
+        print('    [warn] %s' % a)
 
 
 # ============================================================================

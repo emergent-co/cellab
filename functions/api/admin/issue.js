@@ -226,8 +226,11 @@ async function post(request, env) {
       company: bill?.company || customer.company || '',
       biz_no: bill?.biz_no || customer.biz_no || '',
       ceo: bill?.ceo || customer.ceo || '',
+      // 발행 화면에서 «받는 담당자»로 고른 사람이 서류에 찍히고 메일도 그 사람에게 간다.
+      // 고르지 않았을 때만 거래처 기본값으로 내려간다.
       contact: String(b.contact || customer.name || ''),
       email: String(b.email || bill?.tax_email || customer.work_email || customer.email || ''),
+      tel: String(b.tel || customer.phone || ''),
       address: bill?.address || customer.address || '',
     },
     items, totals,

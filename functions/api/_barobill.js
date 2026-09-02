@@ -239,10 +239,11 @@ export function buildTaxInvoice(o) {
       Addr: cut(bill.address || cli.address, 300),
       BizType: cut(bill.biz_type, 100),
       BizClass: cut(bill.biz_item, 100),
+      // 발행 화면에서 고른 담당자가 먼저다 — 계산서 발행정보의 기본 메일은 그 사람이 없을 때만 쓴다
       ContactName: cut(cli.contact || bill.label, 100),
       TEL: cut(cli.tel, 20),
       HP: cut(cli.hp, 20),
-      Email: cut(bill.tax_email || cli.email, 100),
+      Email: cut(cli.email || bill.tax_email, 100),
     },
     IssueDirection: TI.ISSUE_DIRECTION.정발급,
     TaxInvoiceType: TI.TYPE.세금계산서,
