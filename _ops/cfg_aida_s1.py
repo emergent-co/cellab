@@ -15,10 +15,10 @@ B.build(dict(
  brand='aida', slug='gc-disc-working-electrode', cat='작업전극',
  h1='유리탄소(GC) 디스크 작업전극', sub='Glassy Carbon Disk Working Electrode · GC120 ~ GC321',
  title='아이다 유리탄소(GC) 디스크 작업전극 — Φ2~20 mm 11종 정가 | 실험셋업연구소',
- desc='아이다(TianJin AIDA) 유리탄소(GC) 디스크 작업전극 11종 — Φ2·3·4·5·6·7·8·9·10·15·20 mm. CV·LSV·RDE의 기본 작업전극으로, 넓은 전위창과 낮은 배경전류가 특징입니다. 135,000원부터.',
+ desc='아이다(TianJin AIDA) 유리탄소(GC) 디스크 작업전극 11종 — Φ2·3·4·5·6·7·8·9·10·15·20 mm. CV·LSV·RDE의 기본 작업전극으로, 넓은 전위창과 낮은 배경전류가 특징입니다. '+C.lo(ROWS)+'원부터.',
  ldname='유리탄소 디스크 작업전극 (Glassy Carbon Disk Working Electrode)',
  answer='유리탄소를 원판으로 봉입한 표준 작업전극입니다. 전위창이 넓고 배경전류가 낮아 CV·LSV의 기준 전극면으로 가장 널리 씁니다.',
- summary='<b>Φ2 ~ 20 mm 11종</b> · 유리탄소 원판 · PTFE 외피 · 135,000원부터',
+ summary='<b>Φ2 ~ 20 mm 11종</b> · 유리탄소 원판 · PTFE 외피 · %s원부터'%C.lo(ROWS),
  quote='아이다 유리탄소(GC) 디스크 작업전극',
  imgs=[],
  feat=[

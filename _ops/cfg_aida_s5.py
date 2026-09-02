@@ -19,10 +19,10 @@ B.build(dict(
  h1='회전원판전극(RDE) · 회전링원판전극(RRDE)',
  sub='Rotating Disk / Ring-Disk Electrode · PINE 호환 · E3 · E5 · RRDE',
  title='아이다 회전원판전극 RDE · 회전링원판전극 RRDE — PINE 호환 7종 정가 | 실험셋업연구소',
- desc='아이다(TianJin AIDA) 회전원판전극(RDE)·회전링원판전극(RRDE) 7종 — PINE 호환 E3·E5 시리즈(GC 디스크 Φ3·4·5 mm, PTFE/PEEK 외피), RRDE GC-Pt·Pt-Pt(Φ5.61 mm, 수집효율 37%), 디스크 교체형 RRDE. ORR 4전자 선택성 평가의 표준 도구입니다. 505,000원부터.',
+ desc='아이다(TianJin AIDA) 회전원판전극(RDE)·회전링원판전극(RRDE) 7종 — PINE 호환 E3·E5 시리즈(GC 디스크 Φ3·4·5 mm, PTFE/PEEK 외피), RRDE GC-Pt·Pt-Pt(Φ5.61 mm, 수집효율 37%), 디스크 교체형 RRDE. ORR 4전자 선택성 평가의 표준 도구입니다. '+C.lo(ROWS)+'원부터.',
  ldname='회전원판전극 · 회전링원판전극 (Rotating Disk / Ring-Disk Electrode)',
  answer='전극을 돌려 확산층 두께를 회전수로 고정하는 전극입니다. ORR 촉매의 전자수와 과산화수소 생성률을 정량하는 표준 도구입니다.',
- summary='<b>PINE 호환 · E3 · E5 · RRDE GC-Pt · Pt-Pt · 디스크 교체형</b> 7종 · 505,000원부터',
+ summary='<b>PINE 호환 · E3 · E5 · RRDE GC-Pt · Pt-Pt · 디스크 교체형</b> 7종 · %s원부터'%C.lo(ROWS),
  quote='아이다 회전원판전극(RDE)·회전링원판전극(RRDE)',
  imgs=[],
  feat=[

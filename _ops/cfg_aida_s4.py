@@ -26,10 +26,10 @@ B.build(dict(
  brand='aida', slug='pt-sheet-counter-electrode', cat='상대전극',
  h1='백금판 상대전극', sub='Platinum Sheet Counter Electrode · 2×5 ~ 30×30 mm · 두께 0.1 ~ 0.5 mm',
  title='아이다 백금판 상대전극 — 2×5 ~ 30×30 mm, 두께 0.1~0.5 mm 30종 정가 | 실험셋업연구소',
- desc='아이다(TianJin AIDA) 백금판 상대전극 30종 — 2×5부터 30×30 mm까지, 두께 0.1·0.2·0.3·0.5 mm. 상대전극은 작업전극보다 면적이 넉넉해야 전류가 상대전극에서 제한되지 않습니다. 88,000원부터.',
+ desc='아이다(TianJin AIDA) 백금판 상대전극 30종 — 2×5부터 30×30 mm까지, 두께 0.1·0.2·0.3·0.5 mm. 상대전극은 작업전극보다 면적이 넉넉해야 전류가 상대전극에서 제한되지 않습니다. '+C.lo(ROWS)+'원부터.',
  ldname='백금판 상대전극 (Platinum Sheet Counter Electrode)',
  answer='3전극 셀에서 전류를 받아 주는 전극입니다. 작업전극보다 면적이 충분히 커야 반응 속도가 상대전극 쪽에서 제한되지 않습니다.',
- summary='<b>2×5 ~ 30×30 mm · 두께 0.1 ~ 0.5 mm</b> 30종 · 88,000원부터',
+ summary='<b>2×5 ~ 30×30 mm · 두께 0.1 ~ 0.5 mm</b> 30종 · %s원부터'%C.lo(ROWS),
  quote='아이다 백금판 상대전극',
  imgs=[],
  feat=[

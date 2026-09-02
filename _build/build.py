@@ -1040,7 +1040,7 @@ ALLPROD_BRANDS = [
     ('gaossunion', '가오스유니온', 'echem'),
     ('hefei', '허페이 인시츄', 'echem'),
     ('aida', '아이다', 'echem'),
-    ('dodochem', '도도켐', 'echem'),
+    ('dodochem', 'DodoChem', 'echem'),
 ]  # (슬러그, 표기명, 매핑 실패 시 기본 카테고리)
 # 브랜드별 data-cat 어휘 → 통합 카테고리
 ALLPROD_CATMAP = {

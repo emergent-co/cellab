@@ -16,3 +16,9 @@ def w(usd):
 def rows(items):
     """[(모델, 규격, USD)] → [(모델, 규격, 원정가)]"""
     return [(m, s, w(u)) for m, s, u in items]
+
+def lo(rows):
+    """가격행에서 가장 싼 '제품가격 1개'를 콤마 문자열로 — 요약/설명에 그대로 쓴다.
+       정가를 적어 두면 표와 어긋나므로 반드시 이 값을 쓸 것."""
+    import build_web as B
+    return format(B.landed_extra(min(p for _, _, p in rows if p)), ',')

@@ -18,10 +18,10 @@ B.build(dict(
  brand='aida', slug='pt-disc-working-electrode', cat='작업전극',
  h1='백금 · 금 · 은 디스크 작업전극', sub='Pt / Au / Ag Disk Working Electrode · Φ0.5 ~ 6 mm',
  title='아이다 백금·금·은 디스크 작업전극 — Φ0.5~6 mm 17종 정가 | 실험셋업연구소',
- desc='아이다(TianJin AIDA) 백금(Pt105~Pt160)·금(Au105~Au160)·은(Ag120~Ag150) 디스크 작업전극 17종. 수소 발생·산소 환원은 백금, 자기조립 단분자막(SAM)과 티올 화학은 금, 은은 할라이드계에 씁니다. 51,000원부터.',
+ desc='아이다(TianJin AIDA) 백금(Pt105~Pt160)·금(Au105~Au160)·은(Ag120~Ag150) 디스크 작업전극 17종. 수소 발생·산소 환원은 백금, 자기조립 단분자막(SAM)과 티올 화학은 금, 은은 할라이드계에 씁니다. '+C.lo(ROWS)+'원부터.',
  ldname='백금·금·은 디스크 작업전극 (Pt / Au / Ag Disk Working Electrode)',
  answer='금속 자체의 촉매 거동을 볼 때 쓰는 디스크 작업전극입니다. 백금은 수소·산소 반응, 금은 티올 흡착과 SAM, 은은 할라이드계에서 주로 씁니다.',
- summary='<b>백금 7종 · 금 7종 · 은 3종</b> · Φ0.5 ~ 6 mm · 51,000원부터',
+ summary='<b>백금 7종 · 금 7종 · 은 3종</b> · Φ0.5 ~ 6 mm · %s원부터'%C.lo(ROWS),
  quote='아이다 백금·금·은 디스크 작업전극',
  imgs=[],
  feat=[
