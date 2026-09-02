@@ -1772,35 +1772,62 @@ def _pp_safety(sf):
 PP_PAPER_MAX = 3          # 논문은 최대 3편. 없으면 섹션을 아예 내지 않는다.
 
 # 저널 등급 — 논문은 유명 저널 위주로만 싣는다.
-#   T1 = 최상위(우선 수록) · T2 = 허용 · 그 외 = 제외(같은 근거의 T1/T2 논문이 하나도 없을 때만 예외)
-# 새 분야를 다루게 되면 여기에 저널명을 추가한다. 소문자·공백 무시로 부분일치 판정.
-PP_JOURNAL_T1 = [
-    'nature', 'science', 'science advances', 'nature energy', 'nature materials',
-    'nature nanotechnology', 'nature catalysis', 'nature communications', 'nature chemistry',
-    'joule', 'chem', 'matter', 'pnas', 'proceedings of the national academy',
-    'journal of the american chemical society', 'jacs', 'angewandte',
-    'advanced materials', 'advanced energy materials', 'energy & environmental science',
-    'energy and environmental science', 'acs energy letters', 'nano letters', 'acs nano',
+#   T1 = 최상위(우선 수록) · T2 = 허용 · 그 외 = 제외
+#   (T1/T2가 하나도 없을 때만 등급 밖 저널을 쓰고, 빌드가 교체하라고 warn 한다)
+# 정식명과 표준 약어를 함께 적는다. 판정은 부분일치가 아니라 정규화 후 완전일치다
+#   ("chem" 이 "electrochem" 에 걸리는 사고를 막기 위함).
+# 저널 이름은 JSON 의 journal 값에서 <i>…</i> 안에 적는다.
+PP_JOURNAL_T1 = {
+    'nature', 'science', 'science advances', 'sci adv',
+    'nature energy', 'nat energy', 'nature materials', 'nat mater',
+    'nature nanotechnology', 'nat nanotechnol', 'nature catalysis', 'nat catal',
+    'nature communications', 'nat commun', 'nature chemistry', 'nat chem',
+    'joule', 'chem', 'matter', 'pnas', 'proc natl acad sci',
+    'proceedings of the national academy of sciences',
+    'journal of the american chemical society', 'j am chem soc', 'jacs',
+    'angewandte chemie', 'angewandte chemie international edition', 'angew chem int ed',
+    'advanced materials', 'adv mater', 'advanced energy materials', 'adv energy mater',
+    'energy and environmental science', 'energy environ sci',
+    'acs energy letters', 'acs energy lett', 'nano letters', 'nano lett', 'acs nano',
+    'acs central science', 'acs cent sci', 'acs catalysis', 'acs catal',
+    'chemical science', 'chem sci', 'national science review', 'natl sci rev',
     'research',
-]
-PP_JOURNAL_T2 = [
-    'journal of power sources', 'electrochimica acta', 'journal of materials chemistry',
-    'acs applied materials', 'chemical engineering journal', 'energy storage materials',
-    'small', 'carbon', 'journal of the electrochemical society', 'batteries & supercaps',
-    'chemsuschem', 'scientific reports', 'journal of energy chemistry', 'nano energy',
-    'advanced functional materials', 'materials',
-]
+}
+PP_JOURNAL_T2 = {
+    'journal of power sources', 'j power sources',
+    'electrochimica acta', 'electrochim acta',
+    'journal of materials chemistry a', 'j mater chem a',
+    'acs applied materials and interfaces', 'acs appl mater interfaces',
+    'chemical engineering journal', 'chem eng j',
+    'energy storage materials', 'energy storage mater',
+    'small', 'carbon',
+    'journal of the electrochemical society', 'j electrochem soc',
+    'batteries and supercaps', 'chemsuschem',
+    'scientific reports', 'sci rep',
+    'journal of energy chemistry', 'j energy chem',
+    'nano energy', 'advanced functional materials', 'adv funct mater',
+    'advanced science', 'adv sci', 'green chemistry', 'green chem',
+    'cell reports physical science', 'cell rep phys sci', 'infomat', 'ecomat',
+    'journal of materials chemistry', 'j mater chem',
+    'materials',
+}
+
+
+def _pp_journal_name(journal):
+    """journal 값에서 저널명만 뽑아 정규화한다. <i>…</i> 우선, 없으면 첫 숫자 앞까지."""
+    m = re.search(r'<i>(.*?)</i>', journal or '', re.S)
+    t = m.group(1) if m else re.split(r'\d', re.sub(r'<[^>]+>', ' ', journal or ''))[0]
+    t = t.replace('&amp;', '&').lower().replace('&', ' and ').replace('.', ' ')
+    t = re.sub(r'[^a-z0-9 ]', ' ', t)
+    return re.sub(r'\s+', ' ', t).strip()
 
 
 def _pp_journal_tier(journal):
-    t = re.sub(r'<[^>]+>', ' ', journal or '').lower()
-    t = re.sub(r'\s+', ' ', t)
-    for name in sorted(PP_JOURNAL_T1, key=len, reverse=True):
-        if name in t:
-            return 1
-    for name in sorted(PP_JOURNAL_T2, key=len, reverse=True):
-        if name in t:
-            return 2
+    n = _pp_journal_name(journal)
+    if n in PP_JOURNAL_T1:
+        return 1
+    if n in PP_JOURNAL_T2:
+        return 2
     return 9
 
 

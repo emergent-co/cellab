@@ -33,7 +33,10 @@ async function get(request, env) {
     const [profiles, contacts, sites, orders, settles, docs, members, sum, led] = await Promise.all([
       env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id')
         .bind(c.id).all().then((r) => r.results || []),
-      env.DB.prepare('SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id')
+      env.DB.prepare(
+        `SELECT ct.*, s.org_name AS site_name, s.address AS site_addr
+           FROM contacts ct LEFT JOIN sites s ON s.id = ct.site_id
+          WHERE ct.customer_id=? ORDER BY ct.is_default DESC, ct.id`)
         .bind(c.id).all().then((r) => r.results || []),
       // 고객은 사업자정보를 «계산서 발행 정보»에, 주소를 «납품지»에 넣는다.
       // 거래처 기본칸만 보면 늘 비어 보이므로 둘 다 함께 보낸다.
@@ -294,28 +297,58 @@ async function post(request, env) {
       return json({ error: 'bad_email', message: '이메일 형식이 올바르지 않습니다.' }, 400);
     }
     const def = b.is_default ? 1 : 0;
+    const tax = b.is_tax ? 1 : 0;
+    // 랩실은 납품지(sites)를 그대로 쓴다 — 학교는 «랩실 = 받는 곳»이라 두 벌로 두면 어긋난다
+    let siteId = Number(b.site_id) || null;
+    if (siteId) {
+      const own = await env.DB.prepare('SELECT id FROM sites WHERE id=? AND customer_id=?')
+        .bind(siteId, c.id).first();
+      if (!own) siteId = null;
+    }
     let id = Number(b.contact_id) || null;
     if (id) {
       const own = await env.DB.prepare('SELECT id FROM contacts WHERE id=? AND customer_id=?')
         .bind(id, c.id).first();
       if (!own) return json({ error: 'not_found' }, 404);
       await env.DB.prepare(
-        'UPDATE contacts SET name=?, email=?, phone=?, role=?, is_default=?, updated_at=? WHERE id=?')
-        .bind(name, email, String(b.phone || ''), String(b.role || ''), def, now, id).run();
+        `UPDATE contacts SET name=?, email=?, phone=?, role=?, is_default=?, is_tax=?, site_id=?, updated_at=?
+          WHERE id=?`)
+        .bind(name, email, String(b.phone || ''), String(b.role || ''), def, tax, siteId, now, id).run();
     } else {
       const r = await env.DB.prepare(
-        'INSERT INTO contacts (customer_id, name, email, phone, role, is_default, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?)')
-        .bind(c.id, name, email, String(b.phone || ''), String(b.role || ''), def, now, now).run();
+        `INSERT INTO contacts (customer_id, name, email, phone, role, is_default, is_tax, site_id, created_at, updated_at)
+         VALUES (?,?,?,?,?,?,?,?,?,?)`)
+        .bind(c.id, name, email, String(b.phone || ''), String(b.role || ''), def, tax, siteId, now, now).run();
       id = r.meta.last_row_id;
     }
-    // 기본은 한 명뿐이다
+    // 기본도 계산서 메일도 한 명뿐이다
     if (def) {
-      await env.DB.prepare('UPDATE contacts SET is_default=0 WHERE customer_id=? AND id<>?')
-        .bind(c.id, id).run();
+      await env.DB.prepare('UPDATE contacts SET is_default=0 WHERE customer_id=? AND id<>?').bind(c.id, id).run();
     }
-    await logEvent(env, { action: 'contact_save', actor: 'admin', detail: `${who} 담당자 ${name} 저장` });
+    if (tax) {
+      await env.DB.prepare('UPDATE contacts SET is_tax=0 WHERE customer_id=? AND id<>?').bind(c.id, id).run();
+      // 표시만 바꾸면 아무 일도 안 일어난다 — 실제로 계산서가 나가는 곳까지 옮겨준다
+      if (email) {
+        await env.DB.prepare(
+          `UPDATE bill_profiles SET tax_email=?, updated_at=?
+            WHERE customer_id=? AND id=(SELECT id FROM bill_profiles WHERE customer_id=?
+                                         ORDER BY is_default DESC, id LIMIT 1)`)
+          .bind(email, now, c.id, c.id).run();
+      }
+    }
+    // 거래처 대표 연락처로 — 카카오 로그인 계정은 그대로 두고, 기본칸의 사람만 바꾼다
+    if (b.make_primary) {
+      await env.DB.prepare('UPDATE customers SET name=?, phone=?, work_email=?, updated_at=? WHERE id=?')
+        .bind(name, String(b.phone || ''), email || c.work_email || '', now, c.id).run();
+    }
+
+    await logEvent(env, { action: 'contact_save', actor: 'admin',
+      detail: `${who} 담당자 ${name} 저장`
+        + (def ? ' · 기본' : '') + (tax ? ' · 계산서 메일' : '') + (b.make_primary ? ' · 대표 연락처' : '') });
     const rows = (await env.DB.prepare(
-      'SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id').bind(c.id).all()).results || [];
+      `SELECT ct.*, s.org_name AS site_name, s.address AS site_addr
+         FROM contacts ct LEFT JOIN sites s ON s.id = ct.site_id
+        WHERE ct.customer_id=? ORDER BY ct.is_default DESC, ct.id`).bind(c.id).all()).results || [];
     return json({ ok: true, id, contacts: rows });
   }
 
@@ -323,7 +356,9 @@ async function post(request, env) {
     await env.DB.prepare('DELETE FROM contacts WHERE id=? AND customer_id=?')
       .bind(Number(b.contact_id) || 0, c.id).run();
     const rows = (await env.DB.prepare(
-      'SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id').bind(c.id).all()).results || [];
+      `SELECT ct.*, s.org_name AS site_name, s.address AS site_addr
+         FROM contacts ct LEFT JOIN sites s ON s.id = ct.site_id
+        WHERE ct.customer_id=? ORDER BY ct.is_default DESC, ct.id`).bind(c.id).all()).results || [];
     return json({ ok: true, contacts: rows });
   }
 

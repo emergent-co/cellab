@@ -72,10 +72,15 @@ async function get(request, env) {
 
     // 서류에 찍히고 메일을 받는 사람 — 없으면 거래처 대표 연락처를 임시 후보로 보여준다
     const contacts = (await env.DB.prepare(
-      'SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id').bind(c.id).all()).results || [];
+      `SELECT ct.*, s.org_name AS site_name, s.address AS site_addr
+         FROM contacts ct LEFT JOIN sites s ON s.id = ct.site_id
+        WHERE ct.customer_id=? ORDER BY ct.is_default DESC, ct.id`).bind(c.id).all()).results || [];
+    const sites = (await env.DB.prepare(
+      'SELECT id, org_name, address, is_default FROM sites WHERE customer_id=? ORDER BY is_default DESC, id')
+      .bind(c.id).all()).results || [];
 
     return json({
-      client: slimClient(c), profiles, members, orders, contacts,
+      client: slimClient(c), profiles, members, orders, contacts, sites,
       settlements: settles.map((s) => ({ ...s, items: safe(s.items_json) })),
     });
   }

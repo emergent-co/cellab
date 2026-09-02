@@ -669,7 +669,8 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 .ctlist{display:grid;gap:7px;margin-bottom:12px}
 .ctcard{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
 .ctcard .t{flex:1 1 auto;min-width:0}
-.ctcard b{display:block;font-size:13px;font-weight:700}
+.ctcard b{display:block;font-size:13px;font-weight:700;white-space:nowrap}
+.ctcard b .badge{margin-left:5px;vertical-align:1px}
 .ctcard small{display:block;font-size:11.5px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ctcard .df{flex:0 0 auto;font-size:10.5px;font-weight:800;color:var(--navy);background:var(--soft-blue);
   border-radius:5px;padding:2px 6px}
@@ -4425,8 +4426,8 @@ async function clOpen(id){
       + akv('별칭 (검색용)', c.alias)
       + akv2('사업자번호', pick(c.biz_no, bp0 && bp0.biz_no, '계산서 발행 정보'))
       + akv2('대표자', pick(c.ceo, bp0 && bp0.ceo, '계산서 발행 정보'))
-      + akv('담당자', c.name) + akv('연락처', c.phone)
-      + akv('업무 메일', c.work_email) + akv('로그인 메일', c.email)
+      // 담당자는 아래 「담당자」 구획 하나에서만 관리한다 — 여기 또 박아두면 두 벌이 되어 반드시 어긋난다
+      + akv('계정 주인', [c.name, c.phone, c.work_email || c.email].filter(Boolean).join(' · '))
       + akv2('주소', pick(c.address, st0 && st0.address, '납품지'))
       + akv2('납품지', (d.sites||[]).length
           ? (d.sites||[]).map(function(x){ return esc(x.org_name||'')+' · '+esc(x.address||''); }).join('<br>')
@@ -4440,12 +4441,19 @@ async function clOpen(id){
       + '<div><span>중간정산금</span><b>'+won(d.paid)+'</b></div>'
       + '<div class="hi"><span>잔여금</span><b>'+won(d.due)+'</b></div></div>'
       + '<label style="display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:14px 0 6px">멤버십 · 결제</label>'
+      // 가입만으로는 아무것도 아니다 — 어떤 거래처로 받을지는 여기서 사람이 고른다
       + '<div class="dsrc">'
-        + ['승인','대기','거절'].map(function(a){
-            return '<button class="mini'+(c.access===a?' ok':'')+'" data-acc="'+a+'">'+a+'</button>'; }).join('')
-        + '<button class="mini" data-mode="'+(c.billing_mode==='후불'?'선불':'후불')+'">'
-          + (c.billing_mode==='후불'?'선불로':'후불로')+' 전환</button>'
+        + '<button class="mini'+(c.access==='승인'&&c.billing_mode==='후불'?' ok':'')+'" data-set="후불">'
+          + '멤버십(후불)로 승인</button>'
+        + '<button class="mini'+(c.access==='승인'&&c.billing_mode==='선불'?' ok':'')+'" data-set="선불">'
+          + '일반 거래처(선불)로 승인</button>'
       + '</div>'
+      + '<div class="dsrc" style="margin-top:6px">'
+        + ['대기','거절'].map(function(a){
+            return '<button class="mini'+(c.access===a?' ok':'')+'" data-acc="'+a+'">'+a+'</button>'; }).join('')
+      + '</div>'
+      + '<p class="dhint">멤버십(후불)만 <b>주문·정산 화면</b>에 들어올 수 있습니다. '
+        + '일반 거래처(선불)는 건별 결제라 정산할 잔액이 쌓이지 않습니다.</p>'
     + '</div>'
 
     + '<div class="sec"><h4>계산서 발행 정보 <i style="font-style:normal;color:var(--mut);font-weight:600">'+(d.profiles||[]).length+'</i></h4>'
@@ -4462,13 +4470,21 @@ async function clOpen(id){
 
     // 담당자는 문서 발행에서도 같은 팝업(contactForm)으로 고친다 — 손보는 자리가 둘이면 반드시 어긋난다
     + '<div class="sec"><h4>담당자 <i style="font-style:normal;color:var(--mut);font-weight:600">'
-      + (d.contacts||[]).length + '</i>'
+      + '계정 주인 + ' + (d.contacts||[]).length + '</i>'
       + '<button class="mini" id="clCt" style="float:right">관리</button></h4>'
-      + ((d.contacts||[]).length
-        ? d.contacts.map(function(x){
-            return '<div class="kv"><span>'+esc(x.name||'—')+(x.is_default?' <span class="badge s2">기본</span>':'')+'</span>'
-              + '<span>'+esc([x.role, x.email, x.phone].filter(Boolean).join(' · ')||'—')+'</span></div>'; }).join('')
-        : '<div class="empty" style="padding:16px">등록된 담당자가 없습니다 — 서류는 거래처 대표 연락처로 나갑니다.</div>')
+      + [{ name: c.name, role: '', email: c.work_email || c.email, phone: c.phone, _own: 1 }]
+          .concat(d.contacts || [])
+          .filter(function(x){ return x.name || x.email; })
+          .map(function(x){
+            return '<div class="ctcard" style="background:#fff'+(x._own?'':';cursor:pointer')+'"'
+              + (x._own ? '' : ' data-ct="'+x.id+'"') + '><div class="t">'
+              + '<b>'+esc(x.name||'—')
+                + (x._own ? ' <span class="badge s1">계정 주인</span>' : '')
+                + (x.is_default ? ' <span class="badge s2">기본</span>' : '')
+                + (x.is_tax ? ' <span class="badge s3">계산서</span>' : '') + '</b>'
+              + '<small>'+esc([x.role, x.email, x.phone].filter(Boolean).join(' · ')||'—')+'</small>'
+              + (x.site_name ? '<small>'+esc([x.site_name, x.site_addr].filter(Boolean).join(' · '))+'</small>' : '')
+              + '</div></div>'; }).join('')
     + '</div>'
 
     + clFold('주문', d.orders, function(o){
@@ -4496,8 +4512,11 @@ async function clOpen(id){
 
   // 멤버십 · 결제
   // 문서 발행의 「담당자 관리」와 똑같은 팝업이다
+  $('#clBody').querySelectorAll('[data-ct]').forEach(function(el){
+    el.onclick = function(){ if ($('#clCt')) $('#clCt').click(); };
+  });
   if ($('#clCt')) $('#clCt').onclick = function(){
-    contactForm(c, d.contacts || [], function(rows){
+    contactForm(c, d.contacts || [], d.sites || [], function(rows){
       d.contacts = rows;
       if (dqCli && dqCli.id === c.id){ dqSetContacts(rows); dqPaintContacts(); }
       clOpen(c.id);                      // 뒤 화면의 목록도 새로 그린다
@@ -4513,12 +4532,23 @@ async function clOpen(id){
       w.remove(); toast('멤버십 '+b.dataset.acc); clLoad(); admPoll(true); clOpen(c.id);
     };
   });
-  var mb = $('#clBody').querySelector('[data-mode]');
-  if (mb) mb.onclick = async function(){
-    await fetch('/api/admin/clients',{method:'POST',headers:AH,
-      body:JSON.stringify({id:c.id, action:'mode', billing_mode:mb.dataset.mode})});
-    w.remove(); toast(mb.dataset.mode+' 전환'); clLoad(); clOpen(c.id);
-  };
+  // 승인과 결제방식은 한 번에 정해야 한다 — 승인만 하고 방식을 안 정하면 그 사람은 아무 데도 못 간다
+  $('#clBody').querySelectorAll('[data-set]').forEach(function(b){
+    b.onclick = async function(){
+      var mode = b.dataset.set;
+      b.disabled = true;
+      await fetch('/api/admin/clients',{method:'POST',headers:AH,
+        body:JSON.stringify({id:c.id, action:'mode', billing_mode:mode})});
+      var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,
+        body:JSON.stringify({id:c.id, action:'access', access:'승인'})})
+        .then(function(x){return x.json();}).catch(function(){return{};});
+      b.disabled = false;
+      if (!r.ok) return toast('바꾸지 못했습니다');
+      w.remove();
+      toast(mode==='후불' ? '멤버십(후불)로 승인했습니다' : '일반 거래처(선불)로 승인했습니다');
+      clLoad(); admPoll(true); clOpen(c.id);
+    };
+  });
 
   // 접힌 목록 안의 이동
   $('#clBody').querySelectorAll('[data-jump]').forEach(function(b){
@@ -4651,7 +4681,7 @@ var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTar
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
     dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
     dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
-var dqContacts = [], dqContact = null, dqContactCid = null;   // 서류에 찍히고 메일을 받는 사람
+var dqContacts = [], dqContact = null, dqContactCid = null, dqSites = [];   // 서류에 찍히고 메일을 받는 사람
 var dqPurpose = null;    // quote | delivery | advance | settle — 고르기 전에는 폼을 열지 않는다
 var PURP = {
   quote:    { t:'견적서만',        d:'견적서 하나만 뽑습니다. <em>아무 기록도 만들지 않습니다.</em>',
@@ -4928,21 +4958,40 @@ function dqSetContacts(list){
 function dqPaintContacts(){
   var box = $('#dqContactBox'); if (!box) return;
   if (!dqCli){ box.innerHTML = ''; return; }
+  // 학교는 랩실마다 담당자가 다르다 — 이름만 죽 늘어놓으면 누가 어느 방인지 알 수 없다
+  function opt(c){
+    return '<option value="'+c.id+'"'+(dqContact && c.id===dqContact.id ? ' selected':'')+'>'
+      + esc([c.name, c.role, c.email].filter(Boolean).join(' · '))
+      + (c.is_default ? ' (기본)' : '') + (c.is_tax ? ' (계산서)' : '') + '</option>';
+  }
+  var groups = {}, order = [];
+  dqContacts.forEach(function(c){
+    var k = c.site_id ? String(c.site_id) : '_';
+    if (!groups[k]){ groups[k] = { label: c.site_id ? [c.site_name, c.site_addr].filter(Boolean).join(' · ') : '공통',
+                                   rows: [] }; order.push(k); }
+    groups[k].rows.push(c);
+  });
+  var multi = order.length > 1;
+  var opts = order.map(function(k){
+    var g = groups[k];
+    return multi ? '<optgroup label="'+esc(g.label)+'">'+g.rows.map(opt).join('')+'</optgroup>'
+                 : g.rows.map(opt).join('');
+  }).join('');
+
   box.innerHTML = '<div class="ctrow"><label>받는 담당자</label>'
-    + '<select id="dqCt">' + dqContacts.map(function(c){
-        return '<option value="'+c.id+'"'+(dqContact && c.id===dqContact.id ? ' selected':'')+'>'
-          + esc([c.name, c.role, c.email].filter(Boolean).join(' · '))
-          + (c.is_default ? ' (기본)' : '') + '</option>'; }).join('')
-    + '</select><button class="mini" id="dqCtMng">담당자 관리</button></div>'
+    + '<select id="dqCt">' + opts + '</select>'
+    + '<button class="mini" id="dqCtMng">담당자 관리</button></div>'
     + (dqContact && !dqContact.email
        ? '<p class="dhint" style="color:#B45309">이 담당자에게 메일 주소가 없습니다 — 서류는 나가지만 메일은 보낼 수 없습니다.</p>'
-       : '');
+       : (dqContact && dqContact.site_name
+          ? '<p class="dhint">납품지 <b>'+esc([dqContact.site_name, dqContact.site_addr].filter(Boolean).join(' · '))+'</b></p>'
+          : ''));
   $('#dqCt').onchange = function(e){
     dqContact = dqContacts.filter(function(c){ return String(c.id)===e.target.value; })[0] || null;
     dqPaintContacts();
   };
   $('#dqCtMng').onclick = function(){
-    contactForm(dqCli, dqContacts, function(rows, justSaved){
+    contactForm(dqCli, dqContacts, dqSites, function(rows, justSaved){
       if (justSaved) dqContact = { id: justSaved };   // 방금 저장한 사람으로 옮겨준다
       dqSetContacts(rows);
       dqPaintContacts();
@@ -4950,22 +4999,36 @@ function dqPaintContacts(){
   };
 }
 
-/* 담당자 추가 · 수정 · 삭제 — 한 팝업 안에서 끝낸다 */
-function contactForm(client, list, onDone){
-  var rows = (list || []).filter(function(c){ return c.id; });   // 임시 후보(id 0)는 목록에 안 넣는다
+/* 담당자 추가 · 수정 · 삭제 — 한 팝업 안에서 끝낸다.
+   거래처 관리와 문서 발행이 «같은» 팝업을 연다. 손보는 자리가 둘이면 반드시 어긋난다. */
+function contactForm(client, list, sites, onDone){
+  var rows = (list || []).filter(function(c){ return c.id; });   // 계정 주인(id 0)은 목록에 안 넣는다
+  var ss = sites || [];
   var w = amodal('담당자 관리',
      '<p class="hint" style="margin:2px 0 12px;line-height:1.7">'+esc(client.company||client.name||'—')
-    + ' 의 담당자입니다. 서류에 찍히는 이름과 메일 받는 사람이 됩니다.</p>'
+    + ' 의 담당자입니다. 서류에 찍히는 이름과 메일 받는 사람이 됩니다.<br>'
+    + '<b>줄을 누르면</b> 아래 칸에 실려 고칠 수 있습니다.</p>'
     + '<div class="ctlist" id="ctList"></div>'
     + '<div class="dcard" style="border:0;padding:0">'
       + '<label class="req">이름</label><input type="text" id="ct-name" placeholder="예) 김철수">'
       + '<label>직함 · 부서</label><input type="text" id="ct-role" placeholder="예) 책임연구원 · 구매팀">'
       + '<label>이메일</label><input type="email" id="ct-email" placeholder="name@company.co.kr">'
       + '<label>전화</label><input type="text" id="ct-phone" placeholder="010-0000-0000">'
-      + '<label class="swrow" style="margin:12px 0 2px"><input type="checkbox" id="ct-def">'
-        + '<span><b>기본 담당자로</b></span></label>'
+      + '<label>소속 랩실 <span class="hint" style="font-weight:600">(납품지 기준)</span></label>'
+      + '<select id="ct-site"><option value="">공통 — 랩실 구분 없음</option>'
+        + ss.map(function(x){ return '<option value="'+x.id+'">'
+            + esc([x.org_name, x.address].filter(Boolean).join(' · ')) + '</option>'; }).join('')
+      + '</select>'
+      + (ss.length ? '' : '<p class="dnote">등록된 납품지가 없습니다 — 회원정보 · 거래처의 납품지를 먼저 넣으면 랩실로 고를 수 있습니다.</p>')
+      + '<label class="swrow" style="margin:14px 0 2px"><input type="checkbox" id="ct-def">'
+        + '<span><b>기본 담당자</b><small>서류·메일이 기본으로 이 사람에게 나갑니다.</small></span></label>'
+      + '<label class="swrow" style="margin:8px 0 2px"><input type="checkbox" id="ct-tax">'
+        + '<span><b>계산서 메일 수신</b><small>세금계산서가 이 사람 메일로 갑니다 — 발행정보의 계산서 메일도 같이 바뀝니다.</small></span></label>'
+      + '<label class="swrow" style="margin:8px 0 2px"><input type="checkbox" id="ct-pri">'
+        + '<span><b>거래처 대표 연락처로</b><small>거래처 기본칸의 이름·전화·메일을 이 사람으로 바꿉니다. 로그인 계정은 그대로입니다.</small></span></label>'
     + '</div>'
-    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+    + '<div class="mrow"><button class="btn gray" id="ct-new">새로 입력</button>'
+      + '<button class="btn gray" data-x>닫기</button>'
       + '<button class="btn ok" id="ct-go">추가</button></div>');
 
   var editing = null;
@@ -4973,31 +5036,37 @@ function contactForm(client, list, onDone){
   function paint(){
     $('#ctList').innerHTML = rows.length
       ? rows.map(function(c, i){
-          return '<div class="ctcard"><div class="t"><b>'+esc(c.name||'—')+'</b>'
-            + '<small>'+esc([c.role, c.email, c.phone].filter(Boolean).join(' · ')||'—')+'</small></div>'
-            + (c.is_default ? '<span class="df">기본</span>' : '')
-            + '<button class="mini" data-e="'+i+'">수정</button>'
-            + '<button class="mini" data-d="'+i+'">삭제</button></div>'; }).join('')
+          return '<div class="ctcard" data-e="'+i+'" style="cursor:pointer"><div class="t">'
+            + '<b>'+esc(c.name||'—')
+              + (c.is_default ? ' <span class="badge s2">기본</span>' : '')
+              + (c.is_tax ? ' <span class="badge s3">계산서</span>' : '') + '</b>'
+            + '<small>'+esc([c.role, c.email, c.phone].filter(Boolean).join(' · ')||'—')+'</small>'
+            + (c.site_name ? '<small>'+esc([c.site_name, c.site_addr].filter(Boolean).join(' · '))+'</small>' : '')
+            + '</div><button class="mini" data-d="'+i+'">삭제</button></div>'; }).join('')
       : '<div class="empty" style="padding:18px 10px">아직 등록된 담당자가 없습니다.</div>';
-    $('#ctList').querySelectorAll('[data-e]').forEach(function(b){
-      b.onclick = function(){ load(rows[Number(b.dataset.e)]); };
+    $('#ctList').querySelectorAll('.ctcard').forEach(function(el){
+      el.onclick = function(e){ if (e.target.closest('[data-d]')) return; load(rows[Number(el.dataset.e)]); };
     });
     $('#ctList').querySelectorAll('[data-d]').forEach(function(b){
-      b.onclick = function(){ del(rows[Number(b.dataset.d)]); };
+      b.onclick = function(e){ e.stopPropagation(); del(rows[Number(b.dataset.d)]); };
     });
   }
   function load(c){
     editing = c;
     $('#ct-name').value = c.name||''; $('#ct-role').value = c.role||'';
     $('#ct-email').value = c.email||''; $('#ct-phone').value = c.phone||'';
-    $('#ct-def').checked = !!c.is_default;
+    $('#ct-site').value = c.site_id ? String(c.site_id) : '';
+    $('#ct-def').checked = !!c.is_default; $('#ct-tax').checked = !!c.is_tax;
+    $('#ct-pri').checked = false;
     $('#ct-go').textContent = '저장';
     $('#ct-name').focus();
   }
   function clear(){
     editing = null;
     ['ct-name','ct-role','ct-email','ct-phone'].forEach(function(id){ $('#'+id).value=''; });
-    $('#ct-def').checked = false; $('#ct-go').textContent = '추가';
+    $('#ct-site').value = '';
+    $('#ct-def').checked = false; $('#ct-tax').checked = false; $('#ct-pri').checked = false;
+    $('#ct-go').textContent = '추가';
   }
   async function del(c){
     if (!confirm(c.name+' 담당자를 지울까요?')) return;
@@ -5009,14 +5078,21 @@ function contactForm(client, list, onDone){
   }
 
   paint();
+  $('#ct-new').onclick = clear;
   $('#ct-go').onclick = async function(){
     var name = $('#ct-name').value.trim();
     if (!name){ $('#ct-name').focus(); return alert('담당자 이름을 입력해주세요.'); }
+    if (($('#ct-tax').checked || $('#ct-pri').checked) && !$('#ct-email').value.trim()){
+      $('#ct-email').focus();
+      return alert('계산서 메일·대표 연락처로 쓰려면 이메일이 있어야 합니다.');
+    }
     var b = $('#ct-go'); var was = b.textContent; b.disabled = true; b.textContent = '저장 중…';
     var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,body:JSON.stringify({
       id: client.id, action:'contact_save', contact_id: editing ? editing.id : null,
       name: name, role: $('#ct-role').value.trim(), email: $('#ct-email').value.trim(),
-      phone: $('#ct-phone').value.trim(), is_default: $('#ct-def').checked })})
+      phone: $('#ct-phone').value.trim(), site_id: Number($('#ct-site').value) || null,
+      is_default: $('#ct-def').checked, is_tax: $('#ct-tax').checked,
+      make_primary: $('#ct-pri').checked })})
       .then(function(x){return x.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = was;
     if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
@@ -5062,6 +5138,7 @@ async function dqLoadClient(id, keep){
   if (!r.client) return;
   dqCli = r.client; dqProfiles = r.profiles||[]; dqOrders = r.orders||[]; dqSettles = r.settlements||[];
   dqBill = dqProfiles.filter(function(p){ return p.is_default; })[0] || dqProfiles[0] || null;
+  dqSites = r.sites || [];
   dqSetContacts(r.contacts || []);
   if (!keep) dqPaintClient();
   dqPaintBill(); dqSrcButtons(); dqPaintContacts();
