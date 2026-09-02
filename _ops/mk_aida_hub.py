@@ -11,14 +11,24 @@ PAGE = os.path.join(ROOT, 'brands', 'aida')
 
 ITEMS = [('gc-disc-working-electrode', '작업전극'),
          ('pt-disc-working-electrode', '작업전극'),
+         ('sem-dual-electrode',        '작업전극'),
          ('reference-electrode',       '기준전극'),
          ('pt-sheet-counter-electrode','상대전극'),
-         ('rde-rrde',                  '회전전극')]
+         ('pt-mesh-counter-electrode', '상대전극'),
+         ('pt-wire-counter-electrode', '상대전극'),
+         ('graphite-rod-counter-electrode','상대전극'),
+         ('rde-rrde',                  '회전전극'),
+         ('electrode-holder',          '전극 부속')]
 NM = {'gc-disc-working-electrode': 'GC120 ~ GC321',
       'pt-disc-working-electrode': 'Pt105~Pt160 · Au105~Au160 · Ag120~Ag150',
       'reference-electrode':       'R0201 ~ R0501',
       'pt-sheet-counter-electrode':'Pt213 ~ Pt262',
-      'rde-rrde':                  'E3 · E5 · RRDE · Change-Disk'}
+      'rde-rrde':                  'E3 · E5 · RRDE · Change-Disk',
+      'sem-dual-electrode':        'DAu · DPt · DGC (나사형 · 푸시풀형)',
+      'pt-mesh-counter-electrode': 'Pt305 ~ Pt330 · Pt321',
+      'pt-wire-counter-electrode': 'Pt005 · Pt010 · Pt015 · Pt017 · Pt505',
+      'graphite-rod-counter-electrode':'C303 ~ C306',
+      'electrode-holder':          'J110 · J120 · J210'}
 
 def strip(s): return re.sub(r'<[^>]+>', '', s).strip()
 

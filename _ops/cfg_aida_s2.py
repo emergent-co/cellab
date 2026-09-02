@@ -15,6 +15,7 @@ ROWS = C.rows([
 ])
 
 B.build(dict(
+ landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)
  brand='aida', slug='pt-disc-working-electrode', cat='작업전극',
  h1='백금 · 금 · 은 디스크 작업전극', sub='Pt / Au / Ag Disk Working Electrode · Φ0.5 ~ 6 mm',
  title='아이다 백금·금·은 디스크 작업전극 — Φ0.5~6 mm 17종 정가 | 실험셋업연구소',
@@ -40,6 +41,7 @@ B.build(dict(
   ('표 외 규격','<b>주문 제작</b>'),
  ],
  price=ROWS,
+ note=C.note(ROWS),
  cross='작업전극 계열: <a href="/brands/aida/gc-disc-working-electrode/">유리탄소(GC) 디스크</a> · <a href="/brands/aida/pt-sheet-counter-electrode/">백금판 상대전극</a> · <a href="/brands/aida/reference-electrode/">기준전극</a>',
  faq=[
   ('백금 전극을 세척하려면?','묽은 황산에서 전위 순환(전기화학적 세척)이 기본입니다. 유기물이 심하면 피라냐 용액을 쓰기도 하지만 봉입부가 상할 수 있으니 짧게 하십시오.'),

@@ -23,6 +23,7 @@ ROWS = C.rows([
 ])
 
 B.build(dict(
+ landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)
  brand='aida', slug='pt-sheet-counter-electrode', cat='상대전극',
  h1='백금판 상대전극', sub='Platinum Sheet Counter Electrode · 2×5 ~ 30×30 mm · 두께 0.1 ~ 0.5 mm',
  title='아이다 백금판 상대전극 — 2×5 ~ 30×30 mm, 두께 0.1~0.5 mm 30종 정가 | 실험셋업연구소',
@@ -47,6 +48,7 @@ B.build(dict(
   ('표 외 규격','<b>주문 제작</b>'),
  ],
  price=ROWS,
+ note=C.note(ROWS),
  cross='전극 계열: <a href="/brands/aida/gc-disc-working-electrode/">유리탄소(GC) 디스크 작업전극</a> · <a href="/brands/aida/pt-disc-working-electrode/">백금·금·은 디스크 작업전극</a> · <a href="/brands/aida/reference-electrode/">기준전극</a>',
  faq=[
   ('얼마나 큰 걸 사야 하나요?','작업전극 면적의 5배 이상이면 안전합니다. Φ3 mm 디스크(0.07 cm²)라면 10×10 mm(1 cm²)로 충분합니다.'),

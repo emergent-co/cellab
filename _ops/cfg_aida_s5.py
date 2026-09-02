@@ -15,6 +15,7 @@ ROWS = C.rows([
 ])
 
 B.build(dict(
+ landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)
  brand='aida', slug='rde-rrde', cat='회전전극',
  h1='회전원판전극(RDE) · 회전링원판전극(RRDE)',
  sub='Rotating Disk / Ring-Disk Electrode · PINE 호환 · E3 · E5 · RRDE',
@@ -43,6 +44,7 @@ B.build(dict(
   ('디스크 교체형','유리탄소 <b>Φ5 mm</b> · PTFE 외피'),
  ],
  price=ROWS,
+ note=C.note(ROWS),
  warn='회전기 체결부는 제조사마다 다릅니다. <b>쓰시는 회전기 모델명을 먼저 알려주십시오.</b> 나사 규격이 맞지 않으면 장착이 안 됩니다.',
  cross='전극 계열: <a href="/brands/aida/gc-disc-working-electrode/">유리탄소(GC) 디스크 작업전극</a> · <a href="/brands/aida/pt-disc-working-electrode/">백금·금·은 디스크 작업전극</a> · <a href="/brands/aida/reference-electrode/">기준전극</a>',
  faq=[

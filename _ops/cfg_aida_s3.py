@@ -17,6 +17,7 @@ ROWS = C.rows([
 ])
 
 B.build(dict(
+ landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)
  brand='aida', slug='reference-electrode', cat='기준전극',
  h1='기준전극 — 염화은 · 칼로멜 · 황산제일수은 · 산화수은 · 은이온',
  sub='Reference Electrode · Ag/AgCl · SCE · Hg/Hg₂SO₄ · Hg/HgO · Ag/Ag⁺',
@@ -44,6 +45,7 @@ B.build(dict(
   ('염다리','필요 시 <b>루긴 모세관 · 염다리</b> 별도 문의'),
  ],
  price=ROWS,
+ note=C.note(ROWS),
  warn='기준전극은 <b>말리면 끝입니다.</b> 쓰고 나면 반드시 충전액(염화은은 3 M KCl, SCE는 포화 KCl)에 담가 보관하십시오. 프릿이 마르면 저항이 올라가 전위가 흔들리고, 심하면 복구되지 않습니다.',
  cross='전극 계열: <a href="/brands/aida/gc-disc-working-electrode/">유리탄소(GC) 디스크 작업전극</a> · <a href="/brands/aida/pt-disc-working-electrode/">백금·금·은 디스크 작업전극</a> · <a href="/brands/aida/pt-sheet-counter-electrode/">백금판 상대전극</a>',
  faq=[

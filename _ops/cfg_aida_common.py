@@ -1,24 +1,47 @@
 # -*- coding: utf-8 -*-
-"""AIDA(天津艾达恒晟 · TianJin AIDA) 공통 — 카탈로그 USD → 원 정가 환산.
+"""AIDA(天津艾达恒晟 · TianJin AIDA) 공통 — 판매가 산정.
 
-카탈로그: products catalogue20260318.pdf — Ex-factory price (USD/pc)
-환산: 정가(원) = USD × USD_KRW, 1,000원 단위 반올림
-      (리드플루이드 페이지가 쓰는 환산율과 같은 1,450을 따른다)
-그 뒤 build_web 의 해외 발주 산식이 적용된다:
-      제품가격 1개 = 정가 × 1.45  /  해외배송비 145,000원 / VAT 별도
+스킬 `overseas-pricing` 공식 ①(해외 제품 · 제조사가 외화 가격을 준 경우) 적용.
+
+    판매가 = (제조사가 + 제조사 출하배송비) × 환율계수 × 1.45
+             → 1,000원 단위 반올림
+
+· 제조사가   : products catalogue20260318.pdf 의 Ex-factory price (USD/pc)
+· 출하배송비 : 카탈로그에 개당 표기 없음 → 0.
+               고객이 내는 해외배송비 145,000원(주문당 1회)은 별개 행이다.
+· 환율계수   : 버림₁₀(스팟 × 1.02)
+               2026-09-02 스팟 USD/KRW 1,364 → 1,364 × 1.02 = 1,391.28 → 1,390
+· 1.45       : 관세 + 수입 부가세 + 판매마진 10% + 국내 부가세 (고정 계수)
+
+판매가를 여기서 완성해 넘기므로 각 cfg 는 landed=True 로 build_web 의 ×1.45 를
+한 번 더 적용하지 않는다(이중 반올림 방지). 해외 라인이라 3% 상시 할인 대상이 아니다.
 """
-USD_KRW = 1450
+USD_KRW = 1390     # 버림₁₀(1,364 × 1.02) — 2026-09-02 산출
+K       = 1.45     # overseas-pricing 고정 계수
+SHIP_IN = 0        # 제조사 출하배송비 (카탈로그 개당 표기 없음)
+
+SMALL   = 50000    # 이 미만은 단독 주문이 성립하지 않는다 (해외배송비 > 제품가격)
+BUNDLE  = 300000   # 이 미만은 합산 주문 권장 문구를 붙인다
 
 def w(usd):
-    """USD 정가 → 원 정가 (1,000원 단위 반올림)"""
-    return int(round(usd * USD_KRW / 1000.0)) * 1000
+    """USD 제조사가 → 원 판매가 (1,000원 단위 반올림, 한 번만 반올림)"""
+    return int(round((usd + SHIP_IN) * USD_KRW * K / 1000.0)) * 1000
 
 def rows(items):
-    """[(모델, 규격, USD)] → [(모델, 규격, 원정가)]"""
+    """[(모델, 규격, USD)] → [(모델, 규격, 원 판매가)]"""
     return [(m, s, w(u)) for m, s, u in items]
 
-def lo(rows):
-    """가격행에서 가장 싼 '제품가격 1개'를 콤마 문자열로 — 요약/설명에 그대로 쓴다.
-       정가를 적어 두면 표와 어긋나므로 반드시 이 값을 쓸 것."""
-    import build_web as B
-    return format(B.landed_extra(min(p for _, _, p in rows if p)), ',')
+def lo(rs):
+    """가격행 최저가 — 요약·설명 문구에 그대로 쓴다(표와 어긋나지 않게)"""
+    return format(min(p for _, _, p in rs if p), ',')
+
+def note(rs):
+    """소액 주문 안내 — 스킬 §5. 해당하지 않으면 빈 문자열."""
+    ps = [p for _, _, p in rs if p]
+    if not ps: return ''
+    if min(ps) < SMALL:
+        return ('<b>5만원 미만 품목</b>은 단독 주문 시 해외배송비(145,000원)가 제품가격을 넘습니다. '
+                '다른 품목과 <b>합산 주문</b>하시길 권합니다.')
+    if min(ps) < BUNDLE:
+        return '<b>30만원 미만 소액 품목</b>은 다른 품목과 합산 주문하시면 배송비 부담이 줄어듭니다.'
+    return ''

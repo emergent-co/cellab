@@ -12,6 +12,7 @@ ROWS = C.rows([
 ])
 
 B.build(dict(
+ landed=True,   # 판매가를 cfg_aida_common 에서 완성 (스킬 공식 ①)
  brand='aida', slug='gc-disc-working-electrode', cat='작업전극',
  h1='유리탄소(GC) 디스크 작업전극', sub='Glassy Carbon Disk Working Electrode · GC120 ~ GC321',
  title='아이다 유리탄소(GC) 디스크 작업전극 — Φ2~20 mm 11종 정가 | 실험셋업연구소',
@@ -36,6 +37,7 @@ B.build(dict(
   ('표 외 규격','<b>주문 제작</b>'),
  ],
  price=ROWS,
+ note=C.note(ROWS),
  cross='작업전극 계열: <a href="/brands/aida/pt-disc-working-electrode/">백금 디스크</a> · <a href="/brands/aida/pt-sheet-counter-electrode/">백금판 상대전극</a> · <a href="/brands/aida/reference-electrode/">기준전극</a>',
  faq=[
   ('Φ3과 Φ5 중 뭘 골라야 하나요?','문헌을 따라가시면 그 논문이 쓴 직경을 그대로 쓰십시오. 정하기 어려우면 Φ3이 무난합니다. 면적이 작을수록 iR 강하와 용량성 전류가 줄어 피크가 깨끗합니다.'),

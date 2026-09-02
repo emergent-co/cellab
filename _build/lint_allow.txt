@@ -25,3 +25,9 @@ brands/neware/wgdw-chamber/              MISSING_BLOCK
 
 # 가오스 1장 — 제품 사진 확보 대기
 brands/gaossunion/custom-material-working-electrode/  MISSING_BLOCK
+# aida 신규 5장 — detail.css 이관 대기 (기존 5장과 동일 사유)
+brands/aida/sem-dual-electrode/           STYLE_INLINE
+brands/aida/pt-mesh-counter-electrode/    STYLE_INLINE
+brands/aida/pt-wire-counter-electrode/    STYLE_INLINE
+brands/aida/graphite-rod-counter-electrode/ STYLE_INLINE
+brands/aida/electrode-holder/             STYLE_INLINE
