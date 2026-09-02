@@ -76,22 +76,6 @@
           "DodoChem · 원산지 중국"
         ],
         [
-          "외관",
-          "무색 투명 액체"
-        ],
-        [
-          "수분",
-          "H₂O 20 ppm 이하"
-        ],
-        [
-          "인화점",
-          "<b>−2 ℃</b> (밀폐식 · 추정치)"
-        ],
-        [
-          "유통기한",
-          "미개봉 <b>6개월</b> · 서늘하고 어두운 건조 환경 보관"
-        ],
-        [
           "가격 조건",
           "VAT 별도 · 국제 배송료 100,000원 (주문당 1회)"
         ],
@@ -181,79 +165,44 @@
         ]
       },
       "safety": {
-        "warn": {
-          "h": "고인화성 · 부식성 · 생식독성 물질",
-          "p": "인화점 <b>−2 ℃</b>. 화기·산화제와 분리하고, 개봉·취급은 통풍이 확보된 곳 또는 <b>Ar 글러브박스</b>에서 하십시오. 보호장갑·보안경·보호복이 필요합니다."
-        },
-        "pictograms": [
-          "GHS02 인화성",
-          "GHS03 산화성",
-          "GHS05 부식성",
-          "GHS06 급성독성",
-          "GHS07 경고",
-          "GHS08 건강유해성"
-        ],
-        "h_codes": [
+        "heading": "안전 정보",
+        "image": "/img/dodochem/ls-009-ghs.png",
+        "image_alt": "DodoChem LS-009 GHS 그림문자 (제조사 표기)",
+        "rows": [
           [
-            "H225",
-            "고인화성 액체 및 증기"
+            "Basic Information",
+            "Flash point: -2℃ (CC) (estimated)<br>Appearance: Colorless, clear, and transparent liquid"
           ],
           [
-            "H272",
-            "화재를 강렬하게 할 수 있음 (산화제)"
+            "Specifications",
+            "H2O, ppm: 20 max"
           ],
           [
-            "H301+H311",
-            "삼키거나 피부에 접촉하면 유독함"
+            "Hazard description",
+            "H225 , H272 , H301+H311 , H314 , H332 , H360 , H373 , H412"
           ],
           [
-            "H314",
-            "피부에 심한 화상과 눈에 손상을 일으킴"
+            "Danger signs",
+            "@image"
           ],
           [
-            "H332",
-            "흡입하면 유해함"
+            "Safe operation (precautions)",
+            "P201 , P202 , P210 , P220 , P221 , P233 , P240 , P241 , P242 , P243 , P260 , P261 , P264 , P270 , P271 , P273 , P280"
           ],
           [
-            "H360",
-            "생식능력 또는 태아에 손상을 일으킬 수 있음"
+            "Secure storage (emergency response)",
+            "P403+P233 , P403+P235"
           ],
           [
-            "H373",
-            "장기간 또는 반복 노출되면 장기에 손상을 일으킬 수 있음"
+            "Safety disposal",
+            "P501"
           ],
           [
-            "H412",
-            "장기적 영향에 의해 수생생물에게 유해함"
+            "Shelf life",
+            "Store unopened for 6 months in a cool, dark, and dry environment."
           ]
         ],
-        "p_codes": [
-          "P201",
-          "P202",
-          "P210",
-          "P220",
-          "P221",
-          "P233",
-          "P240",
-          "P241",
-          "P242",
-          "P243",
-          "P260",
-          "P261",
-          "P264",
-          "P270",
-          "P271",
-          "P273",
-          "P280"
-        ],
-        "storage_codes": [
-          "P403+P233",
-          "P403+P235"
-        ],
-        "disposal_codes": [
-          "P501"
-        ],
-        "note": "※ 제조사(DodoChem) 표기 기준입니다. 실제 취급 전 MSDS를 확인하십시오."
+        "note": "※ 취급 전 MSDS를 확인하십시오."
       },
       "source": {
         "url": "https://www.dodochem.com/",
@@ -266,28 +215,16 @@
             "title": "Selective Adsorption and Electrocatalysis of Polysulfides through Hexatomic Nickel Clusters Embedded in N-Doped Graphene toward High-Performance Li-S Batteries",
             "journal": "<i>Research</i> <b>2020</b>, 5714349",
             "authors": "Ji, J. et al.",
-            "grade": "LS-009 지정",
-            "doi": "10.34133/2020/5714349",
-            "evidence": "<span style=\"color:#5a5550\">“Lithium sulfur electrolyte <b>(LS009)</b> containing 1.0 M LiTFSI in a mixed solvent of DME/DOL (1 : 1 volume ratio) with <b>2 wt% of lithium nitrate</b> was purchased from the <b>DoDoChem</b>.”</span><br><small>Materials and Methods §4.1 Reagents</small>"
+            "doi": "10.34133/2020/5714349"
           },
           {
             "title": "Electrochemical Atomic Force Microscopy Study on the Dynamic Evolution of Lithium Deposition",
             "journal": "<i>Materials</i> <b>16</b>(6), 2278 (2023)",
             "authors": "Shi, X. et al.",
-            "grade": "LS-009 지정",
-            "doi": "10.3390/ma16062278",
-            "evidence": "비교 전해질 중 하나가 <b>LS009</b> (1 M LiTFSI in DOL:DME 1:1 + 2% LiNO₃)<br><span style=\"color:#5a5550\">“…both were purchased from the <b>DodoChem</b>, Suzhou, China.”</span><br><small>Experimental §2.1</small>"
-          },
-          {
-            "title": "On the Surface Chemical Aspects of Very High Energy Density, Rechargeable Li–Sulfur Batteries",
-            "journal": "<i>J. Electrochem. Soc.</i> <b>156</b>, A694 (2009)",
-            "authors": "Aurbach, D. et al.",
-            "grade": "같은 배합",
-            "doi": "10.1149/1.3148721",
-            "evidence": "LiTFSI · DOL:DME · <b>LiNO₃</b> 계 전해액에서 LiNO₃가 리튬 음극 표면 보호막을 만들어 셔틀 효과를 억제함을 규명한 원전. 제품을 지정한 논문은 아님."
+            "doi": "10.3390/ma16062278"
           }
         ],
-        "note": "※ ‘LS-009 지정’ = 논문 Methods에 제품명과 DodoChem 구매가 적힌 건. ‘같은 배합’ = 배합만 같은 대표 논문. 저자·저널의 보증·제휴를 뜻하지 않습니다."
+        "note": "※ 두 논문 모두 Methods에 LS009·DodoChem 구매가 적혀 있습니다. 저자·저널의 보증·제휴 아님."
       }
     }
   ]

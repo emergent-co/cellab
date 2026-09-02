@@ -30,8 +30,10 @@ async function get(request, env) {
     if (!c) return json({ error: 'not_found' }, 404);
 
     // 아래 다섯 개는 batch 한 번, 합계·원장은 각자 이미 batch 로 묶여 있다
-    const [profiles, sites, orders, settles, docs, members, sum, led] = await Promise.all([
+    const [profiles, contacts, sites, orders, settles, docs, members, sum, led] = await Promise.all([
       env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id')
+        .bind(c.id).all().then((r) => r.results || []),
+      env.DB.prepare('SELECT * FROM contacts WHERE customer_id=? ORDER BY is_default DESC, id')
         .bind(c.id).all().then((r) => r.results || []),
       // 고객은 사업자정보를 «계산서 발행 정보»에, 주소를 «납품지»에 넣는다.
       // 거래처 기본칸만 보면 늘 비어 보이므로 둘 다 함께 보낸다.
@@ -60,7 +62,7 @@ async function get(request, env) {
     const { role, kakao_id, ...safeCustomer } = c;   // 카카오 식별자·권한은 화면에 내보내지 않는다
     return json({
       client: { ...safeCustomer, is_admin: role === 'admin' },
-      profiles, sites, orders, members, ledger: led, ...sum,
+      profiles, contacts, sites, orders, members, ledger: led, ...sum,
       settlements: settles.map((s) => ({ ...s, items: safe(s.items_json) })),
       documents: docs.map((d) => {
         let p = {}; try { p = JSON.parse(d.payload_json || '{}'); } catch { /* noop */ }

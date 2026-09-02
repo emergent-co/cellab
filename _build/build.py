@@ -1751,56 +1751,86 @@ def _pp_audit(bslug, p):
 
 
 def _pp_safety(sf):
-    """안전정보(GHS) 표준 블록 — 제조사 표기를 그대로 옮겨 담는 자리."""
-    out = ['<h2 class="pkg-h" style="margin-top:26px">안전 정보 (GHS)</h2>']
-    w = sf.get('warn')
-    if w:
-        out.append('<div class="warn"><p class="warn-h">%s</p><p>%s</p></div>'
-                   % (escape(w.get('h', '취급 주의')), w.get('p', '')))
-    rows = []
-    if sf.get('pictograms'):
-        rows.append(['그림문자', ' · '.join(sf['pictograms'])])
-    if sf.get('h_codes'):
-        rows.append(['유해·위험문구 (H)',
-                     '<br>'.join('<b>%s</b> %s' % (c, t) for c, t in sf['h_codes'])])
-    if sf.get('p_codes'):
-        rows.append(['예방조치 (P)', ' · '.join(sf['p_codes'])])
-    if sf.get('storage_codes'):
-        rows.append(['저장 · 비상대응', ' · '.join(sf['storage_codes'])])
-    if sf.get('disposal_codes'):
-        rows.append(['폐기', ' · '.join(sf['disposal_codes'])])
-    for extra in sf.get('extra', []):
-        rows.append(extra)
+    """안전 정보 — 제조사 표를 라벨·값 그대로 옮겨 싣는 자리.
+    번역·요약·경고문 추가 금지. rows 는 제조사 표기 순서·문구 그대로 둔다."""
+    out = ['<h2 class="pkg-h" style="margin-top:26px">%s</h2>'
+           % escape(sf.get('heading', '안전 정보'))]
+    if sf.get('lead'):
+        out.append('<p class="pkg-note" style="margin:0 0 10px">%s</p>' % sf['lead'])
+    rows = list(sf.get('rows') or [])
+    if sf.get('image'):
+        rows = [[lb, ('<img src="%s" alt="%s" style="max-width:100%%;display:block">'
+                      % (sf['image'], escape(sf.get('image_alt', '제조사 표기 그림문자'))))
+                 if v == '@image' else v] for lb, v in rows]
     if rows:
         out.append(_pp_table(rows))
-    out.append('<p class="pkg-note">%s</p>'
-               % sf.get('note', '※ 제조사 표기 기준입니다. 실제 취급 전 MSDS를 확인하십시오.'))
+    if sf.get('note'):
+        out.append('<p class="pkg-note">%s</p>' % sf['note'])
     return ''.join(out)
 
 
 PP_PAPER_MAX = 3          # 논문은 최대 3편. 없으면 섹션을 아예 내지 않는다.
-PP_PAPER_GRADES = ('제품 지정', '같은 배합', '같은 사양')   # 근거 등급 — 반드시 표기
+
+# 저널 등급 — 논문은 유명 저널 위주로만 싣는다.
+#   T1 = 최상위(우선 수록) · T2 = 허용 · 그 외 = 제외(같은 근거의 T1/T2 논문이 하나도 없을 때만 예외)
+# 새 분야를 다루게 되면 여기에 저널명을 추가한다. 소문자·공백 무시로 부분일치 판정.
+PP_JOURNAL_T1 = [
+    'nature', 'science', 'science advances', 'nature energy', 'nature materials',
+    'nature nanotechnology', 'nature catalysis', 'nature communications', 'nature chemistry',
+    'joule', 'chem', 'matter', 'pnas', 'proceedings of the national academy',
+    'journal of the american chemical society', 'jacs', 'angewandte',
+    'advanced materials', 'advanced energy materials', 'energy & environmental science',
+    'energy and environmental science', 'acs energy letters', 'nano letters', 'acs nano',
+    'research',
+]
+PP_JOURNAL_T2 = [
+    'journal of power sources', 'electrochimica acta', 'journal of materials chemistry',
+    'acs applied materials', 'chemical engineering journal', 'energy storage materials',
+    'small', 'carbon', 'journal of the electrochemical society', 'batteries & supercaps',
+    'chemsuschem', 'scientific reports', 'journal of energy chemistry', 'nano energy',
+    'advanced functional materials', 'materials',
+]
+
+
+def _pp_journal_tier(journal):
+    t = re.sub(r'<[^>]+>', ' ', journal or '').lower()
+    t = re.sub(r'\s+', ' ', t)
+    for name in sorted(PP_JOURNAL_T1, key=len, reverse=True):
+        if name in t:
+            return 1
+    for name in sorted(PP_JOURNAL_T2, key=len, reverse=True):
+        if name in t:
+            return 2
+    return 9
+
+
+def _pp_pick_papers(items):
+    """유명 저널 위주로 고른다. T1 -> T2 순, 최대 3편.
+    T1/T2가 하나도 없을 때만 등급 밖 저널을 그대로 쓴다. (버린 목록, 등급밖 사용 여부) 함께 반환."""
+    ranked = sorted(((_pp_journal_tier(it.get('journal', '')), i, it)
+                     for i, it in enumerate(items)), key=lambda x: (x[0], x[1]))
+    ok = [it for tier, _, it in ranked if tier <= 2]
+    fallback = not ok
+    keep = (ok if ok else [it for _, _, it in ranked])[:PP_PAPER_MAX]
+    dropped = [it for it in items if it not in keep]
+    return keep, dropped, fallback
 
 
 def _pp_papers(pp):
-    """관련 논문 블록. 제품 코드가 논문에 나온 것을 위로 두고, 근거 등급을 배지로 붙인다."""
-    items = (pp.get('items') or [])[:PP_PAPER_MAX]
+    """관련 논문 — 논문 / 저널 / 링크 3열 고정. 최대 3편.
+    근거(제품 코드가 논문에 나온 것)가 있으면 그 논문만 싣고, 하나도 없을 때에만
+    같은 배합·같은 사양의 대표 논문으로 채운다."""
+    items, _dropped, _fb = _pp_pick_papers(pp.get('items') or [])
     if not items:
         return ''
-    out = ['<h2 class="pkg-h" style="margin-top:26px">%s</h2>'
-           % escape(pp.get('heading', '관련 논문'))]
-    rows = []
-    for it in items:
-        grade = ('<span class="pp-grade">%s</span>' % escape(it['grade'])) if it.get('grade') else ''
-        title = escape(it['title'])
-        meta = ' · '.join(x for x in [it.get('journal', ''), escape(it.get('authors', ''))] if x)
-        rows.append([
-            '%s%s<br><small>%s</small>' % (grade, title, meta),
-            it.get('evidence', ''),
-            ('<a href="https://doi.org/%s" target="_blank" rel="noopener">DOI ↗</a>' % it['doi'])
-            if it.get('doi') else (it.get('link', '')),
-        ])
-    out.append(_pp_table(rows, head=['논문', '근거', '링크']))
+    rows = [[
+        escape(it['title']),
+        ' · '.join(x for x in [it.get('journal', ''), escape(it.get('authors', ''))] if x),
+        ('<a href="https://doi.org/%s" target="_blank" rel="noopener">DOI ↗</a>' % it['doi'])
+        if it.get('doi') else it.get('link', ''),
+    ] for it in items]
+    out = ['<h2 class="pkg-h" style="margin-top:26px">%s</h2>' % escape(pp.get('heading', '관련 논문')),
+           _pp_table(rows, head=['논문', '저널', '링크'])]
     if pp.get('note'):
         out.append('<p class="pkg-note">%s</p>' % pp['note'])
     return ''.join(out)
@@ -2031,6 +2061,15 @@ def build_product_pages():
             miss = _pp_audit(brand['slug'], p)
             if miss:
                 audit.append('%s/%s — 원문 미수집: %s' % (brand['slug'], p['slug'], ' · '.join(miss)))
+            if p.get('papers'):
+                _k, _d, _fb = _pp_pick_papers(p['papers'].get('items') or [])
+                if _d:
+                    audit.append('%s/%s — 논문 제외(등급 밖 저널): %s'
+                                 % (brand['slug'], p['slug'],
+                                    ' · '.join(_pp_text(x.get('journal', ''))[:40] for x in _d)))
+                if _fb:
+                    audit.append('%s/%s — 논문 저널이 전부 등급 밖. 유명 저널 논문을 찾아 교체할 것'
+                                 % (brand['slug'], p['slug']))
     print('  제품 상세페이지 생성: %d개 (_build/products/*.json SSOT)' % total)
     for a in audit:
         print('    [warn] %s' % a)
@@ -2043,6 +2082,9 @@ def build_product_pages():
 
 LINT_SKIP_BRANDS = {'sh-scientific', 'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
 LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
+# 페이지가 자기 자신을 설명하는 메타 문구 — 데이터는 표로, 안내 문장은 쓰지 않는다
+LINT_BAD_PHRASES = ['옮긴 것입니다', '옮겼습니다', '확인하실 수 있습니다', '보실 수 있습니다',
+                    '바로 나옵니다', '아래 표', '위 표', '다음과 같습니다']
 
 # 블록 탐지 정규식. 표준 순서 = 크럼 -> h1+영문명 -> 대표사진 -> 정답블록 -> 특징 -> 사양 -> 규격표.
 # 2단 레이아웃(.dt-grid)에서는 사진 칼럼이 DOM상 h1보다 앞에 오는 것이 정상이므로,
@@ -2121,6 +2163,11 @@ def lint_detail_pages():
             bad = [c for c in LINT_BAD_COLORS if c.lower() in low]
             if bad:
                 warns.append((rel, '금지 색상 사용: ' + ' · '.join(bad)))
+
+            # 3-1) 페이지 자기설명 메타 문구
+            bad_ph = [x for x in LINT_BAD_PHRASES if x in body]
+            if bad_ph:
+                warns.append((rel, '안내 문장(메타 문구) 사용: ' + ' · '.join(bad_ph)))
 
             # 4) border-left 3~4px 색 바
             for m in re.finditer(r'border-left(?:-width)?\s*:\s*([^;"}]*)', body, re.I):

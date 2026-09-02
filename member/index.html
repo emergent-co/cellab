@@ -4460,6 +4460,17 @@ async function clOpen(id){
         : '<div class="empty" style="padding:16px">등록된 발행 정보가 없습니다.</div>')
     + '</div>'
 
+    // 담당자는 문서 발행에서도 같은 팝업(contactForm)으로 고친다 — 손보는 자리가 둘이면 반드시 어긋난다
+    + '<div class="sec"><h4>담당자 <i style="font-style:normal;color:var(--mut);font-weight:600">'
+      + (d.contacts||[]).length + '</i>'
+      + '<button class="mini" id="clCt" style="float:right">관리</button></h4>'
+      + ((d.contacts||[]).length
+        ? d.contacts.map(function(x){
+            return '<div class="kv"><span>'+esc(x.name||'—')+(x.is_default?' <span class="badge s2">기본</span>':'')+'</span>'
+              + '<span>'+esc([x.role, x.email, x.phone].filter(Boolean).join(' · ')||'—')+'</span></div>'; }).join('')
+        : '<div class="empty" style="padding:16px">등록된 담당자가 없습니다 — 서류는 거래처 대표 연락처로 나갑니다.</div>')
+    + '</div>'
+
     + clFold('주문', d.orders, function(o){
         return [(o.manual?'✎ ':'')+(o.title||o.order_no),
                 String(o.created_at||'').slice(0,10)+' · '+o.status,
@@ -4484,6 +4495,15 @@ async function clOpen(id){
       + '<button class="btn ok" id="clSave">저장</button></div>';
 
   // 멤버십 · 결제
+  // 문서 발행의 「담당자 관리」와 똑같은 팝업이다
+  if ($('#clCt')) $('#clCt').onclick = function(){
+    contactForm(c, d.contacts || [], function(rows){
+      d.contacts = rows;
+      if (dqCli && dqCli.id === c.id){ dqSetContacts(rows); dqPaintContacts(); }
+      clOpen(c.id);                      // 뒤 화면의 목록도 새로 그린다
+    });
+  };
+
   $('#clBody').querySelectorAll('[data-acc]').forEach(function(b){
     b.onclick = async function(){
       var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,
