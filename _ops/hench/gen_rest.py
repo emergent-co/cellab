@@ -51,9 +51,77 @@ KO = {
  'applicable model':'적용 모델','applicable mold':'적용 몰드','control mode':'제어 방식',
  'operation mode':'운전 방식','motor power':'모터 출력','precision':'정밀도','accuracy':'정밀도',
  'diameter':'지름','temperature':'온도','frequency':'주파수','surface treatment':'표면처리',
+ 'boundary dimension':'외형','device power':'소비전력','holding time':'압력 유지',
+ 'pressure process':'가압 단계','number of pressurized sections':'가압 구간 수',
+ 'active safety':'능동 안전','equipment safety':'안전장치','safety performance':'안전장치',
+ 'limit function':'리미트','limit protection':'리미트 보호','cylinder limit protection':'실린더 리미트 보호',
+ 'host protection':'본체 보호','equipment protection':'장비 보호','device display':'화면',
+ 'pressure relief die':'감압 방식','release die':'감압 방식','return mode':'복귀 방식',
+ 'pressure sensor':'압력 센서','pressure unit':'압력 단위','intelligent operation':'지능형 운전',
+ 'data management':'데이터 관리','operation record':'운전 기록',
+ 'supplementary pressure setting':'보압 설정','configuration instructions':'구성 안내',
 }
+
+# ── 영문 값 한글화 (긴 것부터) ───────────────────────────────
+TR = [
+ ('Japan High Speed Tool Steel','일본산 고속도 공구강'),
+ ('Alloy tool steel','합금공구강'), ('Hard Alloy','초경합금'),
+ ('3 chromium 13# die steel','3Cr13 다이스강'), ('die steel','다이스강'),
+ ('Stainless steel','스테인리스'), ('anti-static ABS material','정전기 방지 ABS'),
+ ('lithium positive or negative electrode sheet, diaphragm sheet','리튬 양극·음극 시트, 분리막'),
+ ('forging process, integrated structure','단조 가공 일체형 구조'),
+ ('forging process','단조 가공'), ('integrated structure','일체형 구조'),
+ ('manual hydraulic system','수동 유압'), ('wear-resistant hydraulic oil','내마모 유압유'),
+ ('equipped with','포함'),
+ ('pressure tonnage (T), pressure Mpa double scale display','톤(T)·MPa 이중 눈금'),
+ ('DDNT high precision digital sensor display','DDNT 고정밀 디지털 센서 표시'),
+ ('tonnage display','톤(T) 표시'),
+ ('electric PCB program buffer pressurization','전동 PCB 프로그램 완충 가압'),
+ ('Electric PCB program buffer pressurization','전동 PCB 프로그램 완충 가압'),
+ ('program automatic pressure','프로그램 자동 가압'),
+ ('Real-time automatic pressure compensation','실시간 자동 압력 보정'),
+ ('automatic pressure relief when the cylinder exceeds the limit','실린더 리미트 초과 시 자동 감압'),
+ ('unlimited time (manual pressure relief)','시간 제한 없음 (수동 감압)'),
+ ('unlimited time','시간 제한 없음'),
+ ('Touch screen operation is convenient and fast','터치스크린 조작'),
+ ('Touch directly modify the set value','터치로 설정값 직접 수정'),
+ ('inch LCD touch screen/English interface can be switched','인치 LCD 터치스크린 (영문 인터페이스 전환)'),
+ ('inch touch LCD screen/English interface can be switched','인치 LCD 터치스크린 (영문 인터페이스 전환)'),
+ ('inch capacitive touch LCD screen','인치 정전식 LCD 터치스크린'),
+ ('leakage protection','누전 차단'), ('emergency stop switch','비상정지 스위치'),
+ ('plexiglass','아크릴 보호커버'), ('protective cover','보호커버'),
+ ('four-column positioning insulation design','4컬럼 정렬 단열 설계'),
+ ('upper and lower heating','상·하 가열'), ('Copper heating core','구리 발열체'),
+ ('imported mica heat insulation board','마이카 단열판'), ('standard water cooler','표준 수냉 칠러'),
+ ('The whole form structure, no pressure and no oil leakage','일체형 구조 · 무누유'),
+ ('no pressure and no oil leakage','무누유'),
+ ('can be customized to set the accuracy','정밀도 맞춤 설정 가능'),
+ ('can be customized','맞춤 제작 가능'), ('customizable','맞춤 제작 가능'),
+ ('can be selected within the pressure range','압력 범위 내에서 선택 가능'),
+ ('and various types of round, square, shaped, battery molds','원형·사각·이형·버튼셀 몰드'),
+ ('According to customer needs, the column can be increased','요청 시 컬럼 증설 가능'),
+ ('side opening','측면 개방'), ('optional','옵션'), ('Customized','맞춤'),
+ ('historical operation records','운전 이력 기록'), ('can store','저장 가능'),
+ ('roots','본'), ('Max:','최대 '), ('Room temperature','상온'),
+ ('Equipped with','포함'), ('quenched','담금질'), ('diameter','지름'), ('Die size','다이 크기'),
+ ('room temperature','상온'), ('adjustable continuous','단 연속 조절'),
+ ('mechanical failure error emergency stop function','기계 고장·비상정지 기능'),
+ ('mechanical fault report emergency stop function','기계 고장 보고·비상정지 기능'),
+ ('automatic precise pressure replenishment','자동 정밀 보압'),
+]
+
+def tr(v):
+    for a, b in TR:
+        if a in v: v = v.replace(a, b)
+    v = v.replace('：', ' ')
+    v = re.sub(r'\s{2,}', ' ', v).strip(' ,·')
+    return v
+
+
+def eng_words(v):
+    return len(re.findall(r'[A-Za-z]{4,}', v))
 # 표에서 뺄 항목(장황하거나 카드에 무의미)
-DROP = {'구성 안내', '비고'}
+DROP = {'구성 안내', '비고', '지능형 운전', '데이터 관리', '운전 기록', '장비 보호', '본체 보호'}
 # 앞쪽에 오길 원하는 순서
 ORDER = ['모델','압력범위','최대 성형압','설정 분해능','압력 환산','실린더 지름','피스톤 지름',
  '피스톤 스트로크','실린더 스트로크','압력 안정도','가압 방식','가압 후 보정','압력 유지','자동 제어',
@@ -70,8 +138,10 @@ def spec_rows(r, extra=()):
     for k, v in sp.items():
         ko = KO.get(k.strip().lower())
         if not ko or ko in DROP: continue
-        v = U(v)
-        if len(v) > 150: v = v[:147] + '…'
+        v = tr(U(v))
+        # 번역되지 않은 영문 서술은 사양표에 싣지 않는다(수치 자리이지 마케팅 문장 자리가 아니다)
+        if eng_words(v) >= 4: continue
+        if len(v) > 110: v = v[:107] + '…'
         out.setdefault(ko, v)
     rows = [(k, out[k]) for k in ORDER if k in out]
     rows += [(k, v) for k, v in out.items() if k not in ORDER]
@@ -82,7 +152,7 @@ def g(r, *keys, **kw):
     for k in keys:
         for x in sp:
             if x.strip().lower() == k.lower():
-                v = U(re.sub(r'\s+', ' ', sp[x]).strip())
+                v = tr(U(re.sub(r'\s+', ' ', sp[x]).strip()))
                 if v: return v
     return kw.get('d', '—')
 
@@ -164,6 +234,15 @@ CFG = {
 }
 
 
+def M(o):
+    """화면 표기용 모델코드. 제조사가 2열 표를 한 칸에 붙였거나 값이 삼켜진 경우를 정리한다."""
+    m = (o['model'] or '').strip()
+    lead = re.match(r'([A-Z]{2,4}-\d{2,4}[A-Z]?)\s', o['name'] or '')
+    if lead: return lead.group(1)                       # 이름이 모델로 시작하면 그게 정답
+    if ' ' in m: m = m.split(' ')[0]                     # 'HMN-C Dual-purpose…' → HMN-C
+    return m[:24]
+
+
 BYFAM = collections.defaultdict(list)
 for _o in F.out: BYFAM[_o['fam']].append(_o)
 
@@ -182,7 +261,7 @@ def variant(name):
 def head_bits(o, cfg, tail_txt):
     name, r = o['name'], o['row']
     vr = variant(name)
-    h1 = '%s %s' % (o['model'], cfg['nm'])
+    h1 = '%s %s' % (M(o), cfg['nm'])
     t = ton_of(r)
     if t: h1 += ' %g T' % t
     if vr: h1 += ' (%s)' % vr
@@ -194,7 +273,7 @@ def xlinks_of(o, limit=8):
              '%s%s' % (x['model'], (' %g T' % ton_of(x['row'])) if ton_of(x['row']) else '')) for x in sib[:limit]]
 
 def common(o, cfg, h1, ans, summ, spec, feats, faqs, incl, warn, models, opt='', figs=()):
-    slug = o['slug']; img = '/img/hench/%s-1.jpg' % slug
+    slug = o['slug']; img = '/img/hench/%s-1.jpg' % slug; M2 = M(o)
     kwsub = cfg['crumb'].replace(' ', '')
     return dict(models=models, slug=slug, crumb=cfg['crumb'],
       title='Hench %s — %s | 실험셋업연구소' % (h1, cfg['crumb']),
@@ -203,8 +282,8 @@ def common(o, cfg, h1, ans, summ, spec, feats, faqs, incl, warn, models, opt='',
       kws=[('/product/', '#실험장비카탈로그'), ('/brands/hench/%s/' % slug, '#%s' % kwsub),
            ('/brands/hench/%s/' % slug, '#시료전처리'), ('/brands/hench/%s/' % slug, '#Hench')],
       img=img,
-      thumbs=[(img, o['model'], '제품'), ('/img/hench/%s-2.jpg' % slug, o['model'], '상세'),
-              ('/img/hench/%s-3.jpg' % slug, o['model'], '구성')],
+      thumbs=[(img, M2, '제품'), ('/img/hench/%s-2.jpg' % slug, M2, '상세'),
+              ('/img/hench/%s-3.jpg' % slug, M2, '구성')],
       feats=feats, incl=incl, spec=spec, opt_tbl=opt, figures=list(figs),
       price='<b>구성별 견적(문의)</b>입니다. 구성·수량·다이 규격을 알려주시면 함께 잡아 견적해 드립니다.',
       notes=notes_common(), warn_h=warn[0], warn_p=warn[1],
@@ -213,7 +292,7 @@ def common(o, cfg, h1, ans, summ, spec, feats, faqs, incl, warn, models, opt='',
           "brand":{"@type":"Brand","name":"Hench","alternateName":["HENCH","天津恒创立达"]},
           "category":"시료 전처리 · %s" % cfg['crumb'],
           "url":'https://rndsetup.com/brands/hench/%s/' % slug,
-          "image":'https://rndsetup.com' + img, "model":o['model']})
+          "image":'https://rndsetup.com' + img, "model":M(o)})
 
 def press_page(o):
     cfg = CFG[o['fam']]; r = o['row']
@@ -236,7 +315,7 @@ def press_page(o):
     feats.append('<b>다이 별매</b> — 목표 펠릿 규격에 맞는 다이를 함께 고르셔야 합니다.')
     incl = [('본체 1대','in','포함'), ('다이(몰드) — 규격에 맞춰 별도 선택','ex','미포함·별매'),
             ('사진 속 다이·시료는 연출용','ex','미포함')]
-    faqs = [('계열', '%s는 어떤 프레스인가요?' % o['model'], cfg['why'])]
+    faqs = [('계열', '%s는 어떤 프레스인가요?' % M(o), cfg['why'])]
     if t:
         faqs.append(('톤수 선택','이 모델로 만들 수 있는 펠릿 지름은 어디까지인가요?',
           '성형압 700 MPa 기준 최대 <b>Φ%.1f mm</b>입니다. 표준인 Φ13 mm(132.7 mm²)에는 약 <b>9.5 T</b>가 필요하므로 %s'
@@ -252,14 +331,14 @@ def press_page(o):
     warn = ('안전 — 허용 하중과 전원을 확인하십시오',
       '다이의 허용 하중을 넘겨 가압하지 마십시오. 압력 해제는 단계적으로 진행하고, 성형 중에는 다이 정면에 서지 마십시오.'
       + (' 가열 계열은 열판·다이가 고온이므로 냉각 전 접촉을 피하십시오.' if heat!='—' else ''))
-    models = [{"m": o['model'], "s": summ.replace('<b>','').replace('</b>','')[:70]}]
+    models = [{"m": M(o), "s": summ.replace('<b>','').replace('</b>','')[:70]}]
     return common(o, cfg, h1, cfg['ans'], summ, spec_rows(r), feats, faqs, incl, warn, models)
 
 def die_page(o):
     cfg = CFG[o['fam']]; r = o['row']
     ss = g(r,'Sample size'); mat = g(r,'Material'); hard = g(r,'Indenter hardness')
     dep = g(r,'Cavity depth'); dim = g(r,'Dimensions'); wt = g(r,'Weight')
-    h1 = '%s %s' % (o['model'], cfg['nm'])
+    h1 = '%s %s' % (M(o), cfg['nm'])
     band = re.sub(r'\s*\(.*$','', ss) if ss!='—' else ''
     if band: h1 += ' %s' % band[:26]
     dmin, dmax = dias(r)
@@ -273,7 +352,7 @@ def die_page(o):
     if dep!='—': feats.append('<b>캐비티 깊이 %s</b> — 분말 충전량 여유를 보고 고르십시오.' % dep)
     feats.append('<b>표준 유압 프레스 호환</b> — <a href="/brands/hench/pellet-press-yp-15/">YP 시리즈</a> 등에 올려 씁니다. 프레스는 별매입니다.')
     incl = [('다이 본체 1세트 (캐비티 · 인덴터 · 받침)','in','포함'), ('프레스 본체 — 별도 선택','ex','미포함·별매')]
-    faqs = [('계열','%s는 어떤 다이인가요?' % o['model'], cfg['why'])]
+    faqs = [('계열','%s는 어떤 다이인가요?' % M(o), cfg['why'])]
     if ss!='—': faqs.append(('규격','성형 규격이 어떻게 되나요?','<b>%s</b>입니다. 캐비티 깊이 %s, 외형 %s, 무게 %s.' % (ss, dep, dim, wt)))
     if dmax: faqs.append(('프레스 호환','몇 톤짜리 프레스가 필요한가요?',
         '성형압 700 MPa 기준으로 최대 규격 %g mm에 <b>약 %.1f T</b>가 필요합니다. %s'
@@ -285,7 +364,7 @@ def die_page(o):
     faqs.append(('가격','가격이 왜 문의인가요?','제조사가 정가를 공개하지 않는 품목이라 구성·수량을 확인한 뒤 안내드립니다. 부가세 별도이며 해외 발주라 해외배송비가 주문당 1회 더해집니다.'))
     warn = ('안전 — 규격별 허용 하중이 다릅니다',
       '소구경 다이에 프레스 최대 하중을 그대로 가하면 시료면 압력이 수 GPa에 달해 인덴터·캐비티가 손상될 수 있습니다. 매 사용 후 잔류 분말을 청소하십시오.')
-    models = [{"m": o['model'], "s": (ss if ss!='—' else cfg['nm'])[:70]}]
+    models = [{"m": M(o), "s": (ss if ss!='—' else cfg['nm'])[:70]}]
     return common(o, cfg, h1, cfg['ans'], summ, spec_rows(r), feats, faqs, incl, warn, models)
 
 
@@ -295,7 +374,7 @@ SLICER = dict(kind='slicer', crumb='전극 슬라이서', sub='slicer', nm='수�
 
 def slicer_page(o):
     cfg = SLICER; r = o['row']
-    h1 = '%s 수동 전극 슬라이서' % o['model']
+    h1 = '%s 수동 전극 슬라이서' % M(o)
     ss = g(r,'Slice size'); pf = g(r,'Punching pressure'); st = g(r,'Punch stroke')
     summ = '슬라이스 규격 <b>%s</b> · 펀칭 하중 %s · 스트로크 %s · 적용 시료 리튬 양·음극 시트, 분리막 · 무게 %s' % (ss, pf, st, g(r,'Weight'))
     feats = [cfg['why'],
@@ -336,10 +415,10 @@ def card_of(o):
         pg = build_page(o); h1 = pg['h1']; d = re.sub(r'<[^>]+>', '', pg['ans'])
         sub = cfg['sub']; bdg = cfg['crumb']
     return dict(cat=sub, img='/img/hench/%s-1.jpg' % slug, bdg=bdg[:14],
-                href='/brands/hench/%s/' % slug, title=h1, nm=o['model'],
+                href='/brands/hench/%s/' % slug, title=h1, nm=M(o),
                 d=d[:112],
                 text=('%s %s %s hench 헨치 천진항창립달 시료 전처리 펠릿 프레스 다이 압편 kbr ir xrd %s'
-                      % (h1, o['model'], slug.replace('-', ' '), o['name'])).lower())
+                      % (h1, M(o), slug.replace('-', ' '), o['name'])).lower())
 
 def main():
     made = 0

@@ -59,7 +59,7 @@ FIXED = {
 # 15T 3종은 이름이 같아 모델로 구분한다
 FIXED_BY_MODEL = {'YP-15':'pellet-press-yp-15','YP-15B':'pellet-press-yp-15b','YP-15R':'pellet-press-yp-15r'}
 
-SPECIAL = {  # D4 이름 → 슬러그 꼬리
+SPECIAL = {  '40T Manual Pellet Press':'yp-40',  # D4 이름 → 슬러그 꼬리
  'Ring Dies':'ring-hmo','Bigger Ring Dies':'ring-large-hmo','Spherical Dies':'spherical-hmq',
  'Bigger Spherical Dies':'spherical-large-hmq','Polygon Dies':'polygon-hmd','Anti-cracking Dies':'anti-crack-hml',
  'Bidirectional Press Opening Dies':'bidirectional-hms','Special Shape Dies':'shape-hmt',
@@ -86,6 +86,8 @@ def tail(r, fam):
         if '4 Columns' in n or '4columns' in n.lower(): base += '-4col'
         if 'Protection' in n: base += '-protection'
         return base
+    if fam == 'D7-cellmold':
+        return re.sub(r'[^a-z0-9-]', '', (m or '').split(' ')[0].lower()) or 'mold'
     # 다이: 직경/치수 밴드
     nums = re.findall(r'(\d+)', n.split('(')[0])
     if nums:

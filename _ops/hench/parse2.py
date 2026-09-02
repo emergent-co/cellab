@@ -15,7 +15,7 @@ LABELS = [
  'Overall structure','Design structure','Construction','Configuration description','Power supply',
  'Equipment power','Ambient temperature','Effective space','Valid space','Available space',
  # 프레스 압력계
- 'Pressure range','Pressure limit','Maximum pressure','Pressure conversion','Pressure gauge','Pressure gage',
+ 'Pressure range','Pressure limit','Maximum pressure','Pressure','Pressure conversion','Pressure gauge','Pressure gage',
  'Pressure display','Pressure stability','Pressure mode','Pressure die','Pressure holding time','Pressure holding',
  'Accuracy range','Demoulding pressure','Sealing pressure','Opening pressure',
  # 실린더·구조
