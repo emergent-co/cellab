@@ -1194,6 +1194,13 @@ async function boot(){
         .catch(function(){});
     };
     setTimeout(flush, 4000); setInterval(flush, 180000);
+    // 매월 1일, 지난달 용역비 지급내역을 세무사에게. Pages 에 cron 이 없어서
+    // 관리자가 화면을 여는 김에 한 번 두드린다 — 이미 보냈으면 서버가 알아서 건너뛴다.
+    setTimeout(function(){
+      fetch('/api/cron/payouts',{headers:AH}).then(function(r){return r.json();})
+        .then(function(x){ if (x && x.ok && x.count) toast(x.ym+' 용역비 지급내역을 세무사에게 보냈습니다'); })
+        .catch(function(){});
+    }, 9000);
   }
   ordNav();                            // 저장해 둔 메뉴 순서를 되살리고 드래그를 건다
 
@@ -4696,6 +4703,180 @@ function clFold(title, rows, fmt, addKind){
             + '<span class="a n">'+esc(f[2])+'</span></button></div>'; }).join('')
       : '<div class="empty" style="padding:16px">없습니다.</div>')
     + '</div></details>';
+}
+
+/* ==================== 용역비 지급내역 ====================
+   사업소득 3.3% 원천징수 기록. 주민번호는 DB에만 전체로 두고
+   화면·메일에는 마스킹만 내보낸다 — 여러 곳으로 흘러가는 경로에 실으면 그게 유출 경로가 된다. */
+var pyYm = '', pyRows = [], pySum = {}, pyMonths = [], pyShare = null, pyMail = '';
+
+async function viewAdmPay(){
+  $('#main').innerHTML = '<div class="ttl">용역비 지급내역</div>'
+    + '<div class="skel"><div class="sk" style="height:240px"></div></div>';
+  await pyLoad(pyYm);
+}
+
+async function pyLoad(ym){
+  var r = await fetch('/api/admin/payouts' + (ym ? '?ym='+encodeURIComponent(ym) : ''), {headers:AH})
+    .then(function(x){return x.json();}).catch(function(){return {};});
+  if (view !== 'admPay') return;
+  pyYm = r.ym || ym || ''; pyRows = r.rows || []; pySum = r.sum || {};
+  pyMonths = r.months || []; pyShare = r.share || null; pyMail = r.tax_mail || '';
+  pyPaint();
+}
+
+function pyPaint(){
+  var months = pyMonths.slice();
+  if (pyYm && months.indexOf(pyYm) < 0) months.unshift(pyYm);
+
+  $('#main').innerHTML =
+     '<div class="ttlrow"><div class="ttl" style="margin:0">용역비 지급내역</div>'
+     + '<button class="btn pri" id="pyAdd">＋ 지급 기록</button></div>'
+    + '<div class="tools" style="margin-bottom:12px">'
+      + '<select id="pyYm" style="border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13.5px;background:#fff">'
+      + months.map(function(m){ return '<option'+(m===pyYm?' selected':'')+'>'+esc(m)+'</option>'; }).join('')
+      + '</select>'
+      + '<div class="right"><button class="btn ghost" id="pySend">세무사에게 보내기</button></div>'
+    + '</div>'
+    + (pyShare
+       ? '<div class="dfrom" style="margin:0 0 12px">'+esc(String(pyShare.created_at||'').slice(0,16))
+         + ' 발송됨 · '+esc(pyShare.to_addr||'')
+         + (pyShare.opened_at ? ' · 열람 '+esc(String(pyShare.opened_at).slice(5,16)) : ' · 아직 안 열림')
+         + ' · 링크 만료 '+esc(String(pyShare.expires_at||'').slice(0,10))+'</div>'
+       : '')
+    + '<div class="panel list">'
+    + (pyRows.length
+      ? '<table class="cards"><thead><tr><th style="width:92px">지급일</th><th style="width:150px">받는 분</th>'
+        + '<th>지급 사유</th><th style="width:100px">지급액</th><th style="width:92px">원천징수</th>'
+        + '<th style="width:100px">실지급액</th></tr></thead><tbody>'
+        + pyRows.map(function(r){
+            return '<tr data-py="'+r.id+'" style="cursor:pointer"><td>'+esc(String(r.paid_at).slice(5))+'</td>'
+              + '<td class="l"><b>'+esc(r.name)+'</b><br><small style="color:var(--mut)">'+esc(r.rrn||'—')+'</small></td>'
+              + '<td class="l">'+esc(r.reason||'—')+(r.bank?'<br><small style="color:var(--mut)">'+esc(r.bank)+'</small>':'')+'</td>'
+              + '<td class="n">'+won(r.gross)+'</td>'
+              + '<td class="n">'+won((r.tax_income||0)+(r.tax_local||0))+'</td>'
+              + '<td class="n"><b>'+won(r.net)+'</b></td></tr>'; }).join('')
+        + '</tbody><tfoot><tr><td colspan="3" class="l"><b>합계 '+pyRows.length+'건</b></td>'
+        + '<td class="n"><b>'+won(pySum.gross)+'</b></td><td class="n"><b>'+won(pySum.tax)+'</b></td>'
+        + '<td class="n"><b>'+won(pySum.net)+'</b></td></tr></tfoot></table>'
+      : '<div class="empty">이 달에 기록된 지급이 없습니다.</div>')
+    + '</div>'
+    + '<p class="hint" style="margin-top:12px;line-height:1.7">주민등록번호는 <b>이 목록과 메일에 마스킹</b>되어 나갑니다. '
+      + '세무사에게는 <b>7일 만료 열람 링크</b>로 전체를 전달합니다.<br>'
+      + '매월 1일에 지난달 내역이 <b>'+esc(pyMail)+'</b> 으로 자동 발송됩니다.</p>';
+
+  $('#pyYm').onchange = function(e){ pyLoad(e.target.value); };
+  $('#pyAdd').onclick = function(){ pyForm(null); };
+  $('#main').querySelectorAll('[data-py]').forEach(function(tr){
+    tr.onclick = function(){ pyForm(Number(tr.dataset.py)); };
+  });
+  $('#pySend').onclick = pySend;
+}
+
+/* 받는 사람을 고쳐 보낼 수 있게 둔다 — 세무사에게 실제로 쏘기 전에 내 메일로 한 번 봐야 한다 */
+function pySend(){
+  if (!pyRows.length) return alert('이 달에 기록된 지급이 없습니다.');
+  var w = amodal('세무사에게 보내기',
+     '<p class="hint" style="margin:2px 0 12px;line-height:1.7"><b>'+esc(pyYm)+'</b> 지급내역 '
+    + pyRows.length+'건 · 합계 <b>'+won(pySum.gross)+'원</b></p>'
+    + dqField('pyTo','받는 사람','email', pyMail, 'name@example.com')
+    + '<p class="dnote">메일 본문에는 주민번호가 <b>880101-1******</b> 로 마스킹되어 나갑니다. '
+    + '전체 번호는 <b>7일 만료 링크</b> 뒤에 있습니다.<br>'
+    + '세무사에게 쏘기 전에 <b>본인 메일로 먼저</b> 보내 확인해보셔도 됩니다.</p>'
+    + '<div class="twobtn"><button class="btn gray" data-x>닫기</button>'
+    + '<button class="btn ok" id="pyGo">보내기</button></div>');
+
+  $('#pyGo').onclick = async function(){
+    var to = $('#pyTo').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return alert('받는 사람 이메일을 확인해주세요.');
+    var b = $('#pyGo'); b.disabled = true; b.textContent = '보내는 중…';
+    var r = await fetch('/api/admin/payouts',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'share', ym:pyYm, to:to})})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = '보내기';
+    if (!r.ok) return alert(r.message || '보내지 못했습니다.');
+    w.remove();
+    toast(r.count+'건 발송 · 링크 만료 '+String(r.expires_at||'').slice(0,10));
+    pyLoad(pyYm);
+  };
+}
+
+/* 지급 한 건 — 3.3% 는 자동으로 계산하되 손으로 고칠 수 있게 둔다 (기타소득 등) */
+async function pyForm(id){
+  var d = null;
+  var w0 = id ? waitModal('지급 기록') : null;
+  if (id){
+    var r = await fetch('/api/admin/payouts?id='+id,{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    if (!r.payout){ w0.remove(); return toast('불러오지 못했습니다'); }
+    d = r.payout;
+  }
+  var rrn = String((d && d.rrn) || '').replace(/[^0-9]/g,'');
+  var inner = '<div class="dcard" style="border:0;padding:0">'
+    +'<div class="d2col"><div><label class="req">지급일</label>'
+      +'<input type="date" id="py-date" value="'+esc(d ? String(d.paid_at).slice(0,10) : kstToday())+'"></div>'
+      +'<div><label class="req">받는 분</label>'
+      +'<input type="text" id="py-name" value="'+esc(d?d.name:'')+'" placeholder="예) 홍길동"></div></div>'
+    +'<label>주민등록번호 <span class="hint" style="font-weight:600">(지급명세서 신고용 · 화면·메일에는 마스킹됩니다)</span></label>'
+    +'<div class="d2col"><input type="text" id="py-r1" inputmode="numeric" maxlength="6" placeholder="880101" value="'+esc(rrn.slice(0,6))+'">'
+      +'<input type="password" id="py-r2" inputmode="numeric" maxlength="7" placeholder="뒤 7자리" value="'+esc(rrn.slice(6))+'"></div>'
+    +'<label class="req">지급 사유</label>'
+    +'<input type="text" id="py-reason" value="'+esc(d?(d.reason||''):'')+'" placeholder="예) 제품 카탈로그 디자인 용역">'
+    +'<div class="d2col"><div><label class="req">지급액 (세전)</label>'
+      +'<input type="text" id="py-gross" inputmode="numeric" value="'+(d&&d.gross?won(d.gross):'')+'"></div>'
+      +'<div><label>원천징수율</label><select id="py-rate">'
+      +'<option value="3">사업소득 3.3%</option><option value="20">기타소득 22%</option>'
+      +'<option value="0">없음 (0%)</option></select></div></div>'
+    +'<div class="qsum" id="py-sum"></div>'
+    +'<label>계좌</label><input type="text" id="py-bank" value="'+esc(d?(d.bank||''):'')+'" placeholder="예) 국민 123456-78-901234">'
+    +'<label>메모</label><input type="text" id="py-memo" value="'+esc(d?(d.memo||''):'')+'" placeholder="내부 메모 (선택)">'
+    +'</div>'
+    +'<div class="mrow">'+(id?'<button class="btn gray" id="py-del">삭제</button>':'')
+      +'<button class="btn gray" data-x>닫기</button>'
+      +'<button class="btn ok" id="py-go">'+(id?'저장':'추가')+'</button></div>';
+  var w = w0 ? fillModal(w0, '지급 기록', inner) : amodal('지급 기록', inner);
+  if (!w) return;
+
+  function calc(){
+    var g = numVal($('#py-gross'));
+    var rate = Number($('#py-rate').value);
+    var inc = Math.floor(g * rate / 100 / 10) * 10;
+    var loc = Math.floor(inc / 10 / 10) * 10;
+    $('#py-sum').innerHTML = '<div><span>소득세</span><b>'+won(inc)+'원</b></div>'
+      + '<div><span>지방소득세</span><b>'+won(loc)+'원</b></div>'
+      + '<div class="tt"><span>실지급액</span><b>'+won(g-inc-loc)+'원</b></div>';
+  }
+  $('#py-gross').oninput = function(e){ numFmt(e.target); calc(); };
+  $('#py-gross').onblur  = function(e){ var v=numVal(e.target); e.target.value = v?won(v):''; calc(); };
+  $('#py-rate').onchange = calc;
+  calc();
+
+  if ($('#py-del')) $('#py-del').onclick = async function(){
+    if (!confirm('이 지급 기록을 지울까요?\n\n되돌릴 수 없습니다.')) return;
+    var r = await fetch('/api/admin/payouts',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'delete', id:id})}).then(function(x){return x.json();}).catch(function(){return{};});
+    if (!r.ok) return alert(r.message || '지우지 못했습니다.');
+    w.remove(); toast('지웠습니다'); pyLoad(pyYm);
+  };
+
+  $('#py-go').onclick = async function(){
+    var r1 = $('#py-r1').value.replace(/[^0-9]/g,''), r2 = $('#py-r2').value.replace(/[^0-9]/g,'');
+    if ((r1 || r2) && (r1.length !== 6 || r2.length !== 7)){
+      return alert('주민등록번호는 앞 6자리 · 뒤 7자리입니다.');
+    }
+    var b = $('#py-go'); var was = b.textContent; b.disabled = true; b.textContent = '저장 중…';
+    var res = await fetch('/api/admin/payouts',{method:'POST',headers:AH,body:JSON.stringify({
+      action:'save', id: id || null,
+      paid_at: $('#py-date').value, name: $('#py-name').value.trim(),
+      rrn: (r1 && r2) ? (r1+r2) : '', reason: $('#py-reason').value.trim(),
+      gross: numVal($('#py-gross')), rate: Number($('#py-rate').value),
+      bank: $('#py-bank').value.trim(), memo: $('#py-memo').value.trim() })})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = was;
+    if (!res.ok) return alert(res.message || '저장하지 못했습니다.');
+    w.remove(); toast(id?'수정했습니다':'기록했습니다');
+    pyLoad($('#py-date').value.slice(0,7));
+  };
 }
 
 /* ==================== 문서 발행 ====================
