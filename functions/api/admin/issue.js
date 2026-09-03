@@ -300,12 +300,31 @@ async function post(request, env) {
   const docIds = made.map((m) => m.id);
   let order = null, settle = null;
 
+  let attached = false;
   if (purpose === 'delivery' || (!purpose && b.make_order)) {
-    order = await makeOrder(env, {
-      customer, payload: { ...base, title: base.title },
-      items, totals, status: b.order_status, issueDate: dateOf(types[0]),
-      docIds,
-    });
+    /* 견적서 → 거래명세서 → 세금계산서는 «한 건»의 흐름이다.
+       견적서로 이미 주문이 잡혀 있는데 납품 서류에서 또 만들면 같은 돈이 두 번 지출금에 오른다.
+       그래서 새로 만들지 않고 그 주문에 서류만 붙인다. */
+    const prev = b.force_order ? null : await dupeOrder(env, customer.id, totals.total, base.title);
+    if (prev) {
+      await env.DB.batch([
+        ...docIds.map((id) => env.DB.prepare(
+          "UPDATE documents SET order_id=?, source='order', updated_at=? WHERE id=?").bind(prev.id, now, id)),
+        ...(STATUSES.includes(b.order_status)
+            ? [env.DB.prepare('UPDATE orders SET status=?, updated_at=? WHERE id=?')
+                .bind(b.order_status, now, prev.id)] : []),
+      ]);
+      attached = true;
+      order = { id: prev.id, order_no: prev.order_no, status: b.order_status || null };
+      await logEvent(env, { order_id: prev.id, document_id: docIds[0], action: 'order_attach', actor: 'admin',
+        detail: `같은 건이라 기존 주문 ${prev.order_no} 에 서류 ${docIds.length}건을 붙임 (새 주문 안 만듦)` });
+    } else {
+      order = await makeOrder(env, {
+        customer, payload: { ...base, title: base.title },
+        items, totals, status: b.order_status, issueDate: dateOf(types[0]),
+        docIds,
+      });
+    }
   }
 
   if (purpose === 'advance') {
@@ -331,7 +350,7 @@ async function post(request, env) {
   }
 
   return json({
-    ok: true, batch, totals, docs: made, order, settlement: settle, purpose,
+    ok: true, batch, totals, docs: made, order, settlement: settle, purpose, attached,
     to: base.client.email,
     // 예전 호출부 호환 — 첫 문서를 단건처럼 돌려준다
     id: made[0].id, doc_no: made[0].doc_no, view: made[0].view,
@@ -398,6 +417,17 @@ async function toOrder(env, b) {
   const items = payload.items || [];
   if (!items.length) return json({ error: 'no_items', message: '품목이 없습니다.' }, 400);
 
+  const t = payload.totals || {};
+  if (!b.force) {
+    const dup = await dupeOrder(env, customer.id, t.total, payload.title);
+    if (dup) {
+      return json({ error: 'dupe', dupe: { id: dup.id, order_no: dup.order_no },
+        message: `같은 금액의 주문이 이미 있습니다 — ${dup.order_no} · ${dup.title || ''} `
+          + `${Number(dup.total_amount || 0).toLocaleString('ko-KR')}원 (${String(dup.created_at || '').slice(0, 10)}).\n\n`
+          + '같은 건이라면 그 주문에 서류를 붙이세요. 정말 별개 건이면 «그래도 만들기»를 누르세요.' }, 409);
+    }
+  }
+
   // 같은 벌로 뽑은 서류가 있으면 함께 붙인다
   const sibs = doc.batch
     ? ((await env.DB.prepare('SELECT id FROM documents WHERE batch=? AND order_id IS NULL')
@@ -409,6 +439,19 @@ async function toOrder(env, b) {
     status: b.status, issueDate: payload.issue_date, docIds: sibs.length ? sibs : [doc.id],
   });
   return json({ ok: true, order, linked: sibs.length || 1 });
+}
+
+/* ---- 같은 건이 이미 주문으로 잡혀 있는지 본다 ----
+   견적서를 먼저 뽑아 주문으로 올려두고, 나중에 거래명세서·세금계산서를 «납품 서류»로 또 뽑으면
+   같은 돈이 두 번 지출금에 올라간다. 화면만 보고는 알아채기 어렵다 — 여기서 잡는다. */
+async function dupeOrder(env, customerId, total, title) {
+  if (!customerId || !total) return null;
+  return env.DB.prepare(
+    `SELECT id, order_no, title, total_amount, created_at FROM orders
+      WHERE customer_id=? AND status<>'취소' AND total_amount=?
+        AND date(created_at) >= date('now','+9 hours','-60 day')
+      ORDER BY id DESC LIMIT 1`
+  ).bind(customerId, Math.round(total)).first();
 }
 
 /* ---- 발행과 동시에 «입금 대기» 정산요청을 만든다 ----
@@ -494,7 +537,8 @@ async function toPayment(env, b) {
     }
   }
 
-  const day = String(doc.issue_date || '').slice(0, 10);
+  // 발행일이 아니라 «돈이 들어온 날»로 잡는다 — 장부는 통장과 같아야 한다
+  const day = String(b.paid_at || doc.issue_date || '').slice(0, 10);
   const label = DOC_LABEL[doc.type] || '문서';
   const r = await env.DB.prepare(
     'INSERT INTO payments (customer_id, kind, amount, method, paid_at, memo, created_at, created_by) VALUES (?,?,?,?,?,?,?,?)'

@@ -360,6 +360,24 @@ async function post(request, env) {
     return json({ ok: true, id, contacts: rows });
   }
 
+  /* 랩실(납품지) 추가 — 담당자를 넣다가 그 방이 목록에 없어 멈추는 일을 없앤다.
+     학교는 «랩실 = 받는 곳»이라, 여기서 만든 것이 곧 배송지가 된다. */
+  if (b.action === 'site_save') {
+    const org = String(b.org_name || '').trim();
+    const addr = String(b.address || '').trim();
+    if (!org) return json({ error: 'no_org', message: '소속 · 랩실명을 입력해주세요.' }, 400);
+    if (!addr) return json({ error: 'no_addr', message: '주소를 입력해주세요.' }, 400);
+    const first = await env.DB.prepare('SELECT id FROM sites WHERE customer_id=? LIMIT 1').bind(c.id).first();
+    const r = await env.DB.prepare(
+      'INSERT INTO sites (customer_id, org_name, address, is_default, created_at) VALUES (?,?,?,?,?)')
+      .bind(c.id, org, addr, first ? 0 : 1, now).run();      // 첫 곳은 기본 납품지로
+    await logEvent(env, { action: 'site_add', actor: 'admin', detail: `${who} 랩실 ${org} 추가` });
+    const sites = (await env.DB.prepare(
+      'SELECT id, org_name, address, is_default FROM sites WHERE customer_id=? ORDER BY is_default DESC, id')
+      .bind(c.id).all()).results || [];
+    return json({ ok: true, id: r.meta.last_row_id, sites });
+  }
+
   if (b.action === 'contact_delete') {
     await env.DB.prepare('DELETE FROM contacts WHERE id=? AND customer_id=?')
       .bind(Number(b.contact_id) || 0, c.id).run();

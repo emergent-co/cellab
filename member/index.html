@@ -4956,6 +4956,10 @@ function viewAdmDocs(){
     return;
   }
   if (!dqItems.length) dqItems = [{name:'',spec:'',qty:1,price:0,note:''}];
+  // 화면에 들어올 때마다 목적부터 다시 고른다.
+  // 앞서 고른 목적이 남아 있으면 «목적 고르는 칸»이 아예 안 보여, 다른 일을 하러 온 사람이 막힌다.
+  // (문서를 이어서 수정하는 중일 때는 건드리지 않는다)
+  if (!dqDocId) dqPurpose = null;
   paintDocs();
 }
 
@@ -5220,7 +5224,8 @@ function contactForm(client, list, sites, onDone){
         + ss.map(function(x){ return '<option value="'+x.id+'">'
             + esc([x.org_name, x.address].filter(Boolean).join(' · ')) + '</option>'; }).join('')
       + '</select>'
-      + (ss.length ? '' : '<p class="dnote">등록된 납품지가 없습니다 — 회원정보 · 거래처의 납품지를 먼저 넣으면 랩실로 고를 수 있습니다.</p>')
+      + '<div class="dsrc" style="margin-top:6px"><button class="mini" id="ct-site-add">＋ 랩실(납품지) 추가</button></div>'
+      + (ss.length ? '' : '<p class="dnote">등록된 랩실이 없습니다 — 위 버튼으로 여기서 바로 만들 수 있습니다.</p>')
       + '<label class="swrow" style="margin:14px 0 2px"><input type="checkbox" id="ct-def">'
         + '<span><b>기본 담당자</b><small>서류·메일이 기본으로 이 사람에게 나갑니다.</small></span></label>'
       + '<label class="swrow" style="margin:8px 0 2px"><input type="checkbox" id="ct-tax">'
@@ -5277,6 +5282,40 @@ function contactForm(client, list, sites, onDone){
 
   paint();
   $('#ct-new').onclick = clear;
+
+  /* 랩실은 곧 납품지다. 담당자를 넣다가 «그 방이 목록에 없네»로 멈추지 않게,
+     여기서 바로 만들고 그 자리에서 골라진다. */
+  $('#ct-site-add').onclick = function(){
+    var w2 = amodal('랩실(납품지) 추가',
+       '<p class="hint" style="margin:2px 0 12px;line-height:1.7">서류·배송에 찍히는 소속과 주소입니다.</p>'
+      + '<div class="dcard" style="border:0;padding:0">'
+        + '<label class="req">소속 · 랩실명</label>'
+        + '<input type="text" id="st-org" placeholder="예) 에너지소재실험실">'
+        + '<label class="req">주소</label>'
+        + '<input type="text" id="st-addr" placeholder="예) 부산 금정구 부산대학로63번길 2 기계관 212">'
+      + '</div>'
+      + '<div class="twobtn"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ok" id="st-go">추가</button></div>');
+    $('#st-org').focus();
+    $('#st-go').onclick = async function(){
+      var org = $('#st-org').value.trim(), addr = $('#st-addr').value.trim();
+      if (!org) { $('#st-org').focus(); return alert('소속 · 랩실명을 입력해주세요.'); }
+      if (!addr){ $('#st-addr').focus(); return alert('주소를 입력해주세요.'); }
+      var b2 = $('#st-go'); b2.disabled = true; b2.textContent = '추가 중…';
+      var r = await fetch('/api/admin/clients',{method:'POST',headers:AH,
+        body:JSON.stringify({ id:client.id, action:'site_save', org_name:org, address:addr })})
+        .then(function(x){return x.json();}).catch(function(){return{};});
+      b2.disabled = false; b2.textContent = '추가';
+      if (!r.ok) return alert(r.message || '추가하지 못했습니다.');
+      ss = r.sites || [];
+      var cur = $('#ct-site').value;
+      $('#ct-site').innerHTML = '<option value="">공통 — 랩실 구분 없음</option>'
+        + ss.map(function(x){ return '<option value="'+x.id+'">'
+            + esc([x.org_name, x.address].filter(Boolean).join(' · ')) + '</option>'; }).join('');
+      $('#ct-site').value = String(r.id || cur || '');     // 방금 만든 랩실이 바로 골라진다
+      w2.remove(); toast('랩실을 추가했습니다');
+    };
+  };
   $('#ct-go').onclick = async function(){
     var name = $('#ct-name').value.trim();
     if (!name){ $('#ct-name').focus(); return alert('담당자 이름을 입력해주세요.'); }
@@ -5563,6 +5602,7 @@ async function dqSubmit(preview){
   toast((made.length>1 ? made.length+'종 발행' : DTYPE[made[0].type]+' '+made[0].doc_no+' 발행')
         + (r.order ? ' · 주문 '+r.order.order_no+' 기록' : '')
         + (r.settlement ? ' · 정산요청 #'+r.settlement.id+' ('+r.settlement.status+')' : ''));
+  if (r.attached) toast('같은 건이라 기존 주문 '+r.order.order_no+' 에 붙였습니다 — 새 주문을 만들지 않았습니다');
   // 발행이 끝나면 폼을 비운다. 그대로 두면 다음 건을 쓰려 할 때 '수정 모드'에 갇힌다.
   if (dqHostWin){        // 팝업 안에서 발행했다 — 팝업만 닫는다. 뒤 화면은 그대로 둔다.
     dqHostWin.remove(); dqHost = null; dqHostWin = null; dqInq = null; dqClear();
@@ -5950,7 +5990,7 @@ async function dqOpen(id){
           + '<b>주문</b><small>물건이 나간 건</small>'
           + (d.order
              ? '<em class="v">'+esc(d.order.order_no)+'<br>'+abadge(d.order.status)+'</em>'
-               + '<button class="mini" id="dqToPay">중간정산금으로 바꾸기</button>'
+               + '<button class="mini" id="dqToPay">입금으로 바꾸기</button>'
              : d.payment ? '<em class="v mut">중간정산금으로 잡혀 있습니다</em>'
              : '<em class="v">총지출금 <b>+'+won(tot.total||0)+'원</b><br>잔여정산금 그만큼 증가</em>'
                + '<select id="dqOrdSt2">'
@@ -5960,13 +6000,13 @@ async function dqOpen(id){
 
         // ── 중간정산금 ──
         + '<div class="rc'+(d.payment?' on':'')+'">'
-          + '<b>중간정산금</b><small>돈이 들어온 건</small>'
+          + '<b>중간정산금</b><small>돈이 들어온 건 · 입금 확인 후</small>'
           + (d.payment
              ? '<em class="v"><b>'+won(d.payment.amount)+'원</b><br>'+esc(d.payment.paid_at||'')+'</em>'
                + '<button class="mini" id="dqUndoPay">기록 취소</button>'
              : d.order ? '<em class="v mut">주문으로 잡혀 있습니다</em>'
-             : '<em class="v">중간정산금 <b>+'+won(tot.total||0)+'원</b><br>잔여정산금 그만큼 감소</em>'
-               + '<button class="mini" id="dqToPay">중간정산금으로 기록</button>')
+             : '<em class="v">돈이 들어온 날을 눌러 확인하면<br>잔여정산금 <b>−'+won(tot.total||0)+'원</b></em>'
+               + '<button class="mini" id="dqToPay">입금 확인</button>')
         + '</div>'
 
         // ── 정산 요청 ──
@@ -6018,19 +6058,33 @@ async function dqOpen(id){
   fxBind();
   if ($('#nsPre')) nsPreview(doc.id);
 
-  if ($('#dqToPay')) $('#dqToPay').onclick = async function(){
-    if (d.order && !confirm('주문 '+d.order.order_no+' 을 지우고 중간정산금(입금)으로 바꿉니다.\n\n'
-      + '지출금에서 빠지고 같은 금액이 입금으로 들어갑니다. 계속할까요?')) return;
-    var b4 = $('#dqToPay'); b4.disabled = true; b4.textContent = '기록 중…';
-    var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
-      body:JSON.stringify({ action:'to_payment', id:doc.id })})
-      .then(function(x){return x.json();}).catch(function(){return{};});
-    b4.disabled = false; b4.textContent = '중간정산금으로 기록';
-    if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
-    w.remove(); toast('중간정산금 '+won(r.payment.amount)+'원으로 기록했습니다'
-      + (r.linked>1 ? ' (서류 '+r.linked+'건)' : '')
-      + (r.removed_order ? ' · 주문 '+r.removed_order+' 취소' : ''));
-    dqHist(); admPoll(true); dqOpen(doc.id);
+  /* 중간정산금은 «돈이 들어온 것»이다. 발행만으로는 잡지 않고, 확인한 날을 받아서 그날로 넣는다.
+     장부가 통장보다 앞서가면 잔여정산금이 실제와 어긋난다. */
+  if ($('#dqToPay')) $('#dqToPay').onclick = function(){
+    var w2 = amodal('입금 확인',
+       '<p class="hint" style="margin:2px 0 12px;line-height:1.7">'
+      + '<b>'+won(tot.total||0)+'원</b> 이 들어온 것으로 기록합니다. 잔여정산금이 그만큼 줄어듭니다.'
+      + (d.order ? '<br><b>주문 '+esc(d.order.order_no)+' 은 지워집니다</b> — 지출금에서도 빠집니다.' : '')
+      + '</p>'
+      + dqField('dqPayAt','입금일','date', kstToday(), '')
+      + '<div class="twobtn"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ok" id="dqPayGo">입금 확인</button></div>');
+
+    $('#dqPayGo').onclick = async function(){
+      var at = $('#dqPayAt').value;
+      if (!at) return alert('입금일을 입력해주세요.');
+      var b4 = $('#dqPayGo'); b4.disabled = true; b4.textContent = '기록 중…';
+      var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,
+        body:JSON.stringify({ action:'to_payment', id:doc.id, paid_at:at })})
+        .then(function(x){return x.json();}).catch(function(){return{};});
+      b4.disabled = false; b4.textContent = '입금 확인';
+      if (!r.ok) return alert(r.message || '기록하지 못했습니다.');
+      w2.remove(); w.remove();
+      toast('입금 '+won(r.payment.amount)+'원 확인'
+        + (r.linked>1 ? ' (서류 '+r.linked+'건)' : '')
+        + (r.removed_order ? ' · 주문 '+r.removed_order+' 취소' : ''));
+      dqHist(); admPoll(true); dqOpen(doc.id);
+    };
   };
 
   if ($('#dqUndoPay')) $('#dqUndoPay').onclick = async function(){

@@ -1792,11 +1792,21 @@ PP_REQUIRED = [
     ('safety',   '안전정보(GHS)',   True),
 ]
 # 이 낱말이 카테고리·이름에 있으면 화학품으로 보고 안전정보를 필수로 요구한다
-PP_CHEM_HINTS = ('전해액', '용액', '시약', '재료', '소재', '촉매', '분말', '슬러리', '바인더', '용매', '염')
+# 화학물질 판정 — 안전 정보(GHS)를 요구할 대상인지 가른다.
+# category 는 "배터리 재료 · 리튬이온 전해액" 처럼 대분류·소분류가 붙어 있어서
+# 소분류(· 뒤)만 본다. 대분류의 '재료' 때문에 분리막·케이스까지 걸리던 것을 막는다.
+PP_CHEM_HINTS = ('전해액', '용액', '시약', '촉매', '분말', '슬러리',
+                 '바인더', '용매', '염', '첨가제', '전구체', '활물질')
+PP_NONCHEM_HINTS = ('분리막', '케이스', '원판', '부품', '지그', '장비', '치구',
+                    '집전체', '테이프', '펀치', '몰드')
 
 
 def _pp_is_chem(p):
-    t = (p.get('category', '') + p.get('name', '')).replace(' ', '')
+    cat = p.get('category', '')
+    sub = (cat.split('·')[-1] if '·' in cat else cat).replace(' ', '')
+    t = (sub + p.get('name', '')).replace(' ', '')
+    if any(k in t for k in PP_NONCHEM_HINTS):
+        return False
     return any(k in t for k in PP_CHEM_HINTS)
 
 
@@ -1824,6 +1834,15 @@ def _pp_audit(bslug, p):
     return miss
 
 
+# GHS 그림문자 — 코드는 UN GHS 표준 번호, 이름은 KOSHA 표기.
+# 아이콘은 /img/ghs/<code>.png 한 벌만 두고 전 브랜드가 같이 쓴다.
+PP_GHS = {
+    'ghs01': '폭발성', 'ghs02': '인화성', 'ghs03': '산화성',
+    'ghs04': '고압가스', 'ghs05': '부식성', 'ghs06': '급성 독성',
+    'ghs07': '경고', 'ghs08': '건강 유해성', 'ghs09': '수생환경 유해성',
+}
+
+
 def _pp_safety(sf):
     """안전 정보 — 제조사 표를 라벨·값 그대로 옮겨 싣는 자리.
     번역·요약·경고문 추가 금지. rows 는 제조사 표기 순서·문구 그대로 둔다."""
@@ -1832,7 +1851,15 @@ def _pp_safety(sf):
     if sf.get('lead'):
         out.append('<p class="pkg-note" style="margin:0 0 10px">%s</p>' % sf['lead'])
     rows = list(sf.get('rows') or [])
-    if sf.get('image'):
+    pics = sf.get('pictograms') or []
+    if pics:
+        cells = ''.join(
+            '<figure class="ghs"><img src="/img/ghs/%s.png" alt="%s" loading="lazy">'
+            '<figcaption>%s</figcaption></figure>' % (c, escape(PP_GHS.get(c, c)), escape(PP_GHS.get(c, c)))
+            for c in pics)
+        rows = [[lb, '<div class="ghs-row">%s</div>' % cells if v == '@image' else v]
+                for lb, v in rows]
+    elif sf.get('image'):
         rows = [[lb, ('<img src="%s" alt="%s" style="max-width:100%%;display:block">'
                       % (sf['image'], escape(sf.get('image_alt', '제조사 표기 그림문자'))))
                  if v == '@image' else v] for lb, v in rows]
