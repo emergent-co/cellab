@@ -9,6 +9,14 @@ export function mailFrom(env) {
   return env.MAIL_FROM || '실험셋업연구소 <order@rndsetup.com>';
 }
 
+/* 답장이 돌아올 주소.
+   보내는 주소(order@)는 발송 전용이라 수신 라우팅이 없다 —
+   고객이 견적서 메일에 그냥 «답장»을 누르면 그 메일은 아무 데도 도착하지 않는다.
+   그래서 모든 메일에 답장 주소를 박아 둔다. 받는 주소는 실제로 살아 있는 곳이어야 한다. */
+export function mailReplyTo(env) {
+  return env.MAIL_REPLY_TO || 'info@rndsetup.com';
+}
+
 /**
  * @param {object} m { to, cc?, subject, html, text?, attachments?: [{filename, content(base64)}] }
  * @returns {Promise<{ok:boolean, id?:string, error?:string}>}
@@ -24,7 +32,7 @@ export async function sendMail(env, m) {
   };
   if (m.text) body.text = m.text;
   if (m.cc) body.cc = Array.isArray(m.cc) ? m.cc : [m.cc];
-  if (m.reply_to) body.reply_to = m.reply_to;
+  body.reply_to = m.reply_to || mailReplyTo(env);
   if (m.attachments?.length) body.attachments = m.attachments;
 
   try {
