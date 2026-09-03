@@ -103,14 +103,27 @@ async function get(request, env) {
       if (nm) {
         tries.push(['name = ?', nm]);
         tries.push(['name LIKE ?', `%${nm}%`]);
-        // 모델명이 품명 안에 들어 있는 경우 (예: "… dVP15")
+        // 모델명이 품명 안에 들어 있는 경우 (예: "… SH-dVP15")
         tries.push([`model <> '' AND ? LIKE '%'||model||'%'`, nm]);
+        // 상세페이지가 모델 코드를 짧게 적은 경우 — 품명 "… V10" ↔ 카탈로그 "SH-V10".
+        // 접두사(브랜드 코드)를 떼고 뒤쪽 코드가 품명 '끝'과 맞는지만 본다.
+        // 끝을 못박아 두어야 V10 이 SH-V100 에 잘못 붙지 않는다.
+        tries.push([`model <> '' AND instr(model, '-') > 0
+                     AND (' ' || ?) LIKE '% ' || substr(model, instr(model, '-') + 1)`, nm]);
       }
+      /* 사이트 제목은 모델명을 줄여 쓴다 — 「… dVP15」인데 제품표의 모델은 「SH-dVP15」다.
+         그래서 «품명이 모델을 통째로 담고 있는지»만 보면 못 찾는다.
+         품명에서 모델처럼 생긴 토큰(영문+숫자, 4자 이상)을 뽑아 거꾸로 찾는다. */
+      const toks = (nm.match(/[A-Za-z][A-Za-z0-9-]{2,}[0-9][A-Za-z0-9-]*/g) || [])
+        .filter((t) => /[0-9]/.test(t) && /[A-Za-z]/.test(t) && t.length >= 4)
+        .sort((a2, b2) => b2.length - a2.length);          // 긴 토큰이 더 정확하다
+      for (const t of toks) tries.push([`model <> '' AND model LIKE '%'||?||'%'`, t]);
+
       for (const [cond, val] of tries) {
         const r = await env.DB.prepare(
           `SELECT name, model, unit, retail_price, list_price FROM products
             WHERE ${cond} AND IFNULL(retail_price,0) > 0
-            ORDER BY length(IFNULL(name,'')) LIMIT 1`).bind(val).first();
+            ORDER BY length(IFNULL(model,'')), length(IFNULL(name,'')) LIMIT 1`).bind(val).first();
         if (r) return r;
       }
       return null;
@@ -125,7 +138,7 @@ async function get(request, env) {
         qty: Math.max(1, Number(it.qty) || 1),
         price: p ? Math.round(p.retail_price) : 0,
         note: '',
-        matched: p ? (p.name || p.model || '') : '',
+        matched: p ? [p.model, p.name].filter(Boolean).join(' · ') : '',
       });
     }
     /* 문의한 사람이 이미 거래처면 그걸 그대로 쓴다.
