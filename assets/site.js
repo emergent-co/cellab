@@ -1122,7 +1122,7 @@
     if (ASK_ONLY) {                       /* 가격 미공개 — 견적문의 창 */
       box.innerHTML =
         '<div class="bb-price">가격 문의<small>규격·수량 확인 후 회신</small></div>'
-      + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
+      + '<div class="bb-row bb-sel"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
       + '<div class="bb-row"><span class="k">제품가격</span><span class="v">문의</span></div>'
       + '<div class="bb-row"><span class="k">배송</span><span class="v">문의</span></div>'
       + '<div class="bb-row"><span class="k">예상 배송일</span><span class="v">주문 확정 후 안내</span></div>'
@@ -1139,7 +1139,7 @@
     box.innerHTML =
       '<div class="bb-price">' + head + '</div>'
     + (o.p ? '' : '<p class="bb-extra">규격을 알려주시면 금액을 안내드립니다.</p>')
-    + '<div class="bb-row"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
+    + '<div class="bb-row bb-sel"><span class="k">선택</span><span class="v">' + (lbl(o) || '—') + '</span></div>'
     + '<div class="bb-row"><span class="k">제품가격 (1개)</span><span class="v">' + unitHtml(o) + '</span></div>'
     + '<div class="bb-row"><span class="k">배송</span><span class="v">'
     +   (!o.p ? '문의'

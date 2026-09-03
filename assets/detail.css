@@ -163,6 +163,9 @@
 .dt-buy .bb-price{white-space:nowrap;line-height:1.25}
 .dt-buy .bb-price small{display:block;margin-left:0;margin-top:3px;white-space:nowrap}
 .dt-buy .bb-row .v{white-space:nowrap}
+/* 선택(모델명)은 길다 — 줄바꿈을 허용한다. 금액 칸만 고정폭으로 둔다. */
+.dt-buy .bb-row.bb-sel{align-items:flex-start}
+.dt-buy .bb-row.bb-sel .v{white-space:normal;word-break:keep-all;overflow-wrap:anywhere;line-height:1.5;font-weight:600}
 
 /* 헤더 있는 목록·비교표는 본문을 왼쪽 정렬하고 마지막 열(가격·링크)만 가운데 */
 .pkg-tbl thead + tbody td{text-align:left}

@@ -1843,14 +1843,13 @@ function inqOpen(q){
       dqPaintClient();
       dqLoadClient(pr.client.id, true);
     } else {
-      clAddForm({
-        company: q.org_name || q.name || '',
-        name: q.name || '', email: q.email || '', phone: q.phone || '',
-        onDone: function(c){
-          dqCli = c; dqPaintClient(); dqLoadClient(c.id, true);
-          toast(c.company+' 등록 · 이 견적서에 붙였습니다');
-        },
-      });
+      /* 처음 보는 곳이면 거래처를 «만들지 않는다».
+         견적 문의는 성사되지 않는 쪽이 훨씬 많고, 문의마다 거래처가 생기면
+         목록이 금방 수백 개가 되어 정작 진짜 거래처를 못 찾는다.
+         서류에 찍을 정보만 들고 뽑고, 성사되면 문서 상세의 «바꾸기»로 그때 붙인다. */
+      dqGuest = { company: q.org_name || q.name || '', contact: q.name || '',
+                  email: q.email || '', tel: q.phone || '' };
+      dqPaintClient();
     }
     var bd = w.querySelector('.mbox'); if (bd) bd.scrollTop = 0;
     if (dqInq.filled){
@@ -4998,7 +4997,9 @@ var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTar
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
     dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
     dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
-var dqContacts = [], dqContact = null, dqContactCid = null, dqSites = [];   // 서류에 찍히고 메일을 받는 사람
+var dqContacts = [], dqContact = null, dqContactCid = null, dqSites = [];
+// 거래처 없이 «견적서만» 뽑을 때 서류에 찍을 받는 곳 (문의에서 끌어온 값)
+var dqGuest = null;   // 서류에 찍히고 메일을 받는 사람
 var dqPurpose = null;    // quote | delivery | advance | settle — 고르기 전에는 폼을 열지 않는다
 var PURP = {
   quote:    { t:'견적서만',        d:'견적서 하나만 뽑습니다. <em>아무 기록도 만들지 않습니다.</em>',
@@ -5448,6 +5449,28 @@ function contactForm(client, list, sites, onDone){
 }
 
 function dqPaintClient(){
+  // 거래처 없이 뽑는 중이면 그 사실을 그대로 말한다 — 나중에 붙일 수 있다는 것까지
+  if (!dqCli && dqGuest){
+    var box = $('#dqCliBox'); if (!box) return;
+    box.innerHTML = '<div class="cliline" style="background:#FFF7ED;border-color:#FED7AA">'
+      + '<div class="c1"><b>'+esc(dqGuest.company||dqGuest.contact||'—')+'</b>'
+        + '<small>'+esc([dqGuest.contact, dqGuest.email, dqGuest.tel].filter(Boolean).join(' · ')||'—')+'</small></div>'
+      + '<button class="mini" data-reg>거래처로 등록</button>'
+      + '<button class="mini" data-chg>바꾸기</button></div>'
+      + '<p class="dhint">거래처를 만들지 않고 <b>견적서만</b> 뽑습니다 — 목록이 문의로 채워지지 않게요.<br>'
+      + '성사되면 문서 상세의 <b>거래처 바꾸기</b>로 그때 붙이면 이력이 이어집니다.</p>';
+    box.querySelector('[data-chg]').onclick = function(){ dqGuest = null; dqPaintClient(); };
+    box.querySelector('[data-reg]').onclick = function(){
+      clAddForm({ company: dqGuest.company, name: dqGuest.contact,
+                  email: dqGuest.email, phone: dqGuest.tel,
+        onDone: function(c){
+          dqGuest = null; dqCli = c; dqPaintClient(); dqLoadClient(c.id, true);
+          toast((c.company||'거래처')+' 등록 · 이 견적서에 붙였습니다');
+        } });
+    };
+    dqPaintContacts();
+    return;
+  }
   clientPicker($('#dqCliBox'), dqCli, function(c){
     dqCli = c; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
     dqContacts = []; dqContact = null; dqContactCid = null;
@@ -5473,7 +5496,7 @@ function dqClear(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
   dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
-  dqContacts=[]; dqContact=null; dqContactCid=null;
+  dqContacts=[]; dqContact=null; dqContactCid=null; dqGuest=null;
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
 }
 function dqReset(){ dqClear(); paintDocs(); }
@@ -5660,7 +5683,14 @@ function dqFit(){
 }
 
 async function dqSubmit(preview){
-  if (!dqCli) return alert('거래처를 선택해주세요.');
+  // 거래처 없이 낼 수 있는 건 «견적서만» 하나뿐이다 — 돈이 오가는 서류는 붙일 곳이 있어야 한다
+  var guestOK = !dqCli && dqGuest && dqPurpose === 'quote'
+    && dqTypes.length === 1 && dqTypes[0] === 'quote';
+  if (!dqCli && !guestOK){
+    return alert(dqGuest
+      ? '거래명세서 · 세금계산서는 거래처가 있어야 합니다.\n\n«거래처로 등록» 을 먼저 눌러주세요.'
+      : '거래처를 선택해주세요.');
+  }
   var items = dqItems.filter(function(i){ return (i.name||'').trim(); });
   if (!items.length) return alert('품목을 1개 이상 입력해주세요.');
   if (items.some(function(i){ return !i.price; })) return alert('단가가 비어 있는 품목이 있습니다.');
@@ -5673,7 +5703,8 @@ async function dqSubmit(preview){
   var editing = !!dqDocId && dqTypes.length === 1;
   var stale = (!!dqDocId && !editing) ? dqDocId : null;   // 미리보기로 만들어 둔 초안
   var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
-    id: editing ? dqDocId : null, types: dqTypes, customer_id: dqCli.id,
+    id: editing ? dqDocId : null, types: dqTypes,
+    customer_id: dqCli ? dqCli.id : null, guest: dqCli ? null : dqGuest,
     bill_profile_id: dqBill ? dqBill.id : null,
     order_id: dqSrc.order_id||null, settlement_id: dqSrc.settlement_id||null, source: dqSrc.source||'manual',
     issue_date: (($('#dqDateBox input[data-d]')||{}).value) || dqToday(),

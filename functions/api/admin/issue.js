@@ -255,15 +255,33 @@ async function post(request, env) {
   const customer = b.customer_id
     ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(b.customer_id).first()
     : null;
-  if (!customer) return json({ error: 'no_client', message: '거래처를 선택해주세요.' }, 400);
+
+  /* 견적 문의는 성사되지 않는 쪽이 훨씬 많다. 문의마다 거래처를 만들면 목록이 금방 수백 개가 되고
+     정작 진짜 거래처를 못 찾는다. 그래서 «견적서만» 뽑을 때는 거래처 없이 낼 수 있게 둔다.
+     주문도 정산도 만들지 않으니 붙일 곳이 없어도 된다 — 성사되면 문서 상세의 «바꾸기»로 그때 붙인다.
+     돈이 오가는 목적(납품·중간정산금·정산요청)은 여전히 거래처가 있어야 한다. */
+  const guestOK = b.purpose === 'quote'
+    && types.length === 1 && types[0] === 'quote'
+    && !b.make_order;
+  if (!customer && !guestOK) {
+    return json({ error: 'no_client', message: '거래처를 선택해주세요.' }, 400);
+  }
+  if (!customer) {
+    // 서류에 찍힐 공급받는자는 화면이 보내준 값을 그대로 쓴다 (문의에서 끌어온 이름·소속·메일)
+    const g = b.guest || {};
+    if (!String(g.company || g.contact || '').trim()) {
+      return json({ error: 'no_client',
+        message: '받는 곳을 알 수 없습니다. 거래처를 고르거나 상호·담당자를 입력해주세요.' }, 400);
+    }
+  }
 
   // 발행정보는 그 거래처 것만 — 없으면 기본값으로 되돌린다
   let bill = null;
-  if (b.bill_profile_id) {
+  if (customer && b.bill_profile_id) {
     bill = await env.DB.prepare('SELECT * FROM bill_profiles WHERE id=? AND customer_id=?')
       .bind(b.bill_profile_id, customer.id).first();
   }
-  if (!bill) {
+  if (customer && !bill) {
     bill = await env.DB.prepare('SELECT * FROM bill_profiles WHERE customer_id=? ORDER BY is_default DESC, id LIMIT 1')
       .bind(customer.id).first();
   }
@@ -295,17 +313,22 @@ async function post(request, env) {
     ? `${items[0].name}${items.length > 1 ? ` 외 ${items.length - 1}건` : ''}` : '';
   const base = {
     title: String(b.title || '').trim() || autoTitle,
-    client: {
-      company: bill?.company || customer.company || '',
-      biz_no: bill?.biz_no || customer.biz_no || '',
-      ceo: bill?.ceo || customer.ceo || '',
-      // 발행 화면에서 «받는 담당자»로 고른 사람이 서류에 찍히고 메일도 그 사람에게 간다.
-      // 고르지 않았을 때만 거래처 기본값으로 내려간다.
-      contact: String(b.contact || customer.name || ''),
-      email: String(b.email || bill?.tax_email || customer.work_email || customer.email || ''),
-      tel: String(b.tel || customer.phone || ''),
-      address: bill?.address || customer.address || '',
-    },
+    // 거래처가 없는 «견적서만» 발행이면 화면이 보내준 값(문의에서 끌어온 것)을 그대로 찍는다
+    client: (() => {
+      const c = customer || {};
+      const g = customer ? {} : (b.guest || {});
+      return {
+        company: bill?.company || c.company || g.company || '',
+        biz_no: bill?.biz_no || c.biz_no || g.biz_no || '',
+        ceo: bill?.ceo || c.ceo || g.ceo || '',
+        // 발행 화면에서 «받는 담당자»로 고른 사람이 서류에 찍히고 메일도 그 사람에게 간다.
+        // 고르지 않았을 때만 거래처 기본값으로 내려간다.
+        contact: String(b.contact || c.name || g.contact || ''),
+        email: String(b.email || bill?.tax_email || c.work_email || c.email || g.email || ''),
+        tel: String(b.tel || c.phone || g.tel || ''),
+        address: bill?.address || c.address || g.address || '',
+      };
+    })(),
     items, totals,
     note: String(b.note || '').trim(),   // 입금계좌는 양식이 늘 따로 찍는다
   };
@@ -325,7 +348,7 @@ async function post(request, env) {
                       issue_date: issue, valid_until: plusDays(issue, 30) };
     await env.DB.prepare(
       `UPDATE documents SET customer_id=?, order_id=?, settlement_id=?, source=?, issue_date=?, payload_json=?, updated_at=? WHERE id=?`
-    ).bind(customer.id, b.order_id || null, b.settlement_id || null,
+    ).bind(customer ? customer.id : null, b.order_id || null, b.settlement_id || null,
            b.source || doc.source || 'manual', issue, JSON.stringify(payload), now, doc.id).run();
     await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'updated', actor: 'admin',
       detail: `${DOC_LABEL[doc.type]} ${doc.doc_no} 수정` });
@@ -353,13 +376,15 @@ async function post(request, env) {
       `INSERT INTO documents (order_id, customer_id, settlement_id, source, batch, type, doc_no, version, status,
                               issue_date, payload_json, access_token, purpose, created_at, updated_at)
        VALUES (?,?,?,?,?,?,?,1,'작성됨',?,?,?,?,?,?)`
-    ).bind(b.order_id || null, customer.id, b.settlement_id || null, b.source || 'manual', batch,
+    ).bind(b.order_id || null, customer ? customer.id : null, b.settlement_id || null, b.source || 'manual', batch,
            type, docNo, issue, JSON.stringify(payload), tok, purpose, now, now).run();
 
     const id = r.meta.last_row_id;
     await logEvent(env, {
       order_id: b.order_id || null, document_id: id, action: 'created', actor: 'admin',
-      detail: `${DOC_LABEL[type]} ${docNo} 발행 (${customer.company || customer.name || ''})`,
+      detail: `${DOC_LABEL[type]} ${docNo} 발행 (`
+        + (customer ? (customer.company || customer.name || '') : `${base.client.company || base.client.contact} · 거래처 미연결`)
+        + ')',
     });
     made.push({ id, type, doc_no: docNo, issue_date: issue, view: `/doc/${id}?t=${tok}` });
   }
