@@ -1836,21 +1836,15 @@ function inqOpen(q){
       + esc(dqInq.who || '—') + '</small>';
     paintDocs();
     dqAutoTitle();                       // 첫 품목 + 외 N건
-    /* 이미 아는 거래처면 그냥 붙인다. 문의에 이름·메일·소속이 다 있는데 또 치게 할 이유가 없다.
-       모르는 곳이면 «거래처 추가» 를 문의 내용으로 채워서 바로 연다 — 그 자리에서 한 번에 끝난다. */
-    if (pr.client){
-      dqCli = pr.client;
-      dqPaintClient();
-      dqLoadClient(pr.client.id, true);
-    } else {
-      /* 처음 보는 곳이면 거래처를 «만들지 않는다».
-         견적 문의는 성사되지 않는 쪽이 훨씬 많고, 문의마다 거래처가 생기면
-         목록이 금방 수백 개가 되어 정작 진짜 거래처를 못 찾는다.
-         서류에 찍을 정보만 들고 뽑고, 성사되면 문서 상세의 «바꾸기»로 그때 붙인다. */
-      dqGuest = { company: q.org_name || q.name || '', contact: q.name || '',
-                  email: q.email || '', tel: q.phone || '' };
-      dqPaintClient();
-    }
+    /* 문의 단계에서는 거래처를 «붙이지 않는다» — 계산서 발행정보가 딸려 들어가면 안 된다.
+       견적 문의는 성사되지 않는 쪽이 훨씬 많고, 문의마다 거래처가 생기면
+       목록이 금방 수백 개가 되어 정작 진짜 거래처를 못 찾는다.
+       서류에 찍을 상대방 정보만 문의에서 그대로 들고 뽑고,
+       성사되면 «붙이기» 나 문서 상세의 «거래처 바꾸기»로 그때 붙인다. */
+    dqGuest = { company: q.org_name || q.name || '', contact: q.name || '',
+                email: q.email || '', tel: q.phone || '' };
+    dqCliHint = pr.client_hint || null;   // 메일이 같은 거래처가 있으면 «후보»로만
+    dqPaintClient();
     var bd = w.querySelector('.mbox'); if (bd) bd.scrollTop = 0;
     if (dqInq.filled){
       toast(dqInq.filled+'개 품목 단가를 사이트 판매가로 채웠습니다 · 단가 기준 «부가세 별도»');
@@ -5000,6 +4994,7 @@ var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTar
 var dqContacts = [], dqContact = null, dqContactCid = null, dqSites = [];
 // 거래처 없이 «견적서만» 뽑을 때 서류에 찍을 받는 곳 (문의에서 끌어온 값)
 var dqGuest = null;   // 서류에 찍히고 메일을 받는 사람
+var dqCliHint = null; // 메일이 같은 기존 거래처 — 자동으로 붙이지 않고 «붙이기» 버튼으로만
 var dqPurpose = null;    // quote | delivery | advance | settle — 고르기 전에는 폼을 열지 않는다
 var PURP = {
   quote:    { t:'견적서만',        d:'견적서 하나만 뽑습니다. <em>아무 기록도 만들지 않습니다.</em>',
@@ -5455,10 +5450,21 @@ function dqPaintClient(){
     box.innerHTML = '<div class="cliline" style="background:#FFF7ED;border-color:#FED7AA">'
       + '<div class="c1"><b>'+esc(dqGuest.company||dqGuest.contact||'—')+'</b>'
         + '<small>'+esc([dqGuest.contact, dqGuest.email, dqGuest.tel].filter(Boolean).join(' · ')||'—')+'</small></div>'
+      + (dqCliHint ? '<button class="mini" data-att>«'
+          + esc(dqCliHint.company || dqCliHint.name || '거래처') + '» 붙이기</button>' : '')
       + '<button class="mini" data-reg>거래처로 등록</button>'
       + '<button class="mini" data-chg>바꾸기</button></div>'
       + '<p class="dhint">거래처를 만들지 않고 <b>견적서만</b> 뽑습니다 — 목록이 문의로 채워지지 않게요.<br>'
-      + '성사되면 문서 상세의 <b>거래처 바꾸기</b>로 그때 붙이면 이력이 이어집니다.</p>';
+      + '사업자등록번호·대표자·계산서 메일 같은 <b>계산서 발행정보는 넣지 않습니다.</b> '
+      + '세금계산서까지 뽑으려면 거래처를 붙여야 합니다.'
+      + (dqCliHint ? '<br>메일이 같은 거래처 <b>'
+          + esc(dqCliHint.company || dqCliHint.name || '') + '</b> 가 있습니다 — 맞으면 붙여주세요.' : '')
+      + '</p>';
+    var att = box.querySelector('[data-att]');
+    if (att) att.onclick = function(){
+      var h = dqCliHint; dqGuest = null; dqCliHint = null; dqCli = h;
+      dqPaintClient(); dqLoadClient(h.id, true);
+    };
     box.querySelector('[data-chg]').onclick = function(){ dqGuest = null; dqPaintClient(); };
     box.querySelector('[data-reg]').onclick = function(){
       clAddForm({ company: dqGuest.company, name: dqGuest.contact,
@@ -5496,7 +5502,7 @@ function dqClear(){
   dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
   dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
-  dqContacts=[]; dqContact=null; dqContactCid=null; dqGuest=null;
+  dqContacts=[]; dqContact=null; dqContactCid=null; dqGuest=null; dqCliHint=null;
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
 }
 function dqReset(){ dqClear(); paintDocs(); }
