@@ -79,7 +79,7 @@ export function splitAddr(v) {
   return { name, addr };
 }
 
-export function docMailBody({ label, docNo, company, contact, total, viewUrl, to, cc }) {
+export function docMailBody({ label, docNo, company, contact, total, viewUrl, to, cc, memo }) {
   const won = (n) => Number(n || 0).toLocaleString('ko-KR');
   const esc = (t) => String(t == null ? '' : t)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -105,6 +105,7 @@ export function docMailBody({ label, docNo, company, contact, total, viewUrl, to
     <tr><td style="padding:5px 14px 5px 0;color:#5a6779">문서번호</td><td style="padding:5px 0"><b>${docNo}</b></td></tr>
     <tr><td style="padding:5px 14px 5px 0;color:#5a6779">합계금액</td><td style="padding:5px 0"><b>${won(total)}원</b> (VAT 포함)</td></tr>
   </table>
+  ${String(memo || '').trim() ? `<p style="background:#F7F8FA;border-radius:9px;padding:12px 14px;font-size:14px;white-space:pre-wrap;margin:18px 0">${esc(memo)}</p>` : ''}
   ${viewUrl ? `<p><a href="${viewUrl}" style="display:inline-block;background:#1a6e56;color:#fff;text-decoration:none;padding:11px 20px;border-radius:9px;font-weight:700">문서 열어보기</a></p>` : ''}
   <p style="color:#5a6779;font-size:13px;margin-top:22px">문의 070-8983-2600 · info@rndsetup.com<br>이머전트 · 대표 이영현 · 사업자등록번호 328-03-02926</p>
 </div>`;

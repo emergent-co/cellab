@@ -5785,6 +5785,7 @@ async function dqSubmit(preview){
 
   var made = r.docs || [{ id:r.id, type:dqTypes[0], doc_no:r.doc_no, view:r.view }];
   dqTitle = $('#dqTitle').value;
+  var noteWas = ($('#dqNote')||{}).value || '';   // 폼이 곧 사라진다 — 비고를 먼저 챙긴다
 
   if (stale){                        // 새 한 벌을 만들었으니 남은 초안은 정리한다
     await fetch('/api/admin/docs/'+stale,{method:'POST',headers:AH,
@@ -5817,12 +5818,12 @@ async function dqSubmit(preview){
       body:JSON.stringify({action:'inquiry', id:inq.id, status:'완료'})}).catch(function(){});
     inqLoad(); admPoll(true);
   }
-  if (made.length > 1) dqBatch(made, r.to);
+  if (made.length > 1) dqBatch(made, r.to, noteWas);
   else dqOpen(made[0].id);
 }
 
 /* ---- 한 벌로 뽑은 서류: 한 통으로 보내거나 예약한다 ---- */
-function dqBatch(made, to){
+function dqBatch(made, to, note){
   // 진짜 전자세금계산서는 바로빌이 국세청 양식으로 고객에게 직접 보낸다.
   // 우리 출력본까지 같이 보내면 비슷하게 생긴 문서가 두 통 가서 헷갈린다 — 기본은 빼둔다.
   var pick = made.filter(function(d){ return d.type !== 'taxinvoice'; }).map(function(d){ return d.id; });
@@ -5850,6 +5851,7 @@ function dqBatch(made, to){
     + '<div class="sec"><h4>메일 발송 <i style="font-style:normal;color:var(--mut);font-weight:600">고른 문서를 한 통에 첨부합니다</i></h4>'
       + dqField('dqBTo','받는 사람','email', to||'', 'name@company.co.kr')
       + dqField('dqBCc','참조 (선택)','email','','cc@example.com')
+      + dqArea('dqBMemo','메일 본문에 덧붙일 말 (서류 비고)', note||'', '예) 납기는 발주 후 3주입니다.')
       + fxBlock()
       + dqField('dqBWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
@@ -5892,6 +5894,7 @@ function dqBatch(made, to){
     var b = $('#dqBSend'); b.disabled = true; b.textContent = when ? '예약 중…' : '보내는 중…';
     var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
       action:'send', ids:pick, to:addr, cc:$('#dqBCc').value.trim()||null,
+      memo: $('#dqBMemo').value,
       files: fxPayload(),
       send_at: when ? when.replace('T',' ')+':00' : null })})
       .then(function(r){return r.json();}).catch(function(){return{};});
@@ -5944,6 +5947,13 @@ async function dqHist(){
 }
 
 /* ---- 문서 상세 · 발송 · 예약발송 ---- */
+/* 메일 본문에 덧붙일 말 — 서류의 비고를 그대로 채워 두고, 보내기 전에 고칠 수 있게 한다 */
+function dqArea(id, label, val, ph){
+  return '<label style="display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:12px 0 6px">'+esc(label)+'</label>'
+    + '<textarea id="'+id+'" rows="3" placeholder="'+esc(ph||'')+'"'
+    + ' style="width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-size:14px;'
+    + 'box-sizing:border-box;resize:vertical;line-height:1.55">'+esc(val||'')+'</textarea>';
+}
 function dqField(id, label, type, val, ph){
   return '<label style="display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:12px 0 6px">'+esc(label)+'</label>'
     + '<input id="'+id+'" type="'+type+'" value="'+esc(val||'')+'" placeholder="'+esc(ph||'')+'"'
@@ -6176,6 +6186,7 @@ async function dqOpen(id){
        '<div class="sec"><h4>메일 발송</h4>'
       + dqField('dqTo','받는 사람','email',(p.client&&p.client.email)||'','name@company.co.kr')
       + dqField('dqCc','참조 (선택)','email','','cc@example.com')
+      + dqArea('dqMemo','메일 본문에 덧붙일 말 (서류 비고)', p.note||'', '예) 납기는 발주 후 3주입니다.')
       + fxBlock()
       + dqField('dqWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
@@ -6373,6 +6384,7 @@ async function dqOpen(id){
     var b = $('#dqSend'); b.disabled = true; b.textContent = when ? '예약 중…' : '보내는 중…';
     var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
       action:'send', ids:ids, to:to, cc:$('#dqCc').value.trim()||null,
+      memo: $('#dqMemo').value,
       files: fxPayload(),
       send_at: when ? when.replace('T',' ')+':00' : null })})
       .then(function(r){return r.json();}).catch(function(){return{};});

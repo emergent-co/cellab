@@ -827,6 +827,10 @@ async function sendBatch(request, env, b) {
     company: first.payload.client?.company,
     contact: first.payload.client?.contact,
     total: totals.total,
+    /* 메일 본문에 덧붙일 말. 발송 창에서 고친 게 있으면 그걸,
+       없으면 서류에 적힌 비고를 그대로 쓴다 — 서류에만 적고 메일엔 안 적히면
+       고객은 첨부를 열기 전까지 그 얘기를 못 본다. */
+    memo: (b.memo != null ? String(b.memo) : String(first.payload.note || '')).trim().slice(0, 2000),
     viewUrl: `${origin}${first.doc ? `/doc/${first.doc.id}?t=${first.doc.access_token}` : ''}`,
     to: rawTo, cc: rawCc,
   });
