@@ -128,8 +128,29 @@ async function get(request, env) {
         matched: p ? (p.name || p.model || '') : '',
       });
     }
-    return json({ inquiry: { id: q.id, name: q.name, org_name: q.org_name, email: q.email, note: q.note },
-                  items, filled: items.filter((x) => x.price).length });
+    /* 문의한 사람이 이미 거래처면 그걸 그대로 쓴다.
+       문의에 이름·메일·소속이 다 들어 있는데 발행 화면에서 또 찾아 넣게 하면
+       같은 정보를 두 번 치는 것이고, 그러다 다른 거래처를 골라 붙이는 사고가 난다. */
+    const em = String(q.email || '').trim();
+    const org = String(q.org_name || '').trim();
+    let cli = null;
+    if (q.customer_id) {
+      cli = await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(q.customer_id).first();
+    }
+    if (!cli && em) {
+      cli = await env.DB.prepare(
+        'SELECT * FROM customers WHERE work_email=?1 OR email=?1 ORDER BY id LIMIT 1').bind(em).first();
+    }
+    if (!cli && org) {
+      cli = await env.DB.prepare(
+        'SELECT * FROM customers WHERE company=?1 OR alias=?1 ORDER BY id LIMIT 1').bind(org).first();
+    }
+
+    return json({
+      inquiry: { id: q.id, name: q.name, org_name: q.org_name, email: q.email,
+                 phone: q.phone, note: q.note },
+      client: cli ? slimClient(cli) : null,
+      items, filled: items.filter((x) => x.price).length });
   }
 
   // ---- 주문에서 끌어오기 ----

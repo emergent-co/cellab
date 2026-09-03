@@ -1836,9 +1836,22 @@ function inqOpen(q){
       + esc(dqInq.who || '—') + '</small>';
     paintDocs();
     dqAutoTitle();                       // 첫 품목 + 외 N건
-    // 문의한 소속으로 거래처를 미리 찾아 띄운다 — 없으면 그 자리에서 새로 등록하면 된다
-    var ci = $('#dqCliBox .cliin');
-    if (ci){ ci.value = q.org_name || q.name || ''; ci.focus(); }
+    /* 이미 아는 거래처면 그냥 붙인다. 문의에 이름·메일·소속이 다 있는데 또 치게 할 이유가 없다.
+       모르는 곳이면 «거래처 추가» 를 문의 내용으로 채워서 바로 연다 — 그 자리에서 한 번에 끝난다. */
+    if (pr.client){
+      dqCli = pr.client;
+      dqPaintClient();
+      dqLoadClient(pr.client.id, true);
+    } else {
+      clAddForm({
+        company: q.org_name || q.name || '',
+        name: q.name || '', email: q.email || '', phone: q.phone || '',
+        onDone: function(c){
+          dqCli = c; dqPaintClient(); dqLoadClient(c.id, true);
+          toast(c.company+' 등록 · 이 견적서에 붙였습니다');
+        },
+      });
+    }
     var bd = w.querySelector('.mbox'); if (bd) bd.scrollTop = 0;
     if (dqInq.filled){
       toast(dqInq.filled+'개 품목 단가를 사이트 판매가로 채웠습니다 · 단가 기준 «부가세 별도»');
@@ -4454,10 +4467,10 @@ function clAddForm(opts){
     +'<label>주소</label><input type="text" id="ca-addr">'
     +'<label class="req" style="margin-top:18px">별칭 <span class="hint" style="font-weight:600">(검색용 · 연구실이나 교수님 이름)</span></label>'
     +'<input type="text" id="ca-alias" placeholder="예) 홍지현교수님, 화학과 103">'
-    +'<div class="d2col"><div><label>담당자</label><input type="text" id="ca-name"></div>'
-      +'<div><label>연락처</label><input type="text" id="ca-phone" placeholder="010-0000-0000"></div></div>'
+    +'<div class="d2col"><div><label>담당자</label><input type="text" id="ca-name" value="'+esc(opts.name||'')+'"></div>'
+      +'<div><label>연락처</label><input type="text" id="ca-phone" value="'+esc(opts.phone||'')+'" placeholder="010-0000-0000"></div></div>'
     +'<label>업무 이메일 <span class="hint" style="font-weight:600">(견적서·계산서가 나가는 곳)</span></label>'
-    +'<input type="email" id="ca-email" placeholder="name@company.co.kr">'
+    +'<input type="email" id="ca-email" value="'+esc(opts.email||'')+'" placeholder="name@company.co.kr">'
     +'<label>메모</label><input type="text" id="ca-memo" placeholder="내부 메모 (선택)">'
     +'</div>'
     +'<div class="mrow"><button class="btn gray" data-x>닫기</button>'
