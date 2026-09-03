@@ -15,6 +15,7 @@ import { docMailBody, splitAddr } from '../_mailer.js';
 
 const TYPES = ['quote', 'statement', 'taxinvoice'];
 const round10 = (n) => Math.round(Number(n || 0) / 10) * 10;
+const floor10 = (n) => Math.floor(Number(n || 0) / 10) * 10;   // 원 단위 절삭
 const safe = (s) => { try { return JSON.parse(s || '[]'); } catch { return []; } };
 
 export async function onRequest({ request, env }) {
@@ -880,12 +881,20 @@ function compute(raw, vatIncluded) {
     const supply = Math.round(total / 1.1);
     return { items, totals: { supply, vat: total - supply, total, vat_included: true } };
   }
+  /* 부가세 별도 — 원 단위는 절삭한다.
+     단가를 10원 단위로 내리고, 줄마다 붙는 부가세도 10원 단위로 내린다.
+     그래야 서류의 세 줄이 전부 맞는다:
+       공급가액 = Σ(수량 × 단가)          ← 품목 줄을 더한 값 그대로
+       합계     = Σ(줄 금액)              ← 금액 칸을 더한 값 그대로
+       부가세   = 합계 − 공급가액          ← 10원 단위
+     한쪽만 절삭하면 어딘가에 1원 단위가 남아 «더해도 안 맞는» 서류가 된다. */
   const items = raw.map((i) => {
-    const line = Math.round(i.qty * i.price);
+    const price = floor10(i.price);
+    const line = Math.round(i.qty * price);
     return { name: i.name, spec: i.spec, qty: i.qty, note: i.note,
-             unit_price: i.price, amount: Math.round(line * 1.1) };
+             unit_price: price, amount: line + floor10(line * 0.1) };
   });
-  const supply = raw.reduce((s, i) => s + Math.round(i.qty * i.price), 0);
-  const vat = Math.round(supply * 0.1);
-  return { items, totals: { supply, vat, total: supply + vat, vat_included: false } };
+  const supply = items.reduce((s, i) => s + Math.round(i.qty * i.unit_price), 0);
+  const total = items.reduce((s, i) => s + i.amount, 0);
+  return { items, totals: { supply, vat: total - supply, total, vat_included: false } };
 }

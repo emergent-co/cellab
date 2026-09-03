@@ -10,9 +10,10 @@ export function calcTotals(items, fixed) {
              vat: Math.round(Number(fixed.vat) || 0),
              total: Math.round(Number(fixed.total) || 0) };
   }
+  // 저장된 총계가 없을 때의 예비 계산 — 발행 때와 같은 «원 단위 절삭» 규칙을 쓴다
   const supply = (items || []).reduce(
     (s, i) => s + Math.round((Number(i.qty) || 0) * (Number(i.unit_price) || 0)), 0);
-  const vat = Math.round(supply * 0.1);
+  const vat = Math.floor(supply * 0.1 / 10) * 10;
   return { supply, vat, total: supply + vat };
 }
 

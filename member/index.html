@@ -3465,6 +3465,7 @@ var sItems = [];
    그래서 ① 단가를 10원 단위로 강제하고(→ 소계·총액이 항상 0으로 끝난다)
         ② 총액을 먼저 확정한 뒤 공급가액을 역산한다. (S = round(T/1.1), V = T − S) */
 function r10(n){ return Math.round(Number(n||0)/10)*10; }
+function f10(n){ return Math.floor(Number(n||0)/10)*10; }   // 원 단위 절삭
 function sTotal(){ return sItems.reduce(function(a,i){ return a + r10(i.qty*i.price); },0); }
 var sTarget = 0, sBill = null;
 
@@ -5606,7 +5607,9 @@ function numFmt(el){
   return Number(d || 0);
 }
 
-function dqLine(it){ return dqVat ? r10((it.qty||0)*(it.price||0)) : Math.round((it.qty||0)*(it.price||0)); }
+// 부가세 별도면 단가를 10원 단위로 절삭한 값으로 줄 금액을 낸다 — 발행 때 서버가 쓰는 규칙과 같다
+function dqLine(it){ return dqVat ? r10((it.qty||0)*(it.price||0))
+                                  : Math.round((it.qty||0)*f10(it.price||0)); }
 function dqTotal(){ return dqItems.reduce(function(a,i){ return a + dqLine(i); }, 0); }
 
 function dqPaintItems(){
@@ -5628,8 +5631,9 @@ function dqPaintItems(){
     el.querySelector('.qy').oninput = function(e){ dqItems[i].qty = Math.max(1,Number(e.target.value)||1); dqRow(el,i); };
     el.querySelector('.pr').oninput = function(e){ dqItems[i].price = numFmt(e.target); dqRow(el,i); };
     el.querySelector('.pr').onblur  = function(e){
-      // 부가세 포함 기준이면 10원 단위로 맞춘다 — 그래야 소계·총계가 0으로 끝난다
-      dqItems[i].price = dqVat ? r10(numVal(e.target)) : numVal(e.target);
+      // 10원 단위로 맞춘다 — 그래야 소계·총계가 0으로 끝난다.
+      // 부가세 포함은 반올림(목표 총액을 맞춰야 해서), 부가세 별도는 절삭.
+      dqItems[i].price = dqVat ? r10(numVal(e.target)) : f10(numVal(e.target));
       e.target.value = dqItems[i].price ? won(dqItems[i].price) : '';
       dqRow(el,i);
     };
@@ -5643,7 +5647,13 @@ function dqSum(){
   var box = $('#dqSum'); if(!box) return;
   var sup, vat, tot;
   if (dqVat){ tot = dqTotal(); sup = Math.round(tot/1.1); vat = tot - sup; }
-  else { sup = dqTotal(); vat = Math.round(sup*0.1); tot = sup + vat; }
+  else {
+    // 줄마다 부가세를 10원 단위로 절삭해 더한다 — 서버 compute() 와 같은 계산이어야
+    // 미리보기 금액과 실제 서류 금액이 어긋나지 않는다
+    sup = dqTotal();
+    vat = dqItems.reduce(function(a,i){ return a + f10(dqLine(i)*0.1); }, 0);
+    tot = sup + vat;
+  }
   var h = '<div><span>공급가액</span><b>'+won(sup)+'원</b></div>'
         + '<div><span>부가세</span><b>'+won(vat)+'원</b></div>'
         + '<div class="tt"><span>총계 (VAT 포함)</span><b>'+won(tot)+'원</b></div>';
