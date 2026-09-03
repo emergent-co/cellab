@@ -1554,7 +1554,9 @@ var VT = { home:'홈', order:'주문하기', new:'주문하기', orders:'정산�
            admTodo:'할 일', admOps:'주문 · 정산 · 문의', admDocs:'문서 발행',
            admClients:'거래처 관리', admMembers:'거래처 관리', admPay:'용역비 지급내역' };
 var VIEWS = ['home','order','new','orders','settle','admHome','admTodo','admOps','admDocs','admClients','admMembers','admPay'];
-var ADMVIEWS = ['admHome','admTodo','admOps','admDocs','admClients','admMembers'];
+// 관리자 셸 안에서 그리는 화면들. 여기 빠지면 render() 가 고객 화면 쪽으로 흘러가
+// 엉뚱하게 «정산하기»가 그려진다 — 새 관리자 화면을 만들면 반드시 여기에도 넣는다.
+var ADMVIEWS = ['admHome','admTodo','admOps','admDocs','admClients','admMembers','admPay'];
 function skeleton(){
   $('#main').innerHTML = '<div class="ttl">'+VT[view]+'</div>'
     +'<div class="skel"><div class="sk" style="height:120px"></div>'
