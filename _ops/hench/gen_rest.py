@@ -282,8 +282,9 @@ def common(o, cfg, h1, ans, summ, spec, feats, faqs, incl, warn, models, opt='',
       kws=[('/product/', '#실험장비카탈로그'), ('/brands/hench/%s/' % slug, '#%s' % kwsub),
            ('/brands/hench/%s/' % slug, '#시료전처리'), ('/brands/hench/%s/' % slug, '#Hench')],
       img=img,
-      thumbs=[(img, M2, '제품'), ('/img/hench/%s-2.jpg' % slug, M2, '상세'),
-              ('/img/hench/%s-3.jpg' % slug, M2, '구성')],
+      thumbs=[(t, M2, lb) for t, lb in
+              [(img, '제품'), ('/img/hench/%s-2.jpg' % slug, '상세'), ('/img/hench/%s-3.jpg' % slug, '구성')]
+              if os.path.exists(os.path.join(H.ROOT, t.lstrip('/')))],
       feats=feats, incl=incl, spec=spec, opt_tbl=opt, figures=list(figs),
       price='<b>구성별 견적(문의)</b>입니다. 구성·수량·다이 규격을 알려주시면 함께 잡아 견적해 드립니다.',
       notes=notes_common(), warn_h=warn[0], warn_p=warn[1],
