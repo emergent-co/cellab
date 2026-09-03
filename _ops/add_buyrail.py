@@ -5,17 +5,19 @@
 (3) </html> 종료·JSON-LD 파싱·마커 수를 검사해 통과한 것만 저장한다.
 
 현재 대상: 가오스유니온 구 페이지 (해외 발주 — 표시가는 이미 ×1.45 적용됨).
-  data-models 의 x = 표에 찍힌 제품가격, p = x + 145,000(해외배송비)
+  data-models 의 x = 표에 찍힌 제품가격, p = x + 브랜드별 해외배송비(_ops/shipping.py)
 
 브랜드별 값 규칙
-  · 가오스유니온 / 허페이 : 해외 발주. 표시가가 이미 제품가격, 합계 = 제품가격 + 145,000
+  · 가오스유니온 / 허페이 : 해외 발주. 표시가가 이미 제품가격, 합계 = 제품가격 + 그 브랜드 배송비
   · 삼흥에너지 / 리드플루이드 : 국내. 정가 대비 3% 상시 할인가를 제품가격으로 쓰고
     정가는 취소선으로 함께 보여준다(site.js 의 o.d). 배송료는 붙이지 않는다.
 """
 import io, os, re, sys, json, html
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import shipping as _ship   # 브랜드별 배송비 SSOT — overseas-pricing §3.5
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SHIP = 145000
 MODE = {
   'gaossunion':    dict(parse=None, ship=True),   # 해외 발주
   'leadfluid':     dict(parse=None, ship=False),  # 국내 — 3% 할인
@@ -107,7 +109,8 @@ def convert(path, brand, apply=False):
     h1 = re.search(r'<h1 class="dt-name">(.*?)(?:<span|</h1>)', t, re.S)
     h1 = re.sub(r'<[^>]+>', '', h1.group(1)).strip() if h1 else name
     if MODE[brand]['ship']:                       # 해외 발주 — 표시가가 곧 제품가격
-        mods = [{'m': m, 's': s if s != m else '', 'x': p, 'p': (p + SHIP) if p else 0}
+        ship = _ship.s_in(brand) or 0             # 미확정 브랜드는 0 → site.js 가 "주문 시 안내"
+        mods = [{'m': m, 's': s if s != m else '', 'x': p, 'p': (p + ship) if p else 0}
                 for m, s, p in rows]
     else:                                         # 국내 — 3% 상시 할인가 + 정가 취소선
         mods = [{'m': m, 's': s if s != m else '', 'x': disc(p), 'p': disc(p), 'd': p}

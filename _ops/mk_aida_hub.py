@@ -3,6 +3,9 @@
 가오스유니온 허브와 같은 골격(detail-top + gu-links + dsgrid dscard)을 쓴다.
 /product/ 통합 카탈로그는 build.py가 이 허브의 dscard를 읽어 재생성한다."""
 import io, os, re, html
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import shipping as _ship   # 브랜드별 배송비 SSOT — overseas-pricing §3.5
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC  = os.path.join(ROOT, 'brands', 'gaossunion', 'index.html')
@@ -191,7 +194,7 @@ def main():
     # ── 가격 안내문 (해외 발주 산식)
     t = re.sub(r'<p class="pkg-note" style="margin-top:18px">.*?</p>',
                '<p class="pkg-note" style="margin-top:18px">표기 금액은 <b>제품가격 1개 기준</b>이며 '
-               '<b>부가세(VAT) 별도</b>입니다. 해외 발주 제품이라 <b>해외배송비 145,000원</b>이 '
+               '<b>부가세(VAT) 별도</b>입니다. 해외 발주 제품이라 <b>해외배송비 ' + _ship.label('aida') + '</b>이 '
                '주문당 1회 더해집니다. <b>10개 이상</b>은 배송료를 따로 안내드립니다. '
                '납기는 주문 확정 후 안내드립니다.</p>', t, count=1, flags=re.S)
 

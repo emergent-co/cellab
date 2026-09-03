@@ -85,6 +85,53 @@ async function get(request, env) {
     });
   }
 
+  /* ---- 견적 문의에서 끌어오기 ----
+     문의에는 품명·규격·수량·제품링크만 온다. 단가는 사람이 매번 다시 찾아 넣고 있었다.
+     제품 표에서 같은 물건을 찾아 판매가를 미리 채워준다 — 맞는지는 사람이 보고 고친다. */
+  if (u.get('from') === 'inquiry') {
+    const q = await env.DB.prepare('SELECT * FROM inquiries WHERE id=?').bind(u.get('id')).first();
+    if (!q) return json({ error: 'not_found' }, 404);
+    const raw = safe(q.items_json);
+
+    const pick = async (it) => {
+      const nm = String(it.name || '').trim();
+      const link = String(it.link || '').trim();
+      if (!nm && !link) return null;
+      // ① 제품 링크가 그대로 맞으면 그게 답이다  ② 품명이 똑같은 것  ③ 품명이 들어가는 것
+      const tries = [];
+      if (link) tries.push(['product_url = ?', link]);
+      if (nm) {
+        tries.push(['name = ?', nm]);
+        tries.push(['name LIKE ?', `%${nm}%`]);
+        // 모델명이 품명 안에 들어 있는 경우 (예: "… dVP15")
+        tries.push([`model <> '' AND ? LIKE '%'||model||'%'`, nm]);
+      }
+      for (const [cond, val] of tries) {
+        const r = await env.DB.prepare(
+          `SELECT name, model, unit, retail_price, list_price FROM products
+            WHERE ${cond} AND IFNULL(retail_price,0) > 0
+            ORDER BY length(IFNULL(name,'')) LIMIT 1`).bind(val).first();
+        if (r) return r;
+      }
+      return null;
+    };
+
+    const items = [];
+    for (const it of raw) {
+      const p = await pick(it);
+      items.push({
+        name: String(it.name || '').trim(),
+        spec: String(it.spec || '').trim(),
+        qty: Math.max(1, Number(it.qty) || 1),
+        price: p ? Math.round(p.retail_price) : 0,
+        note: '',
+        matched: p ? (p.name || p.model || '') : '',
+      });
+    }
+    return json({ inquiry: { id: q.id, name: q.name, org_name: q.org_name, email: q.email, note: q.note },
+                  items, filled: items.filter((x) => x.price).length });
+  }
+
   // ---- 주문에서 끌어오기 ----
   if (u.get('from') === 'order') {
     const o = await env.DB.prepare('SELECT * FROM orders WHERE id=?').bind(u.get('id')).first();

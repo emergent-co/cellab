@@ -662,6 +662,32 @@ table.mini th,table.mini td{padding:8px 6px;font-size:12.5px}
 /* 최근 주문 슬라이드 — 담기 버튼 바로 아래. 탭으로 찾아 들어가지 않게 눈앞에 둔다 */
 .rcz{margin-top:18px}
 /* 발행 목적 고르기 — 무엇으로 기록할지는 여기서 정해진다 */
+/* 최근 본 거래처 — 같은 곳을 하루에도 몇 번씩 다시 연다 */
+/* 주문 안 서류 진행 — 발행됐나 · 나갔나 · 열어봤나 */
+.dsteps{display:grid;gap:7px}
+.dstep{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:10px;
+  padding:9px 11px;background:#fff}
+.dstep .t{flex:1 1 auto;min-width:0}
+.dstep b{display:block;font-size:12.5px;font-weight:700}
+.dstep small{display:block;font-size:11px;color:var(--mut);margin-top:1px}
+.dstep .st{flex:0 0 auto;display:flex;gap:4px}
+.dstep .lnk{flex:0 0 auto}
+.pill{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+.pill.on{background:#D1FAE5;color:#065F46}
+.pill.off{background:#F1F5F9;color:#94A3B8}
+.paybox{margin-top:12px;border-radius:11px;padding:12px 14px;font-size:12.5px;font-weight:600;line-height:1.6}
+.paybox.yes{background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46}
+.paybox.wait{background:#FFF7ED;border:1px solid #FED7AA;color:#9A3412}
+.paybox.no{background:#F7F8FA;border:1px solid var(--line);color:var(--mut)}
+.clrec{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.clrec button{font:inherit;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;
+  padding:10px 11px;cursor:pointer;min-width:0;transition:.15s}
+.clrec button:hover{border-color:var(--navy);background:var(--soft-blue)}
+.clrec b{display:block;font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.clrec small{display:block;margin-top:2px;font-size:11px;color:var(--mut);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:900px){.clrec{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.clrec{grid-template-columns:repeat(2,1fr)}}
 .rec3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .rec3 .rc{border:1px solid var(--line);border-radius:11px;padding:11px 11px 12px;background:#fff;
   display:flex;flex-direction:column;gap:4px}
@@ -1042,6 +1068,15 @@ function badge(s){ return '<span class="badge s'+(SIDX[s]==null?7:SIDX[s])+'">'+
 /* 첫 로그인에 한 번 — 바뀐 것을 모르면 예전 방식(링크 찾아 붙이기, 카카오 문의)을 계속 쓴다.
    닫으면 다시 뜨지 않고, 홈 맨 아래 «새 기능 안내 다시 보기»로 언제든 다시 열 수 있다. */
 var WN_KEY = 'rs_whatsnew_v1';
+var CLR_KEY = 'rs_cl_recent';
+function clRecent(){ try { return JSON.parse(localStorage.getItem(CLR_KEY)||'[]') || []; } catch(e){ return []; } }
+function clRecentPush(c){
+  if (!c || !c.id) return;
+  var rows = clRecent().filter(function(x){ return Number(x.id) !== Number(c.id); });
+  rows.unshift({ id: c.id, company: c.company || c.name || '—',
+                 sub: [c.alias && c.alias !== c.company ? c.alias : '', c.name].filter(Boolean).join(' · ') });
+  try { localStorage.setItem(CLR_KEY, JSON.stringify(rows.slice(0, 5))); } catch(e){}
+}
 function wnSeen(){ try { return !!localStorage.getItem(WN_KEY); } catch(e){ return false; } }
 function wnMark(){ try { localStorage.setItem(WN_KEY, '1'); } catch(e){} }
 
@@ -1778,12 +1813,21 @@ function inqOpen(q){
   };
 
   // 문의 품목을 그대로 견적서 초안으로 — 화면을 옮기지 않고 이 팝업 안에서 끝낸다
-  $('#inqQuote').onclick = function(){
+  $('#inqQuote').onclick = async function(){
     dqClear();
-    dqItems = its.length
-      ? its.map(function(i){ return { name:i.name||'', spec:i.spec||'', qty:i.qty||1, price:0, note:'' }; })
-      : [{name:'',spec:'',qty:1,price:0,note:''}];
+    // 단가는 제품 표에서 찾아 미리 채운다 — 매번 사람이 다시 찾아 넣던 일이다
+    var bq = $('#inqQuote'); bq.disabled = true; bq.textContent = '단가 찾는 중…';
+    var pr = await fetch('/api/admin/issue?from=inquiry&id='+q.id,{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return {};});
+    bq.disabled = false; bq.textContent = '견적서 발행';
+    dqItems = (pr.items && pr.items.length) ? pr.items
+      : (its.length
+         ? its.map(function(i){ return { name:i.name||'', spec:i.spec||'', qty:i.qty||1, price:0, note:'' }; })
+         : [{name:'',spec:'',qty:1,price:0,note:''}]);
+    // 사이트 표시가는 «부가세 별도»다. 기준을 안 맞추고 당겨오면 견적이 10% 부풀어 나간다.
+    if (pr.filled) dqVat = false;
     dqInq = { id:q.id, who:[q.name, q.org_name].filter(Boolean).join(' · '),
+      filled: pr.filled || 0, total: (pr.items||[]).length,
       back: function(){ var win = dqHostWin;
         dqHost=null; dqHostWin=null; dqInq=null; dqClear();
         if (win) win.remove(); inqOpen(q); } };
@@ -1796,6 +1840,11 @@ function inqOpen(q){
     var ci = $('#dqCliBox .cliin');
     if (ci){ ci.value = q.org_name || q.name || ''; ci.focus(); }
     var bd = w.querySelector('.mbox'); if (bd) bd.scrollTop = 0;
+    if (dqInq.filled){
+      toast(dqInq.filled+'개 품목 단가를 사이트 판매가로 채웠습니다 · 단가 기준 «부가세 별도»');
+    } else if (dqInq.total){
+      toast('제품 표에서 단가를 찾지 못했습니다 — 직접 넣어주세요');
+    }
   };
 }
 async function aoChips(){
@@ -1869,7 +1918,8 @@ async function aoOpen(id){
     +'<div class="sec"><h4>상태 · 메모</h4>'
       +'<select id="aoSt">'+ST.map(function(s){ return '<option'+(s===o.status?' selected':'')+'>'+s+'</option>'; }).join('')+'</select>'
       +'<textarea id="aoMemo" rows="2" placeholder="내부 메모 — 고객에게 안 보입니다" style="margin-top:8px">'+esc(o.admin_memo||'')+'</textarea></div>'
-    +'<div class="sec"><h4>문서</h4><div id="aoDocs"></div></div>'
+    +'<div class="sec"><h4>서류 · 입금 <i style="font-style:normal;color:var(--mut);font-weight:600">'
+      +'발행 · 발송 · 열람 · 입금까지</i></h4><div id="aoDocs"></div></div>'
     +'<div class="mrow"><button class="btn gray" id="aoDel">삭제</button>'
       +'<button class="btn gray" data-x>닫기</button>'
       +'<button class="btn ghost" id="aoConfirm">내용 확인 요청</button>'
@@ -1931,14 +1981,49 @@ function aoSums(){
 function aoDocs(){
   var box=$('#aoDocs'); if(!box) return;
   var d = aoCur.documents||[], q = aoCur.queued||[];
-  var h = d.length ? d.map(function(x){
-      return '<div class="kv"><span>'+esc(DT[x.type]||x.type)+'</span><span>'+esc(x.doc_no||'')+' · '+esc(x.status)
-        +(x.status==='취소됨'?'':' &nbsp;<button class="lnk aopen" data-id="'+x.id+'">보기</button>'
-          +'<button class="lnk aopen pdf" data-id="'+x.id+'">PDF</button>'
-          +'<button class="lnk asend" data-id="'+x.id+'">메일</button>')+'</span></div>'; }).join('')
+  var st = aoCur.settlement || null, pm = aoCur.payment || null;
+
+  /* 서류 한 장이 어디까지 갔는지를 한 줄로 말한다 — 발행 · 발송 · 열람.
+     «상태» 글자 하나만 보고는 «보냈나?»를 알 수 없어 매번 이력을 뒤지게 된다. */
+  var h = d.length ? '<div class="dsteps">' + d.map(function(x){
+      var voided = x.status === '취소됨';
+      var sent = !!x.sent_at, opened = !!x.opened_at;
+      var nts = x.type === 'taxinvoice' ? (x.barobill_state || '') : '';
+      return '<div class="dstep"><div class="t"><b>'+esc(DT[x.type]||x.type)+' '+esc(x.doc_no||'')+'</b>'
+        + '<small>'
+          + (voided ? '취소됨'
+             : [x.issue_date ? '발행 '+esc(String(x.issue_date).slice(5)) : '',
+                sent ? '발송 '+esc(String(x.sent_at).slice(5,16)) : '',
+                opened ? '열람 '+esc(String(x.opened_at).slice(5,16)) : ''].filter(Boolean).join(' · '))
+          + (nts ? ' · 국세청 '+esc(nts) : '')
+        + '</small></div>'
+        + (voided ? '<span class="pill off">취소</span>'
+           : '<span class="st"><span class="pill on">발행</span>'
+             + '<span class="pill '+(sent?'on':'off')+'">발송</span>'
+             + '<span class="pill '+(opened?'on':'off')+'">열람</span></span>')
+        + (voided ? ''
+           : '<button class="lnk aopen" data-id="'+x.id+'">보기</button>'
+             + '<button class="lnk aopen pdf" data-id="'+x.id+'">PDF</button>'
+             + '<button class="lnk asend" data-id="'+x.id+'">메일</button>')
+        + '</div>'; }).join('') + '</div>'
     : '<div style="font-size:13px;color:var(--mut)">아직 발행된 문서가 없습니다.</div>';
-  h += q.map(function(j){ return '<div class="kv"><span>예약</span><span>'+esc(String(j.send_at).slice(0,16))+' → '+esc(j.to_addr)
+
+  h += q.map(function(j){ return '<div class="kv" style="margin-top:8px"><span>예약</span><span>'
+      + esc(String(j.send_at).slice(0,16))+' → '+esc(j.to_addr)
       +' <button class="lnk aqx" data-id="'+j.document_id+'">취소</button></span></div>'; }).join('');
+
+  // 입금
+  h += pm
+    ? '<div class="paybox yes">입금 확인됨 — <b>'+won(pm.amount)+'원</b> · '
+      + esc(pm.paid_at||'')+(pm.method?' '+esc(pm.method):'')+'<br>잔여정산금에서 그만큼 빠졌습니다.</div>'
+    : st
+    ? (st.status === '입금완료'
+       ? '<div class="paybox yes">입금 확인됨 — 정산요청 #'+st.id+' · <b>'+won(st.total)+'원</b>'
+         + (st.done_at ? ' · '+esc(String(st.done_at).slice(0,10)) : '')+'</div>'
+       : '<div class="paybox wait">입금 대기 — 정산요청 #'+st.id+' · '+esc(st.status)+' · <b>'+won(st.total)+'원</b>'
+         + '<br>정산 요청을 <b>입금완료</b>로 바꾸면 중간정산금으로 잡힙니다.</div>')
+    : '<div class="paybox no">입금 기록이 없습니다 — 이 주문은 아직 <b>지출금(받을 돈)</b>으로만 잡혀 있습니다.</div>';
+
   h += '<div class="twobtn" style="margin-top:10px"><button class="btn ghost amk" data-t="quote">＋ 견적서</button>'
      + '<button class="btn ghost amk" data-t="statement">＋ 거래명세서</button></div>';
   box.innerHTML = h;
@@ -1950,7 +2035,6 @@ function aoDocs(){
     await fetch('/api/admin/docs/'+b.dataset.id,{method:'POST',headers:AH,body:JSON.stringify({action:'cancel'})});
     toast('예약 취소됨'); aoOpen(aoCur.order.id); }; });
 }
-// 세션 쿠키로 인증되므로 그냥 새 탭으로 연다
 function aoOpenDoc(id, pdf){ window.open('/doc/'+id+(pdf?'?f=pdf':''), '_blank'); }
 async function aoMakeDoc(type){
   toast((DT[type]||type)+' 만드는 중…');
@@ -4016,6 +4100,13 @@ var clFilter='전체', clMode='', clKw='', clRows=[], clStats={};
 function viewAdmClients(){
   $('#main').innerHTML = '<div class="ttlrow"><div class="ttl" style="margin:0">거래처 관리</div>'
       + '<button class="btn pri" id="clAdd">＋ 거래처 추가</button></div>'
+    + (function(){
+        var rc = clRecent();
+        if (!rc.length) return '';
+        return '<div class="clrec">' + rc.map(function(x){
+          return '<button data-clr="'+x.id+'"><b>'+esc(x.company)+'</b>'
+            + '<small>'+esc(x.sub || '최근 본 거래처')+'</small></button>'; }).join('') + '</div>';
+      })()
     + '<div class="achips" id="clChips"></div>'
     + '<div class="tools" style="margin-bottom:12px">'
       + '<input type="search" id="clQ" placeholder="상호 · 담당자 · 메일 · 전화 · 실험실" value="'+esc(clKw)+'">'
@@ -4027,6 +4118,9 @@ function viewAdmClients(){
   $('#clMode').value = clMode;
   $('#clMode').onchange = function(e){ clMode = e.target.value; clLoad(); };
   $('#clAdd').onclick = clAddForm;
+  $('#main').querySelectorAll('[data-clr]').forEach(function(btn){
+    btn.onclick = function(){ clOpen(Number(btn.dataset.clr)); };
+  });
   clLoad();
 }
 
@@ -4442,6 +4536,7 @@ async function clOpen(id){
   var d = await fetch('/api/admin/clients?id='+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
   if (!d.client){ w.remove(); return toast('불러오지 못했습니다'); }
   var c = d.client;
+  clRecentPush(c);
   if (!fillModal(w, '거래처', '<div class="dbody" id="clBody"></div>')) return;
   var h3 = w.querySelector('h3');
   if (h3) h3.innerHTML = esc(c.company||c.name||'—')
@@ -5016,6 +5111,7 @@ function paintDocs(){
        + '<p class="dnote">여러 개를 고르면 <b>같은 내용으로 한 벌</b>이 만들어지고, 메일도 한 통으로 나갑니다.</p>'
        + (dqTodo ? '<div class="dfrom">할 일에서 넘어왔습니다 — 발행하면 그 할 일이 완료됩니다<button id="dqUnlinkTodo" title="연결 끊기">×</button></div>' : '')
        + (dqInq ? '<div class="dfrom">견적 문의에서 넘어왔습니다 · '+esc(dqInq.who||'')
+           + (dqInq.filled ? ' · 단가 '+dqInq.filled+'건 자동 채움 (사이트 판매가 · 부가세 별도)' : '')
            + (dqInq.back ? '<button id="dqInqBack" title="문의 내용으로 돌아가기">↩</button>' : '')+'</div>' : '')
      + '</div>'
      + '<div class="dcard"><h4>거래처 · 계산서 발행정보</h4><div id="dqCliBox"></div>'

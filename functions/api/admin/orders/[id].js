@@ -34,7 +34,19 @@ export async function onRequest({ request, env, params }) {
     const customer = cid ? (rows(4)[0] || null) : null;
     const profiles = cid ? rows(5) : [];
     const bill = order.bill_profile_id ? profiles.find((p) => p.id === order.bill_profile_id) || null : null;
-    return json({ order, customer, items, documents: docs, events, queued, profiles, bill, statuses: STATUSES });
+
+    // 이 주문의 «돈이 들어왔는가» — 서류에 붙은 정산요청·입금 줄로 판단한다
+    const sid = docs.find((d) => d.settlement_id)?.settlement_id || null;
+    const pid = docs.find((d) => d.payment_id)?.payment_id || null;
+    const [settlement, payment] = await Promise.all([
+      sid ? env.DB.prepare('SELECT id, status, total, done_at FROM settlements WHERE id=?').bind(sid).first()
+          : Promise.resolve(null),
+      pid ? env.DB.prepare('SELECT id, amount, method, paid_at FROM payments WHERE id=?').bind(pid).first()
+          : Promise.resolve(null),
+    ]);
+
+    return json({ order, customer, items, documents: docs, events, queued, profiles, bill,
+                  settlement, payment, statuses: STATUSES });
   }
 
   if (request.method === 'PUT') {

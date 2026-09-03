@@ -1,4 +1,8 @@
-# 가오스유니온 소비자가 일괄 전환: 가격 ×1.45(100원 반올림) + 배송료 145,000원 별도 표기
+# 가오스유니온 소비자가 일괄 전환: 가격 ×1.45(100원 반올림) + 배송료 별도 표기(_ops/shipping.py)
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import shipping as _ship   # 브랜드별 배송비 SSOT — overseas-pricing §3.5
+
 # 실행: 리포 루트에서 python3 _ops/gu_consumer_price.py
 import glob, os, re
 
@@ -40,7 +44,7 @@ for f in files:
     h = PRICE.sub(lambda m: conv(m.group(0)[:-1]), h)
     h = LDPRICE.sub(lambda m: m.group(1) + str(int(round(int(m.group(2)) * MULT / 100.0)) * 100) + m.group(3), h)
     # 3) 배송료 복원 + 라벨 정리
-    h = h.replace(SHIP, '145,000원')
+    h = h.replace(SHIP, _ship.label('gaossunion'))
     h = re.sub(r'정가 (<b>[\d,]+원</b>\s*\(부가세 별도\))', r'소비자가 \1', h)
     h = h.replace('모델 · 용량 · 정가', '모델 · 용량 · 소비자가')
     assert h.rstrip().endswith('</html>'), f

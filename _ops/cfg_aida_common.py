@@ -8,7 +8,7 @@
 
 · 제조사가   : products catalogue20260318.pdf 의 Ex-factory price (USD/pc)
 · 출하배송비 : 카탈로그에 개당 표기 없음 → 0.
-               고객이 내는 해외배송비 145,000원(주문당 1회)은 별개 행이다.
+               고객이 내는 해외배송비(주문당 1회)는 별개 행이며 금액은 _ops/shipping.py 가 SSOT다.
 · 환율계수   : 올림₁₀(스팟 × 1.02)   ※ 스킬 설명문 기준 (2026-09-02 사용자 확인)
                2026-09-02 스팟 USD/KRW 1,364 → 1,364 × 1.02 = 1,391.28 → 1,400
 · 1.45       : 관세 + 수입 부가세 + 판매마진 10% + 국내 부가세 (고정 계수)
@@ -16,12 +16,16 @@
 판매가를 여기서 완성해 넘기므로 각 cfg 는 landed=True 로 build_web 의 ×1.45 를
 한 번 더 적용하지 않는다(이중 반올림 방지). 해외 라인이라 3% 상시 할인 대상이 아니다.
 """
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import shipping as _ship   # 브랜드별 배송비 SSOT — overseas-pricing §3.5
+
 USD_KRW = 1400     # 올림₁₀(1,364 × 1.02) — 2026-09-02 산출
 K       = 1.45     # overseas-pricing 고정 계수
-SHIP_IN = 0        # 제조사 출하배송비 (카탈로그 개당 표기 없음)
+SHIP_IN = _ship.s_out('aida')      # 제조사 출하배송비 S_out (카탈로그 개당 표기 없음 → 0)
 
-SMALL   = 50000    # 이 미만은 단독 주문이 성립하지 않는다 (해외배송비 > 제품가격)
-BUNDLE  = 300000   # 이 미만은 합산 주문 권장 문구를 붙인다
+# 소액 판정선은 그 브랜드의 고객 해외배송비 기준 (스킬 §3.5-3)
+SMALL, BUNDLE = _ship.small_lines('aida')
 
 def w(usd):
     """USD 제조사가 → 원 판매가 (1,000원 단위 반올림, 한 번만 반올림)"""
@@ -40,8 +44,9 @@ def note(rs):
     ps = [p for _, _, p in rs if p]
     if not ps: return ''
     if min(ps) < SMALL:
-        return ('<b>5만원 미만 품목</b>은 단독 주문 시 해외배송비(145,000원)가 제품가격을 넘습니다. '
-                '다른 품목과 <b>합산 주문</b>하시길 권합니다.')
+        return ('<b>%s원 미만 품목</b>은 단독 주문 시 해외배송비(%s)가 제품가격을 넘습니다. '
+                '다른 품목과 <b>합산 주문</b>하시길 권합니다.' % (format(SMALL, ','), _ship.label('aida')))
     if min(ps) < BUNDLE:
-        return '<b>30만원 미만 소액 품목</b>은 다른 품목과 합산 주문하시면 배송비 부담이 줄어듭니다.'
+        return ('<b>%s원 미만 소액 품목</b>은 다른 품목과 합산 주문하시면 배송비 부담이 줄어듭니다.'
+                % format(BUNDLE, ','))
     return ''

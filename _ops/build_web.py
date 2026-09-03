@@ -2,6 +2,9 @@
 """gaossunion.com 기준 제품 페이지 생성기.
    웹 = 제품 정체·사양 / SQL = 가격.  한 제품 = 한 페이지."""
 import io, os, re, json, html
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+import shipping as _ship   # 브랜드별 배송비 SSOT — overseas-pricing §3.5
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TPL  = io.open(os.path.join(ROOT,'_ops','tpl','product.html'), encoding='utf-8').read()
@@ -27,6 +30,7 @@ def _use(name):
     global _B, OUT
     _B = BRANDS[name]
     OUT = os.path.join(ROOT,'brands',_B['slug'])
+    SHIP_SHOWN[0] = _ship.s_in(name)      # None = "주문 시 안내"
     os.makedirs(OUT, exist_ok=True)
 
 def esc(t): return html.escape(t, quote=True)
@@ -101,17 +105,15 @@ def head(h1, sub, answer, summary, quote):
 # ══ 해외 발주 판매가 산식 (2026-08-29 확정) ══
 #   판매가 = (정가 + 배송료) × 관세 × 수수료      ※ 부가세는 계수 1 (VAT 별도 표기 유지)
 #   배송료는 주문당 1회 성격이라 수량에 비례시키지 않는다.
-#     · 1개 기준 표시가  unit  = (P + SHIP) × K
-#     · 2개째부터 추가분  extra = P × K
+#     · 제품가격(1개 표시)  = P × K
+#     · 배송 표시           = 브랜드별 해외배송비 (_ops/shipping.py)
 #     · 10개 이상은 배송료 문의
-SHIP = 100000      # 해외배송비 (원가 기준)
 K    = 1.45        # 관세·수수료 등 일괄 계수 (2026-08-29 확정) — 부가세는 별도 표기
 QTY_ASK = 10       # 이 수량 이상이면 배송료 문의
-#   제품가격(1개 표시) = P × K
-#   배송 표시          = SHIP × K = 145,000원
-#   합계               = 제품가격 × 수량 + 배송 = (P + SHIP) × K  (수량 1일 때)
+#   합계(수량 1) = 제품가격 + 배송비
 
-SHIP_SHOWN = int(round(SHIP * K / 1000.0)) * 1000   # 표시 배송비 = 145,000원
+# 표시 배송비는 브랜드마다 다르다. 숫자를 여기에 적지 않는다 — _use() 가 SSOT에서 채운다.
+SHIP_SHOWN = [_ship.s_in('gaossunion')]             # None 이면 "주문 시 안내" 
 
 _KOFF = [False]   # True면 cfg['price']가 이미 판매가라 K를 곱하지 않는다
 
@@ -124,7 +126,7 @@ def landed_extra(p):
 def landed(p):
     """1개 주문 시 합계 = 제품가격 + 배송비. 두 값을 각각 반올림한 뒤 더해
        화면의 '제품가격 + 배송 = 합계'가 항상 정확히 맞아떨어지게 한다."""
-    return landed_extra(p) + SHIP_SHOWN if p else 0
+    return landed_extra(p) + (SHIP_SHOWN[0] or 0) if p else 0
 
 PRICE_NOTE = '제품가격 1개 기준입니다. <b>해외배송비는 주문당 1회</b> 별도로 더해지며, <b>VAT는 별도</b>입니다. <b>10개 이상</b>은 따로 안내드립니다.'
 

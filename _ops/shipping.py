@@ -19,6 +19,8 @@ SHIPPING = {
                        src='사용자 확인', checked='2026-09-03'),
     'hench':      dict(s_in=None,    s_out=0, ccy='RMB',
                        src='미확정 — 견적 확보 전까지 "주문 시 안내"', checked='2026-09-03'),
+    'dodochem':   dict(s_in=100_000, s_out=0, ccy='RMB',
+                       src='사용자 지정(2026-09-02) · 카탈로그에 개당 출하비 표기 없음', checked='2026-09-03'),
 }
 
 # 국내 브랜드 — 배송비 행 자체가 없다(3% 상시할인 대상).
