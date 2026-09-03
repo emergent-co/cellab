@@ -140,3 +140,34 @@
 ```
 
 본문 맨 아래 "자료 출처 — …" 한 줄로 렌더링된다.
+
+---
+
+# 브랜드 프로파일 — `_build/brands.json`
+
+제품 등재 전에 해당 브랜드 항목을 먼저 읽는다. 브랜드별로 다른 것(수집 방법·사고 기록·제품군 필수 사양)을 담는 자리다.
+
+```jsonc
+"hench": {
+  "pipeline": "_ops/hench/gen_models.py ← hench_products.csv",
+  "page_unit": "model",
+  "reference_page": "brands/hench/pellet-press-yp-15/",
+  "source":   { "url": "...", "collect": "수집 방법" },
+  "pricing":  "환율·계수·할인 적용 여부",
+  "pitfalls": ["전각 콜론(：) 파서 오판으로 재질 필드가 날아갔다 — 결측률 출력 필수", "..."],
+  "derived":  ["필요 하중 T = 700MPa × πd²/4 ÷ 9806.65"],
+  "model_block_min": 3,
+  "default_required_specs": ["무게"],
+  "families": {
+    "cylindrical-die": { "match": ["cylindrical-die"],
+                         "required_specs": ["무게", "인덴터 경도", "재질", "캐비티 깊이"] }
+  }
+}
+```
+
+**`required_specs` 는 추측해서 적지 않는다.** 그 제품군 기존 페이지 **전원이 갖고 있는** 사양 라벨을 산출해서 넣는다
+(`python _ops/seed_brand_families.py --write` — 최초 1회용. 이후엔 손으로 관리한다).
+추측해 넣으면 기존 페이지가 무더기로 걸려 빌드가 서고, 결국 유예 목록에 밀어 넣게 된다.
+
+**`model_block_min`** — 시리즈를 한 페이지에 묶을 때 대표 모델 하나만 싣지 않는다.
+모델별 사진·사양 블록(`.mdl-hd`)이나 최소한 썸네일 모델명 라벨(`.thlb`)을 넣어야 고객이 각 모델을 볼 수 있다.

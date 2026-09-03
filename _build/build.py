@@ -2181,6 +2181,30 @@ def build_product_pages():
 # 검사만 하고 빌드를 중단하지 않는다. 구형 브랜드는 순차 이관 부채이므로 제외.
 # ============================================================================
 
+def _brand_profiles():
+    """_build/brands.json — 브랜드 프로파일 SSOT. 제품군별 필수 사양·수집 함정·기준 통과본."""
+    bp = os.path.join(SCRIPT_DIR, 'brands.json')
+    if not os.path.exists(bp):
+        return {}
+    try:
+        return json.loads(read(bp)).get('brands', {})
+    except Exception as e:
+        print('  [warn] brands.json 읽기 실패: %s' % e)
+        return {}
+
+
+PP_MODEL_BLOCK_MIN = 3      # 모델 이 수 이상이면 모델별 내용 블록을 요구한다
+
+
+def _brand_family(prof, slug):
+    """슬러그에 맞는 제품군을 찾아 (이름, 필수사양) 반환. 없으면 브랜드 기본값."""
+    for name, fam in (prof.get('families') or {}).items():
+        for m in fam.get('match', []):
+            if m in slug:
+                return name, fam.get('required_specs') or []
+    return None, prof.get('default_required_specs') or []
+
+
 LINT_SKIP_BRANDS = {'sh-scientific', 'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
 LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
 # 페이지가 자기 자신을 설명하는 메타 문구 — 데이터는 표로, 안내 문장은 쓰지 않는다
@@ -2210,11 +2234,17 @@ def lint_detail_pages():
     root = os.path.join(ROOT_DIR, 'brands')
     if not os.path.isdir(root):
         return
+    profiles = _brand_profiles()
     warns, checked = [], 0
     for brand in sorted(os.listdir(root)):
         bdir = os.path.join(root, brand)
         if not os.path.isdir(bdir) or brand in LINT_SKIP_BRANDS:
             continue
+        prof = profiles.get(brand)
+        if prof is None:
+            warns.append(('brands/%s/' % brand, 'NO_BRAND_PROFILE',
+                          '_build/brands.json 에 브랜드 프로파일이 없다 — 수집 방법·기준 통과본·제품군 필수사양을 먼저 적을 것'))
+            prof = {}
         for slug in sorted(os.listdir(bdir)):
             p = os.path.join(bdir, slug, 'index.html')
             if not os.path.isfile(p):
@@ -2258,6 +2288,28 @@ def lint_detail_pages():
                 top = body.split('class="detail-top"', 1)[1].split('</section>', 1)[0]
                 if not re.search(LINT_PAT['대표사진'], top):
                     warns.append((rel, 'IMG_OUTSIDE', '대표사진이 상단 블록(.detail-top) 밖에 있음'))
+
+            # 2-1) 제품군 필수 사양 (brands.json)
+            fam, req = _brand_family(prof, slug)
+            if req:
+                have = set(x.strip() for x in re.findall(r'<th[^>]*>([^<]{1,24})</th>', body))
+                miss_spec = [r for r in req if r not in have]
+                if miss_spec:
+                    warns.append((rel, 'REQ_SPEC', '%s 제품군 필수 사양 누락: %s'
+                                  % (fam or '브랜드 기본', ' · '.join(miss_spec))))
+
+            # 2-2) 시리즈 페이지인데 모델별 내용이 없다
+            mm = re.search(r"data-models='(\[.*?\])'", html, re.S)
+            try:
+                nmodel = len(json.loads(mm.group(1))) if mm else 0
+            except Exception:
+                nmodel = 0
+            need = prof.get('model_block_min', PP_MODEL_BLOCK_MIN)
+            if nmodel >= need and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im', body):
+                warns.append((rel, 'NO_MODEL_BLOCK',
+                              '모델 %d종을 한 페이지에 담았는데 모델별 사진·사양 블록이 없다 '
+                              '— 고객이 대표 모델 말고는 내용을 볼 수 없다 (.mdl-hd 또는 썸네일 라벨 .thlb)'
+                              % nmodel))
 
             # 3) 금지 색상
             low = body.lower()

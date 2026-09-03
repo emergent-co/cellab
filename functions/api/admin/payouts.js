@@ -1,0 +1,203 @@
+// functions/api/admin/payouts.js — 용역비(사업소득) 지급내역
+//   GET  ?ym=YYYY-MM        그 달 목록 + 합계 (주민번호는 «항상» 마스킹해서 내보낸다)
+//   GET  ?id=<id>&full=1    한 건 (수정용 — 여기서만 전체 번호를 내보낸다)
+//   POST {action:'save'|'delete'|'share'}
+//
+// 주민번호는 지급명세서 신고에 전체가 필요해 DB엔 전체를 두지만,
+// 목록·메일처럼 «여러 곳으로 흘러가는» 경로에는 절대 전체를 싣지 않는다.
+import { json, needAdmin, adminOK, kstISO, kstDate, randomToken, logEvent } from '../_lib.js';
+import { sendMail, mailConfigured } from '../_mailer.js';
+
+const digits = (v) => String(v || '').replace(/[^0-9]/g, '');
+const won = (n) => Number(n || 0).toLocaleString('ko-KR');
+
+/** 880101-1****** — 뒤 6자리는 어디에도 내보내지 않는다 */
+export function maskRrn(v) {
+  const d = digits(v);
+  if (d.length < 7) return d ? `${d.slice(0, 6)}-*******` : '';
+  return `${d.slice(0, 6)}-${d[6]}******`;
+}
+
+/** 3.3% 원천징수 — 소득세 3% + 지방소득세 0.3%, 각각 10원 미만 절사 */
+export function withhold(gross, rate) {
+  const g = Math.max(0, Math.round(Number(gross) || 0));
+  const r = Number(rate) || 3;                     // 사업소득 3, 기타소득 20 등
+  const inc = Math.floor((g * r) / 100 / 10) * 10;
+  const loc = Math.floor(inc / 10 / 10) * 10;      // 소득세의 10%
+  return { tax_income: inc, tax_local: loc, net: g - inc - loc };
+}
+
+const ymOf = (v) => {
+  const m = String(v || '').match(/^(\d{4})-(\d{2})/);
+  return m ? `${m[1]}-${m[2]}` : kstDate().slice(0, 7);
+};
+
+export async function onRequest({ request, env }) {
+  if (!(await adminOK(request, env))) return needAdmin();
+  if (request.method === 'GET') return get(request, env);
+  if (request.method === 'POST') return post(request, env);
+  return json({ error: 'method_not_allowed' }, 405);
+}
+
+async function get(request, env) {
+  const u = new URL(request.url).searchParams;
+
+  if (u.get('id')) {
+    const r = await env.DB.prepare('SELECT * FROM payouts WHERE id=?').bind(u.get('id')).first();
+    if (!r) return json({ error: 'not_found' }, 404);
+    // 수정 화면에서만 전체를 준다 — 열었다는 사실을 남긴다
+    await logEvent(env, { action: 'payout_view', actor: 'admin', detail: `${r.name} 주민번호 열람` });
+    return json({ payout: r });
+  }
+
+  const ym = ymOf(u.get('ym'));
+  const { results } = await env.DB.prepare(
+    'SELECT * FROM payouts WHERE substr(paid_at,1,7)=? ORDER BY paid_at, id').bind(ym).all();
+  const rows = (results || []).map((r) => ({ ...r, rrn: maskRrn(r.rrn) }));
+  const sum = rows.reduce((a, r) => ({
+    gross: a.gross + (r.gross || 0), tax: a.tax + (r.tax_income || 0) + (r.tax_local || 0),
+    net: a.net + (r.net || 0),
+  }), { gross: 0, tax: 0, net: 0 });
+
+  // 달 고르기용 — 기록이 있는 달만
+  const months = ((await env.DB.prepare(
+    'SELECT DISTINCT substr(paid_at,1,7) AS ym FROM payouts ORDER BY ym DESC LIMIT 36').all()).results || [])
+    .map((x) => x.ym);
+  const share = await env.DB.prepare(
+    'SELECT ym, to_addr, expires_at, opened_at, created_at FROM payout_shares WHERE ym=? ORDER BY id DESC LIMIT 1')
+    .bind(ym).first();
+
+  return json({ ym, rows, sum, months, share, tax_mail: env.TAX_MAIL || 'better304@naver.com' });
+}
+
+async function post(request, env) {
+  const b = await request.json().catch(() => ({}));
+  const now = kstISO();
+
+  if (b.action === 'delete') {
+    const r = await env.DB.prepare('SELECT name, paid_at FROM payouts WHERE id=?').bind(b.id).first();
+    await env.DB.prepare('DELETE FROM payouts WHERE id=?').bind(b.id).run();
+    await logEvent(env, { action: 'payout_delete', actor: 'admin',
+      detail: `용역비 지급 삭제 ${r ? `${r.paid_at} ${r.name}` : b.id}` });
+    return json({ ok: true });
+  }
+
+  if (b.action === 'save') {
+    const name = String(b.name || '').trim();
+    if (!name) return json({ error: 'no_name', message: '받는 분 이름을 입력해주세요.' }, 400);
+    const day = String(b.paid_at || '').slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) {
+      return json({ error: 'bad_date', message: '지급일을 정확히 입력해주세요.' }, 400);
+    }
+    const rrn = digits(b.rrn);
+    if (rrn && rrn.length !== 13) {
+      return json({ error: 'bad_rrn', message: '주민등록번호 13자리를 정확히 입력해주세요.' }, 400);
+    }
+    const gross = Math.max(0, Math.round(Number(b.gross) || 0));
+    if (!gross) return json({ error: 'no_amount', message: '지급액을 입력해주세요.' }, 400);
+
+    // 자동 계산값을 기본으로 쓰되, 손으로 고친 값이 오면 그걸 따른다 (기타소득 등)
+    const auto = withhold(gross, b.rate);
+    const inc = b.tax_income == null ? auto.tax_income : Math.max(0, Math.round(Number(b.tax_income) || 0));
+    const loc = b.tax_local == null ? auto.tax_local : Math.max(0, Math.round(Number(b.tax_local) || 0));
+    const net = gross - inc - loc;
+
+    const args = [day, name, rrn, String(b.reason || '').trim(), gross, inc, loc, net,
+                  String(b.bank || '').trim(), String(b.memo || '').trim()];
+
+    if (b.id) {
+      await env.DB.prepare(
+        `UPDATE payouts SET paid_at=?, name=?, rrn=?, reason=?, gross=?, tax_income=?, tax_local=?,
+                net=?, bank=?, memo=?, updated_at=? WHERE id=?`
+      ).bind(...args, now, b.id).run();
+      await logEvent(env, { action: 'payout_edit', actor: 'admin', detail: `용역비 ${day} ${name} 수정` });
+      return json({ ok: true, id: b.id });
+    }
+    const r = await env.DB.prepare(
+      `INSERT INTO payouts (paid_at, name, rrn, reason, gross, tax_income, tax_local, net, bank, memo,
+              created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
+    ).bind(...args, now, now).run();
+    await logEvent(env, { action: 'payout_add', actor: 'admin',
+      detail: `용역비 ${day} ${name} ${won(gross)}원` });
+    return json({ ok: true, id: r.meta.last_row_id });
+  }
+
+  /* ---- 세무사에게 보내기 ----
+     메일 본문에는 마스킹한 표만 싣는다. 전체 번호는 토큰이 있어야 열리는 링크 뒤에 둔다.
+     메일함에 주민번호가 평문으로 쌓이면, 그 메일함이 곧 유출 경로가 된다. */
+  if (b.action === 'share') {
+    const ym = ymOf(b.ym);
+    const to = String(b.to || env.TAX_MAIL || 'better304@naver.com').trim();
+    if (!mailConfigured(env)) return json({ error: 'no_mail', message: 'RESEND_API_KEY 미설정' }, 400);
+
+    const { results } = await env.DB.prepare(
+      'SELECT * FROM payouts WHERE substr(paid_at,1,7)=? ORDER BY paid_at, id').bind(ym).all();
+    const rows = results || [];
+    if (!rows.length) return json({ error: 'empty', message: `${ym} 에 기록된 지급이 없습니다.` }, 400);
+
+    const token = randomToken();
+    const exp = new Date(Date.now() + 7 * 864e5 + 9 * 3600e3).toISOString().slice(0, 19).replace('T', ' ');
+    await env.DB.prepare(
+      'INSERT INTO payout_shares (ym, token, to_addr, expires_at, created_at) VALUES (?,?,?,?,?)')
+      .bind(ym, token, to, exp, now).run();
+
+    const origin = new URL(request.url).origin;
+    const link = `${origin}/payout/${token}`;
+    const esc = (t) => String(t == null ? '' : t)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const sum = rows.reduce((a, r) => ({
+      gross: a.gross + (r.gross || 0), tax: a.tax + (r.tax_income || 0) + (r.tax_local || 0),
+      net: a.net + (r.net || 0) }), { gross: 0, tax: 0, net: 0 });
+
+    const tr = rows.map((r) => `<tr>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee">${esc(r.paid_at)}</td>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee">${esc(r.name)}</td>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee;color:#6B6B6B">${esc(maskRrn(r.rrn))}</td>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee">${esc(r.reason || '')}</td>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee;text-align:right">${won(r.gross)}</td>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee;text-align:right">${won((r.tax_income||0)+(r.tax_local||0))}</td>
+      <td style="padding:8px 6px;border-bottom:1px solid #eee;text-align:right">${won(r.net)}</td></tr>`).join('');
+
+    const html = `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;color:#1A1A1A;
+        max-width:720px;margin:0 auto;padding:26px 22px;line-height:1.6">
+      <div style="font-size:18px;font-weight:800;margin-bottom:4px">${ym} 용역비 지급내역</div>
+      <div style="font-size:13px;color:#6B6B6B;margin-bottom:18px">실험셋업연구소 (이머전트) · 사업자 328-03-02926</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+        <thead><tr style="background:#F2F4F6">
+          <th style="padding:8px 6px;text-align:left">지급일</th>
+          <th style="padding:8px 6px;text-align:left">성명</th>
+          <th style="padding:8px 6px;text-align:left">주민등록번호</th>
+          <th style="padding:8px 6px;text-align:left">지급 사유</th>
+          <th style="padding:8px 6px;text-align:right">지급액</th>
+          <th style="padding:8px 6px;text-align:right">원천징수</th>
+          <th style="padding:8px 6px;text-align:right">실지급액</th>
+        </tr></thead>
+        <tbody>${tr}</tbody>
+        <tfoot><tr style="font-weight:800;background:#FAFBFC">
+          <td colspan="4" style="padding:9px 6px">합계 ${rows.length}건</td>
+          <td style="padding:9px 6px;text-align:right">${won(sum.gross)}</td>
+          <td style="padding:9px 6px;text-align:right">${won(sum.tax)}</td>
+          <td style="padding:9px 6px;text-align:right">${won(sum.net)}</td>
+        </tr></tfoot>
+      </table>
+      <div style="margin:22px 0 8px;padding:14px 16px;background:#EAF4FB;border-radius:10px">
+        <div style="font-size:13.5px;font-weight:700;margin-bottom:6px">주민등록번호 전체는 아래 링크에서 확인하실 수 있습니다</div>
+        <a href="${link}" style="display:inline-block;background:#3B3695;color:#fff;text-decoration:none;
+          padding:11px 18px;border-radius:9px;font-size:13.5px;font-weight:700">전체 내역 열기</a>
+        <div style="font-size:11.5px;color:#6B6B6B;margin-top:8px">
+          메일에 주민등록번호를 그대로 싣지 않으려고 링크로 나눠 보냅니다.<br>
+          이 링크는 <b>${exp.slice(0, 10)}</b> 까지만 열립니다. 필요하시면 다시 보내드리겠습니다.</div>
+      </div>
+      <div style="font-size:12px;color:#9AA1AD;margin-top:20px">
+        문의 070-8983-2600 · info@rndsetup.com</div>
+    </div>`;
+
+    const r = await sendMail(env, { to, subject: `[실험셋업연구소] ${ym} 용역비 지급내역`, html });
+    await logEvent(env, { action: 'payout_share', actor: 'admin', result: r.ok ? 'ok' : 'fail',
+      to_addr: to, detail: r.ok ? `${ym} 지급내역 ${rows.length}건 발송` : `발송 실패: ${r.error}` });
+    if (!r.ok) return json({ error: 'send', message: r.error }, 502);
+    return json({ ok: true, to, count: rows.length, expires_at: exp });
+  }
+
+  return json({ error: 'unknown_action' }, 400);
+}

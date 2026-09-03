@@ -102,6 +102,17 @@
   - 제품과 무관한 논문은 넣지 않는다. 없으면 섹션 생략.
 - 체크리스트·스키마 전문 = `_build/products/_SCHEMA.md`
 
+**브랜드 프로파일 = `_build/brands.json` (제품 올리기 전에 반드시 읽는다)**
+
+브랜드마다 자료를 가져오는 사이트·구성·중요한 사양이 다르다. 그 차이를 문서가 아니라 데이터로 둔다.
+
+- `pipeline` 이 브랜드 페이지를 뭐가 만드는지 · `page_unit` · `reference_page` 기준 통과본
+- `source` 수집 방법 · `pitfalls` 사고 기록(전각 콜론 파서, 워터마크 컷, CDN 차단 등) · `pricing` 환율·할인 적용
+- `families[].match` 슬러그 부분문자열 → `required_specs` 그 제품군이 반드시 갖춰야 할 사양 라벨.
+  **기존 페이지 전원 공통 라벨에서 산출했다**(`_ops/seed_brand_families.py`) — 기준선 위반 0, 새 페이지가 빠뜨릴 때만 걸린다.
+- `model_block_min`(기본 3) — 한 페이지에 모델을 이 수 이상 담으면 **모델별 사진·사양 블록**(`.mdl-hd` 또는 썸네일 모델명 라벨 `.thlb`)을 요구한다. 대표 모델 하나만 싣고 나머지를 드롭다운에만 두면 고객이 내용을 볼 수 없다.
+- `brands/<브랜드>/` 가 있는데 여기 항목이 없으면 `NO_BRAND_PROFILE` 로 빌드가 선다.
+
 **신규 상세페이지 = `_build/products/<brand>.json` 1건 추가 + 빌드. 손 HTML 작성 금지.**
 
 - 스키마·필드 설명 = `_build/products/_SCHEMA.md`
@@ -111,7 +122,7 @@
 
 **빌드 린터 `lint_detail_pages()` — 신규 위반은 빌드를 세운다(커밋 불가).**
 `_build/lint_allow.txt` 에 적힌 기존 부채만 경고로 넘어가고, 새로 생긴 위반이 있으면 `build.py` 가 **파일을 쓰지 않고 exit 1** → `go.ps1` 이 "빌드 실패"로 중단해 커밋·푸시가 막힌다. 위반 메시지에 유예 목록에 넣을 줄이 그대로 찍히니, 의도한 예외면 그 줄을 `lint_allow.txt` 에 추가한다.
-검사 항목(코드): `STYLE_INLINE` `NO_DETAIL_CSS` `MISSING_BLOCK` `ORDER` `IMG_OUTSIDE` `BAD_COLOR` `BORDER_LEFT` `BAD_PHRASE` `NO_BUYBOX` `NO_SPEC_CTA` `HTML_END` —
+검사 항목(코드): `STYLE_INLINE` `NO_DETAIL_CSS` `MISSING_BLOCK` `ORDER` `IMG_OUTSIDE` `BAD_COLOR` `BORDER_LEFT` `BAD_PHRASE` `NO_BUYBOX` `NO_SPEC_CTA` `HTML_END` `NO_BRAND_PROFILE` `REQ_SPEC` `NO_MODEL_BLOCK` —
 필수 블록(크럼·h1·대표사진·정답블록) 존재와 순서, 가격표/견적 CTA 부재, 금지 색상(`#1E3A5F`·`#1a6e56`·`#C2410C`·`#E8632C`), `border-left` 3~4px 좌측 색 바, 인라인 `<style>` 잔존, `detail.css` 링크 누락, `</html>` 누락.
 구형 브랜드(삼흥·리드플루이드·Alicat)는 순차 이관 부채라 검사 제외(`LINT_SKIP_BRANDS`).
 

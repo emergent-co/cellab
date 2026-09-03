@@ -1496,8 +1496,8 @@ function loadKakao(cb){
 var VT = { home:'홈', order:'주문하기', new:'주문하기', orders:'정산하기 · 거래내역',
            settle:'정산하기 · 거래내역', admHome:'관리자 홈',
            admTodo:'할 일', admOps:'주문 · 정산 · 문의', admDocs:'문서 발행',
-           admClients:'거래처 관리', admMembers:'거래처 관리' };
-var VIEWS = ['home','order','new','orders','settle','admHome','admTodo','admOps','admDocs','admClients','admMembers'];
+           admClients:'거래처 관리', admMembers:'거래처 관리', admPay:'용역비 지급내역' };
+var VIEWS = ['home','order','new','orders','settle','admHome','admTodo','admOps','admDocs','admClients','admMembers','admPay'];
 var ADMVIEWS = ['admHome','admTodo','admOps','admDocs','admClients','admMembers'];
 function skeleton(){
   $('#main').innerHTML = '<div class="ttl">'+VT[view]+'</div>'
@@ -1528,6 +1528,7 @@ function render(){
     }
     if (view==='admOps')  return viewAdmOps();
     if (view==='admDocs') return viewAdmDocs();
+    if (view==='admPay')  return viewAdmPay();
     if (view==='admMembers'){                                   // 옛 주소 호환
       view='admClients'; location.replace('#admClients'); syncNav();
     }
@@ -2181,6 +2182,7 @@ var ICON = {
   check:  '<path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
   doc:    '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/>',
   people: '<path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9.5 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M22 20v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+  pay:    '<path d="M12 2v20M17 6.5C17 4.6 14.8 3.5 12 3.5S7 4.6 7 6.5s2.2 2.8 5 3.4 5 1.5 5 3.6-2.2 3-5 3-5-1.1-5-3"/>',
 };
 function tile(v, icon, title, desc, badge, cls){
   return '<button class="tile'+(cls?' '+cls:'')+'" data-go="'+v+'">'
@@ -3701,6 +3703,7 @@ function paintAdmHome(){
       + tile('admDocs',    ICON.doc,    '문서 발행',    '견적서 · 거래명세서 · 예약발송', '', 'pri')
       + tile('admOps',     ICON.money,  '주문 · 정산 · 문의', '들어온 일 처리', (ord.length+set.length+inq.length)||'', (ord.length+set.length+inq.length)?'hot':'')
       + tile('admClients', ICON.people, '거래처 관리', '정보 · 발행정보 · 이력 · 멤버십', mem.length||'', mem.length?'hot':'')
+      + tile('admPay',     ICON.pay,    '용역비 지급내역', '누구에게 얼마를 왜 · 세무사 발송', '', '')
     + '</div>'
 
     + '<div class="ah2">'
