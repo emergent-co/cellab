@@ -9,6 +9,14 @@ export function mailFrom(env) {
   return env.MAIL_FROM || '실험셋업연구소 <order@rndsetup.com>';
 }
 
+/* 서류 메일의 «보관용 숨은참조».
+   서류는 Resend 가 직접 보내므로 지메일에는 아무 흔적이 남지 않는다.
+   보낸 서류를 지메일에서도 찾고 첨부 PDF까지 그대로 두려면 사본이 한 통 필요하다.
+   숨은참조라 받는 사람에게는 보이지 않는다. 주소를 바꾸려면 MAIL_BCC 를 넣으면 된다. */
+export function mailBcc(env) {
+  return env.MAIL_BCC === '' ? '' : (env.MAIL_BCC || 'emgt.yhlee@gmail.com');
+}
+
 /* 답장이 돌아올 주소.
    보내는 주소(order@)는 발송 전용이라 수신 라우팅이 없다 —
    고객이 견적서 메일에 그냥 «답장»을 누르면 그 메일은 아무 데도 도착하지 않는다.
@@ -32,6 +40,17 @@ export async function sendMail(env, m) {
   };
   if (m.text) body.text = m.text;
   if (m.cc) body.cc = Array.isArray(m.cc) ? m.cc : [m.cc];
+  if (m.bcc) {
+    const list = (Array.isArray(m.bcc) ? m.bcc : [m.bcc])
+      .map((x) => splitAddr(x).addr).filter(Boolean);
+    // 받는 사람·참조에 이미 있는 주소는 뺀다 — 같은 메일이 두 통 오면 그게 더 성가시다
+    // cc 는 «a@x.com, b@y.com» 처럼 한 줄로 올 수도 있다 — 쉼표까지 풀어서 본다
+    const had = new Set([].concat(body.to, body.cc || [])
+      .flatMap((x) => String(x || '').split(/[,;]/))
+      .map((x) => splitAddr(x).addr.toLowerCase()).filter(Boolean));
+    const bcc = [...new Set(list.filter((a) => !had.has(a.toLowerCase())))];
+    if (bcc.length) body.bcc = bcc;
+  }
   body.reply_to = m.reply_to || mailReplyTo(env);
   if (m.attachments?.length) body.attachments = m.attachments;
 

@@ -2,7 +2,7 @@
 import { kstISO, logEvent, DOC_LABEL } from './_lib.js';
 import { renderDocHTML } from './_doctpl.js';
 import { getOrMakePdf, pdfConfigured, b64 } from './_pdf.js';
-import { sendMail, mailConfigured } from './_mailer.js';
+import { sendMail, mailConfigured, mailBcc } from './_mailer.js';
 
 export function calcTotals(items, fixed) {
   if (fixed && Number(fixed.total)) {
@@ -81,7 +81,9 @@ export async function deliverMany(env, { docs, to, cc, subject, html, actor = 'a
   const extra = (files || [])
     .map((f) => ({ filename: String(f.name || 'file').slice(0, 120), content: String(f.b64 || '') }))
     .filter((f) => f.content);
-  const r = await sendMail(env, { to, cc, subject, html: body, attachments: attachments.concat(extra) });
+  // 보낸 서류는 지메일에도 한 통 남긴다 — 숨은참조라 고객에게는 보이지 않는다
+  const r = await sendMail(env, { to, cc, bcc: mailBcc(env), subject, html: body,
+    attachments: attachments.concat(extra) });
   const now = kstISO();
 
   if (!r.ok) {
