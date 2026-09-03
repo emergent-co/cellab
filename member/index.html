@@ -103,6 +103,20 @@ a{color:inherit;text-decoration:none}
 .newrow{display:flex;align-items:center;gap:9px;width:100%;background:#fff;border:1px solid #F3DCB8;
   border-radius:9px;padding:9px 11px;margin-bottom:5px;cursor:pointer;text-align:left;font:inherit;color:inherit}
 .newrow:last-child{margin-bottom:0}
+/* 끝난 정산 — 목록 아래에 접어 둔다. 위의 newbox 와 색을 달리해야 «할 일»과 안 헷갈린다 */
+.donebox{border:1px solid var(--line);background:#FAFBFC;border-radius:12px;padding:10px 12px 8px;margin-top:12px}
+.donebox[hidden]{display:none}
+.doneh{display:flex;align-items:center;gap:6px;width:100%;background:none;border:0;padding:0 0 6px;
+  cursor:pointer;font-size:11.5px;font-weight:800;color:var(--mut);letter-spacing:.03em;text-align:left}
+.doneh i{font-style:normal;background:#8A94A3;color:#fff;border-radius:999px;padding:1px 7px}
+.donerow{display:flex;align-items:center;gap:9px;width:100%;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:8px 10px;margin-bottom:6px;cursor:pointer;text-align:left}
+.donerow:last-child{margin-bottom:0}
+.donerow:hover{border-color:#C7CFDA;background:#FCFDFE}
+.donerow .t{flex:1;min-width:0}
+.donerow .t b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.donerow .t small{display:block;font-size:11.5px;color:var(--mut)}
+.donerow .a{font-size:13px;font-weight:700;color:var(--mut)}
 .newrow:hover{border-color:#E0B476;background:#FFFDF8}
 .newrow .t{flex:1;min-width:0}
 .newrow .t b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1727,7 +1741,8 @@ function viewAdmOps(){
         + '<div class="newbox" id="asNew" hidden></div>'
         + '<div class="achips" id="asChips"></div>'
         + '<div class="tools" style="margin-bottom:10px"><input type="search" id="asQ" placeholder="거래처 · 담당자" value="'+esc(asKw)+'"></div>'
-        + '<div class="panel list" id="asList"><div class="empty">불러오는 중…</div></div></section>'
+        + '<div class="panel list" id="asList"><div class="empty">불러오는 중…</div></div>'
+        + '<div class="donebox" id="asDone" hidden></div></section>'
       + '<section class="opscol"><h3 class="opsh">견적 문의<i class="cnt" id="amI" hidden></i></h3>'
         + '<div class="panel list" id="amInqs"><div class="empty">불러오는 중…</div></div></section>'
     + '</div>';
@@ -2119,7 +2134,7 @@ function asChips(){
   el.onclick = function(e){ var b=e.target.closest('.achip'); if(!b) return; asFilter=b.dataset.s; asChips(); asPaint(); };
 }
 function asPaint(){
-  asNew();
+  asNew(); asDone();
   var el=$('#asList'); if(!el) return;
   // 정산 순위 = 받을 돈이 많은 곳부터. 같으면 후불이 위로 (선불은 미리 받아 급할 게 없다)
   var cs = asAll.filter(asMatch).slice().sort(function(a,b){
@@ -2150,6 +2165,39 @@ function asPaint(){
   el.querySelectorAll('tbody tr[data-id]').forEach(function(tr){ tr.onclick=function(){ asOpen(tr.dataset.id); }; });
   if ($('#asMoreBtn')) $('#asMoreBtn').onclick = function(){ asMore = true; asPaint(); };
 }
+/* 끝난 정산 — 목록 아래에 접어 둔다.
+   처리가 끝나면 위의 «새 정산 요청»에서 사라지는데, 그러면 어제 뭘 끝냈는지 볼 데가 없다.
+   평소에는 접어 두고, 눌렀을 때만 최근 것부터 펼친다 — 화면을 길게 만들지 않으려고. */
+var SQDONE = ['서류발급 완료', '입금완료', '반려'];
+var AS_DONE_TOP = 5;
+var asDoneOpen = false, asDoneMore = false;
+function asDone(){
+  var box = $('#asDone'); if(!box) return;
+  var done = asReq.filter(function(r){ return SQDONE.indexOf(r.status)>=0; });
+  if(!done.length){ box.innerHTML=''; box.hidden = true; return; }
+  box.hidden = false;
+  var show = asDoneOpen ? (asDoneMore ? done : done.slice(0, AS_DONE_TOP)) : [];
+  var rest = done.length - show.length;
+  box.innerHTML = '<button class="doneh" id="asDoneH">'
+      + (asDoneOpen ? '▾' : '▸') + ' 완료된 정산 <i>'+done.length+'</i></button>'
+    + show.map(function(r){
+        var its = r.items||[];
+        var ttl = its.length ? its[0].name + (its.length>1?' 외 '+(its.length-1)+'건':'') : '(항목 없음)';
+        return '<button class="donerow" data-sid="'+r.id+'">'
+          +'<span class="badge '+(SQ[r.status]||'q0')+'">'+esc(r.status)+'</span>'
+          +'<span class="t"><b>'+esc(r.company||r.contact||'—')+'</b>'
+            +'<small>'+esc(ttl)+' · '+esc(String(r.created_at||'').slice(0,10))+'</small></span>'
+          +'<span class="a">'+won(r.total)+'원</span></button>'; }).join('')
+    + (asDoneOpen && rest > 0
+        ? '<button class="mini" id="asDoneMore" style="width:100%;margin-top:4px">남은 '+rest+'건 더 보기</button>'
+        : '');
+  $('#asDoneH').onclick = function(){ asDoneOpen = !asDoneOpen; asDoneMore = false; asDone(); };
+  var mb = $('#asDoneMore'); if (mb) mb.onclick = function(){ asDoneMore = true; asDone(); };
+  box.querySelectorAll('[data-sid]').forEach(function(b){
+    b.onclick = function(){ asReqOpen(Number(b.dataset.sid)); };
+  });
+}
+
 // 새로 들어온 정산 요청 — 놓치면 안 되는 것이라 목록 위에 띄운다
 function asNew(){
   var box = $('#asNew'); if(!box) return;

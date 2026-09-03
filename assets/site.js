@@ -862,7 +862,9 @@
       back.querySelector('#qmType').value  = '제품문의';
       var forEl = back.querySelector('#qmFor');
       if (forEl) forEl.textContent = product || '';
-      back.style.display = 'flex';
+      /* 다른 모드와 같은 방식으로 연다. 예전에는 여기만 인라인 style 로 열어서
+         close() 가 클래스만 지우고 인라인이 남아 — X·바깥클릭·ESC 어느 것으로도 안 닫혔다. */
+      back.classList.add('on');
       document.body.style.overflow = 'hidden';
       var f0 = back.querySelector('#qmMsg'); if (f0) setTimeout(function(){ f0.focus(); }, 30);
       return;
@@ -912,7 +914,7 @@
   }
 
   function close() {
-    back.classList.remove('on');
+    back.classList.remove('on'); back.style.display = '';
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
@@ -944,9 +946,19 @@
     e.preventDefault();
     errEl.classList.remove('on');
     var missing = [];
-    (back.querySelector('#qmPump').style.display !== 'none' ? ['구성헤드','목표유량','이름','소속','이메일'] : ['샘플시료','사용공정','이름','소속','이메일']).forEach(function (n) {
+    /* 모달은 세 모드다 — 제품문의 · 펌프 견적 · 열처리 견적.
+       예전에는 펌프인지만 보고 갈라서, 제품문의에서도 숨어 있는 샘플시료·사용공정을
+       요구해 보내기가 아예 막혔다. 모드를 셋으로 갈라 보고,
+       그래도 화면에 없는 칸은 요구하지 않는다(offsetParent 검사). */
+    var prodOn = back.querySelector('#qmProdBox').style.display !== 'none';
+    var pumpOn = back.querySelector('#qmPump').style.display !== 'none';
+    var need = prodOn ? ['문의내용','이름','소속','이메일']
+             : pumpOn ? ['구성헤드','목표유량','이름','소속','이메일']
+                      : ['샘플시료','사용공정','이름','소속','이메일'];
+    need.forEach(function (n) {
       var f = form.querySelector('[name="' + n + '"]');
-      if (f && !f.value.trim()) missing.push(n);
+      if (!f || f.offsetParent === null) return;   // 화면에 없는 칸은 막지 않는다
+      if (!f.value.trim()) missing.push(n);
     });
     var mail = form.querySelector('[name="이메일"]');
     if (!missing.length && mail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())) {
