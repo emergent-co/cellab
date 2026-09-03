@@ -32,32 +32,11 @@ python _build\build.py
 if ($LASTEXITCODE -ne 0) { Die "빌드 실패" }
 
 # ── 3. 무결성 검증 (</html> 종료 + JSON-LD 파싱)
+# 검사기는 파일로 뺐다. here-string 을 파이프로 밀어 넣으면 윈도우 파이썬이 stdin 을 UTF-8 로
+# 안 읽어 한글이 깨지고, 실패해도 «왜»가 안 나온다. verify.py 는 이유와 파일 끝을 같이 찍고,
+# 쓰기 직후 경합으로 짧게 읽힌 경우엔 잠깐 뒤 다시 읽어 본다.
 Step "3. HTML 무결성 검증"
-$py = @'
-import os, re, json, sys
-bad = []; ld = []; n = 0; l = 0
-SKIP = {'.git', '.wrangler', 'node_modules', '_build', '_to_delete', 'img', 'assets', 'out'}
-for root, dirs, fs in os.walk('.'):
-    # continue 로는 그 아래까지 훑는 것을 못 막는다 — dirs 를 잘라야 .git(3만 5천 개)을 건너뛴다
-    dirs[:] = [d for d in dirs if d not in SKIP and not d.startswith('.')]
-    r = root.replace('\\', '/')
-    for fn in fs:
-        if not fn.endswith('.html'): continue
-        p = os.path.join(root, fn); n += 1
-        t = open(p, encoding='utf-8').read()
-        if not t.rstrip().endswith('</html>'): bad.append(p)
-        for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', t, re.S):
-            l += 1
-            try: json.loads(m.group(1))
-            except Exception: ld.append(p)
-print('  HTML %d개 / JSON-LD %d블록' % (n, l))
-if bad:
-    print('  [X] </html> 미종료:'); [print('     ', x) for x in bad]; sys.exit(1)
-if ld:
-    print('  [X] JSON-LD 파싱 오류:'); [print('     ', x) for x in ld]; sys.exit(1)
-print('  무결성 OK')
-'@
-$py | python -
+python _build\verify.py
 if ($LASTEXITCODE -ne 0) { Die "무결성 검증 실패 — 커밋하지 않았습니다" }
 
 # ── 4. 원격 상태 확인
@@ -108,6 +87,9 @@ git commit -m $Message
 if ($LASTEXITCODE -ne 0) { Die "커밋 실패" }
 
 Step "6. 원격 최신 위로 재정렬 (rebase)"
+# 빌드가 파일을 다시 써서 «내용은 같고 시각만» 바뀐 항목이 남으면
+# pull --rebase 가 "You have unstaged changes" 로 거절한다. 먼저 인덱스를 훑어 정리한다.
+git update-index --refresh 2>$null | Out-Null
 git pull --rebase origin main
 if ($LASTEXITCODE -ne 0) {
     git rebase --abort
