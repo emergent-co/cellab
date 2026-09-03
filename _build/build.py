@@ -138,7 +138,10 @@ def flush_writes():
         d = os.path.dirname(key)
         if d and not os.path.isdir(d):
             os.makedirs(d, exist_ok=True)
-        with open(key, 'w', encoding='utf-8') as f:
+        # newline='\n' 이 없으면 윈도우에서 \n 이 \r\n 으로 바뀐다.
+        # 저장소는 .gitattributes 로 LF 를 쓰기로 했으므로, 커밋할 때마다 git 이
+        # 700개 넘는 파일에 «CRLF will be replaced by LF» 경고를 쏟고 되돌리는 일을 한다.
+        with open(key, 'w', encoding='utf-8', newline='\n') as f:
             f.write(_FCACHE[key])
         n += 1
     _DIRTY.clear()
@@ -2237,6 +2240,13 @@ def _brand_family(prof, slug):
 LINT_SKIP_BRANDS = {'sh-scientific', 'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
 LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
 # 페이지가 자기 자신을 설명하는 메타 문구 — 데이터는 표로, 안내 문장은 쓰지 않는다
+# 본문에 남은 중국어 간체 — 제조사 원문을 안 옮기고 그대로 붙인 흔적.
+# 제조사 상호(로마자 병기)와 한국어 한자어는 예외로 둔다.
+LINT_CJK_OK = ('天津恒创立达', '合肥原位科技', '純水', '濃酸', '常温', '眞空')
+# 제조사 카탈로그가(CNY)를 규격으로 잘못 실은 흔적. CNY 값은 늘 정수+.0 이고
+# 판매 단위가 붙는다. 0.4~0.6m/s 같은 실제 사양과 헷갈리지 않게 좁혀 둔다.
+LINT_CNY_LEAK = r'\d{2,}\.0\s*~\s*\d{2,}\.0\s*(?:g|장|세트|롤|개|㎡|박스|팩|m)(?![/\w])'
+
 LINT_BAD_PHRASES = ['옮긴 것입니다', '옮겼습니다', '확인하실 수 있습니다', '보실 수 있습니다',
                     '바로 나옵니다', '아래 표', '위 표', '다음과 같습니다']
 
@@ -2339,6 +2349,21 @@ def lint_detail_pages():
                               '모델 %d종을 한 페이지에 담았는데 모델별 사진·사양 블록이 없다 '
                               '— 고객이 대표 모델 말고는 내용을 볼 수 없다 (.mdl-hd 또는 썸네일 라벨 .thlb)'
                               % nmodel))
+
+            # 2-3) 본문에 중국어 원문이 남았다
+            txt = re.sub(r'<[^>]+>', ' ', body)
+            for ok in LINT_CJK_OK:
+                txt = txt.replace(ok, '')
+            cjk = re.findall(r'[\u4e00-\u9fff]+', txt)
+            if cjk:
+                warns.append((rel, 'CJK_BODY',
+                              '본문에 중국어 원문이 남았다 — 한글로 옮길 것: '
+                              + ' · '.join(dict.fromkeys(cjk))[:80]))
+
+            # 2-4) 규격 자리에 제조사 매입가(CNY)가 들어갔다
+            if re.search(LINT_CNY_LEAK, body):
+                warns.append((rel, 'CNY_LEAK',
+                              '규격 표기에 제조사 카탈로그가(CNY) 범위가 들어갔다 — 실제 규격으로 바꿀 것'))
 
             # 3) 금지 색상
             low = body.lower()
