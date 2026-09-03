@@ -1,47 +1,7 @@
-# 상세페이지 린터 유예 목록 — 여기 적힌 것만 경고로 넘어가고, 나머지 신규 위반은 빌드를 세운다.
-# 형식:  <경로> <코드>          (# 뒤는 주석)
-# 코드:  STYLE_INLINE(인라인 style 잔존) · NO_DETAIL_CSS · MISSING_BLOCK(필수 블록 없음)
-#        ORDER(블록 순서) · IMG_OUTSIDE · BAD_COLOR(금지 색상) · BORDER_LEFT(좌측 색 바)
-#        BAD_PHRASE(안내 메타 문구) · NO_BUYBOX(주문정보 없음) · NO_SPEC_CTA · HTML_END
-#
-# ── 2026-09-02 시점 이관 대기 부채. 이관하면서 한 줄씩 지운다. ──
-
-
-brands/hench/cylindrical-die-hmy/        STYLE_INLINE
-brands/hench/manual-pellet-press-yp/     STYLE_INLINE
-
-# neware 2장 — detail.css 이관 + 제품 사진 확보 대기
-brands/neware/ct-4008q/                  STYLE_INLINE
-brands/neware/ct-4008q/                  MISSING_BLOCK
-brands/neware/wgdw-chamber/              STYLE_INLINE
-brands/neware/wgdw-chamber/              MISSING_BLOCK
-
-# 가오스 1장 — 제품 사진 확보 대기
-brands/gaossunion/custom-material-working-electrode/  MISSING_BLOCK
-# hefei/xrd-li-cell — 병렬 세션 작업 중. 대표사진 미수집 상태로 빌드를 막고 있어 임시 예외.
-#   사진이 붙으면 MISSING_BLOCK 줄을 지울 것.
-brands/hefei/xrd-li-cell/            MISSING_BLOCK
-brands/hefei/xrd-li-cell/            STYLE_INLINE
-brands/hefei/afm-aqueous-cell/ STYLE_INLINE
-brands/hefei/afm-solidstate-li-cell/ STYLE_INLINE
-brands/hefei/raman-li-cell/ STYLE_INLINE
-brands/hefei/raman-li-vartemp-cell/ STYLE_INLINE
-brands/hefei/raman-liair-cell/ STYLE_INLINE
-brands/hefei/raman-thermalbattery-ht-cell/ STYLE_INLINE
-brands/hefei/uv-linaelectrolyte-cell/ STYLE_INLINE
-brands/hefei/xafs-fuelcell-cell/ STYLE_INLINE
-brands/hefei/xafs-li-cell/ STYLE_INLINE
-brands/hefei/xafs-li-vartemp-trans-cell/ STYLE_INLINE
-brands/hefei/xafs-znair-3e-cell/ STYLE_INLINE
-brands/hefei/xrd-li-vartemp-cell/ STYLE_INLINE
-brands/hefei/xrd-solidstate-cell/ STYLE_INLINE
-brands/hefei/xrd-thermalbattery-ht-cell/ STYLE_INLINE
-brands/hefei/xrd-znaq-3e-cell/ STYLE_INLINE
-
-# ── 시리즈 페이지 모델별 내용 누락 (2026-09-02 확인) ──
-# 한 페이지에 모델 3종 이상인데 모델별 사진·사양 블록이 없다.
-# 고객이 대표 모델 외 내용을 볼 수 없는 상태. 브랜드 생성기 수정으로 순차 해소하고 한 줄씩 지운다.
-# 해소 방법: .mdl-hd 모델 블록 또는 썸네일 모델명 라벨(.thlb) 추가.
+# 이관 대기 부채 — 여기 있는 조합은 경고만 하고 빌드를 세우지 않는다.
+# 형식: <경로> <코드>   ( # 뒤는 주석 )
+# 고친 페이지는 줄을 지운다. 새 위반은 절대 여기에 추가하지 말고 고칠 것.
+# 2026-09-03 재생성 — 규격 변형 페이지(용량·치수만 다른 것)는 린터가 스스로 걸러낸다.
 brands/aida/cell-c040/ NO_MODEL_BLOCK
 brands/aida/electrode-holder/ NO_MODEL_BLOCK
 brands/aida/electrode-stand-t0101/ NO_MODEL_BLOCK
@@ -69,60 +29,11 @@ brands/aida/sealed-cell-c001/ NO_MODEL_BLOCK
 brands/aida/sem-dual-electrode/ NO_MODEL_BLOCK
 brands/aida/xrd-cell-e602/ NO_MODEL_BLOCK
 brands/aida/zinc-air-cell-e100/ NO_MODEL_BLOCK
-brands/dodochem/dmc-anhydrous-solvent/ NO_MODEL_BLOCK
-brands/dodochem/dme-anhydrous-solvent/ NO_MODEL_BLOCK
-brands/dodochem/lb-002-lithium-ion-electrolyte/ NO_MODEL_BLOCK
-brands/dodochem/lb-008-lithium-ion-electrolyte/ NO_MODEL_BLOCK
-brands/dodochem/lifsi-battery-grade/ NO_MODEL_BLOCK
-brands/dodochem/litfsi-battery-grade/ NO_MODEL_BLOCK
-brands/dodochem/ls-002-lithium-sulfur-electrolyte/ NO_MODEL_BLOCK
-brands/dodochem/ls-009-lithium-sulfur-electrolyte/ NO_MODEL_BLOCK
-brands/dodochem/nc-004-naclo4-electrolyte/ NO_MODEL_BLOCK
-brands/dodochem/np-005-napf6-electrolyte/ NO_MODEL_BLOCK
-brands/dodochem/p-kp-001/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-001/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-005/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-014/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-015/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-037/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-046/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-064/ NO_MODEL_BLOCK
-brands/dodochem/p-lb-092/ NO_MODEL_BLOCK
-brands/dodochem/p-lk-001/ NO_MODEL_BLOCK
-brands/dodochem/p-ls-001/ NO_MODEL_BLOCK
-brands/dodochem/p-ls-013/ NO_MODEL_BLOCK
-brands/dodochem/p-nc-008/ NO_MODEL_BLOCK
-brands/dodochem/p-nc-009/ NO_MODEL_BLOCK
-brands/dodochem/p-nc-013/ NO_MODEL_BLOCK
-brands/dodochem/p-nc-019/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000012/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000015/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000025/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000054/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000060/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000062/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000064/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000065/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000066/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000068/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000075/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000077/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000087/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000100/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000101/ NO_MODEL_BLOCK
 brands/dodochem/p-ne-000162/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000650/ NO_MODEL_BLOCK
-brands/dodochem/p-ne-000709/ NO_MODEL_BLOCK
-brands/dodochem/p-np-001/ NO_MODEL_BLOCK
-brands/dodochem/p-np-002/ NO_MODEL_BLOCK
-brands/dodochem/p-np-004/ NO_MODEL_BLOCK
-brands/dodochem/p-np-035/ NO_MODEL_BLOCK
-brands/dodochem/p-ns-001/ NO_MODEL_BLOCK
-brands/dodochem/pvdf-hsv900-binder/ NO_MODEL_BLOCK
 brands/gaossunion/agcl-reference-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/au-disc-working-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/au-plate-counter-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/co2rr-catalyst/ NO_MODEL_BLOCK
+brands/gaossunion/custom-material-working-electrode/ MISSING_BLOCK
 brands/gaossunion/custom-material-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/echem-materials/ NO_MODEL_BLOCK
 brands/gaossunion/electrode-polishing/ NO_MODEL_BLOCK
@@ -130,10 +41,8 @@ brands/gaossunion/frit-salt-bridge/ NO_MODEL_BLOCK
 brands/gaossunion/gc-disc-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/graphite-rod-counter-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/high-temp-rde/ NO_MODEL_BLOCK
-brands/gaossunion/l-type-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/mercury-oxide-reference-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/mercury-sulfate-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/multifunction-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/pt-disc-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/pt-mesh-counter-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/pt-plate-counter-electrode/ NO_MODEL_BLOCK
@@ -144,7 +53,9 @@ brands/gaossunion/rhe-reference-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/rrde-3a/ NO_MODEL_BLOCK
 brands/gaossunion/rrde-external-thread/ NO_MODEL_BLOCK
 brands/gaossunion/sce-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/sem-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/simple-electrode-holder/ NO_MODEL_BLOCK
-brands/gaossunion/t-type-working-electrode/ NO_MODEL_BLOCK
+brands/neware/ct-4008q/ MISSING_BLOCK
+brands/neware/ct-4008q/ STYLE_INLINE
+brands/neware/wgdw-chamber/ MISSING_BLOCK
 brands/neware/wgdw-chamber/ NO_MODEL_BLOCK
+brands/neware/wgdw-chamber/ STYLE_INLINE

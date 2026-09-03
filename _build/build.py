@@ -2237,6 +2237,19 @@ def _brand_family(prof, slug):
     return None, prof.get('default_required_specs') or []
 
 
+def _pp_pack_variant(models):
+    """규격 변형 페이지인가 — 같은 물건을 용량·치수만 바꿔 파는 경우.
+    50 g / 100 g / 250 g, 두께 0.1mm / 0.2mm 처럼 라벨에서 숫자를 빼면 같아지고
+    사양(s)이 하나뿐이면 모델별 블록이 필요 없다. 규격 비교표가 그 역할을 한다.
+    재질이 다른 것(GC / Pt / Au)은 숫자를 빼도 달라지므로 여기서 걸리지 않는다."""
+    if not models:
+        return False
+    if len({(m.get('s') or '') for m in models}) != 1:
+        return False
+    keys = {re.sub(r'[\d.]+', '', (m.get('m') or '')).strip() for m in models}
+    return len(keys) == 1
+
+
 LINT_SKIP_BRANDS = {'sh-scientific', 'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
 LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
 # 페이지가 자기 자신을 설명하는 메타 문구 — 데이터는 표로, 안내 문장은 쓰지 않는다
@@ -2340,11 +2353,13 @@ def lint_detail_pages():
             # 2-2) 시리즈 페이지인데 모델별 내용이 없다
             mm = re.search(r"data-models='(\[.*?\])'", html, re.S)
             try:
-                nmodel = len(json.loads(mm.group(1))) if mm else 0
+                models = json.loads(mm.group(1)) if mm else []
             except Exception:
-                nmodel = 0
+                models = []
+            nmodel = len(models)
             need = prof.get('model_block_min', PP_MODEL_BLOCK_MIN)
-            if nmodel >= need and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im', body):
+            if (nmodel >= need and not _pp_pack_variant(models)
+                    and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im', body)):
                 warns.append((rel, 'NO_MODEL_BLOCK',
                               '모델 %d종을 한 페이지에 담았는데 모델별 사진·사양 블록이 없다 '
                               '— 고객이 대표 모델 말고는 내용을 볼 수 없다 (.mdl-hd 또는 썸네일 라벨 .thlb)'
