@@ -1809,8 +1809,22 @@ function inqOpen(q){
           return '<button class="mini'+(q.status===st?' ok':'')+'" data-st="'+st+'">'+st+'</button>'; }).join('')
       + '</div></div>'
     + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+      + '<button class="btn ghost" id="inqDel" style="color:#B42318">삭제</button>'
       + '<button class="btn ghost" id="inqClient">거래처로 등록</button>'
       + '<button class="btn pri" id="inqQuote">견적서 발행</button></div>';
+
+  // 스팸·테스트 문의를 지운다 — 되돌릴 수 없으니 한 번 묻는다
+  $('#inqDel').onclick = async function(){
+    if (!confirm('이 견적 문의를 삭제합니다.\n\n'
+      + (q.name||'') + (q.org_name ? ' · '+q.org_name : '') + '\n\n되돌릴 수 없습니다. 지울까요?')) return;
+    var bd = $('#inqDel'); bd.disabled = true; bd.textContent = '지우는 중…';
+    var r = await fetch('/api/admin/customers',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'inquiry_delete', id:q.id})})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    bd.disabled = false; bd.textContent = '삭제';
+    if (!r.ok) return toast('지우지 못했습니다');
+    w.remove(); toast('견적 문의를 삭제했습니다'); inqLoad(); admPoll(true);
+  };
 
   $('#inqBody').querySelectorAll('[data-st]').forEach(function(bt){
     bt.onclick = async function(){

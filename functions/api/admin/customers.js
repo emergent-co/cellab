@@ -38,6 +38,20 @@ export async function onRequest({ request, env }) {
     return json({ ok: true, status: st });
   }
 
+  /* 스팸·테스트로 들어온 문의는 지운다.
+     상태 «보류»로 덮어두면 목록에 계속 남아 진짜 문의를 가린다.
+     지운 사실은 로그에 남긴다 — 누가 언제 지웠는지는 알 수 있어야 한다. */
+  if (b.action === 'inquiry_delete') {
+    const qid = Number(b.id);
+    if (!qid) return json({ error: 'bad_request' }, 400);
+    const q = await env.DB.prepare('SELECT id, name, org_name FROM inquiries WHERE id=?').bind(qid).first();
+    if (!q) return json({ error: 'not_found' }, 404);
+    await env.DB.prepare('DELETE FROM inquiries WHERE id=?').bind(qid).run();
+    await logEvent(env, { action: 'inquiry_delete', actor: 'admin',
+      detail: `견적 문의 #${qid} 삭제 (${q.name || ''}${q.org_name ? ' · ' + q.org_name : ''})` });
+    return json({ ok: true, deleted: qid });
+  }
+
   const id = Number(b.id);
   const access = ['대기', '승인', '거절'].includes(b.access) ? b.access : null;
   if (!id || !access) return json({ error: 'bad_request' }, 400);
