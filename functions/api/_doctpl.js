@@ -144,6 +144,9 @@ export function renderDocHTML(d) {
   .sum .v{ text-align:left; }
   .foot{ margin-top:5mm; }
   .foot .lb{ width:14.5%; }
+  /* 비고는 사람이 줄을 나눠 적는 칸이다 — pre-wrap 이 없으면 줄이 다 붙어 버린다.
+     제품 링크가 자주 들어가서 긴 URL 이 칸 밖으로 삐져나가지 않게 끊어 준다. */
+  .foot .memo{ white-space:pre-wrap; word-break:break-all; overflow-wrap:anywhere; line-height:1.5; }
 
   /* ---- 화면으로 볼 때 ----
      .page 는 210mm(약 793px) 고정이라, 창이 그보다 좁으면 오른쪽이 화면 밖으로 나간다.
@@ -224,7 +227,7 @@ export function renderDocHTML(d) {
     </div>
     <table class="foot">
       <tr><td class="lb">입금계좌</td><td>${esc(d.bank || ISSUER.bank)}</td></tr>
-      ${String(d.note || '').trim() ? `<tr><td class="lb">비고</td><td>${esc(d.note)}</td></tr>` : ''}
+      ${String(d.note || '').trim() ? `<tr><td class="lb">비고</td><td class="memo">${esc(d.note)}</td></tr>` : ''}
       ${type === 'taxinvoice' ? `<tr><td class="lb">안내</td><td class="sm">${esc(TAX_NOTE)}</td></tr>` : ''}
     </table>
   </div>

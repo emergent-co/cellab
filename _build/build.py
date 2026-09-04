@@ -928,6 +928,42 @@ def inject_head_schema():
     print(f'  head JSON-LD(Org·WebSite·Breadcrumb) 주입: {count}개 페이지')
 
 
+def stamp_assets():
+    """자산 URL 뒤에 내용 해시를 붙인다 — /assets/site.js?v=ab12cd34
+
+    Cloudflare 가 /assets/*.js·css 를 4시간(max-age=14400) 캐시한다.
+    그래서 JS 를 고쳐 배포해도 재방문자에게는 옛 파일이 그대로 갔다
+    (2026-09-03 제품문의 모달 수정이 배포 직후 사이트에 안 먹힌 원인).
+    내용이 바뀔 때만 ?v= 값이 바뀌므로 캐시 이득은 그대로 두고 갱신만 즉시 된다.
+    site.js 는 build_prices() 가 고치므로 반드시 그 뒤에 부른다."""
+    import hashlib
+    ver = {}
+    for rel in ('assets/site.js', 'assets/site.css', 'assets/detail.css'):
+        fp = os.path.join(ROOT_DIR, rel)
+        if os.path.exists(fp):
+            ver['/' + rel] = hashlib.md5(read(fp).encode('utf-8')).hexdigest()[:8]
+    if not ver:
+        return
+    pat = re.compile(r'((?:src|href)=")(/assets/(?:site\.js|site\.css|detail\.css))(?:\?v=[0-9a-f]+)?(")')
+
+    def sub(m):
+        return m.group(1) + m.group(2) + '?v=' + ver.get(m.group(2), '') + m.group(3)
+
+    count = 0
+    for dirpath, filenames in html_tree():
+        for fn_ in filenames:
+            if not fn_.endswith('.html'):
+                continue
+            fp = os.path.join(dirpath, fn_)
+            html = read(fp)
+            new = pat.sub(sub, html)
+            if new != html:
+                write(fp, new)
+                count += 1
+    print('  자산 캐시 무효화(?v=): %d개 페이지 · %s'
+          % (count, ' · '.join('%s %s' % (k.split('/')[-1], v) for k, v in sorted(ver.items()))))
+
+
 def normalize_html_urls():
     """Cloudflare Pages는 /x.html을 /x로 서빙하고 /x.html은 /x로 리다이렉트한다.
     내부 링크(href·src)·canonical·og·JSON-LD의 .html을 제거해 리다이렉트 홉을 없앤다.
@@ -3017,6 +3053,7 @@ def main():
     normalize_html_urls()
     build_new_research()  # 홈 최신연구 레일 — posts.json 자동 렌더
     build_prices()        # 가격 SSOT — SQL 최저가를 index.html·site.js 마커에 주입
+    stamp_assets()        # 자산 URL ?v=해시 — 배포 후 옛 JS/CSS 캐시가 남는 것을 막는다
     build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔 (301 소스 제외)
     lint_fail = lint_detail_pages()   # 상세페이지 디자인 표준 검사 (신규 위반이면 빌드 중단)
 

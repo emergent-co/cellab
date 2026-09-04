@@ -5038,7 +5038,7 @@ async function pyForm(id){
 var DTYPE = { quote:'견적서', statement:'거래명세서', taxinvoice:'세금계산서' };
 var dqPrefill = null;                       // 할 일에서 넘어올 때 채워지는 짐
 var dqTypes=['quote'], dqCli=null, dqProfiles=[], dqBill=null, dqItems=[], dqTarget=0,
-    dqVat=true, dqDocId=null, dqSrc={}, dqTodo=null, dqHistType='', dqHistKw='',
+    dqVat=true, dqNote='', dqDocId=null, dqSrc={}, dqTodo=null, dqHistType='', dqHistKw='',
     dqTitle='', dqOrders=[], dqSettles=[], dqDates={},   // {quote:'YYYY-MM-DD', ...}
     dqTitleAuto=true,   // 직접 고치기 전까지는 품목에서 만들어 채운다
     dqMakeOrder=false, dqOrderStatus='발주확정';   // 기본은 주문으로 안 잡는다
@@ -5202,7 +5202,9 @@ function paintDocs(){
        + '<label style="margin-top:16px">품목</label><div id="dqItems"></div>'
        + '<button class="mini" id="dqAdd" style="margin-top:4px">＋ 품목 추가</button>'
        + '<div class="qsum" id="dqSum"></div>'
-       + '<label>비고</label><textarea id="dqNote" rows="2" placeholder="특기사항이 있으면 적어주세요 (선택) — 입금계좌는 항상 자동으로 들어갑니다"></textarea>'
+       /* 값을 반드시 되돌려 넣는다 — 미리보기를 누르면 이 폼을 다시 그리는데,
+          비워 두면 방금 적은 비고가 그때 통째로 사라진다. */
+       + '<label>비고</label><textarea id="dqNote" rows="2" placeholder="특기사항이 있으면 적어주세요 (선택) — 입금계좌는 항상 자동으로 들어갑니다">'+esc(dqNote)+'</textarea>'
        + (dqPurpose==='delivery'
           ? '<div class="ordsw"><label>주문 상태 <span class="hint" style="font-weight:600">(주문으로 기록됩니다)</span></label>'
             + '<select id="dqOrderStatus">'
@@ -5244,6 +5246,7 @@ function paintDocs(){
   dqPaintBill(); dqSrcButtons(); dqSrcTag();
 
   $('#dqTitle').oninput = function(e){ dqTitleAuto = !e.target.value.trim(); dqTitle = e.target.value; };
+  $('#dqNote').oninput  = function(e){ dqNote = e.target.value; };
   if ($('#dqPurpChg')) $('#dqPurpChg').onclick = function(){ dqPurpose = null; paintDocs(); };
   if ($('#dqOrderStatus')) $('#dqOrderStatus').onchange = function(e){ dqOrderStatus = e.target.value; };
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
@@ -5550,7 +5553,7 @@ function dqCliLine(box, c, unpick){
 }
 
 function dqClear(){
-  dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqTarget=0; dqTodo=null;
+  dqTypes=['quote']; dqDocId=null; dqCli=null; dqProfiles=[]; dqBill=null; dqTitle=''; dqNote=''; dqTarget=0; dqTodo=null;
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
   dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
   dqContacts=[]; dqContact=null; dqContactCid=null; dqGuest=null; dqCliHint=null;
@@ -5776,7 +5779,7 @@ async function dqSubmit(preview){
     issue_date: (($('#dqDateBox input[data-d]')||{}).value) || dqToday(),
     dates: (function(){ var o={}; document.querySelectorAll('#dqDateBox input[data-d]')
               .forEach(function(el){ if (el.value) o[el.dataset.d] = el.value; }); return o; })(),
-    title: $('#dqTitle').value, note: $('#dqNote').value,
+    title: $('#dqTitle').value, note: ($('#dqNote')||{}).value || dqNote,
     contact: dqContact ? dqContact.name : null, email: dqContact ? dqContact.email : null,
     tel: dqContact ? dqContact.phone : null,
     purpose: dqPurpose, make_order: dqPurpose==='delivery', order_status: dqOrderStatus,
@@ -5787,7 +5790,7 @@ async function dqSubmit(preview){
 
   var made = r.docs || [{ id:r.id, type:dqTypes[0], doc_no:r.doc_no, view:r.view }];
   dqTitle = $('#dqTitle').value;
-  var noteWas = ($('#dqNote')||{}).value || '';   // 폼이 곧 사라진다 — 비고를 먼저 챙긴다
+  var noteWas = ($('#dqNote')||{}).value || dqNote || '';   // 폼이 곧 사라진다 — 비고를 먼저 챙긴다
 
   if (stale){                        // 새 한 벌을 만들었으니 남은 초안은 정리한다
     await fetch('/api/admin/docs/'+stale,{method:'POST',headers:AH,
@@ -6358,6 +6361,7 @@ async function dqOpen(id){
   };
   if ($('#dqEdit')) $('#dqEdit').onclick = function(){
     dqDocId = doc.id; dqTypes = [doc.type]; dqTitle = p.title||''; dqTitleAuto = !dqTitle;
+    dqNote = p.note || '';
     dqVat = !!(p.totals && p.totals.vat_included);
     dqTarget = dqVat ? (tot.total||0) : 0;
     dqDates = {}; if (p.issue_date) dqDates[doc.type] = p.issue_date;
