@@ -229,7 +229,7 @@ def val(v):
         return None
     if v in V:
         return V[v]
-    m = re.match(r'^([A-Z][A-Za-z0-9\-/\.]{1,18})[一-鿿]', v)
+    m = re.match(r'^([A-Z][A-Za-z0-9\-/\.]{1,18})\s*[一-鿿]', v)
     if m:
         return m.group(1)
     s = v
@@ -238,7 +238,16 @@ def val(v):
     s = s.replace('根', '주')
     if re.search(r'[一-鿿]', s):
         return None
-    return re.sub(r'\s+', ' ', s).strip()
+    s = re.sub(r'\s+', ' ', s).strip()
+    s = re.sub(r'\s*[（(]\s*[MNDdT]\s*[）)]\s*$', '', s)
+    if '·' in s:
+        seen, keep = set(), []
+        for x in [y.strip() for y in s.split('·')]:
+            if x and x not in seen:
+                seen.add(x)
+                keep.append(x)
+        s = ' · '.join(keep)
+    return s
 
 
 def lab(k):

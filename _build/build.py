@@ -1691,8 +1691,26 @@ def build_all_products():
 
             all_keys.append(keys)
             all_kws.update(kws)
+            # ── 대표성 점수(data-r) ─────────────────────────────────────────
+            # 필터를 눌렀을 때 «첫 줄»에 무엇을 올릴지 정하는 값이다.
+            # 판매 데이터가 없으므로 «고객이 바로 고를 수 있는 카드»를 위로 올린다:
+            #   가격이 게시됐나(견적 문의만 되는 것보다 강함) · 대표사진이 있나 ·
+            #   사양이 실제로 채워졌나 · 규격이 많은 시리즈인가 · 키워드가 붙었나.
+            rank = 0
+            if price:
+                rank += 40
+            if src and '_photo-pending' not in src:
+                rank += 20
+            rank += 6 * min(3, sum(1 for _k, _v in specs if _v and _v != '상세 참조'))
+            _mm = re.search(r'통합\s*([0-9,]+)\s*종', title)
+            if _mm:
+                try:
+                    rank += min(20, int(_mm.group(1).replace(',', '')) // 25)
+                except ValueError:
+                    pass
+            rank += min(8, len(kws))
             cards.append(
-                f'<article class="ap-card pcard" data-b="{slug}" data-c="{cat}"'
+                f'<article class="ap-card pcard" data-b="{slug}" data-c="{cat}" data-r="{rank}"'
                 f' data-s="{escape(" ".join(dict.fromkeys(sub_tokens)), quote=True)}" data-k="{escape(keys, quote=True)}">'
                 f'<a class="pc-im" href="{href}" aria-label="{escape(title, quote=True)}">'
                 f'<img src="{src}" alt="{escape(alt, quote=True)}" loading="lazy" width="760" height="570"></a>'
