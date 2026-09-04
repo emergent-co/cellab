@@ -415,6 +415,29 @@ def build_page(o):
     return slicer_page(o)
 
 # ── 허브(119장) ──────────────────────────────────────────────
+# 계열별 검색 꼬리말 — 프레스 카드에 '다이', 다이 카드에 '프레스'를 붙이면 서로를 오염시킨다.
+TAILKW = {
+ 'P1-manual':   '펠릿 프레스 압편기 수동 유압 분말성형기',
+ 'P2-digital':  '펠릿 프레스 압편기 디지털 수동 유압 분말성형기',
+ 'P3-electric': '펠릿 프레스 압편기 전동 유압 분말성형기',
+ 'P4-auto':     '펠릿 프레스 압편기 자동 유압 분말성형기',
+ 'P5-isostatic':'펠릿 프레스 압편기 등정압 등방압 isostatic cip',
+ 'P6-hot':      '펠릿 프레스 압편기 가열 핫프레스 열간프레스 hot press',
+ 'P7-fluoro':   '펠릿 프레스 압편기 형광 xrf 자동',
+ 'P8-cellseal': '실링기 밀봉기 크림퍼 코인셀 버튼셀 crimper',
+ 'P9-vacuum':   '진공 열압기 진공핫프레스 vacuum hot press 가열 가압',
+ 'Z-slicer':    '전극 슬라이서 펀칭 타발 디스크커터 slicer',
+ 'D1-cylindrical':'펠릿 다이 원통형 금형 몰드 성형 다이',
+ 'D2-opening':  '펠릿 다이 개구형 분할 금형 몰드 개방형',
+ 'D3-square':   '펠릿 다이 사각 금형 몰드 각형',
+ 'D4-special':  '펠릿 다이 특수 형상 링 구형 금형 몰드',
+ 'D5-carbide':  '펠릿 다이 초경합금 텅스텐카바이드 금형 몰드',
+ 'D6-hotdie':   '펠릿 다이 가열 금형 몰드 전기가열',
+ 'D7-cellmold': '전지 몰드 코인셀 버튼셀 전고체 금형',
+ 'D8-fluorodie':'펠릿 다이 형광 xrf 금형 몰드',
+}
+
+
 def card_of(o):
     slug = o['slug']
     if o['done']:
@@ -430,8 +453,8 @@ def card_of(o):
     return dict(cat=sub, img='/img/hench/%s-1.jpg' % slug, bdg=bdg[:14],
                 href='/brands/hench/%s/' % slug, title=h1, nm=M(o),
                 d=d[:112],
-                text=('%s %s %s hench 헨치 천진항창립달 시료 전처리 펠릿 프레스 다이 압편 kbr ir xrd %s'
-                      % (h1, M(o), slug.replace('-', ' '), o['name'])).lower())
+                text=('%s %s %s hench 헨치 천진항창립달 시료 전처리 압편 kbr ir xrd %s %s'
+                      % (h1, M(o), slug.replace('-', ' '), o['name'], TAILKW.get(o['fam'], ''))).lower())
 
 def main():
     made = 0

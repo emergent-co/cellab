@@ -634,9 +634,15 @@
         var q = (inp.value || '').trim().toLowerCase();
         if (!q) { rbox.classList.remove('open'); rbox.innerHTML = ''; return; }
         var terms = q.split(/\s+/).filter(Boolean);
+        // 표기 흔들림 흡수: '박스전기로'/'박스 전기로', '1500도'/'1500℃', 'in-situ'/'insitu'
+        function norm(x){ return x.toLowerCase().replace(/[℃]/g, '도').replace(/[\s·\-_/()]/g, ''); }
+        var qn = terms.map(norm);
         var hits = SEARCH_INDEX.filter(function (it) {
           var hay = (it.t + ' ' + (it.k || '') + ' ' + (it.c || '')).toLowerCase();
-          return terms.every(function (tm) { return hay.indexOf(tm) > -1; });
+          var hn = norm(hay);
+          return terms.every(function (tm, i) {
+            return hay.indexOf(tm) > -1 || (qn[i] && hn.indexOf(qn[i]) > -1);
+          });
         });
         // 제목 일치 우선 정렬
         hits.sort(function (a, b) {

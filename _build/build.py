@@ -20,7 +20,7 @@ import json
 import os
 import re
 import sys
-from html import escape
+from html import escape, unescape
 from urllib.parse import quote
 
 
@@ -1428,6 +1428,26 @@ def build_all_products():
 
     # 검색 동의어 그룹 — 그룹 내 단어가 하나라도 있으면 나머지도 data-k에 추가 (검색 리콜 확대)
     SYN_GROUPS = [
+        ['머플로', '박스퍼니스', '박스로', '박스전기로', '박스 전기로', '머플 퍼니스', '머플전기로', 'muffle'],
+        ['진공전기로', '진공 전기로', '진공로', '진공 퍼니스', '진공 머플로', '진공머플로', 'vacuum muffle', 'vacuum furnace', '진공 소성'],
+        ['유리탄소', 'glassy carbon', '글라시카본', '글래시카본', '유리질 탄소'],
+        ['질량유량계', '유량제어기', '유량 제어기', '유량컨트롤러', 'mfc', 'mass flow', '매스플로우', '메스플로우'],
+        ['기어펌프', '기어 펌프', 'gear pump', '마이크로기어'],
+        ['회전증발기', '로터리증발기', '로타리증발기', '로타리 증발기', '감압농축', 'rotary evaporator'],
+        ['회전로', '회전튜브로', '로터리킬른', '로타리킬른', 'rotary kiln', '로터리 퍼니스'],
+        ['펠릿 프레스', '펠릿프레스', '압편기', '압편', '분말성형기', '분말 성형기', '타블렛 프레스', '타정기', '정제성형기', 'pellet press', 'tablet press'],
+        ['kbr', '브롬화칼륨', 'ir 펠릿', '적외 시료', 'ftir', 'ft-ir', '적외분광', '적외선분광'],
+        ['핫프레스', '열간프레스', '가열프레스', 'hot press', '열압', '열압기'],
+        ['진공열압', '진공핫프레스', 'vacuum hot press', '진공 가열가압'],
+        ['크림퍼', '실링기', '밀봉기', '코인셀 실링', 'crimper', 'sealer', '전지 밀봉'],
+        ['슬라이서', '펀칭', '타발', '디스크커터', '전극 커터', 'slicer', 'puncher'],
+        ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic', '아이소스태틱'],
+        ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'yg-15', 'yt15'],
+        ['형광분석', 'xrf', 'x선형광', '엑스선형광', '형광 압편'],
+        ['글로브박스', '글러브박스', 'glovebox', 'glove box', '수분 차단 작업'],
+        ['로터리밸브', '스위치밸브', '셀렉터밸브', 'selector valve', 'rotary valve', '유로 전환'],
+        ['로터리 증발기', '회전증발기', '감압농축기', 'rotary evaporator', '에바포레이터'],
+        ['스팀제너레이터', '증기발생기', 'steam generator'],
         # 전기화학·전지 계열 — build_search_index()의 SEARCH_SYN 과 같은 축을 카탈로그 검색에도 적용한다.
         ['전고체', '전고체전지', 'solid-state', 'solid state', 'all-solid-state', '고체전해질'],
         ['코인셀', '버튼셀', 'coin cell', 'button cell', '2032', '2032형', 'cr2032', 'cr2016'],
@@ -2865,6 +2885,26 @@ def build_search_index():
     # 검색 동의어 — 한 그룹의 말이 페이지에 하나라도 있으면 나머지 말을 색인에 덧붙인다.
     # 사이트 표기가 'in-situ'인데 사람은 '인시츄'로 찾는 문제를 한 곳에서 해결한다.
     SEARCH_SYN = [
+        ['머플로', '박스퍼니스', '박스로', '박스전기로', '박스 전기로', '머플 퍼니스', '머플전기로', 'muffle'],
+        ['진공전기로', '진공 전기로', '진공로', '진공 퍼니스', '진공 머플로', '진공머플로', 'vacuum muffle', 'vacuum furnace', '진공 소성'],
+        ['유리탄소', 'glassy carbon', '글라시카본', '글래시카본', '유리질 탄소'],
+        ['질량유량계', '유량제어기', '유량 제어기', '유량컨트롤러', 'mfc', 'mass flow', '매스플로우', '메스플로우'],
+        ['기어펌프', '기어 펌프', 'gear pump', '마이크로기어'],
+        ['회전증발기', '로터리증발기', '로타리증발기', '로타리 증발기', '감압농축', 'rotary evaporator'],
+        ['회전로', '회전튜브로', '로터리킬른', '로타리킬른', 'rotary kiln', '로터리 퍼니스'],
+        ['펠릿 프레스', '펠릿프레스', '압편기', '압편', '분말성형기', '분말 성형기', '타블렛 프레스', '타정기', '정제성형기', 'pellet press', 'tablet press'],
+        ['kbr', '브롬화칼륨', 'ir 펠릿', '적외 시료', 'ftir', 'ft-ir', '적외분광', '적외선분광'],
+        ['핫프레스', '열간프레스', '가열프레스', 'hot press', '열압', '열압기'],
+        ['진공열압', '진공핫프레스', 'vacuum hot press', '진공 가열가압'],
+        ['크림퍼', '실링기', '밀봉기', '코인셀 실링', 'crimper', 'sealer', '전지 밀봉'],
+        ['슬라이서', '펀칭', '타발', '디스크커터', '전극 커터', 'slicer', 'puncher'],
+        ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic', '아이소스태틱'],
+        ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'yg-15', 'yt15'],
+        ['형광분석', 'xrf', 'x선형광', '엑스선형광', '형광 압편'],
+        ['글로브박스', '글러브박스', 'glovebox', 'glove box', '수분 차단 작업'],
+        ['로터리밸브', '스위치밸브', '셀렉터밸브', 'selector valve', 'rotary valve', '유로 전환'],
+        ['로터리 증발기', '회전증발기', '감압농축기', 'rotary evaporator', '에바포레이터'],
+        ['스팀제너레이터', '증기발생기', 'steam generator'],
         ['인시츄', '인시추', '인시투', 'in-situ', 'in situ', 'insitu', '오퍼란도', 'operando', '실시간 관찰'],
         ['덴드라이트', 'dendrite', '수지상', '수지상정'],
         ['전기화학', 'electrochemical', 'echem'],
@@ -2894,6 +2934,18 @@ def build_search_index():
             if any(g.lower() in low for g in grp):
                 extra += [g for g in grp if g.lower() not in low]
         return (' ' + ' '.join(dict.fromkeys(extra))) if extra else ''
+
+    # 통합 카탈로그 카드가 이미 갖고 있는 검색어(제품군 사전·동의어·스펙)를 같은 URL 에 얹는다.
+    # 이게 없으면 카탈로그에서는 나오는 말이 헤더 검색에서는 0건이 된다.
+    _cardkw = {}
+    try:
+        _ap = read(os.path.join(ROOT_DIR, 'product', 'index.html'))
+        _seg = _ap.split('<!--ALLPROD_START-->')[1].split('<!--ALLPROD_END-->')[0]
+        for _k, _u in re.findall(r'data-k="([^"]*)"[^>]*>\s*<a class="pc-im" href="([^"]*)"', _seg):
+            _key = _u.rstrip('/')
+            _cardkw.setdefault(_key, set()).update(unescape(_k).lower().split())
+    except Exception:
+        _cardkw = {}
 
     redirected = _redirect_sources()
     entries = []
@@ -2960,6 +3012,12 @@ def build_search_index():
                 cat = '페이지'
             k = ' '.join(x for x in (h1, desc, kw) if x)[:400]
             k += syn_expand(title + ' ' + k)   # 동의어는 400자 컷 뒤에 붙인다
+            _ck = _cardkw.get(url.rstrip('/'))
+            if _ck:                            # 카탈로그 카드 검색어 병합(중복 낱말은 뺀다)
+                _have = set(k.lower().split())
+                _plus = [w for w in _ck if w not in _have]
+                if _plus:
+                    k += ' ' + ' '.join(sorted(_plus))
             entries.append({'t': title[:90], 'u': url, 'k': k, 'c': cat})
     entries.sort(key=lambda e: e['u'])
     write(os.path.join(ROOT_DIR, 'search-index.json'),

@@ -434,7 +434,7 @@ def main():
             title=pg['h1'], nm=p['model'],
             d=re.sub(r'<[^>]+>', '', pg['ans'])[:110],
             text=('%s %s 수동 유압 펠릿 프레스 manual hydraulic pellet press %s 펠릿프레스 압편기 시료 압편 '
-                  'kbr 펠릿 ir 시료 전처리 xrd 분말 성형 유압프레스 %dt 프레스 버튼셀 몰드 hench 헨치 천진항창립달'
+                  'kbr 펠릿 ir 시료 전처리 xrd 분말 성형 유압프레스 %dt 프레스 hench 헨치 천진항창립달'
                   % (pg['h1'], p['model'], pg['slug'], p['ton'])).lower()))
         print('  %-34s %6d bytes' % (pg['slug'], n))
     for d in DIES:
@@ -443,7 +443,7 @@ def main():
             title=pg['h1'], nm='HMY · %s' % d['band'],
             d=re.sub(r'<[^>]+>', '', pg['ans'])[:110],
             text=('%s hmy 원통형 펠릿 다이 cylindrical dies %s 펠릿 다이 성형 몰드 kbr 다이 ir 펠릿 몰드 '
-                  'xrd 시료 다이 시료 전처리 assab+17 cr12mov 인덴터 hench 헨치 천진항창립달'
+                  'xrd 시료 다이 시료 전처리 9cr18 인덴터 압두 hench 헨치 천진항창립달'
                   % (pg['h1'], pg['slug'])).lower()))
         print('  %-34s %6d bytes' % (pg['slug'], n))
     hp = os.path.join(H.ROOT, 'brands', 'hench', 'index.html')
