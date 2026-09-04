@@ -54,11 +54,11 @@
     "heading": "규격 비교표",
     "head": [
      "튜브 모델",
-     "내경（mm）",
-     "외경（mm）",
-     "벽두께(mm）",
-     "표준 포장（m）",
-     "튜브 재질（공법）"
+     "내경 (mm)",
+     "외경 (mm)",
+     "벽두께(mm)",
+     "표준 포장 (m)",
+     "튜브 재질 (공법)"
     ],
     "rows": [
      [
@@ -282,7 +282,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -385,7 +385,7 @@
      "내경(mm)",
      "벽두께(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -681,7 +681,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -785,7 +785,7 @@
      "내경(mm)",
      "벽두께(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -1049,7 +1049,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -1148,7 +1148,7 @@
      "내경(mm)",
      "벽두께(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -1260,7 +1260,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -1362,7 +1362,7 @@
      "내경(mm)",
      "벽두께(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -1610,7 +1610,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -1713,7 +1713,7 @@
      "내경(mm)",
      "벽두께(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -1841,7 +1841,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -1938,10 +1938,10 @@
     "head": [
      "튜브 재질",
      "규격",
-     "내경（mm）",
-     "벽두께（mm）",
+     "내경 (mm)",
+     "벽두께 (mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -2029,7 +2029,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",
@@ -2130,7 +2130,7 @@
      "벽두께(mm)",
      "공칭 내×외×벽 (mm)",
      "규격",
-     "표준 포장 길이（m）"
+     "표준 포장 길이 (m)"
     ],
     "rows": [
      [
@@ -2250,7 +2250,7 @@
    },
    "specs_note": "제조사 원문 사양을 그대로 옮긴 값입니다.",
    "buybox": [],
-   "related": "<a href=\"/brands/leadfluid/\">← 리드플루이드 전체</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a>",
+   "related": "<a href=\"/brands/leadfluid/\">리드플루이드 전체 제품</a> · <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/contact/\">문의·FAQ</a>",
    "keywords": [
     [
      "연동펌프 튜브",

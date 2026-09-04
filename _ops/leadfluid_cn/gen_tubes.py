@@ -5,7 +5,15 @@
 """
 import json, os, re, sys, glob
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from leadfluid_zh_ko import zh_ko
+from leadfluid_zh_ko import zh_ko as _zh_ko
+
+_FW = {'（': ' (', '）': ')', '，': ', ', '、': ' · ', '：': ': ', '；': '; ', '　': ' '}
+
+def zh_ko(s):
+    s = _zh_ko(s)
+    for a, b in _FW.items():
+        s = s.replace(a, b)
+    return ' '.join(s.split()).replace(' )', ')').replace('( ', '(')
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 PARSED = os.path.join(ROOT, '_ops/leadfluid_cn/parsed_170.json')
@@ -97,7 +105,7 @@ def main():
             'variants': var,
             'specs_note': '제조사 원문 사양을 그대로 옮긴 값입니다.',
             'buybox': [],
-            'related': '<a href="/brands/leadfluid/">← 리드플루이드 전체</a> · <a href="/product/">전 제품 통합 카탈로그</a>',
+            'related': '<a href="/brands/leadfluid/">리드플루이드 전체 제품</a> · <a href="/product/">전 제품 통합 카탈로그</a> · <a href="/contact/">문의·FAQ</a>',
             'keywords': [['연동펌프 튜브', '/product/'], ['펌프 호스', '/product/'],
                          ['리드플루이드', '/brands/leadfluid/'], [c['name_en'], '']],
             'faq': faq_for(c, tbl, c['slug']),
