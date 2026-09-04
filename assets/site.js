@@ -238,7 +238,15 @@
     document.body.insertAdjacentHTML('beforeend', REPAIR_MODAL);
     var rm = document.getElementById('repairModal');
     window.openRepairForm = function () { rm.classList.add('open'); document.body.style.overflow = 'hidden'; };
-    window.closeRepairForm = function () { rm.classList.remove('open'); document.body.style.overflow = ''; };
+    /* 완료 화면을 켠 채로 닫으면 다음에 열어도 «신청 완료»만 보이고 폼이 없다.
+       닫을 때 신청 폼을 되살린다. */
+    window.closeRepairForm = function () {
+      rm.classList.remove('open'); document.body.style.overflow = '';
+      var rf0 = document.getElementById('repairPopForm');
+      var rd0 = document.getElementById('repairPopDone');
+      if (rf0) { rf0.style.display = ''; try { rf0.reset(); } catch (e) {} }
+      if (rd0) rd0.style.display = 'none';
+    };
     rm.addEventListener('click', function (e) { if (e.target === rm) closeRepairForm(); });
     rm.querySelector('.rp-close').addEventListener('click', closeRepairForm);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeRepairForm(); });
@@ -257,6 +265,7 @@
           if (r.ok) {
             if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'repair_diagnosis', page_path: location.pathname });
             f.style.display = 'none'; document.getElementById('repairPopDone').style.display = 'block';
+            setTimeout(function () { if (window.closeRepairForm) window.closeRepairForm(); }, 4000);
           } else { alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); }
         })
         .catch(function () { btn.disabled = false; btn.textContent = '무료 수리진단 신청 보내기'; alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); });
@@ -926,6 +935,7 @@ window.fetch = function (input, init) {
     +   '<div class="qm-done" id="qmDone">'
     +     '<h2>문의가 접수되었습니다</h2>'
     +     '<p id="qmDoneMsg">보내주신 조건을 검토해 회신드립니다.</p>'
+    +     '<button type="button" class="qm-send" id="qmDoneClose">확인</button>'
     +   '</div>'
     + '</div>';
   document.body.appendChild(back);
@@ -934,10 +944,12 @@ window.fetch = function (input, init) {
   var done = back.querySelector('#qmDone');
   var errEl = back.querySelector('#qmErr');
   var lastFocus = null;
+  var doneTimer = 0;
 
   function open(product, opts) {
     lastFocus = document.activeElement;
     opts = opts || {};
+    resetModal();   /* 완료 화면이 떠 있는 상태에서 다시 열어도 입력 폼이 나오도록 */
     back.querySelector('#qmProd').value = product || '';
 
     /* ── 제품문의 모드 (전기화학 등 개별 제품 페이지) ── */
@@ -1010,10 +1022,23 @@ window.fetch = function (input, init) {
     }
   }
 
+  /* 접수 완료 화면을 켠 채로 닫으면 다음에 열 때도 «접수되었습니다»만 보이고
+     입력 폼이 없다 — 새로고침 전에는 문의를 다시 못 보냈다. 닫을 때 원상복구한다. */
+  function resetModal() {
+    if (doneTimer) { clearTimeout(doneTimer); doneTimer = 0; }
+    done.classList.remove('on');
+    form.style.display = '';
+    errEl.classList.remove('on'); errEl.textContent = '';
+    var sb = form.querySelector('.qm-send');
+    if (sb) sb.disabled = false;
+    try { form.reset(); } catch (e) {}
+  }
+
   function close() {
     back.classList.remove('on'); back.style.display = '';
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus();
+    resetModal();
   }
 
   document.addEventListener('click', function (e) {
@@ -1034,6 +1059,7 @@ window.fetch = function (input, init) {
     if (b) { e.preventDefault(); open(b.getAttribute('data-quote')); }
   });
   back.querySelector('.qm-x').addEventListener('click', close);
+  back.querySelector('#qmDoneClose').addEventListener('click', close);
   back.addEventListener('click', function (e) { if (e.target === back) close(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && back.classList.contains('on')) close();
@@ -1086,6 +1112,8 @@ window.fetch = function (input, init) {
         }
         form.style.display = 'none';
         done.classList.add('on');
+        /* 오버레이를 띄운 채로 두면 뒤 페이지 버튼이 안 눌린다. 잠깐 보여주고 스스로 닫는다. */
+        doneTimer = setTimeout(close, 4000);
       })
       .catch(function () {
         btn.disabled = false; btn.textContent = txt;

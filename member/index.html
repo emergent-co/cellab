@@ -137,7 +137,9 @@ a{color:inherit;text-decoration:none}
 .dqac .t{flex:1;min-width:0}
 .dqac .t b{display:block;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dqac .t small{display:block;font-size:11.5px;color:var(--mut)}
-.dqac .p{font-size:12.5px;font-weight:700;white-space:nowrap}
+.dqac .p{font-size:12.5px;font-weight:700;white-space:nowrap;text-align:right;line-height:1.35}
+.dqac .p s{font-weight:600;color:var(--mut-2);font-size:11.5px}
+.dqac .p em{font-style:normal;font-weight:800;color:#B45309;font-size:11.5px}
 .dqac .none{padding:10px 12px;font-size:12.5px;color:var(--mut)}
 .newrow:hover{border-color:#E0B476;background:#FFFDF8}
 .newrow .t{flex:1;min-width:0}
@@ -1882,6 +1884,12 @@ function inqOpen(q){
     var pr = await fetch('/api/admin/issue?from=inquiry&id='+q.id,{headers:AH})
       .then(function(x){return x.json();}).catch(function(){return {};});
     bq.disabled = false; bq.textContent = '견적서 발행';
+    // 자동으로 채운 단가에도 «정가 · 할인율» 비고를 달아 준다
+    (pr.items || []).forEach(function(it){
+      if (!it.price || !it.list || it.list <= it.price || (it.note||'').trim()) return;
+      it.note = '정가 ' + won(it.list) + '원 · '
+        + (Math.round((1 - it.price/it.list) * 1000) / 10) + '% 할인';
+    });
     dqItems = (pr.items && pr.items.length) ? pr.items
       : (its.length
          ? its.map(function(i){ return { name:i.name||'', spec:i.spec||'', qty:i.qty||1, price:0, note:'' }; })
@@ -5773,11 +5781,12 @@ function dqPaintItems(){
     el.querySelectorAll('.dqo').forEach(function(ob){
       ob.onclick = function(){
         var o = (dqItems[i].options||[])[Number(ob.dataset.o)]; if (!o) return;
-        dqItems[i].price = o.price;
-        if (!dqItems[i].spec) dqItems[i].spec = o.model || '';
-        dqItems[i].options = [];          // 골랐으니 후보는 치운다
+        var nm = dqItems[i].name; var d = dqFill(i, o);
+        dqItems[i].name = nm || o.name || '';     // 문의에 적힌 품명은 그대로 둔다
         dqPaintItems();
-        toast((o.model||'모델')+' · '+won(o.price)+'원 (부가세 별도)');
+        toast((o.model||'모델')+' · '+won(dqItems[i].price)+'원'
+              + (dqVat ? ' (부가세 포함)' : ' (부가세 별도)')
+              + (d ? ' · 정가 대비 '+d.rate+'% 할인' : ''));
       };
     });
     var x = el.querySelector('.dx'); if (x) x.onclick = function(){ dqItems.splice(i,1); dqPaintItems(); dqAutoTitle(); };
@@ -5791,6 +5800,28 @@ function dqRow(el,i){ el.querySelector('.sb').textContent = won(dqLine(dqItems[i
    제품표 판매가는 «부가세 별도» 기준이라, 지금 화면이 «부가세 포함» 기준이면 환산해서 넣는다.
    기준을 안 맞추고 그대로 넣으면 견적이 10% 어긋난다. */
 var dqAcT = null, dqAcSeq = 0;
+
+/* 제품 하나를 품목 줄에 앉힌다.
+   제품표의 retail_price 는 «이미 할인이 반영된 판매가»이고 list_price 가 정가다.
+   할인가만 적으면 깎아준 사실이 서류에서 사라진다 — 비고에 «정가 · 할인율»을 적어 둔다.
+   화면이 «부가세 포함» 기준이면 정가도 같이 환산해야 두 숫자의 기준이 맞는다. */
+function dqDisc(o){
+  var list = Number(o.list||0), sell = Number(o.price||0);
+  if (!(list > sell) || !sell) return null;
+  return { list: list, rate: Math.round((1 - sell/list) * 1000) / 10 };
+}
+function dqFill(i, o){
+  var d = dqDisc(o);
+  dqItems[i].name  = o.name || '';
+  dqItems[i].spec  = o.model || dqItems[i].spec || '';
+  dqItems[i].price = dqVat ? r10(o.price * 1.1) : f10(o.price);
+  dqItems[i].options = [];
+  if (d && !String(dqItems[i].note||'').trim()){
+    var lp = dqVat ? r10(d.list * 1.1) : f10(d.list);
+    dqItems[i].note = '정가 ' + won(lp) + '원 · ' + d.rate + '% 할인';
+  }
+  return d;
+}
 function dqAcHide(el){ var b = el.querySelector('.dqac'); if (b){ b.hidden = true; b.innerHTML = ''; } }
 function dqAcFind(el, i, kw){
   var box = el.querySelector('.dqac'); if (!box) return;
@@ -5806,21 +5837,21 @@ function dqAcFind(el, i, kw){
     if (!rows.length){ dqAcHide(el); return; }
     box.hidden = false;
     box.innerHTML = rows.map(function(o,k){
+      var d = dqDisc(o);
       return '<button type="button" data-a="'+k+'"><span class="t"><b>'+esc(o.name||'—')+'</b>'
         + '<small>'+esc([o.model, o.unit].filter(Boolean).join(' · ')||'—')+'</small></span>'
-        + '<span class="p">'+won(o.price)+'원</span></button>'; }).join('');
+        + '<span class="p">'+(d ? '<s>'+won(d.list)+'</s> <em>'+d.rate+'%</em><br>' : '')
+        + won(o.price)+'원</span></button>'; }).join('');
     box.querySelectorAll('[data-a]').forEach(function(bt){
       bt.onmousedown = function(ev){ ev.preventDefault(); };   // blur 보다 먼저 잡는다
       bt.onclick = function(){
         var o = rows[Number(bt.dataset.a)]; if (!o) return;
-        dqItems[i].name  = o.name || '';
-        dqItems[i].spec  = o.model || dqItems[i].spec || '';
-        dqItems[i].price = dqVat ? r10(o.price * 1.1) : f10(o.price);
-        dqItems[i].options = [];
+        var d = dqFill(i, o);
         dqAcHide(el);
         dqPaintItems(); dqAutoTitle();
         toast((o.model || o.name || '제품') + ' · ' + won(dqItems[i].price) + '원'
-              + (dqVat ? ' (부가세 포함으로 환산)' : ' (부가세 별도)'));
+              + (dqVat ? ' (부가세 포함으로 환산)' : ' (부가세 별도)')
+              + (d ? ' · 정가 대비 ' + d.rate + '% 할인' : ''));
       };
     });
   }, 220);

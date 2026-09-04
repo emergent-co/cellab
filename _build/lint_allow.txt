@@ -38,3 +38,15 @@ brands/gaossunion/echem-materials/ NO_SOURCE
 brands/gaossunion/electrode-polishing/ NO_SOURCE
 brands/neware/ct-4008q/ NO_SOURCE
 brands/neware/wgdw-chamber/ NO_SOURCE
+
+# 2026-09 Hench 중문 크로스체크 — 제조사(중문 사양서)가 해당 항목을 공개하지 않는 모델.
+# 추정값을 만들어 넣지 않는다. 제조사 회신으로 값이 확인되면 줄을 지운다.
+brands/hench/cylindrical-die-hmy-j/ REQ_SPEC            # 로봇암 모듈: 캐비티 깊이·무게 미공개
+brands/hench/hot-die-hch-f/ REQ_SPEC                    # 평판 가열 성형 금형: 압두 경도 미공개
+brands/hench/hot-pellet-press-hpc-800d-300/ REQ_SPEC    # 가열 압편기: 제어 방식 항목 미공개
+brands/hench/hot-pellet-press-hpc-800eg/ REQ_SPEC
+brands/hench/hot-pellet-press-hzt-800eg/ REQ_SPEC
+brands/hench/hot-pellet-press-hzt-800fg/ REQ_SPEC
+brands/hench/hot-pellet-press-vh-25t/ REQ_SPEC          # 글로브박스형: 제어 방식·무게 미공개
+brands/hench/hot-pellet-press-yph-800a/ REQ_SPEC
+brands/hench/hot-pellet-press-yph-800eg/ REQ_SPEC

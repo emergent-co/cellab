@@ -98,9 +98,9 @@ def tail(r, fam):
 
 out, seen = [], {}
 for r in ROWS:
-    f = famof(r)
+    f = r.get('famx') or famof(r)
     fx = FIXED.get(r['name']) or (FIXED_BY_MODEL.get(r['model']) if 'Manual Pellet Press' in r['name'] or '4 Columns' in r['name'] else None)
-    s = fx or ('%s-%s' % (PREFIX[f], tail(r, f)))
+    s = r.get('slugx') or fx or ('%s-%s' % (PREFIX[f], tail(r, f)))
     s = re.sub(r'-+', '-', s).strip('-')
     if s in seen:
         s2 = s

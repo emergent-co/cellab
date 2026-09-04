@@ -53,15 +53,18 @@ async function get(request, env) {
     const kw = String(u.get('products') || '').trim();
     if (kw.length < 2) return json({ products: [] });
     const rows = (await env.DB.prepare(
-      `SELECT name, model, unit, retail_price FROM products
+      `SELECT name, model, unit, retail_price, list_price FROM products
         WHERE IFNULL(retail_price,0) > 0
           AND (instr(lower(name), lower(?1)) > 0 OR instr(lower(IFNULL(model,'')), lower(?1)) > 0)
         ORDER BY (instr(lower(IFNULL(model,'')), lower(?1)) > 0) DESC,
                  length(IFNULL(model,'')), length(name) LIMIT 8`)
       .bind(kw).all().then((r) => r.results || []).catch(() => []));
+    /* list_price 는 정가, retail_price 는 실제 판매가(할인 적용).
+       둘 다 내려보내야 화면에서 «정가 얼마에서 몇 % 할인»을 그대로 적어 줄 수 있다. */
     return json({ products: rows.map((r) => ({
       name: r.name || '', model: r.model || '', unit: r.unit || '',
-      price: Math.round(r.retail_price) })) });
+      price: Math.round(r.retail_price),
+      list: Math.round(r.list_price || 0) })) });
   }
 
   // ---- 거래처 상세 ----
@@ -172,12 +175,13 @@ async function get(request, env) {
         spec: String(it.spec || '').trim(),
         qty: Math.max(1, Number(it.qty) || 1),
         price: hit ? Math.round(hit.retail_price) : 0,
+        list: hit ? Math.round(hit.list_price || 0) : 0,
         note: '',
         matched: hit ? [hit.model, hit.name].filter(Boolean).join(' · ') : '',
         // 고를 후보 — 화면에서 눌러 채운다
         options: (p && p.options ? p.options : []).map((r) => ({
-          model: r.model || '', name: r.name || '',
-          unit: r.unit || '', price: Math.round(r.retail_price) })),
+          model: r.model || '', name: r.name || '', unit: r.unit || '',
+          price: Math.round(r.retail_price), list: Math.round(r.list_price || 0) })),
       });
     }
     /* 문의 단계에서는 거래처를 «붙이지 않는다».

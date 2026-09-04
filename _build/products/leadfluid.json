@@ -2583,11 +2583,6 @@
     {
      "h": "튜브 장착 방법 (제조사 원문)",
      "html": "<ol><li>상부 압착블록의 레버를 양쪽 모두 위로 젖힙니다(왼쪽은 시계방향, 오른쪽은 반시계방향). 압착블록을 잡고 위로 들어올리면 분리됩니다.</li><li>튜브 세트를 롤러와 좌·우 양쪽 튜브 홈에 넣고, 튜브 세트 양 끝의 Y형 삼방 피팅을 홈에 고정합니다. <b>튜브가 꼬이지 않도록 정리하십시오</b> — 꼬이면 튜브가 눌려 터질 수 있습니다.</li><li>상부 압착블록을 결합합니다. 압착블록을 끼운 뒤 좌·우 레버를 각각 아래로 젖히면(왼쪽은 반시계방향, 오른쪽은 시계방향) 압착블록이 잠깁니다.</li></ol>"
-    },
-    {
-     "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-5.jpg\" alt=\"튜브 장착 순서 ① 압착블록을 연다 ② 전용 피팅으로 튜브를 끼운다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 장착 순서 ① 압착블록을 연다 ② 전용 피팅으로 튜브를 끼운다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-6.jpg\" alt=\"튜브 장착 완료 상태 (Tube installation)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 장착 완료 상태 (Tube installation)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-8.jpg\" alt=\"외형 치수도 98.5 × 76.6 × 75.6 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 98.5 × 76.6 × 75.6 mm</figcaption></figure></div>",
-     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
    "faq": [
@@ -2746,7 +2741,7 @@
     },
     {
      "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ds-6.jpg\" alt=\"카드 압착 장치 — 래칫 단계 조절식 / 자동 스프링식\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>카드 압착 장치 — 래칫 단계 조절식 / 자동 스프링식</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ds-9.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ds-6.jpg\" alt=\"카드 압착 장치 — 래칫 단계 조절식 / 자동 스프링식\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>카드 압착 장치 — 래칫 단계 조절식 / 자동 스프링식</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
@@ -3081,7 +3076,7 @@
     },
     {
      "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-3.jpg\" alt=\"DMD25-T 적용 예 — 분주 장비 조립\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>DMD25-T 적용 예 — 분주 장비 조립</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-4.jpg\" alt=\"위상차 이중 압착블록의 맥동 상쇄 원리\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>위상차 이중 압착블록의 맥동 상쇄 원리</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-5.jpg\" alt=\"맥동 비교 곡선 — 단일 압착 대비 (제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>맥동 비교 곡선 — 단일 압착 대비 (제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-6.jpg\" alt=\"외형 치수도 187 × 105 × 125 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 187 × 105 × 125 mm</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-8.jpg\" alt=\"장착 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>장착 치수도 (단위: mm)</figcaption></figure></div>",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-4.jpg\" alt=\"위상차 이중 압착블록의 맥동 상쇄 원리\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>위상차 이중 압착블록의 맥동 상쇄 원리</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-6.jpg\" alt=\"외형 치수도 187 × 105 × 125 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 187 × 105 × 125 mm</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-8.jpg\" alt=\"장착 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>장착 치수도 (단위: mm)</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
@@ -3238,6 +3233,30 @@
      "note": "제조사 실험실에서 상온·상압, 정제수 이송 조건으로 측정한 값이며 참고용입니다. 실제 수명은 압력·온도·유체 특성·튜브 로트·벽두께에 따라 달라집니다. 수명을 길게 하려면 굵은 튜브와 낮은 회전수를, 유량을 크게 하려면 굵은 튜브와 높은 회전수를 쓰십시오. 정밀도를 높이려면 가는 튜브와 중·고 회전수를, 흡입 양정·배압을 높이려면 가늘고 벽이 두꺼운 튜브와 낮은 회전수를 쓰십시오."
     },
     {
+     "h": "채널 수별 길이 (Length by channel)",
+     "head": [
+      "모델(Model)",
+      "DG-1",
+      "DG-2",
+      "DG-4",
+      "DG-6",
+      "DG-8",
+      "DG-12"
+     ],
+     "rows": [
+      [
+       "L (mm)",
+       "38.5",
+       "47.5",
+       "63.5",
+       "79.5",
+       "95.5",
+       "127.5"
+      ]
+     ],
+     "note": "공통 치수 86 × 87.2 mm. 채널 수가 늘수록 폭(L)만 길어집니다."
+    },
+    {
      "h": "제조사 자료",
      "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dg-7.jpg\" alt=\"카드형 채널 구조 — 카드를 개별로 뺐다 끼울 수 있습니다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>카드형 채널 구조 — 카드를 개별로 뺐다 끼울 수 있습니다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dg-10.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
@@ -3388,11 +3407,6 @@
       ]
      ],
      "note": "클램프 단수를 조절하면 내경 0.5~4.8 mm 튜브에 두루 맞출 수 있습니다. ○ = 사용 가능, — = 사용 불가."
-    },
-    {
-     "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-7.jpg\" alt=\"튜브 클램프 조작 방법 — 한 손으로 커버를 연다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 클램프 조작 방법 — 한 손으로 커버를 연다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-8.jpg\" alt=\"튜브 장착 순서 — 커버 개방 → 튜브 안착 → 커버 닫기\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 장착 순서 — 커버 개방 → 튜브 안착 → 커버 닫기</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-9.jpg\" alt=\"외형 치수도 64 × 64 × 43 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 64 × 64 × 43 mm</figcaption></figure></div>",
-     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
    "faq": [
@@ -3627,7 +3641,7 @@
    "sections": [
     {
      "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-gn10-5.jpg\" alt=\"PTFE 튜브 장착 방법 — 전용 클램프\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>PTFE 튜브 장착 방법 — 전용 클램프</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-gn10-7.jpg\" alt=\"외형 치수도 83 × 140 × 65.4 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 83 × 140 × 65.4 mm</figcaption></figure></div>",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-gn10-7.jpg\" alt=\"외형 치수도 83 × 140 × 65.4 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 83 × 140 × 65.4 mm</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
@@ -3887,7 +3901,7 @@
     },
     {
      "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-5.jpg\" alt=\"BZ15-25 펌프헤드 구조 — 투명 PC 하우징으로 내부 운전 상태를 볼 수 있습니다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>BZ15-25 펌프헤드 구조 — 투명 PC 하우징으로 내부 운전 상태를 볼 수 있습니다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-6.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-7.jpg\" alt=\"외형 치수도 — 다른 각도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 — 다른 각도 (단위: mm)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-9.jpg\" alt=\"장착 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>장착 치수도 (단위: mm)</figcaption></figure></div>",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-9.jpg\" alt=\"장착 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>장착 치수도 (단위: mm)</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
@@ -4042,7 +4056,7 @@
     },
     {
      "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz35-5.jpg\" alt=\"다단 직렬 사용 예 — 롤러를 60° 어긋나게 장착\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>다단 직렬 사용 예 — 롤러를 60° 어긋나게 장착</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz35-7.jpg\" alt=\"외형 치수도 203 × 140 × 90 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 203 × 140 × 90 mm</figcaption></figure></div>",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz35-7.jpg\" alt=\"외형 치수도 203 × 140 × 90 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 203 × 140 × 90 mm</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],
@@ -4409,7 +4423,7 @@
     },
     {
      "h": "제조사 자료",
-     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-6.jpg\" alt=\"하우징 재질 선택 — PC(투명, 내부 확인) / PPS(내화학성 우수)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>하우징 재질 선택 — PC(투명, 내부 확인) / PPS(내화학성 우수)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-7.jpg\" alt=\"구성 부품 — 롤러 어셈블리·하우징·클램프\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>구성 부품 — 롤러 어셈블리·하우징·클램프</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-9.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-6.jpg\" alt=\"하우징 재질 선택 — PC(투명, 내부 확인) / PPS(내화학성 우수)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>하우징 재질 선택 — PC(투명, 내부 확인) / PPS(내화학성 우수)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-9.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
      "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
     }
    ],

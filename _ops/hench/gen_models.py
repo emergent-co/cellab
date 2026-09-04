@@ -22,7 +22,11 @@ def U(v):
     v = re.sub(r'(?<=\d)\s*[x×]\s*(?=\d)', '×', v)
     v = re.sub(r'(?<=\d)(mm|kg|MPa)\b', r' \1', v)
     v = re.sub(r'(?<=\d)T\b', ' T', v)
-    v = re.sub(r'\s*[（(]\s*(?:M|N|D|d|T|L\s*[×x]\s*N|M\s*[×x]\s*N)\s*[）)]', '', v)  # 제조사 도면 기호 제거
+    v = re.sub(r'\s*[（(]\s*(?:L\s*[×x]\s*[NH]|M\s*[×x]\s*N)\s*[）)]\s*', ' · ', v)   # 규격 구분자
+    v = re.sub(r'\s*[（(]\s*[MNDdT]\s*[）)]', '', v)                                      # 제조사 도면 기호 제거
+    v = re.sub(r'\s*·\s*$', '', v)
+    v = re.sub(r'\s*、\s*', ' · ', v)
+    v = re.sub(r'\s*·\s*·\s*', ' · ', v)
     v = re.sub(r'\s*、\s*', ' · ', v)
     v = re.sub(r'\s{2,}', ' ', v).strip()
     return v
@@ -56,8 +60,8 @@ PRESS = [
     dict(pg='PG4264976', model='YP-3',   ton=3,  slug='pellet-press-yp-3'),
     dict(pg='PG4264977', model='YP-5',   ton=5,  slug='pellet-press-yp-5'),
     dict(pg='PG4264978', model='YP-12',  ton=12, slug='pellet-press-yp-12',
-         fix='제조사 상세페이지에는 압력범위가 <b>0-15T</b>로 적혀 있으나 <b>실제 최대하중은 12 T</b>입니다. '
-             '실린더 Φ70(3,848 mm²) × 32 MPa ≒ 12.6 T이고 게이지 환산도 1 MPa = 0.4 T라 12 T가 맞습니다.'),
+         fix='제조사 영문 페이지에는 압력범위가 <b>0-15T</b>로 적혀 있으나 중문 페이지와 실측 환산 모두 <b>12 T</b>입니다. '
+             '실린더 Φ70(3,848 mm²) × 30 MPa ≒ 11.8 T이고 게이지 환산도 1 MPa = 0.4 T라 12 T가 맞습니다.'),
     dict(pg='PG4264979', model='YP-15',  ton=15, slug='pellet-press-yp-15'),
     dict(pg='PG4264980', model='YP-15B', ton=15, slug='pellet-press-yp-15b'),
     dict(pg='PG4264981', model='YP-15R', ton=15, slug='pellet-press-yp-15r'),
@@ -191,9 +195,7 @@ def press_page(p):
 DIES = [
     dict(frag='Φ2mmΦ3mmΦ4mmΦ5mmΦ6mm Cylindrical',      slug='cylindrical-die-hmy-3-6',     band='Φ3–6 mm'),
     dict(frag='Φ7mmΦ8mmΦ9mmΦ10mm Cylindrical',         slug='cylindrical-die-hmy-7-10',    band='Φ7–10 mm'),
-    dict(frag='Φ11mmΦ12mmΦ13mmΦ14mm Cylindrical',      slug='cylindrical-die-hmy-11-14',   band='Φ11–14 mm',
-         bad='제조사 상세페이지의 사양표에 <b>Φ7–10 밴드의 값이 그대로 복사</b>되어 있습니다(시료 치수·캐비티 깊이·외형·무게 전부 동일). '
-             'Φ11–14 밴드의 실제 치수는 확인 후 안내드리며, 추정값을 싣지 않습니다.'),
+    dict(frag='Φ11mmΦ12mmΦ13mmΦ14mm Cylindrical',      slug='cylindrical-die-hmy-11-14',   band='Φ11–14 mm',),
     dict(frag='Φ15mmΦ16mm',  slug='cylindrical-die-hmy-15-19',  band='Φ15–19 mm'),
     dict(frag='Φ20mmΦ21mm',  slug='cylindrical-die-hmy-20-25',  band='Φ20–25 mm'),
     dict(frag='Φ26mmΦ27mm',  slug='cylindrical-die-hmy-26-30',  band='Φ26–30 mm'),
@@ -206,14 +208,37 @@ DIES = [
 DIE_ALL = [(d['slug'], d['band']) for d in DIES]
 
 def material_of(r):
-    sp = json.loads(r['spec']); blob = ' '.join(list(sp.keys()) + list(sp.values()))
-    if 'ASSAB' in blob: return '일본산 고속도 공구강 <b>ASSAB+17</b>', 'Japan High Speed Tool Steel ASSAB+17'
-    if 'Cr12MoV' in blob: return '합금공구강 <b>Cr12MoV</b>', 'Alloy tool steel Cr12MoV'
-    return '—', ''
+    """중문 제조사 표기를 그대로 쓴다. 영문판의 ASSAB+17/Cr12MoV·HRC68~70 표기는 중문판과 충돌해 채택하지 않는다."""
+    m = S(r, 'Material')
+    if m == '—':
+        return '—', ''
+    if '9Cr18' in m:
+        return '마르텐사이트계 스테인리스 공구강 <b>9Cr18</b>', '9Cr18'
+    return '<b>%s</b>' % m, m
+
+def band_range(band):
+    n = [float(x) for x in re.findall(r'(\d+(?:\.\d+)?)', band)]
+    return (min(n), max(n)) if n else (0.0, 1e9)
+
+
+def narrow(ss, band):
+    """중문은 밴드를 넓게 묶는다(예: HMY-B = Φ7–14). 이 페이지 밴드 구간만 남긴다."""
+    lo, hi = band_range(band)
+    parts = [x.strip() for x in re.split(r'[、,·]', ss.replace('mm', '')) if x.strip()]
+    keep = []
+    for x in parts:
+        m = re.search(r'(\d+(?:\.\d+)?)', x)
+        if m and lo - 0.001 <= float(m.group(1)) <= hi + 0.001:
+            keep.append('Φ' + m.group(1))
+    return ' · '.join(keep) + ' mm' if keep else ss
+
 
 def die_page(d):
     r = row_by_name(d['frag']); slug, band = d['slug'], d['band']
-    ss = S(r, 'Sample size'); depth = S(r, 'Cavity depth'); dim = S(r, 'Dimensions'); wt = S(r, 'Weight')
+    ss = S(r, 'Sample size')
+    depth = S(r, 'Cavity depth'); dim = S(r, 'Dimensions'); wt = S(r, 'Weight')
+    if not d.get('multi'):
+        ss = narrow(ss, band)
     hard = S(r, 'Indenter hardness').replace('HRC', '').replace('-', '~HRC').strip()
     hard = 'HRC' + hard if hard != '—' else '—'
     mat_h, mat_en = material_of(r)
@@ -256,7 +281,7 @@ def die_page(d):
         'IR(KBr) 분석의 표준인 <b>Φ13 mm</b>가 이 밴드에 들어갑니다.' if has13 else
         ('소구경 미량 시료용입니다.' if dmax and dmax <= 10 else 'XRD 홀더용 대면적 시료에 씁니다.' if dmax >= 26 else '중간 직경대입니다.')),
       '<b>재질 %s</b> — 열처리 후 치수 안정성이 높아 캐비티와 인덴터의 클리어런스가 유지됩니다.' % mat_h.replace('<b>', '').replace('</b>', ''),
-      '<b>인덴터 경도 %s</b> — GPa급 성형압에서도 인덴터 단면이 눌리지 않아 펠릿 표면이 평활하게 유지됩니다.' % hard,
+      '<b>압두 경도 %s</b> — 담금질된 스테인리스 공구강이라 반복 가압에서 캐비티 마모가 느립니다. 더 높은 경도가 필요하면 초경합금(HMW) 다이를 쓰십시오.' % hard,
       '<b>캐비티 깊이 %s</b> — 분말 충전량에 여유가 있어 두꺼운 펠릿도 성형할 수 있습니다.' % (depth if not bad else '확인 중'),
       '<b>표준 유압 프레스 호환</b> — <a href="/brands/hench/pellet-press-yp-15/">YP 시리즈</a>를 비롯한 수동 유압 펠릿 프레스에 그대로 올려 씁니다.',
     ]
@@ -271,13 +296,15 @@ def die_page(d):
          '<a href="/brands/hench/cylindrical-die-hmy-11-14/">Φ11–14 밴드</a>를 고르십시오.' if dmax and dmax <= 10 else
          'XRD 홀더용 대면적 분말 시료 성형에 적합합니다. 고압이 필요한 IR 투광용으로는 직경이 커 하중이 모자랍니다.'))),
       ('재질·경도', '재질과 경도가 왜 중요한가요?',
-       'KBr 펠릿 성형압은 통상 700 MPa 이상, 즉 <b>0.7 GPa 이상</b>입니다. 일반 공구강은 이 영역에서 인덴터 단면이 미세하게 눌려 '
-       '펠릿 표면에 굴곡이 생기고 IR 베이스라인이 흔들립니다. 이 밴드는 <b>%s</b>를 <b>%s</b>로 열처리해 '
-       '이 압력대에서 영구변형이 발생하지 않습니다.' % (mat_h.replace('<b>', '').replace('</b>', ''), hard)),
+       'KBr 펠릿 성형압은 통상 700 MPa 이상, 즉 <b>0.7 GPa 이상</b>입니다. 압두 단면이 눌리면 그 굴곡이 펠릿 표면에 그대로 전사되어 '
+       'IR 베이스라인이 흔들립니다. 이 다이는 <b>%s</b>를 <b>%s</b>로 열처리한 것으로, 표준 KBr 성형 조건을 전제로 설계돼 있습니다. '
+       '초고압 반복 사용이 전제라면 초경합금(HMW) 다이를 권합니다.' % (mat_h.replace('<b>', '').replace('</b>', ''), hard)),
       ('재질·경도', '밴드마다 재질이 다른가요?',
-       '다릅니다. <b>Φ3–10 mm 소구경 밴드는 일본산 고속도 공구강 ASSAB+17 · HRC68~70</b>이고, '
-       '<b>Φ15 mm 이상 밴드는 합금공구강 Cr12MoV · HRC68~62</b>입니다. 소구경일수록 단위면적당 압력이 높아 더 단단한 강재를 씁니다. '
-       '카탈로그에 한 재질만 적힌 자료가 돌아다니니 밴드별로 확인하십시오.'),
+       '제조사 중문 사양서 기준으로 <b>HMY 전 밴드가 9Cr18 · 압두 경도 HRC58</b>로 동일합니다. '
+       '제조사 영문 페이지에는 소구경 밴드가 ASSAB+17 · HRC68~70, 대구경 밴드가 Cr12MoV로 적혀 있으나 '
+       '중문 사양서와 일치하지 않습니다. 더 높은 경도가 필요하면 '
+       '<a href="/brands/hench/hard-alloy-die-hmw-a-7-10/">초경합금 다이(HMW)</a>를 고르십시오. '
+       '재질 지정이 필요한 경우 발주 전에 제조사에 확인해 드립니다.'),
       ('프레스 호환', '이 밴드를 쓰려면 몇 톤짜리 프레스가 필요한가요?',
        ('성형압 700 MPa 기준으로 이 밴드의 최소 직경 Φ%.0f mm에 <b>약 %.1f T</b>, 최대 직경 Φ%.0f mm에 <b>약 %.1f T</b>가 필요합니다. %s'
         % (dmin, need_min, dmax, need_max,

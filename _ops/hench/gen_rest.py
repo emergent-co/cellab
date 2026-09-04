@@ -175,6 +175,18 @@ def notes_common(extra=()):
 
 # ══════════════ 군별 설정 ══════════════
 CFG = {
+ 'P1-manual': dict(kind='press', crumb='수동 유압 펠릿 프레스', sub='pellet',
+   nm='수동 유압 펠릿 프레스',
+   ans='레버로 유압을 올려 분말을 펠릿으로 성형하는 프레스입니다. 전원이 필요 없고 구조가 단순해 고장 요소가 적습니다.',
+   why='레버 펌핑으로 유압을 만듭니다. 전원·배관이 없어 설치가 자유롭고, <b>일체형 단조 프레임</b>이라 반복 가압에서 압력 강하와 누유가 적습니다.'),
+ 'D1-cylindrical': dict(kind='die', crumb='원통형 펠릿 다이', sub='die',
+   nm='원통형 펠릿 다이',
+   ans='원판형 펠릿을 만드는 표준 성형 다이입니다. IR·XRD 시료 조제에 가장 널리 쓰이는 형상입니다.',
+   why='캐비티·인덴터·베이스의 3피스 구조로, 눌러 성형한 뒤 인덴터로 밀어 탈형합니다. <b>지름 밴드별로 캐비티 깊이와 외경이 달라</b> 시료량에 맞춰 고릅니다.'),
+ 'P9-vacuum': dict(kind='press', crumb='진공 자동 열압기', sub='pellet',
+   nm='진공 자동 열압기',
+   ans='챔버를 진공으로 뽑은 상태에서 가열·가압하는 자동 열압기입니다. 대기 접촉이 문제되는 시료에 씁니다.',
+   why='가열 가압을 <b>진공 챔버 안에서</b> 수행합니다. 대기 중 산화·수분 흡착이 문제되는 소재나 기공을 줄여야 하는 소결·접합 공정에 필요합니다.'),
  'P2-digital': dict(kind='press', crumb='디지털 수동 유압 펠릿 프레스', sub='pellet',
    nm='디지털 수동 유압 펠릿 프레스',
    ans='레버로 가압하되 압력을 디지털 게이지로 읽는 펠릿 프레스입니다. 지침식보다 판독 오차가 작아 성형압 재현이 쉽습니다.',
@@ -424,7 +436,7 @@ def card_of(o):
 def main():
     made = 0
     for o in F.out:
-        if o['done']: continue
+        if o['done']: continue          # gen_models.py 가 담당(이미 중문 반영본으로 재생성됨)
         H.write(o['slug'], H.render(build_page(o))); made += 1
     cards = [card_of(o) for o in F.out]
     hp = os.path.join(H.ROOT, 'brands', 'hench', 'index.html')
