@@ -125,6 +125,20 @@ a{color:inherit;text-decoration:none}
   font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .dqo:hover{border-color:#E0B476;background:#FFFDF8}
 .dqo i{font-style:normal;font-weight:600;color:var(--mut)}
+/* 품명 자동완성 — 제품표에서 찾아 고른다 */
+.dq{position:relative}
+.dqac{position:absolute;left:0;right:0;top:100%;z-index:40;background:#fff;border:1px solid var(--line);
+  border-radius:10px;box-shadow:0 10px 28px rgba(16,24,40,.14);overflow:hidden;max-height:280px;overflow-y:auto}
+.dqac[hidden]{display:none}
+.dqac button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;text-align:left;
+  padding:9px 12px;cursor:pointer;border-bottom:1px solid #F2F4F7}
+.dqac button:last-child{border-bottom:0}
+.dqac button:hover,.dqac button.on{background:#F5F8FF}
+.dqac .t{flex:1;min-width:0}
+.dqac .t b{display:block;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dqac .t small{display:block;font-size:11.5px;color:var(--mut)}
+.dqac .p{font-size:12.5px;font-weight:700;white-space:nowrap}
+.dqac .none{padding:10px 12px;font-size:12.5px;color:var(--mut)}
 .newrow:hover{border-color:#E0B476;background:#FFFDF8}
 .newrow .t{flex:1;min-width:0}
 .newrow .t b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -5716,11 +5730,16 @@ function dqPaintItems(){
                 + '<i>'+won(o.price)+'</i></button>'; }).join('')
           + '</div>'
         : '')
+      +'<div class="dqac" hidden></div>'
       +'</div>';
   }).join('');
   box.querySelectorAll('.dq').forEach(function(el){
     var i = Number(el.dataset.i);
-    el.querySelector('.nm').oninput = function(e){ dqItems[i].name = e.target.value; dqAutoTitle(); };
+    el.querySelector('.nm').oninput = function(e){
+      dqItems[i].name = e.target.value; dqAutoTitle(); dqAcFind(el, i, e.target.value);
+    };
+    el.querySelector('.nm').onblur = function(){ setTimeout(function(){ dqAcHide(el); }, 180); };
+    el.querySelector('.nm').onfocus = function(e){ dqAcFind(el, i, e.target.value); };
     el.querySelector('.sp').oninput = function(e){ dqItems[i].spec = e.target.value; };
     el.querySelector('.qy').oninput = function(e){ dqItems[i].qty = Math.max(1,Number(e.target.value)||1); dqRow(el,i); };
     el.querySelector('.pr').oninput = function(e){ dqItems[i].price = numFmt(e.target); dqRow(el,i); };
@@ -5746,6 +5765,46 @@ function dqPaintItems(){
   dqSum();
 }
 function dqRow(el,i){ el.querySelector('.sb').textContent = won(dqLine(dqItems[i]))+'원'; dqSum(); }
+
+/* 품명 자동완성.
+   문의가 애매하거나 고객이 모델을 잘못 골랐어도, 여기서 제품표를 직접 집으면 끝난다.
+   제품표 판매가는 «부가세 별도» 기준이라, 지금 화면이 «부가세 포함» 기준이면 환산해서 넣는다.
+   기준을 안 맞추고 그대로 넣으면 견적이 10% 어긋난다. */
+var dqAcT = null, dqAcSeq = 0;
+function dqAcHide(el){ var b = el.querySelector('.dqac'); if (b){ b.hidden = true; b.innerHTML = ''; } }
+function dqAcFind(el, i, kw){
+  var box = el.querySelector('.dqac'); if (!box) return;
+  kw = String(kw || '').trim();
+  if (kw.length < 2){ dqAcHide(el); return; }
+  clearTimeout(dqAcT);
+  var seq = ++dqAcSeq;
+  dqAcT = setTimeout(async function(){
+    var r = await fetch('/api/admin/issue?products='+encodeURIComponent(kw),{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return {};});
+    if (seq !== dqAcSeq) return;               // 늦게 온 응답이 최신 결과를 덮지 않게
+    var rows = r.products || [];
+    if (!rows.length){ dqAcHide(el); return; }
+    box.hidden = false;
+    box.innerHTML = rows.map(function(o,k){
+      return '<button type="button" data-a="'+k+'"><span class="t"><b>'+esc(o.name||'—')+'</b>'
+        + '<small>'+esc([o.model, o.unit].filter(Boolean).join(' · ')||'—')+'</small></span>'
+        + '<span class="p">'+won(o.price)+'원</span></button>'; }).join('');
+    box.querySelectorAll('[data-a]').forEach(function(bt){
+      bt.onmousedown = function(ev){ ev.preventDefault(); };   // blur 보다 먼저 잡는다
+      bt.onclick = function(){
+        var o = rows[Number(bt.dataset.a)]; if (!o) return;
+        dqItems[i].name  = o.name || '';
+        dqItems[i].spec  = o.model || dqItems[i].spec || '';
+        dqItems[i].price = dqVat ? r10(o.price * 1.1) : f10(o.price);
+        dqItems[i].options = [];
+        dqAcHide(el);
+        dqPaintItems(); dqAutoTitle();
+        toast((o.model || o.name || '제품') + ' · ' + won(dqItems[i].price) + '원'
+              + (dqVat ? ' (부가세 포함으로 환산)' : ' (부가세 별도)'));
+      };
+    });
+  }, 220);
+}
 
 function dqSum(){
   var box = $('#dqSum'); if(!box) return;

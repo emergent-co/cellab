@@ -738,7 +738,8 @@
     "브라우저에서 손으로 조립한 store-only ZIP 이 central directory 에서 깨졌다 — 이미지는 base64 JSON 한 개로 내려받아 파이썬으로 디코드한다.",
     "Chrome 은 한 번에 여러 파일을 내려받으면 두 번째를 막는다 — 다운로드는 한 번에 하나씩.",
     "원본 사진이 790x507(3:2)이라 1200x900(4:3) 캔버스에 모서리 평균색 배경으로 얹어 정규화한다(피팅·튜빙은 배경이 파랑이라 흰색으로 채우면 어색하다).",
-    "프리토크 피팅 토크 단위가 제조사 표기 'N/m' — 토크 단위 N·m 로 옮기고 variants.note 에 명시했다."
+    "프리토크 피팅 토크 단위가 제조사 표기 'N/m' — 토크 단위 N·m 로 옮기고 variants.note 에 명시했다.",
+    "빌드 REQ_SPEC 린터는 <th> 를 24자까지만 읽는다 — required_specs 로 쓸 라벨은 영문 병기를 포함해 24자 이하로, 마침표·하이픈 없이 적는다."
    ],
    "default_required_specs": [],
    "families": {
@@ -750,10 +751,10 @@
       "valve-head"
      ],
      "required_specs": [
-      "습부 재질",
-      "압력 정격",
-      "연결부",
-      "전원"
+      "습부 재질 (Wetted material)",
+      "압력 정격 (Pressure rating)",
+      "연결부 (Connection)",
+      "전원 (Power supply)"
      ]
     },
     "syringe-pump": {
@@ -762,10 +763,10 @@
       "piston-pump"
      ],
      "required_specs": [
-      "공칭 용량",
-      "정격 스트로크",
-      "통신",
-      "전원"
+      "정격 스트로크 (Rated stroke)",
+      "통신 속도 (Baud rate)",
+      "전원 (Power supply)",
+      "습부 재질 (Wetted material)"
      ]
     },
     "fitting": {
@@ -778,8 +779,8 @@
       "clamp"
      ],
      "required_specs": [
-      "연결 규격",
-      "구성"
+      "나사 규격 (Thread)",
+      "구성 (Assembly)"
      ]
     },
     "tubing": {
@@ -789,10 +790,10 @@
       "hose"
      ],
      "required_specs": [
-      "재질",
-      "연속 사용 온도",
-      "내경 범위",
-      "외경 범위"
+      "재질 (Material)",
+      "사용 온도 (Temperature)",
+      "내경 범위 (Inner diameter)",
+      "외경 범위 (Outer diameter)"
      ]
     }
    },

@@ -13,7 +13,9 @@ def zh_ko(s):
     s = _zh_ko(s)
     for a, b in _FW.items():
         s = s.replace(a, b)
-    return ' '.join(s.split()).replace(' )', ')').replace('( ', '(')
+    s = ' '.join(s.split()).replace(' )', ')').replace('( ', '(')
+    s = re.sub(r'\)\(', ') (', s)
+    return s
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 PARSED = os.path.join(ROOT, '_ops/leadfluid_cn/parsed_170.json')

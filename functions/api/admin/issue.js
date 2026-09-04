@@ -45,6 +45,25 @@ async function get(request, env) {
     return json({ clients: (rows || []).map(slimClient) });
   }
 
+  /* ---- 품명 자동완성 ----
+     견적서 품명 칸에서 바로 제품을 찾아 고른다. 문의 내용이 애매하거나
+     고객이 모델을 잘못 골랐어도, 발행하는 사람이 제품표에서 직접 집으면 그만이다.
+     조건은 instr() 로만 — 컬럼을 LIKE 패턴으로 쓰면 D1 이 통째로 터진다. */
+  if (u.get('products') != null) {
+    const kw = String(u.get('products') || '').trim();
+    if (kw.length < 2) return json({ products: [] });
+    const rows = (await env.DB.prepare(
+      `SELECT name, model, unit, retail_price FROM products
+        WHERE IFNULL(retail_price,0) > 0
+          AND (instr(lower(name), lower(?1)) > 0 OR instr(lower(IFNULL(model,'')), lower(?1)) > 0)
+        ORDER BY (instr(lower(IFNULL(model,'')), lower(?1)) > 0) DESC,
+                 length(IFNULL(model,'')), length(name) LIMIT 8`)
+      .bind(kw).all().then((r) => r.results || []).catch(() => []));
+    return json({ products: rows.map((r) => ({
+      name: r.name || '', model: r.model || '', unit: r.unit || '',
+      price: Math.round(r.retail_price) })) });
+  }
+
   // ---- 거래처 상세 ----
   if (u.get('client')) {
     const c = await env.DB.prepare(

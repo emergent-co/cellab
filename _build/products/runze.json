@@ -12,7 +12,7 @@
    "slug": "selector-valve-sv-07",
    "name": "셀렉터 밸브 SV-07",
    "name_en": "Runze Fluid Selector Valve SV-07",
-   "sub": "6/8/10/12/16 포트 · 사파이어 로터·스테이터 · RS232/RS485/CAN",
+   "sub": "6/8/10/12/16 포트 · 사파이어 로터·스테이터 · RS232 / RS485 / CAN",
    "category": "멀티포지션 밸브 · 셀렉터 밸브",
    "title": "Runze Fluid 셀렉터 밸브 SV-07 — 6~16포트 사파이어 멀티포지션 밸브 | 실험셋업연구소",
    "desc": "Runze Fluid 셀렉터 밸브 SV-07 — 6/8/10/12/16 포트, PCTFE 밸브헤드에 사파이어 로터·스테이터. 0-1.6 MPa(물), 액체 온도 0-150℃, RS232/RS485/CAN 제어. 가격 문의.",
@@ -34,64 +34,68 @@
    ],
    "specs": [
     [
-     "습부 재질",
-     "PCTFE · 사파이어 로터/스테이터"
+     "습부 재질 (Wetted material)",
+     "PCTFE · 사파이어 로터/스테이터 (Sapphire rotor/stator)"
     ],
     [
-     "압력 정격",
-     "0-1 MPa (공기) / 0-1.6 MPa (물)"
+     "압력 정격 (Pressure rating)",
+     "0-1 MPa (공기 air) / 0-1.6 MPa (물 water)"
     ],
     [
-     "원점 검출",
-     "전원 인가 시 초기 위치 자동 복귀 (기능 on/off 가능)"
+     "원점 검출 (Origin detection)",
+     "전원 인가 시 초기 위치 자동 복귀 · 기능 on/off 가능"
     ],
     [
-     "액체 온도",
+     "액체 온도 (Liquid temperature)",
      "0-150℃"
     ],
     [
-     "연결부",
+     "연결부 (Connection)",
      "1/4-28 UNF"
     ],
     [
-     "교체 부품",
+     "교체 부품 (Replaceable parts)",
      "스테이터 교체 가능 · 씰 로터 교체 불가"
     ],
     [
-     "전환 방식",
-     "임의 위치에서 지정 포트로 이동"
+     "전환 방식 (Transposition)",
+     "임의 위치에서 지정 포트로 이동 (Random start to any specific port)"
     ],
     [
-     "드라이버",
+     "드라이버 (Driver)",
      "비선택형 (Non-optional)"
     ],
     [
-     "통신 속도",
+     "통신 속도 (Baud rate)",
      "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
     ],
     [
-     "주소 · 파라미터 설정",
-     "통신으로 설정"
+     "주소 · 파라미터 설정 (Address &amp; parameter setting)",
+     "통신으로 설정 (Via communication)"
     ],
     [
-     "전원",
+     "전원 (Power supply)",
      "DC 24V / 3A"
     ],
     [
-     "최대 소비전력",
+     "최대 소비전력 (Max. power)",
      "25 W"
     ],
     [
-     "동작 온도",
+     "동작 온도 (Operating temperature)",
      "-10℃ ~ +50℃"
     ],
     [
-     "동작 습도",
-     "상대습도 80% 미만 · 비결로"
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로 (non-condensing)"
+    ],
+    [
+     "드라이버 포트 핀 (Driver port)",
+     "+ DC24V(+) · − DC24V(−) · TX RS232 Data Input · RX RS232 Data Output · GND · H CANH · L CANL · A RS485A · B RS485B"
     ]
    ],
    "variants": {
-    "heading": "포트 구성별 규격",
+    "heading": "포트 구성별 규격 (Configuration)",
     "head": [
      "항목",
      "6/8/10 포트",
@@ -100,31 +104,31 @@
     ],
     "rows": [
      [
-      "오리피스",
+      "오리피스 (Orifice)",
       "1.2 mm",
       "1.0 mm",
       "1.0 mm"
      ],
      [
-      "데드볼륨",
+      "데드볼륨 (Dead volume)",
       "포트간 27.5 µl · 데드볼륨 5.41 µl",
       "포트간 22.43 µl · 데드볼륨 6.08 µl",
       "포트간 33.68 µl · 데드볼륨 10.4 µl"
      ],
      [
-      "밸브 구동 시간",
+      "밸브 구동 시간 (Valve drive)",
       "≤2 s / 회전",
       "≤2 s / 회전",
       "≤3.3 s / 회전"
      ],
      [
-      "치수 (L×W×H)",
-      "60×51×150 mm",
+      "치수 (Dimension L×W×H)",
+      "60×51×149.9 mm",
       "60×51×160.5 mm",
       "60×51×179.5 mm"
      ],
      [
-      "순중량",
+      "순중량 (Net weight)",
       "0.73 kg",
       "0.86 kg",
       "1.02 kg"
@@ -190,6 +194,16 @@
      "tag": "용도",
      "q": "어떤 장비에 주로 쓰나요?",
      "a": "환경 분석 기기, 실험실 분석기, 의료 분석 장비, 크로마토그래피 분석기 등의 유로 전환에 씁니다."
+    },
+    {
+     "tag": "주문",
+     "q": "주문할 때 모델 코드는 어떻게 적나요?",
+     "a": "QHF-SV07 뒤에 포트 수(T6·T8·T10·T12·T16)와 오리피스(K1.0·K1.2)를 붙입니다. 예를 들어 10포트에 오리피스 1.2 mm면 QHF-SV07-X-S-T10-K1.2-S 입니다."
+    },
+    {
+     "tag": "배선",
+     "q": "드라이버 포트 핀 배열은 어떻게 되나요?",
+     "a": "+ 와 − 가 DC24V, TX·RX 가 RS232 데이터 입출력, GND, H·L 이 CANH·CANL, A·B 가 RS485A·RS485B 입니다."
     }
    ],
    "ld": {
@@ -205,16 +219,30 @@
    "source": {
     "url": "https://www.runzefluid.com/products/selector-valve-sv-07.html",
     "label": "Runze Fluid 제품 페이지"
-   }
+   },
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>QHF-SV07 - X - S - T□ - K□.□ - S</b> 로 구성됩니다. <b>T</b> 는 포트 수(T6 6port · T8 8port · T10 10port · T12 12port · T16 16port), <b>K</b> 는 오리피스(K1.0 Orifice 1.0 mm · K1.2 Orifice 1.2 mm), 끝의 <b>S</b> 는 사파이어(Sapphire)를 뜻합니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/selector-valve-sv-07-d1.jpg\" alt=\"모델 번호 구성 — Model No. · Valve type · Small low voltage · Configuration · Orifice · Sapphire\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · Valve type · Small low voltage · Configuration · Orifice · Sapphire</figcaption></figure></div>"
+    },
+    {
+     "h": "유로 구성 · 데드볼륨 · 드라이버 포트",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/selector-valve-sv-07-d2.jpg\" alt=\"Port-to-Port Volume · Dead Volume · Driver Port 핀 배열 · 6/8/10/12/16 포트 유로 구성도\" loading=\"lazy\"><figcaption>Port-to-Port Volume · Dead Volume · Driver Port 핀 배열 · 6/8/10/12/16 포트 유로 구성도</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/selector-valve-sv-07-d3.jpg\" alt=\"포트 수별 외형 치수와 4-M3 마운팅 홀 — 6/8/10 포트는 같은 치수를 씁니다\" loading=\"lazy\"><figcaption>포트 수별 외형 치수와 4-M3 마운팅 홀 — 6/8/10 포트는 같은 치수를 씁니다</figcaption></figure></div>"
+    }
+   ]
   },
   {
    "slug": "rp42-industrial-micro-syringe-pump",
-   "name": "산업용 마이크로 시린지 펌프 RP42",
-   "name_en": "Runze Fluid RP42 Industrial Micro Syringe Pump",
-   "sub": "100 / 500 / 1000 µL · 정격 스트로크 12.7 mm · RS-232 / RS-485",
-   "category": "시린지 펌프 · 마이크로 시린지 펌프",
-   "title": "Runze Fluid RP42 산업용 마이크로 시린지 펌프 — 100/500/1000 µL | 실험셋업연구소",
-   "desc": "Runze Fluid RP42 산업용 마이크로 시린지 펌프 — 100·500·1000 µL, 정격 스트로크 12.7 mm, 체적 오차 1% 이하. 세라믹 시린지에 이중 세척 포트, RS-232/RS-485 제어. 가격 문의.",
+   "name": "산업용 마이크로 플런저 펌프 RP42",
+   "name_en": "Runze Fluid RP42 Industrial Micro Plunger Pump",
+   "sub": "플런저 방식 마이크로 시린지 펌프 · 100 / 500 / 1000 µL · 정격 스트로크 12.7 mm",
+   "category": "시린지 펌프 · 마이크로 플런저 펌프",
+   "title": "Runze Fluid RP42 산업용 마이크로 플런저 펌프 — 100/500/1000 µL 정밀 분주 | 실험셋업연구소",
+   "desc": "Runze Fluid RP42 산업용 마이크로 플런저 펌프 — 100·500·1000 µL, 체적 오차 1% 이하, 알루미나 세라믹 플런저에 양단 세척 포트. RS-232/RS-485, RUNZE·MODBUS·ASCII. 가격 문의.",
    "images": [
     "runze-rp42-industrial-micro-syringe-pump-1.jpg",
     "runze-rp42-industrial-micro-syringe-pump-2.jpg",
@@ -226,109 +254,119 @@
     "runze-rp42-industrial-micro-syringe-pump-8.jpg"
    ],
    "image_alt": "Runze Fluid RP42 산업용 마이크로 시린지 펌프",
-   "answer": "RP42는 100·500·1000 µL 용량의 산업용 마이크로 시린지 펌프로, 스텝모터와 리드스크류로 미소 체적을 정밀하게 흡입·분주하며 RS-232/RS-485 통신을 지원합니다.",
+   "answer": "RP42는 알루미나 세라믹 플런저로 100·500·1000 µL를 정밀 분주하는 산업용 마이크로 플런저 펌프로, RS-232/RS-485 통신에 양단 세척 포트를 갖춘 시린지 펌프입니다.",
    "features": [
-    "정격 스트로크에서 <b>체적 오차 1% 이하</b>, 재현성 오차 0.3~0.7%입니다",
-    "<b>100 / 500 / 1000 µL</b> 세 가지 용량이 있습니다",
-    "최소 분주 분해능 <b>0.025 µL</b>부터 — 용량과 리드스크류 피치에 따라 달라집니다",
-    "<b>이중 시린지 세척 포트</b>(10-32 UNF)를 세정 회로에 연결하면 세라믹 시린지 표면의 석출물을 줄일 수 있습니다",
-    "펌프 헤드가 <b>투명 PCTG</b>라 셋업·유지보수 중에 유로를 눈으로 볼 수 있습니다",
-    "습부 재질은 <b>PCTG · 알루미나 세라믹 · UPE · FKM</b>입니다",
-    "통합 드라이버형은 <b>RS-232 / RS-485</b> 통신에 RUNZE · MODBUS · ASCII 프로토콜을 지원합니다",
-    "외부 구동형은 <b>옵토커플러 원점 감지</b>를 제공해 OEM 컨트롤러에 붙이기 좋습니다",
+    "정격 스트로크에서 <b>체적 오차 1% 이하</b>, 반복성 오차 0.3~0.7%입니다",
+    "<b>알루미나 세라믹 플런저 (Alumina Ceramic Plunger)</b> + UPE 씰 링 — 고경도·내마모로 왕복 운동 마모가 적습니다",
+    "<b>양단 세척 포트 (Dual-end cleaning port, 10-32 UNF)</b> 를 세정 회로에 연결해 세라믹 플런저 표면의 결정 석출을 씻어냅니다",
+    "펌프 헤드가 <b>투명 PCTG</b> 라 유로와 기포를 눈으로 볼 수 있습니다",
+    "<b>100 / 500 / 1000 µL</b> 세 용량이며 플런저 내경이 3.17 · 7.08 · 10.01 mm 로 다릅니다",
+    "최소 샘플링 정밀도 <b>0.025 µL</b> 부터 — 용량과 리드 스크류 리드에 따라 달라집니다",
+    "구동 방식 2종 — <b>드라이버 통합형(Drive-Integrated)</b> 은 RS-232/RS-485 에 RUNZE·MODBUS·ASCII 프로토콜, <b>OPB 옵토커플러형</b> 은 외부 컨트롤러에 붙입니다",
+    "<b>42 스텝 모터</b> + 리드 스크류 전동, 금속 마운팅 브래킷으로 고정합니다",
     "순수 기준 정격 스트로크 1회/사이클로 <b>300만 사이클</b> 누유 없이 시험했습니다"
    ],
    "specs": [
     [
-     "공칭 용량",
-     "100 µL / 500 µL / 1000 µL"
+     "체적 정확도 (Volume accuracy)",
+     "≤1% (정격 스트로크 기준)"
     ],
     [
-     "백프레셔",
+     "체적 정밀도 (Volume precision)",
+     "반복성 오차 0.3% ~ 0.7% (정격 스트로크 기준)"
+    ],
+    [
+     "수명 (Service life)",
+     "3,000,000 사이클 무누유 — 시험 매질 순수, 1사이클 = 정격 스트로크 1회"
+    ],
+    [
+     "백프레셔 (Back pressure)",
      "0.5 MPa"
     ],
     [
-     "정격 스트로크",
-     "12.7 mm"
+     "정격 스트로크 (Rated stroke)",
+     "12.7 mm — 리드 0.635 mm 4,000 스텝 / 리드 1.27 mm 2,000 스텝"
     ],
     [
-     "최대 회전 속도",
+     "밸브 헤드 (Valve head)",
+     "L형 듀얼 포트 (L-type dual-port)"
+    ],
+    [
+     "제어 분해능 (Control resolution)",
+     "0.003175 mm | 0.00635 mm"
+    ],
+    [
+     "전동 구조 (Transmission structure)",
+     "리드 스크류 (Lead screw · Lead 0.635 mm | 1.27 mm)"
+    ],
+    [
+     "최대 회전 속도 (Max rotation speed)",
      "300 rpm"
     ],
     [
-     "최대 시린지 구동력",
+     "최대 플런저 구동력 (Max plunger drive force)",
      "≥100 N"
     ],
     [
-     "유체 포트",
-     "1/4-28 UNF 암나사"
+     "습부 재질 (Wetted material)",
+     "PCTG · FKM · UPE · 알루미나 세라믹 (Alumina Ceramic)"
     ],
     [
-     "시린지 세척 포트",
-     "10-32 UNF"
+     "포트 (Tube port)",
+     "1/4-28 UNF 암나사 (유체) · 10-32 UNF (세척)"
     ],
     [
-     "통신",
-     "RS-232 / RS-485"
+     "통신 속도 (Baud rate)",
+     "RS232 / RS485 — 9600 · 19200 · 38400 · 57600 · 115200 bps"
     ],
     [
-     "통신 속도",
-     "9600 · 19200 · 38400 · 57600 · 115200 bps"
-    ],
-    [
-     "프로토콜",
+     "프로토콜 (Protocol)",
      "RUNZE · MODBUS · ASCII"
     ],
     [
-     "전원",
-     "DC 24V / 3A (통합 드라이버형)"
+     "전원 (Power supply)",
+     "DC 24V / 3A"
     ],
     [
-     "동작 온도",
-     "5-55℃"
+     "동작 온도 (Operating temp.)",
+     "5 ~ 55℃"
     ],
     [
-     "동작 습도",
-     "상대습도 80% 이하 · 비결로"
+     "동작 습도 (Operating RH)",
+     "&lt;80% RH · 비결로 (non-condensing)"
     ],
     [
-     "습부 재질",
-     "PCTG · 알루미나 세라믹 · UPE · FKM"
+     "외형 치수 (Overall size L×W×H)",
+     "44.5 × 62.3 × 153 mm (드라이버 포함) · 44.5 × 62.3 × 133.4 mm (드라이버 미포함)"
     ],
     [
-     "수명 시험",
-     "순수 · 정격 스트로크 1회/사이클 기준 300만 사이클 누유 없음"
+     "무게 (Weight)",
+     "0.46 kg (드라이버 포함) · 0.42 kg (드라이버 미포함)"
     ]
    ],
    "variants": {
-    "heading": "구동 방식별 규격",
+    "heading": "용량별 규격 (Volume specs)",
     "head": [
      "항목",
-     "통합 드라이버형",
-     "외부 구동형"
+     "100 µL",
+     "500 µL",
+     "1000 µL"
     ],
     "rows": [
      [
-      "용량",
-      "100 / 500 / 1000 µL",
-      "100 / 500 / 1000 µL"
+      "플런저 내경 (Plunger inner diameter)",
+      "3.17 mm",
+      "7.08 mm",
+      "10.01 mm"
      ],
      [
-      "제어",
-      "RS-232 / RS-485 (RUNZE · MODBUS · ASCII)",
-      "옵토커플러 원점 감지 — OEM 컨트롤러 연동"
-     ],
-     [
-      "치수 (L×W×H)",
-      "약 44.5 × 62.3 × 153 mm",
-      "약 44.5 × 62.3 × 133.4 mm"
-     ],
-     [
-      "무게",
-      "약 0.46 kg",
-      "약 0.42 kg"
+      "최소 샘플링 정밀도 (Min sampling precision)",
+      "0.025 µL | 0.05 µL",
+      "0.125 µL | 0.25 µL",
+      "0.25 µL | 0.5 µL"
      ]
-    ]
+    ],
+    "note": "최소 샘플링 정밀도의 두 값은 리드 스크류 리드 0.635 mm | 1.27 mm 에 각각 대응합니다."
    },
    "buybox": [],
    "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a>",
@@ -352,9 +390,18 @@
     [
      "#정밀분주",
      "/product/"
+    ],
+    [
+     "#플런저펌프",
+     "/product/"
     ]
    ],
    "faq": [
+    {
+     "tag": "명칭",
+     "q": "시린지 펌프인가요, 플런저 펌프인가요?",
+     "a": "제조사는 Industrial Micro Plunger Pump 로 표기하고 시린지 펌프 계열로 분류합니다. 알루미나 세라믹 플런저가 왕복하며 정량하는 구조라 국내에서는 마이크로 시린지 펌프로 부르는 경우가 많습니다."
+    },
     {
      "tag": "선택",
      "q": "RP42는 어떤 용량이 있나요?",
@@ -389,12 +436,17 @@
      "tag": "수명",
      "q": "내구 시험은 어떻게 했나요?",
      "a": "순수를 쓰고 사이클당 정격 스트로크 1회 조건으로 300만 사이클 동안 누유 없이 시험했습니다."
+    },
+    {
+     "tag": "사양",
+     "q": "용량에 따라 무엇이 달라지나요?",
+     "a": "플런저 내경이 100 µL 3.17 mm, 500 µL 7.08 mm, 1000 µL 10.01 mm 로 다르고 최소 샘플링 정밀도도 0.025·0.125·0.25 µL 순으로 달라집니다. 정격 스트로크 12.7 mm 는 공통입니다."
     }
    ],
    "ld": {
-    "name": "Runze Fluid RP42 산업용 마이크로 시린지 펌프",
+    "name": "Runze Fluid RP42 산업용 마이크로 플런저 펌프",
     "sku": "RP42",
-    "category": "시린지 펌프",
+    "category": "시린지 펌프 · 마이크로 플런저 펌프",
     "description": "100/500/1000 µL 산업용 마이크로 시린지 펌프. 체적 오차 1% 이하, 백프레셔 0.5 MPa, RS-232/RS-485, RUNZE·MODBUS·ASCII 프로토콜.",
     "models": [
      "RP42"
@@ -404,13 +456,39 @@
    "source": {
     "url": "https://www.runzefluid.com/products/runze-rp42-industrial-micro-syringe-pump.html",
     "label": "Runze Fluid 제품 페이지"
-   }
+   },
+   "sections": [
+    {
+     "h": "제품 개요",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d1.jpg\" alt=\"RP42 산업용 마이크로 플런저 펌프 개요\" loading=\"lazy\"><figcaption>RP42 — 정확한 원점 복귀 · 장비 통합 용이 · 100 µL / 500 µL / 1000 µL. 고정밀 계량 · 투명 펌프 헤드 · 플런저 세척 포트</figcaption></figure></div>"
+    },
+    {
+     "h": "구조와 습부 재질",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d2.jpg\" alt=\"코어 구조 분해 — 42 스텝 모터 · PCTG 펌프 헤드 · 금속 마운팅 브래킷 · 습부 재질 알루미나 세라믹(플런저) · PCTG(펌프 헤드) · FKM · UPE(씰)\" loading=\"lazy\"><figcaption>코어 구조 분해 — 42 스텝 모터 · PCTG 펌프 헤드 · 금속 마운팅 브래킷 · 습부 재질 알루미나 세라믹(플런저) · PCTG(펌프 헤드) · FKM · UPE(씰)</figcaption></figure><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d4.jpg\" alt=\"알루미나 세라믹 플런저와 UPE 씰 링 — 고경도 내마모, 다중 시약 대응, 항결정·항점착\" loading=\"lazy\"><figcaption>알루미나 세라믹 플런저와 UPE 씰 링 — 고경도 내마모, 다중 시약 대응, 항결정·항점착</figcaption></figure></div>"
+    },
+    {
+     "h": "계량 성능과 세척 포트",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d3.jpg\" alt=\"계량 성능 — 체적 정확도 ≤1%, 반복성 0.3~0.7%, 백프레셔 0.5 MPa\" loading=\"lazy\"><figcaption>계량 성능 — 체적 정확도 ≤1%, 반복성 0.3~0.7%, 백프레셔 0.5 MPa</figcaption></figure><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d5.jpg\" alt=\"펌프 헤드 양단 세척 포트 — 세정 회로에 연결해 세라믹 플런저 표면의 결정 석출 제거\" loading=\"lazy\"><figcaption>펌프 헤드 양단 세척 포트 — 세정 회로에 연결해 세라믹 플런저 표면의 결정 석출 제거</figcaption></figure></div>"
+    },
+    {
+     "h": "구동 방식과 인터페이스",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d6.jpg\" alt=\"드라이버 통합형 / OPB 옵토커플러형 — 펌프 헤드 구조는 동일하고 구동만 다릅니다\" loading=\"lazy\"><figcaption>드라이버 통합형 / OPB 옵토커플러형 — 펌프 헤드 구조는 동일하고 구동만 다릅니다</figcaption></figure><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d9.jpg\" alt=\"드라이브 인터페이스 핀 배열(CAN(NC) · RS485 · RS232 · Power · Ground)과 드라이버 유무별 외형 치수\" loading=\"lazy\"><figcaption>드라이브 인터페이스 핀 배열(CAN(NC) · RS485 · RS232 · Power · Ground)과 드라이버 유무별 외형 치수</figcaption></figure></div>"
+    },
+    {
+     "h": "제조사 사양 원문 (Technical Specifications)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d8.jpg\" alt=\"제조사 사양표 원문\" loading=\"lazy\"><figcaption>제조사 사양표 원문</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 분야",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d7.jpg\" alt=\"분석 검사(실험실 분석기·온라인 수질 모니터링·전자동 생화학/화학발광 면역 분석기), 정밀 화학(소형 반응기 공급·첨가제 마이크로 도싱), 산업 장비(자동화 유체 모듈·소형 충전 디스펜서·OEM 통합)\" loading=\"lazy\"><figcaption>분석 검사(실험실 분석기·온라인 수질 모니터링·전자동 생화학/화학발광 면역 분석기), 정밀 화학(소형 반응기 공급·첨가제 마이크로 도싱), 산업 장비(자동화 유체 모듈·소형 충전 디스펜서·OEM 통합)</figcaption></figure><figure><img src=\"/img/runze/runze-rp42-industrial-micro-syringe-pump-d10.jpg\" alt=\"실제 제품 — 100 µL · 500 µL · 1000 µL\" loading=\"lazy\"><figcaption>실제 제품 — 100 µL · 500 µL · 1000 µL</figcaption></figure></div>"
+    }
+   ]
   },
   {
    "slug": "pre-torque-flangeless-fittings",
    "name": "프리토크 플랜지리스 피팅",
-   "name_en": "Runze Fluid Pre-torque Flangeless Fittings",
-   "sub": "1/4-28 · M6 · 색상별 토크 3종 (블루 · 옐로 · 레드)",
+   "name_en": "Runze Fluid Pre-Torque Threaded Flangeless Fittings",
+   "sub": "1/4-28 UNF · M6 · 튜브 OD 1.6~3.2 mm · 색상별 토크 3등급",
    "category": "유체 피팅 · 나사 피팅",
    "title": "Runze Fluid 프리토크 플랜지리스 피팅 — 색상별 토크 3종 | 실험셋업연구소",
    "desc": "Runze Fluid 프리토크 플랜지리스 피팅 — 캡이 딸깍 소리로 적정 조임을 알려주는 2피스 핸드타이트 피팅. 블루 0.11-0.15, 옐로 0.15-0.20, 레드 0.20-0.25 N·m. 1/4-28 · M6. 가격 문의.",
@@ -422,7 +500,7 @@
     "pre-torque-flangeless-fittings-5.jpg"
    ],
    "image_alt": "Runze Fluid 프리토크 플랜지리스 피팅",
-   "answer": "프리토크 플랜지리스 피팅은 캡 저항이 커지면 딸깍 소리로 적정 조임을 알려주는 2피스 핸드타이트 피팅으로, 색상마다 정해진 토크 범위와 사용 조건이 다릅니다.",
+   "answer": "프리토크 플랜지리스 피팅은 캡 저항이 커지면 딸깍 소리로 적정 조임을 알려주는 2피스 핸드타이트 피팅으로, 색상마다 토크 범위와 사용 조건이 다릅니다.",
    "features": [
     "캡이 <b>딸깍 소리</b>를 내는 지점이 적정 조임이라 토크 렌치 없이 손으로 재현성 있게 체결합니다",
     "<b>색상이 곧 토크 등급</b> — 블루 · 옐로 · 레드 순으로 토크 범위가 올라가고 대응하는 사용 조건이 다릅니다",
@@ -432,12 +510,28 @@
    ],
    "specs": [
     [
-     "연결 규격",
+     "나사 규격 (Thread)",
      "1/4-28 UNF · M6 — 수구 포트에 맞춰 선택"
     ],
     [
-     "구성",
-     "너트 + 페럴 2피스"
+     "적용 튜브 외경 (Tube OD)",
+     "1.6 mm / 2.0 mm · 2.5 mm / 3.0 mm / 3.2 mm"
+    ],
+    [
+     "구성 (Assembly)",
+     "너트(Nut) + 페럴(Ferrule) 2피스"
+    ],
+    [
+     "헤드 형상 (Head style)",
+     "라운드 스크류 헤드 · 플랫 스크류 헤드 · 플라워 스크류 헤드"
+    ],
+    [
+     "너트 재질 (Nut material)",
+     "PP natural · PTFE natural"
+    ],
+    [
+     "페럴 재질 (Ferrule material)",
+     "PP natural · PFA natural"
     ],
     [
      "체결 방식",
@@ -449,7 +543,7 @@
     ],
     [
      "튜브 절단",
-     "직각 · 버 없는 클린컷 — 데드볼륨과 피크 왜곡을 막습니다"
+     "직각 · 버 없는 클린컷 — 데드볼륨과 피크 왜곡 방지"
     ],
     [
      "소모품",
@@ -457,32 +551,48 @@
     ]
    ],
    "variants": {
-    "heading": "색상별 토크 범위 · 사용 조건",
+    "heading": "색상별 토크 범위 · 사용 조건 (Torque range &amp; colors)",
     "head": [
      "항목",
-     "블루",
-     "옐로",
-     "레드"
+     "블루 (Blue)",
+     "옐로 (Yellow)",
+     "레드 (Red)"
     ],
     "rows": [
      [
-      "너트 토크 범위",
+      "너트 토크 범위 (Nut torque range)",
       "0.11-0.15 N·m",
       "0.15-0.20 N·m",
       "0.20-0.25 N·m"
      ],
      [
-      "사용 환경",
+      "사용 환경 (Operating environment)",
       "상온 · 상압<br>튜브 두께 ≤0.5 mm",
-      "상온 · 상압<br>튜브 두께 >0.5 mm",
-      "온도 <100℃ · 압력 >0.8 MPa<br>튜브 두께 >0.5 mm"
+      "상온 · 상압<br>튜브 두께 &gt;0.5 mm",
+      "온도 &lt;100℃ · 압력 &gt;0.8 MPa<br>튜브 두께 &gt;0.5 mm"
      ]
     ]
    },
    "sections": [
     {
+     "h": "페럴 모델 번호 (Ferrule)",
+     "html": "<table class=\"pkg-tbl\"><thead><tr><th>모델 번호 (Model No.)</th><th>튜브 외경 (Tube OD)</th><th>재질 (Material)</th></tr></thead><tbody><tr><td>YE-016-P</td><td>1.6 mm OD</td><td>PP natural</td></tr><tr><td>YE-020-P</td><td>2.0 mm OD</td><td>PP natural</td></tr><tr><td>YC-025-P</td><td>2.5 mm OD</td><td>PP natural</td></tr><tr><td>YC-030-P</td><td>3.0 mm OD</td><td>PP natural</td></tr><tr><td>YC-032-P</td><td>3.2 mm OD</td><td>PP natural</td></tr><tr><td>YE-016-A</td><td>1.6 mm OD</td><td>PFA natural</td></tr><tr><td>YE-020-A</td><td>2.0 mm OD</td><td>PFA natural</td></tr><tr><td>YC-025-A</td><td>2.5 mm OD</td><td>PFA natural</td></tr><tr><td>YC-030-A</td><td>3.0 mm OD</td><td>PFA natural</td></tr><tr><td>YC-032-A</td><td>3.2 mm OD</td><td>PFA natural</td></tr></tbody></table><div class=\"det-imgs\"><figure><img src=\"/img/runze/pre-torque-flangeless-fittings-d4.jpg\" alt=\"페럴 모델 번호 원문\" loading=\"lazy\"><figcaption>페럴 모델 번호 원문</figcaption></figure></div>"
+    },
+    {
+     "h": "너트 모델 번호 (Nut)",
+     "html": "<p>너트는 나사 규격(1/4-28 UNF · M6) × 튜브 외경 × 토크 범위 × 헤드 형상 × 재질(PP natural · PTFE natural) 조합으로 코드가 정해집니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/pre-torque-flangeless-fittings-d2.jpg\" alt=\"너트 모델 번호 원문 (1/2)\" loading=\"lazy\"><figcaption>너트 모델 번호 원문 (1/2)</figcaption></figure><figure><img src=\"/img/runze/pre-torque-flangeless-fittings-d3.jpg\" alt=\"너트 모델 번호 원문 (2/2)\" loading=\"lazy\"><figcaption>너트 모델 번호 원문 (2/2)</figcaption></figure></div>"
+    },
+    {
+     "h": "치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/pre-torque-flangeless-fittings-d13.jpg\" alt=\"너트·페럴 치수 — YE-016-P/E/A · YE-020-P/E/A · YC-025-P/E/A · YC-030-P/E/A · YC-032-P/E/A\" loading=\"lazy\"><figcaption>너트·페럴 치수 — YE-016-P/E/A · YE-020-P/E/A · YC-025-P/E/A · YC-030-P/E/A · YC-032-P/E/A</figcaption></figure></div>"
+    },
+    {
      "h": "체결 순서",
      "html": "<ol><li>수구 포트가 1/4-28이면 1/4-28 너트를, M6이면 M6 너트를 고릅니다.</li><li>튜브 끝을 직각으로 버 없이 자릅니다. 비스듬히 자르면 포트 바닥에 완전히 닿지 않아 데드볼륨이 생기고 피크가 앞·뒤로 끌리거나 넓어집니다.</li><li>너트를 먼저, 그다음 페럴을 튜브에 끼우되 클린컷 끝단에서 최소 3/16″(4.7625 mm) 떨어뜨립니다.</li><li>조립체를 수구 포트에 넣고 튜브가 바닥에 닿을 때까지 밀어 넣습니다.</li><li>캡에서 딸깍 소리가 날 때까지 손이나 렌치로 조입니다.</li><li>여러 번 사용한 뒤, 특히 고압에서 썼다면 페럴을 교체합니다.</li></ol>"
+    },
+    {
+     "h": "적용 예 · 검사",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/pre-torque-flangeless-fittings-d14.jpg\" alt=\"RUNZE 시린지 펌프 · RUNZE 피팅과 조합한 유로 구성 예\" loading=\"lazy\"><figcaption>RUNZE 시린지 펌프 · RUNZE 피팅과 조합한 유로 구성 예</figcaption></figure><figure><img src=\"/img/runze/pre-torque-flangeless-fittings-d12.jpg\" alt=\"치수 검사 — 버니어 캘리퍼 · 마이크로미터 · 나사 스톱 게이지\" loading=\"lazy\"><figcaption>치수 검사 — 버니어 캘리퍼 · 마이크로미터 · 나사 스톱 게이지</figcaption></figure></div>"
     }
    ],
    "buybox": [],
@@ -539,6 +649,16 @@
      "tag": "유지보수",
      "q": "페럴은 언제 갈아야 하나요?",
      "a": "여러 번 사용한 뒤, 특히 고압에서 쓴 경우 페럴을 교체합니다."
+    },
+    {
+     "tag": "주문",
+     "q": "페럴은 어떤 모델을 고르나요?",
+     "a": "튜브 외경과 재질로 고릅니다. PP 계열은 YE-016-P(1.6 mm) · YE-020-P(2.0) · YC-025-P(2.5) · YC-030-P(3.0) · YC-032-P(3.2), PFA 계열은 같은 번호에 -A 가 붙습니다."
+    },
+    {
+     "tag": "재질",
+     "q": "너트와 페럴 재질은 무엇인가요?",
+     "a": "너트는 PP natural 과 PTFE natural, 페럴은 PP natural 과 PFA natural 이 있습니다."
     }
    ],
    "ld": {
@@ -561,8 +681,8 @@
   {
    "slug": "pfa-tube",
    "name": "PFA 튜브",
-   "name_en": "Runze Fluid PFA Tube",
-   "sub": "ID 0.5~8.0 mm · OD 1.6~10.0 mm · -100~+260℃ · 19규격",
+   "name_en": "Runze Fluid PFA (Perfluoroalkoxy) Rigid Tubing",
+   "sub": "경질 튜브 · ID 0.5~8.0 mm · OD 1.6~10.0 mm · -100~+260℃ · 19규격",
    "category": "유체 튜빙 · PFA 튜브",
    "title": "Runze Fluid PFA 튜브 — 완전 투명 · -100~+260℃ · 19규격 | 실험셋업연구소",
    "desc": "Runze Fluid PFA 튜브 — 완전 투명 불소수지 튜브, 연속 사용 -100~+260℃, 쇼어 D 60. ID 0.5~8.0 mm · OD 1.6~10.0 mm 19규격, 일부 규격 플랜징 가능. 가격 문의.",
@@ -575,73 +695,87 @@
     "pfa-tube-6.jpg"
    ],
    "image_alt": "Runze Fluid PFA 튜브",
-   "answer": "PFA 튜브는 완전 투명한 불소수지 배관으로, -100~+260℃ 연속 사용과 강산·강알칼리·유기용매 내성을 갖춰 고순도 유로에 씁니다. ID 0.5~8.0 mm 19규격입니다.",
+   "answer": "PFA 튜브는 완전 투명한 불소수지 경질 배관으로, -100~+260℃ 연속 사용과 강산·강알칼리·유기용매 내성을 갖춰 고순도 유로에 씁니다. ID 0.5~8.0 mm 19규격입니다.",
    "features": [
-    "<b>완전 투명 PFA</b>라 유로 상태를 눈으로 확인합니다",
-    "연속 사용 온도 <b>-100℃ ~ +260℃</b>입니다",
-    "경도 <b>쇼어 D 60</b>입니다",
-    "다수의 <b>강산 · 강알칼리 · 유기용매</b>에 내화학성을 갖습니다",
-    "유량과 연결 조건에 맞춰 고르는 <b>ID/OD 조합 19규격</b>이 있습니다",
-    "ID · OD 공차는 규격에 따라 <b>±0.05 mm 또는 ±0.15 mm</b>입니다",
-    "일부 규격은 <b>플랜징 가공</b>을 지원합니다",
-    "RUNZE <b>경질 튜브용 피팅</b>과 맞물립니다"
+    "<b>경질 압출 튜브 (Extruded rigid tubing)</b> — 벽 두께가 균일하고 치수 일관성이 높습니다. 휘어지는 연질 튜브가 아닙니다",
+    "<b>완전 투명 (Full-clear)</b> — 유체 흐름과 기포를 눈으로 확인합니다",
+    "연속 사용 온도 <b>-100℃ ~ +260℃</b> — 고온에서 취성·균열에 강합니다",
+    "경도 <b>쇼어 D 60</b> 입니다",
+    "다수의 <b>산 · 염기 · 산화제 · 유기용매</b>에 불활성입니다",
+    "<b>용출이 거의 없어</b> 크로마토그래피 분석을 방해하지 않습니다",
+    "<b>오존 내성</b>이 있습니다",
+    "ID/OD 조합 <b>19규격</b> · 공차 ±0.05 mm 또는 ±0.15 mm",
+    "일부 규격은 <b>플랜징 가공 (Flanging service)</b> 을 지원합니다",
+    "HPLC · 플런저 펌프 · 반도체 고순도 유체 이송에 씁니다"
    ],
    "specs": [
     [
-     "제품명",
-     "PFA 튜브"
+     "제품명 (Product)",
+     "PFA 경질 튜브 (PFA Rigid Tubing)"
     ],
     [
-     "브랜드",
+     "브랜드 (Brand)",
      "RUNZE"
     ],
     [
-     "재질",
-     "PFA 불소수지"
+     "재질 (Material)",
+     "PFA 퍼플루오로알콕시 불소수지 (Perfluoroalkoxy)"
     ],
     [
-     "색상",
-     "완전 투명"
+     "색상 (Color)",
+     "완전 투명 (Full-clear)"
     ],
     [
-     "연속 사용 온도",
-     "-100℃ ~ +260℃"
+     "사용 온도 (Temperature)",
+     "연속 사용 -100℃ ~ +260℃"
     ],
     [
-     "경도",
-     "쇼어 D 60"
+     "경도 (Hardness)",
+     "쇼어 D 60 (Shore 60 D)"
     ],
     [
-     "내경 범위",
+     "내경 범위 (Inner diameter)",
      "0.5 mm ~ 8.0 mm"
     ],
     [
-     "외경 범위",
+     "외경 범위 (Outer diameter)",
      "1.6 mm ~ 10.0 mm"
     ],
     [
-     "치수 공차",
-     "±0.05 mm 또는 ±0.15 mm — 모델에 따라 다름"
+     "ID 공차 (ID tolerance)",
+     "±0.05 mm / ±0.15 mm"
     ],
     [
-     "플랜징 가공",
+     "OD 공차 (OD tolerance)",
+     "±0.05 mm / ±0.15 mm"
+    ],
+    [
+     "내화학성 (Chemical resistance)",
+     "대부분의 산 · 염기 · 유기용매에 불활성"
+    ],
+    [
+     "가요성 (Flexibility)",
+     "경질 — 구부러지지 않음 (Rigid tubing, non-bendable)"
+    ],
+    [
+     "플랜징 가공 (Flanging service)",
      "일부 모델 지원"
     ],
     [
-     "측정 기준",
+     "측정 기준 (Test reference)",
      "20℃ · 대기압 · 중성 액체 기준"
     ]
    ],
    "variants": {
-    "heading": "규격 19종",
+    "heading": "규격 19종 (Specs)",
     "head": [
      "SKU",
-     "모델 번호",
-     "ID (mm)",
-     "OD (mm)",
-     "두께 (mm)",
-     "공차",
-     "플랜징"
+     "모델 번호 (Model No.)",
+     "내경 ID (mm)",
+     "외경 OD (mm)",
+     "두께 WT (mm)",
+     "공차 (Tolerance)",
+     "플랜징 (Flanging)"
     ],
     "rows": [
      [
@@ -820,8 +954,20 @@
    "specs_note": "길이·포장 형태는 주문 시 지정합니다.",
    "sections": [
     {
+     "h": "제조사 규격 원문 (Specifications)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/pfa-tube-d2.jpg\" alt=\"제조사 규격표 원문 — 경질 튜브, 비굴곡. 용출 제로로 크로마토그래피 분석을 방해하지 않습니다\" loading=\"lazy\"><figcaption>제조사 규격표 원문 — 경질 튜브, 비굴곡. 용출 제로로 크로마토그래피 분석을 방해하지 않습니다</figcaption></figure></div>"
+    },
+    {
+     "h": "특성",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/pfa-tube-d3.jpg\" alt=\"균일 벽두께(공차 ±0.05 mm) · 고투명 · 내열(-100~+260℃) · 내식(산·염기·산화제·유기용매)\" loading=\"lazy\"><figcaption>균일 벽두께(공차 ±0.05 mm) · 고투명 · 내열(-100~+260℃) · 내식(산·염기·산화제·유기용매)</figcaption></figure><figure><img src=\"/img/runze/pfa-tube-d1.jpg\" alt=\"PFA 퍼플루오로알콕시 튜브 — 정밀 치수 · 저용출 · 오존 내성. HPLC · 플런저 펌프 · 반도체 고순도 유체 이송용\" loading=\"lazy\"><figcaption>PFA 퍼플루오로알콕시 튜브 — 정밀 치수 · 저용출 · 오존 내성. HPLC · 플런저 펌프 · 반도체 고순도 유체 이송용</figcaption></figure></div>"
+    },
+    {
      "h": "규격 선정 기준",
      "html": "<ul><li>내경은 필요한 유량과 내부 체적으로 정합니다.</li><li>외경은 받는 피팅과 연결 방식에 맞춥니다.</li><li>실제 화학종 · 농도 · 온도 · 노출 시간으로 적합성을 확인합니다.</li><li>선택한 규격 · 온도 · 피팅 구성에서 허용 압력을 확인합니다.</li><li>플랜징이 필요하면 견적 요청 시 함께 적습니다.</li><li>SKU 또는 모델 번호와 함께 필요한 길이 · 포장 형태를 적습니다.</li></ul>"
+    },
+    {
+     "h": "피팅 연결 · 적용 산업",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/pfa-tube-d5.jpg\" alt=\"RUNZE 피팅과 결합 — 풀림·누유 방지, 플랜징 가공 지원\" loading=\"lazy\"><figcaption>RUNZE 피팅과 결합 — 풀림·누유 방지, 플랜징 가공 지원</figcaption></figure><figure><img src=\"/img/runze/pfa-tube-d6.jpg\" alt=\"반도체 제조 · 의료 장비 · 실험 분석기기 · 산업 계측\" loading=\"lazy\"><figcaption>반도체 제조 · 의료 장비 · 실험 분석기기 · 산업 계측</figcaption></figure></div>"
     }
    ],
    "buybox": [],
@@ -856,6 +1002,11 @@
     },
     {
      "tag": "사양",
+     "q": "휘어지는 튜브인가요?",
+     "a": "아닙니다. 경질(rigid) 압출 튜브라 구부러지지 않습니다. 벽 두께가 균일하고 치수 일관성이 높은 대신 자유롭게 휘어야 하는 배관에는 맞지 않습니다."
+    },
+    {
+     "tag": "사양",
      "q": "연속 사용 온도 범위는 어떻게 되나요?",
      "a": "-100℃에서 +260℃까지입니다."
     },
@@ -883,6 +1034,11 @@
      "tag": "선정",
      "q": "화학 적합성은 어떻게 확인하나요?",
      "a": "실제 쓰는 화학종 · 농도 · 온도 · 노출 시간 조건으로 확인합니다. 선택한 규격과 온도, 피팅 구성에서의 허용 압력도 함께 확인합니다."
+    },
+    {
+     "tag": "분석",
+     "q": "크로마토그래피에 써도 되나요?",
+     "a": "용출이 거의 없어 크로마토그래피 분석을 방해하지 않습니다. HPLC 와 플런저 펌프 유로에 씁니다."
     }
    ],
    "ld": {
