@@ -187,6 +187,12 @@ def body(cfg):
     s += cfg.get('spec_extra','')          # 모델별 사양표 등 — 사양 요약표 바로 뒤
     if cfg.get('price'):
         s += '<h2 class="pkg-h">모델 · 규격 · 정가 (%d종)</h2>'%len(cfg['price']) + price_tbl(cfg['price'])
+    elif len(cfg.get('models') or []) > 2:
+        # 가격이 없는 라인 — 그래도 어떤 모델이 있는지는 본문에 실어야 한다.
+        # 이게 없으면 고객이 구매박스 드롭다운을 열기 전까지 선택지를 못 본다.
+        s += ('<h2 class="pkg-h">모델 (%d종)</h2>' % len(cfg['models'])
+              + price_tbl([(m, '', 0) for m in cfg['models']],
+                          headers=('모델', '규격', '제품가격 1개 (VAT 별도)')))
     if cfg.get('note'):
         s += '<p class="pkg-note" style="margin-top:16px">%s</p>' % cfg['note']
     if cfg.get('warn'):

@@ -1,15 +1,9 @@
 # 이관 대기 부채 — 여기 있는 조합은 경고만 하고 빌드를 세우지 않는다.
 # 형식: <경로> <코드>   ( # 뒤는 주석 )
 # 고친 페이지는 줄을 지운다. 새 위반은 절대 여기에 추가하지 말고 고칠 것.
-# 2026-09-04 재생성 — 규격 변형 페이지와 모델별 표(mdl-tbl) 보유 페이지는 린터가 스스로 걸러낸다.
-brands/dodochem/p-ne-000162/ NO_MODEL_BLOCK
-brands/gaossunion/co2rr-catalyst/ NO_MODEL_BLOCK
+# 2026-09-04 재생성 — 규격 변형 페이지와 모델별 표(pkg-opt/mdl-tbl, 행수 검사 통과)는 린터가 스스로 걸러낸다.
 brands/gaossunion/custom-material-working-electrode/ MISSING_BLOCK
-brands/gaossunion/echem-materials/ NO_MODEL_BLOCK
-brands/gaossunion/electrode-polishing/ NO_MODEL_BLOCK
-brands/gaossunion/high-temp-rde/ NO_MODEL_BLOCK
 brands/neware/ct-4008q/ MISSING_BLOCK
 brands/neware/ct-4008q/ STYLE_INLINE
 brands/neware/wgdw-chamber/ MISSING_BLOCK
-brands/neware/wgdw-chamber/ NO_MODEL_BLOCK
 brands/neware/wgdw-chamber/ STYLE_INLINE

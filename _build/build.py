@@ -2114,9 +2114,12 @@ def _pp_render(brand, p):
     if va:
         b.append('<h2 class="pkg-h">%s</h2>' % escape(va.get('heading', '규격 비교')))
         head, rows, common = _pp_collapse(va.get('head'), va['rows'])
-        if head and len(head) == 1:
-            # 구분되는 열이 하나뿐 — 표를 쪼개지 말고 라벨/값 한 표로 합친다
-            merged = [[head[0], ' · '.join(r[0] for r in rows)]]
+        one = ' · '.join(r[0] for r in rows)
+        if head and len(head) == 1 and len(rows) <= 8 and len(one) <= 90:
+            # 구분되는 열이 하나뿐이고 짧다 — 표를 쪼개지 말고 라벨/값 한 표로 합친다.
+            # 길면 합치지 않는다: 규격 16종을 한 칸에 이어 붙이면 읽을 수 없고,
+            # 모델별 내용이 사라진 것과 같아진다.
+            merged = [[head[0], one]]
             merged += [[k, v] for k, v in common]
             b.append(_pp_table(merged, cls='pkg-tbl pkg-opt'))
         else:
@@ -2273,6 +2276,18 @@ def _brand_family(prof, slug):
     return None, prof.get('default_required_specs') or []
 
 
+def _pp_model_table_ok(body, nmodel):
+    """본문에 모델별 표(.pkg-opt / .mdl-tbl)가 있고, 그 표가 모델 수만큼 행을 갖고 있는가.
+    표만 있으면 통과시키는 게 아니라 행 수를 세어, 대표 모델 하나만 실린 표는 걸러낸다."""
+    best = 0
+    for m in re.finditer(r'<table[^>]*class="[^"]*(?:pkg-opt|mdl-tbl)[^"]*"[^>]*>(.*?)</table>',
+                         body, re.S):
+        t = m.group(1)
+        tb = re.search(r'<tbody>(.*?)</tbody>', t, re.S)
+        best = max(best, len(re.findall(r'<tr', tb.group(1) if tb else t)))
+    return best >= nmodel
+
+
 def _pp_pack_variant(models):
     """규격 변형 페이지인가 — 같은 물건을 용량·치수만 바꿔 파는 경우.
     50 g / 100 g / 250 g, 두께 0.1mm / 0.2mm 처럼 라벨에서 숫자를 빼면 같아지고
@@ -2395,7 +2410,8 @@ def lint_detail_pages():
             nmodel = len(models)
             need = prof.get('model_block_min', PP_MODEL_BLOCK_MIN)
             if (nmodel >= need and not _pp_pack_variant(models)
-                    and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im|mdl-tbl', body)):
+                    and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im', body)
+                    and not _pp_model_table_ok(body, nmodel)):
                 warns.append((rel, 'NO_MODEL_BLOCK',
                               '모델 %d종을 한 페이지에 담았는데 모델별 사진·사양 블록이 없다 '
                               '— 고객이 대표 모델 말고는 내용을 볼 수 없다 (.mdl-hd 또는 썸네일 라벨 .thlb)'
