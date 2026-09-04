@@ -1085,6 +1085,7 @@ ALLPROD_BRANDS = [
     ('dodochem', 'DodoChem', 'echem'),
     ('hench', 'Hench', 'prep'),
     ('neware', '뉴웨어', 'echem'),
+    ('runze', 'Runze Fluid', 'pump'),
 ]  # (슬러그, 표기명, 매핑 실패 시 기본 카테고리)
 # 브랜드별 data-cat 어휘 → 통합 카테고리
 ALLPROD_CATMAP = {
@@ -1095,6 +1096,7 @@ ALLPROD_CATMAP = {
     'pellet': 'prep', 'die': 'prep', 'slicer': 'prep',   # 시료 전처리(펠릿 프레스·다이·슬라이서)
     'vacuumpump': 'vacuum', 'vac': 'vacuum',
     'pump': 'pump', 'peri': 'pump', 'syr': 'pump', 'gear': 'pump', 'ex': 'pump', 'head': 'pump',
+    'valve': 'pump', 'fitting': 'pump', 'tubing': 'pump',
     'mfc': 'gas', 'std': 'gas', 'hp': 'gas', 'bio': 'gas', 'corr': 'gas', 'dual': 'gas', 'press': 'gas',
     'electrode': 'echem', 'catalyst': 'echem', 'material': 'echem', 'accessory': 'echem',
     'fumehood': 'safety', 'measuring': 'safety',
@@ -1155,6 +1157,39 @@ ALLPROD_KEY_ALIASES = [
     (r'series-salts|lifsi|litfsi', '리튬염 전해질염'),
 ]
 ALLPROD_KEY_ALIASES_RX = [(re.compile(rx), w) for rx, w in ALLPROD_KEY_ALIASES]
+
+
+# ── 소재 계열 토큰(mat:*) — 전해액·염·용매·분리막 등 화학 소재의 2차 축 ──────────
+# 슬러그(p-ne-000060 등)가 불투명해서 제목으로 판정한다. 먼저 맞는 규칙이 이긴다.
+ALLPROD_MAT_RULES = [
+    ('mat:li-s',          ('리튬황', '리튬-황')),
+    ('mat:li-air',        ('리튬-공기', '리튬공기')),
+    ('mat:li-ion',        ('리튬이온', '리튬 이온')),
+    ('mat:na-ion',        ('나트륨이온', '나트륨 이온')),
+    ('mat:other-ion',     ('칼륨이온', '기타 이온', '마그네슘', '알루미늄 전해액', '아연 이온', '슈퍼커패시터')),
+    ('mat:solid',         ('고체전해질', '고체 전해질')),
+    ('mat:custom',        ('커스텀', '혼합 용매')),
+    ('mat:salt',          ('전해질 염',)),
+    ('mat:solvent',       ('고순도 용매', '무수 용매')),
+    ('mat:additive',      ('첨가제',)),
+    ('mat:separator',     ('분리막',)),
+    ('mat:case',          ('코인셀 케이스', '배터리 케이스')),
+    ('mat:binder',        ('바인더', '도전재')),
+    ('mat:electrode-mat', ('전극 소재', '극판', '양극재', '음극재')),
+    ('mat:collector',     ('집전체',)),
+    ('mat:drycell',       ('드라이 셀', '드라이셀')),
+]
+
+
+def allprod_mat(title, cat):
+    """소재 계열 판정 — 전기화학 카테고리 카드의 제목으로만."""
+    if cat != 'echem':
+        return ''
+    for key, words in ALLPROD_MAT_RULES:
+        for w in words:
+            if w in title:
+                return key
+    return ''
 
 
 def build_all_products():
@@ -1580,6 +1615,9 @@ def build_all_products():
             _fam = allprod_fam(href, cat)
             if _fam:
                 sub_tokens.append(_fam)
+            _mat = allprod_mat(title, cat)
+            if _mat:
+                sub_tokens.append(_mat)
             keys = ' '.join([title, model, label, slug, kw_raw.group(1) if kw_raw else '']).lower()
             for _rx, _al in ALLPROD_KEY_ALIASES_RX:
                 if _rx.search(href):
@@ -1754,6 +1792,7 @@ def build_all_products():
               json.dumps(_sug, ensure_ascii=False, separators=(',', ':')))
         print(f'  검색 자동완성 어휘: {{}}개 (assets/search-terms.json)'.format(min(len(_sug), 200)))
         print(f'  전 제품 통합 카탈로그: {{}}개 표준 카드 주입 (product/index.html)'.format(len(cards)))
+        lint_product_links(cards)
 
 # ============================================================================
 # 제품 상세페이지 데이터 주도 생성 — SSOT = _build/products/<brand>.json
@@ -2316,8 +2355,8 @@ LINT_CJK_OK = ('天津恒创立达', '合肥原位科技', '純水', '濃酸', '
 LINT_CNY_LEAK = r'\d{2,}\.0\s*~\s*\d{2,}\.0\s*(?:g|장|세트|롤|개|㎡|박스|팩|m)(?![/\w])'
 
 # 경고만 하고 빌드를 세우지 않는 코드. '있으면 좋은 것'과 '없으면 안 되는 것'을 가른다.
-# 유예 목록을 231줄로 불리는 대신 여기 두고, 브랜드별로 채워 나간다.
-LINT_SOFT = {'NO_SOURCE'}
+# 2026-09-04: NO_SOURCE 는 231건 -> 5건이 되어 차단 등급으로 올렸다. 지금은 비어 있다.
+LINT_SOFT = set()
 
 LINT_BAD_PHRASES = ['옮긴 것입니다', '옮겼습니다', '확인하실 수 있습니다', '보실 수 있습니다',
                     '바로 나옵니다', '아래 표', '위 표', '다음과 같습니다']
@@ -3117,6 +3156,69 @@ def main():
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
     print('=' * 60)
 
+
+
+# ── 메뉴·허브의 /product/ 필터 링크 린터 ─────────────────────────────────────
+# 헤더 NAV·홈·소재 허브가 `/product/?c=..&b=..&s=..&q=..` 로 카탈로그를 걸러 보낸다.
+# 카탈로그가 바뀌면 이 링크가 소리 없이 0건이 되므로(예전 ?q= 링크 16개가 그랬다)
+# 빌드 때마다 실제 카드에 맞춰 검증한다. 0건이면 경고, 1~2건이면 참고 출력.
+LINT_LINK_SOURCES = [
+    os.path.join('assets', 'site.js'),
+    'index.html',
+    os.path.join('materials', 'index.html'),
+]
+
+
+def lint_product_links(cards):
+    from urllib.parse import urlparse, parse_qs, unquote
+    parsed = []
+    for c in cards:
+        m = re.match(r'<article class="ap-card pcard"[^>]*>', c)
+        if not m:
+            continue
+        tag = m.group(0)
+        def g(a):
+            mm = re.search(r'data-%s="([^"]*)"' % a, tag)
+            return mm.group(1) if mm else ''
+        parsed.append((g('b'), g('c'), set(g('s').split()), g('k').lower()))
+
+    def hits(href):
+        qs = parse_qs(urlparse(href).query)
+        cat = (qs.get('c') or [''])[0]
+        brand = (qs.get('b') or [''])[0]
+        subs = qs.get('s') or []
+        terms = (qs.get('q') or [''])[0].lower().split()
+        n = 0
+        for b, cc, st, k in parsed:
+            if cat and cc != cat:
+                continue
+            if brand and b != brand:
+                continue
+            if any(x not in st for x in subs):
+                continue
+            if any(w not in k for w in terms):
+                continue
+            n += 1
+        return n
+
+    dead, thin, total = [], [], 0
+    for src in LINT_LINK_SOURCES:
+        fp = os.path.join(ROOT_DIR, src)
+        if not os.path.exists(fp):
+            continue
+        txt = read(fp)
+        for href in sorted(set(re.findall(r"['\"](/product/\?[^'\"]+)['\"]", txt))):
+            total += 1
+            n = hits(href)
+            if n == 0:
+                dead.append((src, unquote(href)))
+            elif n < 3:
+                thin.append((src, unquote(href), n))
+    print('  메뉴 필터 링크 검사: %d개 — 0건 %d개 / 1~2건 %d개' % (total, len(dead), len(thin)))
+    for src, href in dead:
+        print('    [X] 결과 0건: %s  (%s)' % (href, src))
+    for src, href, n in thin:
+        print('    [!] %d건뿐: %s  (%s)' % (n, href, src))
 
 if __name__ == '__main__':
     main()

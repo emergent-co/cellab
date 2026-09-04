@@ -19,7 +19,7 @@ VIDEO = (
  'scrolling="no" frameborder="no" framespacing="0" allowfullscreen="true" '
  'allow="autoplay; fullscreen; encrypted-media" '
  'title="합비원위과기 원위현미관찰지003 설치"></iframe></div>'
- '<figcaption>제조사 설치 영상 3분 37초 — 부품 확인부터 셀 조립까지 (合肥原位科技有限公司). '
+ '<figcaption>제조사 설치 영상 3분 37초 — 부품 확인부터 셀 조립까지 (Hefei In-situ Technology Co., Ltd.). '
  '왼쪽 아래 재생 버튼을 누르면 이 자리에서 바로 재생됩니다.</figcaption>'
  '</figure></div>\n')
 

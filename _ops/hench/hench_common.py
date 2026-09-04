@@ -119,9 +119,11 @@ def render(p):
              '<h2 class="pkg-h">사양 요약</h2><div class="pkg-tblwrap"><table class="pkg-tbl"><tbody>%s</tbody></table></div>\n'
              '%s\n%s\n<h2 class="pkg-h">가격</h2><p class="hx-note">%s</p>\n%s\n'
              '<div class="warn"><p class="warn-h">⚠ %s</p><p>%s</p></div>\n%s\n'
+             '%s'
              '<p style="margin-top:14px"><button type="button" class="qbtn" data-quote="%s">견적문의</button></p>'
              '</div></section>\n'
-             % (feats, incl, spec, opt, figs, p['price'], notes, p['warn_h'], p['warn_p'], xl, p['quote']))
+             % (feats, incl, spec, opt, figs, p['price'], notes, p['warn_h'], p['warn_p'], xl,
+                _source_line(), p['quote']))
 
     body += CTBAR + '\n'
     body += ('<script type="application/ld+json">'
@@ -147,3 +149,19 @@ def write(slug, html):
         os.makedirs(d)
     io.open(os.path.join(d, 'index.html'), 'w', encoding='utf-8', newline='\n').write(html)
     return len(html.encode('utf-8'))
+
+
+_SRC = [None]
+def _source_line():
+    """자료 출처 한 줄. 문구는 _build/brands.json 의 source.url 에서만 관리한다.
+    페이지마다 손으로 적지 않는다. 값이 없으면 줄을 만들지 않는다."""
+    if _SRC[0] is None:
+        try:
+            import json as _j, io as _io, os as _os
+            root = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+            d = _j.load(_io.open(_os.path.join(root, '_build', 'brands.json'), encoding='utf-8'))
+            bs = d.get('brands') or d
+            _SRC[0] = ((bs.get('hench') or {}).get('source') or {}).get('url') or ''
+        except Exception:
+            _SRC[0] = ''
+    return ('<p class="pkg-note" style="margin-top:14px">자료 출처 — %s</p>' % _SRC[0]) if _SRC[0] else ''

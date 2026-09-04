@@ -28,3 +28,13 @@ brands/gaossunion/photo-cell-c033/ REQ_SPEC
 brands/hench/hot-pellet-press-hzt-800d/ REQ_SPEC
 brands/hench/hot-pellet-press-yph-800e/ REQ_SPEC
 brands/hench/hot-pellet-press-yph-800f/ REQ_SPEC
+
+# neware 2장은 제조사 자료 자체가 미확보 — 출처를 지어내지 않는다.
+# brands.json 의 neware.source.url 이 채워지면 생성기가 자동으로 붙이고 이 줄을 지운다.
+brands/neware/ct-4008q/ NO_SOURCE
+brands/neware/wgdw-chamber/ NO_SOURCE
+brands/gaossunion/co2rr-catalyst/ NO_SOURCE
+brands/gaossunion/echem-materials/ NO_SOURCE
+brands/gaossunion/electrode-polishing/ NO_SOURCE
+brands/neware/ct-4008q/ NO_SOURCE
+brands/neware/wgdw-chamber/ NO_SOURCE

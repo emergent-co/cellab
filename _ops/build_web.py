@@ -26,6 +26,26 @@ BRANDS = {
                     kw=['뉴웨어','배터리테스터']),
 }
 _B = BRANDS['gaossunion']          # 현재 빌드 중인 브랜드
+_SRC_CACHE = {}
+def source_line(name):
+    """자료 출처 한 줄 — 문구는 _build/brands.json 의 source.url 한 곳에서만 관리한다.
+    페이지마다 손으로 적지 않는다. 값이 비어 있으면 줄을 만들지 않는다
+    (없는 출처를 지어내지 않기 위해서다 — 린터 NO_SOURCE 가 그대로 경고한다)."""
+    if not _SRC_CACHE:
+        try:
+            d = json.load(io.open(os.path.join(ROOT, '_build', 'brands.json'), encoding='utf-8'))
+            _SRC_CACHE.update(d.get('brands') or d)
+        except Exception:
+            _SRC_CACHE['_'] = {}
+    prof = _SRC_CACHE.get(name) or {}
+    src = ((prof.get('source') or {}).get('url') or '').strip()
+    if not src:
+        return ''
+    if src.startswith('http'):
+        src = '<a href="%s" target="_blank" rel="noopener">%s</a>' % (src, esc(prof.get('name_ko') or name))
+    return '<p class="pkg-note" style="margin-top:14px">자료 출처 — %s</p>' % src
+
+
 def _use(name):
     global _B, OUT
     _B = BRANDS[name]
@@ -201,6 +221,8 @@ def body(cfg):
         s += cfg['extra']
     if cfg.get('cross'):
         s += '<p class="pkg-note" style="margin-top:14px">%s</p>'%cfg['cross']
+    # 자료 출처 — 문구는 _build/brands.json 한 곳에서만 관리한다
+    s += source_line(cfg.get('brand', 'gaossunion'))
     s += '<p style="margin-top:16px"><button type="button" class="qbtn" data-quote="%s">견적문의</button></p>\n</div></section>\n'%esc(cfg['quote'])
     return s
 

@@ -1,551 +1,636 @@
 {
-  "_doc": [
-    "브랜드 프로파일 SSOT — 제품을 올리기 전에 해당 브랜드 항목을 반드시 읽는다.",
-    "스키마 설명은 _build/products/_SCHEMA.md, 공통 표준은 CLAUDE.md 4.6.",
-    "brands/<slug>/ 디렉터리가 있는데 여기 항목이 없으면 빌드 린터가 NO_BRAND_PROFILE 로 잡는다.",
-    "families[].match 는 슬러그 부분문자열. 먼저 맞는 것이 이긴다. required_specs 가 사양표 <th> 에 없으면 REQ_SPEC warn.",
-    "model_block_min: 한 페이지에 이 수 이상 모델을 담으면 모델별 사진·사양 블록(.mdl-hd 또는 썸네일 라벨 .thlb)을 요구한다. 기본 3."
-  ],
-  "brands": {
-    "dodochem": {
-      "name_ko": "DodoChem",
-      "name_en": "DodoChem",
-      "pipeline": "_build/products/dodochem.json → build_product_pages()",
-      "page_unit": "model",
-      "reference_page": "brands/dodochem/ls-009-lithium-sulfur-electrolyte/",
-      "source": {
-        "url": "https://www.dodochem.com/",
-        "collect": "중국어 페이지 https://www.dodochem.com/product?id=<id> 는 Nuxt SSR 이라 같은 탭에서 fetch() 하면 HTML 안에 표가 그대로 들어 있다 (WebFetch 로는 안 나온다). 찾을 키: productPhysicochemicalList · productSpecificationList · name:\"危害描述\"/\"危险标志\"/\"安全操作(预防措施)\"/\"安全存储(应急处置)\"/\"安全处置\"/\"保质期\". 용어 한글화 사전은 _ops/dodochem_zh_ko.py 한 곳에서만 고친다."
-      },
-      "pricing": "해외 직수입 — 3% 상시 할인 대상 아님. 국제 배송료는 주문당 1회 별도(buybox p−x).",
-      "pitfalls": [
-        "안전 정보는 번역·요약·경고문 추가 금지. H·P 코드는 코드 그대로.",
-        "GHS 그림문자는 제조사 이미지를 img/dodochem/<slug>-ghs.png 로 저장하고 값 자리에 \"@image\".",
-        "논문은 제품 코드가 논문 Methods에 나온 것만. Europe PMC 전문검색으로 확인.",
-        "제조사 카탈로그가(CNY)를 규격 자리에 넣지 말 것. 판매가를 나누면 매입 조건이 역산된다 — 린터 CNY_LEAK 이 잡는다.",
-        "중국어 원문을 그대로 두지 말 것 — 린터 CJK_BODY 가 잡는다. 사전은 _ops/dodochem_zh_ko.py.",
-        "계열 통합 페이지(series-*)는 생성기 _ops/dodochem_batch2.py 가 /tmp/dodo/*.json 을 요구하는데 그 파일이 없다 — 재생성 불가, 페이지 직접 편집만 가능."
-      ],
-      "default_required_specs": [
-        "용도",
-        "보관·취급",
-        "브랜드"
-      ],
-      "families": {},
-      "model_block_min": 3
-    },
-    "hench": {
-      "name_ko": "Hench",
-      "name_en": "Hench",
-      "pipeline": "_ops/hench/gen_models.py ← hench_products.csv (수치를 손으로 적지 않는다)",
-      "page_unit": "model",
-      "reference_page": "brands/hench/pellet-press-yp-15/",
-      "source": {
-        "url": "제조사 모델 상세 페이지",
-        "collect": "Chrome same-origin fetch→blob, store-only ZIP 조립해 1회 다운로드. parse_hench.py 로 CSV 화."
-      },
-      "pitfalls": [
-        "값 안의 전각 콜론(：) 때문에 무콜론형 페이지가 콜론형으로 오판돼 재질 필드가 통째로 날아갔다 — 파서는 결측률을 반드시 출력.",
-        "재질은 밴드마다 다르다: Φ3–10 ASSAB+17 HRC68~70 / Φ15↑ Cr12MoV HRC68~62.",
-        "1차에 계열 페이지 2장으로 만들었다가 표준 위반 — 모델 단위 17장으로 재작성 + 301.",
-        "페이지 하단 QR·SNS 로고가 제품 이미지로 딸려온다 — 파일 해시 중복검출로 제거."
-      ],
-      "derived": [
-        "필요 하중 T = 700MPa × πd²/4 ÷ 9806.65 (Φ13 → 9.47 T)",
-        "700MPa 가능 최대 직경 d = √(T·9806.65·4 ÷ 700π)"
-      ],
-      "default_required_specs": [
-        "무게"
-      ],
-      "families": {
-        "automatic-pellet-press": {
-          "match": [
-            "automatic-pellet-press"
-          ],
-          "required_specs": [
-            "무게",
-            "소비전력",
-            "실린더 지름",
-            "압력 유지",
-            "압력범위",
-            "외형",
-            "유효공간",
-            "전원",
-            "화면"
-          ]
-        },
-        "electric-pellet-press": {
-          "match": [
-            "electric-pellet-press"
-          ],
-          "required_specs": [
-            "무게",
-            "실린더 지름",
-            "압력 안정도",
-            "압력범위",
-            "압반 지름",
-            "외형",
-            "유효공간",
-            "전원",
-            "컬럼 수",
-            "피스톤 스트로크"
-          ]
-        },
-        "digital-pellet-press": {
-          "match": [
-            "digital-pellet-press"
-          ],
-          "required_specs": [
-            "구조",
-            "무게",
-            "실린더 지름",
-            "압력 안정도",
-            "압력 표시",
-            "압력 환산",
-            "압력범위",
-            "압반 지름",
-            "외형",
-            "유효공간",
-            "컬럼 수",
-            "피스톤 스트로크"
-          ]
-        },
-        "opening-die-hmk-f": {
-          "match": [
-            "opening-die-hmk-f"
-          ],
-          "required_specs": [
-            "무게",
-            "성형 규격",
-            "외형",
-            "인덴터 경도",
-            "재질",
-            "캐비티 깊이"
-          ]
-        },
-        "opening-die-hmk-y": {
-          "match": [
-            "opening-die-hmk-y"
-          ],
-          "required_specs": [
-            "무게",
-            "성형 규격",
-            "외형",
-            "인덴터 경도",
-            "재질",
-            "캐비티 깊이"
-          ]
-        },
-        "fluorometer-press": {
-          "match": [
-            "fluorometer-press"
-          ],
-          "required_specs": [
-            "몰드 규격",
-            "무게",
-            "설정 방식",
-            "실린더 리미트 보호",
-            "실린더 스트로크",
-            "압력 유지",
-            "압력범위",
-            "외형",
-            "전원",
-            "피스톤 지름",
-            "화면"
-          ]
-        },
-        "hot-pellet-press": {
-          "match": [
-            "hot-pellet-press"
-          ],
-          "required_specs": [
-            "전원",
-            "제어 방식",
-            "가열 범위",
-            "압력범위",
-            "무게"
-          ],
-          "note": "기존 페이지 대다수가 갖고 있는 축. 빠진 페이지는 유예 목록에 있고, 채우면 지운다."
-        },
-        "cylindrical-die": {
-          "match": [
-            "cylindrical-die"
-          ],
-          "required_specs": [
-            "무게",
-            "인덴터 경도",
-            "재질",
-            "캐비티 깊이"
-          ]
-        },
-        "button-cell-die": {
-          "match": [
-            "button-cell-die"
-          ],
-          "required_specs": [
-            "무게"
-          ]
-        },
-        "pellet-press-yp": {
-          "match": [
-            "pellet-press-yp"
-          ],
-          "required_specs": [
-            "무게",
-            "압력 안정도",
-            "피스톤 스트로크"
-          ]
-        },
-        "isostatic-press": {
-          "match": [
-            "isostatic-press"
-          ],
-          "required_specs": [
-            "무게",
-            "압력범위",
-            "외형",
-            "최대 성형압",
-            "캐비티 재질"
-          ]
-        },
-        "hard-alloy-die": {
-          "match": [
-            "hard-alloy-die"
-          ],
-          "required_specs": [
-            "무게",
-            "성형 규격",
-            "외형",
-            "인덴터 경도",
-            "재질",
-            "캐비티 깊이"
-          ]
-        },
-        "special-die": {
-          "match": [
-            "special-die"
-          ],
-          "required_specs": [
-            "무게",
-            "외형",
-            "인덴터 경도",
-            "재질",
-            "캐비티 깊이"
-          ]
-        },
-        "square-die": {
-          "match": [
-            "square-die"
-          ],
-          "required_specs": [
-            "무게",
-            "성형 규격",
-            "외형",
-            "인덴터 경도",
-            "재질",
-            "캐비티 깊이"
-          ]
-        },
-        "hot-die": {
-          "match": [
-            "hot-die"
-          ],
-          "required_specs": [
-            "무게",
-            "성형 규격",
-            "외형",
-            "인덴터 경도",
-            "재질"
-          ]
-        }
-      },
-      "model_block_min": 3
-    },
-    "gaossunion": {
-      "name_ko": "가오스유니온",
-      "name_en": "Gaoss Union",
-      "pipeline": "_ops/ 생성기 + _ops/gaossunion_products.sql (병합 완료본, 재병합 금지)",
-      "page_unit": "model",
-      "reference_page": "brands/gaossunion/agcl-reference-electrode/",
-      "source": {
-        "url": "제조사 2026 카탈로그 PDF",
-        "collect": "원본(8~35MB)은 리포 루트 커밋 금지 — _ops/ 압축본만. 이미지는 카탈로그 추출(사용 허가 받음)."
-      },
-      "pricing": "카탈로그 EUR × 1,620원. 3% 상시 할인 대상 아님. 국제 운송비 별도.",
-      "pitfalls": [
-        "가격은 pdftotext 가 자릿수를 깨먹는다(1,100→110) — 페이지 이미지 렌더로 육안 대조.",
-        "이미지 경로 규칙 img/gaossunion/<slug>-<n>.jpg."
-      ],
-      "default_required_specs": [],
-      "families": {
-        "high-pressure-cell": {
-          "match": [
-            "high-pressure-cell"
-          ],
-          "required_specs": [],
-          "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
-        },
-        "gas-diffusion-cell": {
-          "match": [
-            "gas-diffusion-cell"
-          ],
-          "required_specs": [],
-          "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
-        },
-        "corrosion-cell": {
-          "match": [
-            "corrosion-cell"
-          ],
-          "required_specs": [
-            "시편",
-            "용량",
-            "용량 · 구성",
-            "재질",
-            "형식"
-          ]
-        },
-        "membrane-cell": {
-          "match": [
-            "membrane-cell"
-          ],
-          "required_specs": [
-            "재질",
-            "형식"
-          ]
-        },
-        "battery-cell": {
-          "match": [
-            "battery-cell"
-          ],
-          "required_specs": [
-            "모델 · 구성"
-          ]
-        },
-        "special-cell": {
-          "match": [
-            "special-cell"
-          ],
-          "required_specs": [],
-          "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
-        },
-        "quartz-cell": {
-          "match": [
-            "quartz-cell"
-          ],
-          "required_specs": [
-            "재질",
-            "투과율"
-          ]
-        },
-        "insitu-cell": {
-          "match": [
-            "insitu-cell"
-          ],
-          "required_specs": [],
-          "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
-        },
-        "glass-cell": {
-          "match": [
-            "glass-cell"
-          ],
-          "required_specs": [
-            "밀폐·압력",
-            "온도 제어",
-            "용량",
-            "재질",
-            "전극 방식",
-            "형식"
-          ]
-        },
-        "photo-cell": {
-          "match": [
-            "photo-cell"
-          ],
-          "required_specs": [
-            "용량",
-            "광창"
-          ],
-          "note": "기존 페이지 대다수가 갖고 있는 축. 빠진 페이지는 유예 목록에 있고, 채우면 지운다."
-        },
-        "mea-cell": {
-          "match": [
-            "mea-cell"
-          ],
-          "required_specs": [],
-          "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
-        }
-      },
-      "model_block_min": 3
-    },
-    "aida": {
-      "name_ko": "AIDA",
-      "name_en": "AIDA",
-      "pipeline": "_ops/cfg_aida_*.py + _ops/tpl/product.html",
-      "page_unit": "model",
-      "reference_page": "brands/aida/reference-electrode/",
-      "source": {
-        "url": "제조사 사이트 + 카탈로그 PDF",
-        "collect": "Chrome 은 같은 오리진 2번째 자동 다운로드를 차단한다(사용자가 1회 허용하면 이후 가능). 부족분은 카탈로그 PDF 에서 pymupdf 추출."
-      },
-      "pitfalls": [
-        "워터마크(天津艾达恒晟) 있는 컷은 사용 금지. double-flat-cell 이 여기 걸려 보류 중(_to_delete/aida_pending/).",
-        "38장 전부 _build/lint_allow.txt 에 STYLE_INLINE 등록된 부채 — 근본 해결은 _ops/tpl/product.html 의 인라인 CSS 를 detail.css 로 이관.",
-        "SQL rndsetup_products.sql 에 248종 retail_price 미반영(현재 페이지에만 존재)."
-      ],
-      "default_required_specs": [],
-      "families": {
-        "membrane-cell": {
-          "match": [
-            "membrane-cell"
-          ],
-          "required_specs": [
-            "구성",
-            "구조",
-            "셀 본체",
-            "이온교환막"
-          ]
-        },
-        "photo-cell": {
-          "match": [
-            "photo-cell"
-          ],
-          "required_specs": [
-            "구성",
-            "셀 본체"
-          ]
-        },
-        "h-cell": {
-          "match": [
-            "h-cell"
-          ],
-          "required_specs": [
-            "구성",
-            "구조",
-            "셀 본체"
-          ]
-        }
-      },
-      "model_block_min": 3
-    },
-    "hefei": {
-      "name_ko": "허페이 인시츄",
-      "name_en": "Hefei In-situ",
-      "pipeline": "_ops/ 생성기",
-      "page_unit": "model",
-      "reference_page": "brands/hefei/om003-microscope-cell/",
-      "source": {
-        "url": "제조사 사이트",
-        "collect": "제조사 사이트 원문. 중국어 용어는 통째로 옮기지 말고 뜻으로 옮긴다 — 电解池 를 \"电解\"만 번역해 \"池 높이\" 로 남긴 사고가 10장에서 나왔다. 气路口 같은 말도 음차(기로구)하지 말고 \"기체 포트\" 로 옮긴다."
-      },
-      "pitfalls": [
-        "om003-microscope-cell 이 사이트 전체의 신규 상세페이지 기준 통과본이다. 새 페이지는 여기를 베낀다.",
-        "17장이 전부 다른 셀 종류라 공통 사양 축이 없다 — 제품군을 세우려면 셀 유형별로 나눠야 한다.",
-        "한자·음차가 남았는지 배포 전에 확인 — 린터 CJK_BODY 가 잡지만, 음차(기로구·기분위)는 기계가 못 잡는다."
-      ],
-      "default_required_specs": [],
-      "families": {},
-      "model_block_min": 3
-    },
-    "neware": {
-      "name_ko": "뉴웨어",
-      "name_en": "Neware",
-      "pipeline": "_ops/mk_neware_hub.py",
-      "page_unit": "model",
-      "reference_page": "",
-      "source": {
-        "url": "",
-        "collect": "제조사 자료 미확보 상태. 대표사진 2장이 없어 MISSING_BLOCK 유예 중 — 사진을 받으면 그 줄을 지운다."
-      },
-      "pitfalls": [
-        "2장 모두 대표사진 미확보 — lint_allow.txt 에 MISSING_BLOCK 유예 중. 사진 붙으면 그 줄을 지울 것."
-      ],
-      "default_required_specs": [],
-      "families": {},
-      "model_block_min": 3
-    },
-    "sh-scientific": {
-      "name_ko": "삼흥에너지",
-      "name_en": "SH Scientific",
-      "pipeline": "구형 — 개별 HTML",
-      "page_unit": "model",
-      "reference_page": "",
-      "source": {
-        "url": "",
-        "collect": ""
-      },
-      "pricing": "국내 브랜드 — 정가 대비 3% 상시 할인 적용(site.js 가 정가 취소선 표시).",
-      "pitfalls": [
-        "구형 레이아웃. LINT_SKIP_BRANDS 로 린터 제외 중인 순차 이관 부채."
-      ],
-      "default_required_specs": [],
-      "families": {},
-      "model_block_min": 3
-    },
-    "leadfluid": {
-      "name_ko": "리드플루이드",
-      "name_en": "LeadFluid",
-      "pipeline": "구형 — 개별 HTML",
-      "page_unit": "model",
-      "reference_page": "",
-      "source": {
-        "url": "https://www.leadfluid.com/",
-        "collect": ""
-      },
-      "pricing": "국내 유통 — 정가 대비 3% 상시 할인 적용.",
-      "pitfalls": [
-        "모델 페이지 75장 유지/통합 보류 중(상세페이지 직접 유입 있음).",
-        "구형 레이아웃, LINT_SKIP_BRANDS."
-      ],
-      "default_required_specs": [],
-      "families": {},
-      "model_block_min": 3
-    },
-    "alicat": {
-      "name_ko": "Alicat",
-      "name_en": "Alicat Scientific",
-      "pipeline": "구형 — 개별 HTML",
-      "page_unit": "series",
-      "reference_page": "",
-      "source": {
-        "url": "https://www.alicat.com/",
-        "collect": ""
-      },
-      "pitfalls": [
-        "존재하지 않는 모델명과 타사 가격이 들어갔던 사고가 있다 — 제조사 공식 모델 체계와 반드시 대조.",
-        "구형 레이아웃, LINT_SKIP_BRANDS."
-      ],
-      "default_required_specs": [],
-      "families": {},
-      "model_block_min": 3
-    }
-  },
+ "_doc": [
+  "브랜드 프로파일 SSOT — 제품을 올리기 전에 해당 브랜드 항목을 반드시 읽는다.",
+  "스키마 설명은 _build/products/_SCHEMA.md, 공통 표준은 CLAUDE.md 4.6.",
+  "brands/<slug>/ 디렉터리가 있는데 여기 항목이 없으면 빌드 린터가 NO_BRAND_PROFILE 로 잡는다.",
+  "families[].match 는 슬러그 부분문자열. 먼저 맞는 것이 이긴다. required_specs 가 사양표 <th> 에 없으면 REQ_SPEC warn.",
+  "model_block_min: 한 페이지에 이 수 이상 모델을 담으면 모델별 사진·사양 블록(.mdl-hd 또는 썸네일 라벨 .thlb)을 요구한다. 기본 3."
+ ],
+ "brands": {
   "dodochem": {
-    "pipeline": "_build/products/dodochem.json (데이터 주도, build_product_pages) — 단독 63종. 계열 통합 15장(series-*)은 손 HTML 카탈로그 허브(가격은 SQL과 동기).",
-    "page_unit": "단독 = 1제품(규격 N종은 buybox 행) · 롱테일 2,000종은 series-* 통합표 + SQL",
-    "reference_page": "brands/dodochem/ls-009-lithium-sulfur-electrolyte/",
-    "source": "공개 API api.dodochem.com — 카테고리트리 GET /djy-search/product/getProductCategoryTree · 목록 POST /djy-search/product/searchProductByComplex {productCategoryIds:[id],pageNumber:N}(60/p, GET searchProductByCategory는 1페이지만) · SKU가격 POST /djy-search/product/getProductSkuByProperty {id, productPricePropertyDtos:[{id:'1',propertyName,propertyValue}]} → data.priceNew(CNY). 가격은 로그인 필수(登录可见) — 인앱 브라우저 로그인 후 상세페이지 XHR 후킹으로 Authorization Bearer+Did 캡처(만료 약 10h). 이미지 dodochem.oss-cn-shanghai.aliyuncs.com — 브라우저 fetch→base64, 대용량 결과는 oversized 파일(mnt/outputs/../.claude/projects/...)로 반출.",
-    "pitfalls": [
-      "허브 dscard는 dscard-link/dscard-nm/data-text 스키마 필수 — 다르면 카탈로그 수집에서 조용히 누락",
-      "브리프의 배합문자열에 % 포함(Vol% with...) — 파이썬 %포맷 금지, f-string만",
-      "SKU 키를 옵션문자열 절단으로 만들면 충돌(케이스 규격) — 충돌 시 -2,-3 접미",
-      "표기는 DodoChem 고정(도도켐 금지)",
-      "5만원 미만 SKU는 미등록(합산 견적) · 30만 미만은 합산 권장 문구"
-    ],
-    "pricing": "overseas-pricing 공식① — (CNY 소비자가+0)×환율계수(올림10(스팟×1.02))×1.45, 1,000원 반올림. 2026-09-02 적용계수 210. 배송비 SSOT=_ops/shipping.py(s_in 100,000). 상시 3% 할인 제외.",
-    "master_sheet": "C:/Users/emgty/Downloads/dodochem_제품마스터_전해액시약소재.xlsx (2,030품목·SKU 4,496 CNY)",
-    "families": [
-      {
-        "match": "electrolyte",
-        "required_specs": [
-          "용도",
-          "보관·취급",
-          "브랜드"
-        ]
-      },
-      {
-        "match": "series-",
-        "note": "계열 통합표 — 상세 표준 린트 대상 아님(카탈로그 허브)"
-      }
-    ]
+   "name_ko": "DodoChem",
+   "name_en": "DodoChem",
+   "pipeline": "_build/products/dodochem.json → build_product_pages()",
+   "page_unit": "model",
+   "reference_page": "brands/dodochem/ls-009-lithium-sulfur-electrolyte/",
+   "source": {
+    "url": "https://www.dodochem.com/",
+    "collect": "중국어 페이지 https://www.dodochem.com/product?id=<id> 는 Nuxt SSR 이라 같은 탭에서 fetch() 하면 HTML 안에 표가 그대로 들어 있다 (WebFetch 로는 안 나온다). 찾을 키: productPhysicochemicalList · productSpecificationList · name:\"危害描述\"/\"危险标志\"/\"安全操作(预防措施)\"/\"安全存储(应急处置)\"/\"安全处置\"/\"保质期\". 용어 한글화 사전은 _ops/dodochem_zh_ko.py 한 곳에서만 고친다."
+   },
+   "pricing": "해외 직수입 — 3% 상시 할인 대상 아님. 국제 배송료는 주문당 1회 별도(buybox p−x).",
+   "pitfalls": [
+    "안전 정보는 번역·요약·경고문 추가 금지. H·P 코드는 코드 그대로.",
+    "GHS 그림문자는 제조사 이미지를 img/dodochem/<slug>-ghs.png 로 저장하고 값 자리에 \"@image\".",
+    "논문은 제품 코드가 논문 Methods에 나온 것만. Europe PMC 전문검색으로 확인.",
+    "제조사 카탈로그가(CNY)를 규격 자리에 넣지 말 것. 판매가를 나누면 매입 조건이 역산된다 — 린터 CNY_LEAK 이 잡는다.",
+    "중국어 원문을 그대로 두지 말 것 — 린터 CJK_BODY 가 잡는다. 사전은 _ops/dodochem_zh_ko.py.",
+    "계열 통합 페이지(series-*)는 생성기 _ops/dodochem_batch2.py 가 /tmp/dodo/*.json 을 요구하는데 그 파일이 없다 — 재생성 불가, 페이지 직접 편집만 가능."
+   ],
+   "default_required_specs": [
+    "용도",
+    "보관·취급",
+    "브랜드"
+   ],
+   "families": {},
+   "model_block_min": 3
+  },
+  "hench": {
+   "name_ko": "Hench",
+   "name_en": "Hench",
+   "pipeline": "_ops/hench/gen_models.py ← hench_products.csv (수치를 손으로 적지 않는다)",
+   "page_unit": "model",
+   "reference_page": "brands/hench/pellet-press-yp-15/",
+   "source": {
+    "url": "제조사 모델 상세 페이지 (hench_products.csv 로 정리)",
+    "collect": "Chrome same-origin fetch→blob, store-only ZIP 조립해 1회 다운로드. parse_hench.py 로 CSV 화."
+   },
+   "pitfalls": [
+    "값 안의 전각 콜론(：) 때문에 무콜론형 페이지가 콜론형으로 오판돼 재질 필드가 통째로 날아갔다 — 파서는 결측률을 반드시 출력.",
+    "재질은 밴드마다 다르다: Φ3–10 ASSAB+17 HRC68~70 / Φ15↑ Cr12MoV HRC68~62.",
+    "1차에 계열 페이지 2장으로 만들었다가 표준 위반 — 모델 단위 17장으로 재작성 + 301.",
+    "페이지 하단 QR·SNS 로고가 제품 이미지로 딸려온다 — 파일 해시 중복검출로 제거."
+   ],
+   "derived": [
+    "필요 하중 T = 700MPa × πd²/4 ÷ 9806.65 (Φ13 → 9.47 T)",
+    "700MPa 가능 최대 직경 d = √(T·9806.65·4 ÷ 700π)"
+   ],
+   "default_required_specs": [
+    "무게"
+   ],
+   "families": {
+    "automatic-pellet-press": {
+     "match": [
+      "automatic-pellet-press"
+     ],
+     "required_specs": [
+      "무게",
+      "소비전력",
+      "실린더 지름",
+      "압력 유지",
+      "압력범위",
+      "외형",
+      "유효공간",
+      "전원",
+      "화면"
+     ]
+    },
+    "electric-pellet-press": {
+     "match": [
+      "electric-pellet-press"
+     ],
+     "required_specs": [
+      "무게",
+      "실린더 지름",
+      "압력 안정도",
+      "압력범위",
+      "압반 지름",
+      "외형",
+      "유효공간",
+      "전원",
+      "컬럼 수",
+      "피스톤 스트로크"
+     ]
+    },
+    "digital-pellet-press": {
+     "match": [
+      "digital-pellet-press"
+     ],
+     "required_specs": [
+      "구조",
+      "무게",
+      "실린더 지름",
+      "압력 안정도",
+      "압력 표시",
+      "압력 환산",
+      "압력범위",
+      "압반 지름",
+      "외형",
+      "유효공간",
+      "컬럼 수",
+      "피스톤 스트로크"
+     ]
+    },
+    "opening-die-hmk-f": {
+     "match": [
+      "opening-die-hmk-f"
+     ],
+     "required_specs": [
+      "무게",
+      "성형 규격",
+      "외형",
+      "인덴터 경도",
+      "재질",
+      "캐비티 깊이"
+     ]
+    },
+    "opening-die-hmk-y": {
+     "match": [
+      "opening-die-hmk-y"
+     ],
+     "required_specs": [
+      "무게",
+      "성형 규격",
+      "외형",
+      "인덴터 경도",
+      "재질",
+      "캐비티 깊이"
+     ]
+    },
+    "fluorometer-press": {
+     "match": [
+      "fluorometer-press"
+     ],
+     "required_specs": [
+      "몰드 규격",
+      "무게",
+      "설정 방식",
+      "실린더 리미트 보호",
+      "실린더 스트로크",
+      "압력 유지",
+      "압력범위",
+      "외형",
+      "전원",
+      "피스톤 지름",
+      "화면"
+     ]
+    },
+    "hot-pellet-press": {
+     "match": [
+      "hot-pellet-press"
+     ],
+     "required_specs": [
+      "전원",
+      "제어 방식",
+      "가열 범위",
+      "압력범위",
+      "무게"
+     ],
+     "note": "기존 페이지 대다수가 갖고 있는 축. 빠진 페이지는 유예 목록에 있고, 채우면 지운다."
+    },
+    "cylindrical-die": {
+     "match": [
+      "cylindrical-die"
+     ],
+     "required_specs": [
+      "무게",
+      "인덴터 경도",
+      "재질",
+      "캐비티 깊이"
+     ]
+    },
+    "button-cell-die": {
+     "match": [
+      "button-cell-die"
+     ],
+     "required_specs": [
+      "무게"
+     ]
+    },
+    "pellet-press-yp": {
+     "match": [
+      "pellet-press-yp"
+     ],
+     "required_specs": [
+      "무게",
+      "압력 안정도",
+      "피스톤 스트로크"
+     ]
+    },
+    "isostatic-press": {
+     "match": [
+      "isostatic-press"
+     ],
+     "required_specs": [
+      "무게",
+      "압력범위",
+      "외형",
+      "최대 성형압",
+      "캐비티 재질"
+     ]
+    },
+    "hard-alloy-die": {
+     "match": [
+      "hard-alloy-die"
+     ],
+     "required_specs": [
+      "무게",
+      "성형 규격",
+      "외형",
+      "인덴터 경도",
+      "재질",
+      "캐비티 깊이"
+     ]
+    },
+    "special-die": {
+     "match": [
+      "special-die"
+     ],
+     "required_specs": [
+      "무게",
+      "외형",
+      "인덴터 경도",
+      "재질",
+      "캐비티 깊이"
+     ]
+    },
+    "square-die": {
+     "match": [
+      "square-die"
+     ],
+     "required_specs": [
+      "무게",
+      "성형 규격",
+      "외형",
+      "인덴터 경도",
+      "재질",
+      "캐비티 깊이"
+     ]
+    },
+    "hot-die": {
+     "match": [
+      "hot-die"
+     ],
+     "required_specs": [
+      "무게",
+      "성형 규격",
+      "외형",
+      "인덴터 경도",
+      "재질"
+     ]
+    }
+   },
+   "model_block_min": 3
+  },
+  "gaossunion": {
+   "name_ko": "가오스유니온",
+   "name_en": "Gaoss Union",
+   "pipeline": "_ops/ 생성기 + _ops/gaossunion_products.sql (병합 완료본, 재병합 금지)",
+   "page_unit": "model",
+   "reference_page": "brands/gaossunion/agcl-reference-electrode/",
+   "source": {
+    "url": "제조사 2026 카탈로그 (배터리 · 전해셀 · 전극/촉매 · 유동/인시츄/MEA)",
+    "collect": "원본(8~35MB)은 리포 루트 커밋 금지 — _ops/ 압축본만. 이미지는 카탈로그 추출(사용 허가 받음)."
+   },
+   "pricing": "카탈로그 EUR × 1,620원. 3% 상시 할인 대상 아님. 국제 운송비 별도.",
+   "pitfalls": [
+    "가격은 pdftotext 가 자릿수를 깨먹는다(1,100→110) — 페이지 이미지 렌더로 육안 대조.",
+    "이미지 경로 규칙 img/gaossunion/<slug>-<n>.jpg."
+   ],
+   "default_required_specs": [],
+   "families": {
+    "high-pressure-cell": {
+     "match": [
+      "high-pressure-cell"
+     ],
+     "required_specs": [],
+     "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
+    },
+    "gas-diffusion-cell": {
+     "match": [
+      "gas-diffusion-cell"
+     ],
+     "required_specs": [],
+     "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
+    },
+    "corrosion-cell": {
+     "match": [
+      "corrosion-cell"
+     ],
+     "required_specs": [
+      "시편",
+      "용량",
+      "용량 · 구성",
+      "재질",
+      "형식"
+     ]
+    },
+    "membrane-cell": {
+     "match": [
+      "membrane-cell"
+     ],
+     "required_specs": [
+      "재질",
+      "형식"
+     ]
+    },
+    "battery-cell": {
+     "match": [
+      "battery-cell"
+     ],
+     "required_specs": [
+      "모델 · 구성"
+     ]
+    },
+    "special-cell": {
+     "match": [
+      "special-cell"
+     ],
+     "required_specs": [],
+     "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
+    },
+    "quartz-cell": {
+     "match": [
+      "quartz-cell"
+     ],
+     "required_specs": [
+      "재질",
+      "투과율"
+     ]
+    },
+    "insitu-cell": {
+     "match": [
+      "insitu-cell"
+     ],
+     "required_specs": [],
+     "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
+    },
+    "glass-cell": {
+     "match": [
+      "glass-cell"
+     ],
+     "required_specs": [
+      "밀폐·압력",
+      "온도 제어",
+      "용량",
+      "재질",
+      "전극 방식",
+      "형식"
+     ]
+    },
+    "photo-cell": {
+     "match": [
+      "photo-cell"
+     ],
+     "required_specs": [
+      "용량",
+      "광창"
+     ],
+     "note": "기존 페이지 대다수가 갖고 있는 축. 빠진 페이지는 유예 목록에 있고, 채우면 지운다."
+    },
+    "mea-cell": {
+     "match": [
+      "mea-cell"
+     ],
+     "required_specs": [],
+     "note": "공통 사양 축이 안 잡히는 이유는 축이 없어서가 아니라 라벨 표기가 흔들리기 때문이다 (예: 셀 바디 / 셀 바디 재질, 용량 / 모델 · 용량). 라벨을 통일한 뒤 필수 항목을 정한다."
+    }
+   },
+   "model_block_min": 3
+  },
+  "aida": {
+   "name_ko": "AIDA",
+   "name_en": "AIDA",
+   "pipeline": "_ops/cfg_aida_*.py + _ops/tpl/product.html",
+   "page_unit": "model",
+   "reference_page": "brands/aida/reference-electrode/",
+   "source": {
+    "url": "제조사 사이트 + 2026 제품 카탈로그 (products catalogue20260318.pdf)",
+    "collect": "Chrome 은 같은 오리진 2번째 자동 다운로드를 차단한다(사용자가 1회 허용하면 이후 가능). 부족분은 카탈로그 PDF 에서 pymupdf 추출."
+   },
+   "pitfalls": [
+    "워터마크(天津艾达恒晟) 있는 컷은 사용 금지. double-flat-cell 이 여기 걸려 보류 중(_to_delete/aida_pending/).",
+    "38장 전부 _build/lint_allow.txt 에 STYLE_INLINE 등록된 부채 — 근본 해결은 _ops/tpl/product.html 의 인라인 CSS 를 detail.css 로 이관.",
+    "SQL rndsetup_products.sql 에 248종 retail_price 미반영(현재 페이지에만 존재)."
+   ],
+   "default_required_specs": [],
+   "families": {
+    "membrane-cell": {
+     "match": [
+      "membrane-cell"
+     ],
+     "required_specs": [
+      "구성",
+      "구조",
+      "셀 본체",
+      "이온교환막"
+     ]
+    },
+    "photo-cell": {
+     "match": [
+      "photo-cell"
+     ],
+     "required_specs": [
+      "구성",
+      "셀 본체"
+     ]
+    },
+    "h-cell": {
+     "match": [
+      "h-cell"
+     ],
+     "required_specs": [
+      "구성",
+      "구조",
+      "셀 본체"
+     ]
+    }
+   },
+   "model_block_min": 3
+  },
+  "hefei": {
+   "name_ko": "허페이 인시츄",
+   "name_en": "Hefei In-situ",
+   "pipeline": "_ops/ 생성기",
+   "page_unit": "model",
+   "reference_page": "brands/hefei/om003-microscope-cell/",
+   "source": {
+    "url": "제조사 사이트 제품 페이지",
+    "collect": "제조사 사이트 원문. 중국어 용어는 통째로 옮기지 말고 뜻으로 옮긴다 — 电解池 를 \"电解\"만 번역해 \"池 높이\" 로 남긴 사고가 10장에서 나왔다. 气路口 같은 말도 음차(기로구)하지 말고 \"기체 포트\" 로 옮긴다."
+   },
+   "pitfalls": [
+    "om003-microscope-cell 이 사이트 전체의 신규 상세페이지 기준 통과본이다. 새 페이지는 여기를 베낀다.",
+    "17장이 전부 다른 셀 종류라 공통 사양 축이 없다 — 제품군을 세우려면 셀 유형별로 나눠야 한다.",
+    "한자·음차가 남았는지 배포 전에 확인 — 린터 CJK_BODY 가 잡지만, 음차(기로구·기분위)는 기계가 못 잡는다."
+   ],
+   "default_required_specs": [],
+   "families": {},
+   "model_block_min": 3
+  },
+  "neware": {
+   "name_ko": "뉴웨어",
+   "name_en": "Neware",
+   "pipeline": "_ops/mk_neware_hub.py",
+   "page_unit": "model",
+   "reference_page": "",
+   "source": {
+    "url": "",
+    "collect": "제조사 자료 미확보 상태. 대표사진 2장이 없어 MISSING_BLOCK 유예 중 — 사진을 받으면 그 줄을 지운다."
+   },
+   "pitfalls": [
+    "2장 모두 대표사진 미확보 — lint_allow.txt 에 MISSING_BLOCK 유예 중. 사진 붙으면 그 줄을 지울 것."
+   ],
+   "default_required_specs": [],
+   "families": {},
+   "model_block_min": 3
+  },
+  "sh-scientific": {
+   "name_ko": "삼흥에너지",
+   "name_en": "SH Scientific",
+   "pipeline": "구형 — 개별 HTML",
+   "page_unit": "model",
+   "reference_page": "",
+   "source": {
+    "url": "",
+    "collect": ""
+   },
+   "pricing": "국내 브랜드 — 정가 대비 3% 상시 할인 적용(site.js 가 정가 취소선 표시).",
+   "pitfalls": [
+    "구형 레이아웃. LINT_SKIP_BRANDS 로 린터 제외 중인 순차 이관 부채."
+   ],
+   "default_required_specs": [],
+   "families": {},
+   "model_block_min": 3
+  },
+  "leadfluid": {
+   "name_ko": "리드플루이드",
+   "name_en": "LeadFluid",
+   "pipeline": "구페이지 75장=수기 HTML(구형 레이아웃, LINT_SKIP_BRANDS). 신규=_build/products/leadfluid.json → build_product_pages()",
+   "page_unit": "model",
+   "reference_page": "brands/dodochem/ls-009-lithium-sulfur-electrolyte/ (리드플루이드 자체 기준 통과본 없음 — 신규는 dodochem 을 베낀다)",
+   "source": {
+    "url": "https://www.leadfluid.com/ (국제) · https://www.leadfluid.com.cn/products/ (중국 본사, 원문이 더 상세)",
+    "collect": "중국 사이트가 원천. **클라우드·로컬 셸 둘 다 leadfluid.com.cn 이 egress 프록시에서 차단(CONNECT 403)** — curl/requests 불가. Chrome 같은 탭 same-origin fetch() 로만 수집한다. 원문 아카이브 _ops/leadfluid_cn/leadfluid_cn_rawhtml_170.json.gz (170페이지 raw HTML) · 파서 _ops/leadfluid_cn/parse.py → parsed_170.json · 대조표 crosscheck.csv. 페이지 구조: .text.wow>h2=모델 / .tips span=계열 / p=설명, .section2 .box li=功能特点(특징), .section3 table=产品参数(사양·규격표), .section6=관련제품.",
+    "images": "res.leadfluid.com.cn CDN. **CORS 로 www 오리진에서 fetch 불가** — 탭을 res 오리진으로 옮겨 same-origin fetch → 캔버스로 1200×900 4:3 축소(q88) → window.name 에 base64 로 실어 www 오리진으로 되돌아와 ZIP 다운로드. window.name 은 크로스오리진 네비게이션에서 살아남는다. res 오리진은 다운로드 자체가 차단돼 있다."
+   },
+   "pricing": "국내 유통 — 정가 대비 3% 상시 할인 적용. CN 사이트에 가격 없음(신규 모델은 overseas-pricing 으로 별도 산정, 근거 없으면 buybox 견적 렌더).",
+   "pitfalls": [
+    "모델 페이지 75장 유지/통합 보류 중(상세페이지 직접 유입 있음).",
+    "구형 레이아웃, LINT_SKIP_BRANDS.",
+    "제품 URL 형식이 3가지다 — /products/537.shtml · /products/jyb/2024/1216/xxx.shtml · /products/rdb/bcb/2024/0617/xxx.shtml(하위분류 포함). 숫자형만 잡으면 168/170, 2단 날짜형까지만 169/170. 셋 다 잡아야 170.",
+    "모델명은 <h1> 이 아니라 <title> 에서 딴다. h1 은 BT101S 인데 실제 모델은 BT101S-v3. title.split(/-雷弗/)[0].",
+    "결측 판정에 '2셀 행' 필터를 쓰면 안 된다 — 튜브 규격표는 6열이라 통째로 결측 처리된다. '값 있는 셀 2개 이상' 으로 판정할 것.",
+    "본문 텍스트에 전역 네비게이션(企业简介 发展历程…)이 섞인다. .section 컨테이너 안에서만 뽑는다.",
+    "튜브 규격표에서 24#/18#/35# 등 Masterflex 표준 호수는 외경이 '내경+2×벽두께' 계산값과 다르다(11.1·12.7). 업계 실측치라 오류가 아니다 — 여러 제품에서 값이 일치하는지로 판별한다.",
+    "튜브 규격표 원문 오기 7건 확인(공제 칸에 앞 행 값 복붙 등). 임의로 고치지 말고 note 로 밝힌다.",
+    "크롬은 같은 오리진에서 2번째 자동 다운로드부터 차단한다. 대량 수집 전에 '자동 다운로드 허용' 을 먼저 받아둘 것.",
+    "javascript_tool 반환값은 약 1,000자에서 잘린다. 결과는 window 변수에 쌓고 Blob 다운로드로 뺀다."
+   ],
+   "default_required_specs": [],
+   "families": {},
+   "model_block_min": 3
+  },
+  "alicat": {
+   "name_ko": "Alicat",
+   "name_en": "Alicat Scientific",
+   "pipeline": "구형 — 개별 HTML",
+   "page_unit": "series",
+   "reference_page": "",
+   "source": {
+    "url": "https://www.alicat.com/",
+    "collect": ""
+   },
+   "pitfalls": [
+    "존재하지 않는 모델명과 타사 가격이 들어갔던 사고가 있다 — 제조사 공식 모델 체계와 반드시 대조.",
+    "구형 레이아웃, LINT_SKIP_BRANDS."
+   ],
+   "default_required_specs": [],
+   "families": {},
+   "model_block_min": 3
+  },
+  "runze": {
+   "name_ko": "Runze Fluid",
+   "name_en": "Runze Fluid",
+   "pipeline": "_build/products/runze.json → build_product_pages()",
+   "page_unit": "model",
+   "reference_page": "brands/runze/selector-valve-sv-07/",
+   "source": {
+    "url": "https://www.runzefluid.com/",
+    "collect": "제조사 사이트 원문 수집. 클라우드·로컬 VM 모두 egress 차단 → Chrome(claude-in-chrome)에서 same-origin fetch. 본문 컨테이너는 .product_detail_content, 제품 사진은 .img_sign_li img(슬러그 파일명, 790x527, furniture 없음). sitemap.xml 에 제품 상세 129건. 사양은 표(94/129) 또는 'Technical Specifications' 불릿(10/129), 나머지 25건은 치수 도면 PDF·카탈로그 PDF 로 보완."
+   },
+   "pricing": "제조사가 전 제품 가격 비공개. 파일럿은 buybox [] 견적 전용. 판매가는 overseas-pricing 으로 별도 산정.",
+   "pitfalls": [
+    "body innerText 를 h1 로 rfind 하면 네비 메뉴의 마지막 등장을 잡아 본문 대신 푸터를 뽑는다 — 반드시 .product_detail_content 컨테이너로 추출한다.",
+    "브라우저에서 손으로 조립한 store-only ZIP 이 central directory 에서 깨졌다 — 이미지는 base64 JSON 한 개로 내려받아 파이썬으로 디코드한다.",
+    "Chrome 은 한 번에 여러 파일을 내려받으면 두 번째를 막는다 — 다운로드는 한 번에 하나씩.",
+    "원본 사진이 790x507(3:2)이라 1200x900(4:3) 캔버스에 모서리 평균색 배경으로 얹어 정규화한다(피팅·튜빙은 배경이 파랑이라 흰색으로 채우면 어색하다).",
+    "프리토크 피팅 토크 단위가 제조사 표기 'N/m' — 토크 단위 N·m 로 옮기고 variants.note 에 명시했다."
+   ],
+   "default_required_specs": [],
+   "families": {
+    "valve": {
+     "match": [
+      "selector-valve",
+      "switching-valve",
+      "solenoid-valve",
+      "valve-head"
+     ],
+     "required_specs": [
+      "습부 재질",
+      "압력 정격",
+      "연결부",
+      "전원"
+     ]
+    },
+    "syringe-pump": {
+     "match": [
+      "syringe-pump",
+      "piston-pump"
+     ],
+     "required_specs": [
+      "공칭 용량",
+      "정격 스트로크",
+      "통신",
+      "전원"
+     ]
+    },
+    "fitting": {
+     "match": [
+      "fitting",
+      "adapter",
+      "connector",
+      "union",
+      "ferrule",
+      "clamp"
+     ],
+     "required_specs": [
+      "연결 규격",
+      "구성"
+     ]
+    },
+    "tubing": {
+     "match": [
+      "tube",
+      "tubing",
+      "hose"
+     ],
+     "required_specs": [
+      "재질",
+      "연속 사용 온도",
+      "내경 범위",
+      "외경 범위"
+     ]
+    }
+   },
+   "model_block_min": 4
   }
+ },
+ "dodochem": {
+  "pipeline": "_build/products/dodochem.json (데이터 주도, build_product_pages) — 단독 63종. 계열 통합 15장(series-*)은 손 HTML 카탈로그 허브(가격은 SQL과 동기).",
+  "page_unit": "단독 = 1제품(규격 N종은 buybox 행) · 롱테일 2,000종은 series-* 통합표 + SQL",
+  "reference_page": "brands/dodochem/ls-009-lithium-sulfur-electrolyte/",
+  "source": "공개 API api.dodochem.com — 카테고리트리 GET /djy-search/product/getProductCategoryTree · 목록 POST /djy-search/product/searchProductByComplex {productCategoryIds:[id],pageNumber:N}(60/p, GET searchProductByCategory는 1페이지만) · SKU가격 POST /djy-search/product/getProductSkuByProperty {id, productPricePropertyDtos:[{id:'1',propertyName,propertyValue}]} → data.priceNew(CNY). 가격은 로그인 필수(登录可见) — 인앱 브라우저 로그인 후 상세페이지 XHR 후킹으로 Authorization Bearer+Did 캡처(만료 약 10h). 이미지 dodochem.oss-cn-shanghai.aliyuncs.com — 브라우저 fetch→base64, 대용량 결과는 oversized 파일(mnt/outputs/../.claude/projects/...)로 반출.",
+  "pitfalls": [
+   "허브 dscard는 dscard-link/dscard-nm/data-text 스키마 필수 — 다르면 카탈로그 수집에서 조용히 누락",
+   "브리프의 배합문자열에 % 포함(Vol% with...) — 파이썬 %포맷 금지, f-string만",
+   "SKU 키를 옵션문자열 절단으로 만들면 충돌(케이스 규격) — 충돌 시 -2,-3 접미",
+   "표기는 DodoChem 고정(도도켐 금지)",
+   "5만원 미만 SKU는 미등록(합산 견적) · 30만 미만은 합산 권장 문구"
+  ],
+  "pricing": "overseas-pricing 공식① — (CNY 소비자가+0)×환율계수(올림10(스팟×1.02))×1.45, 1,000원 반올림. 2026-09-02 적용계수 210. 배송비 SSOT=_ops/shipping.py(s_in 100,000). 상시 3% 할인 제외.",
+  "master_sheet": "C:/Users/emgty/Downloads/dodochem_제품마스터_전해액시약소재.xlsx (2,030품목·SKU 4,496 CNY)",
+  "families": [
+   {
+    "match": "electrolyte",
+    "required_specs": [
+     "용도",
+     "보관·취급",
+     "브랜드"
+    ]
+   },
+   {
+    "match": "series-",
+    "note": "계열 통합표 — 상세 표준 린트 대상 아님(카탈로그 허브)"
+   }
+  ]
+ }
 }
