@@ -14,7 +14,12 @@
    "name_en": "Silicone Peristaltic Pump Tubing",
    "sub": "수입 실리콘 고무 · 백금 가황 / 과산화물 가황 · 27개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-silicone-1.jpg",
+    "tube-silicone-2.jpg",
+    "tube-silicone-3.jpg",
+    "tube-silicone-4.jpg"
+   ],
    "image_alt": "연동펌프 실리콘 튜브",
    "answer": "리드플루이드 실리콘 튜브는 수입 실리콘 고무를 백금 가황·과산화물 가황으로 성형한 연동펌프 전용 튜브로, 내경 0.5~25.4 mm 27개 규격을 갖췄습니다.",
    "summary": "수입 실리콘 고무 원료를 백금 가황 / 과산화물 가황 공법으로 가공해 탄성과 내마모성이 뛰어납니다. 연동펌프용 튜브이자 이송 튜브로 제약·바이오·정밀화학·식품·환경 분야에 널리 쓰입니다.",
@@ -342,7 +347,10 @@
    "name_en": "Tygon S3 E3603 Tubing",
    "sub": "이화학 분석기기용 · FDA 적합 · 36개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-tygon-s3-e3603-1.jpg",
+    "tube-tygon-s3-e3603-2.jpg"
+   ],
    "image_alt": "Tygon S3 E3603 튜브",
    "answer": "Tygon S3 E3603는 이화학 분석기기용 튜브로, 내화학성이 뛰어나 연동펌프에서 일반 투명 튜브의 2배 수명을 내고 FDA 기준에 적합합니다.",
    "summary": "이화학 분석기기용 튜브입니다. 뛰어난 내화학성과 안정적인 물성으로 실험 결과의 일관성을 보장하며, 응축기·항온조·건조기·가스 이송 배관·배수 라인에 두루 쓰입니다.",
@@ -741,7 +749,11 @@
    "name_en": "PHARMED BPT Tubing",
    "sub": "실리콘 대비 30배 수명 · USP Class VI · ISO 10993 · 32개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-pharmed-bpt-1.jpg",
+    "tube-pharmed-bpt-2.jpg",
+    "tube-pharmed-bpt-3.jpg"
+   ],
    "image_alt": "PHARMED BPT 튜브",
    "answer": "PHARMED BPT는 연동펌프에서 일반 실리콘 튜브보다 30배 오래 견디는 바이오공정용 튜브로, USP Class VI·FDA·NSF 51 기준에 적합합니다.",
    "summary": "연동펌프 사용 시 일반 실리콘 튜브보다 30배 오래 견디며 반복 고압 멸균이 가능합니다. 투과율이 낮아 세포배양·발효·합성·분리·정제 공정에 이상적입니다.",
@@ -1109,7 +1121,10 @@
    "name_en": "Norprene Chemical Tubing",
    "sub": "내용매 특화 · 가소제 무함유 내벽 · 13개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-norprene-chemical-1.jpg",
+    "tube-norprene-chemical-2.jpg"
+   ],
    "image_alt": "Norprene Chemical 튜브",
    "answer": "Norprene Chemical은 가소제가 없는 내벽으로 거의 모든 용매에 견디는 연동펌프용 튜브로, 팽윤과 균열에 강합니다.",
    "summary": "외피는 열가소성 엘라스토머로 연동펌프에 적합하고, 가소제가 없는 내벽이라 거의 모든 용매를 다룰 수 있습니다. 분석기기 연결관과 실험실 이송 라인에 쓰입니다.",
@@ -1320,7 +1335,11 @@
    "name_en": "Tygon 3350 Silicone Tubing",
    "sub": "백금 가황 위생급 · 내표면 3배 평활 · 최대 205℃ · 30개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-tygon-3350-1.jpg",
+    "tube-tygon-3350-2.jpg",
+    "tube-tygon-3350-3.jpg"
+   ],
    "image_alt": "Tygon 3350 실리콘 튜브",
    "answer": "Tygon 3350은 백금 가황 위생급 실리콘 튜브로, 내표면이 일반 튜브보다 3배 매끄러워 미생물 번식을 막고 최대 205℃까지 사용합니다.",
    "summary": "백금 가황 위생급 실리콘 튜브입니다. 내표면이 일반 튜브보다 3배 매끄러워 미생물 번식을 효과적으로 억제하고, 용출이 적어 유체가 온전하게 통과합니다.",
@@ -1670,7 +1689,9 @@
    "name_en": "Norprene A-60-F Tubing",
    "sub": "굴곡 수명 특화 · -51~135℃ · FDA·3-A·NSF · 15개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-norprene-a60f-1.jpg"
+   ],
    "image_alt": "Norprene A-60-F 튜브",
    "answer": "Norprene A-60-F는 굴곡 수명이 뛰어난 연동펌프 전용 튜브로, -51~135℃에서 쓰며 FDA·3-A·NSF 기준에 적합합니다.",
    "summary": "굴곡 수명이 뛰어나 연동펌프에 적합하며, 대부분의 범용 세정제와 소독액에 견딥니다. 일반 고무 튜브보다 내노화성이 좋아 잘 취화되지 않고 스팀 소독이 가능합니다.",
@@ -1901,7 +1922,11 @@
    "name_en": "Tygon 2475 Tubing",
    "sub": "가소제 무함유 · 강산·강염기 내성 · USP Class VI · 10개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-tygon-2475-1.jpg",
+    "tube-tygon-2475-2.jpg",
+    "tube-tygon-2475-3.jpg"
+   ],
    "image_alt": "Tygon 2475 튜브",
    "answer": "Tygon 2475는 가소제를 함유하지 않아 용출 미립자가 없고 강산·강염기와 여러 유기용매의 부식에 견디는 튜브입니다.",
    "summary": "가소제를 함유하지 않아 용출 미립자가 없고, 소수성이 좋으며 내벽이 매우 매끄럽습니다. 화공 계측기 연결관과 연동펌프 튜브로 쓰입니다.",
@@ -2089,7 +2114,13 @@
    "name_en": "Norprene A-60-G Tubing",
    "sub": "내마모·굴곡피로 특화 · 식음료 대응 · 14개 규격",
    "category": "연동펌프 튜브",
-   "images": [],
+   "images": [
+    "tube-norprene-a60g-1.jpg",
+    "tube-norprene-a60g-2.jpg",
+    "tube-norprene-a60g-3.jpg",
+    "tube-norprene-a60g-4.jpg",
+    "tube-norprene-a60g-5.jpg"
+   ],
    "image_alt": "Norprene A-60-G 튜브",
    "answer": "Norprene A-60-G는 내마모성과 굴곡 피로 저항이 뛰어난 연동펌프용 튜브로, 넓은 사용 온도 범위와 좋은 기밀성을 갖췄습니다.",
    "summary": "내마모성과 굴곡 피로 저항이 뛰어나고 사용 온도 범위가 넓습니다. 고무 튜브 대비 기밀성이 좋아 연동펌프 튜브와 식음료 산업용으로 쓰입니다.",

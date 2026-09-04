@@ -739,6 +739,104 @@
 })();
 
 /* =========================================================================
+   문의 자체 접수 (Self-hosted inquiry intake)
+   -------------------------------------------------------------------------
+   예전에는 모든 문의가 Formspree 로만 갔다 — 관리자 화면에 안 남고, 알림도
+   Formspree 메일에만 의존했다. 이제 같은 내용을 POST /api/order/inquiry 로
+   보내 D1 `inquiries` 에 적재하고 Resend 로 관리자 알림까지 보낸다.
+   (관리자 화면: /member/#admMembers · 상태 '접수')
+
+   페이지마다 칸 이름이 제각각이라(이름/성함/name, 소속/기관/affiliation …)
+   별칭 표로 필수 4개만 뽑고 나머지 칸은 본문(note)에 줄줄이 붙인다.
+   ========================================================================= */
+var RND_FETCH = window.fetch.bind(window);   // 가로채기 이전의 원본 fetch
+var RND_INQ_ENDPOINT = '/api/order/inquiry';
+var RND_INQ_ALIAS = {
+  name   : ['이름', '성함', '담당자', 'name'],
+  email  : ['이메일', '메일', 'email'],
+  phone  : ['연락처', '전화', '전화번호', '휴대폰', 'phone', 'tel'],
+  org    : ['소속', '소속기관', '기관', '회사', '연구실', 'org', 'org_name', 'affiliation'],
+  product: ['문의제품', '선택장비', '모델명', '모델옵션', '제품', 'items_selected', 'setup_title'],
+  qty    : ['수량', 'qty'],
+};
+
+function rndInquiryPayload(form, extra) {
+  return rndInquiryPayloadFD(new FormData(form), extra);
+}
+
+function rndInquiryPayloadFD(fd, extra) {
+  var picked = {}, used = {};
+  Object.keys(RND_INQ_ALIAS).forEach(function (key) {
+    RND_INQ_ALIAS[key].forEach(function (k) {
+      if (picked[key]) return;
+      var v = fd.get(k);
+      v = v == null ? '' : String(v).trim();
+      if (v) { picked[key] = v; used[k] = 1; }
+    });
+  });
+  var lines = [];
+  fd.forEach(function (v, k) {
+    v = v == null ? '' : String(v).trim();
+    if (!v || used[k] || k.charAt(0) === '_') return;
+    lines.push(k + ': ' + v);
+  });
+  /* 품목은 «문의제품/선택장비/모델명» 같은 실제 제품 칸이 있을 때만 만든다.
+     페이지 제목을 품목으로 둔갑시키면 SW 요청·펌프 선택 같은 폼에 엉뚱한 제품이 붙는다. */
+  var prod = picked.product || '';
+  var note = lines.join('\n');
+  note += (note ? '\n' : '') + '페이지: ' + ((document.title || '').split('|')[0].trim());
+  note += '\n출처: ' + location.href;
+  return {
+    name    : picked.name || picked.org || '',
+    email   : picked.email || '',
+    phone   : picked.phone || '',
+    org_name: picked.org || '',
+    items   : prod ? [{ name: prod, spec: (extra && extra.spec) || '', qty: Number(picked.qty) || 1, link: location.href }] : [],
+    note    : note,
+  };
+}
+
+function rndSendInquiryFD(fd, extra) {
+  var body = rndInquiryPayloadFD(fd, extra);
+  if (!body.name || (!body.email && !body.phone)) {
+    return Promise.reject(new Error('no_contact'));   // API 가 400 낼 조건 — 미리 거른다
+  }
+  if (!body.items.length && !body.note) return Promise.reject(new Error('empty'));
+  return RND_FETCH(RND_INQ_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'same-origin',
+    body: JSON.stringify(body),
+  }).then(function (r) {
+    if (!r.ok) throw new Error('intake_' + r.status);
+    return r;
+  });
+}
+
+function rndSendInquiry(form, extra) {
+  return rndSendInquiryFD(new FormData(form), extra);
+}
+
+/* 페이지 폼들(매거진 문의 팝업·수리 신청·요청 페이지·inquiry.html 등)은 아직 각자
+   Formspree 로 fetch 한다. 파일 17개를 손대는 대신 fetch 를 한 겹 감싸서,
+   Formspree 로 가는 요청을 «자체 접수»로 먼저 돌린다.
+     · 성공 → 자체 접수 응답을 그대로 돌려준다. {ok:true} 형태라 페이지 스크립트의
+       r.ok / d.ok 검사가 Formspree 때와 똑같이 통과한다 (UI 수정 불필요).
+     · 실패 → 원래 Formspree 요청을 그대로 보낸다. 문의를 잃지 않는다.
+   FormData 본문이 아닌 요청과 Formspree 가 아닌 요청은 건드리지 않는다. */
+window.fetch = function (input, init) {
+  try {
+    var url = typeof input === 'string' ? input : (input && input.url) || '';
+    var body = init && init.body;
+    if (/formspree\.io/i.test(url) && body instanceof FormData) {
+      return rndSendInquiryFD(body).catch(function () { return RND_FETCH(input, init); });
+    }
+  } catch (x) {}
+  return RND_FETCH(input, init);
+};
+
+
+/* =========================================================================
    견적 문의 모달 (Quote Modal)
    -------------------------------------------------------------------------
    쓰는 법 — 페이지에 버튼만 하나 두면 된다.
@@ -816,6 +914,8 @@
     +     '</div>'
     +     '<label>이메일 <span class="req">*</span></label>'
     +     '<input type="email" name="이메일" required placeholder="you@lab.ac.kr">'
+    +     '<label>연락처 <span style="font-weight:600;color:#9C958D">(선택)</span></label>'
+    +     '<input type="tel" name="연락처" placeholder="010-0000-0000">'
     +     '<input type="hidden" name="문의유형" id="qmType" value="삼흥 열처리 견적(카탈로그)">'
     +     '<input type="hidden" name="문의제품" id="qmProd" value="">'
     +     '<input type="hidden" name="출처페이지" id="qmPath" value="">'
@@ -968,9 +1068,15 @@
     }
     var btn = form.querySelector('.qm-send'), txt = btn.textContent;
     btn.disabled = true; btn.textContent = '보내는 중…';
-    fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+    /* 자체 접수(/api/order/inquiry) 우선 — 관리자 화면에 남고 알림메일이 나간다.
+       실패하면 예전 Formspree 로 한 번 더 보내 문의를 잃지 않는다. */
+    rndSendInquiry(form)
+      .catch(function () {
+        return RND_FETCH(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+          .then(function (r2) { if (!r2.ok) throw new Error('bad'); return r2; });
+      })
       .then(function (r) {
-        if (!r.ok) throw new Error('bad');
+        if (r && r.ok === false) throw new Error('bad');
         if (typeof window.gtag === 'function') {
           gtag('event', 'generate_lead', {
             lead_type: 'sh_catalog_quote',
