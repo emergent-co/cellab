@@ -2,8 +2,29 @@
 # 형식: <경로> <코드>   ( # 뒤는 주석 )
 # 고친 페이지는 줄을 지운다. 새 위반은 절대 여기에 추가하지 말고 고칠 것.
 # 2026-09-04 재생성 — 규격 변형 페이지와 모델별 표(pkg-opt/mdl-tbl, 행수 검사 통과)는 린터가 스스로 걸러낸다.
+
+# 대표사진 미확보 — 사진이 붙으면 지운다
 brands/gaossunion/custom-material-working-electrode/ MISSING_BLOCK
 brands/neware/ct-4008q/ MISSING_BLOCK
-brands/neware/ct-4008q/ STYLE_INLINE
 brands/neware/wgdw-chamber/ MISSING_BLOCK
+
+# neware 2장은 detail.css 미이관 (구 인라인 style)
+brands/neware/ct-4008q/ STYLE_INLINE
 brands/neware/wgdw-chamber/ STYLE_INLINE
+
+# 제조사가 GHS 를 공개하지 않은 3종 — MSDS 를 따로 받으면 채우고 이 줄을 지운다.
+# 없는 안전정보를 지어내지 않는다.
+brands/dodochem/p-lb-001/ NO_SAFETY
+brands/dodochem/p-nc-008/ NO_SAFETY
+brands/dodochem/pvdf-hsv900-binder/ NO_SAFETY
+
+# 제품군 필수사양 신설(2026-09-04)로 드러난 누락 — 사양을 채우면 지운다.
+# hot-pellet-press: 전원 · 제어 방식 · 가열 범위 · 압력범위 · 무게
+# photo-cell: 용량 · 광창
+brands/gaossunion/photo-cell-acc/ REQ_SPEC
+brands/gaossunion/photo-cell-c025-10/ REQ_SPEC
+brands/gaossunion/photo-cell-c030/ REQ_SPEC
+brands/gaossunion/photo-cell-c033/ REQ_SPEC
+brands/hench/hot-pellet-press-hzt-800d/ REQ_SPEC
+brands/hench/hot-pellet-press-yph-800e/ REQ_SPEC
+brands/hench/hot-pellet-press-yph-800f/ REQ_SPEC

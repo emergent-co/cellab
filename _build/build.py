@@ -1838,8 +1838,12 @@ PP_REQUIRED = [
 # 소분류(· 뒤)만 본다. 대분류의 '재료' 때문에 분리막·케이스까지 걸리던 것을 막는다.
 PP_CHEM_HINTS = ('전해액', '용액', '시약', '촉매', '분말', '슬러리',
                  '바인더', '용매', '염', '첨가제', '전구체', '활물질')
+# 이름에 '전해액·촉매' 가 들어가도 물건 자체는 장비인 것들(전해셀·광촉매 반응 셀 등)을
+# 화학품으로 오판하지 않게, 장비를 가리키는 말을 먼저 걸러낸다.
 PP_NONCHEM_HINTS = ('분리막', '케이스', '원판', '부품', '지그', '장비', '치구',
-                    '집전체', '테이프', '펀치', '몰드')
+                    '집전체', '테이프', '펀치', '몰드',
+                    '셀', '전극', '반응기', '홀더', '스탠드', '시스템', '챔버',
+                    '프레스', '스테이션', '측정', '시험')
 
 
 def _pp_is_chem(p):
@@ -2311,6 +2315,10 @@ LINT_CJK_OK = ('天津恒创立达', '合肥原位科技', '純水', '濃酸', '
 # 판매 단위가 붙는다. 0.4~0.6m/s 같은 실제 사양과 헷갈리지 않게 좁혀 둔다.
 LINT_CNY_LEAK = r'\d{2,}\.0\s*~\s*\d{2,}\.0\s*(?:g|장|세트|롤|개|㎡|박스|팩|m)(?![/\w])'
 
+# 경고만 하고 빌드를 세우지 않는 코드. '있으면 좋은 것'과 '없으면 안 되는 것'을 가른다.
+# 유예 목록을 231줄로 불리는 대신 여기 두고, 브랜드별로 채워 나간다.
+LINT_SOFT = {'NO_SOURCE'}
+
 LINT_BAD_PHRASES = ['옮긴 것입니다', '옮겼습니다', '확인하실 수 있습니다', '보실 수 있습니다',
                     '바로 나옵니다', '아래 표', '위 표', '다음과 같습니다']
 
@@ -2432,6 +2440,22 @@ def lint_detail_pages():
                 warns.append((rel, 'CNY_LEAK',
                               '규격 표기에 제조사 카탈로그가(CNY) 범위가 들어갔다 — 실제 규격으로 바꿀 것'))
 
+            # 2-5) 화학품인데 안전 정보(GHS)가 없다
+            #      제품군 판정은 JSON-LD 의 category 소분류로 한다 — 파이프라인과 무관하게 붙어 있다.
+            ld_cat = ''
+            mcat = re.search(r'"category"\s*:\s*"([^"]+)"', html)
+            if mcat:
+                ld_cat = mcat.group(1)
+            if _pp_is_chem({'category': ld_cat, 'name': ''}) and '안전 정보</h2>' not in body:
+                warns.append((rel, 'NO_SAFETY',
+                              '화학품(%s)인데 안전 정보(GHS) 섹션이 없다 — 제조사 표기를 옮기거나 '
+                              'MSDS 를 확인해 채울 것' % ld_cat.split('·')[-1].strip()))
+
+            # 2-6) 자료 출처 표기 (경고 등급)
+            if not re.search(r'자료 출처|출처 —|spec-src|카탈로그[^<]{0,12}원문', body):
+                warns.append((rel, 'NO_SOURCE',
+                              '제조사 원문 출처 표기가 없다 — 어디서 가져온 값인지 페이지에 남길 것'))
+
             # 3) 금지 색상
             low = body.lower()
             bad = [c for c in LINT_BAD_COLORS if c.lower() in low]
@@ -2464,8 +2488,15 @@ def lint_detail_pages():
             line = line.split('#')[0].strip()
             if line:
                 allow.add(' '.join(line.split()))
+    soft_w = [w for w in warns if w[1] in LINT_SOFT]
+    warns = [w for w in warns if w[1] not in LINT_SOFT]
     old_w = [w for w in warns if '%s %s' % (w[0], w[1]) in allow]
     new_w = [w for w in warns if '%s %s' % (w[0], w[1]) not in allow]
+    if soft_w:
+        import collections as _c
+        _b = _c.Counter(w[0].split('/')[1] for w in soft_w)
+        print('  [warn] 출처 표기 없는 상세페이지 %d건 — %s'
+              % (len(soft_w), ' · '.join('%s %d' % (k, v) for k, v in _b.most_common())))
     if old_w:
         print('  [warn] 이관 대기 부채 %d건 (유예 목록)' % len(old_w))
         for rel, code, msg in old_w[:40]:
