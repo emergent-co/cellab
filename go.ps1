@@ -90,10 +90,18 @@ Step "6. 원격 최신 위로 재정렬 (rebase)"
 # 빌드가 파일을 다시 써서 «내용은 같고 시각만» 바뀐 항목이 남으면
 # pull --rebase 가 "You have unstaged changes" 로 거절한다. 먼저 인덱스를 훑어 정리한다.
 git update-index --refresh 2>$null | Out-Null
-git pull --rebase origin main
-if ($LASTEXITCODE -ne 0) {
-    git rebase --abort
-    Die "원격과 충돌 — 자동 정렬 실패. `git log --oneline origin/main..HEAD` 로 확인 후 수동 처리하세요."
+# 당겨올 것이 없으면 재정렬 자체를 건너뛴다.
+# 다른 세션이 같은 폴더에서 작업 중이면 add -A 직후에도 워킹트리가 «실제로» 다시 더러워져
+# refresh 로도 안 풀리고 "cannot pull with rebase" 로 멈춘다.
+# 원격이 merge-base 그대로면 이 커밋은 fast-forward 라 재정렬이 애초에 필요 없다.
+if ($remote -eq $base) {
+    Ok "원격에 새 커밋 없음 — 재정렬 생략(fast-forward)"
+} else {
+    git pull --rebase origin main
+    if ($LASTEXITCODE -ne 0) {
+        git rebase --abort
+        Die "원격과 충돌 — 자동 정렬 실패. `git log --oneline origin/main..HEAD` 로 확인 후 수동 처리하세요."
+    }
 }
 
 Step "7. 푸시"

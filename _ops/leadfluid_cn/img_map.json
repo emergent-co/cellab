@@ -1,13 +1,51 @@
 {
- "head-bz15-25": [
-  "head-bz15-25-1.jpg",
-  "head-bz15-25-2.jpg",
-  "head-bz15-25-3.jpg",
-  "head-bz15-25-4.jpg",
-  "head-bz15-25-5.jpg",
-  "head-bz15-25-6.jpg",
-  "head-bz15-25-7.jpg",
-  "head-bz15-25-8.jpg"
+ "head-ft1524": [
+  "head-ft1524-1.jpg",
+  "head-ft1524-2.jpg",
+  "head-ft1524-3.jpg",
+  "head-ft1524-4.jpg",
+  "head-ft1524-5.jpg"
+ ],
+ "head-dmd15": [
+  "head-dmd15-1.jpg",
+  "head-dmd15-2.jpg",
+  "head-dmd15-3.jpg",
+  "head-dmd15-4.jpg",
+  "head-dmd15-5.jpg",
+  "head-dmd15-6.jpg",
+  "head-dmd15-7.jpg",
+  "head-dmd15-8.jpg"
+ ],
+ "head-ds": [
+  "head-ds-1.jpg",
+  "head-ds-2.jpg",
+  "head-ds-3.jpg",
+  "head-ds-4.jpg",
+  "head-ds-5.jpg",
+  "head-ds-6.jpg",
+  "head-ds-7.jpg",
+  "head-ds-8.jpg",
+  "head-ds-9.jpg"
+ ],
+ "head-yz15": [
+  "head-yz15-1.jpg",
+  "head-yz15-2.jpg",
+  "head-yz15-3.jpg",
+  "head-yz15-4.jpg",
+  "head-yz15-5.jpg",
+  "head-yz15-6.jpg",
+  "head-yz15-7.jpg",
+  "head-yz15-8.jpg"
+ ],
+ "head-dmd25-t": [
+  "head-dmd25-t-1.jpg",
+  "head-dmd25-t-2.jpg",
+  "head-dmd25-t-3.jpg",
+  "head-dmd25-t-4.jpg",
+  "head-dmd25-t-5.jpg",
+  "head-dmd25-t-6.jpg",
+  "head-dmd25-t-7.jpg",
+  "head-dmd25-t-8.jpg"
  ],
  "head-dg": [
   "head-dg-1.jpg",
@@ -18,44 +56,8 @@
   "head-dg-6.jpg",
   "head-dg-7.jpg",
   "head-dg-8.jpg",
-  "head-dg-9.jpg"
- ],
- "head-dmd15": [
-  "head-dmd15-1.jpg",
-  "head-dmd15-2.jpg",
-  "head-dmd15-3.jpg",
-  "head-dmd15-4.jpg",
-  "head-dmd15-5.jpg",
-  "head-dmd15-6.jpg",
-  "head-dmd15-7.jpg"
- ],
- "head-dmd25-t": [
-  "head-dmd25-t-1.jpg",
-  "head-dmd25-t-2.jpg",
-  "head-dmd25-t-3.jpg",
-  "head-dmd25-t-4.jpg",
-  "head-dmd25-t-5.jpg",
-  "head-dmd25-t-6.jpg",
-  "head-dmd25-t-7.jpg"
- ],
- "head-ds": [
-  "head-ds-1.jpg",
-  "head-ds-2.jpg",
-  "head-ds-3.jpg",
-  "head-ds-4.jpg",
-  "head-ds-5.jpg",
-  "head-ds-6.jpg",
-  "head-ds-7.jpg",
-  "head-ds-8.jpg"
- ],
- "head-dt": [
-  "head-dt-1.jpg",
-  "head-dt-2.jpg",
-  "head-dt-3.jpg",
-  "head-dt-4.jpg",
-  "head-dt-5.jpg",
-  "head-dt-6.jpg",
-  "head-dt-7.jpg"
+  "head-dg-9.jpg",
+  "head-dg-10.jpg"
  ],
  "head-ft1505": [
   "head-ft1505-1.jpg",
@@ -68,12 +70,12 @@
   "head-ft1505-8.jpg",
   "head-ft1505-9.jpg"
  ],
- "head-ft1524": [
-  "head-ft1524-1.jpg",
-  "head-ft1524-2.jpg",
-  "head-ft1524-3.jpg",
-  "head-ft1524-4.jpg",
-  "head-ft1524-5.jpg"
+ "head-yz15t": [
+  "head-yz15t-1.jpg",
+  "head-yz15t-2.jpg",
+  "head-yz15t-3.jpg",
+  "head-yz15t-4.jpg",
+  "head-yz15t-5.jpg"
  ],
  "head-gn10": [
   "head-gn10-1.jpg",
@@ -83,6 +85,44 @@
   "head-gn10-5.jpg",
   "head-gn10-6.jpg",
   "head-gn10-7.jpg"
+ ],
+ "head-dt": [
+  "head-dt-1.jpg",
+  "head-dt-2.jpg",
+  "head-dt-3.jpg",
+  "head-dt-4.jpg",
+  "head-dt-5.jpg",
+  "head-dt-6.jpg",
+  "head-dt-7.jpg"
+ ],
+ "head-bz15-25": [
+  "head-bz15-25-1.jpg",
+  "head-bz15-25-2.jpg",
+  "head-bz15-25-3.jpg",
+  "head-bz15-25-4.jpg",
+  "head-bz15-25-5.jpg",
+  "head-bz15-25-6.jpg",
+  "head-bz15-25-7.jpg",
+  "head-bz15-25-8.jpg",
+  "head-bz15-25-9.jpg"
+ ],
+ "head-yz35": [
+  "head-yz35-1.jpg",
+  "head-yz35-2.jpg",
+  "head-yz35-3.jpg",
+  "head-yz35-4.jpg",
+  "head-yz35-5.jpg",
+  "head-yz35-6.jpg",
+  "head-yz35-7.jpg"
+ ],
+ "head-yt25": [
+  "head-yt25-1.jpg",
+  "head-yt25-2.jpg",
+  "head-yt25-3.jpg",
+  "head-yt25-4.jpg",
+  "head-yt25-5.jpg",
+  "head-yt25-6.jpg",
+  "head-yt25-7.jpg"
  ],
  "head-kz25": [
   "head-kz25-1.jpg",
@@ -103,43 +143,36 @@
   "head-wmd15-4.jpg",
   "head-wmd15-5.jpg"
  ],
- "head-yt25": [
-  "head-yt25-1.jpg",
-  "head-yt25-2.jpg",
-  "head-yt25-3.jpg",
-  "head-yt25-4.jpg",
-  "head-yt25-5.jpg",
-  "head-yt25-6.jpg",
-  "head-yt25-7.jpg"
+ "tube-silicone": [
+  "tube-silicone-1.jpg",
+  "tube-silicone-2.jpg",
+  "tube-silicone-3.jpg",
+  "tube-silicone-4.jpg"
  ],
- "head-yz15": [
-  "head-yz15-1.jpg",
-  "head-yz15-2.jpg",
-  "head-yz15-3.jpg",
-  "head-yz15-4.jpg",
-  "head-yz15-5.jpg",
-  "head-yz15-6.jpg",
-  "head-yz15-7.jpg",
-  "head-yz15-8.jpg"
+ "tube-tygon-s3-e3603": [
+  "tube-tygon-s3-e3603-1.jpg",
+  "tube-tygon-s3-e3603-2.jpg",
+  "tube-tygon-s3-e3603-3.jpg"
  ],
- "head-yz15t": [
-  "head-yz15t-1.jpg",
-  "head-yz15t-2.jpg",
-  "head-yz15t-3.jpg",
-  "head-yz15t-4.jpg",
-  "head-yz15t-5.jpg"
+ "tube-pharmed-bpt": [
+  "tube-pharmed-bpt-1.jpg",
+  "tube-pharmed-bpt-2.jpg",
+  "tube-pharmed-bpt-3.jpg",
+  "tube-pharmed-bpt-4.jpg"
  ],
- "head-yz35": [
-  "head-yz35-1.jpg",
-  "head-yz35-2.jpg",
-  "head-yz35-3.jpg",
-  "head-yz35-4.jpg",
-  "head-yz35-5.jpg",
-  "head-yz35-6.jpg",
-  "head-yz35-7.jpg"
+ "tube-norprene-chemical": [
+  "tube-norprene-chemical-1.jpg",
+  "tube-norprene-chemical-2.jpg",
+  "tube-norprene-chemical-3.jpg"
+ ],
+ "tube-tygon-3350": [
+  "tube-tygon-3350-1.jpg",
+  "tube-tygon-3350-2.jpg",
+  "tube-tygon-3350-3.jpg"
  ],
  "tube-norprene-a60f": [
-  "tube-norprene-a60f-1.jpg"
+  "tube-norprene-a60f-1.jpg",
+  "tube-norprene-a60f-2.jpg"
  ],
  "tube-norprene-a60g": [
   "tube-norprene-a60g-1.jpg",
@@ -148,33 +181,10 @@
   "tube-norprene-a60g-4.jpg",
   "tube-norprene-a60g-5.jpg"
  ],
- "tube-norprene-chemical": [
-  "tube-norprene-chemical-1.jpg",
-  "tube-norprene-chemical-2.jpg"
- ],
- "tube-pharmed-bpt": [
-  "tube-pharmed-bpt-1.jpg",
-  "tube-pharmed-bpt-2.jpg",
-  "tube-pharmed-bpt-3.jpg"
- ],
- "tube-silicone": [
-  "tube-silicone-1.jpg",
-  "tube-silicone-2.jpg",
-  "tube-silicone-3.jpg",
-  "tube-silicone-4.jpg"
- ],
  "tube-tygon-2475": [
   "tube-tygon-2475-1.jpg",
   "tube-tygon-2475-2.jpg",
-  "tube-tygon-2475-3.jpg"
- ],
- "tube-tygon-3350": [
-  "tube-tygon-3350-1.jpg",
-  "tube-tygon-3350-2.jpg",
-  "tube-tygon-3350-3.jpg"
- ],
- "tube-tygon-s3-e3603": [
-  "tube-tygon-s3-e3603-1.jpg",
-  "tube-tygon-s3-e3603-2.jpg"
+  "tube-tygon-2475-3.jpg",
+  "tube-tygon-2475-4.jpg"
  ]
 }

@@ -2333,6 +2333,32 @@ def _pp_model_table_ok(body, nmodel):
     return best >= nmodel
 
 
+def _pp_model_strip_ok(body, nmodel):
+    """모델 썸네일 스트립(.mdl-strip) 이 모델 수만큼 사진+모델명을 갖고 있는가.
+    삼흥 구형 페이지가 쓰는 형태다 — .thlb 와 하는 일이 같다(사진 아래 모델명).
+    사진만 늘어놓고 이름이 없는 것은 통과시키지 않으려고 figcaption 을 센다."""
+    i = body.find('class="mdl-strip"')
+    if i < 0:
+        return False
+    seg = body[i:i + 20000]
+    return len(re.findall(r'<figcaption>', seg)) >= nmodel
+
+
+def _pp_model_cols_ok(body, models):
+    """모델을 '열'로 세운 비교표. 행이 모델인 표(_pp_model_table_ok)의 반대 형태다.
+    표 머리에 모델명이 전부 들어 있으면 고객이 모델별 값을 나란히 볼 수 있다.
+    이름을 맞춰 세므로 '대표 모델 하나만 실린 표'는 통과하지 않는다."""
+    names = [re.sub(r'\s+', '', (m.get('m') or '')) for m in models]
+    names = [n for n in names if n]
+    if not names:
+        return False
+    for m in re.finditer(r'<thead>(.*?)</thead>', body, re.S):
+        head = re.sub(r'\s+', '', m.group(1))
+        if all(n in head for n in names):
+            return True
+    return False
+
+
 def _pp_pack_variant(models):
     """규격 변형 페이지인가 — 같은 물건을 용량·치수만 바꿔 파는 경우.
     50 g / 100 g / 250 g, 두께 0.1mm / 0.2mm 처럼 라벨에서 숫자를 빼면 같아지고
@@ -2346,7 +2372,8 @@ def _pp_pack_variant(models):
     return len(keys) == 1
 
 
-LINT_SKIP_BRANDS = {'sh-scientific', 'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
+LINT_SKIP_BRANDS = {'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
+# 삼흥(sh-scientific) 150장은 2026-09-04 에 detail.css 로 이관하고 검사 대상에 넣었다.
 LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
 # 페이지가 자기 자신을 설명하는 메타 문구 — 데이터는 표로, 안내 문장은 쓰지 않는다
 # 본문에 남은 중국어 간체 — 제조사 원문을 안 옮기고 그대로 붙인 흔적.
@@ -2380,6 +2407,67 @@ def _lint_body(html):
     body = html.split('<body>', 1)[-1]
     body = re.sub(r'<script.*?</script>', '', body, flags=re.S)
     return body
+
+
+# ── 자료 출처 한 줄 — 손 HTML 브랜드용 ────────────────────────────────────
+# 생성기가 있는 브랜드는 _ops/build_web.py 의 source_line() 이 붙인다.
+# 삼흥·리드플루이드·Alicat 은 생성기가 없다. 그렇다고 페이지마다 손으로 적으면
+# brands.json 이 SSOT 가 아니게 된다 — 그래서 페이지에는 마커만 두고
+# 문구는 매 빌드 brands.json 에서 다시 써 넣는다. 마커가 없으면 한 번 만들어 준다.
+SRCLINE_RE = re.compile(r'<!--SRCLINE-->.*?<!--/SRCLINE-->', re.S)
+SRCLINE_AT = ('<section class="ctbar-sec">', '<section class="faq-sec">')
+
+
+def _source_line_html(prof):
+    src = ((prof.get('source') or {}).get('url') or '').strip()
+    if not src:
+        return ''
+    if src.startswith('http'):
+        src = '<a href="%s" target="_blank" rel="noopener">%s</a>' % (
+            src, escape(prof.get('name_ko') or ''))
+    return '<p class="pkg-note" style="margin-top:14px">자료 출처 — %s</p>' % src
+
+
+def inject_source_line():
+    root = os.path.join(ROOT_DIR, 'brands')
+    if not os.path.isdir(root):
+        return
+    profiles = _brand_profiles()
+    made = upd = 0
+    for brand in sorted(os.listdir(root)):
+        bdir = os.path.join(root, brand)
+        if not os.path.isdir(bdir):
+            continue
+        line = _source_line_html(profiles.get(brand) or {})
+        if not line:
+            continue
+        for slug in sorted(os.listdir(bdir)):
+            fp = os.path.join(bdir, slug, 'index.html')
+            if not os.path.isfile(fp):
+                continue
+            html = read(fp)
+            if 'class="dt-name"' not in html or 'http-equiv="refresh"' in html:
+                continue
+            block = '<!--SRCLINE-->' + line + '<!--/SRCLINE-->'
+            if '<!--SRCLINE-->' in html:
+                new = SRCLINE_RE.sub(lambda m: block, html)
+                if new != html:
+                    write(fp, new)
+                    upd += 1
+                continue
+            if '자료 출처' in html:
+                continue          # 생성기가 이미 붙인 페이지 — 건드리지 않는다
+            if not (profiles.get(brand) or {}).get('source_autoline'):
+                continue          # 마커를 새로 만드는 것은 brands.json 에서 켠 브랜드만.
+                                  # 다른 브랜드 페이지를 이 함수가 말없이 고치지 않게 한다.
+            for at in SRCLINE_AT:
+                i = html.find(at)
+                if i > 0:
+                    write(fp, html[:i] + block + '\n' + html[i:])
+                    made += 1
+                    break
+    if made or upd:
+        print('  자료 출처 한 줄: 신규 %d개 · 갱신 %d개' % (made, upd))
 
 
 def lint_detail_pages():
@@ -2421,7 +2509,9 @@ def lint_detail_pages():
             missing = [k for k in ('크럼', 'h1', '대표사진', '정답블록') if k not in at]
             if missing:
                 warns.append((rel, 'MISSING_BLOCK', '필수 블록 없음: ' + ' · '.join(missing)))
-            if '규격표' not in at and 'class="qbtn"' not in body:
+            # 견적 버튼은 class="qbtn cfgq-jump" 처럼 클래스가 더 붙기도 한다 — 낱말로 찾는다.
+            has_qbtn = re.search(r'class="[^"]*\bqbtn\b', body) is not None
+            if '규격표' not in at and not has_qbtn:
                 warns.append((rel, 'NO_SPEC_CTA', '규격표도 견적 CTA도 없음'))
             if '규격표' in at and 'id="buybox"' not in body:
                 warns.append((rel, 'NO_BUYBOX', '오른쪽 주문정보(#buybox) 없음 — 규격표만 있고 주문 경로가 없다'))
@@ -2460,6 +2550,8 @@ def lint_detail_pages():
             need = prof.get('model_block_min', PP_MODEL_BLOCK_MIN)
             if (nmodel >= need and not _pp_pack_variant(models)
                     and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im', body)
+                    and not _pp_model_strip_ok(body, nmodel)
+                    and not _pp_model_cols_ok(body, models)
                     and not _pp_model_table_ok(body, nmodel)):
                 warns.append((rel, 'NO_MODEL_BLOCK',
                               '모델 %d종을 한 페이지에 담았는데 모델별 사진·사양 블록이 없다 '
@@ -3143,6 +3235,7 @@ def main():
     build_prices()        # 가격 SSOT — SQL 최저가를 index.html·site.js 마커에 주입
     stamp_assets()        # 자산 URL ?v=해시 — 배포 후 옛 JS/CSS 캐시가 남는 것을 막는다
     build_search_index()  # 사이트 검색 인덱스(/search-index.json) — 전 페이지 자동 스캔 (301 소스 제외)
+    inject_source_line()  # 손 HTML 브랜드의 '자료 출처' 한 줄 — brands.json 이 SSOT
     lint_fail = lint_detail_pages()   # 상세페이지 디자인 표준 검사 (신규 위반이면 빌드 중단)
 
     if lint_fail:

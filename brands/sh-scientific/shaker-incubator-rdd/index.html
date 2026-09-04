@@ -9,142 +9,10 @@
 <meta property="og:type" content="product"><meta property="og:url" content="https://rndsetup.com/brands/sh-scientific/shaker-incubator-rdd/"><meta property="og:image" content="https://rndsetup.com/api/img/web/product/big/201805/1126_shop1_404851.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://rndsetup.com/api/img/web/product/big/201805/1126_shop1_404851.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
 
-  :root{
-    --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
-    --green:var(--merck); --green-bg:#F6F7F8; --line:#EAEAEA; --bg:#fff;
-    --serif:"Noto Serif KR",Georgia,serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
-  a{color:inherit}
-  .wrap{max-width:832px;margin:0 auto;padding:0 24px}
-  .hero{padding:40px 0 6px}
-  .hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:12px}
-  .hero .crumb a{color:var(--merck);text-decoration:none}
-  .hero h1{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
-  .hero .lead{margin-top:12px;font-size:15.5px;color:var(--gray);line-height:1.7;max-width:780px}
-  .hero .lead b{color:var(--ink)}
-  /* --- 데이터시트/카탈로그 --- */
-  .ds-sec{ padding:16px 0 60px; }
-  .ds-hd{ font-family:var(--serif); font-size:20px; font-weight:700; letter-spacing:-.02em; margin-top:10px; }
-  .ds-fbar{ position:sticky; top:0; background:#fff; padding:14px 0 10px; z-index:20; border-bottom:1px solid var(--line); margin-bottom:14px; }
-  .ds-frow{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:8px; }
-  .ds-flab{ font-size:12px; font-weight:800; color:#9C958D; width:42px; flex:0 0 auto; }
-  .ds-chip{ font-size:12.5px; font-weight:700; padding:6px 12px; border-radius:20px; border:1.5px solid #E7E3DE; background:#fff; color:#5a5550; cursor:pointer; font-family:inherit; transition:border-color .13s,background .13s; }
-  .ds-chip:hover{ border-color:var(--merck-d); }
-  .ds-chip.on{ background:var(--merck-d); border-color:var(--merck-d); color:#fff; }
-  .ds-fsearch{ margin-left:auto; }
-  .ds-fsearch input{ height:36px; width:200px; border:1px solid var(--line); border-radius:9px; padding:0 12px; font-size:13.5px; font-family:inherit; }
-  .ds-cnt{ font-size:13px; color:var(--gray); margin:0 2px 12px; }
-  .ds-cnt b{ color:var(--merck); }
-  .ds-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:13px; }
-  .dscard{ border:1px solid #E7E3DE; border-radius:14px; overflow:hidden; background:#fff; display:flex; flex-direction:column; transition:border-color .15s,box-shadow .15s; }
-  .dscard.hidden{ display:none; }
-  .dscard:hover{ border-color:var(--merck-d); box-shadow:0 6px 22px rgba(194,65,12,.08); }
-  .dscard-im{ aspect-ratio:4/3; background:#FAF8F5; position:relative; overflow:hidden; }
-  .dscard-im img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .dscard-bdg{ position:absolute; left:9px; top:9px; display:flex; gap:5px; flex-wrap:wrap; }
-  .dscard-bdg .b{ font-size:11px; font-weight:800; padding:3px 8px; border-radius:14px; color:#fff; }
-  .dscard-bdg .b.t{ background:rgba(59,54,149,.92); }
-  .dscard-bdg .b.y{ background:rgba(27,26,24,.82); }
-  .dscard-bd{ padding:12px 13px 14px; display:flex; flex-direction:column; flex:1; }
-  .dscard-mdl{ font-family:var(--serif); font-size:15px; font-weight:700; letter-spacing:-.01em; }
-  .dscard-nm{ font-size:11.5px; color:var(--gray); margin:3px 0 9px; line-height:1.45; min-height:33px; }
-  .dscard-sp{ font-size:12px; color:#3a3a3a; border-top:1px dashed #ECE7E1; padding-top:8px; display:flex; flex-direction:column; gap:3px; }
-  .dscard-sp .r{ display:flex; justify-content:space-between; gap:8px; }
-  .dscard-sp .k{ color:#9C958D; }
-  .dscard-sp .v{ font-weight:700; text-align:right; }
-  .dscard-ft{ margin-top:auto; padding-top:11px; display:flex; align-items:flex-end; justify-content:space-between; gap:8px; }
-  .ds-price{ font-family:var(--serif); font-size:16px; font-weight:700; color:var(--ink); }
-  .ds-price small{ font-size:10.5px; color:#9C958D; font-weight:400; font-family:var(--sans); }
-  .ds-price.ask{ font-size:13.5px; color:var(--merck-link); }
-  .ds-lead{ font-size:10.5px; color:#9C958D; margin-top:2px; }
-  .ds-detail{ font-size:12px; font-weight:800; color:var(--merck); text-decoration:none; white-space:nowrap; }
-  .ds-empty{ padding:44px; text-align:center; color:#9C958D; font-size:14px; }
-  .ds-foot{ margin-top:16px; font-size:12px; color:var(--gray-2); line-height:1.8; }
-  .ds-back{ display:inline-block; margin-bottom:4px; font-size:13px; font-weight:700; color:var(--merck); text-decoration:none; }
-  /* --- 대표 구성 데이터시트(Gas Flow Package) --- */
-  .pkg{ padding:10px 0 4px; }
-  .pkg-ans{ background:var(--merck-soft); border:1px solid #cfe3da; border-radius:10px; padding:14px 16px; font-size:15px; color:#20302a; line-height:1.7; margin:4px 0 18px; }
-  .pkg-ans b{ color:var(--ink); }
-  .pkg-h{ font-family:var(--serif); font-size:21px; font-weight:700; letter-spacing:-.02em; margin:4px 0 14px; }
-  .pkg-h span{ font-size:14px; color:var(--gray-2); font-weight:600; }
-  .pkg-cols{ display:grid; grid-template-columns:1.25fr .9fr; gap:22px; align-items:start; margin-bottom:20px; }
-  .pkg-feat{ list-style:none; display:flex; flex-direction:column; gap:9px; }
-  .pkg-feat li{ font-size:13.5px; color:#3a3a3a; line-height:1.6; padding-left:16px; position:relative; }
-  .pkg-feat li:before{ content:''; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--merck-d); }
-  .pkg-feat b{ color:var(--ink); }
-  .pkg-fig{ margin:0; border:1px solid #E7E3DE; border-radius:12px; overflow:hidden; background:#FAF8F5; }
-  .pkg-fig img{ width:100%; display:block; }
-  .pkg-fig figcaption{ font-size:11.5px; color:var(--gray-2); padding:7px 10px; text-align:center; }
-  .pkg-tblwrap{ overflow-x:auto; }
-  .pkg-tbl{ width:100%; border-collapse:collapse; font-size:12.5px; min-width:580px; }
-  .pkg-tbl th,.pkg-tbl td{ border:1px solid #E7E3DE; padding:8px 10px; text-align:center; }
-  .pkg-tbl thead th{ background:var(--merck); color:#fff; font-weight:700; }
-  .pkg-tbl th[scope=row]{ background:#FAF8F5; text-align:left; color:#5a5550; font-weight:700; white-space:nowrap; }
-  .pkg-opt{ min-width:520px; }
-  .pkg-opt td{ text-align:left; }
-  .pkg-opt small{ color:var(--gray-2); font-size:11px; font-weight:400; display:inline-block; line-height:1.5; }
-  .pkg-note{ font-size:12px; color:var(--gray-2); margin-top:12px; line-height:1.7; }
-  .pkg-note a{ color:var(--merck); font-weight:700; text-decoration:none; }
-  .pkg-hr{ border:0; border-top:1px solid var(--line); margin:26px 0 4px; }
-  @media(max-width:720px){ .pkg-cols{ grid-template-columns:1fr; } }  .vid-sec{ padding:8px 0 4px; }
-  .vid-wrap{ position:relative; max-width:720px; aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid #E7E3DE; background:#000; }
-  .vid-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-  .vid-cap{ font-size:12px; color:var(--gray-2); margin-top:8px; }  .faq-sec{ padding:6px 0 8px; }
-  .faq-h{ font-family:var(--serif); font-size:18px; font-weight:700; margin:0 0 8px; }
-  .faq-item{ border-top:1px solid var(--line); padding:14px 0; }
-  .faq-q{ font-size:14.5px; font-weight:700; color:var(--ink); margin:0 0 6px; }
-  .faq-a{ font-size:13.5px; color:#3a3a3a; line-height:1.7; margin:0; }
-  .faq-a b{ color:var(--ink); } .faq-a a{ color:var(--merck); font-weight:700; text-decoration:none; }  .warn{ background:var(--warn-bg); border:1px solid var(--warn-line); border-radius:10px; padding:14px 16px 15px; margin:14px 0; }
-  .warn-h{ font-size:14px; font-weight:800; color:var(--merck-link); margin:0 0 6px; }
-  .warn p{ font-size:13.5px; color:#3a2a20; line-height:1.7; margin:0; }
-  .warn b{ color:var(--merck-link); }
-  .detail-top .wrap{max-width:768px}
-  .dt-grid{display:grid;grid-template-columns:minmax(0,44%) 1fr;gap:28px;align-items:start;margin-top:6px}
-  @media(max-width:720px){.dt-grid{grid-template-columns:1fr;gap:16px}}
-  .dt-img{border:1px solid #E7E3DE;border-radius:16px;overflow:hidden;background:#FAF8F5;aspect-ratio:4/3}
-  .dt-img img{width:100%;height:100%;object-fit:cover;display:block}
-  .dt-brand{font-size:12.5px;font-weight:800;letter-spacing:.04em;color:var(--merck)}
-  .dt-name{font-family:var(--serif);font-size:clamp(21px,3.8vw,29px);font-weight:800;line-height:1.25;margin:7px 0 0}
-  .dt-sum{margin:14px 0 0;background:#F6F4F1;border-radius:12px;padding:14px 16px;font-size:14.5px;color:#3a3330;line-height:1.75}
-  .dt-sum b{color:var(--ink)}
-  .dt-info .qbtn{margin:18px 0 0}
-  .dt-kw{margin:15px 0 0;display:flex;flex-wrap:wrap;gap:7px}
-  .dt-kw a{font-size:12px;font-weight:700;color:#7a6f68;background:#F1EDE9;border-radius:20px;padding:5px 11px;text-decoration:none}
-  .dt-ans{font-size:15px;font-weight:700;color:#17202A;line-height:1.55;margin:10px 0 2px}
-  .dt-ans b{color:var(--merck)}
-  .faq-tag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.02em;color:var(--merck);background:#EEF3F9;border-radius:5px;padding:2px 8px;margin-right:8px;vertical-align:middle}
-  .ctbar{display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:wrap;max-width:560px;margin:16px auto;border:1px solid #E7E3DE;background:#FAF8F5;border-radius:14px;padding:15px 22px}
-  .ctbar-info{display:flex;flex-direction:column;gap:2px}
-  .ctbar-lb{font-size:11px;font-weight:800;color:var(--merck);letter-spacing:.06em}
-  .ctbar-tel{font-size:24px;font-weight:800;color:#17202A;text-decoration:none}
-  .ctbar-sub{font-size:12px;color:#8a8f97}
-  .ctbar-chat{display:flex;align-items:center;gap:11px;text-decoration:none;color:inherit}
-  .ctbar-qrbox{width:72px;height:72px;background:#fff;border:1px solid #E7E3DE;border-radius:8px;padding:5px;display:block;flex:none}
-  .ctbar-qrbox svg{width:100%;height:100%;display:block}
-  .ctbar-chat-tx{display:flex;flex-direction:column}
-  .ctbar-chat-tx b{font-size:14px;color:#17202A}
-  .ctbar-chat-tx small{font-size:11px;color:#8a8f97}
-  @media(max-width:640px){.ctbar{justify-content:center;text-align:center}.ctbar-info{align-items:center}}
-  .bc-video-cap{max-width:560px;margin:0 auto 10px;text-align:center;font-size:12.5px;color:#6B6B6B;line-height:1.5}
-.shp-media{float:right;width:238px;margin:2px 0 14px 22px;border:1px solid #ECECEC;border-radius:12px;overflow:hidden;background:#fff}.shp-media img{width:100%;height:auto;display:block}.detail-top .wrap::after{content:"";display:block;clear:both}@media(max-width:640px){.shp-media{float:none;width:100%;max-width:250px;margin:12px auto 0}}
-.dt-thumbs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.dt-thumbs button{width:62px;height:62px;padding:2px;border:1px solid #E7E3DE;border-radius:8px;overflow:hidden;background:#fff;cursor:pointer}.dt-thumbs button:hover{border-color:var(--merck-d)}.dt-thumbs img{width:100%;height:100%;object-fit:contain;display:block}
-.det-imgs figure{margin:0 0 22px}.det-imgs img{width:100%;max-width:760px;display:block;margin:0 auto;border:1px solid #ECECEC;border-radius:10px}.det-imgs figcaption{font-size:13px;color:#5a5550;text-align:center;margin:8px auto 0;max-width:640px;line-height:1.6}.det-h{font-size:14px;font-weight:800;color:var(--merck);margin:0 0 6px;text-align:center}</style>
+<link rel="stylesheet" href="/assets/detail.css?v=4fbbe098">
 <link rel="stylesheet" href="/assets/site.css?v=531a690a">
-<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 셋업 매거진", "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진을 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "마그네틱 펌프", "질량유량계(MFC)", "질량유량계 다기체 보정", "sccm·slm 가스 유량 제어", "압력 컨트롤러", "배압 레귤레이터(BPR)", "관류배양", "연속배양(chemostat)", "flow chemistry 연속흐름 반응", "열처리로(전기로·튜브퍼니스)", "튜브퍼니스(관상로)", "머플로(박스형 전기로)", "진공 전기로", "회전 튜브로(로터리 킬른)", "엘리베이터 전기로", "3존 튜브퍼니스", "소성(firing)", "하소(calcination)", "소결(sintering)", "어닐링(소둔)", "가스 분위기 제어", "산소 분압(pO2) 제어", "동적 분위기 제어(DCA)", "CVD 탄소 코팅", "열산화", "배터리 양극재 전구체 공침", "전해액 순환", "수전해·전기화학 셋업", "전기화학 셀(H셀·GDE·MEA)", "기준전극·작업전극·상대전극", "CO2 환원(CO2RR) 촉매", "배터리 테스트 셀(코인·in-situ)", "배터리 용어 사전", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "실험 셋업 정보"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--><style>.dt-img img[src*="/product/big/"],.dscard-im img[src*="/product/big/"]{transform:scale(1.19);transform-origin:50% 47%}
-/* 오른쪽 구매창 — 본문 밖 여백에 붙는 sticky 레일 */
-body{position:relative}
-.buyrail{display:none}
-@media(min-width:1416px){
-  .buyrail{display:block;position:absolute;left:calc(50% + 438px);width:250px;pointer-events:none}
-  .buyrail .dt-buy{position:sticky;top:86px;pointer-events:auto}
-}
-.dt-info .dt-buy{margin:16px 0 0;max-width:420px}
-</style></head>
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 셋업 매거진", "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진을 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "마그네틱 펌프", "질량유량계(MFC)", "질량유량계 다기체 보정", "sccm·slm 가스 유량 제어", "압력 컨트롤러", "배압 레귤레이터(BPR)", "관류배양", "연속배양(chemostat)", "flow chemistry 연속흐름 반응", "열처리로(전기로·튜브퍼니스)", "튜브퍼니스(관상로)", "머플로(박스형 전기로)", "진공 전기로", "회전 튜브로(로터리 킬른)", "엘리베이터 전기로", "3존 튜브퍼니스", "소성(firing)", "하소(calcination)", "소결(sintering)", "어닐링(소둔)", "가스 분위기 제어", "산소 분압(pO2) 제어", "동적 분위기 제어(DCA)", "CVD 탄소 코팅", "열산화", "배터리 양극재 전구체 공침", "전해액 순환", "수전해·전기화학 셋업", "전기화학 셀(H셀·GDE·MEA)", "기준전극·작업전극·상대전극", "CO2 환원(CO2RR) 촉매", "배터리 테스트 셀(코인·in-situ)", "배터리 용어 사전", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "실험 셋업 정보"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
 <body>
 <div id="pumplab-header"></div>
 <div class="buyrail"><div id="buybox" class="bb dt-buy" data-name="삼흥에너지 광폭회전 유리도어 진탕배양기(Bench-Top Incubator Shaker)" data-models='[{"m": "기본", "s": "", "x": 5660000, "p": 5660000, "d": 5840000}]'></div></div>
@@ -172,6 +40,7 @@ body{position:relative}
 <figure><p class="det-h">제품 구성 상세</p><img src="/api/img/web/upload/NNEditor/20210602/is-rdd3_shop1_172744.jpg" alt="제품 구성 상세" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>제품 구성 상세 — 제조사(삼흥에너지) 제공 자료입니다.</figcaption></figure>
 <figure><p class="det-h">클램프·액세서리</p><img src="/api/img/web/upload/NNEditor/20210602/1_shop1_111415.jpg" alt="클램프·액세서리" loading="lazy" onerror="this.parentElement.style.display='none'"><figcaption>클램프·액세서리 — 제조사(삼흥에너지) 제공 자료입니다.</figcaption></figure>
 </div></div></section>
+<!--SRCLINE--><p class="pkg-note" style="margin-top:14px">자료 출처 — 삼흥에너지(SH Scientific) 제품 카탈로그</p><!--/SRCLINE-->
 <section class="ctbar-sec">
   <div class="wrap">
     <div class="ctbar"><div class="ctbar-info"><span class="ctbar-lb">문의·상담</span><a class="ctbar-tel" href="tel:+827089832600">070-8983-2600</a><span class="ctbar-sub">평일 상담 · 견적/기술 문의 환영</span></div><a class="ctbar-chat" href="https://p8vo3.channel.io" target="_blank" rel="noopener"><span class="ctbar-qrbox"><svg class="ct-qr-svg" viewBox="0 0 29 29" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="채팅문의 채널톡 QR"><rect width="29" height="29" fill="#fff"/><path d="M2 2h7v1h-7zM10 2h3v1h-3zM14 2h1v1h-1zM16 2h1v1h-1zM20 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h3v1h-3zM14 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM26 3h1v1h-1zM2 4h1v1h-1zM4 4h3v1h-3zM8 4h1v1h-1zM10 4h2v1h-2zM14 4h2v1h-2zM17 4h2v1h-2zM20 4h1v1h-1zM22 4h3v1h-3zM26 4h1v1h-1zM2 5h1v1h-1zM4 5h3v1h-3zM8 5h1v1h-1zM13 5h1v1h-1zM15 5h1v1h-1zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h3v1h-3zM26 5h1v1h-1zM2 6h1v1h-1zM4 6h3v1h-3zM8 6h1v1h-1zM10 6h2v1h-2zM15 6h2v1h-2zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h3v1h-3zM26 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM13 7h4v1h-4zM18 7h1v1h-1zM20 7h1v1h-1zM26 7h1v1h-1zM2 8h7v1h-7zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h7v1h-7zM12 9h1v1h-1zM15 9h2v1h-2zM2 10h1v1h-1zM5 10h6v1h-6zM13 10h2v1h-2zM16 10h1v1h-1zM18 10h2v1h-2zM22 10h1v1h-1zM24 10h3v1h-3zM2 11h2v1h-2zM6 11h1v1h-1zM10 11h2v1h-2zM14 11h1v1h-1zM16 11h2v1h-2zM19 11h1v1h-1zM22 11h4v1h-4zM2 12h3v1h-3zM8 12h1v1h-1zM10 12h5v1h-5zM17 12h3v1h-3zM22 12h2v1h-2zM26 12h1v1h-1zM5 13h1v1h-1zM10 13h1v1h-1zM16 13h5v1h-5zM23 13h4v1h-4zM6 14h4v1h-4zM13 14h2v1h-2zM17 14h2v1h-2zM20 14h1v1h-1zM26 14h1v1h-1zM2 15h1v1h-1zM4 15h4v1h-4zM9 15h1v1h-1zM11 15h1v1h-1zM16 15h4v1h-4zM22 15h1v1h-1zM25 15h1v1h-1zM2 16h2v1h-2zM6 16h4v1h-4zM11 16h10v1h-10zM22 16h5v1h-5zM2 17h1v1h-1zM5 17h1v1h-1zM10 17h2v1h-2zM13 17h1v1h-1zM16 17h2v1h-2zM21 17h1v1h-1zM23 17h2v1h-2zM26 17h1v1h-1zM2 18h1v1h-1zM8 18h3v1h-3zM12 18h1v1h-1zM14 18h3v1h-3zM18 18h5v1h-5zM24 18h2v1h-2zM10 19h2v1h-2zM13 19h3v1h-3zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h2v1h-2zM2 20h7v1h-7zM10 20h5v1h-5zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM2 21h1v1h-1zM8 21h1v1h-1zM10 21h1v1h-1zM14 21h3v1h-3zM18 21h1v1h-1zM22 21h1v1h-1zM26 21h1v1h-1zM2 22h1v1h-1zM4 22h3v1h-3zM8 22h1v1h-1zM10 22h3v1h-3zM14 22h1v1h-1zM16 22h7v1h-7zM2 23h1v1h-1zM4 23h3v1h-3zM8 23h1v1h-1zM10 23h2v1h-2zM14 23h4v1h-4zM19 23h2v1h-2zM25 23h2v1h-2zM2 24h1v1h-1zM4 24h3v1h-3zM8 24h1v1h-1zM11 24h1v1h-1zM13 24h1v1h-1zM16 24h2v1h-2zM19 24h1v1h-1zM22 24h5v1h-5zM2 25h1v1h-1zM8 25h1v1h-1zM11 25h1v1h-1zM16 25h2v1h-2zM21 25h2v1h-2zM24 25h3v1h-3zM2 26h7v1h-7zM10 26h1v1h-1zM14 26h1v1h-1zM17 26h2v1h-2zM23 26h1v1h-1zM26 26h1v1h-1z" fill="#3B3695"/></svg></span><span class="ctbar-chat-tx"><b>채팅문의</b><small>QR 스캔 · 채널톡</small></span></a></div>
