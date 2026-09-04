@@ -1428,6 +1428,24 @@ def build_all_products():
 
     # 검색 동의어 그룹 — 그룹 내 단어가 하나라도 있으면 나머지도 data-k에 추가 (검색 리콜 확대)
     SYN_GROUPS = [
+        # 전기화학·전지 계열 — build_search_index()의 SEARCH_SYN 과 같은 축을 카탈로그 검색에도 적용한다.
+        ['전고체', '전고체전지', 'solid-state', 'solid state', 'all-solid-state', '고체전해질'],
+        ['코인셀', '버튼셀', 'coin cell', 'button cell', '2032', '2032형', 'cr2032', 'cr2016'],
+        ['인시츄', '인시추', '인시투', 'in-situ', 'in situ', 'insitu', '오퍼란도', 'operando'],
+        ['덴드라이트', 'dendrite', '수지상', '수지상정'],
+        ['이차전지', '배터리', 'battery', '리튬이온', 'li-ion', '전지'],
+        ['전해셀', '전해조', '전기화학 셀', 'electrochemical cell'],
+        ['수전해', '물분해', 'water splitting', 'electrolysis', '전기분해'],
+        # 시료 전처리(압편) 계열
+        ['펠릿 다이', '펠릿다이', '압편 금형', '성형 몰드', '프레스 금형', 'pellet die', 'die', '몰드', '금형'],
+        ['펠릿 프레스', '압편기', '분말성형기', 'pellet press', 'tablet press'],
+        ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic'],
+        ['가열 프레스', '열간프레스', 'hot press', '열압기'],
+        ['진공 열압', 'vacuum hot press', '진공열압기'],
+        ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'wc'],
+        ['형광분석', 'xrf', 'x선형광', '엑스선형광'],
+        ['글로브박스', '글러브박스', 'glovebox', 'glove box'],
+        ['전극 슬라이서', '전극 펀칭', '타발기', '디스크커터', 'electrode cutter', 'slicer'],
         ['퍼니스', '전기로', '소성로', '열처리로', '소결로', '하소로', 'furnace'],
         ['튜브퍼니스', '관상로', '튜브 퍼니스', 'tube furnace'],
         ['머플로', '박스퍼니스', '박스로', '머플 퍼니스'],
