@@ -5236,6 +5236,7 @@ function paintDocs(){
       if (i >= 0) { if (dqTypes.length > 1) dqTypes.splice(i,1); }   // 마지막 하나는 못 뺀다
       else dqTypes.push(t);
       dqTypes = ['quote','statement','taxinvoice'].filter(function(x){ return dqTypes.indexOf(x)>=0; });
+      dqAutoTitle();          // 제목의 [종류] 도 같이 바뀌어야 한다
       paintDocs();
     };
   });
@@ -5295,11 +5296,17 @@ function dqValidHint(){
 }
 
 // 견적명·거래명 = 첫 품목 + 외 N건. 손으로 고치면 그때부터 건드리지 않는다.
+/* 자동 제목 = [서류 종류] 첫 품목 외 N건.
+   목록에서 제목만 보고 «무슨 서류인지 · 무엇에 대한 건인지»가 바로 읽혀야 한다.
+   손으로 고친 제목(dqTitleAuto=false)은 건드리지 않는다. */
 function dqAutoTitle(){
   if (!dqTitleAuto) return;
   var named = dqItems.filter(function(i){ return (i.name||'').trim(); });
-  dqTitle = named.length
+  var body = named.length
     ? named[0].name.trim() + (named.length>1 ? ' 외 '+(named.length-1)+'건' : '') : '';
+  var tag = dqTypes.map(function(t){ return DTYPE[t]; }).filter(Boolean).join(' · ');
+  dqTitle = (tag ? '['+tag+'] ' : '') + body;
+  if (!body) dqTitle = dqTitle.trim();
   var el = $('#dqTitle'); if (el) el.value = dqTitle;
 }
 
