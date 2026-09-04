@@ -21,6 +21,35 @@ COPY   = os.path.join(ROOT, '_ops/leadfluid_cn/head_copy.json')
 OUT    = os.path.join(ROOT, '_build/products/leadfluid.json')
 IMGDIR = os.path.join(ROOT, 'img/leadfluid')
 
+ROLES = json.load(open(os.path.join(ROOT, '_ops/leadfluid_cn/img_roles.json'), encoding='utf-8'))
+BODY  = json.load(open(os.path.join(ROOT, '_ops/leadfluid_cn/img_body.json'), encoding='utf-8'))
+import html as _h
+
+def hero_imgs(slug):
+    idx = ROLES['hero'].get(slug, [])
+    got = [f'{slug}-{i}.jpg' for i in idx]
+    return [f for f in got if os.path.exists(os.path.join(IMGDIR, f))]
+
+def body_section(slug):
+    """제조사 도판 — 표 이미지는 싣지 않는다(우리 한글 표와 중복 + 중국어)."""
+    d = BODY.get(slug) or {}
+    figs = []
+    for i in sorted(d, key=lambda x: int(x)):
+        kind, cap = d[i]
+        if kind == 'table' or not cap:
+            continue
+        f = f'{slug}-{i}.jpg'
+        if not os.path.exists(os.path.join(IMGDIR, f)):
+            continue
+        figs.append('<figure class="pkg-fig"><img src="/img/leadfluid/%s" alt="%s" loading="lazy" '
+                    'width="1200" height="900"><figcaption>%s</figcaption></figure>'
+                    % (f, _h.escape(cap), _h.escape(cap)))
+    if not figs:
+        return None
+    return {'h': '제조사 자료', 'html': '<div class="pkg-figs">' + ''.join(figs) + '</div>',
+            'note': '제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다.'}
+
+
 def imgs_for(slug):
     fs = glob.glob(os.path.join(IMGDIR, slug + '-*.jpg'))
     fs.sort(key=lambda p: int(re.search(r'-(\d+)\.jpg$', p).group(1)))
@@ -56,13 +85,17 @@ def wide_table(item):
     return None
 
 def faq_for(c, specs):
-    d = dict(specs)
+    def find(*keys):
+        for k, v in specs:
+            if any(x in k for x in keys):
+                return v
+        return ''
     q = []
-    flow = d.get('유량 범위') or d.get('유량')
+    flow = find('유량 범위', '최대 유량')
     if flow:
         q.append({'tag': '유량', 'q': '%s의 유량 범위는 어떻게 되나요?' % c['name'],
                   'a': '제조사 사양 기준 %s 입니다. 실제 유량은 쓰는 튜브 규격과 회전수에 따라 달라집니다.' % flow})
-    tube = d.get('튜브 규격') or d.get('적용 튜브')
+    tube = find('적용 튜브', '튜브 규격')
     if tube:
         q.append({'tag': '튜브', 'q': '%s에는 어떤 튜브를 쓰나요?' % c['name'],
                   'a': '제조사 사양 기준 %s 입니다. 재질(실리콘·PHARMED·Norprene 등)은 이송할 유체에 맞춰 고르시면 됩니다.' % tube})
@@ -89,7 +122,7 @@ def main():
         p = {
             'slug': c['slug'], 'name': c['name'], 'name_en': c['name_en'], 'sub': c['sub'],
             'category': '연동펌프 헤드',
-            'images': imgs_for(c['slug']), 'image_alt': '리드플루이드 ' + c['name'],
+            'images': hero_imgs(c['slug']), 'image_alt': '리드플루이드 ' + c['name'],
             'answer': c['answer'], 'summary': c['desc_ko'],
             'features': c['features'],
             'specs': specs or c.get('specs_manual') or [['제조사 사양', '제조사가 사양표를 이미지로만 제공합니다. 필요한 값은 문의 주시면 확인해 드립니다.']],
@@ -99,6 +132,7 @@ def main():
             'related': '<a href="/brands/leadfluid/">리드플루이드 전체 제품</a> · <a href="/product/">전 제품 통합 카탈로그</a> · <a href="/contact/">문의·FAQ</a>',
             'keywords': [['펌프헤드', '/product/'], ['연동펌프 헤드', '/product/'],
                          ['리드플루이드', '/brands/leadfluid/'], [c['name_en'], '']],
+            'sections': [x for x in [body_section(c['slug'])] if x],
             'faq': faq_for(c, specs),
             'source': it['url'],
             'ld': {'name': c['name'], 'category': '연동펌프 헤드', 'description': c['answer']},

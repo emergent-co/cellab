@@ -17,8 +17,7 @@
    "images": [
     "tube-silicone-1.jpg",
     "tube-silicone-2.jpg",
-    "tube-silicone-3.jpg",
-    "tube-silicone-4.jpg"
+    "tube-silicone-3.jpg"
    ],
    "image_alt": "연동펌프 실리콘 튜브",
    "answer": "리드플루이드 실리콘 튜브는 수입 실리콘 고무를 백금 가황·과산화물 가황으로 성형한 연동펌프 전용 튜브로, 내경 0.5~25.4 mm 27개 규격을 갖췄습니다.",
@@ -58,12 +57,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 모델",
-     "내경 (mm)",
-     "외경 (mm)",
-     "벽두께(mm)",
-     "표준 포장 (m)",
-     "튜브 재질 (공법)"
+     "튜브 모델(Tube model)",
+     "내경(ID) (mm)",
+     "외경(OD) (mm)",
+     "벽두께(Wall)(mm)",
+     "표준 포장(Package) (m)",
+     "튜브 재질(Tube material) (공법)"
     ],
     "rows": [
      [
@@ -72,7 +71,7 @@
       "2.34",
       "0.92",
       "20",
-      "수입 실리콘 고무"
+      "수입 실리콘 고무(Silicone)"
      ],
      [
       "1×0.92",
@@ -80,7 +79,7 @@
       "2.84",
       "0.92",
       "20",
-      "수입 실리콘 고무"
+      "수입 실리콘 고무(Silicone)"
      ],
      [
       "2×0.92",
@@ -88,7 +87,7 @@
       "3.84",
       "0.92",
       "20",
-      "수입 실리콘 고무"
+      "수입 실리콘 고무(Silicone)"
      ],
      [
       "2.4×0.92",
@@ -96,7 +95,7 @@
       "4.24",
       "0.92",
       "20",
-      "수입 실리콘 고무"
+      "수입 실리콘 고무(Silicone)"
      ],
      [
       "3×0.92",
@@ -104,22 +103,22 @@
       "4.84",
       "0.92",
       "20",
-      "수입 실리콘 고무"
+      "수입 실리콘 고무(Silicone)"
      ],
      [
       "0.5×0.92",
       "0.5",
       "2.34",
       "0.92",
-      "10(본)",
-      "수입 실리콘 고무 · 2m/본 · 튜브클램프 2개"
+      "10개 (2 m/개)",
+      "수입 실리콘 고무 · 2 m/개 · 튜브클램프 2개 포함"
      ],
      [
       "1×0.92",
       "1",
       "2.84",
       "0.92",
-      "10(본)",
+      "10개 (2 m/개)",
       ""
      ],
      [
@@ -127,7 +126,7 @@
       "2",
       "3.84",
       "0.92",
-      "10(본)",
+      "10개 (2 m/개)",
       ""
      ],
      [
@@ -135,7 +134,7 @@
       "2.4",
       "4.24",
       "0.92",
-      "10(본)",
+      "10개 (2 m/개)",
       ""
      ],
      [
@@ -143,7 +142,7 @@
       "3",
       "4.84",
       "0.92",
-      "10(본)",
+      "10개 (2 m/개)",
       ""
      ],
      [
@@ -152,7 +151,7 @@
       "4",
       "1.7",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "14#",
@@ -160,7 +159,7 @@
       "4.8",
       "1.7",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "19#",
@@ -168,7 +167,7 @@
       "5.6",
       "1.6",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "16#",
@@ -176,7 +175,7 @@
       "6.3",
       "1.6",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "25#",
@@ -184,7 +183,7 @@
       "8",
       "1.6",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "17#",
@@ -192,7 +191,7 @@
       "9.6",
       "1.6",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "18#",
@@ -200,7 +199,7 @@
       "11.1",
       "1.6",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "15#",
@@ -208,7 +207,7 @@
       "9.8",
       "2.4",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "24#",
@@ -216,7 +215,7 @@
       "11.4",
       "2.4",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "35#",
@@ -224,7 +223,7 @@
       "12.9",
       "2.4",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "36#",
@@ -232,7 +231,7 @@
       "14.6",
       "2.4",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "73#",
@@ -240,7 +239,7 @@
       "16.2",
       "3.3",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "82#",
@@ -248,7 +247,7 @@
       "19.3",
       "3.3",
       "20",
-      "수입 실리콘 고무(백금 가황)"
+      "수입 실리콘 고무(Silicone, platinum-cured)"
      ],
      [
       "88#",
@@ -256,7 +255,7 @@
       "22.3",
       "4.8",
       "20",
-      "수입 실리콘 고무(과산화물 가황)"
+      "수입 실리콘 고무(Silicone, peroxide-cured)"
      ],
      [
       "92#",
@@ -264,7 +263,7 @@
       "35",
       "4.8",
       "20",
-      "수입 실리콘 고무(과산화물 가황)"
+      "수입 실리콘 고무(Silicone, peroxide-cured)"
      ],
      [
       "193#",
@@ -272,7 +271,7 @@
       "19.1",
       "4.8",
       "20",
-      "수입 실리콘 고무(과산화물 가황)"
+      "수입 실리콘 고무(Silicone, peroxide-cured)"
      ],
      [
       "191#",
@@ -280,7 +279,7 @@
       "28.6",
       "4.8",
       "20",
-      "수입 실리콘 고무(과산화물 가황)"
+      "수입 실리콘 고무(Silicone, peroxide-cured)"
      ]
     ],
     "note": "13#·14#·19#·16#·25#·15#·17#·24#·18#·35#·36#·73#·82# 등 호수 규격의 외경은 업계 표준 실측치라 \"내경 + 2 × 벽두께\" 계산값과 소수점 단위로 다를 수 있습니다."
@@ -305,6 +304,13 @@
      "Silicone Peristaltic Pump Tubing",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/tube-silicone-4.jpg\" alt=\"실리콘 튜브 취급 예\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>실리콘 튜브 취급 예</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -349,7 +355,8 @@
    "category": "연동펌프 튜브",
    "images": [
     "tube-tygon-s3-e3603-1.jpg",
-    "tube-tygon-s3-e3603-2.jpg"
+    "tube-tygon-s3-e3603-2.jpg",
+    "tube-tygon-s3-e3603-3.jpg"
    ],
    "image_alt": "Tygon S3 E3603 튜브",
    "answer": "Tygon S3 E3603는 이화학 분석기기용 튜브로, 내화학성이 뛰어나 연동펌프에서 일반 투명 튜브의 2배 수명을 내고 FDA 기준에 적합합니다.",
@@ -388,12 +395,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
+     "튜브 재질(Tube material)",
      "규격",
-     "내경(mm)",
-     "벽두께(mm)",
+     "내경(ID)(mm)",
+     "벽두께(Wall)(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -708,6 +715,7 @@
      ""
     ]
    ],
+   "sections": [],
    "faq": [
     {
      "tag": "규격",
@@ -752,7 +760,8 @@
    "images": [
     "tube-pharmed-bpt-1.jpg",
     "tube-pharmed-bpt-2.jpg",
-    "tube-pharmed-bpt-3.jpg"
+    "tube-pharmed-bpt-3.jpg",
+    "tube-pharmed-bpt-4.jpg"
    ],
    "image_alt": "PHARMED BPT 튜브",
    "answer": "PHARMED BPT는 연동펌프에서 일반 실리콘 튜브보다 30배 오래 견디는 바이오공정용 튜브로, USP Class VI·FDA·NSF 51 기준에 적합합니다.",
@@ -792,12 +801,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
+     "튜브 재질(Tube material)",
      "규격",
-     "내경(mm)",
-     "벽두께(mm)",
+     "내경(ID)(mm)",
+     "벽두께(Wall)(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -1080,6 +1089,7 @@
      ""
     ]
    ],
+   "sections": [],
    "faq": [
     {
      "tag": "규격",
@@ -1123,7 +1133,8 @@
    "category": "연동펌프 튜브",
    "images": [
     "tube-norprene-chemical-1.jpg",
-    "tube-norprene-chemical-2.jpg"
+    "tube-norprene-chemical-2.jpg",
+    "tube-norprene-chemical-3.jpg"
    ],
    "image_alt": "Norprene Chemical 튜브",
    "answer": "Norprene Chemical은 가소제가 없는 내벽으로 거의 모든 용매에 견디는 연동펌프용 튜브로, 팽윤과 균열에 강합니다.",
@@ -1158,12 +1169,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
+     "튜브 재질(Tube material)",
      "규격",
-     "내경(mm)",
-     "벽두께(mm)",
+     "내경(ID)(mm)",
+     "벽두께(Wall)(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -1294,6 +1305,7 @@
      ""
     ]
    ],
+   "sections": [],
    "faq": [
     {
      "tag": "규격",
@@ -1376,12 +1388,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
+     "튜브 재질(Tube material)",
      "규격",
-     "내경(mm)",
-     "벽두께(mm)",
+     "내경(ID)(mm)",
+     "벽두께(Wall)(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -1648,6 +1660,7 @@
      ""
     ]
    ],
+   "sections": [],
    "faq": [
     {
      "tag": "규격",
@@ -1690,7 +1703,8 @@
    "sub": "굴곡 수명 특화 · -51~135℃ · FDA·3-A·NSF · 15개 규격",
    "category": "연동펌프 튜브",
    "images": [
-    "tube-norprene-a60f-1.jpg"
+    "tube-norprene-a60f-1.jpg",
+    "tube-norprene-a60f-2.jpg"
    ],
    "image_alt": "Norprene A-60-F 튜브",
    "answer": "Norprene A-60-F는 굴곡 수명이 뛰어난 연동펌프 전용 튜브로, -51~135℃에서 쓰며 FDA·3-A·NSF 기준에 적합합니다.",
@@ -1729,12 +1743,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
+     "튜브 재질(Tube material)",
      "규격",
-     "내경(mm)",
-     "벽두께(mm)",
+     "내경(ID)(mm)",
+     "벽두께(Wall)(mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -1881,6 +1895,7 @@
      ""
     ]
    ],
+   "sections": [],
    "faq": [
     {
      "tag": "규격",
@@ -1925,7 +1940,7 @@
    "images": [
     "tube-tygon-2475-1.jpg",
     "tube-tygon-2475-2.jpg",
-    "tube-tygon-2475-3.jpg"
+    "tube-tygon-2475-4.jpg"
    ],
    "image_alt": "Tygon 2475 튜브",
    "answer": "Tygon 2475는 가소제를 함유하지 않아 용출 미립자가 없고 강산·강염기와 여러 유기용매의 부식에 견디는 튜브입니다.",
@@ -1961,12 +1976,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
+     "튜브 재질(Tube material)",
      "규격",
-     "내경 (mm)",
-     "벽두께 (mm)",
+     "내경(ID) (mm)",
+     "벽두께(Wall) (mm)",
      "공칭 내×외×벽 (mm)",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -2073,6 +2088,13 @@
      ""
     ]
    ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/tube-tygon-2475-3.jpg\" alt=\"Tygon 2475 소구경 규격\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>Tygon 2475 소구경 규격</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
+   ],
    "faq": [
     {
      "tag": "규격",
@@ -2118,7 +2140,6 @@
     "tube-norprene-a60g-1.jpg",
     "tube-norprene-a60g-2.jpg",
     "tube-norprene-a60g-3.jpg",
-    "tube-norprene-a60g-4.jpg",
     "tube-norprene-a60g-5.jpg"
    ],
    "image_alt": "Norprene A-60-G 튜브",
@@ -2156,12 +2177,12 @@
    "variants": {
     "heading": "규격 비교표",
     "head": [
-     "튜브 재질",
-     "내경(mm)",
-     "벽두께(mm)",
+     "튜브 재질(Tube material)",
+     "내경(ID)(mm)",
+     "벽두께(Wall)(mm)",
      "공칭 내×외×벽 (mm)",
      "규격",
-     "표준 포장 길이 (m)"
+     "표준 포장 길이(Package length) (m)"
     ],
     "rows": [
      [
@@ -2300,6 +2321,7 @@
      ""
     ]
    ],
+   "sections": [],
    "faq": [
     {
      "tag": "규격",
@@ -2343,10 +2365,7 @@
    "category": "연동펌프 헤드",
    "images": [
     "head-ft1524-1.jpg",
-    "head-ft1524-2.jpg",
-    "head-ft1524-3.jpg",
-    "head-ft1524-4.jpg",
-    "head-ft1524-5.jpg"
+    "head-ft1524-4.jpg"
    ],
    "image_alt": "리드플루이드 FT1524 펌프헤드",
    "answer": "FT1524는 견고한 IXEF 하우징에 플립커버를 적용한 연동펌프 헤드로, 5개 튜브 규격을 지원하며 연속 최대 889.99 mL/min을 냅니다.",
@@ -2363,39 +2382,39 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "≤889.99mL/min (단일 채널, 연속 운전)"
     ],
     [
-     "회전수 범위",
+     "회전수 범위(Speed range)",
      "연속 운전400rpm; 단속 운전600rpm"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3 (4롤러 선택 가능)"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1"
     ],
     [
-     "사용 환경",
+     "사용 환경(Operating conditions)",
      "온도0-40℃ 습도<80%"
     ],
     [
-     "간극 조정",
-     "스프링 가압"
+     "간극 조정(Occlusion)",
+     "스프링 가압(Spring-loaded)"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "86.9×89.9×71.1mm"
     ],
     [
-     "튜브 규격",
+     "튜브 규격(Tube size)",
      "13# · 14# · 19# · 16# · 25#"
     ],
     [
-     "튜브 고정 방식",
+     "튜브 고정 방식(Tube fixing)",
      "펌프헤드 튜브클램프 고정"
     ]
    ],
@@ -2419,6 +2438,13 @@
      "FT1524 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1524-2.jpg\" alt=\"FT1524 포장 상태\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>FT1524 포장 상태</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1524-5.jpg\" alt=\"외형 치수도 86.9 × 89.9 × 71.1 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 86.9 × 89.9 × 71.1 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -2461,14 +2487,7 @@
    "sub": "고정밀 소용량 분주 · 최소 200 µL ± 3 µL",
    "category": "연동펌프 헤드",
    "images": [
-    "head-dmd15-1.jpg",
-    "head-dmd15-2.jpg",
-    "head-dmd15-3.jpg",
-    "head-dmd15-4.jpg",
-    "head-dmd15-5.jpg",
-    "head-dmd15-6.jpg",
-    "head-dmd15-7.jpg",
-    "head-dmd15-8.jpg"
+    "head-dmd15-1.jpg"
    ],
    "image_alt": "리드플루이드 DMD15 분주 펌프헤드",
    "answer": "DMD15는 고정밀 소유량 분주 전용 펌프헤드로, 최소 200 µL를 200 µL ± 3 µL 정밀도로 채웁니다.",
@@ -2560,7 +2579,19 @@
      ""
     ]
    ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-5.jpg\" alt=\"튜브 장착 순서 ① 압착블록을 연다 ② 전용 피팅으로 튜브를 끼운다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 장착 순서 ① 압착블록을 연다 ② 전용 피팅으로 튜브를 끼운다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-6.jpg\" alt=\"튜브 장착 완료 상태 (Tube installation)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 장착 완료 상태 (Tube installation)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-7.jpg\" alt=\"취급 주의 — 제조사 안내문\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>취급 주의 — 제조사 안내문</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd15-8.jpg\" alt=\"외형 치수도 98.5 × 76.6 × 75.6 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 98.5 × 76.6 × 75.6 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
+   ],
    "faq": [
+    {
+     "tag": "유량",
+     "q": "DMD15 분주 펌프헤드의 유량 범위는 어떻게 되나요?",
+     "a": "제조사 사양 기준 ≤2070 mL/min 입니다. 실제 유량은 쓰는 튜브 규격과 회전수에 따라 달라집니다."
+    },
     {
      "tag": "튜브",
      "q": "DMD15 분주 펌프헤드에는 어떤 튜브를 쓰나요?",
@@ -2597,14 +2628,7 @@
    "category": "연동펌프 헤드",
    "images": [
     "head-ds-1.jpg",
-    "head-ds-2.jpg",
-    "head-ds-3.jpg",
-    "head-ds-4.jpg",
-    "head-ds-5.jpg",
-    "head-ds-6.jpg",
-    "head-ds-7.jpg",
-    "head-ds-8.jpg",
-    "head-ds-9.jpg"
+    "head-ds-2.jpg"
    ],
    "image_alt": "리드플루이드 DS 카드형 다채널 펌프헤드",
    "answer": "DS는 카드 하나가 한 채널이 되는 다채널 펌프헤드로, 1~48채널 이상을 동시에 이송하며 채널 간 유량 일관성이 높습니다.",
@@ -2674,7 +2698,19 @@
      ""
     ]
    ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ds-6.jpg\" alt=\"카드 압착 장치 — 래칫 단계 조절식 / 자동 스프링식\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>카드 압착 장치 — 래칫 단계 조절식 / 자동 스프링식</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ds-8.jpg\" alt=\"채널별 유량 일관성 (제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>채널별 유량 일관성 (제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ds-9.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
+   ],
    "faq": [
+    {
+     "tag": "튜브",
+     "q": "DS 카드형 다채널 펌프헤드에는 어떤 튜브를 쓰나요?",
+     "a": "제조사 사양 기준 벽두께 0.8~0.9 mm — 0.25×0.9 · 0.76×0.85 · 1.3×0.85 · 1.52×0.85 · 1.85×0.85 · 2.79×0.84 입니다. 재질(실리콘·PHARMED·Norprene 등)은 이송할 유체에 맞춰 고르시면 됩니다."
+    },
     {
      "tag": "호환",
      "q": "DS 카드형 다채널 펌프헤드를 지금 쓰는 펌프 본체에 달 수 있나요?",
@@ -2708,11 +2744,7 @@
     "head-yz15-1.jpg",
     "head-yz15-2.jpg",
     "head-yz15-3.jpg",
-    "head-yz15-4.jpg",
-    "head-yz15-5.jpg",
-    "head-yz15-6.jpg",
-    "head-yz15-7.jpg",
-    "head-yz15-8.jpg"
+    "head-yz15-4.jpg"
    ],
    "image_alt": "리드플루이드 YZ15 펌프헤드",
    "answer": "YZ15는 0.005~2562 mL/min의 넓은 유량 범위를 내는 범용 펌프헤드로, 최대 10채널까지 다단 확장할 수 있습니다.",
@@ -2729,59 +2761,59 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "0.005~2562mL/min"
     ],
     [
-     "하우징 재질",
+     "하우징 재질(Housing)",
      "PPS / PES"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3 / 6개"
     ],
     [
-     "내식성",
+     "내식성(Chemical resistance)",
      "PPS는 대부분의 산·염기·염 용액과 유기용매에 내성. PES는 염화탄화수소·케톤류·강산을 제외한 대부분의 액체에 내성"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1채널 (최대 10채널까지 확장 가능)"
     ],
     [
-     "간극 조정",
+     "간극 조정(Occlusion)",
      "고정(조정 불가)"
     ],
     [
-     "사용 가능 액체 온도",
+     "사용 가능 액체 온도(Liquid temp.)",
      "200℃ 이내"
     ],
     [
-     "튜브 장착 방식",
-     "연속(1본)"
+     "튜브 장착 방식(Tube loading)",
+     "연속 1본(Continuous tubing)"
     ],
     [
-     "롤러 재질",
+     "롤러 재질(Roller material)",
      "SS304"
     ],
     [
-     "튜브 압착 간극",
+     "튜브 압착 간극(Occlusion gap)",
      "고정(조정 불가)"
     ],
     [
-     "펌프 하우징 재질",
+     "펌프 하우징 재질(Housing)",
      "PPS / PES"
     ],
     [
-     "색상",
+     "색상(Color)",
      "검정 · 흰색"
     ],
     [
-     "순중량",
+     "순중량(Net weight)",
      "420 g (3롤러) / 480 g (6롤러)"
     ],
     [
-     "사용 온도",
+     "사용 온도(Operating temp.)",
      "200℃에서 장시간 사용 가능"
     ]
    ],
@@ -2805,6 +2837,13 @@
      "YZ15 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz15-5.jpg\" alt=\"구성 부품 — 자동 튜브클램프·압착블록·SS304 롤러\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>구성 부품 — 자동 튜브클램프·압착블록·SS304 롤러</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz15-6.jpg\" alt=\"다단 직렬 사용 예 — 최대 10채널\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>다단 직렬 사용 예 — 최대 10채널</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz15-8.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -2842,14 +2881,7 @@
    "sub": "0.058~4200 mL/min · 위상차 이중 압착블록 · 3단 캐스케이드",
    "category": "연동펌프 헤드",
    "images": [
-    "head-dmd25-t-1.jpg",
-    "head-dmd25-t-2.jpg",
-    "head-dmd25-t-3.jpg",
-    "head-dmd25-t-4.jpg",
-    "head-dmd25-t-5.jpg",
-    "head-dmd25-t-6.jpg",
-    "head-dmd25-t-7.jpg",
-    "head-dmd25-t-8.jpg"
+    "head-dmd25-t-1.jpg"
    ],
    "image_alt": "리드플루이드 DMD25-T 저맥동 펌프헤드",
    "answer": "DMD25-T는 위상차를 둔 이중 압착블록으로 맥동을 상쇄하는 저맥동 헤드로, 0.058~4200 mL/min 고정밀 분주에 씁니다.",
@@ -2864,39 +2896,39 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "0.058-4200mL/min"
     ],
     [
-     "회전수 범위",
+     "회전수 범위(Speed range)",
      "0.1~350rpm"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "6"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1"
     ],
     [
-     "튜브 압착 구조",
-     "탄성 자동 조정"
+     "튜브 압착 구조(Occlusion)",
+     "탄성 자동 조정(Self-adaptive)"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "187x105x125mm"
     ],
     [
-     "튜브 규격",
+     "튜브 규격(Tube size)",
      "114# · 119# · 116# · 15# · 24# · 35# · 36#"
     ],
     [
-     "순중량",
+     "순중량(Net weight)",
      "2.8kg"
     ],
     [
-     "이송 압력",
+     "이송 압력(Pressure)",
      "≤0.12MPa"
     ]
    ],
@@ -2920,6 +2952,13 @@
      "DMD25-T Low-pulsation Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-3.jpg\" alt=\"DMD25-T 적용 예 — 분주 장비 조립\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>DMD25-T 적용 예 — 분주 장비 조립</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-4.jpg\" alt=\"위상차 이중 압착블록의 맥동 상쇄 원리\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>위상차 이중 압착블록의 맥동 상쇄 원리</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-5.jpg\" alt=\"맥동 비교 곡선 — 단일 압착 대비 (제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>맥동 비교 곡선 — 단일 압착 대비 (제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-6.jpg\" alt=\"외형 치수도 187 × 105 × 125 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 187 × 105 × 125 mm</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-7.jpg\" alt=\"튜브 수명 곡선 — 재질별 (제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 수명 곡선 — 재질별 (제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dmd25-t-8.jpg\" alt=\"장착 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>장착 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -2965,13 +3004,7 @@
     "head-dg-1.jpg",
     "head-dg-2.jpg",
     "head-dg-3.jpg",
-    "head-dg-4.jpg",
-    "head-dg-5.jpg",
-    "head-dg-6.jpg",
-    "head-dg-7.jpg",
-    "head-dg-8.jpg",
-    "head-dg-9.jpg",
-    "head-dg-10.jpg"
+    "head-dg-4.jpg"
    ],
    "image_alt": "리드플루이드 DG 카드형 다채널 펌프헤드",
    "answer": "DG 시리즈는 소유량 다채널 이송 전용 카드형 펌프헤드로, 1~48채널 이상을 동시에 이송하면서 채널 간 유량이 고르게 나옵니다.",
@@ -3037,6 +3070,13 @@
      ""
     ]
    ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dg-7.jpg\" alt=\"카드형 채널 구조 — 카드를 개별로 뺐다 끼울 수 있습니다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>카드형 채널 구조 — 카드를 개별로 뺐다 끼울 수 있습니다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dg-9.jpg\" alt=\"회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dg-10.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
+   ],
    "faq": [
     {
      "tag": "튜브",
@@ -3074,14 +3114,8 @@
    "category": "연동펌프 헤드",
    "images": [
     "head-ft1505-1.jpg",
-    "head-ft1505-2.jpg",
     "head-ft1505-3.jpg",
-    "head-ft1505-4.jpg",
-    "head-ft1505-5.jpg",
-    "head-ft1505-6.jpg",
-    "head-ft1505-7.jpg",
-    "head-ft1505-8.jpg",
-    "head-ft1505-9.jpg"
+    "head-ft1505-4.jpg"
    ],
    "image_alt": "리드플루이드 FT1505 펌프헤드",
    "answer": "FT1505는 64×64×43 mm의 소형 4롤러 펌프헤드로, 관찰창과 한 손 플립커버를 갖춰 OEM 조립과 생물 발효 라인에 씁니다.",
@@ -3098,39 +3132,39 @@
    ],
    "specs": [
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "4"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1"
     ],
     [
-     "사용 환경",
+     "사용 환경(Operating conditions)",
      "온도0-40℃ 습도<80%RH"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "64×64×43mm"
     ],
     [
-     "중량",
+     "중량(Weight)",
      "102g"
     ],
     [
-     "튜브 고정 방식",
+     "튜브 고정 방식(Tube fixing)",
      "스프링 튜브클램프 · 대/소 2단 조정"
     ],
     [
-     "펌프헤드 재질",
-     "강화 나일론 · PET"
+     "펌프헤드 재질(Head material)",
+     "강화 나일론(Reinforced nylon) · PET"
     ],
     [
-     "튜브 압착 간극",
+     "튜브 압착 간극(Occlusion gap)",
      "조정 가능"
     ],
     [
-     "선택 기능",
+     "선택 기능(Option)",
      "회전수 모니터링 · 커버 개방 시 정지"
     ]
    ],
@@ -3154,6 +3188,13 @@
      "FT1505 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-6.jpg\" alt=\"회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-7.jpg\" alt=\"튜브 클램프 조작 방법 — 한 손으로 커버를 연다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 클램프 조작 방법 — 한 손으로 커버를 연다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-8.jpg\" alt=\"튜브 장착 순서 — 커버 개방 → 튜브 안착 → 커버 닫기\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브 장착 순서 — 커버 개방 → 튜브 안착 → 커버 닫기</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-ft1505-9.jpg\" alt=\"외형 치수도 64 × 64 × 43 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 64 × 64 × 43 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3187,10 +3228,7 @@
    "category": "연동펌프 헤드",
    "images": [
     "head-yz15t-1.jpg",
-    "head-yz15t-2.jpg",
-    "head-yz15t-3.jpg",
-    "head-yz15t-4.jpg",
-    "head-yz15t-5.jpg"
+    "head-yz15t-2.jpg"
    ],
    "image_alt": "리드플루이드 YZ15T 펌프헤드",
    "answer": "YZ15T는 벽두께 1.6 mm 튜브로 실리콘 기준 최대 2562 mL/min을 내는 펌프헤드로, 압착 간극을 미세 조정할 수 있습니다.",
@@ -3207,43 +3245,43 @@
    ],
    "specs": [
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3/6"
     ],
     [
-     "내식성",
+     "내식성(Chemical resistance)",
      "대부분의 산·염기·염 용액 및 유기용매에 내성"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1 (최대 10채널까지 확장 가능)"
     ],
     [
-     "사용 환경",
+     "사용 환경(Operating conditions)",
      "온도0-40℃ 습도<80%"
     ],
     [
-     "사용 가능 액체 온도",
+     "사용 가능 액체 온도(Liquid temp.)",
      "200℃ 이내"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "95.7×108.7×63.1 mm"
     ],
     [
-     "롤러 재질",
+     "롤러 재질(Roller material)",
      "SS304"
     ],
     [
-     "튜브 압착 간극",
+     "튜브 압착 간극(Occlusion gap)",
      "조정 가능"
     ],
     [
-     "튜브 고정 방식",
+     "튜브 고정 방식(Tube fixing)",
      "펌프헤드 튜브클램프 고정"
     ],
     [
-     "펌프헤드 재질",
+     "펌프헤드 재질(Head material)",
      "PPS"
     ]
    ],
@@ -3267,6 +3305,13 @@
      "YZ15T Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz15t-3.jpg\" alt=\"튜브클램프 연동 기구 — 압착블록을 열면 클램프가 함께 열린다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>튜브클램프 연동 기구 — 압착블록을 열면 클램프가 함께 열린다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz15t-5.jpg\" alt=\"외형 치수도 95.7 × 108.7 × 63.1 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 95.7 × 108.7 × 63.1 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3301,11 +3346,7 @@
    "images": [
     "head-gn10-1.jpg",
     "head-gn10-2.jpg",
-    "head-gn10-3.jpg",
-    "head-gn10-4.jpg",
-    "head-gn10-5.jpg",
-    "head-gn10-6.jpg",
-    "head-gn10-7.jpg"
+    "head-gn10-3.jpg"
    ],
    "image_alt": "리드플루이드 GN10 고압 내식 펌프헤드",
    "answer": "GN10은 PTFE 튜브를 쓰는 고압 내식 펌프헤드로, 최대 0.68 MPa까지 견디며 강산·강염기·유기용매를 이송합니다.",
@@ -3319,47 +3360,47 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "≤78mL/min"
     ],
     [
-     "회전수 범위",
+     "회전수 범위(Speed range)",
      "<300rpm"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "6"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1"
     ],
     [
-     "사용 환경",
+     "사용 환경(Operating conditions)",
      "온도0~40℃, 습도<80%"
     ],
     [
-     "튜브 압착 구조",
-     "튜브 압착 간극조정 가능"
+     "튜브 압착 구조(Occlusion)",
+     "튜브 압착 간극(Occlusion gap)조정 가능"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "83×140×65.4mm"
     ],
     [
-     "중량",
+     "중량(Weight)",
      "0.92kg"
     ],
     [
-     "튜브 규격",
+     "튜브 규격(Tube size)",
      "2.5×4mm / 4×6mm (PTFE)"
     ],
     [
-     "흡입 양정",
+     "흡입 양정(Suction lift)",
      "2 m 이하"
     ],
     [
-     "이송 압력",
+     "이송 압력(Pressure)",
      "≤0.68MPa"
     ]
    ],
@@ -3383,6 +3424,13 @@
      "GN10 High-pressure Corrosion-resistant Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-gn10-5.jpg\" alt=\"PTFE 튜브 장착 방법 — 전용 클램프\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>PTFE 튜브 장착 방법 — 전용 클램프</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-gn10-7.jpg\" alt=\"외형 치수도 83 × 140 × 65.4 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 83 × 140 × 65.4 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3428,10 +3476,7 @@
     "head-dt-1.jpg",
     "head-dt-2.jpg",
     "head-dt-3.jpg",
-    "head-dt-4.jpg",
-    "head-dt-5.jpg",
-    "head-dt-6.jpg",
-    "head-dt-7.jpg"
+    "head-dt-4.jpg"
    ],
    "image_alt": "리드플루이드 DT 카드형 다채널 펌프헤드",
    "answer": "DT 시리즈는 중소유량 다채널 이송용 카드형 펌프헤드로, 적용 튜브에 따라 DT10과 DT15 두 계열로 나뉩니다.",
@@ -3501,7 +3546,24 @@
      ""
     ]
    ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dt-5.jpg\" alt=\"DT 시리즈 제조사 카탈로그 페이지 (원문)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>DT 시리즈 제조사 카탈로그 페이지 (원문)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dt-6.jpg\" alt=\"DT 시리즈 제조사 카탈로그 페이지 — 유량표 (원문)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>DT 시리즈 제조사 카탈로그 페이지 — 유량표 (원문)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-dt-7.jpg\" alt=\"취급 안내 — 제조사 원문\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>취급 안내 — 제조사 원문</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
+   ],
    "faq": [
+    {
+     "tag": "유량",
+     "q": "DT 카드형 다채널 펌프헤드의 유량 범위는 어떻게 되나요?",
+     "a": "제조사 사양 기준 0.00023 ~ 64 mL/min (단일 채널) 입니다. 실제 유량은 쓰는 튜브 규격과 회전수에 따라 달라집니다."
+    },
+    {
+     "tag": "튜브",
+     "q": "DT 카드형 다채널 펌프헤드에는 어떤 튜브를 쓰나요?",
+     "a": "제조사 사양 기준 13# · 14# · 내경 0.13~3.2 mm, 벽두께 0.8~1 mm 입니다. 재질(실리콘·PHARMED·Norprene 등)은 이송할 유체에 맞춰 고르시면 됩니다."
+    },
     {
      "tag": "호환",
      "q": "DT 카드형 다채널 펌프헤드를 지금 쓰는 펌프 본체에 달 수 있나요?",
@@ -3533,14 +3595,7 @@
    "category": "연동펌프 헤드",
    "images": [
     "head-bz15-25-1.jpg",
-    "head-bz15-25-2.jpg",
-    "head-bz15-25-3.jpg",
-    "head-bz15-25-4.jpg",
-    "head-bz15-25-5.jpg",
-    "head-bz15-25-6.jpg",
-    "head-bz15-25-7.jpg",
-    "head-bz15-25-8.jpg",
-    "head-bz15-25-9.jpg"
+    "head-bz15-25-2.jpg"
    ],
    "image_alt": "리드플루이드 BZ15-25 펌프헤드",
    "answer": "BZ 시리즈는 모델마다 전용 튜브를 쓰는 펌프헤드로, 0.0033~2100 mL/min에서 범용 헤드보다 낮은 맥동과 긴 튜브 수명을 냅니다.",
@@ -3557,35 +3612,35 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "0.0033~2100mL/min"
     ],
     [
-     "하우징 재질",
+     "하우징 재질(Housing)",
      "PPS(폴리페닐렌설파이드) / PC(폴리카보네이트)"
     ],
     [
-     "회전수 범위",
+     "회전수 범위(Speed range)",
      "0.1~600rpm"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3개"
     ],
     [
-     "간극 조정",
+     "간극 조정(Occlusion)",
      "고정 간극"
     ],
     [
-     "적용 모터",
+     "적용 모터(Motor)",
      "스테핑 모터 / DC 감속 모터 / AC 감속 모터 등"
     ],
     [
-     "튜브 장착 방식",
+     "튜브 장착 방식(Tube loading)",
      "피팅 일체형 / 연속 펌프튜브"
     ],
     [
-     "롤러 재질",
+     "롤러 재질(Roller material)",
      "SS304"
     ]
    ],
@@ -3609,6 +3664,13 @@
      "BZ15-25 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-5.jpg\" alt=\"BZ15-25 펌프헤드 구조 — 투명 PC 하우징으로 내부 운전 상태를 볼 수 있습니다\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>BZ15-25 펌프헤드 구조 — 투명 PC 하우징으로 내부 운전 상태를 볼 수 있습니다</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-6.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-7.jpg\" alt=\"외형 치수도 — 다른 각도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 — 다른 각도 (단위: mm)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-8.jpg\" alt=\"회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-bz15-25-9.jpg\" alt=\"장착 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>장착 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3648,11 +3710,7 @@
    "images": [
     "head-yz35-1.jpg",
     "head-yz35-2.jpg",
-    "head-yz35-3.jpg",
-    "head-yz35-4.jpg",
-    "head-yz35-5.jpg",
-    "head-yz35-6.jpg",
-    "head-yz35-7.jpg"
+    "head-yz35-3.jpg"
    ],
    "image_alt": "리드플루이드 YZ35 펌프헤드",
    "answer": "YZ35는 73#·82# 튜브로 0.0013~13 L/min을 내는 대유량 펌프헤드로, 여러 헤드를 직렬로 묶어 쓸 수 있습니다.",
@@ -3668,35 +3726,35 @@
    ],
    "specs": [
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3"
     ],
     [
-     "내식성",
+     "내식성(Chemical resistance)",
      "대부분의 산·염기·염 용액 및 유기용매에 내성"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1채널(펌프헤드 다단 직렬 사용 가능)"
     ],
     [
-     "간극 조정",
+     "간극 조정(Occlusion)",
      "미세 조정 가능"
     ],
     [
-     "사용 가능 액체 온도",
+     "사용 가능 액체 온도(Liquid temp.)",
      "200℃ 이내"
     ],
     [
-     "튜브 장착 방식",
-     "연속(1본)"
+     "튜브 장착 방식(Tube loading)",
+     "연속 1본(Continuous tubing)"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "203×140×90"
     ],
     [
-     "순중량",
+     "순중량(Net weight)",
      "1725g"
     ]
    ],
@@ -3720,6 +3778,13 @@
      "YZ35 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz35-5.jpg\" alt=\"다단 직렬 사용 예 — 롤러를 60° 어긋나게 장착\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>다단 직렬 사용 예 — 롤러를 60° 어긋나게 장착</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz35-6.jpg\" alt=\"회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yz35-7.jpg\" alt=\"외형 치수도 203 × 140 × 90 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 203 × 140 × 90 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3754,11 +3819,7 @@
    "images": [
     "head-yt25-1.jpg",
     "head-yt25-2.jpg",
-    "head-yt25-3.jpg",
-    "head-yt25-4.jpg",
-    "head-yt25-5.jpg",
-    "head-yt25-6.jpg",
-    "head-yt25-7.jpg"
+    "head-yt25-3.jpg"
    ],
    "image_alt": "리드플루이드 YT25 펌프헤드",
    "answer": "YT25는 0.024~3000 mL/min을 내는 4롤러 펌프헤드로, 점성이 높은 액체와 큰 흡입 조건에 대응하며 최대 4채널까지 확장합니다.",
@@ -3775,47 +3836,47 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "0.024~3000mL/min"
     ],
     [
-     "하우징 재질",
+     "하우징 재질(Housing)",
      "PPS"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "4개"
     ],
     [
-     "내식성",
+     "내식성(Chemical resistance)",
      "PPS대부분의 산·염기·염 용액 및 유기용매에 내성"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1채널(펌프헤드 다단 직렬 사용 가능)"
     ],
     [
-     "사용 가능 액체 온도",
+     "사용 가능 액체 온도(Liquid temp.)",
      "200℃ 이내"
     ],
     [
-     "튜브 장착 방식",
-     "연속(1본)"
+     "튜브 장착 방식(Tube loading)",
+     "연속 1본(Continuous tubing)"
     ],
     [
-     "외형 치수",
+     "외형 치수(Dimensions)",
      "138×103×75.3mm"
     ],
     [
-     "롤러 재질",
+     "롤러 재질(Roller material)",
      "SS304"
     ],
     [
-     "튜브 압착 간극",
+     "튜브 압착 간극(Occlusion gap)",
      "조정 가능"
     ],
     [
-     "순중량",
+     "순중량(Net weight)",
      "620g"
     ]
    ],
@@ -3839,6 +3900,13 @@
      "YT25 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yt25-4.jpg\" alt=\"압착 간극 수동 미세 조정 구조\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>압착 간극 수동 미세 조정 구조</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yt25-5.jpg\" alt=\"다단 직렬 사용 예 — 최대 4채널\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>다단 직렬 사용 예 — 최대 4채널</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yt25-6.jpg\" alt=\"회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-yt25-7.jpg\" alt=\"외형 치수도 138 × 103 × 75.3 mm\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 138 × 103 × 75.3 mm</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3880,11 +3948,6 @@
     "head-kz25-2.jpg",
     "head-kz25-3.jpg",
     "head-kz25-4.jpg",
-    "head-kz25-5.jpg",
-    "head-kz25-6.jpg",
-    "head-kz25-7.jpg",
-    "head-kz25-8.jpg",
-    "head-kz25-9.jpg",
     "head-kz25-10.jpg"
    ],
    "image_alt": "리드플루이드 KZ25 펌프헤드",
@@ -3899,31 +3962,31 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "0.31~6000mL/min"
     ],
     [
-     "회전수 범위",
+     "회전수 범위(Speed range)",
      "0.1~600rpm"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3"
     ],
     [
-     "채널 수",
+     "채널 수(Channels)",
      "1"
     ],
     [
-     "간극 조정",
+     "간극 조정(Occlusion)",
      "고정"
     ],
     [
-     "튜브 규격",
+     "튜브 규격(Tube size)",
      "15# · 24# · 35# · 36#"
     ],
     [
-     "튜브 클램프 방식",
+     "튜브 클램프 방식(Tube clamp)",
      "수동 조정"
     ]
    ],
@@ -3947,6 +4010,13 @@
      "KZ25 Pump Head",
      ""
     ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-6.jpg\" alt=\"하우징 재질 선택 — PC(투명, 내부 확인) / PPS(내화학성 우수)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>하우징 재질 선택 — PC(투명, 내부 확인) / PPS(내화학성 우수)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-7.jpg\" alt=\"구성 부품 — 롤러 어셈블리·하우징·클램프\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>구성 부품 — 롤러 어셈블리·하우징·클램프</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-8.jpg\" alt=\"회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>회전수-유량 곡선 (Flow rate vs. speed, 제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-kz25-9.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
    ],
    "faq": [
     {
@@ -3989,11 +4059,7 @@
    "sub": "0.006~1740 mL/min · 미세맥동 특허 기술 · 알루미늄+SS304",
    "category": "연동펌프 헤드",
    "images": [
-    "head-wmd15-1.jpg",
-    "head-wmd15-2.jpg",
-    "head-wmd15-3.jpg",
-    "head-wmd15-4.jpg",
-    "head-wmd15-5.jpg"
+    "head-wmd15-1.jpg"
    ],
    "image_alt": "리드플루이드 WMD15 미세맥동 펌프헤드",
    "answer": "WMD15는 미세맥동 특허 기술을 적용한 펌프헤드로, 0.006~1740 mL/min에서 이송 연속성이 뛰어나 도포·합성 공정에 적합합니다.",
@@ -4006,27 +4072,27 @@
    ],
    "specs": [
     [
-     "유량 범위",
+     "유량 범위(Flow rate)",
      "0.006-1740mL/min"
     ],
     [
-     "회전수 범위",
+     "회전수 범위(Speed range)",
      "0.1~600rpm"
     ],
     [
-     "롤러 수",
+     "롤러 수(Rollers)",
      "3"
     ],
     [
-     "간극 조정",
+     "간극 조정(Occlusion)",
      "고정 간극 · 전용 튜브 전용"
     ],
     [
-     "튜브 규격",
-     "WMD15-14튜브 규격: 13# · 14# WMD15-16튜브 규격: 19# · 16# WMD15-17튜브 규격: 25# · 17#"
+     "튜브 규격(Tube size)",
+     "WMD15-14튜브 규격(Tube size): 13# · 14# WMD15-16튜브 규격(Tube size): 19# · 16# WMD15-17튜브 규격(Tube size): 25# · 17#"
     ],
     [
-     "사용 온도",
+     "사용 온도(Operating temp.)",
      "0℃～40℃"
     ]
    ],
@@ -4051,6 +4117,13 @@
      ""
     ]
    ],
+   "sections": [
+    {
+     "h": "제조사 자료",
+     "html": "<div class=\"pkg-figs\"><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-wmd15-3.jpg\" alt=\"미세맥동 기술 비교 — 일반 헤드(위) vs WMD15(아래)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>미세맥동 기술 비교 — 일반 헤드(위) vs WMD15(아래)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-wmd15-4.jpg\" alt=\"맥동 비교 곡선 (제조사 자료)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>맥동 비교 곡선 (제조사 자료)</figcaption></figure><figure class=\"pkg-fig\"><img src=\"/img/leadfluid/head-wmd15-5.jpg\" alt=\"외형 치수도 (단위: mm)\" loading=\"lazy\" width=\"1200\" height=\"900\"><figcaption>외형 치수도 (단위: mm)</figcaption></figure></div>",
+     "note": "제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다."
+    }
+   ],
    "faq": [
     {
      "tag": "유량",
@@ -4060,7 +4133,7 @@
     {
      "tag": "튜브",
      "q": "WMD15 미세맥동 펌프헤드에는 어떤 튜브를 쓰나요?",
-     "a": "제조사 사양 기준 WMD15-14튜브 규격: 13# · 14# WMD15-16튜브 규격: 19# · 16# WMD15-17튜브 규격: 25# · 17# 입니다. 재질(실리콘·PHARMED·Norprene 등)은 이송할 유체에 맞춰 고르시면 됩니다."
+     "a": "제조사 사양 기준 WMD15-14튜브 규격(Tube size): 13# · 14# WMD15-16튜브 규격(Tube size): 19# · 16# WMD15-17튜브 규격(Tube size): 25# · 17# 입니다. 재질(실리콘·PHARMED·Norprene 등)은 이송할 유체에 맞춰 고르시면 됩니다."
     },
     {
      "tag": "호환",

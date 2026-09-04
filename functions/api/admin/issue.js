@@ -94,54 +94,71 @@ async function get(request, env) {
     if (!q) return json({ error: 'not_found' }, 404);
     const raw = safe(q.items_json);
 
+    /* 제품 표에서 한 줄만 뽑는다. 조건은 «컬럼을 LIKE 패턴으로 쓰지 않는다» —
+       D1 에서 `? LIKE '%'||model||'%'` 는 «LIKE or GLOB pattern too complex» 로 통째로 터지고,
+       그러면 요청 전체가 실패해 단가가 하나도 안 채워진다. 그래서 instr() 로만 쓴다. */
+    const COLS = 'name, model, unit, retail_price, list_price';
+    const findAll = (cond, val, lim = 6) => env.DB.prepare(
+      `SELECT ${COLS} FROM products
+        WHERE ${cond} AND IFNULL(retail_price,0) > 0
+        ORDER BY length(IFNULL(model,'')), length(IFNULL(name,'')) LIMIT ${lim}`)
+      .bind(val).all()
+      // 한 조건이 터져도 나머지는 계속 본다 — 통째로 실패하면 단가가 하나도 안 채워진다
+      .then((r) => r.results || []).catch(() => []);
+
+    /* 모델처럼 생긴 토큰. 「dVP15」처럼 숫자가 붙은 것도, 「SH-dVP」처럼 시리즈만 적힌 것도 잡는다.
+       숫자를 반드시 요구하면 시리즈 문의(모델 미정)는 영영 못 찾는다.
+       긴 토큰부터 본다 — 짧은 토큰은 엉뚱한 모델에 붙는다. */
+    const modelToks = (nm) => (String(nm).match(/[A-Za-z][A-Za-z0-9-]{2,}/g) || [])
+      .filter((t) => t.length >= 4 && /[0-9-]/.test(t))
+      .sort((a, b) => b.length - a.length);
+
     const pick = async (it) => {
       const nm = String(it.name || '').trim();
       const link = String(it.link || '').trim();
       if (!nm && !link) return null;
-      /* 찾는 순서. 조건은 «컬럼을 LIKE 패턴으로 쓰지 않는다» — D1 에서
-         `? LIKE '%'||model||'%'` 는 «LIKE or GLOB pattern too complex» 로 통째로 터진다.
-         그러면 요청 전체가 실패해 단가가 하나도 안 채워진다. 그래서 instr() 로만 쓴다. */
-      const tries = [];
-      if (link) tries.push(['product_url = ?', link]);
-      if (nm) {
-        tries.push(['name = ?', nm]);                                   // ① 품명이 똑같은 것
-        tries.push(['instr(lower(name), lower(?)) > 0', nm]);           // ② 품명이 들어가는 것
-        tries.push([`model <> '' AND instr(lower(?), lower(model)) > 0`, nm]);  // ③ 모델이 품명 안에
 
-        /* ④ 사이트 제목은 모델명을 줄여 쓴다 — 「… dVP15」인데 제품표의 모델은 「SH-dVP15」다.
-           품명에서 모델처럼 생긴 토큰(영문+숫자, 4자 이상)을 뽑아 거꾸로 찾는다.
-           긴 토큰부터 — 짧은 토큰은 엉뚱한 모델에 붙는다. */
-        const toks = (nm.match(/[A-Za-z][A-Za-z0-9-]{2,}[0-9][A-Za-z0-9-]*/g) || [])
-          .filter((t) => /[0-9]/.test(t) && /[A-Za-z]/.test(t) && t.length >= 4)
-          .sort((a2, b2) => b2.length - a2.length);
-        for (const t of toks) {
-          tries.push([`model <> '' AND instr(lower(model), lower(?)) > 0`, t]);
-        }
+      // ① 확실한 것부터 — 여기서 걸리면 그게 답이다
+      const sure = [];
+      if (link) sure.push(['product_url = ?', link]);
+      if (nm) {
+        sure.push(['name = ?', nm]);                                   // 품명이 똑같은 것
+        sure.push(['instr(lower(name), lower(?)) > 0', nm]);           // 품명이 들어가는 것
+        sure.push([`model <> '' AND instr(lower(?), lower(model)) > 0`, nm]);  // 모델이 품명 안에
+      }
+      for (const [cond, val] of sure) {
+        const rows = await findAll(cond, val, 1);
+        if (rows.length) return { hit: rows[0] };
       }
 
-      for (const [cond, val] of tries) {
-        const r = await env.DB.prepare(
-          `SELECT name, model, unit, retail_price, list_price FROM products
-            WHERE ${cond} AND IFNULL(retail_price,0) > 0
-            ORDER BY length(IFNULL(model,'')), length(IFNULL(name,'')) LIMIT 1`)
-          .bind(val).first()
-          // 한 조건이 터져도 나머지 조건은 계속 본다 — 통째로 실패하면 단가가 하나도 안 채워진다
-          .catch(() => null);
-        if (r) return r;
+      /* ② 모델 토큰. 여러 개가 걸리면 «하나를 찍지 않는다».
+         시리즈 페이지로 문의가 오면(SH-dVP → dVP10·dVP15·dVP30) 값이 다 다르다.
+         그중 하나를 몰래 넣으면 틀린 단가가 그대로 견적서로 나간다 — 사람이 고르게 한다. */
+      for (const t of modelToks(nm)) {
+        const rows = await findAll(`model <> '' AND instr(lower(model), lower(?)) > 0`, t);
+        if (rows.length === 1) return { hit: rows[0] };
+        if (rows.length > 1) return { options: rows };
       }
       return null;
     };
 
     const items = [];
+    let choose = 0;
     for (const it of raw) {
       const p = await pick(it);
+      const hit = p && p.hit;
+      if (p && p.options) choose += 1;
       items.push({
         name: String(it.name || '').trim(),
         spec: String(it.spec || '').trim(),
         qty: Math.max(1, Number(it.qty) || 1),
-        price: p ? Math.round(p.retail_price) : 0,
+        price: hit ? Math.round(hit.retail_price) : 0,
         note: '',
-        matched: p ? [p.model, p.name].filter(Boolean).join(' · ') : '',
+        matched: hit ? [hit.model, hit.name].filter(Boolean).join(' · ') : '',
+        // 고를 후보 — 화면에서 눌러 채운다
+        options: (p && p.options ? p.options : []).map((r) => ({
+          model: r.model || '', name: r.name || '',
+          unit: r.unit || '', price: Math.round(r.retail_price) })),
       });
     }
     /* 문의 단계에서는 거래처를 «붙이지 않는다».
@@ -167,7 +184,7 @@ async function get(request, env) {
                  phone: q.phone, note: q.note },
       client: null,
       client_hint: hint || null,
-      items, filled: items.filter((x) => x.price).length });
+      items, filled: items.filter((x) => x.price).length, choose });
   }
 
   // ---- 주문에서 끌어오기 ----

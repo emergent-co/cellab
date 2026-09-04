@@ -62,7 +62,7 @@
 
 ## 4.5 제품 상세페이지 표준 (2026-08 고정)
 - **모든 제품 상세페이지의 레이아웃 구성은 반드시 통일한다. 기준(최신) 템플릿 = 가오스유니온 상세페이지**(`brands/gaossunion/<slug>/index.html`): 크럼(홈›제품›계열) → h1+영문명 → 대표사진(부위 넘버링) → 정답블록 → 모델별 정가표 → 상세 설명 → 관련 링크/문의 CTA. 본문 폭 `.wrap{max-width:832px}`(모바일 768px).
-- 신규 상세페이지 작성·기존 수정 시 이 구성을 따르고, 다른 세션/작업에서도 상세 레이아웃을 임의 변형하지 말 것. 삼흥·리드플루이드·Alicat 구형 레이아웃은 순차적으로 가오스 템플릿에 맞춰 통일한다(진행 중 부채).
+- 신규 상세페이지 작성·기존 수정 시 이 구성을 따르고, 다른 세션/작업에서도 상세 레이아웃을 임의 변형하지 말 것. 삼흥은 2026-09-04 에 150장 이관 완료(린터 검사 대상). 리드플루이드·Alicat 구형 레이아웃은 순차적으로 가오스 템플릿에 맞춰 통일한다(진행 중 부채).
 - **좌측 포인트 바 금지**(2026-08-29 확정): `.dt-sum`·`.pkg-ans`·`.warn`·정답블록 등 어떤 박스에도 `border-left` 색 바(3~4px)를 쓰지 않는다. 배경+1px 테두리 박스로만 표현.
 - 색상 팔레트(2026-08 머크풍): 프라이머리 퍼플 `#3B3695` / 진한 `#2A2570` / **링크·강조 블루 `#0F69AF`** / 연배경 `#EAF4FB` / 테두리 `#D8E4F2`. 옐로 포인트 `#EF9F27`은 경고 박스(`#FDF6E9`+`#F3E0BC`)에만. 구 네이비(#1E3A5F)·틸(#1a6e56)·테라코타(#C2410C) 금지.
 - **색은 토큰 1곳에서만**(2026-09-02 확정): 팔레트 실값은 `assets/site.css` `:root` 의 `--merck / --merck-d / --merck-link / --merck-soft / --merck-line / --merck-yellow / --warn-bg / --warn-line / --danger` 9줄에만 둔다. 상세페이지 인라인 `<style>`·`style=""` 와 생성기(`_ops/build_web.py`·`build_page.py`·`tpl/product.html`)는 hex 대신 `var(--merck-*)` 만 쓴다. 색을 바꿀 일이 생기면 site.css 9줄만 고치면 전 상세페이지에 반영된다. 일괄 점검·재적용은 `python _ops\patch_merck_palette.py` (멱등, 잔여 금지색이 있으면 종료코드 1).
@@ -146,9 +146,14 @@
 `_build/lint_allow.txt` 에 적힌 기존 부채만 경고로 넘어가고, 새로 생긴 위반이 있으면 `build.py` 가 **파일을 쓰지 않고 exit 1** → `go.ps1` 이 "빌드 실패"로 중단해 커밋·푸시가 막힌다. 위반 메시지에 유예 목록에 넣을 줄이 그대로 찍히니, 의도한 예외면 그 줄을 `lint_allow.txt` 에 추가한다.
 검사 항목(코드): `STYLE_INLINE` `NO_DETAIL_CSS` `MISSING_BLOCK` `ORDER` `IMG_OUTSIDE` `BAD_COLOR` `BORDER_LEFT` `BAD_PHRASE` `NO_BUYBOX` `NO_SPEC_CTA` `HTML_END` `NO_BRAND_PROFILE` `REQ_SPEC` `NO_MODEL_BLOCK` —
 필수 블록(크럼·h1·대표사진·정답블록) 존재와 순서, 가격표/견적 CTA 부재, 금지 색상(`#1E3A5F`·`#1a6e56`·`#C2410C`·`#E8632C`), `border-left` 3~4px 좌측 색 바, 인라인 `<style>` 잔존, `detail.css` 링크 누락, `</html>` 누락.
-구형 브랜드(삼흥·리드플루이드·Alicat)는 순차 이관 부채라 검사 제외(`LINT_SKIP_BRANDS`).
+구형 브랜드(리드플루이드·Alicat)는 순차 이관 부채라 검사 제외(`LINT_SKIP_BRANDS`). 삼흥은 2026-09-04 에 제외를 풀었다.
 
-**이관 현황(2026-09-02)**: detail.css 적용 = 가오스유니온·hefei·dodochem 125장. 이관 대기 = aida 5 · hench 2 · neware 2(린터가 매 빌드 warn), 그리고 구형 3개 브랜드.
+**이관 현황(2026-09-04)**: detail.css 적용 = 가오스유니온·hefei·dodochem 125장 + **삼흥 150장**. 린터 검사 대상 516장. 이관 대기 = aida 5 · hench 2 · neware 2(린터가 매 빌드 warn), 그리고 구형 2개 브랜드(리드플루이드 73 · Alicat 12).
+
+**삼흥 이관에서 나온 것 (2026-09-04)**
+- 인라인 `<style>` 150장 제거 = `_ops/sh_to_detailcss.py` (파일 하나씩 열어 검증 6종을 통과할 때만 쓴다). 삼흥이 들고 있던 CSS 는 detail.css 의 옛 스냅샷이었다 — 134블록 중 105블록이 문자열까지 같았다. 고유 컴포넌트만 detail.css 의 '삼흥 이관분'·'회전 튜브로 PRO 상세' 두 절로 옮겼다.
+- **자료 출처 한 줄은 이제 빌드가 붙인다** — `inject_source_line()`. 페이지에는 `<!--SRCLINE-->…<!--/SRCLINE-->` 마커만 있고 문구는 `_build/brands.json` 의 `source.url` 한 곳. 마커를 새로 만드는 것은 `"source_autoline": true` 를 켠 브랜드만(다른 브랜드 페이지를 말없이 고치지 않게). 리드플루이드·Alicat 이관 때 이 플래그를 켜면 된다.
+- 린터가 놓치던 것 3가지를 고쳤다 — 견적 버튼을 `class="qbtn"` 완전일치로 찾던 것(`class="qbtn cfgq-jump"` 를 못 봤다), 모델 썸네일 스트립 `.mdl-strip`(`.thlb` 와 같은 역할), 모델을 '열'로 세운 비교표(`_pp_model_cols_ok`).
 
 ## 5. 운영 원칙 (스프롤 방지)
 - **갱신 1곳 원칙**: 새 기능·섹션은 "이게 바뀔 때 수정 지점이 1곳인가?"를 통과해야 추가한다. 통과 못 하면 build.py 자동화부터.

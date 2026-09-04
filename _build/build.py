@@ -2462,10 +2462,21 @@ def inject_source_line():
                                   # 다른 브랜드 페이지를 이 함수가 말없이 고치지 않게 한다.
             for at in SRCLINE_AT:
                 i = html.find(at)
-                if i > 0:
-                    write(fp, html[:i] + block + '\n' + html[i:])
-                    made += 1
-                    break
+                if i < 0:
+                    continue
+                # 섹션 사이(= .wrap 밖)에 놓으면 폭·여백이 어긋난다.
+                # 바로 앞 섹션의 </section> 안쪽, 그것도 폭을 잡는 .wrap 안으로 넣는다
+                # (</section> 직전이 </div> 면 그 안이 본문이다).
+                at_i = i
+                j = html.rfind('</section>', 0, i)
+                if j > 0:
+                    at_i = j
+                    k = html.rstrip()[:j].rstrip()
+                    if k.endswith('</div>'):
+                        at_i = len(k) - len('</div>')
+                write(fp, html[:at_i] + block + '\n' + html[at_i:])
+                made += 1
+                break
     if made or upd:
         print('  자료 출처 한 줄: 신규 %d개 · 갱신 %d개' % (made, upd))
 

@@ -117,6 +117,14 @@ a{color:inherit;text-decoration:none}
 .donerow .t b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .donerow .t small{display:block;font-size:11.5px;color:var(--mut)}
 .donerow .a{font-size:13px;font-weight:700;color:var(--mut)}
+/* 모델이 여러 개 걸린 품목 — 눌러서 고른다 */
+.dqopt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0 2px;padding:8px 10px;
+  background:#FFFBF3;border:1px solid #F0C98A;border-radius:9px}
+.dqopt>b{font-size:11.5px;font-weight:800;color:#92400E;margin-right:2px}
+.dqo{background:#fff;border:1px solid #F3DCB8;border-radius:8px;padding:5px 9px;font-size:12.5px;
+  font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.dqo:hover{border-color:#E0B476;background:#FFFDF8}
+.dqo i{font-style:normal;font-weight:600;color:var(--mut)}
 .newrow:hover{border-color:#E0B476;background:#FFFDF8}
 .newrow .t{flex:1;min-width:0}
 .newrow .t b{display:block;font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1879,7 +1887,10 @@ function inqOpen(q){
     var bd = w.querySelector('.mbox'); if (bd) bd.scrollTop = 0;
     if (dqInq.filled){
       toast(dqInq.filled+'개 품목 단가를 사이트 판매가로 채웠습니다 · 단가 기준 «부가세 별도»');
-    } else if (dqInq.total){
+    }
+    if (pr.choose){
+      toast(pr.choose+'개 품목은 모델이 여러 개입니다 — 품목 아래에서 골라주세요');
+    } else if (!dqInq.filled && dqInq.total){
       toast('제품 표에서 단가를 찾지 못했습니다 — 직접 넣어주세요');
     }
   };
@@ -5696,7 +5707,16 @@ function dqPaintItems(){
       +'<div class="r2"><input class="qy" type="number" min="1" value="'+(it.qty||1)+'" title="수량">'
         +'<input class="pr" type="text" inputmode="numeric" value="'+(it.price?won(it.price):'')+'" title="'+lbl+'" placeholder="'+lbl+'">'
         +'<span class="sb">'+won(dqLine(it))+'원</span>'
-        +(dqItems.length>1?'<button class="dx" aria-label="삭제">×</button>':'')+'</div></div>';
+        +(dqItems.length>1?'<button class="dx" aria-label="삭제">×</button>':'')+'</div>'
+      /* 시리즈로 문의가 오면(모델 미정) 값이 여러 개다 — 하나를 몰래 넣지 않고 고르게 한다 */
+      +((it.options && it.options.length && !it.price)
+        ? '<div class="dqopt"><b>모델을 골라주세요</b>'
+          + it.options.map(function(o,k){
+              return '<button class="dqo" data-o="'+k+'">'+esc(o.model||o.name||'—')
+                + '<i>'+won(o.price)+'</i></button>'; }).join('')
+          + '</div>'
+        : '')
+      +'</div>';
   }).join('');
   box.querySelectorAll('.dq').forEach(function(el){
     var i = Number(el.dataset.i);
@@ -5711,6 +5731,16 @@ function dqPaintItems(){
       e.target.value = dqItems[i].price ? won(dqItems[i].price) : '';
       dqRow(el,i);
     };
+    el.querySelectorAll('.dqo').forEach(function(ob){
+      ob.onclick = function(){
+        var o = (dqItems[i].options||[])[Number(ob.dataset.o)]; if (!o) return;
+        dqItems[i].price = o.price;
+        if (!dqItems[i].spec) dqItems[i].spec = o.model || '';
+        dqItems[i].options = [];          // 골랐으니 후보는 치운다
+        dqPaintItems();
+        toast((o.model||'모델')+' · '+won(o.price)+'원 (부가세 별도)');
+      };
+    });
     var x = el.querySelector('.dx'); if (x) x.onclick = function(){ dqItems.splice(i,1); dqPaintItems(); dqAutoTitle(); };
   });
   dqSum();

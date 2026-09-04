@@ -21,6 +21,35 @@ COPY   = os.path.join(ROOT, '_ops/leadfluid_cn/tube_copy.json')
 OUT    = os.path.join(ROOT, '_build/products/leadfluid.json')
 IMGDIR = os.path.join(ROOT, 'img/leadfluid')
 
+ROLES = json.load(open(os.path.join(ROOT, '_ops/leadfluid_cn/img_roles.json'), encoding='utf-8'))
+BODY  = json.load(open(os.path.join(ROOT, '_ops/leadfluid_cn/img_body.json'), encoding='utf-8'))
+import html as _h
+
+def hero_imgs(slug):
+    idx = ROLES['hero'].get(slug, [])
+    got = [f'{slug}-{i}.jpg' for i in idx]
+    return [f for f in got if os.path.exists(os.path.join(IMGDIR, f))]
+
+def body_section(slug):
+    """제조사 도판 — 표 이미지는 싣지 않는다(우리 한글 표와 중복 + 중국어)."""
+    d = BODY.get(slug) or {}
+    figs = []
+    for i in sorted(d, key=lambda x: int(x)):
+        kind, cap = d[i]
+        if kind == 'table' or not cap:
+            continue
+        f = f'{slug}-{i}.jpg'
+        if not os.path.exists(os.path.join(IMGDIR, f)):
+            continue
+        figs.append('<figure class="pkg-fig"><img src="/img/leadfluid/%s" alt="%s" loading="lazy" '
+                    'width="1200" height="900"><figcaption>%s</figcaption></figure>'
+                    % (f, _h.escape(cap), _h.escape(cap)))
+    if not figs:
+        return None
+    return {'h': '제조사 자료', 'html': '<div class="pkg-figs">' + ''.join(figs) + '</div>',
+            'note': '제조사 원문 도판입니다. 캡션은 실험셋업연구소가 한글로 옮긴 것이며, 도판 안의 수치·표기는 제조사 원문 그대로입니다.'}
+
+
 # 원문 오기(계산 교차검증으로 확인). 값은 고치지 않고 note 로 밝힌다.
 ERRATA = {
  'tube-tygon-s3-e3603': '제조사 원문 규격표 중 1.85×0.85 · 2.79×0.85 행의 공칭 치수 칸은 앞 행 값이 잘못 들어가 있습니다(각각 1.85×3.55×0.85 · 2.79×4.49×0.85 이 계산값). 원문 표기를 그대로 실었으니 주문 전 확인 바랍니다.',
@@ -93,7 +122,7 @@ def main():
         if c['slug'] in ERRATA:
             note += ' ' + ERRATA[c['slug']]
         var['note'] = note
-        im = imgs_for(c['slug'])
+        im = hero_imgs(c['slug'])
         products.append({
             'slug': c['slug'], 'name': c['name'], 'name_en': c['name_en'], 'sub': c['sub'],
             'category': '연동펌프 튜브',
@@ -108,6 +137,7 @@ def main():
             'related': '<a href="/brands/leadfluid/">리드플루이드 전체 제품</a> · <a href="/product/">전 제품 통합 카탈로그</a> · <a href="/contact/">문의·FAQ</a>',
             'keywords': [['연동펌프 튜브', '/product/'], ['펌프 호스', '/product/'],
                          ['리드플루이드', '/brands/leadfluid/'], [c['name_en'], '']],
+            'sections': [x for x in [body_section(c['slug'])] if x],
             'faq': faq_for(c, tbl, c['slug']),
             'source': it['url'],
             'ld': {'name': c['name'], 'category': '연동펌프 튜브',

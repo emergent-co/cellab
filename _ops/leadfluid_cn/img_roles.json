@@ -1,0 +1,33 @@
+{
+ "_doc": "이미지 역할 분류 — 사람이 컨택트시트(_ops/leadfluid_cn/contact_all.jpg)를 보고 판정. hero=썸네일에 노출할 제품컷, 나머지는 본문 자료(치수도·차트·설치안내·표).",
+ "hero": {
+  "head-bz15-25": [1,2],
+  "head-dg": [1,2,3,4],
+  "head-dmd15": [1],
+  "head-dmd25-t": [1],
+  "head-ds": [1,2],
+  "head-dt": [1,2,3,4],
+  "head-ft1505": [1,3,4],
+  "head-ft1524": [1,4],
+  "head-gn10": [1,2,3],
+  "head-kz25": [1,2,3,4,10],
+  "head-wmd15": [1],
+  "head-yt25": [1,2,3],
+  "head-yz15": [1,2,3,4],
+  "head-yz15t": [1,2],
+  "head-yz35": [1,2,3],
+  "tube-norprene-a60f": [1,2],
+  "tube-norprene-a60g": [1,2,3,5],
+  "tube-norprene-chemical": [1,2,3],
+  "tube-pharmed-bpt": [1,2,3,4],
+  "tube-silicone": [1,2,3],
+  "tube-tygon-2475": [1,2,4],
+  "tube-tygon-3350": [1,2,3],
+  "tube-tygon-s3-e3603": [1,2,3]
+ },
+ "exclude": {
+  "_doc": "썸네일·본문 어디에도 쓰지 않을 컷",
+  "head-ft1505": [2],
+  "tube-norprene-a60g": [4]
+ }
+}

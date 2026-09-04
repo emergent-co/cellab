@@ -483,7 +483,180 @@
     "rotary-tube-furnace-pro 한 장만 고유 CSS 124블록(위저드 qsel-* · 비교표 vs-* · SVG 도해)을 갖는다. 일괄 처리에서 뺀다 — _ops/sh_to_detailcss.py 의 SKIP."
    ],
    "default_required_specs": [],
-   "families": {},
+   "families": {
+    "measuring-instrument": {
+     "match": [
+      "measuring-instrument"
+     ],
+     "required_specs": [
+      "디스플레이",
+      "팬 크기"
+     ]
+    },
+    "vacuum-drying-oven": {
+     "match": [
+      "vacuum-drying-oven"
+     ],
+     "required_specs": []
+    },
+    "water-bath-chiller": {
+     "match": [
+      "water-bath-chiller"
+     ],
+     "required_specs": [
+      "온도"
+     ]
+    },
+    "rotary-evaporator": {
+     "match": [
+      "rotary-evaporator"
+     ],
+     "required_specs": []
+    },
+    "shaker-incubator": {
+     "match": [
+      "shaker-incubator"
+     ],
+     "required_specs": []
+    },
+    "stirrer-hotplate": {
+     "match": [
+      "stirrer-hotplate"
+     ],
+     "required_specs": []
+    },
+    "climate-chamber": {
+     "match": [
+      "climate-chamber"
+     ],
+     "required_specs": [
+      "온도"
+     ]
+    },
+    "mill-disperser": {
+     "match": [
+      "mill-disperser"
+     ],
+     "required_specs": []
+    },
+    "vacuum-muffle": {
+     "match": [
+      "vacuum-muffle"
+     ],
+     "required_specs": [
+      "External Dim. (W×D×H)",
+      "Heater",
+      "Heater Element",
+      "Internal Dim. (W×D×H)",
+      "Material External",
+      "Temp Controller",
+      "Volume"
+     ]
+    },
+    "shaker-mixer": {
+     "match": [
+      "shaker-mixer"
+     ],
+     "required_specs": []
+    },
+    "vacuum-pump": {
+     "match": [
+      "vacuum-pump"
+     ],
+     "required_specs": []
+    },
+    "drying-oven": {
+     "match": [
+      "drying-oven"
+     ],
+     "required_specs": [
+      "공기순환",
+      "내부 재질",
+      "내부치수 W×D×H",
+      "온도범위",
+      "외부치수 W×D×H",
+      "용량",
+      "중량",
+      "컨트롤러",
+      "타이머",
+      "히터 용량"
+     ]
+    },
+    "rotary-kiln": {
+     "match": [
+      "rotary-kiln"
+     ],
+     "required_specs": [
+      "External Dim. (W×D×H)",
+      "Heater",
+      "Max Temp",
+      "Temp Controller"
+     ]
+    },
+    "fume-hood": {
+     "match": [
+      "fume-hood"
+     ],
+     "required_specs": []
+    },
+    "incubator": {
+     "match": [
+      "incubator"
+     ],
+     "required_specs": []
+    },
+    "autoclave": {
+     "match": [
+      "autoclave"
+     ],
+     "required_specs": [
+      "용량",
+      "제어"
+     ]
+    },
+    "elevator": {
+     "match": [
+      "elevator"
+     ],
+     "required_specs": [
+      "Heater",
+      "Internal Dim. (W×D×H)",
+      "Max Temp",
+      "Temp Controller",
+      "Weight"
+     ]
+    },
+    "gas-flow": {
+     "match": [
+      "gas-flow"
+     ],
+     "required_specs": [
+      "Components",
+      "External Dim. (W×D×H)",
+      "Furnace",
+      "Heater",
+      "Heater Element",
+      "Hot Zone",
+      "Max Temp",
+      "Sensor",
+      "Temp Controller",
+      "Weight",
+      "전원 (220V, 50/60Hz, 1Φ)"
+     ]
+    },
+    "muffle": {
+     "match": [
+      "muffle"
+     ],
+     "required_specs": [
+      "Heater",
+      "Max Temp",
+      "Temp Controller",
+      "Volume",
+      "Weight"
+     ]
+    }
+   },
    "model_block_min": 3
   },
   "leadfluid": {
