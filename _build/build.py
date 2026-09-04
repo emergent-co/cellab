@@ -2395,7 +2395,7 @@ def lint_detail_pages():
             nmodel = len(models)
             need = prof.get('model_block_min', PP_MODEL_BLOCK_MIN)
             if (nmodel >= need and not _pp_pack_variant(models)
-                    and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im', body)):
+                    and not re.search(r'class="mdl-hd"|class="thlb"|mdl-im|mdl-tbl', body)):
                 warns.append((rel, 'NO_MODEL_BLOCK',
                               '모델 %d종을 한 페이지에 담았는데 모델별 사진·사양 블록이 없다 '
                               '— 고객이 대표 모델 말고는 내용을 볼 수 없다 (.mdl-hd 또는 썸네일 라벨 .thlb)'

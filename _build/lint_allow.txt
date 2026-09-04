@@ -1,59 +1,13 @@
 # 이관 대기 부채 — 여기 있는 조합은 경고만 하고 빌드를 세우지 않는다.
 # 형식: <경로> <코드>   ( # 뒤는 주석 )
 # 고친 페이지는 줄을 지운다. 새 위반은 절대 여기에 추가하지 말고 고칠 것.
-# 2026-09-03 재생성 — 규격 변형 페이지(용량·치수만 다른 것)는 린터가 스스로 걸러낸다.
-brands/aida/cell-c040/ NO_MODEL_BLOCK
-brands/aida/electrode-holder/ NO_MODEL_BLOCK
-brands/aida/electrode-stand-t0101/ NO_MODEL_BLOCK
-brands/aida/five-port-cell-c010/ NO_MODEL_BLOCK
-brands/aida/gc-disc-working-electrode/ NO_MODEL_BLOCK
-brands/aida/glass-cell-c002/ NO_MODEL_BLOCK
-brands/aida/graphite-rod-counter-electrode/ NO_MODEL_BLOCK
-brands/aida/h-cell-ch2001/ NO_MODEL_BLOCK
-brands/aida/h-cell-ch2003/ NO_MODEL_BLOCK
-brands/aida/jacket-cell-c003/ NO_MODEL_BLOCK
-brands/aida/membrane-cell-ch2010/ NO_MODEL_BLOCK
-brands/aida/multifunction-cell-m005/ NO_MODEL_BLOCK
-brands/aida/photo-cell-k020/ NO_MODEL_BLOCK
-brands/aida/photo-cell-k040/ NO_MODEL_BLOCK
-brands/aida/photo-reactor-k010/ NO_MODEL_BLOCK
-brands/aida/pt-disc-working-electrode/ NO_MODEL_BLOCK
-brands/aida/pt-mesh-counter-electrode/ NO_MODEL_BLOCK
-brands/aida/pt-sheet-counter-electrode/ NO_MODEL_BLOCK
-brands/aida/pt-wire-counter-electrode/ NO_MODEL_BLOCK
-brands/aida/raman-battery-cell/ NO_MODEL_BLOCK
-brands/aida/raman-cell-k004/ NO_MODEL_BLOCK
-brands/aida/rde-rrde/ NO_MODEL_BLOCK
-brands/aida/reference-electrode/ NO_MODEL_BLOCK
-brands/aida/sealed-cell-c001/ NO_MODEL_BLOCK
-brands/aida/sem-dual-electrode/ NO_MODEL_BLOCK
-brands/aida/xrd-cell-e602/ NO_MODEL_BLOCK
-brands/aida/zinc-air-cell-e100/ NO_MODEL_BLOCK
+# 2026-09-04 재생성 — 규격 변형 페이지와 모델별 표(mdl-tbl) 보유 페이지는 린터가 스스로 걸러낸다.
 brands/dodochem/p-ne-000162/ NO_MODEL_BLOCK
-brands/gaossunion/agcl-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/au-disc-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/co2rr-catalyst/ NO_MODEL_BLOCK
 brands/gaossunion/custom-material-working-electrode/ MISSING_BLOCK
-brands/gaossunion/custom-material-working-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/echem-materials/ NO_MODEL_BLOCK
 brands/gaossunion/electrode-polishing/ NO_MODEL_BLOCK
-brands/gaossunion/frit-salt-bridge/ NO_MODEL_BLOCK
-brands/gaossunion/gc-disc-working-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/graphite-rod-counter-electrode/ NO_MODEL_BLOCK
 brands/gaossunion/high-temp-rde/ NO_MODEL_BLOCK
-brands/gaossunion/mercury-oxide-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/mercury-sulfate-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/pt-disc-working-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/pt-mesh-counter-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/pt-plate-counter-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/rde-external-thread/ NO_MODEL_BLOCK
-brands/gaossunion/rde-internal-thread/ NO_MODEL_BLOCK
-brands/gaossunion/rde-rrde3a/ NO_MODEL_BLOCK
-brands/gaossunion/rhe-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/rrde-3a/ NO_MODEL_BLOCK
-brands/gaossunion/rrde-external-thread/ NO_MODEL_BLOCK
-brands/gaossunion/sce-reference-electrode/ NO_MODEL_BLOCK
-brands/gaossunion/simple-electrode-holder/ NO_MODEL_BLOCK
 brands/neware/ct-4008q/ MISSING_BLOCK
 brands/neware/ct-4008q/ STYLE_INLINE
 brands/neware/wgdw-chamber/ MISSING_BLOCK

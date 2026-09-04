@@ -140,12 +140,38 @@ def spec_tbl(rows):
             + ''.join('<tr><th>%s</th><td>%s</td></tr>'%r for r in rows)
             + '</tbody></table></div>')
 
+_UNIT = re.compile(r'(mL|\u33c6|L\b|mm|cm|\u03a6|\u03c6|\u03bcL|uL|g\b|kg|\u2103|W\b|inch)')
+
+def split_axis(rows):
+    """규격이 '형식 · 수치' 꼴로 일관되면 형식을 별도 열로 뺀다.
+    한 페이지에 모델이 여럿일 때 무엇이 다른지 한눈에 보이게 하려는 것이다.
+    형식이 없거나 전부 형식이거나 형식이 한 가지뿐이면 쪼개지 않는다(억지 분할 방지)."""
+    out = []
+    for m, sp, p in rows:
+        seg = [x.strip() for x in str(sp).split('\u00b7')]
+        i = 0
+        while i < len(seg) and not _UNIT.search(seg[i]) and not re.fullmatch(r'[\d.~\s]+', seg[i]):
+            i += 1
+        if i == 0 or i == len(seg):
+            return None
+        out.append((' \u00b7 '.join(seg[:i]), ' \u00b7 '.join(seg[i:])))
+    return out if len({a for a, _ in out}) >= 2 else None
+
+
 def price_tbl(rows, headers=('모델','규격','제품가격 1개 (VAT 별도)')):
-    h='<div class="pkg-tblwrap"><table class="pkg-tbl pkg-opt"><thead><tr>'+''.join('<th>%s</th>'%x for x in headers)+'</tr></thead><tbody>'
-    for m,spec,p in rows:
+    """모델별 한 줄 — 모델명·형식·규격·가격을 모두 보여 준다.
+    mdl-tbl 클래스는 '모델별 내용이 페이지에 있다'는 표시로, 빌드 린터가 이걸 본다."""
+    ax = split_axis(rows) if len(rows) > 2 else None
+    if ax:
+        headers = (headers[0], '형식', headers[1], headers[2])
+    h='<div class="pkg-tblwrap"><table class="pkg-tbl pkg-opt mdl-tbl"><thead><tr>'+''.join('<th>%s</th>'%x for x in headers)+'</tr></thead><tbody>'
+    for i,(m,spec,p) in enumerate(rows):
         pr = ('<b>%s원</b>'%format(landed_extra(p),',')) if p else '<b>문의</b>'
         sp = '' if spec==m else spec          # 모델명과 규격이 같으면 규격칸을 비운다
-        h+='<tr><td><b>%s</b></td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,sp,pr)
+        if ax:
+            h+='<tr><td><b>%s</b></td><td>%s</td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,ax[i][0],ax[i][1],pr)
+        else:
+            h+='<tr><td><b>%s</b></td><td>%s</td><td style="text-align:center">%s</td></tr>'%(m,sp,pr)
     h+='</tbody></table></div>'
     if any(p for _,_,p in rows):
         h+='<p class="pkg-note">%s</p>'%PRICE_NOTE
