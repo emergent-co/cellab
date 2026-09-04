@@ -134,14 +134,19 @@ def main():
             'related': '<a href="/brands/leadfluid/">리드플루이드 전체 제품</a> · <a href="/product/">전 제품 통합 카탈로그</a> · <a href="/contact/">문의·FAQ</a>',
             'keywords': [['펌프헤드', '/product/'], ['연동펌프 헤드', '/product/'],
                          ['리드플루이드', '/brands/leadfluid/'], [c['name_en'], '']],
-            'sections': [x for x in [body_section(c['slug'])] if x],
+            'sections': [x for x in [c.get('install_steps'), c.get('life_table'),
+                                     c.get('extra_table'), body_section(c['slug'])] if x],
             'faq': faq_for(c, specs),
             'source': it['url'],
             'ld': {'name': c['name'], 'category': '연동펌프 헤드', 'description': c['answer']},
         }
-        wt = wide_table(it)
-        if wt:
-            p['variants'] = wt
+        ft = c.get('flow_table')
+        if ft:
+            p['variants'] = ft
+        else:
+            wt = wide_table(it)
+            if wt:
+                p['variants'] = wt
         products.append(p)
     data = json.load(open(OUT, encoding='utf-8'))
     keep = [x for x in data['products'] if x['slug'] not in {y['slug'] for y in products}]

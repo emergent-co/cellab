@@ -393,6 +393,15 @@ em.alias{font-style:normal;font-size:11.5px;font-weight:700;color:var(--navy);
 .dfrom{border:1px solid #F0C98A;background:#FFFBF3;border-radius:9px;padding:9px 11px;
   font-size:12.5px;font-weight:700;color:#92400E;margin-top:10px;display:flex;align-items:center;gap:8px}
 .dfrom button{margin-left:auto;border:0;background:0;color:#92400E;cursor:pointer;font-size:16px;line-height:1}
+.inqref{border:1px solid var(--line);background:#FAFBFC;border-radius:9px;padding:8px 11px;margin-top:8px}
+.inqref>summary{cursor:pointer;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.02em;list-style:none}
+.inqref>summary::-webkit-details-marker{display:none}
+.inqref>summary::before{content:'▸ ';color:var(--mut-2)}
+.inqref[open]>summary::before{content:'▾ '}
+.inqref ul{margin:8px 0 0;padding-left:17px}
+.inqref li{font-size:12.5px;line-height:1.6}
+.inqref p{margin:8px 0 0;font-size:13px;line-height:1.6;white-space:pre-wrap;word-break:break-all;
+  background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
 .dq{border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px;background:#fcfcfd}
 .dq input{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:13.5px;background:#fff;box-sizing:border-box}
 .dq .r1{display:flex;gap:6px;margin-bottom:6px}
@@ -1880,6 +1889,8 @@ function inqOpen(q){
     // 사이트 표시가는 «부가세 별도»다. 기준을 안 맞추고 당겨오면 견적이 10% 부풀어 나간다.
     if (pr.filled) dqVat = false;
     dqInq = { id:q.id, who:[q.name, q.org_name].filter(Boolean).join(' · '),
+      note: q.note || '', ask: its.map(function(i){
+        return [i.name, i.spec, (i.qty||1)+'개'].filter(Boolean).join(' · '); }),
       filled: pr.filled || 0, total: (pr.items||[]).length,
       back: function(){ var win = dqHostWin;
         dqHost=null; dqHostWin=null; dqInq=null; dqClear();
@@ -5212,6 +5223,15 @@ function paintDocs(){
        + (dqInq ? '<div class="dfrom">견적 문의에서 넘어왔습니다 · '+esc(dqInq.who||'')
            + (dqInq.filled ? ' · 단가 '+dqInq.filled+'건 자동 채움 (사이트 판매가 · 부가세 별도)' : '')
            + (dqInq.back ? '<button id="dqInqBack" title="문의 내용으로 돌아가기">↩</button>' : '')+'</div>' : '')
+       /* 고객이 남긴 말은 발행하는 내내 보여야 한다 — 여기서 사라지면
+          «뭐라고 했더라» 하고 팝업을 닫았다 다시 열게 된다. 접었다 펼 수 있게만 해 둔다. */
+       + ((dqInq && (dqInq.note || (dqInq.ask||[]).length))
+          ? '<details class="inqref"'+(dqInq.note?' open':'')+'><summary>고객이 보낸 문의 내용</summary>'
+            + ((dqInq.ask||[]).length
+               ? '<ul>'+dqInq.ask.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ul>' : '')
+            + (dqInq.note ? '<p>'+esc(dqInq.note)+'</p>' : '')
+            + '</details>'
+          : '')
      + '</div>'
      + '<div class="dcard"><h4>거래처 · 계산서 발행정보</h4><div id="dqCliBox"></div>'
        + '<div id="dqContactBox"></div>'

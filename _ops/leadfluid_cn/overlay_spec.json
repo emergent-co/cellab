@@ -475,5 +475,87 @@
     "align": "left"
    }
   ]
+ },
+ "head-dg-10.jpg": {
+  "items": [
+   {
+    "box": [
+     142,
+     698,
+     214,
+     740
+    ],
+    "text": "모델",
+    "size": 20,
+    "align": "left"
+   },
+   {
+    "box": [
+     136,
+     760,
+     220,
+     800
+    ],
+    "text": "L (mm)",
+    "size": 19,
+    "align": "left"
+   }
+  ]
+ },
+ "head-dmd15-8.jpg": {
+  "items": [
+   {
+    "box": [
+     196,
+     240,
+     320,
+     272
+    ],
+    "text": "외형 치수도",
+    "size": 19,
+    "color": "#FFFFFF",
+    "align": "left",
+    "bg": "#E2001A"
+   },
+   {
+    "box": [
+     700,
+     242,
+     800,
+     272
+    ],
+    "text": "단위: mm",
+    "size": 17,
+    "align": "left"
+   }
+  ]
+ },
+ "head-ft1505-9.jpg": {
+  "items": [
+   {
+    "box": [
+     196,
+     462,
+     300,
+     494
+    ],
+    "text": "치수도",
+    "size": 19,
+    "color": "#FFFFFF",
+    "align": "left",
+    "bg": "#E2001A"
+   },
+   {
+    "box": [
+     690,
+     464,
+     800,
+     494
+    ],
+    "text": "단위: mm",
+    "size": 17,
+    "align": "left"
+   }
+  ]
  }
 }
