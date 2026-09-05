@@ -5,7 +5,7 @@ import { json, isAdmin, needAdmin, kstISO, recalcOrder, logEvent, STATUSES, admi
          randomToken } from '../../_lib.js';
 import { confirmMailBody, splitAddr } from '../../_mailer.js';
 import { sendMail, mailConfigured } from '../../_mailer.js';
-import { notifyCustomer, shipHtml } from '../../_notify.js';
+import { notifyCustomer, shipHtml, notifyShipped } from '../../_notify.js';
 
 export async function onRequest({ request, env, params }) {
   if (!(await adminOK(request, env))) return needAdmin();
@@ -178,20 +178,7 @@ export async function onRequest({ request, env, params }) {
 }
 
 // 배송중으로 바꾼 시점에 고객에게 알림 — 수령 확인은 고객이 누른다
+// 본체는 _notify.js 로 옮겼다 — 거래명세서 발송 경로(_send.js)에서도 같은 일을 해야 해서다.
 async function onShipped(env, request, order) {
-  await env.DB.prepare('UPDATE orders SET shipped_at=? WHERE id=?').bind(kstISO(), order.id).run();
-  const customer = order.customer_id
-    ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(order.customer_id).first()
-    : null;
-  if (!customer) return;
-  const origin = new URL(request.url).origin;
-  const url = `${origin}/member/#orders`;
-  await notifyCustomer(env, {
-    customer, order,
-    template: env.ALIMTALK_TPL_SHIP || 'rndsetup_ship',
-    text: `[실험셋업연구소] ${order.title || ''} 주문이 발송되었습니다.\n받으시면 수령 확인을 눌러주세요.\n${url}`,
-    buttons: [{ buttonType: 'WL', buttonName: '수령 확인하기', linkMo: url, linkPc: url }],
-    subject: `[실험셋업연구소] ${order.title || order.order_no} 발송 안내`,
-    html: shipHtml({ orderNo: order.order_no, title: order.title || '', url }),
-  });
+  return notifyShipped(env, new URL(request.url).origin, order);
 }

@@ -32,14 +32,22 @@ export function mailReplyTo(env) {
 export async function sendMail(env, m) {
   if (!mailConfigured(env)) return { ok: false, error: 'RESEND_API_KEY 미설정' };
 
+  /* «a@x.com, b@y.com» 처럼 한 줄로 적어 보내는 자리가 있다(문서 상세의 참조 칸).
+     그대로 배열 원소 하나로 넣으면 Resend 가 주소 하나로 보고 형식 오류를 낸다 — 쉼표로 풀어서 넣는다. */
+  const addrs = (v) => (Array.isArray(v) ? v : [v])
+    .flatMap((x) => String(x == null ? '' : x).split(/[,;]/))
+    .map((x) => x.trim()).filter(Boolean);
+
+  const to = addrs(m.to);
+  if (!to.length) return { ok: false, error: '받는 사람 주소가 없습니다' };
   const body = {
     from: mailFrom(env),
-    to: Array.isArray(m.to) ? m.to : [m.to],
+    to,
     subject: m.subject,
     html: m.html,
   };
   if (m.text) body.text = m.text;
-  if (m.cc) body.cc = Array.isArray(m.cc) ? m.cc : [m.cc];
+  if (m.cc) { const cc = addrs(m.cc); if (cc.length) body.cc = cc; }
   if (m.bcc) {
     const list = (Array.isArray(m.bcc) ? m.bcc : [m.bcc])
       .map((x) => splitAddr(x).addr).filter(Boolean);

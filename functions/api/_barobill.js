@@ -205,7 +205,9 @@ export function buildTaxInvoice(o) {
   const items = (p.items || []).map((i) => {
     const qty = Number(i.qty) || 0;
     const up = Math.round(Number(i.unit_price) || 0);
-    const amt = Math.round(Number(i.amount) || qty * up);
+    /* i.amount 는 «부가세 포함» 줄 금액이다(서류 표기용). 국세청 품목의 Amount 는 공급가액이라
+       그대로 넣으면 공급가액이 정확히 10% 부풀어 전송되고, 헤더 합계(AmountTotal=공급가)와도 어긋난다. */
+    const amt = Math.round(qty * up);
     return {
       PurchaseExpiry: ymd(o.writeDate),
       Name: cut(i.name, 100),

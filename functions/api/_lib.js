@@ -107,25 +107,46 @@ export async function dropSession(request, env) {
 // ---------- 주문번호 ----------
 export async function nextOrderNo(env) {
   const day = kstDate().replace(/-/g, '');
+  /* COUNT 로 세면 중간 것을 지웠을 때 번호가 되돌아가 이미 쓴 번호를 다시 준다.
+     order_no 는 UNIQUE 라 그 순간 INSERT 가 터진다 — 지금까지 쓴 «가장 큰 번호»의 다음을 준다. */
   const row = await env.DB.prepare(
-    "SELECT COUNT(*) AS c FROM orders WHERE order_no LIKE ?"
+    "SELECT MAX(order_no) AS m FROM orders WHERE order_no LIKE ?"
   ).bind(`ORD-${day}-%`).first();
-  const n = String((row?.c || 0) + 1).padStart(2, '0');
-  return `ORD-${day}-${n}`;
+  const last = Number(String(row?.m || '').slice(-2)) || 0;
+  return `ORD-${day}-${String(last + 1).padStart(2, '0')}`;
 }
 
 // ---------- 문서번호 (기존 발행본 규칙: YYYYMMDD-Q / -T / -X) ----------
+/* 예약 시각은 큐에서 «문자열 비교»로 걸러진다(`send_at <= now`). 형식이 조금만 달라도
+   («2026-09-05T14:00» 처럼 T 가 남거나 초가 빠지면) 그날 안에는 절대 안 나가고 엉뚱한 때 나간다. */
+export function validSendAt(v) {
+  const s = String(v || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(s)) return null;
+  const [d, t] = s.split(' ');
+  const [Y, M, D] = d.split('-').map(Number); const [h, m, sec] = t.split(':').map(Number);
+  if (M < 1 || M > 12 || D < 1 || D > 31 || h > 23 || m > 59 || sec > 59) return null;
+  if (Y < 2020 || Y > 2100) return null;
+  return s;
+}
+
 export const DOC_SUFFIX = { quote: 'Q', statement: 'T', taxinvoice: 'X' };
 export const DOC_LABEL  = { quote: '견적서', statement: '거래명세서', taxinvoice: '세금계산서' };
 
 export async function nextDocNo(env, type) {
   const sfx = DOC_SUFFIX[type] || 'Q';
   const day = kstDate().replace(/-/g, '');
+  /* 여기도 COUNT 로 세면 안 된다 — 가운데 문서를 지우면 다음 발행이 이미 쓴 번호를 되받는다.
+     doc_no 에는 UNIQUE 가 없어 중복이 조용히 저장되고, 바로빌 관리번호까지 충돌한다.
+     오늘 쓴 번호 중 «가장 큰 것»의 다음을 준다. (`YYYYMMDD-Q` 는 1번으로 친다) */
   const { results } = await env.DB.prepare(
     'SELECT doc_no FROM documents WHERE doc_no LIKE ?'
   ).bind(`${day}%-${sfx}`).all();
-  const n = (results || []).length;
-  return n === 0 ? `${day}-${sfx}` : `${day}-${String(n + 1).padStart(2, '0')}-${sfx}`;
+  let last = 0;
+  for (const r of results || []) {
+    const m = String(r.doc_no || '').match(/^\d{8}(?:-(\d{2}))?-/);
+    if (m) last = Math.max(last, m[1] ? Number(m[1]) : 1);
+  }
+  return last === 0 ? `${day}-${sfx}` : `${day}-${String(last + 1).padStart(2, '0')}-${sfx}`;
 }
 
 // 유효기간 = 발행일 + 30일
@@ -151,8 +172,14 @@ export async function recalcOrder(env, orderId) {
   const { results } = await env.DB.prepare(
     'SELECT qty, unit_price FROM order_items WHERE order_id = ?'
   ).bind(orderId).all();
-  const supply = (results || []).reduce((s, r) => s + Math.round((r.qty || 0) * (r.unit_price || 0)), 0);
-  const vat = Math.round(supply * 0.1);
+  /* 장부 금액도 서류와 같은 규칙으로 낸다. 반올림으로 내면 서류 합계와 몇 원씩 어긋나고,
+     그 차이 때문에 «같은 건 중복 주문» 감지(총액 정확 일치)가 통째로 무력해진다. */
+  let supply = 0, vat = 0;
+  for (const r of results || []) {
+    const line = Math.round((r.qty || 0) * (r.unit_price || 0));
+    supply += line;
+    vat += Math.floor(line * 0.1 / 10) * 10;
+  }
   await env.DB.prepare(
     'UPDATE orders SET supply_amount=?, vat_amount=?, total_amount=?, updated_at=? WHERE id=?'
   ).bind(supply, vat, supply + vat, kstISO(), orderId).run();

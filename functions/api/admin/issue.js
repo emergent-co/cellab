@@ -8,7 +8,7 @@
 //   GET  ?list=1&type=&status=&q=   발행 이력
 //   POST                        문서 생성 / 수정(작성됨 상태만)
 import { json, needAdmin, adminOK, kstISO, kstDate, nextDocNo, plusDays,
-         randomToken, logEvent, DOC_LABEL, nextOrderNo, STATUSES } from '../_lib.js';
+         randomToken, logEvent, DOC_LABEL, nextOrderNo, STATUSES, validSendAt } from '../_lib.js';
 import { ISSUER } from '../_doctpl.js';
 import { deliverMany, calcTotals } from '../_send.js';
 import { docMailBody, splitAddr } from '../_mailer.js';
@@ -343,13 +343,16 @@ async function post(request, env) {
       .bind(customer.id).first();
   }
 
+  /* 들어오는 값은 그대로 서류에 찍히고 장부에 오른다 — 여기서 한 번 조인다.
+     수량 소수(0.5개)·음수 단가·끝없이 긴 품명이 그대로 통과하던 자리다. */
+  const cut = (v, n) => String(v == null ? '' : v).trim().slice(0, n);
   const raw = (Array.isArray(b.items) ? b.items : [])
     .map((i) => ({
-      name: String(i.name || '').trim(),
-      spec: String(i.spec || '').trim(),
-      qty: Math.max(0, Number(i.qty) || 0),
-      price: Math.round(Number(i.price) || 0),
-      note: String(i.note || '').trim(),
+      name: cut(i.name, 200),
+      spec: cut(i.spec, 120),
+      qty: Math.min(99999, Math.max(0, Math.round(Number(i.qty) || 0))),   // 정수 · 상한
+      price: Math.min(9999999999, Math.max(0, Math.round(Number(i.price) || 0))),  // 음수 금지 · 상한
+      note: cut(i.note, 300),
     }))
     .filter((i) => i.name);
   if (!raw.length) return json({ error: 'no_items', message: '품목을 1개 이상 입력해주세요.' }, 400);
@@ -404,7 +407,7 @@ async function post(request, env) {
     const payload = { ...base, type: doc.type, doc_no: doc.doc_no,
                       issue_date: issue, valid_until: plusDays(issue, 30) };
     await env.DB.prepare(
-      `UPDATE documents SET customer_id=?, order_id=?, settlement_id=?, source=?, issue_date=?, payload_json=?, updated_at=? WHERE id=?`
+      `UPDATE documents SET customer_id=?, order_id=?, settlement_id=?, source=?, issue_date=?, payload_json=?, version=version+1, updated_at=? WHERE id=?`
     ).bind(customer ? customer.id : null, b.order_id || null, b.settlement_id || null,
            b.source || doc.source || 'manual', issue, JSON.stringify(payload), now, doc.id).run();
     await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'updated', actor: 'admin',
@@ -420,6 +423,11 @@ async function post(request, env) {
   //   quote 견적서만 (기록 없음) · delivery 납품 서류(주문) · advance 중간정산금 청구(정산요청)
   //   settle 고객 정산요청 처리(기존 정산요청에 연결)
   const purpose = ['quote', 'delivery', 'advance', 'settle'].includes(b.purpose) ? b.purpose : null;
+
+  /* 미리보기는 «어떻게 나오는지 보는 것»이다. 초안 문서까지는 만들지만 장부는 건드리지 않는다.
+     전에는 미리보기도 발행과 똑같이 처리해서, 미리보기 한 번에 주문이 생기고
+     정산요청이 두 건씩 쌓였다. */
+  const preview = !!b.preview;
 
   const batch = types.length > 1 ? randomToken().slice(0, 16) : null;
   const made = [];
@@ -451,7 +459,7 @@ async function post(request, env) {
   let order = null, settle = null;
 
   let attached = false;
-  if (purpose === 'delivery' || (!purpose && b.make_order)) {
+  if (!preview && (purpose === 'delivery' || (!purpose && b.make_order))) {
     /* 견적서 → 거래명세서 → 세금계산서는 «한 건»의 흐름이다.
        견적서로 이미 주문이 잡혀 있는데 납품 서류에서 또 만들면 같은 돈이 두 번 지출금에 오른다.
        그래서 새로 만들지 않고 그 주문에 서류만 붙인다. */
@@ -477,7 +485,7 @@ async function post(request, env) {
     }
   }
 
-  if (purpose === 'advance') {
+  if (!preview && purpose === 'advance') {
     // 아직 돈은 안 들어왔다 — «입금 대기» 상태의 정산요청만 만든다.
     // 중간정산금(입금)은 나중에 이 요청을 «입금완료»로 바꾸는 순간 자동으로 잡힌다.
     settle = await makeSettlement(env, {
@@ -485,7 +493,7 @@ async function post(request, env) {
     });
   }
 
-  if (purpose === 'settle' && b.settlement_id) {
+  if (!preview && purpose === 'settle' && b.settlement_id) {
     const st = await env.DB.prepare('SELECT id, customer_id FROM settlements WHERE id=?')
       .bind(b.settlement_id).first();
     if (st && Number(st.customer_id) === Number(customer.id)) {
@@ -817,7 +825,7 @@ async function relink(env, b) {
   }
 
   const now = kstISO();
-  await env.DB.prepare('UPDATE documents SET customer_id=?, payload_json=?, updated_at=? WHERE id=?')
+  await env.DB.prepare('UPDATE documents SET customer_id=?, payload_json=?, version=version+1, updated_at=? WHERE id=?')
     .bind(customer.id, JSON.stringify(payload), now, doc.id).run();
 
   const who = customer.company || customer.name || `#${customer.id}`;
@@ -889,7 +897,11 @@ async function sendBatch(request, env, b) {
       message: '예약 발송에는 파일을 붙일 수 없습니다. 지금 보내시거나, 파일을 빼고 예약해주세요.' }, 400);
   }
 
-  // 예약
+  // 예약 — 형식이 어긋나면 큐가 영영 못 집는다. 여기서 막는다.
+  if (b.send_at && !validSendAt(b.send_at)) {
+    return json({ error: 'bad_send_at',
+      message: '예약 시각 형식이 올바르지 않습니다 (YYYY-MM-DD HH:MM:SS).' }, 400);
+  }
   if (b.send_at) {
     await env.DB.prepare(
       `INSERT INTO outbox (document_id, doc_ids, order_id, to_addr, cc_addr, subject, body, send_at, status, created_at)
@@ -903,7 +915,7 @@ async function sendBatch(request, env, b) {
     return json({ ok: true, scheduled: b.send_at, count: docs.length });
   }
 
-  const res = await deliverMany(env, { docs, to, cc, subject, html, files });
+  const res = await deliverMany(env, { docs, to, cc, subject, html, files, origin });
   if (!res.ok) return json({ error: 'send_failed', message: res.error }, 502);
   return json({ ok: true, sent: true, count: docs.length, attached: res.attached });
 }
@@ -918,8 +930,10 @@ function compute(raw, vatIncluded) {
   if (vatIncluded) {
     const items = raw.map((i) => {
       const amount = round10(i.qty * i.price);
+      /* price_in = 화면에 적힌 그대로의 단가. 수정 화면이 amount÷수량 으로 되돌리면
+         10원씩 어긋나므로, 원값을 남겨 두고 그걸 되읽게 한다. */
       return { name: i.name, spec: i.spec, qty: i.qty, note: i.note,
-               unit_price: Math.round(i.price / 1.1), amount };
+               unit_price: Math.round(i.price / 1.1), amount, price_in: Math.round(i.price) };
     });
     const total = items.reduce((s, i) => s + i.amount, 0);
     const supply = Math.round(total / 1.1);
@@ -936,7 +950,7 @@ function compute(raw, vatIncluded) {
     const price = floor10(i.price);
     const line = Math.round(i.qty * price);
     return { name: i.name, spec: i.spec, qty: i.qty, note: i.note,
-             unit_price: price, amount: line + floor10(line * 0.1) };
+             unit_price: price, amount: line + floor10(line * 0.1), price_in: price };
   });
   const supply = items.reduce((s, i) => s + Math.round(i.qty * i.unit_price), 0);
   const total = items.reduce((s, i) => s + i.amount, 0);

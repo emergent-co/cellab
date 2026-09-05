@@ -3,7 +3,7 @@
 // 알림톡은 발신프로필 등록 + 템플릿 사전승인 + 발송대행사 계약이 있어야 쓸 수 있다.
 // 준비되면 ALIMTALK_* 환경변수만 채우면 이쪽으로 나가고, 그 전에는 이메일로 나간다.
 import { sendMail, mailConfigured } from './_mailer.js';
-import { logEvent } from './_lib.js';
+import { logEvent, kstISO } from './_lib.js';
 
 export function alimtalkConfigured(env) {
   return !!(env.ALIMTALK_API_KEY && env.ALIMTALK_SENDER_KEY);
@@ -129,6 +129,25 @@ export function newOrderAdminHtml({ orderNo, company, orderer, items, ship, note
 }
 
 // 배송중 알림 본문
+/* 주문이 «배송중» 이 되는 순간 해야 할 일 — 발송시각 기록 + 고객에게 «수령 확인» 안내.
+   주문 화면에서 상태를 바꿀 때만 돌던 것을, 거래명세서 발송 경로에서도 쓰려고 여기로 옮겼다. */
+export async function notifyShipped(env, origin, order) {
+  await env.DB.prepare('UPDATE orders SET shipped_at=? WHERE id=?').bind(kstISO(), order.id).run();
+  const customer = order.customer_id
+    ? await env.DB.prepare('SELECT * FROM customers WHERE id=?').bind(order.customer_id).first()
+    : null;
+  if (!customer) return;
+  const url = `${origin}/member/#orders`;
+  await notifyCustomer(env, {
+    customer, order,
+    template: env.ALIMTALK_TPL_SHIP || 'rndsetup_ship',
+    text: `[실험셋업연구소] ${order.title || ''} 주문이 발송되었습니다.\n받으시면 수령 확인을 눌러주세요.\n${url}`,
+    buttons: [{ buttonType: 'WL', buttonName: '수령 확인하기', linkMo: url, linkPc: url }],
+    subject: `[실험셋업연구소] ${order.title || order.order_no} 발송 안내`,
+    html: shipHtml({ orderNo: order.order_no, title: order.title || '', url }),
+  });
+}
+
 export function shipHtml({ orderNo, title, url }) {
   return `<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;font-size:15px;color:#1a2332;line-height:1.65">
   <p><b>${title}</b> 주문이 발송되었습니다.</p>

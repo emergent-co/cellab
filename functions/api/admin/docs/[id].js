@@ -1,6 +1,6 @@
 // GET  /api/admin/docs/:id            → 문서 상세(스냅샷 포함)
 // POST /api/admin/docs/:id  {action}  → send(즉시/예약) · cancel(예약취소) · void(취소처리)
-import { json, isAdmin, needAdmin, kstISO, logEvent, DOC_LABEL, adminOK} from '../../_lib.js';
+import { json, isAdmin, needAdmin, kstISO, logEvent, DOC_LABEL, adminOK, validSendAt } from '../../_lib.js';
 import { ISSUER } from '../../_doctpl.js';
 import { barobillConfig, barobillReady, buildTaxInvoice, issueTaxInvoice, taxInvoiceState }
   from '../../_barobill.js';
@@ -55,7 +55,9 @@ export async function onRequest({ request, env, params }) {
 
   // ---- 예약 취소 ----
   if (b.action === 'cancel') {
-    await env.DB.prepare("UPDATE outbox SET status='취소' WHERE document_id=? AND status='대기'").bind(doc.id).run();
+    // 묶음 예약은 document_id 에 «첫 문서»만 들어간다 — doc_ids 까지 봐야 셋째 장의 예약이 잡힌다
+    await env.DB.prepare("UPDATE outbox SET status='취소' WHERE (document_id=? OR doc_ids LIKE ?) AND status='대기'")
+      .bind(doc.id, `%${doc.id}%`).run();
     await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'schedule_cancelled', actor: 'admin', detail: '예약 발송 취소' });
     return json({ ok: true });
   }
@@ -63,7 +65,8 @@ export async function onRequest({ request, env, params }) {
   // ---- 문서 취소 ----
   if (b.action === 'void') {
     await env.DB.prepare("UPDATE documents SET status='취소됨', updated_at=? WHERE id=?").bind(kstISO(), doc.id).run();
-    await env.DB.prepare("UPDATE outbox SET status='취소' WHERE document_id=? AND status='대기'").bind(doc.id).run();
+    await env.DB.prepare("UPDATE outbox SET status='취소' WHERE (document_id=? OR doc_ids LIKE ?) AND status='대기'")
+      .bind(doc.id, `%${doc.id}%`).run();
     await logEvent(env, { order_id: doc.order_id, document_id: doc.id, action: 'cancelled', actor: 'admin', detail: b.reason || '문서 취소' });
     return json({ ok: true });
   }
@@ -180,6 +183,10 @@ export async function onRequest({ request, env, params }) {
   if (b.action !== 'send') return json({ error: 'unknown_action' }, 400);
 
   // ---- 발송 ----
+  // 취소한 문서는 나가면 안 된다. 묶음 발송(issue.js)에는 이 검사가 있었는데 단건에는 없었다.
+  if (doc.status === '취소됨') {
+    return json({ error: 'voided', message: '취소된 문서입니다. 다시 발행한 뒤 보내주세요.' }, 409);
+  }
   const label = DOC_LABEL[doc.type] || '문서';
   const to = String(b.to || payload.client?.email || '').trim();
   if (!to) return json({ error: 'no_recipient', message: '받는 사람 이메일이 없습니다.' }, 400);
@@ -193,7 +200,11 @@ export async function onRequest({ request, env, params }) {
     contact: payload.client?.contact, total: totals.total, viewUrl,
   });
 
-  // 예약 발송
+  // 예약 발송 — 형식이 어긋나면 큐가 영영 못 집는다
+  if (b.send_at && !validSendAt(b.send_at)) {
+    return json({ error: 'bad_send_at',
+      message: '예약 시각 형식이 올바르지 않습니다 (YYYY-MM-DD HH:MM:SS).' }, 400);
+  }
   if (b.send_at) {
     await env.DB.prepare(
       `INSERT INTO outbox (document_id, order_id, to_addr, cc_addr, subject, body, send_at, status, created_at)
@@ -206,7 +217,7 @@ export async function onRequest({ request, env, params }) {
     return json({ ok: true, scheduled: b.send_at });
   }
 
-  const res = await deliver(env, { doc, payload, to, cc: b.cc, subject, html });
+  const res = await deliver(env, { doc, payload, to, cc: b.cc, subject, html, origin });
   if (!res.ok) return json({ error: 'send_failed', message: res.error }, 502);
   return json({ ok: true, sent: true });
 }

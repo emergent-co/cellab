@@ -1909,7 +1909,9 @@ function inqOpen(q){
          ? its.map(function(i){ return { name:i.name||'', spec:i.spec||'', qty:i.qty||1, price:0, note:'' }; })
          : [{name:'',spec:'',qty:1,price:0,note:''}]);
     // 사이트 표시가는 «부가세 별도»다. 기준을 안 맞추고 당겨오면 견적이 10% 부풀어 나간다.
-    if (pr.filled) dqVat = false;
+    /* 사이트 판매가는 언제나 «부가세 별도» 기준이다. 단가를 한 건도 못 찾았을 때도
+       기준은 별도로 열어야 한다 — 전에는 그때 직전 건의 «포함» 기준이 남아 10% 어긋났다. */
+    dqVat = false;
     dqInq = { id:q.id, who:[q.name, q.org_name].filter(Boolean).join(' · '),
       note: q.note || '', ask: its.map(function(i){
         return [i.name, i.spec, (i.qty||1)+'개'].filter(Boolean).join(' · '); }),
@@ -5500,6 +5502,9 @@ function viewAdmDocs(){
     dqItems = (pf.items && pf.items.length) ? pf.items : [{name:'',spec:'',qty:1,price:0,note:''}];
     dqTitle = pf.title || '';
     dqDocId = null; dqTarget = 0; dqVat = true; dqDates = {};
+    /* 목적과 비고를 안 지우면 직전 건의 «납품 서류» 목적이 남아 주문이 또 생기고,
+       앞 서류의 비고가 새 서류에 그대로 실려 나간다. */
+    dqPurpose = null; dqNote = ''; dqInq = null;
     dqCli = null; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
     paintDocs();
     if (pf.customer_id) dqLoadClient(pf.customer_id);
@@ -5517,6 +5522,9 @@ function viewAdmDocs(){
    dqHost가 있으면 그 상자에 같은 폼을 그린다(발행 이력 열만 뺀다).
    id는 같지만 둘이 동시에 떠 있지 않으므로 dq* 함수들은 손댈 게 없다. */
 var dqHost = null, dqHostWin = null, dqInq = null;
+/* 미리보기로 만들어 둔 초안들. 다음에 저장할 때 같이 취소한다 —
+   3종 미리보기는 dqDocId 하나로는 못 잡아서 초안이 계속 쌓였다. */
+var dqStaleIds = [];
 
 function paintDocs(){
   var today = dqToday();
@@ -5673,7 +5681,8 @@ function paintDocs(){
       dqItems.forEach(function(it){
         var p = Number(it.price) || 0; if (!p) return;
         had = true;
-        it.price = next ? r10(p * 1.1) : f10(p / 1.1);
+        // 한쪽만 절삭하면 포함↔별도를 왕복할 때마다 10원씩 깎인다 — 양쪽 다 반올림한다
+        it.price = next ? r10(p * 1.1) : r10(p / 1.1);
       });
       dqVat = next;
       dqItems.forEach(function(it, i){ dqNoteSync(i); });
@@ -5983,13 +5992,21 @@ function dqClear(){
   dqOrders=[]; dqSettles=[]; dqSrc={}; dqDates={}; dqTitleAuto=true;
   dqMakeOrder=false; dqOrderStatus='발주확정'; dqPurpose=null;
   dqContacts=[]; dqContact=null; dqContactCid=null; dqGuest=null; dqCliHint=null;
+  /* 부가세 기준과 문의 연결도 함께 되돌린다 — 남겨두면 다음 건이 직전 건의 기준으로 열려
+     사이트 표시가(부가세 별도)를 그대로 적었을 때 견적이 10% 어긋난다. */
+  dqVat=true; dqInq=null; dqStaleIds=[];
   dqItems=[{name:'',spec:'',qty:1,price:0,note:''}];
 }
 function dqReset(){ dqClear(); paintDocs(); }
 
+var dqCliSeq = 0;
 async function dqLoadClient(id, keep){
+  /* 거래처를 빠르게 바꾸면 앞선 요청이 늦게 도착해 최신 선택을 덮어쓴다 —
+     화면에는 B가, 발행에는 A가 실리는 사고. 순번을 달아 최신 응답만 반영한다. */
+  var seq = ++dqCliSeq;
   var r = await fetch('/api/admin/issue?client='+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
-  if (!r.client) return;
+  if (seq !== dqCliSeq) return;
+  if (!r.client) return toast('거래처 정보를 불러오지 못했습니다 — 다시 골라주세요');
   dqCli = r.client; dqProfiles = r.profiles||[]; dqOrders = r.orders||[]; dqSettles = r.settlements||[];
   dqBill = dqProfiles.filter(function(p){ return p.is_default; })[0] || dqProfiles[0] || null;
   dqSites = r.sites || [];
@@ -6100,7 +6117,7 @@ function dqPaintItems(){
         +'<input class="sp" placeholder="규격 · 모델" value="'+esc(it.spec||'')+'"></div>'
       +'<div class="r2"><input class="qy" type="number" min="1" value="'+(it.qty||1)+'" title="수량">'
         +'<input class="pr" type="text" inputmode="numeric" value="'+(it.price?won(it.price):'')+'" title="'+lbl+'" placeholder="'+lbl+'">'
-        +'<span class="sb">'+won(dqLine(it))+'원</span>'
+        +'<span class="sb" title="금액 (부가세 포함) — 서류의 «금액» 칸과 같은 값">'+won(dqShowLine(it))+'원</span>'
         +(dqItems.length>1?'<button class="dx" aria-label="삭제">×</button>':'')+'</div>'
       /* 시리즈로 문의가 오면(모델 미정) 값이 여러 개다 — 하나를 몰래 넣지 않고 고르게 한다 */
       +((it.options && it.options.length && !it.price)
@@ -6110,7 +6127,7 @@ function dqPaintItems(){
                 + '<i>'+won(o.price)+'</i></button>'; }).join('')
           + '</div>'
         : '')
-      +'<div class="dqpx">'+dqSrcTag(it)+'</div>'
+      +'<div class="dqpx">'+dqPriceTag(it)+'</div>'
       +'<div class="dqac" hidden></div>'
       +'</div>';
   }).join('');
@@ -6124,7 +6141,11 @@ function dqPaintItems(){
     el.querySelector('.sp').oninput = function(e){ dqItems[i].spec = e.target.value; };
     el.querySelector('.qy').oninput = function(e){ dqItems[i].qty = Math.max(1,Number(e.target.value)||1); dqRow(el,i); };
     el.querySelector('.pr').oninput = function(e){
-      dqItems[i].price = numFmt(e.target); dqItems[i].src = 'manual'; dqRow(el,i); };
+      /* 손으로 고친 단가에 제품표의 «정가 · 할인율» 비고가 남으면 서류에 틀린 할인율이 찍힌다.
+         (4,000,000 → 3,500,000 으로 깎아도 비고는 «20% 할인» 그대로였다) */
+      dqItems[i].price = numFmt(e.target);
+      dqItems[i].src = 'manual'; dqItems[i].list = 0; dqItems[i].disc = 0;
+      dqNoteSync(i); dqRow(el,i); };
     el.querySelector('.pr').onblur  = function(e){
       // 10원 단위로 맞춘다 — 그래야 소계·총계가 0으로 끝난다.
       // 부가세 포함은 반올림(목표 총액을 맞춰야 해서), 부가세 별도는 절삭.
@@ -6147,15 +6168,22 @@ function dqPaintItems(){
   });
   dqSum();
 }
+/* 화면의 줄 금액은 서류의 «금액(부가세포함)» 칸과 같은 값이어야 한다.
+   부가세 별도 기준일 때 화면은 공급가 줄 금액을, 서류는 부가세 포함 줄 금액을 찍고 있어
+   고객이 «금액이 왜 다르냐»고 물으면 대조가 안 됐다. (총계는 원래 일치한다) */
+function dqShowLine(it){
+  var line = dqLine(it);
+  return dqVat ? line : line + f10(line * 0.1);
+}
 function dqRow(el,i){
-  el.querySelector('.sb').textContent = won(dqLine(dqItems[i]))+'원';
-  var px = el.querySelector('.dqpx'); if (px) px.innerHTML = dqSrcTag(dqItems[i]);
+  el.querySelector('.sb').textContent = won(dqShowLine(dqItems[i]))+'원';
+  var px = el.querySelector('.dqpx'); if (px) px.innerHTML = dqPriceTag(dqItems[i]);
   dqSum();
 }
 
 /* 이 단가가 «제품표에서 온 할인가»인지 «사람이 적은 값»인지 줄마다 붙여 둔다.
    견적을 쓰다 보면 정가를 그대로 적어 놓고도 모르고 넘어간다 — 그걸 눈으로 잡으라고 두는 표시다. */
-function dqSrcTag(it){
+function dqPriceTag(it){
   var price = Number(it.price)||0, list = Number(it.list)||0;
   if (!price) return '';
   if (it.src !== 'auto') return '<span class="px man">직접 입력</span>';
@@ -6294,6 +6322,11 @@ function dqFit(){
       } else dqItems[idx].price = r10((remain - used) / q);
     });
   }
+  // 맞추기로 넣은 금액도 제품표 값이 아니다 — 정가·할인 비고를 남기면 안 된다
+  dqItems.forEach(function(it, idx){
+    if (!Number(it.price)) return;
+    it.src = 'manual'; it.list = 0; it.disc = 0; dqNoteSync(idx);
+  });
   dqPaintItems();
   var diff = dqTarget - dqTotal();
   toast(diff ? '수량 때문에 '+won(Math.abs(diff))+'원 '+(diff>0?'모자랍니다':'남습니다') : '총액에 맞췄습니다');
@@ -6311,6 +6344,12 @@ async function dqSubmit(preview){
   var items = dqItems.filter(function(i){ return (i.name||'').trim(); });
   if (!items.length) return alert('품목을 1개 이상 입력해주세요.');
   if (items.some(function(i){ return !i.price; })) return alert('단가가 비어 있는 품목이 있습니다.');
+  /* 품명 없는 줄은 발행 때 통째로 빠진다 — 거기에 금액이 들어 있으면 화면 총계와
+     서류 총계가 조용히 달라진다(«맞추기»가 빈 줄에 금액을 배분해 놓는 경우가 그렇다). */
+  var ghost = dqItems.filter(function(i){ return !(i.name||'').trim() && Number(i.price) > 0; });
+  if (ghost.length) return alert('품명이 비어 있는데 금액이 들어간 줄이 '+ghost.length+'개 있습니다.\n\n'
+    + '그 줄은 서류에서 빠지고 총계가 '+won(ghost.reduce(function(a,i){ return a+dqLine(i); },0))
+    + '원 줄어듭니다. 품명을 적거나 줄을 지워주세요.');
 
   // 폼은 곧 사라진다 — 문의 처리 여부를 먼저 챙겨둔다
   var inq = dqInq ? { id: dqInq.id, done: (function(){ var c=$('#dqInqDone'); return !c || c.checked; })() } : null;
@@ -6318,7 +6357,9 @@ async function dqSubmit(preview){
   var was = btn.textContent; btn.disabled = true; btn.textContent = '저장 중…';
   // 종류를 여러 개 고르면 '수정'이 아니라 새 한 벌을 만드는 것이다
   var editing = !!dqDocId && dqTypes.length === 1;
-  var stale = (!!dqDocId && !editing) ? dqDocId : null;   // 미리보기로 만들어 둔 초안
+  // 미리보기로 만들어 둔 초안 — 단건(dqDocId)이든 여러 종(dqStaleIds)이든 다 모아 취소한다
+  var stale = ((!!dqDocId && !editing) ? [dqDocId] : []).concat(dqStaleIds)
+                .filter(function(v, k, a){ return v && a.indexOf(v) === k; });
   var r = await fetch('/api/admin/issue',{method:'POST',headers:AH,body:JSON.stringify({
     id: editing ? dqDocId : null, types: dqTypes,
     customer_id: dqCli ? dqCli.id : null, guest: dqCli ? null : dqGuest,
@@ -6330,6 +6371,9 @@ async function dqSubmit(preview){
     title: $('#dqTitle').value, note: ($('#dqNote')||{}).value || dqNote,
     contact: dqContact ? dqContact.name : null, email: dqContact ? dqContact.email : null,
     tel: dqContact ? dqContact.phone : null,
+    /* 미리보기는 «보기만» 이다. 이 표시가 없으면 서버가 미리보기마다 주문·정산요청을
+       진짜로 만들어, 미리보기 한 번에 정산요청이 두 건씩 생겼다. */
+    preview: !!preview,
     purpose: dqPurpose, make_order: dqPurpose==='delivery', order_status: dqOrderStatus,
     vat_included: dqVat, items: items })})
     .then(function(r){return r.json();}).catch(function(){return{};});
@@ -6340,12 +6384,15 @@ async function dqSubmit(preview){
   dqTitle = $('#dqTitle').value;
   var noteWas = ($('#dqNote')||{}).value || dqNote || '';   // 폼이 곧 사라진다 — 비고를 먼저 챙긴다
 
-  if (stale){                        // 새 한 벌을 만들었으니 남은 초안은 정리한다
-    await fetch('/api/admin/docs/'+stale,{method:'POST',headers:AH,
-      body:JSON.stringify({action:'void', reason:'초안 대체'})}).catch(function(){});
+  if (stale.length){                 // 새 한 벌을 만들었으니 남은 초안은 정리한다
+    await Promise.all(stale.filter(function(id){ return made.every(function(m){ return m.id !== id; }); })
+      .map(function(id){ return fetch('/api/admin/docs/'+id,{method:'POST',headers:AH,
+        body:JSON.stringify({action:'void', reason:'초안 대체'})}).catch(function(){}); }));
   }
+  dqStaleIds = [];
 
   if (preview){                      // 미리보기는 초안으로 저장한 뒤 첫 장을 띄운다
+    dqStaleIds = made.map(function(m){ return m.id; });   // 다음 저장 때 이 초안들을 취소한다
     dqDocId = made.length === 1 ? made[0].id : null;
     window.open(made[0].view, '_blank');
     paintDocs(); dqHist(); return;
@@ -6908,14 +6955,28 @@ async function dqOpen(id){
     w.remove(); toast('예약을 취소했습니다'); dqHist();
   };
   if ($('#dqEdit')) $('#dqEdit').onclick = function(){
+    /* 쓰다 만 다른 건의 거래처·문의·할 일이 남아 있으면, 그 문서가 엉뚱한 거래처에 붙고
+       상관없는 할 일이 완료 처리된다. 문서 값으로만 채우도록 먼저 비운다. */
+    dqCli = null; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
+    dqGuest = null; dqCliHint = null; dqContacts = []; dqContact = null; dqContactCid = null;
+    dqTodo = null; dqInq = null;
     dqDocId = doc.id; dqTypes = [doc.type]; dqTitle = p.title||''; dqTitleAuto = !dqTitle;
     dqNote = p.note || '';
     dqVat = !!(p.totals && p.totals.vat_included);
     dqTarget = dqVat ? (tot.total||0) : 0;
     dqDates = {}; if (p.issue_date) dqDates[doc.type] = p.issue_date;
     dqItems = (p.items||[]).map(function(i){
+      /* price_in 은 발행할 때 화면에 적혀 있던 단가 그대로다. 없던 시절 문서만
+         amount÷수량 으로 되돌린다(10원 어긋날 수 있다).
+         비고에 남은 «정가 · 할인율» 을 되읽어, 수정 중에 기준을 바꿔도 문구가 살아 있게 한다. */
+      var m = String(i.note||'').match(/^정가 ([\d,]+)원 · ([\d.]+)% 할인$/);
+      var lp = m ? Number(m[1].replace(/,/g,'')) : 0;
       return { name:i.name, spec:i.spec||'', qty:i.qty||1, note:i.note||'',
-               price: dqVat ? r10((i.amount||0)/(i.qty||1)) : Math.round(i.unit_price||0) }; });
+               list: lp ? (dqVat ? Math.round(lp/1.1) : lp) : 0,
+               disc: m ? Number(m[2]) : 0,
+               src: m ? 'auto' : 'manual',
+               price: Number(i.price_in) > 0 ? Number(i.price_in)
+                    : (dqVat ? r10((i.amount||0)/(i.qty||1)) : Math.round(i.unit_price||0)) }; });
     if (!dqItems.length) dqItems = [{name:'',spec:'',qty:1,price:0,note:''}];
     dqSrc = { order_id: doc.order_id, settlement_id: doc.settlement_id, source: doc.source };
     w.remove();

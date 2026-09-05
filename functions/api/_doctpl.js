@@ -242,7 +242,13 @@ export function docTotals(items, fixed) {
              vat: Math.round(Number(fixed.vat) || 0),
              total: Math.round(Number(fixed.total) || 0) };
   }
-  const supply = (items || []).reduce((s, i) => s + Math.round((Number(i.qty) || 0) * (Number(i.unit_price) || 0)), 0);
-  const vat = Math.round(supply * 0.1);
+  // 발행 때(compute)·발송 때(calcTotals)와 같은 «줄마다 10원 절삭» 규칙을 쓴다.
+  // 합계에 한 번만 걸면 줄 수에 따라 몇 원씩 어긋난다.
+  let supply = 0, vat = 0;
+  for (const i of items || []) {
+    const line = Math.round((Number(i.qty) || 0) * (Number(i.unit_price) || 0));
+    supply += line;
+    vat += Math.floor(line * 0.1 / 10) * 10;
+  }
   return { supply, vat, total: supply + vat };
 }
