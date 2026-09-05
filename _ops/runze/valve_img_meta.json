@@ -1,0 +1,169 @@
+{
+ "selector-valve-sv-04b": {
+  "gal": [
+   "selector-valve-sv-04b-1.jpg",
+   "selector-valve-sv-04b-2.jpg",
+   "selector-valve-sv-04b-3.jpg"
+  ],
+  "det": [
+   "selector-valve-sv-04b-d1.jpg",
+   "selector-valve-sv-04b-d2.jpg",
+   "selector-valve-sv-04b-d3.jpg",
+   "selector-valve-sv-04b-d4.jpg"
+  ]
+ },
+ "selector-valve-sv-07b": {
+  "gal": [
+   "selector-valve-sv-07b-1.jpg",
+   "selector-valve-sv-07b-2.jpg",
+   "selector-valve-sv-07b-3.jpg",
+   "selector-valve-sv-07b-4.jpg"
+  ],
+  "det": [
+   "selector-valve-sv-07b-d1.jpg",
+   "selector-valve-sv-07b-d2.jpg",
+   "selector-valve-sv-07b-d3.jpg",
+   "selector-valve-sv-07b-d4.jpg"
+  ]
+ },
+ "selector-valve-sv07m": {
+  "gal": [
+   "selector-valve-sv07m-1.jpg",
+   "selector-valve-sv07m-2.jpg",
+   "selector-valve-sv07m-3.jpg",
+   "selector-valve-sv07m-4.jpg",
+   "selector-valve-sv07m-5.jpg",
+   "selector-valve-sv07m-6.jpg",
+   "selector-valve-sv07m-7.jpg",
+   "selector-valve-sv07m-8.jpg"
+  ],
+  "det": []
+ },
+ "multiport-selector-valve": {
+  "gal": [
+   "multiport-selector-valve-1.jpg",
+   "multiport-selector-valve-2.jpg",
+   "multiport-selector-valve-3.jpg",
+   "multiport-selector-valve-4.jpg"
+  ],
+  "det": [
+   "multiport-selector-valve-d1.jpg",
+   "multiport-selector-valve-d2.jpg",
+   "multiport-selector-valve-d3.jpg",
+   "multiport-selector-valve-d4.jpg"
+  ]
+ },
+ "multi-channel-selector-valves": {
+  "gal": [
+   "multi-channel-selector-valves-1.jpg",
+   "multi-channel-selector-valves-2.jpg",
+   "multi-channel-selector-valves-3.jpg",
+   "multi-channel-selector-valves-4.jpg",
+   "multi-channel-selector-valves-5.jpg",
+   "multi-channel-selector-valves-6.jpg",
+   "multi-channel-selector-valves-7.jpg",
+   "multi-channel-selector-valves-8.jpg"
+  ],
+  "det": [
+   "multi-channel-selector-valves-d1.jpg",
+   "multi-channel-selector-valves-d2.jpg",
+   "multi-channel-selector-valves-d3.jpg",
+   "multi-channel-selector-valves-d4.jpg",
+   "multi-channel-selector-valves-d5.jpg",
+   "multi-channel-selector-valves-d6.jpg",
+   "multi-channel-selector-valves-d7.jpg",
+   "multi-channel-selector-valves-d8.jpg",
+   "multi-channel-selector-valves-d9.jpg",
+   "multi-channel-selector-valves-d10.jpg",
+   "multi-channel-selector-valves-d11.jpg"
+  ]
+ },
+ "two-position-switching-valve": {
+  "gal": [
+   "two-position-switching-valve-1.jpg",
+   "two-position-switching-valve-2.jpg",
+   "two-position-switching-valve-3.jpg"
+  ],
+  "det": [
+   "two-position-switching-valve-d1.jpg",
+   "two-position-switching-valve-d2.jpg",
+   "two-position-switching-valve-d3.jpg",
+   "two-position-switching-valve-d4.jpg"
+  ]
+ },
+ "3-way-switching-valve": {
+  "gal": [
+   "3-way-switching-valve-1.jpg",
+   "3-way-switching-valve-2.jpg",
+   "3-way-switching-valve-3.jpg",
+   "3-way-switching-valve-4.jpg",
+   "3-way-switching-valve-5.jpg",
+   "3-way-switching-valve-6.jpg"
+  ],
+  "det": [
+   "3-way-switching-valve-d1.jpg",
+   "3-way-switching-valve-d2.jpg",
+   "3-way-switching-valve-d3.jpg",
+   "3-way-switching-valve-d4.jpg",
+   "3-way-switching-valve-d5.jpg",
+   "3-way-switching-valve-d6.jpg",
+   "3-way-switching-valve-d7.jpg",
+   "3-way-switching-valve-d8.jpg",
+   "3-way-switching-valve-d9.jpg",
+   "3-way-switching-valve-d10.jpg",
+   "3-way-switching-valve-d11.jpg",
+   "3-way-switching-valve-d12.jpg",
+   "3-way-switching-valve-d13.jpg",
+   "3-way-switching-valve-d14.jpg",
+   "3-way-switching-valve-d15.jpg",
+   "3-way-switching-valve-d16.jpg",
+   "3-way-switching-valve-d17.jpg"
+  ]
+ },
+ "mrv-01bm-high-pressure-valve": {
+  "gal": [
+   "mrv-01bm-high-pressure-valve-1.jpg",
+   "mrv-01bm-high-pressure-valve-2.jpg",
+   "mrv-01bm-high-pressure-valve-3.jpg",
+   "mrv-01bm-high-pressure-valve-4.jpg",
+   "mrv-01bm-high-pressure-valve-5.jpg",
+   "mrv-01bm-high-pressure-valve-6.jpg",
+   "mrv-01bm-high-pressure-valve-7.jpg",
+   "mrv-01bm-high-pressure-valve-8.jpg"
+  ],
+  "det": [
+   "mrv-01bm-high-pressure-valve-d1.jpg",
+   "mrv-01bm-high-pressure-valve-d2.jpg",
+   "mrv-01bm-high-pressure-valve-d3.jpg",
+   "mrv-01bm-high-pressure-valve-d4.jpg",
+   "mrv-01bm-high-pressure-valve-d5.jpg",
+   "mrv-01bm-high-pressure-valve-d6.jpg",
+   "mrv-01bm-high-pressure-valve-d7.jpg",
+   "mrv-01bm-high-pressure-valve-d8.jpg",
+   "mrv-01bm-high-pressure-valve-d9.jpg",
+   "mrv-01bm-high-pressure-valve-d10.jpg",
+   "mrv-01bm-high-pressure-valve-d11.jpg",
+   "mrv-01bm-high-pressure-valve-d12.jpg"
+  ]
+ },
+ "ceramic-valve-head-component": {
+  "gal": [
+   "ceramic-valve-head-component-1.jpg",
+   "ceramic-valve-head-component-2.jpg",
+   "ceramic-valve-head-component-3.jpg",
+   "ceramic-valve-head-component-4.jpg",
+   "ceramic-valve-head-component-5.jpg",
+   "ceramic-valve-head-component-6.jpg",
+   "ceramic-valve-head-component-7.jpg",
+   "ceramic-valve-head-component-8.jpg"
+  ],
+  "det": [
+   "ceramic-valve-head-component-d1.jpg",
+   "ceramic-valve-head-component-d2.jpg",
+   "ceramic-valve-head-component-d3.jpg",
+   "ceramic-valve-head-component-d4.jpg",
+   "ceramic-valve-head-component-d5.jpg",
+   "ceramic-valve-head-component-d6.jpg"
+  ]
+ }
+}

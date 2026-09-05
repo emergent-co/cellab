@@ -1094,6 +1094,1615 @@
     "url": "https://www.runzefluid.com/products/pfa-tube.html",
     "label": "Runze Fluid 제품 페이지"
    }
+  },
+  {
+   "slug": "selector-valve-sv-04b",
+   "name": "셀렉터 밸브 SV-04B",
+   "name_en": "Runze Fluid Selector Valve SV-04B",
+   "sub": "6 / 8 / 10 포트 · 오리피스 1.2 mm · PCTFE + 사파이어 · RS232 / RS485 / CAN",
+   "category": "멀티포지션 밸브 · 스위칭 밸브",
+   "title": "Runze Fluid 셀렉터 밸브 SV-04B — 6/8/10 포트 저압 인젝터 밸브 | 실험셋업연구소",
+   "desc": "Runze Fluid 셀렉터 밸브 SV-04B — 6/8/10 포트, 오리피스 1.2 mm, PCTFE 밸브헤드에 사파이어 로터·스테이터. 0-0.6 MPa(물), 0-150℃, DC24V/1A. 가격 문의.",
+   "images": [
+    "selector-valve-sv-04b-1.jpg",
+    "selector-valve-sv-04b-2.jpg",
+    "selector-valve-sv-04b-3.jpg"
+   ],
+   "image_alt": "Runze Fluid 셀렉터 밸브 SV-04B",
+   "answer": "셀렉터 밸브 SV-04B는 두 위치를 왕복 전환하는 6~10포트 저압 인젝터 밸브로, 사파이어 로터·스테이터에 스텝모터 구동, RS232·RS485·CAN 통신을 지원합니다.",
+   "features": [
+    "두 위치를 <b>왕복 전환</b>하는 구조입니다",
+    "RUNZE 특허 <b>사파이어 로터·스테이터</b> — 생체적합성 · 내마모 · 내식 · 고온 대응으로 수명이 깁니다",
+    "설치 면적이 작아 공간이 제한된 장비에 넣기 좋습니다",
+    "<b>6 · 8 · 10 포트</b>, 오리피스 <b>1.2 mm</b>",
+    "고효율 <b>무보수 스텝모터</b> 구동 — RS232 / RS485 / CAN",
+    "저압 인젝터는 튜브 외경 <b>1.6 / 2.0 / 2.5 / 3.0 / 3.175 / 3.2 mm</b> 용 피팅과 함께 공급합니다"
+   ],
+   "specs": [
+    [
+     "오리피스 (Orifice)",
+     "1.2 mm"
+    ],
+    [
+     "습부 재질 (Wetted material)",
+     "PCTFE · 사파이어 로터/스테이터"
+    ],
+    [
+     "압력 정격 (Pressure rating)",
+     "0-0.5 MPa (공기 air) / 0-0.6 MPa (물 water)"
+    ],
+    [
+     "원점 검출 (Origin detection)",
+     "전원 인가 시 초기 위치 자동 복귀 · 기능 on/off 가능"
+    ],
+    [
+     "액체 온도 (Liquid temperature)",
+     "0-150℃"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "교체 부품 (Replaceable parts)",
+     "스테이터 교체 가능 · 씰 로터 교체 불가"
+    ],
+    [
+     "전환 방식 (Transposition)",
+     "임의 위치에서 지정 포트로 이동"
+    ],
+    [
+     "드라이버 (Driver)",
+     "비선택형 (Non-optional)"
+    ],
+    [
+     "밸브 구동 시간 (Valve drive)",
+     "≤4 s / 회전"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "주소 · 파라미터 설정",
+     "통신으로 설정"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC 24V / 1A"
+    ],
+    [
+     "최대 소비전력 (Max power)",
+     "24 W"
+    ],
+    [
+     "동작 온도 (Operating temperature)",
+     "0℃ ~ +50℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "치수 (Dimension L×W×H)",
+     "63.7 × 50.4 × 115.2 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.437 kg"
+    ],
+    [
+     "드라이버 포트 핀 (Driver port)",
+     "+ DC24V(+) · − DC24V(−) · TX RS232 Data Input · RX RS232 Data Output · GND · H CANH · L CANL · A RS485A · B RS485B"
+    ]
+   ],
+   "variants": {
+    "heading": "포트 구성별 데드볼륨 (Configuration)",
+    "head": [
+     "항목",
+     "6 포트",
+     "8 포트",
+     "10 포트"
+    ],
+    "rows": [
+     [
+      "포트간 체적 (Port-to-Port)",
+      "28.121 µl",
+      "28.67 µl",
+      "28.129 µl"
+     ],
+     [
+      "데드볼륨 (Dead volume)",
+      "5.207 µl",
+      "5.756 µl",
+      "5.215 µl"
+     ]
+    ],
+    "note": "치수는 6/8/10 포트가 모두 같습니다."
+   },
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>QHF-SV04B - X - T□ - K1.2 - S</b> 입니다. <b>T</b> 는 포트 수(T6 6포트 · T8 8포트 · T10 10포트), <b>K1.2</b> 는 오리피스 1.2 mm, 끝의 <b>S</b> 는 사파이어(Sapphire)입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/selector-valve-sv-04b-d1.jpg\" alt=\"모델 번호 구성\" loading=\"lazy\"><figcaption>모델 번호 구성</figcaption></figure></div>"
+    },
+    {
+     "h": "드라이버 포트 · 유로 구성",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/selector-valve-sv-04b-d2.jpg\" alt=\"드라이버 포트 핀 배열과 전원 표시등 위치\" loading=\"lazy\"><figcaption>드라이버 포트 핀 배열과 전원 표시등 위치</figcaption></figure><figure><img src=\"/img/runze/selector-valve-sv-04b-d3.jpg\" alt=\"외형 치수 — 6/8/10 포트 공통, 2-M3 마운팅 홀\" loading=\"lazy\"><figcaption>외형 치수 — 6/8/10 포트 공통, 2-M3 마운팅 홀</figcaption></figure><figure><img src=\"/img/runze/selector-valve-sv-04b-d4.jpg\" alt=\"포트 수별 유로 구성 — Position 1 / Position 2\" loading=\"lazy\"><figcaption>포트 수별 유로 구성 — Position 1 / Position 2</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>실험실 분석기 · 환경 분석 기기의 저압 시료 주입</li><li>정밀 비표준 샘플링 설비</li><li>의료 분석 장비 유로 전환</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/selector-valve-sv-07/\">셀렉터 밸브 SV-07</a> · <a href=\"https://www.runzefluid.com/uploads/file/smart-sv-04b-injector-valve-manual-book-v1-2.pdf\" rel=\"nofollow\">SV-04B 매뉴얼 V1.2 (제조사 PDF)</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#셀렉터밸브",
+     "/product/"
+    ],
+    [
+     "#인젝터밸브",
+     "/product/"
+    ],
+    [
+     "#유로전환",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "선택",
+     "q": "SV-04B는 몇 포트까지 나오나요?",
+     "a": "6 · 8 · 10 포트이며 오리피스는 세 구성 모두 1.2 mm입니다."
+    },
+    {
+     "tag": "사양",
+     "q": "사용 압력은 어떻게 되나요?",
+     "a": "공기 0-0.5 MPa, 물 0-0.6 MPa입니다. 더 높은 압력이 필요하면 0-1.6 MPa(물)인 SV-07 계열을 검토하십시오."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "밸브헤드는 PCTFE, 로터와 스테이터는 사파이어입니다. 습부에 금속이 없습니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 통신을 지원하나요?",
+     "a": "RS232 · RS485 · CAN입니다. RS232/RS485는 9600~115200 bps, CAN은 100 Kbps~1 Mbps입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "전환 속도는 얼마나 되나요?",
+     "a": "1회전 기준 4초 이하입니다."
+    },
+    {
+     "tag": "주문",
+     "q": "모델 코드는 어떻게 적나요?",
+     "a": "QHF-SV04B-X-T□-K1.2-S 형식입니다. 8포트면 QHF-SV04B-X-T8-K1.2-S 입니다."
+    },
+    {
+     "tag": "부속",
+     "q": "튜브 피팅도 같이 오나요?",
+     "a": "저압 인젝터는 튜브 외경 1.6 · 2.0 · 2.5 · 3.0 · 3.175 · 3.2 mm 용 피팅과 함께 공급합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 셀렉터 밸브 SV-04B",
+    "sku": "SV-04B",
+    "category": "멀티포지션 밸브",
+    "description": "6/8/10 포트 저압 인젝터 셀렉터 밸브. PCTFE · 사파이어 로터/스테이터, 0-0.6 MPa(물), 0-150℃, RS232/RS485/CAN.",
+    "models": [
+     "SV-04B"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/selector-valve-sv-04b.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "injector-valve-sv-07b",
+   "name": "인젝터 밸브 SV-07B",
+   "name_en": "Runze Fluid Injector Valve SV-07B",
+   "sub": "6 / 8 / 10 포트 · 오리피스 1.2 mm · UPE + 사파이어 · 0-1.6 MPa(물)",
+   "category": "멀티포지션 밸브 · 스위칭 밸브",
+   "title": "Runze Fluid 인젝터 밸브 SV-07B — 6/8/10 포트 2위치 전환 밸브 | 실험셋업연구소",
+   "desc": "Runze Fluid 인젝터 밸브 SV-07B — 두 위치 왕복 전환, 6/8/10 포트, UPE 밸브헤드에 사파이어 로터·스테이터. 0-1.6 MPa(물), 0-150℃, RS232/RS485/CAN. 가격 문의.",
+   "images": [
+    "selector-valve-sv-07b-1.jpg",
+    "selector-valve-sv-07b-2.jpg",
+    "selector-valve-sv-07b-3.jpg",
+    "selector-valve-sv-07b-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 인젝터 밸브 SV-07B",
+   "answer": "인젝터 밸브 SV-07B는 두 위치를 왕복 전환해 다양한 유로 조합을 만드는 6~10포트 밸브로, 사파이어 로터·스테이터에 RS232·RS485·CAN 통신을 지원합니다.",
+   "features": [
+    "<b>두 위치 왕복 전환</b>으로 여러 유로 조합을 구성합니다",
+    "RUNZE 특허 <b>사파이어 로터·스테이터</b> — 내식 · 고압 · 고온 · 내마모, 생체적합성으로 특수 매질에 대응합니다",
+    "고효율 <b>무보수 스텝모터</b> 구동 — RS232 / RS485 / CAN",
+    "습부 재질 <b>UPE + 사파이어</b>",
+    "물 기준 <b>0-1.6 MPa</b> 까지 견딥니다",
+    "환경 분석 기기 · 의료 분석 기기 · 고정밀 비표준 샘플링 설비에 씁니다"
+   ],
+   "specs": [
+    [
+     "오리피스 (Orifice)",
+     "1.2 mm"
+    ],
+    [
+     "습부 재질 (Wetted material)",
+     "UPE · 사파이어 로터/스테이터"
+    ],
+    [
+     "압력 정격 (Pressure rating)",
+     "0-1 MPa (공기 air) / 0-1.6 MPa (물 water)"
+    ],
+    [
+     "원점 검출 (Origin detection)",
+     "전원 인가 시 초기 위치 자동 복귀 · 기능 on/off 가능"
+    ],
+    [
+     "액체 온도 (Liquid temperature)",
+     "0-150℃"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "교체 부품 (Replaceable parts)",
+     "스테이터 교체 가능 · 씰 로터 교체 불가"
+    ],
+    [
+     "전환 방식 (Transposition)",
+     "임의 위치에서 지정 포트로 이동"
+    ],
+    [
+     "드라이버 (Driver)",
+     "비선택형 (Non-optional)"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "주소 · 파라미터 설정",
+     "통신으로 설정"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC 24V / 3A"
+    ],
+    [
+     "최대 소비전력 (Max power)",
+     "60 W"
+    ],
+    [
+     "동작 온도 (Operating temperature)",
+     "-10℃ ~ +50℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "치수 (Dimension L×W×H)",
+     "60 × 51 × 150 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.73 kg"
+    ],
+    [
+     "드라이버 포트 핀 (Driver port)",
+     "+ DC24V(+) · − DC24V(−) · TX RS232 Data Input · RX RS232 Data Output · GND · H CANH · L CANL · A RS485A · B RS485B"
+    ]
+   ],
+   "variants": {
+    "heading": "포트 구성별 규격 (Configuration)",
+    "head": [
+     "항목",
+     "6 포트",
+     "8 포트",
+     "10 포트"
+    ],
+    "rows": [
+     [
+      "포트간 체적 (Port-to-Port)",
+      "28.121 µl",
+      "28.67 µl",
+      "28.129 µl"
+     ],
+     [
+      "데드볼륨 (Dead volume)",
+      "5.207 µl",
+      "5.756 µl",
+      "5.215 µl"
+     ],
+     [
+      "밸브 구동 시간 (Valve drive)",
+      "≤2 s / 회전",
+      "≤2 s / 회전",
+      "≤3.3 s / 회전"
+     ]
+    ]
+   },
+   "sections": [
+    {
+     "h": "모델 번호 · 드라이버 포트 · 유로 구성",
+     "html": "<p>주문 코드는 <b>QHF-SV07B - X - S - T□ - K1.2 - S</b> 입니다. <b>X</b> 는 밸브 타입, <b>S</b> 는 저전압(Small low voltage), <b>T</b> 는 포트 수, <b>K1.2</b> 는 오리피스 1.2 mm, 끝의 <b>S</b> 는 사파이어입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/selector-valve-sv-07b-d1.jpg\" alt=\"모델 번호 구성 · 포트간 체적 · 데드볼륨 · 드라이버 포트 핀 배열 · 포트 수별 유로 구성\" loading=\"lazy\"><figcaption>모델 번호 구성 · 포트간 체적 · 데드볼륨 · 드라이버 포트 핀 배열 · 포트 수별 유로 구성</figcaption></figure><figure><img src=\"/img/runze/selector-valve-sv-07b-d2.jpg\" alt=\"외형 치수 — 6/8/10 포트 공통\" loading=\"lazy\"><figcaption>외형 치수 — 6/8/10 포트 공통</figcaption></figure><figure><img src=\"/img/runze/selector-valve-sv-07b-d3.jpg\" alt=\"모델 번호 구성 (상세)\" loading=\"lazy\"><figcaption>모델 번호 구성 (상세)</figcaption></figure><figure><img src=\"/img/runze/selector-valve-sv-07b-d4.jpg\" alt=\"포트 수별 유로 구성 — Position A / Position B\" loading=\"lazy\"><figcaption>포트 수별 유로 구성 — Position A / Position B</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>환경 분석 기기 (Environmental analysis instruments)</li><li>의료 분석 기기 (Medical analysis instruments)</li><li>고정밀 비표준 샘플링 설비 (Non-standard sampling facilities in high-precision)</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/selector-valve-sv-07/\">셀렉터 밸브 SV-07</a> · <a href=\"https://www.runzefluid.com/uploads/file/sv-07b-injector-valve-manual-book-v1-2.pdf\" rel=\"nofollow\">SV-07B 매뉴얼 V1.2 (제조사 PDF)</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#인젝터밸브",
+     "/product/"
+    ],
+    [
+     "#스위칭밸브",
+     "/product/"
+    ],
+    [
+     "#유로전환",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "차이",
+     "q": "SV-07과 SV-07B는 무엇이 다른가요?",
+     "a": "SV-07은 지정 포트로 이동하는 셀렉터, SV-07B는 두 위치를 왕복 전환하는 인젝터입니다. 습부 재질도 SV-07은 PCTFE, SV-07B는 UPE입니다."
+    },
+    {
+     "tag": "사양",
+     "q": "사용 압력과 액체 온도는 어떻게 되나요?",
+     "a": "공기 0-1 MPa, 물 0-1.6 MPa이며 액체 온도는 0-150℃입니다."
+    },
+    {
+     "tag": "선택",
+     "q": "몇 포트까지 있나요?",
+     "a": "6 · 8 · 10 포트이며 오리피스는 모두 1.2 mm입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "전환 속도는 얼마나 되나요?",
+     "a": "6포트와 8포트는 1회전 2초 이하, 10포트는 3.3초 이하입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "밸브헤드는 UPE, 로터와 스테이터는 사파이어입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "통신은 무엇을 지원하나요?",
+     "a": "RS232 · RS485 · CAN이며 주소와 파라미터도 통신으로 설정합니다."
+    },
+    {
+     "tag": "전원",
+     "q": "전원 용량은 얼마나 필요한가요?",
+     "a": "DC 24V / 3A이고 최대 소비전력은 60 W입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 인젝터 밸브 SV-07B",
+    "sku": "SV-07B",
+    "category": "멀티포지션 밸브",
+    "description": "6/8/10 포트 2위치 인젝터 밸브. UPE · 사파이어 로터/스테이터, 0-1.6 MPa(물), 0-150℃, RS232/RS485/CAN.",
+    "models": [
+     "SV-07B"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/selector-valve-sv-07b.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "multiport-selector-valve-sv-04",
+   "name": "멀티포트 셀렉터 밸브 SV-04",
+   "name_en": "Runze Fluid Multiport Selector Valve SV-04",
+   "sub": "6 / 8 / 10 포트 · 오리피스 1.2 mm · PCTFE + 사파이어 · DC24V/1A",
+   "category": "멀티포지션 밸브 · 셀렉터 밸브",
+   "title": "Runze Fluid 멀티포트 셀렉터 밸브 SV-04 — 6/8/10 포트 유로 선택 밸브 | 실험셋업연구소",
+   "desc": "Runze Fluid 멀티포트 셀렉터 밸브 SV-04 — 6/8/10 포트, PCTFE 밸브헤드에 사파이어 스풀. 0-0.6 MPa(물), 0-150℃, RS232/RS485/CAN, 22 W. 가격 문의.",
+   "images": [
+    "multiport-selector-valve-1.jpg",
+    "multiport-selector-valve-2.jpg",
+    "multiport-selector-valve-3.jpg",
+    "multiport-selector-valve-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 멀티포트 셀렉터 밸브 SV-04",
+   "answer": "멀티포트 셀렉터 밸브 SV-04는 중앙 공통 포트를 지정 포트에 연결하는 6~10포트 셀렉터로, PCTFE 밸브헤드와 사파이어 스풀로 비금속 유로를 구성합니다.",
+   "features": [
+    "습부는 <b>PCTFE 밸브헤드 + 사파이어 스풀</b> — 비금속 유로로 내식 · 고온 · 내마모를 갖춥니다",
+    "리셋은 <b>반시계 방향 고정</b> — 리셋 위치에서 로터는 1번 포트와 최대 포트 사이에 머물고 공통 포트는 어느 포트와도 연결되지 않습니다",
+    "<b>6 · 8 · 10 포트</b>, 오리피스 <b>1.2 mm</b>",
+    "생체적합 · 내식 · 내열 재질에 <b>작은 설치 면적</b>",
+    "<b>RS232 / RS485 / CAN</b> 통신으로 제어합니다"
+   ],
+   "specs": [
+    [
+     "오리피스 (Orifice)",
+     "1.2 mm"
+    ],
+    [
+     "습부 재질 (Wetted material)",
+     "PCTFE · 사파이어 로터/스테이터"
+    ],
+    [
+     "압력 정격 (Pressure rating)",
+     "0-0.5 MPa (공기 air) / 0-0.6 MPa (물 water)"
+    ],
+    [
+     "원점 검출 (Origin detection)",
+     "전원 인가 시 초기 위치 자동 복귀 · 기능 on/off 가능"
+    ],
+    [
+     "액체 온도 (Liquid temperature)",
+     "0-150℃"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "교체 부품 (Replaceable parts)",
+     "스테이터 교체 가능 · 씰 로터 교체 불가"
+    ],
+    [
+     "전환 방식 (Transposition)",
+     "임의 위치에서 지정 포트로 이동"
+    ],
+    [
+     "드라이버 (Driver)",
+     "비선택형 (Non-optional)"
+    ],
+    [
+     "밸브 구동 시간 (Valve drive)",
+     "≤4 s / 회전"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "주소 · 파라미터 설정",
+     "통신으로 설정"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC 24V / 1A"
+    ],
+    [
+     "최대 소비전력 (Max power)",
+     "22 W"
+    ],
+    [
+     "동작 온도 (Operating temperature)",
+     "0℃ ~ +50℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "치수 (Dimension L×W×H)",
+     "63.7 × 50.4 × 115.2 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.437 kg"
+    ],
+    [
+     "드라이버 포트 핀 (Driver port)",
+     "+ DC24V(+) · − DC24V(−) · TX RS232 Data Input · RX RS232 Data Output · GND · H CANH · L CANL · A RS485A · B RS485B"
+    ]
+   ],
+   "variants": {
+    "heading": "포트 구성별 데드볼륨 (Configuration)",
+    "head": [
+     "항목",
+     "6 포트",
+     "8 포트",
+     "10 포트"
+    ],
+    "rows": [
+     [
+      "포트간 체적 (Port-to-Port)",
+      "28.121 µl",
+      "28.67 µl",
+      "28.129 µl"
+     ],
+     [
+      "데드볼륨 (Dead volume)",
+      "5.207 µl",
+      "5.756 µl",
+      "5.215 µl"
+     ]
+    ],
+    "note": "치수는 6/8/10 포트가 모두 같습니다."
+   },
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>QHF-SV04 - X - S - T□ - K1.2 - S</b> 입니다. <b>T</b> 는 포트 수(T6 · T8 · T10), <b>K1.2</b> 는 오리피스 1.2 mm, 끝의 <b>S</b> 는 사파이어입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/multiport-selector-valve-d1.jpg\" alt=\"모델 번호 구성\" loading=\"lazy\"><figcaption>모델 번호 구성</figcaption></figure></div>"
+    },
+    {
+     "h": "유로 구성 · 드라이버 포트 · 치수",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/multiport-selector-valve-d2.jpg\" alt=\"포트 수별 유로 구성도\" loading=\"lazy\"><figcaption>포트 수별 유로 구성도</figcaption></figure><figure><img src=\"/img/runze/multiport-selector-valve-d3.jpg\" alt=\"드라이버 포트 핀 배열과 전원 표시등\" loading=\"lazy\"><figcaption>드라이버 포트 핀 배열과 전원 표시등</figcaption></figure><figure><img src=\"/img/runze/multiport-selector-valve-d4.jpg\" alt=\"외형 치수 — 6/8/10 포트 공통, 2-M3 마운팅 홀\" loading=\"lazy\"><figcaption>외형 치수 — 6/8/10 포트 공통, 2-M3 마운팅 홀</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>실험실 분석기 유로 선택</li><li>환경 분석 기기</li><li>의료 분석 장비</li><li>비표준 정밀 샘플링 설비</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/selector-valve-sv-04b/\">셀렉터 밸브 SV-04B</a> · <a href=\"https://www.runzefluid.com/uploads/file/smart-sv-04-selector-valve.pdf\" rel=\"nofollow\">SV-04 셀렉터 밸브 자료 (제조사 PDF)</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#셀렉터밸브",
+     "/product/"
+    ],
+    [
+     "#멀티포트밸브",
+     "/product/"
+    ],
+    [
+     "#유로선택",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "동작",
+     "q": "공통 포트는 어디인가요?",
+     "a": "중앙 포트가 공통 포트이며, 프로그램 제어로 지정한 포트에 연결됩니다."
+    },
+    {
+     "tag": "동작",
+     "q": "리셋하면 어느 위치로 가나요?",
+     "a": "반시계 방향으로 리셋되며 이 방향은 바꿀 수 없습니다. 리셋 상태에서 로터는 1번 포트와 최대 포트 사이에 머물고 공통 포트는 어느 포트와도 연결되지 않습니다."
+    },
+    {
+     "tag": "선택",
+     "q": "SV-04와 SV-04B는 어떻게 다른가요?",
+     "a": "SV-04는 지정 포트로 이동하는 셀렉터, SV-04B는 두 위치를 왕복 전환하는 인젝터입니다. 소비전력도 22 W와 24 W로 다릅니다."
+    },
+    {
+     "tag": "사양",
+     "q": "사용 압력은 어떻게 되나요?",
+     "a": "공기 0-0.5 MPa, 물 0-0.6 MPa입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "PCTFE 밸브헤드에 사파이어 로터·스테이터입니다. 금속이 유체에 닿지 않습니다."
+    },
+    {
+     "tag": "속도",
+     "q": "전환에 걸리는 시간은?",
+     "a": "1회전 기준 4초 이하입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 멀티포트 셀렉터 밸브 SV-04",
+    "sku": "SV-04",
+    "category": "멀티포지션 밸브",
+    "description": "6/8/10 포트 멀티포트 셀렉터 밸브. PCTFE · 사파이어, 0-0.6 MPa(물), 0-150℃, RS232/RS485/CAN, 22 W.",
+    "models": [
+     "SV-04"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/multiport-selector-valve.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "two-position-switching-valve",
+   "name": "2위치 스위칭 밸브",
+   "name_en": "Runze Fluid Two-Position Switching Valve",
+   "sub": "6 / 8 / 10 포트 · 전환 400 ms 이하 · 데드볼륨 5.4 µL",
+   "category": "멀티포지션 밸브 · 스위칭 밸브",
+   "title": "Runze Fluid 2위치 스위칭 밸브 — 6/8/10 포트 400 ms 고속 전환 | 실험셋업연구소",
+   "desc": "Runze Fluid 2위치 스위칭 밸브 — 6/8/10 포트, 전환 400 ms 이하, 데드볼륨 5.4 µL. PCTFE·사파이어, 0-0.6 MPa(물), RS232/RS485/CAN, 15 W. 가격 문의.",
+   "images": [
+    "two-position-switching-valve-1.jpg",
+    "two-position-switching-valve-2.jpg",
+    "two-position-switching-valve-3.jpg"
+   ],
+   "image_alt": "Runze Fluid 2위치 스위칭 밸브",
+   "answer": "2위치 스위칭 밸브는 6~10포트 유로를 400 ms 이하로 전환하는 밸브로, 데드볼륨 5.4 µL에 PCTFE·사파이어 습부, RS232·RS485·CAN 통신을 지원합니다.",
+   "features": [
+    "전환 시간 <b>400 ms 이하</b> — 계열 중 가장 빠릅니다",
+    "데드볼륨 <b>5.4 µL</b>",
+    "<b>6 · 8 · 10 포트</b> 다중 유로 구성, 오리피스 1.2 mm",
+    "습부 <b>PCTFE + 사파이어</b>",
+    "최대 토크 <b>1.6 N·m</b>",
+    "<b>RS232 · RS485 · CAN</b> 통신, 주소와 파라미터는 통신으로 설정합니다",
+    "실험실 벤치탑 장비부터 자동화 설비까지 씁니다"
+   ],
+   "specs": [
+    [
+     "오리피스 (Orifice)",
+     "1.2 mm"
+    ],
+    [
+     "습부 재질 (Wetted material)",
+     "PCTFE · 사파이어"
+    ],
+    [
+     "포트 구성 (Port configuration)",
+     "6 / 8 / 10 포트"
+    ],
+    [
+     "데드볼륨 (Dead volume)",
+     "5.4 µL"
+    ],
+    [
+     "공기 압력 (Air pressure)",
+     "0-0.5 MPa"
+    ],
+    [
+     "수압 (Water pressure)",
+     "0-0.6 MPa"
+    ],
+    [
+     "원점 검출 (Origin detection)",
+     "전원 인가 시 초기 위치 자동 복귀 · 선택 설정 가능"
+    ],
+    [
+     "액체 온도 (Liquid temperature)",
+     "0-150℃"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "교체 부품 (Replaceable parts)",
+     "스테이터 교체 가능 · 씰 로터 교체 불가"
+    ],
+    [
+     "전환 방식 (Transposition)",
+     "임의 위치에서 지정 포트로 이동"
+    ],
+    [
+     "드라이버 (Driver)",
+     "비선택형 (Non-optional)"
+    ],
+    [
+     "밸브 구동 시간 (Valve drive)",
+     "≤400 ms"
+    ],
+    [
+     "최대 토크 (Max torque)",
+     "1.6 N·m"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 · RS485 · CAN"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "주소 · 파라미터 설정",
+     "통신 인터페이스"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC 24V / 1.0A"
+    ],
+    [
+     "최대 소비전력 (Max power)",
+     "15 W"
+    ],
+    [
+     "동작 온도 (Operating temperature)",
+     "0℃ ~ 50℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "치수 (Dimension L×W×H)",
+     "63.7 × 50.4 × 115.2 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.437 kg"
+    ],
+    [
+     "드라이버 포트 핀 (Driver port)",
+     "+ DC24V(+) · − DC24V(−) · TX RS232 Data Input · RX RS232 Data Output · GND · H CANH · L CANL · A RS485A · B RS485B"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 · 유로 구성 · 드라이버 포트",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/two-position-switching-valve-d1.jpg\" alt=\"모델 번호 구성\" loading=\"lazy\"><figcaption>모델 번호 구성</figcaption></figure><figure><img src=\"/img/runze/two-position-switching-valve-d2.jpg\" alt=\"포트 수별 유로 구성 — Position 1 / Position 2\" loading=\"lazy\"><figcaption>포트 수별 유로 구성 — Position 1 / Position 2</figcaption></figure><figure><img src=\"/img/runze/two-position-switching-valve-d3.jpg\" alt=\"드라이버 포트 핀 배열\" loading=\"lazy\"><figcaption>드라이버 포트 핀 배열</figcaption></figure><figure><img src=\"/img/runze/two-position-switching-valve-d4.jpg\" alt=\"외형 치수 (단위 mm)\" loading=\"lazy\"><figcaption>외형 치수 (단위 mm)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>실험실 벤치탑 장비의 유로 전환</li><li>자동화 분석 설비</li><li>고속 시료 주입이 필요한 유로</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/selector-valve-sv-04b/\">셀렉터 밸브 SV-04B</a> · <a href=\"https://www.runzefluid.com/uploads/file/smart-sv-04b-injector-valve.pdf\" rel=\"nofollow\">SV-04B 인젝터 밸브 자료 (제조사 PDF)</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#스위칭밸브",
+     "/product/"
+    ],
+    [
+     "#2위치밸브",
+     "/product/"
+    ],
+    [
+     "#고속전환",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "속도",
+     "q": "전환 속도가 얼마나 빠른가요?",
+     "a": "400 ms 이하입니다. 회전형 셀렉터(4초 이하)보다 훨씬 빠릅니다."
+    },
+    {
+     "tag": "사양",
+     "q": "데드볼륨은 얼마인가요?",
+     "a": "5.4 µL입니다."
+    },
+    {
+     "tag": "선택",
+     "q": "포트는 몇 개까지 되나요?",
+     "a": "6 · 8 · 10 포트이며 오리피스는 1.2 mm입니다."
+    },
+    {
+     "tag": "전원",
+     "q": "소비전력은 얼마인가요?",
+     "a": "DC 24V / 1.0A, 최대 15 W입니다."
+    },
+    {
+     "tag": "배선",
+     "q": "드라이버 포트 핀 배열은요?",
+     "a": "+ 와 − 가 DC24V, TX·RX 가 RS232 데이터 입출력, GND, H·L 이 CANH·CANL, A·B 가 RS485A·RS485B 입니다."
+    },
+    {
+     "tag": "토크",
+     "q": "최대 토크는 얼마인가요?",
+     "a": "1.6 N·m입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 2위치 스위칭 밸브",
+    "sku": "TWO-POSITION-SWITCHING-VALVE",
+    "category": "멀티포지션 밸브",
+    "description": "6/8/10 포트 2위치 스위칭 밸브. 전환 400 ms 이하, 데드볼륨 5.4 µL, PCTFE·사파이어, 0-0.6 MPa(물), 15 W.",
+    "models": [
+     "6 port",
+     "8 port",
+     "10 port"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/two-position-switching-valve.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "selector-valve-sv07m",
+   "name": "셀렉터 밸브 SV07M",
+   "name_en": "Runze Fluid Selector Valve SV07M",
+   "sub": "알루미나 세라믹 습부 · 절대위치 엔코더 · RS232 / RS485 · Modbus · CAN",
+   "category": "멀티포지션 밸브 · 셀렉터 밸브",
+   "title": "Runze Fluid 셀렉터 밸브 SV07M — 알루미나 세라믹 습부 · 절대위치 엔코더 | 실험셋업연구소",
+   "desc": "Runze Fluid 셀렉터 밸브 SV07M — 알루미나 세라믹 습부, 다방향 자기정렬 평면 밀착 스풀(특허 CN204852471U), NMB 유성기어 모터, 절대위치 엔코더. RS232/RS485, ASCII·Modbus·CAN. 가격 문의.",
+   "images": [
+    "selector-valve-sv07m-1.jpg",
+    "selector-valve-sv07m-2.jpg",
+    "selector-valve-sv07m-3.jpg",
+    "selector-valve-sv07m-4.jpg",
+    "selector-valve-sv07m-5.jpg",
+    "selector-valve-sv07m-6.jpg",
+    "selector-valve-sv07m-7.jpg",
+    "selector-valve-sv07m-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 셀렉터 밸브 SV07M",
+   "answer": "SV07M은 알루미나 세라믹 습부에 절대위치 엔코더를 쓴 셀렉터 밸브로, 기어박스가 마모돼도 밸브 홀 위치가 어긋나지 않고 유로를 빠르게 전환합니다.",
+   "features": [
+    "습부 재질 <b>알루미나 세라믹(Aluminium oxide ceramic)</b> — 내식 · 내고온 · 내고압 · 초고내마모로 다양한 특수 매질에 대응합니다",
+    "밸브 스풀은 <b>다방향 자기정렬 평면 밀착(multi-directional adaptive plane-fitting)</b> 구조로 수명을 늘렸습니다 — 실용신안 특허 <b>CN204852471U</b>",
+    "회전 동력은 <b>NMB 수입 유성기어 모터</b>를 써 신뢰성이 높습니다",
+    "<b>절대위치 엔코더</b>로 밸브 홀을 잡아, 기어박스가 마모돼도 위치가 어긋나지 않습니다. 오염·분진에도 강합니다",
+    "직렬 통신은 <b>RS232 / RS485</b> 버스를 지원합니다",
+    "제어 프로토콜은 <b>ASCII 코드 · 커스텀 · Modbus · CAN</b> 을 지원하며 커스터마이즈할 수 있습니다",
+    "내부 유로 잔류와 체적을 줄여야 하는 <b>빠른 유로 전환</b>에 맞습니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "알루미나 세라믹 (Aluminium oxide ceramic)"
+    ],
+    [
+     "스풀 구조 (Spool structure)",
+     "다방향 자기정렬 평면 밀착 — 실용신안 특허 CN204852471U"
+    ],
+    [
+     "구동 (Power)",
+     "NMB 수입 유성기어 모터"
+    ],
+    [
+     "위치 결정 (Valve hole positioning)",
+     "절대위치 엔코더 — 기어박스 마모에도 위치 유지, 내오염 · 내분진"
+    ],
+    [
+     "통신 (Serial communication)",
+     "RS232 / RS485 버스"
+    ],
+    [
+     "제어 프로토콜 (Control protocol)",
+     "ASCII 코드 · 커스텀 · Modbus · CAN (커스터마이즈 가능)"
+    ],
+    [
+     "재질 특성",
+     "내식 · 내고온 · 내고압 · 초고내마모"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>수질 분석 기기 (Water quality analysis instruments)</li><li>실험 분석 기기 (Experimental analysis instruments)</li><li>의료 진단 장비 (Medical diagnostic equipment)</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/multi-channel-selector-valves/\">멀티채널 셀렉터 밸브</a> · <a href=\"/brands/runze/selector-valve-sv-07/\">셀렉터 밸브 SV-07</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#셀렉터밸브",
+     "/product/"
+    ],
+    [
+     "#세라믹밸브",
+     "/product/"
+    ],
+    [
+     "#Modbus",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "재질",
+     "q": "습부 재질이 사파이어가 아니라 세라믹인가요?",
+     "a": "SV07M은 알루미나 세라믹입니다. 내식·내고온·내고압에 초고내마모 특성을 갖습니다."
+    },
+    {
+     "tag": "제어",
+     "q": "Modbus로 제어할 수 있나요?",
+     "a": "됩니다. ASCII 코드 · 커스텀 · Modbus · CAN 프로토콜을 지원하며 커스터마이즈도 가능합니다."
+    },
+    {
+     "tag": "신뢰성",
+     "q": "오래 쓰면 밸브 위치가 틀어지지 않나요?",
+     "a": "절대위치 엔코더를 써서 기어박스가 마모돼도 밸브 홀을 정확히 잡습니다. 오염과 분진에도 강합니다."
+    },
+    {
+     "tag": "구조",
+     "q": "스풀 구조가 특별한가요?",
+     "a": "다방향 자기정렬 평면 밀착 방식으로 수명을 늘렸습니다. 실용신안 특허 CN204852471U 로 등록돼 있습니다."
+    },
+    {
+     "tag": "용도",
+     "q": "어디에 쓰나요?",
+     "a": "수질 분석 기기, 실험 분석 기기, 의료 분석 장비 등 내부 유로 잔류와 체적을 줄여야 하는 빠른 유로 전환에 씁니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 셀렉터 밸브 SV07M",
+    "sku": "SV07M",
+    "category": "멀티포지션 밸브",
+    "description": "알루미나 세라믹 습부 셀렉터 밸브. 다방향 자기정렬 평면 밀착 스풀(특허 CN204852471U), NMB 유성기어 모터, 절대위치 엔코더, RS232/RS485, ASCII·Modbus·CAN.",
+    "models": [
+     "SV07M"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/selector-valve-sv07m.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "multi-channel-selector-valves",
+   "name": "멀티채널 셀렉터 밸브",
+   "name_en": "Runze Fluid Multi-Channel Selector Valves",
+   "sub": "신세대 컴팩트 설계 · 알루미나 세라믹 · 절대위치 엔코더",
+   "category": "멀티포지션 밸브 · 셀렉터 밸브",
+   "title": "Runze Fluid 멀티채널 셀렉터 밸브 — 컴팩트 신세대 세라믹 셀렉터 | 실험셋업연구소",
+   "desc": "Runze Fluid 멀티채널 셀렉터 밸브 — 컴팩트 구조에 알루미나 세라믹 습부, 자기정렬 평면 밀착 스풀(특허 CN204852471U), NMB 유성기어 모터, 절대위치 엔코더. RS232/RS485. 가격 문의.",
+   "images": [
+    "multi-channel-selector-valves-1.jpg",
+    "multi-channel-selector-valves-2.jpg",
+    "multi-channel-selector-valves-3.jpg",
+    "multi-channel-selector-valves-4.jpg",
+    "multi-channel-selector-valves-5.jpg",
+    "multi-channel-selector-valves-6.jpg",
+    "multi-channel-selector-valves-7.jpg",
+    "multi-channel-selector-valves-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 멀티채널 셀렉터 밸브",
+   "answer": "멀티채널 셀렉터 밸브는 설치 공간을 줄인 신세대 셀렉터로, 알루미나 세라믹 습부와 절대위치 엔코더로 유로를 정확하고 빠르게 전환합니다.",
+   "features": [
+    "<b>컴팩트한 크기와 구조</b> — 설치 공간을 아끼는 설계입니다",
+    "습부 재질 <b>알루미나 세라믹(Aluminium oxide ceramic)</b> — 내식 · 내고온 · 내고압 · 초고내마모로 다양한 특수 매질에 대응합니다",
+    "밸브 스풀은 <b>다방향 자기정렬 평면 밀착(multi-directional adaptive plane-fitting)</b> 구조로 수명을 늘렸습니다 — 실용신안 특허 <b>CN204852471U</b>",
+    "회전 동력은 <b>NMB 수입 유성기어 모터</b>를 써 신뢰성이 높습니다",
+    "<b>절대위치 엔코더</b>로 밸브 홀을 잡아, 기어박스가 마모돼도 위치가 어긋나지 않습니다. 오염·분진에도 강합니다",
+    "직렬 통신은 <b>RS232 / RS485</b> 버스를 지원합니다",
+    "제어 프로토콜은 <b>ASCII 코드 · 커스텀 · Modbus · CAN</b> 을 지원하며 커스터마이즈할 수 있습니다",
+    "내부 유로 잔류와 체적을 줄여야 하는 <b>빠른 유로 전환</b>에 맞습니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "알루미나 세라믹 (Aluminium oxide ceramic)"
+    ],
+    [
+     "구조 (Design)",
+     "컴팩트 · 공간 절약형 신세대 설계"
+    ],
+    [
+     "스풀 구조 (Spool structure)",
+     "다방향 자기정렬 평면 밀착 — 실용신안 특허 CN204852471U"
+    ],
+    [
+     "구동 (Power)",
+     "NMB 수입 유성기어 모터"
+    ],
+    [
+     "위치 결정 (Valve hole positioning)",
+     "절대위치 엔코더 — 마모 무관, 내오염 · 내분진"
+    ],
+    [
+     "통신 (Serial communication)",
+     "RS232 / RS485 버스"
+    ],
+    [
+     "제어 프로토콜 (Control protocol)",
+     "ASCII 코드 · 커스텀 · Modbus · CAN (커스터마이즈 가능)"
+    ],
+    [
+     "재질 특성",
+     "내식 · 내고온 · 내고압 · 초고내마모"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "제품 상세",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/multi-channel-selector-valves-d1.jpg\" alt=\"제조사 상세 자료 (1/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (1/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d2.jpg\" alt=\"제조사 상세 자료 (2/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (2/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d3.jpg\" alt=\"제조사 상세 자료 (3/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (3/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d4.jpg\" alt=\"제조사 상세 자료 (4/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (4/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d5.jpg\" alt=\"제조사 상세 자료 (5/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (5/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d6.jpg\" alt=\"제조사 상세 자료 (6/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (6/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d7.jpg\" alt=\"제조사 상세 자료 (7/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (7/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d8.jpg\" alt=\"제조사 상세 자료 (8/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (8/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d9.jpg\" alt=\"제조사 상세 자료 (9/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (9/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d10.jpg\" alt=\"제조사 상세 자료 (10/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (10/11)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-selector-valves-d11.jpg\" alt=\"제조사 상세 자료 (11/11)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (11/11)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>수질 분석 기기 (Water quality analysis instruments)</li><li>실험 분석 기기 (Experimental analysis instruments)</li><li>의료 진단 장비 (Medical diagnostic equipment)</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/selector-valve-sv07m/\">셀렉터 밸브 SV07M</a> · <a href=\"/brands/runze/selector-valve-sv-07/\">셀렉터 밸브 SV-07</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#셀렉터밸브",
+     "/product/"
+    ],
+    [
+     "#멀티채널밸브",
+     "/product/"
+    ],
+    [
+     "#세라믹밸브",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "차이",
+     "q": "SV07M과 무엇이 다른가요?",
+     "a": "같은 신세대 세라믹 셀렉터 계열입니다. 멀티채널 쪽이 컴팩트한 크기와 구조를 앞세운 구성입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "알루미나 세라믹입니다. 내식·내고온·내고압에 초고내마모입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 프로토콜을 지원하나요?",
+     "a": "RS232/RS485 버스에 ASCII 코드 · 커스텀 · Modbus · CAN 을 지원하며 커스터마이즈도 됩니다."
+    },
+    {
+     "tag": "신뢰성",
+     "q": "위치 정확도는 어떻게 유지하나요?",
+     "a": "절대위치 엔코더로 밸브 홀을 잡습니다. 기어박스 마모로 위치가 틀어지는 문제를 막고 오염·분진에도 강합니다."
+    },
+    {
+     "tag": "용도",
+     "q": "어디에 쓰나요?",
+     "a": "수질 분석 기기, 실험 분석 기기, 의료 진단 장비 등 유로 잔류와 체적을 줄여야 하는 곳에 씁니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 멀티채널 셀렉터 밸브",
+    "sku": "MULTI-CHANNEL-SELECTOR-VALVE",
+    "category": "멀티포지션 밸브",
+    "description": "컴팩트 신세대 멀티채널 셀렉터 밸브. 알루미나 세라믹 습부, 자기정렬 평면 밀착 스풀(특허 CN204852471U), 절대위치 엔코더, RS232/RS485.",
+    "models": [
+     "Multi-Channel Selector Valve"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/multi-channel-selector-valves.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "3-way-switching-valve",
+   "name": "3방 스위칭 밸브 MRV-01B",
+   "name_en": "Runze Fluid 3 Way Switching Valve (MRV-01B)",
+   "sub": "고압 솔레노이드 · 오리피스 1.5 mm · 응답 530 ms 이하 · 0-1.2 MPa(물)",
+   "category": "멀티포지션 밸브 · 고압 솔레노이드 밸브",
+   "title": "Runze Fluid 3방 스위칭 밸브 MRV-01B — 고압 솔레노이드 · M01~M05 | 실험셋업연구소",
+   "desc": "Runze Fluid 3방 스위칭 밸브 MRV-01B — 오리피스 1.5 mm, 2/3/4 포트, 응답 530 ms 이하, 0-1.2 MPa(물), 0-80℃. 외부 트리거 DC7-33V, 상태 피드백 출력. 가격 문의.",
+   "images": [
+    "3-way-switching-valve-1.jpg",
+    "3-way-switching-valve-2.jpg",
+    "3-way-switching-valve-3.jpg",
+    "3-way-switching-valve-4.jpg",
+    "3-way-switching-valve-5.jpg",
+    "3-way-switching-valve-6.jpg"
+   ],
+   "image_alt": "Runze Fluid 3방 스위칭 밸브 MRV-01B",
+   "answer": "3방 스위칭 밸브 MRV-01B는 오리피스 1.5 mm의 고압 솔레노이드 밸브로, 530 ms 이하로 유로를 전환하며 물 기준 1.2 MPa까지 견딥니다.",
+   "features": [
+    "<b>고압 대응</b> — 공기 0-1.0 MPa, 물 0-1.2 MPa",
+    "응답 시간 <b>530 ms 이하</b>",
+    "오리피스 <b>1.5 mm</b>, 포트 구성 <b>2 / 3 / 4 포트</b>",
+    "습부 <b>PCTFE + 사파이어</b>",
+    "<b>외부 트리거 DC7~33V</b> 입력과 <b>3.3~24V 하이/로우 레벨</b> 피드백 출력을 갖춰 상위 제어기에서 개폐 상태를 확인합니다",
+    "밸브 모델 <b>M01 ~ M05</b> 로 포트간 체적과 데드볼륨이 다릅니다"
+   ],
+   "specs": [
+    [
+     "오리피스 (Orifice)",
+     "1.5 mm"
+    ],
+    [
+     "습부 재질 (Wetted material)",
+     "PCTFE · 사파이어"
+    ],
+    [
+     "포트 구성 (Port configuration)",
+     "2 / 3 / 4 포트"
+    ],
+    [
+     "공기 압력 (Air pressure)",
+     "0-1.0 MPa"
+    ],
+    [
+     "수압 (Water pressure)",
+     "0-1.2 MPa"
+    ],
+    [
+     "액체 온도 (Liquid temperature)",
+     "0℃ ~ 80℃"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "교체 부품 (Replaceable parts)",
+     "스테이터 교체 가능 · 씰 로터 교체 불가"
+    ],
+    [
+     "드라이버 (Driver)",
+     "비선택형 (Non-optional)"
+    ],
+    [
+     "응답 시간 (Valve drive)",
+     "≤530 ms"
+    ],
+    [
+     "트리거 신호 (Trigger signal)",
+     "DC 7-33V"
+    ],
+    [
+     "피드백 신호 (Feedback signal)",
+     "3.3-24V 하이/로우 레벨 출력"
+    ],
+    [
+     "최대 전류 (Max current)",
+     "2.0 A"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC 24V / 1.0A"
+    ],
+    [
+     "최대 소비전력 (Max power)",
+     "48 W"
+    ],
+    [
+     "동작 온도 (Operating temperature)",
+     "0℃ ~ 50℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 70% 미만 · 비결로"
+    ],
+    [
+     "치수 (Dimension L×W×H)",
+     "42 × 42 × 113 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.487 kg"
+    ],
+    [
+     "드라이버 포트 핀 (Driver port)",
+     "DC24V(+) · DC24V(−) · V-Tin 외부 트리거 전압(DC7~33V) · DC7~33V GND · AGND 외부 기준전압 GND · OUT1 출력 레벨 1 · OUT2 출력 레벨 2 · Vref 외부 기준 입력 전압(+)"
+    ]
+   ],
+   "variants": {
+    "heading": "밸브 모델별 체적 (Valve model)",
+    "head": [
+     "항목",
+     "M01",
+     "M02",
+     "M03",
+     "M04",
+     "M05"
+    ],
+    "rows": [
+     [
+      "포트간 체적 (Port-to-port)",
+      "52.93 µl",
+      "50.68 µl",
+      "52.93 µl",
+      "101.35 µl",
+      "51.32 µl"
+     ],
+     [
+      "데드볼륨 (Dead volume)",
+      "13.83 µl",
+      "11.66 µl",
+      "13.83 µl",
+      "23.31 µl",
+      "12.22 µl"
+     ]
+    ]
+   },
+   "sections": [
+    {
+     "h": "모델 번호 · 유로 구성 · 치수",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/3-way-switching-valve-d1.jpg\" alt=\"모델 번호 구성\" loading=\"lazy\"><figcaption>모델 번호 구성</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d2.jpg\" alt=\"유로 구성도\" loading=\"lazy\"><figcaption>유로 구성도</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d3.jpg\" alt=\"드라이버 포트 핀 배열\" loading=\"lazy\"><figcaption>드라이버 포트 핀 배열</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d4.jpg\" alt=\"외형 치수 (단위 mm)\" loading=\"lazy\"><figcaption>외형 치수 (단위 mm)</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 상세",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/3-way-switching-valve-d5.jpg\" alt=\"제조사 상세 자료 (1/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (1/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d6.jpg\" alt=\"제조사 상세 자료 (2/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (2/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d7.jpg\" alt=\"제조사 상세 자료 (3/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (3/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d8.jpg\" alt=\"제조사 상세 자료 (4/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (4/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d9.jpg\" alt=\"제조사 상세 자료 (5/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (5/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d10.jpg\" alt=\"제조사 상세 자료 (6/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (6/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d11.jpg\" alt=\"제조사 상세 자료 (7/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (7/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d12.jpg\" alt=\"제조사 상세 자료 (8/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (8/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d13.jpg\" alt=\"제조사 상세 자료 (9/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (9/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d14.jpg\" alt=\"제조사 상세 자료 (10/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (10/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d15.jpg\" alt=\"제조사 상세 자료 (11/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (11/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d16.jpg\" alt=\"제조사 상세 자료 (12/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (12/13)</figcaption></figure><figure><img src=\"/img/runze/3-way-switching-valve-d17.jpg\" alt=\"제조사 상세 자료 (13/13)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (13/13)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>특수 압력 계통의 유로 전환</li><li>환경 분석 기기</li><li>실험 분석 기기 · 크로마토그래피</li><li>OEM 유체 모듈</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/mrv-01bm-high-pressure-valve/\">MRV-01BM 고압 밸브</a> · <a href=\"https://www.runzefluid.com/uploads/file/mrv-01b-high-pressure-solenoid-valve.pdf\" rel=\"nofollow\">MRV-01B 고압 솔레노이드 밸브 자료 (제조사 PDF)</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#솔레노이드밸브",
+     "/product/"
+    ],
+    [
+     "#3방밸브",
+     "/product/"
+    ],
+    [
+     "#고압밸브",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "사양",
+     "q": "몇 bar까지 쓸 수 있나요?",
+     "a": "공기 0-1.0 MPa, 물 0-1.2 MPa입니다. 액체 온도는 0~80℃입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "응답 시간은 얼마인가요?",
+     "a": "530 ms 이하입니다."
+    },
+    {
+     "tag": "선택",
+     "q": "M01~M05는 무엇이 다른가요?",
+     "a": "포트간 체적과 데드볼륨이 다릅니다. M02가 데드볼륨 11.66 µl로 가장 작고, M04가 포트간 101.35 µl로 가장 큽니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떻게 구동하나요?",
+     "a": "DC7~33V 외부 트리거로 구동하고, 3.3~24V 하이/로우 레벨 피드백으로 상위 제어기가 개폐 상태를 확인합니다."
+    },
+    {
+     "tag": "전원",
+     "q": "전원과 소비전력은요?",
+     "a": "DC 24V / 1.0A이고 최대 소비전력은 48 W, 최대 전류는 2.0 A입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "PCTFE와 사파이어입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 3방 스위칭 밸브 MRV-01B",
+    "sku": "MRV-01B",
+    "category": "고압 솔레노이드 밸브",
+    "description": "오리피스 1.5 mm 고압 3방 솔레노이드 밸브. 2/3/4 포트, 응답 530 ms 이하, 0-1.2 MPa(물), 0-80℃, 외부 트리거 DC7-33V.",
+    "models": [
+     "M01",
+     "M02",
+     "M03",
+     "M04",
+     "M05"
+    ],
+    "count": 5
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/3-way-switching-valve.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "mrv-01bm-high-pressure-valve",
+   "name": "MRV-01BM 고압 밸브",
+   "name_en": "Runze Fluid MRV-01BM High Pressure Valve",
+   "sub": "전동 온오프 변위 밸브 · 평면 전단 전환 구조 · 통신 / 트리거 이중 제어",
+   "category": "멀티포지션 밸브 · 고압 솔레노이드 밸브",
+   "title": "Runze Fluid MRV-01BM 고압 밸브 — 무맥동 전환 · 상태 피드백 | 실험셋업연구소",
+   "desc": "Runze Fluid MRV-01BM 고압 밸브 — 유로 전환 시 맥동·적하 없음, 상태 피드백 출력, 평면 전단 전환 구조로 결정 석출에도 전환 유지. 통신·트리거 이중 제어. 가격 문의.",
+   "images": [
+    "mrv-01bm-high-pressure-valve-1.jpg",
+    "mrv-01bm-high-pressure-valve-2.jpg",
+    "mrv-01bm-high-pressure-valve-3.jpg",
+    "mrv-01bm-high-pressure-valve-4.jpg",
+    "mrv-01bm-high-pressure-valve-5.jpg",
+    "mrv-01bm-high-pressure-valve-6.jpg",
+    "mrv-01bm-high-pressure-valve-7.jpg",
+    "mrv-01bm-high-pressure-valve-8.jpg"
+   ],
+   "image_alt": "Runze Fluid MRV-01BM 고압 밸브",
+   "answer": "MRV-01BM은 Runze가 자체 개발한 전동 온오프 변위 밸브로, 유로를 바꿀 때 맥동과 적하가 없고 평면 전단 구조라 액이 결정화돼도 전환이 유지됩니다.",
+   "features": [
+    "유로 전환 시 <b>액 맥동이 없고 출구에서 적하가 생기지 않아</b> 유량이 매끄럽고 제어됩니다",
+    "<b>상태 피드백 신호 출력</b> — 상위 제어기가 밸브 개폐 상태를 정확히 인식해 밸브 이상으로 인한 유로 장애를 막습니다",
+    "<b>평면 전단(planar shear) 전환 구조</b> — 액이 결정화돼도 유로 전환에 영향이 없어 장비 안정성이 크게 올라갑니다",
+    "<b>이중 제어 모드</b> — ① 통신 제어 모드 ② 트리거 모드로 유연성과 정밀도를 함께 잡습니다",
+    "<b>IN 과 G 사이의 단락·개방 상태</b>를 인식해 스텝모터 동작을 실시간 제어, 유로를 빠르고 안정적으로 전환합니다",
+    "Runze가 <b>독자 개발한 전동 온오프 변위 밸브</b>로, 유체 시료의 채취·분배에 널리 씁니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "PCTFE · 사파이어"
+    ],
+    [
+     "전환 구조 (Switching structure)",
+     "평면 전단 (Planar shear) — 결정 석출에도 전환 유지"
+    ],
+    [
+     "제어 모드 (Control mode)",
+     "① 통신 제어 모드 ② 트리거 모드 (이중 모드)"
+    ],
+    [
+     "상태 피드백 (Status feedback)",
+     "개폐 상태 신호 출력"
+    ],
+    [
+     "트리거 인식 (Trigger)",
+     "IN-G 단락 / 개방 상태로 스텝모터 실시간 제어"
+    ],
+    [
+     "전환 특성",
+     "무맥동 · 출구 무적하"
+    ],
+    [
+     "밸브 형식 (Valve type)",
+     "전동 온오프 변위 밸브 (Runze 독자 개발)"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "제품 상세",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d1.jpg\" alt=\"제조사 상세 자료 (1/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (1/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d2.jpg\" alt=\"제조사 상세 자료 (2/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (2/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d3.jpg\" alt=\"제조사 상세 자료 (3/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (3/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d4.jpg\" alt=\"제조사 상세 자료 (4/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (4/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d5.jpg\" alt=\"제조사 상세 자료 (5/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (5/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d6.jpg\" alt=\"제조사 상세 자료 (6/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (6/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d7.jpg\" alt=\"제조사 상세 자료 (7/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (7/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d8.jpg\" alt=\"제조사 상세 자료 (8/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (8/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d9.jpg\" alt=\"제조사 상세 자료 (9/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (9/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d10.jpg\" alt=\"제조사 상세 자료 (10/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (10/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d11.jpg\" alt=\"제조사 상세 자료 (11/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (11/12)</figcaption></figure><figure><img src=\"/img/runze/mrv-01bm-high-pressure-valve-d12.jpg\" alt=\"제조사 상세 자료 (12/12)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (12/12)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>유체 시료의 채취 · 분배 (Collection and distribution of fluid samples)</li><li>환경 검출 기기 (Environmental detection instruments)</li><li>실험 분석 기기 (Experimental analysis instruments)</li><li>의료 분석 기기 (Medical analysis instruments)</li><li>크로마토그래피 기기 (Chromatography instruments)</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/3-way-switching-valve/\">3방 스위칭 밸브 MRV-01B</a> · <a href=\"https://www.runzefluid.com/uploads/file/mrv-01b-high-pressure-valve.pdf\" rel=\"nofollow\">MRV-01B 고압 밸브 자료 (제조사 PDF)</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#고압밸브",
+     "/product/"
+    ],
+    [
+     "#온오프밸브",
+     "/product/"
+    ],
+    [
+     "#시료분배",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "특징",
+     "q": "전환할 때 액이 튀거나 맥동이 생기지 않나요?",
+     "a": "유로를 바꿀 때 액 맥동이 없고 출구에서 적하가 생기지 않도록 설계됐습니다."
+    },
+    {
+     "tag": "안정성",
+     "q": "시약이 결정으로 석출되면 전환이 막히지 않나요?",
+     "a": "평면 전단 전환 구조라 액이 결정화돼도 유로 전환에 영향을 주지 않습니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떻게 제어하나요?",
+     "a": "통신 제어 모드와 트리거 모드 두 가지를 지원합니다. 트리거 모드는 IN과 G 사이의 단락·개방 상태를 읽어 스텝모터를 실시간 제어합니다."
+    },
+    {
+     "tag": "진단",
+     "q": "밸브가 제대로 열렸는지 확인할 수 있나요?",
+     "a": "상태 피드백 신호를 출력해 상위 제어기가 개폐 상태를 인식합니다. 밸브 이상으로 유로가 막히는 사고를 막습니다."
+    },
+    {
+     "tag": "용도",
+     "q": "어디에 쓰나요?",
+     "a": "유체 시료의 채취와 분배에 쓰며 환경 검출·실험 분석·의료 분석·크로마토그래피 기기에 들어갑니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid MRV-01BM 고압 밸브",
+    "sku": "MRV-01BM",
+    "category": "고압 솔레노이드 밸브",
+    "description": "전동 온오프 변위 밸브. 무맥동·무적하 전환, 평면 전단 구조, 상태 피드백 출력, 통신·트리거 이중 제어.",
+    "models": [
+     "MRV-01BM"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/mrv-01bm-high-pressure-valve.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "ceramic-valve-head-component",
+   "name": "세라믹 밸브 헤드 어셈블리",
+   "name_en": "Runze Fluid Ceramic Valve Head Component",
+   "sub": "알루미나 세라믹 스테이터 · 세라믹 / PEEK 로터 · 로터 데드볼륨 7.577 µL",
+   "category": "멀티포지션 밸브 · 세라믹 밸브 헤드",
+   "title": "Runze Fluid 세라믹 밸브 헤드 어셈블리 — 시린지 펌프용 저데드볼륨 밸브헤드 | 실험셋업연구소",
+   "desc": "Runze Fluid 세라믹 밸브 헤드 어셈블리 — 알루미나 세라믹 스테이터에 세라믹 또는 PEEK 로터. 로터 데드볼륨 7.577 µL, 포트간 44.216 µL, 1/4-28 UNF. 가격 문의.",
+   "images": [
+    "ceramic-valve-head-component-1.jpg",
+    "ceramic-valve-head-component-2.jpg",
+    "ceramic-valve-head-component-3.jpg",
+    "ceramic-valve-head-component-4.jpg",
+    "ceramic-valve-head-component-5.jpg",
+    "ceramic-valve-head-component-6.jpg",
+    "ceramic-valve-head-component-7.jpg",
+    "ceramic-valve-head-component-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 세라믹 밸브 헤드 어셈블리",
+   "answer": "세라믹 밸브 헤드 어셈블리는 정밀 시린지 펌프용 밸브헤드로, 알루미나 세라믹 스테이터와 세라믹·PEEK 로터로 낮은 데드볼륨과 안정된 실링을 냅니다.",
+   "features": [
+    "<b>알루미나 세라믹 스테이터</b> + 세라믹 또는 <b>PEEK 로터</b> 선택 — 두 불활성 재질로 금속 이온 용출과 흡착이 없습니다",
+    "로터 데드볼륨 <b>7.577 µL</b>, 포트간 데드볼륨 <b>44.216 µL</b>",
+    "유체 인터페이스 <b>1/4-28 UNF</b>",
+    "<b>안정된 실링 성능</b>과 저데드볼륨 유로 전환",
+    "정밀 <b>시린지 펌프 시스템</b>에 맞춰 설계됐습니다",
+    "<b>OEM 유체 모듈 통합</b>을 지원합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "알루미나 세라믹 스테이터 · 세라믹 또는 PEEK 로터"
+    ],
+    [
+     "로터 데드볼륨 (Rotor dead volume)",
+     "7.577 µL"
+    ],
+    [
+     "포트간 데드볼륨 (Port-to-port dead volume)",
+     "44.216 µL"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "로터 옵션 (Rotor options)",
+     "세라믹 로터 · PEEK 로터"
+    ],
+    [
+     "실링 (Sealing)",
+     "안정된 실링 성능"
+    ],
+    [
+     "적용 (Application)",
+     "정밀 시린지 펌프 시스템 · OEM 유체 모듈"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "제품 상세",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/ceramic-valve-head-component-d1.jpg\" alt=\"제조사 상세 자료 (1/6)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (1/6)</figcaption></figure><figure><img src=\"/img/runze/ceramic-valve-head-component-d2.jpg\" alt=\"제조사 상세 자료 (2/6)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (2/6)</figcaption></figure><figure><img src=\"/img/runze/ceramic-valve-head-component-d3.jpg\" alt=\"제조사 상세 자료 (3/6)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (3/6)</figcaption></figure><figure><img src=\"/img/runze/ceramic-valve-head-component-d4.jpg\" alt=\"제조사 상세 자료 (4/6)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (4/6)</figcaption></figure><figure><img src=\"/img/runze/ceramic-valve-head-component-d5.jpg\" alt=\"제조사 상세 자료 (5/6)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (5/6)</figcaption></figure><figure><img src=\"/img/runze/ceramic-valve-head-component-d6.jpg\" alt=\"제조사 상세 자료 (6/6)\" loading=\"lazy\"><figcaption>제조사 상세 자료 (6/6)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>분석 기기 (Analytical instruments)</li><li>IVD 분석기 (IVD analyzers)</li><li>환경 분석기 (Environmental analyzers)</li><li>실험실 자동화 시스템 (Laboratory automation systems)</li><li>정밀 액체 취급 장비 (Precision liquid handling equipment)</li></ul>"
+    }
+   ],
+   "buybox": [],
+   "related": "유체 제어: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/rp42-industrial-micro-syringe-pump/\">RP42 마이크로 플런저 펌프</a> · <a href=\"/brands/runze/selector-valve-sv-07/\">셀렉터 밸브 SV-07</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#밸브헤드",
+     "/product/"
+    ],
+    [
+     "#세라믹로터",
+     "/product/"
+    ],
+    [
+     "#시린지펌프부품",
+     "/product/"
+    ]
+   ],
+   "faq": [
+    {
+     "tag": "선택",
+     "q": "세라믹 로터와 PEEK 로터 중 무엇을 골라야 하나요?",
+     "a": "두 옵션 모두 제공됩니다. 알루미나 세라믹과 PEEK 모두 불활성이라 금속 이온 용출이나 흡착이 없습니다."
+    },
+    {
+     "tag": "사양",
+     "q": "데드볼륨은 얼마인가요?",
+     "a": "로터 데드볼륨 7.577 µL, 포트간 데드볼륨 44.216 µL입니다."
+    },
+    {
+     "tag": "연결",
+     "q": "유체 인터페이스 규격은요?",
+     "a": "1/4-28 UNF입니다."
+    },
+    {
+     "tag": "용도",
+     "q": "어떤 장비에 들어가나요?",
+     "a": "정밀 시린지 펌프 시스템, 분석 기기, IVD 분석기, 환경 분석기, 실험실 자동화 장비에 씁니다."
+    },
+    {
+     "tag": "OEM",
+     "q": "OEM 모듈에 넣을 수 있나요?",
+     "a": "됩니다. OEM 유체 시스템 통합을 지원합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 세라믹 밸브 헤드 어셈블리",
+    "sku": "CERAMIC-VALVE-HEAD",
+    "category": "세라믹 밸브 헤드",
+    "description": "정밀 시린지 펌프용 세라믹 밸브 헤드 어셈블리. 알루미나 세라믹 스테이터, 세라믹·PEEK 로터, 로터 데드볼륨 7.577 µL, 1/4-28 UNF.",
+    "models": [
+     "Ceramic rotor",
+     "PEEK rotor"
+    ],
+    "count": 2
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/ceramic-valve-head-component.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
   }
  ]
 }

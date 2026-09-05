@@ -1099,7 +1099,7 @@ ALLPROD_CATMAP = {
     'pellet': 'prep', 'die': 'prep', 'slicer': 'prep',   # 시료 전처리(펠릿 프레스·다이·슬라이서)
     'vacuumpump': 'vacuum', 'vac': 'vacuum',
     'pump': 'pump', 'peri': 'pump', 'syr': 'pump', 'gear': 'pump', 'ex': 'pump', 'head': 'pump',
-    'valve': 'pump', 'fitting': 'pump', 'tubing': 'pump',
+    'valve': 'pump', 'fluidacc': 'pump', 'fitting': 'pump', 'tubing': 'pump',
     'mfc': 'gas', 'std': 'gas', 'hp': 'gas', 'bio': 'gas', 'corr': 'gas', 'dual': 'gas', 'press': 'gas',
     'electrode': 'echem', 'catalyst': 'echem', 'material': 'echem', 'accessory': 'echem',
     'fumehood': 'safety', 'measuring': 'safety',

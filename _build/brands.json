@@ -699,7 +699,11 @@
     "크롬은 오리진당 2번째 자동 다운로드부터 차단하며 오리진을 바꿔도 안 풀린다. chrome://settings/content/automaticDownloads 에 [*.]leadfluid.com.cn 등록해 둠(2026-09-05). 내장 브라우저는 이 설정과 무관하게 따로 막힌다.",
     "제품 사진 좌상단에 중국어 빨간 배지가 합성돼 있다(약 350장). _ops/leadfluid_cn/debadge.py 로 지우되, 제품에 붙은 빨간 LEADFLUID 로고를 배지로 오인하지 않도록 블롭 크기 상한(폭·높이 < 13%)과 주변 흰색 확인을 반드시 넣는다.",
     "제품컷/도판 자동 분류에 '글자줄 수'만 쓰면 어두운 펌프 본체가 글자로 잡혀 대부분 도판으로 오분류된다. 가로로 이어진 큰 덩어리(solid) vs 짧은 조각 다수(textish) 비교가 맞고, 배지를 먼저 지워야 정확해진다.",
-    "기존 구페이지 보강은 구조를 바꾸지 말고 두 곳만 삽입한다 — dt-thumbs 안에 lfSwap 버튼, FAQ h2 앞에 det-imgs 섹션. 마커 <!--cn-boost--> 로 멱등 처리. _ops/leadfluid_cn/phase2_apply.py."
+    "기존 구페이지 보강은 구조를 바꾸지 말고 두 곳만 삽입한다 — dt-thumbs 안에 lfSwap 버튼, FAQ h2 앞에 det-imgs 섹션. 마커 <!--cn-boost--> 로 멱등 처리. _ops/leadfluid_cn/phase2_apply.py.",
+    "구페이지 한글 표 삽입도 같은 방식이다 — 마커 <!--cn-tbl-->, FAQ h2 앞에 <h2 class=\"pkg-h\">+.pkg-tblwrap 삽입. _ops/leadfluid_cn/phase2_tables_apply.py, 값은 phase2_tables_ko.json 한 곳에서만 고친다.",
+    "제조사 도판 표를 옮길 때 헤더 모양이 제품군마다 다르다 — pump(적용 헤드·튜브·유량) / ef(대유량) / syr(시린지 규격·유량) / kl40(회전수별 최대유량) / fill(분주 응용). 헤더는 _head_* 로 공유하고 행만 모델별로 둔다.",
+    "도판에서 값이 라벨 겹침 등으로 확실히 안 읽히면 추정하지 말고 '문의' 로 적는다(YT25 Viton 50 rpm 사례).",
+    "본문 도판 그리드는 .pkg-figs 한 줄(assets/detail.css)로 처리한다. 페이지마다 인라인 <style> 넣지 말 것."
    ],
    "default_required_specs": [],
    "families": {
@@ -815,7 +819,7 @@
   "runze": {
    "name_ko": "Runze Fluid",
    "name_en": "Runze Fluid",
-   "pipeline": "_build/products/runze.json → build_product_pages()",
+   "pipeline": "_build/products/runze.json → build_product_pages() · 허브는 _ops/runze/gen_hub.py 로 생성(수기 편집 금지)",
    "page_unit": "model",
    "reference_page": "brands/runze/selector-valve-sv-07/",
    "source": {
@@ -838,13 +842,14 @@
       "selector-valve",
       "switching-valve",
       "solenoid-valve",
-      "valve-head"
+      "valve-head",
+      "sv-04",
+      "sv-07",
+      "sv07m",
+      "mrv-01"
      ],
      "required_specs": [
-      "습부 재질 (Wetted material)",
-      "압력 정격 (Pressure rating)",
-      "연결부 (Connection)",
-      "전원 (Power supply)"
+      "습부 재질 (Wetted material)"
      ]
     },
     "syringe-pump": {
