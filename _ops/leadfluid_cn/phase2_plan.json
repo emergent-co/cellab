@@ -1,0 +1,451 @@
+{
+ "_doc": "기존 62종 보강 계획 — 썸네일(제품컷)만. 도판은 중국어 표가 섞여 다음 단계로 미룸.",
+ "bq80s": {
+  "thumbs": [
+   "cn/bq80s-1.jpg",
+   "cn/bq80s-2.jpg",
+   "cn/bq80s-3.jpg"
+  ],
+  "figs": []
+ },
+ "bt100f": {
+  "thumbs": [
+   "cn/bt100f-1.jpg",
+   "cn/bt100f-2.jpg",
+   "cn/bt100f-3.jpg",
+   "cn/bt100f-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt100f-1": {
+  "thumbs": [
+   "cn/bt100f-1-1.jpg",
+   "cn/bt100f-1-2.jpg",
+   "cn/bt100f-1-3.jpg",
+   "cn/bt100f-1-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt100l": {
+  "thumbs": [
+   "cn/bt100l-1.jpg",
+   "cn/bt100l-2.jpg",
+   "cn/bt100l-3.jpg",
+   "cn/bt100l-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt100s": {
+  "thumbs": [
+   "cn/bt100s-1.jpg",
+   "cn/bt100s-2.jpg",
+   "cn/bt100s-3.jpg",
+   "cn/bt100s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt100s-1": {
+  "thumbs": [
+   "cn/bt100s-1-1.jpg",
+   "cn/bt100s-1-2.jpg",
+   "cn/bt100s-1-3.jpg",
+   "cn/bt100s-1-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt101f": {
+  "thumbs": [
+   "cn/bt101f-1.jpg",
+   "cn/bt101f-2.jpg",
+   "cn/bt101f-3.jpg",
+   "cn/bt101f-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt101l": {
+  "thumbs": [
+   "cn/bt101l-1.jpg",
+   "cn/bt101l-2.jpg",
+   "cn/bt101l-3.jpg",
+   "cn/bt101l-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt101s": {
+  "thumbs": [
+   "cn/bt101s-1.jpg",
+   "cn/bt101s-2.jpg",
+   "cn/bt101s-3.jpg",
+   "cn/bt101s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt103s": {
+  "thumbs": [
+   "cn/bt103s-1.jpg",
+   "cn/bt103s-2.jpg",
+   "cn/bt103s-3.jpg",
+   "cn/bt103s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt300f": {
+  "thumbs": [
+   "cn/bt300f-1.jpg",
+   "cn/bt300f-2.jpg"
+  ],
+  "figs": []
+ },
+ "bt300l": {
+  "thumbs": [
+   "cn/bt300l-1.jpg",
+   "cn/bt300l-2.jpg",
+   "cn/bt300l-3.jpg",
+   "cn/bt300l-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt300s": {
+  "thumbs": [
+   "cn/bt300s-1.jpg",
+   "cn/bt300s-2.jpg",
+   "cn/bt300s-3.jpg",
+   "cn/bt300s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt301f": {
+  "thumbs": [
+   "cn/bt301f-1.jpg",
+   "cn/bt301f-2.jpg",
+   "cn/bt301f-3.jpg",
+   "cn/bt301f-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt301l": {
+  "thumbs": [
+   "cn/bt301l-1.jpg",
+   "cn/bt301l-2.jpg",
+   "cn/bt301l-3.jpg",
+   "cn/bt301l-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt301s": {
+  "thumbs": [
+   "cn/bt301s-1.jpg",
+   "cn/bt301s-2.jpg",
+   "cn/bt301s-3.jpg",
+   "cn/bt301s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt600f": {
+  "thumbs": [
+   "cn/bt600f-1.jpg",
+   "cn/bt600f-2.jpg",
+   "cn/bt600f-3.jpg",
+   "cn/bt600f-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt600l": {
+  "thumbs": [
+   "cn/bt600l-1.jpg",
+   "cn/bt600l-2.jpg",
+   "cn/bt600l-3.jpg",
+   "cn/bt600l-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt600s": {
+  "thumbs": [
+   "cn/bt600s-1.jpg",
+   "cn/bt600s-2.jpg",
+   "cn/bt600s-3.jpg",
+   "cn/bt600s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt601f": {
+  "thumbs": [
+   "cn/bt601f-1.jpg",
+   "cn/bt601f-2.jpg",
+   "cn/bt601f-3.jpg",
+   "cn/bt601f-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt601l": {
+  "thumbs": [
+   "cn/bt601l-1.jpg",
+   "cn/bt601l-2.jpg",
+   "cn/bt601l-3.jpg",
+   "cn/bt601l-4.jpg"
+  ],
+  "figs": []
+ },
+ "bt601s": {
+  "thumbs": [
+   "cn/bt601s-1.jpg",
+   "cn/bt601s-2.jpg",
+   "cn/bt601s-3.jpg",
+   "cn/bt601s-4.jpg"
+  ],
+  "figs": []
+ },
+ "bx600s": {
+  "thumbs": [
+   "cn/bx600s-1.jpg",
+   "cn/bx600s-2.jpg",
+   "cn/bx600s-3.jpg"
+  ],
+  "figs": []
+ },
+ "ct3001f": {
+  "thumbs": [
+   "cn/ct3001f-1.jpg",
+   "cn/ct3001f-2.jpg"
+  ],
+  "figs": []
+ },
+ "ef803": {
+  "thumbs": [
+   "cn/ef803-1.jpg",
+   "cn/ef803-2.jpg",
+   "cn/ef803-3.jpg",
+   "cn/ef803-4.jpg"
+  ],
+  "figs": []
+ },
+ "ef806": {
+  "thumbs": [
+   "cn/ef806-1.jpg",
+   "cn/ef806-2.jpg",
+   "cn/ef806-3.jpg",
+   "cn/ef806-4.jpg"
+  ],
+  "figs": []
+ },
+ "ef903": {
+  "thumbs": [
+   "cn/ef903-1.jpg",
+   "cn/ef903-2.jpg",
+   "cn/ef903-3.jpg",
+   "cn/ef903-4.jpg"
+  ],
+  "figs": []
+ },
+ "ef906": {
+  "thumbs": [
+   "cn/ef906-1.jpg",
+   "cn/ef906-2.jpg",
+   "cn/ef906-3.jpg",
+   "cn/ef906-4.jpg"
+  ],
+  "figs": []
+ },
+ "ef918": {
+  "thumbs": [
+   "cn/ef918-1.jpg",
+   "cn/ef918-2.jpg"
+  ],
+  "figs": []
+ },
+ "ef933": {
+  "thumbs": [
+   "cn/ef933-1.jpg"
+  ],
+  "figs": []
+ },
+ "fg600s-q": {
+  "thumbs": [
+   "cn/fg600s-q-1.jpg"
+  ],
+  "figs": []
+ },
+ "fg601s-q": {
+  "thumbs": [
+   "cn/fg601s-q-1.jpg"
+  ],
+  "figs": []
+ },
+ "g6060-1s": {
+  "thumbs": [
+   "cn/g6060-1s-1.jpg"
+  ],
+  "figs": []
+ },
+ "jp300s": {
+  "thumbs": [
+   "cn/jp300s-1.jpg"
+  ],
+  "figs": []
+ },
+ "jp301s": {
+  "thumbs": [
+   "cn/jp301s-1.jpg"
+  ],
+  "figs": []
+ },
+ "mf103": {
+  "thumbs": [
+   "cn/mf103-1.jpg",
+   "cn/mf103-2.jpg",
+   "cn/mf103-3.jpg",
+   "cn/mf103-4.jpg"
+  ],
+  "figs": []
+ },
+ "mf106": {
+  "thumbs": [
+   "cn/mf106-1.jpg",
+   "cn/mf106-2.jpg",
+   "cn/mf106-3.jpg",
+   "cn/mf106-4.jpg"
+  ],
+  "figs": []
+ },
+ "mf118": {
+  "thumbs": [
+   "cn/mf118-1.jpg",
+   "cn/mf118-2.jpg",
+   "cn/mf118-3.jpg",
+   "cn/mf118-4.jpg"
+  ],
+  "figs": []
+ },
+ "mf133": {
+  "thumbs": [
+   "cn/mf133-1.jpg",
+   "cn/mf133-2.jpg",
+   "cn/mf133-3.jpg",
+   "cn/mf133-4.jpg"
+  ],
+  "figs": []
+ },
+ "tfd02-01": {
+  "thumbs": [
+   "cn/tfd02-01-1.jpg"
+  ],
+  "figs": []
+ },
+ "tfd03-01": {
+  "thumbs": [
+   "cn/tfd03-01-1.jpg",
+   "cn/tfd03-01-2.jpg"
+  ],
+  "figs": []
+ },
+ "tfd04": {
+  "thumbs": [
+   "cn/tfd04-1.jpg",
+   "cn/tfd04-2.jpg"
+  ],
+  "figs": []
+ },
+ "tyd01-01": {
+  "thumbs": [
+   "cn/tyd01-01-1.jpg"
+  ],
+  "figs": []
+ },
+ "tyd01-02": {
+  "thumbs": [
+   "cn/tyd01-02-1.jpg"
+  ],
+  "figs": []
+ },
+ "tyd02-02": {
+  "thumbs": [
+   "cn/tyd02-02-1.jpg",
+   "cn/tyd02-02-2.jpg",
+   "cn/tyd02-02-3.jpg"
+  ],
+  "figs": []
+ },
+ "tyd02-04": {
+  "thumbs": [
+   "cn/tyd02-04-1.jpg"
+  ],
+  "figs": []
+ },
+ "tyd02-10": {
+  "thumbs": [
+   "cn/tyd02-10-1.jpg"
+  ],
+  "figs": []
+ },
+ "wg600f": {
+  "thumbs": [
+   "cn/wg600f-1.jpg",
+   "cn/wg600f-2.jpg",
+   "cn/wg600f-3.jpg"
+  ],
+  "figs": []
+ },
+ "wg600s": {
+  "thumbs": [
+   "cn/wg600s-1.jpg",
+   "cn/wg600s-2.jpg",
+   "cn/wg600s-3.jpg",
+   "cn/wg600s-4.jpg"
+  ],
+  "figs": []
+ },
+ "wt300f": {
+  "thumbs": [
+   "cn/wt300f-1.jpg",
+   "cn/wt300f-2.jpg",
+   "cn/wt300f-3.jpg",
+   "cn/wt300f-4.jpg"
+  ],
+  "figs": []
+ },
+ "wt300s": {
+  "thumbs": [
+   "cn/wt300s-1.jpg",
+   "cn/wt300s-2.jpg",
+   "cn/wt300s-3.jpg",
+   "cn/wt300s-4.jpg"
+  ],
+  "figs": []
+ },
+ "wt600f": {
+  "thumbs": [
+   "cn/wt600f-1.jpg",
+   "cn/wt600f-2.jpg",
+   "cn/wt600f-3.jpg",
+   "cn/wt600f-4.jpg"
+  ],
+  "figs": []
+ },
+ "wt600f-65": {
+  "thumbs": [
+   "cn/wt600f-65-1.jpg",
+   "cn/wt600f-65-2.jpg",
+   "cn/wt600f-65-3.jpg",
+   "cn/wt600f-65-4.jpg"
+  ],
+  "figs": []
+ },
+ "wt600s": {
+  "thumbs": [
+   "cn/wt600s-1.jpg",
+   "cn/wt600s-2.jpg",
+   "cn/wt600s-3.jpg",
+   "cn/wt600s-4.jpg"
+  ],
+  "figs": []
+ },
+ "wt600s-65": {
+  "thumbs": [
+   "cn/wt600s-65-1.jpg",
+   "cn/wt600s-65-2.jpg",
+   "cn/wt600s-65-3.jpg",
+   "cn/wt600s-65-4.jpg"
+  ],
+  "figs": []
+ }
+}
