@@ -32,6 +32,21 @@ const ymOf = (v) => {
   return m ? `${m[1]}-${m[2]}` : kstDate().slice(0, 7);
 };
 
+/* 용역처 명부.
+   같은 사람에게 여러 번 주면서 이름·주민번호·계좌를 매번 다시 치는 건
+   실수도 나고 시간도 든다. 한 번 등록해 두고 골라 쓴다.
+   D1 에 마이그레이션 도구가 따로 없어 첫 호출 때 만든다 — 있으면 그냥 지나간다. */
+let payeeReady = false;
+async function ensurePayees(env) {
+  if (payeeReady) return;
+  await env.DB.prepare(
+    `CREATE TABLE IF NOT EXISTS payees (
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       name TEXT NOT NULL, rrn TEXT, bank TEXT, memo TEXT,
+       created_at TEXT, updated_at TEXT)`).run().catch(() => {});
+  payeeReady = true;
+}
+
 export async function onRequest({ request, env }) {
   if (!(await adminOK(request, env))) return needAdmin();
   if (request.method === 'GET') return get(request, env);
@@ -41,6 +56,23 @@ export async function onRequest({ request, env }) {
 
 async function get(request, env) {
   const u = new URL(request.url).searchParams;
+
+  // 용역처 한 명 — 채워 넣으려면 전체 번호가 필요하다. 열람 사실을 남긴다.
+  if (u.get('payee')) {
+    await ensurePayees(env);
+    const r = await env.DB.prepare('SELECT * FROM payees WHERE id=?').bind(u.get('payee')).first();
+    if (!r) return json({ error: 'not_found' }, 404);
+    await logEvent(env, { action: 'payee_view', actor: 'admin', detail: `용역처 ${r.name} 주민번호 열람` });
+    return json({ payee: r });
+  }
+
+  // 용역처 목록 — 고르는 데 쓰는 목록이라 주민번호는 «항상» 마스킹해서 내보낸다
+  if (u.get('payees') != null) {
+    await ensurePayees(env);
+    const { results } = await env.DB.prepare(
+      'SELECT id, name, rrn, bank, memo FROM payees ORDER BY name').all();
+    return json({ payees: (results || []).map((r) => ({ ...r, rrn: maskRrn(r.rrn) })) });
+  }
 
   if (u.get('id')) {
     const r = await env.DB.prepare('SELECT * FROM payouts WHERE id=?').bind(u.get('id')).first();
@@ -70,9 +102,62 @@ async function get(request, env) {
   return json({ ym, rows, sum, months, share, tax_mail: env.TAX_MAIL || 'better304@naver.com' });
 }
 
+/* 지급을 기록하면서 «다음에도 쓰게» 명부에 남긴다.
+   이미 있는 이름이면 빈 칸만 채운다 — 이번에 계좌를 안 적었다고
+   전에 등록해 둔 계좌가 지워지면 안 된다. */
+async function savePayee(env, name, rrn, bank, now) {
+  await ensurePayees(env);
+  const hit = await env.DB.prepare('SELECT * FROM payees WHERE name=?').bind(name).first();
+  if (!hit) {
+    return env.DB.prepare(
+      'INSERT INTO payees (name, rrn, bank, memo, created_at, updated_at) VALUES (?,?,?,?,?,?)')
+      .bind(name, rrn || '', bank || '', '', now, now).run().catch(() => {});
+  }
+  return env.DB.prepare('UPDATE payees SET rrn=?, bank=?, updated_at=? WHERE id=?')
+    .bind(rrn || hit.rrn || '', bank || hit.bank || '', now, hit.id).run().catch(() => {});
+}
+
 async function post(request, env) {
   const b = await request.json().catch(() => ({}));
   const now = kstISO();
+
+  // 용역처 등록·수정 — 이름이 같으면 덮어쓴다(같은 사람을 두 줄로 만들지 않으려고)
+  if (b.action === 'payee_save') {
+    await ensurePayees(env);
+    const name = String(b.name || '').trim();
+    if (!name) return json({ error: 'no_name', message: '이름을 입력해주세요.' }, 400);
+    const rrn = digits(b.rrn);
+    if (rrn && rrn.length !== 13) {
+      return json({ error: 'bad_rrn', message: '주민등록번호 13자리를 정확히 입력해주세요.' }, 400);
+    }
+    const bank = String(b.bank || '').trim();
+    const memo = String(b.memo || '').trim();
+    const hit = b.id
+      ? await env.DB.prepare('SELECT id FROM payees WHERE id=?').bind(b.id).first()
+      : await env.DB.prepare('SELECT id FROM payees WHERE name=?').bind(name).first();
+    if (hit) {
+      await env.DB.prepare(
+        'UPDATE payees SET name=?, rrn=?, bank=?, memo=?, updated_at=? WHERE id=?')
+        .bind(name, rrn, bank, memo, now, hit.id).run();
+      await logEvent(env, { action: 'payee_edit', actor: 'admin', detail: `용역처 ${name} 수정` });
+      return json({ ok: true, id: hit.id });
+    }
+    const r = await env.DB.prepare(
+      'INSERT INTO payees (name, rrn, bank, memo, created_at, updated_at) VALUES (?,?,?,?,?,?)')
+      .bind(name, rrn, bank, memo, now, now).run();
+    await logEvent(env, { action: 'payee_add', actor: 'admin', detail: `용역처 ${name} 등록` });
+    return json({ ok: true, id: r.meta.last_row_id });
+  }
+
+  if (b.action === 'payee_delete') {
+    await ensurePayees(env);
+    const r = await env.DB.prepare('SELECT name FROM payees WHERE id=?').bind(b.id).first();
+    if (!r) return json({ error: 'not_found' }, 404);
+    await env.DB.prepare('DELETE FROM payees WHERE id=?').bind(b.id).run();
+    // 이미 기록한 지급 내역은 그대로 둔다 — 명부에서만 지운다
+    await logEvent(env, { action: 'payee_delete', actor: 'admin', detail: `용역처 ${r.name} 삭제` });
+    return json({ ok: true });
+  }
 
   if (b.action === 'delete') {
     const r = await env.DB.prepare('SELECT name, paid_at FROM payouts WHERE id=?').bind(b.id).first();
@@ -111,6 +196,7 @@ async function post(request, env) {
                 net=?, bank=?, memo=?, updated_at=? WHERE id=?`
       ).bind(...args, now, b.id).run();
       await logEvent(env, { action: 'payout_edit', actor: 'admin', detail: `용역비 ${day} ${name} 수정` });
+      if (b.remember) await savePayee(env, name, rrn, String(b.bank || '').trim(), now);
       return json({ ok: true, id: b.id });
     }
     const r = await env.DB.prepare(
@@ -119,6 +205,7 @@ async function post(request, env) {
     ).bind(...args, now, now).run();
     await logEvent(env, { action: 'payout_add', actor: 'admin',
       detail: `용역비 ${day} ${name} ${won(gross)}원` });
+    if (b.remember) await savePayee(env, name, rrn, String(b.bank || '').trim(), now);
     return json({ ok: true, id: r.meta.last_row_id });
   }
 

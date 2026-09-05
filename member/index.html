@@ -5023,6 +5023,10 @@ async function pyForm(id){
   }
   var rrn = String((d && d.rrn) || '').replace(/[^0-9]/g,'');
   var inner = '<div class="dcard" style="border:0;padding:0">'
+    /* 같은 사람에게 또 줄 때 이름·주민번호·계좌를 다시 치지 않게 한다 */
+    +'<label>등록된 용역처</label>'
+    +'<div class="d2col"><select id="py-pick"><option value="">— 직접 입력 —</option></select>'
+      +'<button class="btn gray" id="py-book" type="button">용역처 관리</button></div>'
     +'<div class="d2col"><div><label class="req">지급일</label>'
       +'<input type="date" id="py-date" value="'+esc(d ? String(d.paid_at).slice(0,10) : kstToday())+'"></div>'
       +'<div><label class="req">받는 분</label>'
@@ -5040,6 +5044,8 @@ async function pyForm(id){
     +'<div class="qsum" id="py-sum"></div>'
     +'<label>계좌</label><input type="text" id="py-bank" value="'+esc(d?(d.bank||''):'')+'" placeholder="예) 국민 123456-78-901234">'
     +'<label>메모</label><input type="text" id="py-memo" value="'+esc(d?(d.memo||''):'')+'" placeholder="내부 메모 (선택)">'
+    +'<label class="swrow" style="margin:14px 0 2px"><input type="checkbox" id="py-remember" checked>'
+      +'<span><b>이 사람을 용역처로 저장</b> <span class="hint" style="font-weight:600">다음에 골라 쓸 수 있습니다</span></span></label>'
     +'</div>'
     +'<div class="mrow">'+(id?'<button class="btn gray" id="py-del">삭제</button>':'')
       +'<button class="btn gray" data-x>닫기</button>'
@@ -5056,6 +5062,32 @@ async function pyForm(id){
       + '<div><span>지방소득세</span><b>'+won(loc)+'원</b></div>'
       + '<div class="tt"><span>실지급액</span><b>'+won(g-inc-loc)+'원</b></div>';
   }
+  /* 명부를 불러 셀렉트를 채운다. 목록에는 마스킹된 번호만 온다 —
+     실제로 채워 넣을 때만 한 명분 전체를 따로 받아온다(그 열람은 로그에 남는다). */
+  var pyBook = [];
+  (async function(){
+    var r = await fetch('/api/admin/payouts?payees=1',{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    pyBook = r.payees || [];
+    var sel = $('#py-pick'); if (!sel) return;
+    sel.innerHTML = '<option value="">— 직접 입력 —</option>'
+      + pyBook.map(function(x){
+          return '<option value="'+x.id+'">'+esc(x.name)
+            + (x.bank ? ' · '+esc(x.bank) : '')+'</option>'; }).join('');
+  })();
+  $('#py-pick').onchange = async function(e){
+    var pid = e.target.value; if (!pid) return;
+    var r = await fetch('/api/admin/payouts?payee='+pid,{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    var pe = r.payee; if (!pe) return toast('불러오지 못했습니다');
+    var n = String(pe.rrn||'').replace(/[^0-9]/g,'');
+    $('#py-name').value = pe.name || '';
+    $('#py-r1').value = n.slice(0,6); $('#py-r2').value = n.slice(6);
+    if (pe.bank) $('#py-bank').value = pe.bank;
+    toast(pe.name+' 정보를 채웠습니다');
+  };
+  $('#py-book').onclick = function(){ pyBookForm(function(){ w.remove(); pyForm(id); }); };
+
   $('#py-gross').oninput = function(e){ numFmt(e.target); calc(); };
   $('#py-gross').onblur  = function(e){ var v=numVal(e.target); e.target.value = v?won(v):''; calc(); };
   $('#py-rate').onchange = calc;
@@ -5080,13 +5112,94 @@ async function pyForm(id){
       paid_at: $('#py-date').value, name: $('#py-name').value.trim(),
       rrn: (r1 && r2) ? (r1+r2) : '', reason: $('#py-reason').value.trim(),
       gross: numVal($('#py-gross')), rate: Number($('#py-rate').value),
-      bank: $('#py-bank').value.trim(), memo: $('#py-memo').value.trim() })})
+      bank: $('#py-bank').value.trim(), memo: $('#py-memo').value.trim(),
+      remember: !!($('#py-remember')||{}).checked })})
       .then(function(x){return x.json();}).catch(function(){return{};});
     b.disabled = false; b.textContent = was;
     if (!res.ok) return alert(res.message || '저장하지 못했습니다.');
     w.remove(); toast(id?'수정했습니다':'기록했습니다');
     pyLoad($('#py-date').value.slice(0,7));
   };
+}
+
+/* 용역처 명부 — 이름·주민번호·계좌를 한 번 등록해 두고 골라 쓴다.
+   목록에는 마스킹된 번호만 뜬다. 고쳐야 할 때만 한 명분 전체를 받아온다. */
+async function pyBookForm(onClose){
+  var w = amodal('용역처 관리', '<div class="dbody" id="pbBody">'
+    + '<div class="mskel"><i></i><i></i><i></i></div></div>');
+  var editing = null;
+
+  async function paint(){
+    var r = await fetch('/api/admin/payouts?payees=1',{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    var list = r.payees || [];
+    var e = editing || { id:null, name:'', rrn:'', bank:'', memo:'' };
+    var n = String(e.rrn||'').replace(/[^0-9]/g,'');
+    $('#pbBody').innerHTML =
+       '<div class="sec"><h4>등록된 용역처 '+list.length+'명</h4>'
+        + (list.length
+           ? list.map(function(x){
+               return '<div class="ahr"><span class="t"><b>'+esc(x.name)+'</b>'
+                 + '<small>'+esc([x.rrn||'주민번호 없음', x.bank||'계좌 없음'].join(' · '))+'</small></span>'
+                 + '<button class="mini" data-ed="'+x.id+'">고치기</button>'
+                 + '<button class="mini" data-del="'+x.id+'" style="color:#B42318">삭제</button></div>'; }).join('')
+           : '<div class="empty">아직 등록된 용역처가 없습니다.</div>')
+       + '</div>'
+      + '<div class="sec"><h4>'+(e.id ? esc(e.name)+' 고치기' : '새 용역처')+'</h4>'
+        + '<div class="dcard" style="border:0;padding:0">'
+        + '<label class="req">이름</label><input type="text" id="pb-name" value="'+esc(e.name||'')+'" placeholder="예) 홍길동">'
+        + '<label>주민등록번호</label>'
+        + '<div class="d2col"><input type="text" id="pb-r1" inputmode="numeric" maxlength="6" placeholder="880101" value="'+esc(n.slice(0,6))+'">'
+          + '<input type="password" id="pb-r2" inputmode="numeric" maxlength="7" placeholder="뒤 7자리" value="'+esc(n.slice(6))+'"></div>'
+        + '<label>계좌</label><input type="text" id="pb-bank" value="'+esc(e.bank||'')+'" placeholder="예) 국민 123456-78-901234">'
+        + '<label>메모</label><input type="text" id="pb-memo" value="'+esc(e.memo||'')+'" placeholder="내부 메모 (선택)">'
+        + '</div>'
+        + '<div class="dsrc" style="margin-top:10px">'
+          + (e.id ? '<button class="mini" id="pb-new">새로 쓰기</button>' : '')
+          + '<button class="btn ok" id="pb-save" style="margin-left:auto">'+(e.id?'저장':'등록')+'</button></div>'
+      + '</div>'
+      + '<div class="mrow"><button class="btn gray" data-x>닫기</button></div>';
+
+    $('#pbBody').querySelectorAll('[data-ed]').forEach(function(b){
+      b.onclick = async function(){
+        var r2 = await fetch('/api/admin/payouts?payee='+b.dataset.ed,{headers:AH})
+          .then(function(x){return x.json();}).catch(function(){return{};});
+        if (!r2.payee) return toast('불러오지 못했습니다');
+        editing = r2.payee; paint();
+      };
+    });
+    $('#pbBody').querySelectorAll('[data-del]').forEach(function(b){
+      b.onclick = async function(){
+        if (!confirm('이 용역처를 명부에서 지웁니다.\n\n이미 기록한 지급 내역은 그대로 남습니다.')) return;
+        var r2 = await fetch('/api/admin/payouts',{method:'POST',headers:AH,
+          body:JSON.stringify({action:'payee_delete', id:Number(b.dataset.del)})})
+          .then(function(x){return x.json();}).catch(function(){return{};});
+        if (!r2.ok) return toast('지우지 못했습니다');
+        if (editing && String(editing.id)===b.dataset.del) editing = null;
+        toast('지웠습니다'); paint();
+      };
+    });
+    if ($('#pb-new')) $('#pb-new').onclick = function(){ editing = null; paint(); };
+    $('#pb-save').onclick = async function(){
+      var a = $('#pb-r1').value.replace(/[^0-9]/g,''), c = $('#pb-r2').value.replace(/[^0-9]/g,'');
+      if ((a || c) && (a.length !== 6 || c.length !== 7)){
+        return alert('주민등록번호는 앞 6자리 · 뒤 7자리입니다.');
+      }
+      if (!$('#pb-name').value.trim()) return alert('이름을 입력해주세요.');
+      var bt = $('#pb-save'); bt.disabled = true; bt.textContent = '저장 중…';
+      var r2 = await fetch('/api/admin/payouts',{method:'POST',headers:AH,body:JSON.stringify({
+        action:'payee_save', id: e.id || null, name: $('#pb-name').value.trim(),
+        rrn: (a && c) ? (a+c) : '', bank: $('#pb-bank').value.trim(),
+        memo: $('#pb-memo').value.trim() })})
+        .then(function(x){return x.json();}).catch(function(){return{};});
+      bt.disabled = false;
+      if (!r2.ok) return alert(r2.message || '저장하지 못했습니다.');
+      editing = null; toast('저장했습니다'); paint();
+    };
+    var x = $('#pbBody').querySelector('[data-x]');
+    if (x) x.onclick = function(){ w.remove(); if (onClose) onClose(); };
+  }
+  paint();
 }
 
 /* ==================== 문서 발행 ====================
