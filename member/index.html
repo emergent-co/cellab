@@ -5816,9 +5816,14 @@ function dqFill(i, o){
   dqItems[i].spec  = o.model || dqItems[i].spec || '';
   dqItems[i].price = dqVat ? r10(o.price * 1.1) : f10(o.price);
   dqItems[i].options = [];
-  if (d && !String(dqItems[i].note||'').trim()){
+  /* 모델을 바꾸면 «정가 · 할인율» 비고도 그 모델 것으로 다시 쓴다.
+     전에는 비고가 «비어 있을 때만» 채워서, 모델을 바꿔도 앞 모델의 정가가 그대로 남았다.
+     (실제로 dVP15 를 골랐다가 dVP10 으로 바꾼 견적서에 dVP15 의 정가가 찍혀 나갔다.) */
+  if (d){
     var lp = dqVat ? r10(d.list * 1.1) : f10(d.list);
     dqItems[i].note = '정가 ' + won(lp) + '원 · ' + d.rate + '% 할인';
+  } else if (/^정가 [\d,]+원 · [\d.]+% 할인$/.test(String(dqItems[i].note||'').trim())){
+    dqItems[i].note = '';   // 할인 없는 제품으로 바꿨는데 앞 모델 문구가 남지 않게
   }
   return d;
 }
