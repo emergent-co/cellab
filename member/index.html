@@ -5214,8 +5214,9 @@ function mkBody(m, ctx){
     + '아래 제품의 재고/납기/가격 안내부탁드립니다.\n\n'
     + (lines || '(품목을 먼저 입력해주세요)') + '\n\n'
     + '고객정보 : ' + ([cli.co, cli.who].filter(Boolean).join(' ') || '-') + '\n\n'
-    + '감사합니다.\n\n'
-    + '실험셋업연구소(이머전트)\n이영현 드림\nhttps://rndsetup.com';
+    /* 서명은 여기서 붙이지 않는다 — 지메일이 자기 기본 서명을 넣는다.
+       둘 다 붙으면 서명이 두 번 나간다. */
+    + '감사합니다.';
   return { subj: subj, body: body };
 }
 
