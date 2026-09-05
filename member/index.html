@@ -1849,7 +1849,14 @@ function inqOpen(q){
     + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
       + '<button class="btn ghost" id="inqDel" style="color:#B42318">삭제</button>'
       + '<button class="btn ghost" id="inqClient">거래처로 등록</button>'
+      /* 견적서를 쓰기 «전에» 제조사에 재고·납기·가격을 물어보는 자리 —
+         문의를 열자마자 바로 눌러야지, 견적서 화면까지 들어갔다 나오면 흐름이 끊긴다 */
+      + '<button class="btn ghost" id="inqAsk">제조사 문의</button>'
       + '<button class="btn pri" id="inqQuote">견적서 발행</button></div>';
+
+  $('#inqAsk').onclick = function(){
+    mkAsk({ items: its, co: q.org_name || '', who: q.name || '' });
+  };
 
   // 스팸·테스트 문의를 지운다 — 되돌릴 수 없으니 한 번 묻는다
   $('#inqDel').onclick = async function(){
@@ -5183,11 +5190,19 @@ async function pyForm(id){
    보낸편지함에도 남는다. */
 var mkList = [];
 
-function mkBody(m){
+/* 지금 화면에서 «누구의 무엇»인지 끌어온다.
+   문의 접수 팝업에서 부르면 ctx 로 받고, 발행 화면에서 부르면 발행 중인 내용을 쓴다. */
+function mkCtx(ctx){
+  if (ctx) return { co: ctx.co || '', who: ctx.who || '', items: ctx.items || [] };
   var cli = dqCli
     ? { co: dqCli.company || dqCli.name || '', who: (dqContact && dqContact.name) || dqCli.name || '' }
     : (dqGuest ? { co: dqGuest.company || '', who: dqGuest.contact || '' } : { co:'', who:'' });
-  var its = dqItems.filter(function(i){ return (i.name||'').trim(); });
+  return { co: cli.co, who: cli.who, items: dqItems || [] };
+}
+
+function mkBody(m, ctx){
+  var cli = mkCtx(ctx);
+  var its = (cli.items || []).filter(function(i){ return (i.name||'').trim(); });
   var first = its.length ? its[0].name.trim() : '';
   var subj = '[견적문의] / ' + (first + (its.length>1 ? ' 외 '+(its.length-1)+'건' : ''))
     + ' / ' + [cli.co, cli.who].filter(Boolean).join(' ');
@@ -5204,7 +5219,7 @@ function mkBody(m){
   return { subj: subj, body: body };
 }
 
-async function mkAsk(){
+async function mkAsk(ctx){
   var w = amodal('제조사 문의', '<div class="dbody" id="mkBody">'
     + '<div class="mskel"><i></i><i></i><i></i></div></div>');
 
@@ -5214,7 +5229,7 @@ async function mkAsk(){
   var cur = null;
 
   function paint(){
-    var t = mkBody(cur);
+    var t = mkBody(cur, ctx);
     $('#mkBody').innerHTML =
        '<div class="sec"><h4>받는 제조사</h4>'
         + '<div class="d2col"><select id="mk-pick">'
@@ -5241,7 +5256,7 @@ async function mkAsk(){
       cur = mkList.filter(function(m){ return String(m.id)===e.target.value; })[0] || null;
       paint();
     };
-    $('#mk-manage').onclick = function(){ mkBookForm(function(){ w.remove(); mkAsk(); }); };
+    $('#mk-manage').onclick = function(){ mkBookForm(function(){ w.remove(); mkAsk(ctx); }); };
     $('#mk-go').onclick = function(){
       var to = $('#mk-to').value.trim();
       if (!to) return alert('받는 사람 이메일을 입력해주세요.\n\n제조사를 고르면 자동으로 채워집니다.');
@@ -5588,9 +5603,7 @@ function paintDocs(){
            + '<button class="btn gray" id="dqFit" style="flex:0 0 90px">맞추기</button></div>'
          + '<p class="dnote">총액을 넣고 <b>맞추기</b>를 누르면 단가가 빈 항목에 금액을 나눠 채워 합계를 정확히 맞춥니다.</p></div>'
        + '<label style="margin-top:16px">품목</label><div id="dqItems"></div>'
-       + '<div class="dsrc" style="margin-top:4px"><button class="mini" id="dqAdd">＋ 품목 추가</button>'
-         /* 고객에게 견적서를 쓰기 «전에» 제조사에 재고·납기·가격을 물어보는 자리 */
-         + '<button class="mini" id="dqAsk" style="margin-left:auto">제조사 문의</button></div>'
+       + '<button class="mini" id="dqAdd" style="margin-top:4px">＋ 품목 추가</button>'
        + '<div class="qsum" id="dqSum"></div>'
        /* 값을 반드시 되돌려 넣는다 — 미리보기를 누르면 이 폼을 다시 그리는데,
           비워 두면 방금 적은 비고가 그때 통째로 사라진다. */
@@ -5641,7 +5654,6 @@ function paintDocs(){
   if ($('#dqPurpChg')) $('#dqPurpChg').onclick = function(){ dqPurpose = null; paintDocs(); };
   if ($('#dqOrderStatus')) $('#dqOrderStatus').onchange = function(e){ dqOrderStatus = e.target.value; };
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
-  if ($('#dqAsk')) $('#dqAsk').onclick = mkAsk;
   $('#dqTarget').oninput = function(e){ dqTarget = numFmt(e.target); dqSum(); };
   $('#dqTarget').onblur  = function(e){          // 칸을 벗어날 때 10원 단위로 맞춘다
     dqTarget = r10(numVal(e.target));
