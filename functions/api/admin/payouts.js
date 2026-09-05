@@ -6,7 +6,7 @@
 // 주민번호는 지급명세서 신고에 전체가 필요해 DB엔 전체를 두지만,
 // 목록·메일처럼 «여러 곳으로 흘러가는» 경로에는 절대 전체를 싣지 않는다.
 import { json, needAdmin, adminOK, kstISO, kstDate, randomToken, logEvent } from '../_lib.js';
-import { sendMail, mailConfigured } from '../_mailer.js';
+import { sendMail, mailConfigured, mailBcc } from '../_mailer.js';
 
 const digits = (v) => String(v || '').replace(/[^0-9]/g, '');
 const won = (n) => Number(n || 0).toLocaleString('ko-KR');
@@ -279,7 +279,11 @@ async function post(request, env) {
         문의 070-8983-2600 · info@rndsetup.com</div>
     </div>`;
 
-    const r = await sendMail(env, { to, subject: `[실험셋업연구소] ${ym} 용역비 지급내역`, html });
+    /* 내 메일에도 한 통 남긴다. «보냈는데 안 왔다»고 할 때
+       실제로 나갔는지, 어떤 모습으로 나갔는지 확인할 데가 있어야 한다.
+       본문에는 마스킹된 번호만 있고 전체 번호는 토큰 링크 뒤에 있다. */
+    const r = await sendMail(env, { to, bcc: mailBcc(env),
+      subject: `[실험셋업연구소] ${ym} 용역비 지급내역`, html });
     await logEvent(env, { action: 'payout_share', actor: 'admin', result: r.ok ? 'ok' : 'fail',
       to_addr: to, detail: r.ok ? `${ym} 지급내역 ${rows.length}건 발송` : `발송 실패: ${r.error}` });
     if (!r.ok) return json({ error: 'send', message: r.error }, 502);
