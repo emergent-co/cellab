@@ -1256,7 +1256,7 @@ window.fetch = function (input, init) {
   function unitOf(o) { return (o.x != null ? o.x : o.p) || 0; }
   function shipOf(o) { return o.p ? Math.max(0, o.p - unitOf(o)) : 0; }
   function sum(o, q) { return o.p ? unitOf(o) * q + shipOf(o) : 0; }
-  /* o.d = 정가(할인 전). 국내 브랜드는 정가 대비 3% 상시 할인가를 제품가격으로 쓰고
+  /* o.d = 정가(할인 전). 국내 브랜드는 정가 대비 3% 이상 상시 할인가를 제품가격으로 쓰고
      정가는 취소선으로 함께 보여준다. 해외 발주(가오스·허페이)는 o.d 가 없다. */
   function hasDisc(o) { return o.d && o.d > unitOf(o); }
   function unitHtml(o) {
@@ -1302,7 +1302,7 @@ window.fetch = function (input, init) {
     + '<button type="button" class="bb-btn bb-buy" id="bbBuy">' + (many ? '수량 문의하기' : '구매하기') + '</button>'
     /* 안내문은 정가 할인 고지만 남긴다. 배송료·장바구니 안내 문구는 2026-09-02 삭제
        (배송 조건은 상세 본문 규격표 아래 note 에서 이미 안내한다) */
-    + (hasDisc(o) ? '<p class="bb-note">정가 대비 3% 상시 할인가입니다.</p>' : '');
+    + (hasDisc(o) ? '<p class="bb-note">정가 대비 3% 이상 상시 할인가입니다.</p>' : '');
   }
   function toast(m) {
     var t = document.querySelector('.bb-toast');

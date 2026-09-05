@@ -9,7 +9,7 @@
 
 브랜드별 값 규칙
   · 가오스유니온 / 허페이 : 해외 발주. 표시가가 이미 제품가격, 합계 = 제품가격 + 그 브랜드 배송비
-  · 삼흥에너지 / 리드플루이드 : 국내. 정가 대비 3% 상시 할인가를 제품가격으로 쓰고
+  · 삼흥에너지 / 리드플루이드 : 국내. 정가 대비 3% 이상 상시 할인가를 제품가격으로 쓰고
     정가는 취소선으로 함께 보여준다(site.js 의 o.d). 배송료는 붙이지 않는다.
 """
 import io, os, re, sys, json, html
@@ -37,7 +37,7 @@ CSS = ('\n/* 오른쪽 구매창 — 본문 밖 여백에 붙는 sticky 레일 *
        '.dt-info .dt-buy{margin:16px 0 0;max-width:420px}\n') % (BP, RAIL)
 
 def disc(p):
-    """정가 대비 3% 상시 할인 — 만원 미만 버림 (build.py 와 같은 식)"""
+    """정가 대비 3% 이상 상시 할인 — 만원 미만 버림 (build.py 와 같은 식)"""
     return int(p * 0.97) // 10000 * 10000
 
 def rows_leadfluid(t):
@@ -112,7 +112,7 @@ def convert(path, brand, apply=False):
         ship = _ship.s_in(brand) or 0             # 미확정 브랜드는 0 → site.js 가 "주문 시 안내"
         mods = [{'m': m, 's': s if s != m else '', 'x': p, 'p': (p + ship) if p else 0}
                 for m, s, p in rows]
-    else:                                         # 국내 — 3% 상시 할인가 + 정가 취소선
+    else:                                         # 국내 — 3% 이상 상시 할인가 + 정가 취소선
         mods = [{'m': m, 's': s if s != m else '', 'x': disc(p), 'p': disc(p), 'd': p}
                 for m, s, p in rows]
     mj = json.dumps(mods, ensure_ascii=False).replace("'", '&#39;')

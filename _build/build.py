@@ -801,7 +801,7 @@ ORG_WEBSITE_GRAPH = {
             "founder": {"@type": "Person", "name": "이영현"},
             "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"],
             "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 셋업 매거진",
-            "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진을 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
+            "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진을 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 이상 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "부산광역시",
@@ -1042,7 +1042,7 @@ def build_prices():
         'pumplab': min_by(lambda r: r['sobun'] == '연동펌프', floor=800000),
     }
 
-    # 정가 대비 3% 상시 할인 — 사이트 노출 가격은 모두 할인가 기준(만원 미만 버림)
+    # 정가 대비 3% 이상 상시 할인 — 사이트 노출 가격은 모두 할인가 기준(만원 미만 버림)
     DISCOUNT_RATE = 0.97
 
     def fmt(v):
@@ -1716,7 +1716,7 @@ def build_all_products():
             sp_html = ''.join(
                 f'<div class="r"><span class="k">{escape(k)}</span><span class="v">{escape(v)}</span></div>'
                 for k, v in (specs + [('사양', '상세 참조')] * 3)[:3])
-            if price and slug in ('gaossunion', 'hefei', 'aida'):   # 해외 발주 — 3% 상시 할인 대상 아님
+            if price and slug in ('gaossunion', 'hefei', 'aida'):   # 해외 발주 — 3% 이상 상시 할인 대상 아님
                 pr_html = (f'<div class="pc-pr">'
                            f'<span class="s">최소 {{:,}}원부터 <i class="vat">VAT 별도</i></span></div>').format(price)
             elif price:
@@ -2431,7 +2431,7 @@ def _pp_pack_variant(models):
     return len(keys) == 1
 
 
-LINT_SKIP_BRANDS = {'leadfluid', 'alicat'}   # 구형 레이아웃 — 이관 대기
+LINT_SKIP_BRANDS = {'leadfluid'}   # 구형 레이아웃 — 이관 대기 (alicat 2026-09-05 이관 완료)
 # 삼흥(sh-scientific) 150장은 2026-09-04 에 detail.css 로 이관하고 검사 대상에 넣었다.
 LINT_BAD_COLORS = ['#1E3A5F', '#1a6e56', '#C2410C', '#E8632C']  # 구 네이비·틸·테라코타·오렌지
 # 페이지가 자기 자신을 설명하는 메타 문구 — 데이터는 표로, 안내 문장은 쓰지 않는다

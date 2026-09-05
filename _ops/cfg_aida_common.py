@@ -14,7 +14,7 @@
 · 1.45       : 관세 + 수입 부가세 + 판매마진 10% + 국내 부가세 (고정 계수)
 
 판매가를 여기서 완성해 넘기므로 각 cfg 는 landed=True 로 build_web 의 ×1.45 를
-한 번 더 적용하지 않는다(이중 반올림 방지). 해외 라인이라 3% 상시 할인 대상이 아니다.
+한 번 더 적용하지 않는다(이중 반올림 방지). 해외 라인이라 3% 이상 상시 할인 대상이 아니다.
 """
 import sys as _sys, os as _os
 _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))

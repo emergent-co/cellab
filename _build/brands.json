@@ -717,19 +717,94 @@
   "alicat": {
    "name_ko": "Alicat",
    "name_en": "Alicat Scientific",
-   "pipeline": "구형 — 개별 HTML",
+   "pipeline": "구형 손 HTML 12장 — 2026-09-05 detail.css 이관 완료(LINT_SKIP 해제). 신규는 mc-series 를 베낀다.",
    "page_unit": "series",
-   "reference_page": "",
+   "reference_page": "brands/alicat/mc-series/ (Alicat 자체 기준 통과본 — 2단 dt-grid + 자료 출처 + 견적 모달)",
    "source": {
     "url": "https://www.alicat.com/",
-    "collect": ""
+    "datasheets": "https://documents.alicat.com/specifications/DOC-SPECS-<시리즈>.pdf (59종)",
+    "collect": "www.alicat.com · documents.alicat.com 모두 셸에서 CONNECT 403 — curl/requests 불가. Chrome 탭 same-origin fetch() 로만 수집한다. 절차·함정은 _ops/alicat/collect_method.md, 스톡 모델 레인지는 _ops/alicat/stock_models.json, 파트넘버 문법은 _ops/alicat/part_number_grammar.md. 마스터 모델 목록은 /products/gas-flow/mass-flow-controller/laminar-dp-mass-flow-controllers/ 한 장에 다 있다."
    },
    "pitfalls": [
-    "존재하지 않는 모델명과 타사 가격이 들어갔던 사고가 있다 — 제조사 공식 모델 체계와 반드시 대조.",
-    "구형 레이아웃, LINT_SKIP_BRANDS."
+    "존재하지 않는 모델명과 타사 가격이 들어갔던 사고가 있다 — 모델명은 반드시 _ops/alicat/part_number_grammar.md 의 공식 코드 문법과 stock_models.json 으로 대조한다. 2026-09-05 전수 대조에서 46개 중 45개 실재 확인.",
+    "PCA 는 파트넘버가 아니라 밸브 타입 이름으로 bpr·pc-series·pcd-series 에 쓰였는데 공식 문서에서 확인되지 않았다(PCV 는 확인됨). 치수·무게가 붙어 있어 DOC-SPECS-PC 본문에 있을 가능성이 크다. 확인 전까지 고치지 말 것.",
+    "MCS 가스 종수 — 제품 페이지는 \"Up to 130\". 페이지에는 2026-09-05 에 \"최대 130종\" 으로 통일했다. 구형 데이터시트(DOC-SPECS-MCS REV 4)의 128 과 섞어 쓰지 말 것.",
+    "BASIS 2 — DOC-SPECS-BASIS 가 2026-08 로 갱신됐다. basis-series 페이지는 REV 18(2025-04) 기준이라 100 SCCM~100 SLPM · 0~145 PSIG · 가스 9종 · 1,000:1 을 최신판과 재대조해야 한다.",
+    "스톡 모델 레인지(재고)와 주문 가능 범위(full scale options)는 다르다. MC 스톡 최대는 250 SLPM 이지만 주문은 12,000 SLPM 까지다. 상세페이지에 쓸 값은 제품 페이지의 full scale options 쪽이다.",
+    "MCD·MCT 는 전용 데이터시트가 없다. 베이스 시리즈(DOC-SPECS-MC/MCS/MCQ) 를 인용하고 그 사실을 페이지에 밝힌다.",
+    "manual · mfc-guide 2장은 dt-name 이 없는 가이드 문서라 상세페이지 린터 대상이 아니다. 인라인 style 이 남아 있어도 정상."
    ],
    "default_required_specs": [],
-   "families": {},
+   "families": {
+    "bpr": {
+     "match": [
+      "bpr"
+     ],
+     "label": "배압 조절(BPR)",
+     "required_specs": [
+      "풀스케일 압력 범위",
+      "압력 정확도",
+      "연결부",
+      "전원"
+     ]
+    },
+    "pressure": {
+     "match": [
+      "pc-",
+      "pcd"
+     ],
+     "label": "압력 컨트롤러",
+     "required_specs": [
+      "풀스케일 압력 범위",
+      "압력 정확도",
+      "제어 범위 (턴다운)",
+      "제어 응답 (T63)",
+      "연결부",
+      "전원"
+     ]
+    },
+    "mfc": {
+     "match": [
+      "mc-",
+      "mcd",
+      "mcq",
+      "mcs",
+      "mct",
+      "mcv"
+     ],
+     "label": "질량유량계(MFC)",
+     "required_specs": [
+      "작동 압력"
+     ]
+    },
+    "mfc-bio": {
+     "match": [
+      "bioc"
+     ],
+     "label": "바이오리액터 MFC",
+     "required_specs": [
+      "작동 압력"
+     ]
+    },
+    "mfc-mems": {
+     "match": [
+      "basis"
+     ],
+     "label": "MEMS 열식 소형 MFC",
+     "required_specs": [
+      "작동 압력"
+     ],
+     "note": "BASIS 2 는 MEMS 열식이라 라미나 DP 계열과 사양 축이 다르다. 압력은 PSIG 표기."
+    },
+    "integrated": {
+     "match": [
+      "controller"
+     ],
+     "label": "통합 제어 컨트롤러",
+     "required_specs": [],
+     "note": "실험셋업연구소 자체 설계 제품 — 제조사 데이터시트가 없다. 연동 대상 MFC 사양만 Alicat 자료를 인용한다."
+    }
+   },
    "model_block_min": 3
   },
   "runze": {

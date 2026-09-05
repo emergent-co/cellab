@@ -413,6 +413,11 @@ em.alias{font-style:normal;font-size:11.5px;font-weight:700;color:var(--navy);
 .dq .r2 .qy{flex:0 0 64px;text-align:center}
 .dq .r2 .pr{flex:1 1 auto;text-align:right}
 .dq .r2 .sb{flex:0 0 auto;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:96px;text-align:right}
+.dq .dqpx{margin-top:5px;font-size:11.5px;line-height:1.4}
+.dq .px{display:inline-block;border-radius:6px;padding:2px 7px;font-weight:700;white-space:nowrap}
+.dq .px.dc{background:#EAF6F0;color:#1a6e56}
+.dq .px.pt{background:#F2F4F7;color:#5a6779}
+.dq .px.man{background:#FFFBF3;color:#92400E}
 .dq .dx{flex:0 0 26px;width:26px;height:26px;border:0;background:var(--bg);color:var(--mut);border-radius:7px;font-size:15px;cursor:pointer;line-height:1}
 .dq .dx:hover{background:#FEE2E2;color:#991B1B}
 .dhist tbody tr{cursor:pointer}
@@ -1884,11 +1889,13 @@ function inqOpen(q){
     var pr = await fetch('/api/admin/issue?from=inquiry&id='+q.id,{headers:AH})
       .then(function(x){return x.json();}).catch(function(){return {};});
     bq.disabled = false; bq.textContent = '견적서 발행';
-    // 자동으로 채운 단가에도 «정가 · 할인율» 비고를 달아 준다
+    // 자동으로 채운 단가에는 출처(제품표 판매가)와 «정가 · 할인율» 비고를 함께 남긴다
     (pr.items || []).forEach(function(it){
-      if (!it.price || !it.list || it.list <= it.price || (it.note||'').trim()) return;
-      it.note = '정가 ' + won(it.list) + '원 · '
-        + (Math.round((1 - it.price/it.list) * 1000) / 10) + '% 할인';
+      if (!it.price) return;
+      it.src = 'auto';                       // 사람이 적은 값과 구분하려고 표시해 둔다
+      if (!it.list || it.list <= it.price) return;
+      it.disc = Math.round((1 - it.price/it.list) * 1000) / 10;
+      if (!(it.note||'').trim()) it.note = '정가 ' + won(it.list) + '원 · ' + it.disc + '% 할인';
     });
     dqItems = (pr.items && pr.items.length) ? pr.items
       : (its.length
@@ -5344,10 +5351,10 @@ function paintDocs(){
        + (dqInq ? '<div class="dfrom">견적 문의에서 넘어왔습니다 · '+esc(dqInq.who||'')
            + (dqInq.filled ? ' · 단가 '+dqInq.filled+'건 자동 채움 (사이트 판매가 · 부가세 별도)' : '')
            + (dqInq.back ? '<button id="dqInqBack" title="문의 내용으로 돌아가기">↩</button>' : '')+'</div>' : '')
-       /* 고객이 남긴 말은 발행하는 내내 보여야 한다 — 여기서 사라지면
-          «뭐라고 했더라» 하고 팝업을 닫았다 다시 열게 된다. 접었다 펼 수 있게만 해 둔다. */
+       /* 고객이 남긴 말은 발행 내내 꺼낼 수 있어야 하지만, 펼친 채로 두면 화면이 번잡하다.
+          접어 두고 필요할 때 눌러서 본다. */
        + ((dqInq && (dqInq.note || (dqInq.ask||[]).length))
-          ? '<details class="inqref"'+(dqInq.note?' open':'')+'><summary>고객이 보낸 문의 내용</summary>'
+          ? '<details class="inqref"><summary>고객이 보낸 문의 내용</summary>'
             + ((dqInq.ask||[]).length
                ? '<ul>'+dqInq.ask.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ul>' : '')
             + (dqInq.note ? '<p>'+esc(dqInq.note)+'</p>' : '')
@@ -5886,6 +5893,7 @@ function dqPaintItems(){
                 + '<i>'+won(o.price)+'</i></button>'; }).join('')
           + '</div>'
         : '')
+      +'<div class="dqpx">'+dqSrcTag(it)+'</div>'
       +'<div class="dqac" hidden></div>'
       +'</div>';
   }).join('');
@@ -5898,7 +5906,8 @@ function dqPaintItems(){
     el.querySelector('.nm').onfocus = function(e){ dqAcFind(el, i, e.target.value); };
     el.querySelector('.sp').oninput = function(e){ dqItems[i].spec = e.target.value; };
     el.querySelector('.qy').oninput = function(e){ dqItems[i].qty = Math.max(1,Number(e.target.value)||1); dqRow(el,i); };
-    el.querySelector('.pr').oninput = function(e){ dqItems[i].price = numFmt(e.target); dqRow(el,i); };
+    el.querySelector('.pr').oninput = function(e){
+      dqItems[i].price = numFmt(e.target); dqItems[i].src = 'manual'; dqRow(el,i); };
     el.querySelector('.pr').onblur  = function(e){
       // 10원 단위로 맞춘다 — 그래야 소계·총계가 0으로 끝난다.
       // 부가세 포함은 반올림(목표 총액을 맞춰야 해서), 부가세 별도는 절삭.
@@ -5921,7 +5930,23 @@ function dqPaintItems(){
   });
   dqSum();
 }
-function dqRow(el,i){ el.querySelector('.sb').textContent = won(dqLine(dqItems[i]))+'원'; dqSum(); }
+function dqRow(el,i){
+  el.querySelector('.sb').textContent = won(dqLine(dqItems[i]))+'원';
+  var px = el.querySelector('.dqpx'); if (px) px.innerHTML = dqSrcTag(dqItems[i]);
+  dqSum();
+}
+
+/* 이 단가가 «제품표에서 온 할인가»인지 «사람이 적은 값»인지 줄마다 붙여 둔다.
+   견적을 쓰다 보면 정가를 그대로 적어 놓고도 모르고 넘어간다 — 그걸 눈으로 잡으라고 두는 표시다. */
+function dqSrcTag(it){
+  var price = Number(it.price)||0, list = Number(it.list)||0;
+  if (!price) return '';
+  if (it.src !== 'auto') return '<span class="px man">직접 입력</span>';
+  if (!(list > 0)) return '<span class="px pt">제품표 판매가 · 정가 정보 없음</span>';
+  var lp = dqVat ? r10(list*1.1) : f10(list);        // 정가도 지금 화면 기준으로 환산해 보여준다
+  if (lp <= price) return '<span class="px pt">제품표 정가 그대로</span>';
+  return '<span class="px dc">제품표 할인가 · 정가 '+won(lp)+'원에서 '+it.disc+'%↓</span>';
+}
 
 /* 품명 자동완성.
    문의가 애매하거나 고객이 모델을 잘못 골랐어도, 여기서 제품표를 직접 집으면 끝난다.
@@ -5948,6 +5973,7 @@ function dqFill(i, o){
      화면 기준(포함/별도)이 바뀌면 dqNoteSync() 가 그 기준으로 다시 써 준다. */
   dqItems[i].list = d ? d.list : 0;
   dqItems[i].disc = d ? d.rate : 0;
+  dqItems[i].src  = 'auto';        // 제품표에서 온 값 — 사람이 고치면 'manual' 로 바뀐다
   dqNoteSync(i);
   return d;
 }

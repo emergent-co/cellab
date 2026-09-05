@@ -354,3 +354,8 @@ html{scroll-behavior:smooth}
 .bd{fill:var(--merck-d)}
 .bt{font-size:15px;font-weight:800;fill:#fff;text-anchor:middle;font-family:inherit}
 .lg{font-size:13px;font-weight:700;font-family:inherit}
+
+/* 본문 형광 강조 — alicat basis/controller 인라인에서 이관 (2026-09-05) */
+mark.hl{background:linear-gradient(transparent 52%,#FFE8A3 52%);color:inherit;padding:0 2px;font-weight:700;border-radius:2px}
+.pkg-tbl mark.hl{background:linear-gradient(transparent 48%,#FFE8A3 48%)}
+.cfg-tbl td{text-align:left}
