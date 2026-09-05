@@ -4926,6 +4926,7 @@ function clFold(title, rows, fmt, addKind){
    사업소득 3.3% 원천징수 기록. 주민번호는 DB에만 전체로 두고
    화면·메일에는 마스킹만 내보낸다 — 여러 곳으로 흘러가는 경로에 실으면 그게 유출 경로가 된다. */
 var pyYm = '', pyRows = [], pySum = {}, pyMonths = [], pyShare = null, pyMail = '';
+var pyEnc = false, pyPlain = 0;   // 주민번호 암호화 켜짐 여부 · 아직 평문인 건수
 
 async function viewAdmPay(){
   $('#main').innerHTML = '<div class="ttl">용역비 지급내역</div>'
@@ -4939,6 +4940,7 @@ async function pyLoad(ym){
   if (view !== 'admPay') return;
   pyYm = r.ym || ym || ''; pyRows = r.rows || []; pySum = r.sum || {};
   pyMonths = r.months || []; pyShare = r.share || null; pyMail = r.tax_mail || '';
+  pyEnc = !!r.enc; pyPlain = r.plain || 0;
   pyPaint();
 }
 
@@ -4953,8 +4955,18 @@ function pyPaint(){
       + '<select id="pyYm" style="border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13.5px;background:#fff">'
       + months.map(function(m){ return '<option'+(m===pyYm?' selected':'')+'>'+esc(m)+'</option>'; }).join('')
       + '</select>'
-      + '<div class="right"><button class="btn ghost" id="pySend">세무사에게 보내기</button></div>'
+      + '<div class="right"><button class="btn ghost" id="pyPurge">오래된 주민번호 파기</button>'
+        + '<button class="btn ghost" id="pySend">세무사에게 보내기</button></div>'
     + '</div>'
+    /* 주민번호는 저장할 때 암호화해야 한다(개인정보보호법 제24조의2 제2항).
+       키가 없거나 아직 평문인 건이 남아 있으면 눈에 띄게 알린다 — 조용히 넘어갈 일이 아니다. */
+    + (!pyEnc
+       ? '<div class="dfrom" style="margin:0 0 12px;border-color:#FCA5A5;background:#FEF2F2;color:#B42318">'
+         + '주민번호가 <b>암호화 없이</b> 저장되고 있습니다 — Cloudflare Secret 에 <b>RRN_KEY</b> 를 넣어주세요.</div>'
+       : (pyPlain
+          ? '<div class="dfrom" style="margin:0 0 12px">예전에 평문으로 저장된 주민번호 <b>'+pyPlain+'건</b>이 남아 있습니다.'
+            + '<button id="pyEncGo" style="margin-left:auto">지금 암호화</button></div>'
+          : ''))
     + (pyShare
        ? '<div class="dfrom" style="margin:0 0 12px">'+esc(String(pyShare.created_at||'').slice(0,16))
          + ' 발송됨 · '+esc(pyShare.to_addr||'')
@@ -4988,6 +5000,25 @@ function pyPaint(){
     tr.onclick = function(){ pyForm(Number(tr.dataset.py)); };
   });
   $('#pySend').onclick = pySend;
+  if ($('#pyEncGo')) $('#pyEncGo').onclick = async function(){
+    var b = $('#pyEncGo'); b.disabled = true; b.textContent = '암호화 중…';
+    var r = await fetch('/api/admin/payouts',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'rrn_migrate'})}).then(function(x){return x.json();}).catch(function(){return{};});
+    b.disabled = false; b.textContent = '지금 암호화';
+    if (!r.ok) return alert(r.message || '암호화하지 못했습니다.');
+    toast(r.count+'건을 암호화했습니다'); pyLoad(pyYm);
+  };
+  /* 보관기간이 지난 건은 번호만 지운다 — 금액·사유는 장부라 남는다 */
+  $('#pyPurge').onclick = async function(){
+    if (!confirm('5년이 지난 지급건의 주민등록번호만 지웁니다.\n\n'
+      + '금액·사유·계좌는 그대로 남습니다. 되돌릴 수 없습니다. 진행할까요?')) return;
+    var r = await fetch('/api/admin/payouts',{method:'POST',headers:AH,
+      body:JSON.stringify({action:'rrn_purge', years:5})})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    if (!r.ok) return alert(r.message || '지우지 못했습니다.');
+    toast(r.count ? r.before+' 이전 '+r.count+'건의 주민번호를 지웠습니다' : '지울 대상이 없습니다');
+    pyLoad(pyYm);
+  };
 }
 
 /* 받는 사람을 고쳐 보낼 수 있게 둔다 — 세무사에게 실제로 쏘기 전에 내 메일로 한 번 봐야 한다 */
@@ -5013,7 +5044,22 @@ function pySend(){
     b.disabled = false; b.textContent = '보내기';
     if (!r.ok) return alert(r.message || '보내지 못했습니다.');
     w.remove();
-    toast(r.count+'건 발송 · 링크 만료 '+String(r.expires_at||'').slice(0,10));
+    /* 확인번호는 메일에 넣지 않는다 — 링크와 같이 다니면 아무 소용이 없다.
+       여기서 한 번만 보여주고, 대표가 전화·문자로 직접 알려준다. */
+    if (r.pin) {
+      amodal('보냈습니다 · 확인번호 안내', ''
+        + '<p class="hint" style="margin:2px 0 14px;line-height:1.7">'+esc(to)+' 로 '+r.count+'건을 보냈습니다.<br>'
+        + '링크 만료 <b>'+esc(String(r.expires_at||'').slice(0,10))+'</b></p>'
+        + '<div style="text-align:center;background:#F2F4F6;border-radius:12px;padding:20px 12px;margin-bottom:12px">'
+          + '<div style="font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.05em">확인번호</div>'
+          + '<div style="font-size:34px;font-weight:800;letter-spacing:.22em;margin-top:4px">'+esc(r.pin)+'</div></div>'
+        + '<p class="dnote">이 번호를 <b>전화나 문자로 직접</b> 알려주세요. 메일에는 들어 있지 않습니다 — '
+        + '메일이 전달되거나 링크가 새어도 번호가 없으면 열리지 않습니다.<br>'
+        + '5번 틀리면 링크가 잠깁니다. 그때는 다시 보내시면 됩니다.</p>'
+        + '<div class="mrow"><button class="btn ok" data-x>확인</button></div>');
+    } else {
+      toast(r.count+'건 발송 · 링크 만료 '+String(r.expires_at||'').slice(0,10));
+    }
     pyLoad(pyYm);
   };
 }
@@ -5127,6 +5173,161 @@ async function pyForm(id){
     w.remove(); toast(id?'수정했습니다':'기록했습니다');
     pyLoad($('#py-date').value.slice(0,7));
   };
+}
+
+/* ==================== 제조사 문의 ====================
+   고객에게 견적서를 쓰기 «전에» 제조사에 재고·납기·가격을 물어본다.
+   그 메일은 rndsetup.com 이 아니라 대표 지메일에서 나가야 한다 —
+   제조사 담당자들이 이미 그 주소로 대화해 왔고, 답장도 거기로 와야 한다.
+   그래서 서버에서 쏘지 않고 «지메일 작성창»을 채워서 연다. 보내기만 누르면 되고,
+   보낸편지함에도 남는다. */
+var mkList = [];
+
+function mkBody(m){
+  var cli = dqCli
+    ? { co: dqCli.company || dqCli.name || '', who: (dqContact && dqContact.name) || dqCli.name || '' }
+    : (dqGuest ? { co: dqGuest.company || '', who: dqGuest.contact || '' } : { co:'', who:'' });
+  var its = dqItems.filter(function(i){ return (i.name||'').trim(); });
+  var first = its.length ? its[0].name.trim() : '';
+  var subj = '[견적문의] / ' + (first + (its.length>1 ? ' 외 '+(its.length-1)+'건' : ''))
+    + ' / ' + [cli.co, cli.who].filter(Boolean).join(' ');
+  var lines = its.map(function(i){
+    return [i.name.trim(), (i.spec||'').trim(), (i.qty||1)+'개'].filter(Boolean).join('\n');
+  }).join('\n\n');
+  var body = (m ? (m.name||'') + ' ' + (m.contact||'') + ' ' + (m.title||'님') : '담당자님')
+    + ' 안녕하세요.\n\n'
+    + '아래 제품의 재고/납기/가격 안내부탁드립니다.\n\n'
+    + (lines || '(품목을 먼저 입력해주세요)') + '\n\n'
+    + '고객정보 : ' + ([cli.co, cli.who].filter(Boolean).join(' ') || '-') + '\n\n'
+    + '감사합니다.\n\n'
+    + '실험셋업연구소(이머전트)\n이영현 드림\nhttps://rndsetup.com';
+  return { subj: subj, body: body };
+}
+
+async function mkAsk(){
+  var w = amodal('제조사 문의', '<div class="dbody" id="mkBody">'
+    + '<div class="mskel"><i></i><i></i><i></i></div></div>');
+
+  var r = await fetch('/api/admin/makers',{headers:AH})
+    .then(function(x){return x.json();}).catch(function(){return{};});
+  mkList = r.makers || [];
+  var cur = null;
+
+  function paint(){
+    var t = mkBody(cur);
+    $('#mkBody').innerHTML =
+       '<div class="sec"><h4>받는 제조사</h4>'
+        + '<div class="d2col"><select id="mk-pick">'
+          + '<option value="">— 고르세요 —</option>'
+          + mkList.map(function(m){
+              return '<option value="'+m.id+'"'+(cur&&cur.id===m.id?' selected':'')+'>'
+                + esc([m.name, m.contact, m.title].filter(Boolean).join(' · '))
+                + (m.email ? ' · '+esc(m.email) : ' · 메일 없음')+'</option>'; }).join('')
+          + '</select><button class="btn gray" id="mk-manage" type="button">제조사 관리</button></div>'
+        + '</div>'
+      + '<div class="sec"><h4>메일 내용 <i style="font-style:normal;color:var(--mut);font-weight:600">'
+        + '보내기 전에 고칠 수 있습니다</i></h4>'
+        + '<div class="dcard" style="border:0;padding:0">'
+        + '<label>받는 사람</label><input type="text" id="mk-to" value="'+esc(cur?(cur.email||''):'')+'" placeholder="담당자 이메일">'
+        + '<label>제목</label><input type="text" id="mk-subj" value="'+esc(t.subj)+'">'
+        + '<label>본문</label><textarea id="mk-text" rows="14" style="line-height:1.6">'+esc(t.body)+'</textarea>'
+        + '</div></div>'
+      + '<p class="dnote">보내기를 누르면 <b>지메일 작성창</b>이 열립니다 — 내용이 채워져 있으니 보내기만 누르시면 됩니다.<br>'
+        + '제조사 담당자들이 이미 <b>emgt.yhlee@gmail.com</b> 으로 대화해 온 주소라, 그대로 그 주소에서 나가고 답장도 그리로 옵니다.</p>'
+      + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
+        + '<button class="btn ok" id="mk-go">지메일로 보내기</button></div>';
+
+    $('#mk-pick').onchange = function(e){
+      cur = mkList.filter(function(m){ return String(m.id)===e.target.value; })[0] || null;
+      paint();
+    };
+    $('#mk-manage').onclick = function(){ mkBookForm(function(){ w.remove(); mkAsk(); }); };
+    $('#mk-go').onclick = function(){
+      var to = $('#mk-to').value.trim();
+      if (!to) return alert('받는 사람 이메일을 입력해주세요.\n\n제조사를 고르면 자동으로 채워집니다.');
+      var url = 'https://mail.google.com/mail/?view=cm&fs=1&authuser=emgt.yhlee@gmail.com'
+        + '&to=' + encodeURIComponent(to)
+        + '&su=' + encodeURIComponent($('#mk-subj').value)
+        + '&body=' + encodeURIComponent($('#mk-text').value);
+      window.open(url, '_blank');
+      toast('지메일 작성창을 열었습니다 — 보내기를 눌러주세요');
+    };
+  }
+  paint();
+}
+
+/* 제조사 명부 — 이름·담당자·직책·이메일. 같은 제조사에 담당자가 여럿일 수 있다. */
+async function mkBookForm(onClose){
+  var w = amodal('제조사 관리', '<div class="dbody" id="mbBody">'
+    + '<div class="mskel"><i></i><i></i><i></i></div></div>');
+  var editing = null;
+
+  async function paint(){
+    var r = await fetch('/api/admin/makers',{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    var list = r.makers || [];
+    var e = editing || { id:null, name:'', contact:'', title:'', email:'', phone:'', memo:'' };
+    $('#mbBody').innerHTML =
+       '<div class="sec"><h4>등록된 제조사 '+list.length+'곳</h4>'
+        + (list.length
+           ? list.map(function(m){
+               return '<div class="ahr"><span class="t"><b>'+esc([m.name, m.contact, m.title].filter(Boolean).join(' · '))+'</b>'
+                 + '<small>'+esc([m.email||'메일 없음', m.phone].filter(Boolean).join(' · '))+'</small></span>'
+                 + '<button class="mini" data-ed="'+m.id+'">고치기</button>'
+                 + '<button class="mini" data-del="'+m.id+'" style="color:#B42318">삭제</button></div>'; }).join('')
+           : '<div class="empty">아직 등록된 제조사가 없습니다.</div>')
+       + '</div>'
+      + '<div class="sec"><h4>'+(e.id ? esc(e.name)+' 고치기' : '새 제조사')+'</h4>'
+        + '<div class="dcard" style="border:0;padding:0">'
+        + '<label class="req">제조사 이름</label><input type="text" id="mb-name" value="'+esc(e.name||'')+'" placeholder="예) 에스에이치사이언티픽">'
+        + '<div class="d2col"><div><label>담당자</label>'
+          + '<input type="text" id="mb-contact" value="'+esc(e.contact||'')+'" placeholder="예) 최주미"></div>'
+          + '<div><label>직책</label>'
+          + '<input type="text" id="mb-title" value="'+esc(e.title||'')+'" placeholder="예) 차장"></div></div>'
+        + '<label>이메일</label><input type="email" id="mb-email" value="'+esc(e.email||'')+'" placeholder="name@company.co.kr">'
+        + '<label>연락처</label><input type="text" id="mb-phone" value="'+esc(e.phone||'')+'" placeholder="선택">'
+        + '<label>메모</label><input type="text" id="mb-memo" value="'+esc(e.memo||'')+'" placeholder="내부 메모 (선택)">'
+        + '</div>'
+        + '<div class="dsrc" style="margin-top:10px">'
+          + (e.id ? '<button class="mini" id="mb-new">새로 쓰기</button>' : '')
+          + '<button class="btn ok" id="mb-save" style="margin-left:auto">'+(e.id?'저장':'등록')+'</button></div>'
+      + '</div>'
+      + '<div class="mrow"><button class="btn gray" data-x>닫기</button></div>';
+
+    $('#mbBody').querySelectorAll('[data-ed]').forEach(function(b){
+      b.onclick = function(){
+        editing = list.filter(function(m){ return String(m.id)===b.dataset.ed; })[0] || null; paint();
+      };
+    });
+    $('#mbBody').querySelectorAll('[data-del]').forEach(function(b){
+      b.onclick = async function(){
+        if (!confirm('이 제조사 담당자를 명부에서 지울까요?')) return;
+        var r2 = await fetch('/api/admin/makers',{method:'POST',headers:AH,
+          body:JSON.stringify({action:'delete', id:Number(b.dataset.del)})})
+          .then(function(x){return x.json();}).catch(function(){return{};});
+        if (!r2.ok) return toast('지우지 못했습니다');
+        if (editing && String(editing.id)===b.dataset.del) editing = null;
+        toast('지웠습니다'); paint();
+      };
+    });
+    if ($('#mb-new')) $('#mb-new').onclick = function(){ editing = null; paint(); };
+    $('#mb-save').onclick = async function(){
+      if (!$('#mb-name').value.trim()) return alert('제조사 이름을 입력해주세요.');
+      var bt = $('#mb-save'); bt.disabled = true; bt.textContent = '저장 중…';
+      var r2 = await fetch('/api/admin/makers',{method:'POST',headers:AH,body:JSON.stringify({
+        action:'save', id: e.id || null, name: $('#mb-name').value.trim(),
+        contact: $('#mb-contact').value.trim(), title: $('#mb-title').value.trim(),
+        email: $('#mb-email').value.trim(), phone: $('#mb-phone').value.trim(),
+        memo: $('#mb-memo').value.trim() })})
+        .then(function(x){return x.json();}).catch(function(){return{};});
+      bt.disabled = false;
+      if (!r2.ok) return alert(r2.message || '저장하지 못했습니다.');
+      editing = null; toast('저장했습니다'); paint();
+    };
+    var x = $('#mbBody').querySelector('[data-x]');
+    if (x) x.onclick = function(){ w.remove(); if (onClose) onClose(); };
+  }
+  paint();
 }
 
 /* 용역처 명부 — 이름·주민번호·계좌를 한 번 등록해 두고 골라 쓴다.
@@ -5387,7 +5588,9 @@ function paintDocs(){
            + '<button class="btn gray" id="dqFit" style="flex:0 0 90px">맞추기</button></div>'
          + '<p class="dnote">총액을 넣고 <b>맞추기</b>를 누르면 단가가 빈 항목에 금액을 나눠 채워 합계를 정확히 맞춥니다.</p></div>'
        + '<label style="margin-top:16px">품목</label><div id="dqItems"></div>'
-       + '<button class="mini" id="dqAdd" style="margin-top:4px">＋ 품목 추가</button>'
+       + '<div class="dsrc" style="margin-top:4px"><button class="mini" id="dqAdd">＋ 품목 추가</button>'
+         /* 고객에게 견적서를 쓰기 «전에» 제조사에 재고·납기·가격을 물어보는 자리 */
+         + '<button class="mini" id="dqAsk" style="margin-left:auto">제조사 문의</button></div>'
        + '<div class="qsum" id="dqSum"></div>'
        /* 값을 반드시 되돌려 넣는다 — 미리보기를 누르면 이 폼을 다시 그리는데,
           비워 두면 방금 적은 비고가 그때 통째로 사라진다. */
@@ -5438,6 +5641,7 @@ function paintDocs(){
   if ($('#dqPurpChg')) $('#dqPurpChg').onclick = function(){ dqPurpose = null; paintDocs(); };
   if ($('#dqOrderStatus')) $('#dqOrderStatus').onchange = function(e){ dqOrderStatus = e.target.value; };
   $('#dqAdd').onclick = function(){ dqItems.push({name:'',spec:'',qty:1,price:0,note:''}); dqPaintItems(); };
+  if ($('#dqAsk')) $('#dqAsk').onclick = mkAsk;
   $('#dqTarget').oninput = function(e){ dqTarget = numFmt(e.target); dqSum(); };
   $('#dqTarget').onblur  = function(e){          // 칸을 벗어날 때 10원 단위로 맞춘다
     dqTarget = r10(numVal(e.target));
