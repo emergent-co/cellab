@@ -278,8 +278,13 @@ async function post(request, env) {
 
     await ensureShare(env);
     const token = randomToken();
-    // 4자리 확인번호 — 메일에는 넣지 않는다. 대표가 전화·문자로 따로 알려준다.
-    const pin = String(Math.floor(1000 + Math.random() * 9000));
+    /* 확인번호 — 메일에는 넣지 않는다. 대표가 전화·문자로 따로 알려준다.
+       PAYOUT_PIN 을 넣어 두면 «늘 같은 번호»를 쓴다. 세무사에게 한 번만 알려주면 되고,
+       매달 새 번호를 전달하다 빠뜨리는 일이 없다.
+       대신 번호가 한 번 새면 이후 링크가 다 열리니, 새로 정하고 싶으면 그 값만 바꾸면 된다.
+       비워 두면 발송할 때마다 4자리를 새로 뽑는다. */
+    const fixed = String(env.PAYOUT_PIN || '').replace(/[^0-9]/g, '').slice(0, 6);
+    const pin = fixed || String(Math.floor(1000 + Math.random() * 9000));
     const exp = new Date(Date.now() + 7 * 864e5 + 9 * 3600e3).toISOString().slice(0, 19).replace('T', ' ');
     await env.DB.prepare(
       'INSERT INTO payout_shares (ym, token, to_addr, expires_at, created_at, pin, fails) VALUES (?,?,?,?,?,?,0)')
