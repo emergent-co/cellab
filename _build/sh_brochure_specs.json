@@ -1,0 +1,5577 @@
+{
+ "_doc": [
+  "삼흥 2026 국문 브로슈어에서 자동 추출한 모델별 사양.",
+  "생성: python _ops/sh_brochure_parse.py --write",
+  "원본: 2026_SH Scientific brochure-KO.pdf (실험실닷컴 웹카다로그)",
+  "손으로 고치지 말 것 — 원본이 바뀌면 다시 돌린다."
+ ],
+ "models": {
+  "SH-VDO-08NG": {
+   "model": "SH-VDO-08NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 250℃ (Ambient + 9℉ to 482℉)",
+    "Dimension Internal": "200×200×200mm / 7.87x7.87x7.87\"",
+    "Dimension External": "385×315×555mm / 15.15x12.40x21.85\"",
+    "Capa": "8L"
+   }
+  },
+  "SH-VDO-30NG": {
+   "model": "SH-VDO-30NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 250℃ (Ambient + 9℉ to 482℉)",
+    "Dimension Internal": "300×300×300mm / 11.81x11.81x11.81\"",
+    "Dimension External": "605×550×770mm / 23.81x21.65x30.31\"",
+    "Capa": "27 L"
+   }
+  },
+  "SH-VDO-70NG": {
+   "model": "SH-VDO-70NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 250℃ (Ambient + 9℉ to 482℉)",
+    "Dimension Internal": "400×400×400mm / 15.75x15.75x15.75\"",
+    "Dimension External": "705×620×870mm / 27.75x24.80x34.25\"",
+    "Capa": "64 L"
+   }
+  },
+  "SH-VDO-125NG": {
+   "model": "SH-VDO-125NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 250℃ (Ambient + 9℉ to 482℉)",
+    "Dimension Internal": "500×500×500mm / 19.69x19.69x19.69\"",
+    "Dimension External": "795×770×1025mm / 31.30x30.31x40.35\"",
+    "Capa": "125 L"
+   }
+  },
+  "SH-VDO-216NG": {
+   "model": "SH-VDO-216NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 250℃ (Ambient + 9℉ to 482℉)",
+    "Dimension Internal": "600x600x600mm / 23.62x23.62x23.62\"",
+    "Dimension External": "875x870x1130mm / 34.44x34.25x44.49\"",
+    "Capa": "216 L"
+   }
+  },
+  "SH-VDO-30NC": {
+   "model": "SH-VDO-30NC",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Drying Oven For Toxic Gas",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 150℃ (Ambient + 9℉ to 302℉)",
+    "Material Internal": "STS 316",
+    "Material Packing": "Viton Packing",
+    "Dimension Internal": "300×300×300mm / 11.81x11.81x11.81\"",
+    "Dimension External": "605×550×770mm / 23.81x21.65x30.31\""
+   }
+  },
+  "SH-VDO-70NC": {
+   "model": "SH-VDO-70NC",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Drying Oven For Toxic Gas",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 150℃ (Ambient + 9℉ to 302℉)",
+    "Material Internal": "STS 316",
+    "Material Packing": "Viton Packing",
+    "Dimension Internal": "400×400×400mm / 15.75x15.75x15.75\"",
+    "Dimension External": "705×620×870mm / 27.75x24.80x34.25\""
+   }
+  },
+  "SH-VDO-125NC": {
+   "model": "SH-VDO-125NC",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Drying Oven For Toxic Gas",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 150℃ (Ambient + 9℉ to 302℉)",
+    "Material Internal": "STS 316",
+    "Material Packing": "Viton Packing",
+    "Dimension Internal": "500×500×500mm / 19.69x19.69x19.69\"",
+    "Dimension External": "795×770×1025mm / 31.30x30.31x40.35\""
+   }
+  },
+  "SH-VDO-30NS": {
+   "model": "SH-VDO-30NS",
+   "section": "01. Vacuum Drying Oven",
+   "title": "400℃ Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 400℃ (Ambient + 9℉ to 752℉)",
+    "Controller": "2 EA",
+    "Dimension Internal": "300×300×300mm / 11.81x11.81x11.81\"",
+    "Dimension External": "800×580×565mm / 31.49x22.83x22.24\""
+   }
+  },
+  "SH-VDO-70NS": {
+   "model": "SH-VDO-70NS",
+   "section": "01. Vacuum Drying Oven",
+   "title": "400℃ Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 400℃ (Ambient + 9℉ to 752℉)",
+    "Controller": "3 EA",
+    "Dimension Internal": "400×400×400 mm / 15.75x15.75x15.75\"",
+    "Dimension External": "900×680×665mm / 35.43x26.77x26.18\""
+   }
+  },
+  "SH-VDO-125NS": {
+   "model": "SH-VDO-125NS",
+   "section": "01. Vacuum Drying Oven",
+   "title": "400℃ Vacuum Drying Oven",
+   "page": 3,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 400℃ (Ambient + 9℉ to 752℉)",
+    "Controller": "4 EA",
+    "Dimension Internal": "500×500×500mm / 19.68x19.68x19.68\"",
+    "Dimension External": "1000×790×805mm / 39.37x31.10x31.69\""
+   }
+  },
+  "SH-VDO-175NG": {
+   "model": "SH-VDO-175NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Oven For evaporation (Large Capa)",
+   "page": 4,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 150℃ (Ambient + 9℉ to 302℉)",
+    "Controller": "4 EA",
+    "Dimension External": "865x955x715mm / 34.05x37.60x28.15\""
+   }
+  },
+  "SH-VDO-252NG": {
+   "model": "SH-VDO-252NG",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Oven For evaporation (Large Capa)",
+   "page": 4,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 150℃ (Ambient + 9℉ to 302℉)",
+    "Controller": "5 EA",
+    "Dimension External": "965x955x825mm / 38x37.60x32.5\""
+   }
+  },
+  "SH-WB-5GDR(-20)": {
+   "model": "SH-WB-5GDR(-20)",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Cold Bath with Glass Trap 3EA",
+   "page": 4,
+   "specs": {}
+  },
+  "SH-WB-5GDR(-40)": {
+   "model": "SH-WB-5GDR(-40)",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 4,
+   "specs": {
+    "Temp Control Range": "(-180℉ ~ -76℉) (Low limit -80℃)",
+    "Dimension Internal": "180Φ×210Hmm / 7.09Φx8.27H\"",
+    "Dimension External": "465×560×710mm / 18.18x22.04x27.95\""
+   }
+  },
+  "SH-WB-5GDR(-80)": {
+   "model": "SH-WB-5GDR(-80)",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 4,
+   "specs": {
+    "Temp Control Range": "(-180℉ ~ -76℉) (Low limit -80℃)",
+    "Dimension Internal": "180Φ×210Hmm / 7.09Φx8.27H\"",
+    "Dimension External": "505×620×750mm / 19.88x24.41x29.52\""
+   }
+  },
+  "SH-WB-68GDR": {
+   "model": "SH-WB-68GDR",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Large Condensing Trap Bath",
+   "page": 5,
+   "specs": {
+    "Temp Control Range": "-40℃ Ambient (-40℉ Ambient )",
+    "Bath capa": "68L",
+    "Dimension Internal": "1086x675.4x1358(mm) / 42.75x26.59x53.46(inch)",
+    "Material Internal": "Stainless Steel",
+    "Material External": "Steel Plate with Powder Heating Coated",
+    "Material Trap": "Pyrex Glass 4EA",
+    "Power": "220V, 1Φ / *Option"
+   }
+  },
+  "SH-WB-100GDR": {
+   "model": "SH-WB-100GDR",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Large Condensing Trap Bath",
+   "page": 5,
+   "specs": {
+    "Temp Control Range": "-40℃ Ambient (-40℉ Ambient )",
+    "Bath capa": "100L",
+    "Dimension Internal": "1438x675x1358(mm) / 56.61x26.57x53.46(inch)",
+    "Material Internal": "Stainless Steel",
+    "Material External": "Steel Plate with Powder Heating Coated",
+    "Material Trap": "Pyrex Glass 6EA",
+    "Power": "220V, 1Φ / *Option"
+   }
+  },
+  "VDO-PK-G3": {
+   "model": "VDO-PK-G3",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Oven Package",
+   "page": 5,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-125NG",
+    "Cold Trap": "SH-WB-5GDR(-20)",
+    "Vacuum Pump": "V20",
+    "Oil Mist Trap": "VOT-1020",
+    "1103x768x1738mm Dimension(WxDxH)": "1203x868x1844mm",
+    "43.42x30.24x68.43\"": "47.36x34.17x72.59\""
+   }
+  },
+  "VDO-PK-G4": {
+   "model": "VDO-PK-G4",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Vacuum Oven Package",
+   "page": 5,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-216NG",
+    "Cold Trap": "SH-WB-5GDR(-20)",
+    "Vacuum Pump": "V20",
+    "Oil Mist Trap": "VOT-1020",
+    "1103x768x1738mm Dimension(WxDxH)": "1203x868x1844mm",
+    "43.42x30.24x68.43\"": "47.36x34.17x72.59\""
+   }
+  },
+  "VDO-PK-G3CE": {
+   "model": "VDO-PK-G3CE",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-125NG",
+    "Condenser": "Main + Auxiliary Vertical Double Hefix (Borosilicate 3.3)",
+    "Cooling Area": "0.49㎡",
+    "Receiving Flask": "5L / 1.32gallon",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "V20",
+    "Oil Mist Trap": "VOT-1020 / 1266x768x1938mm / *Option : Cold Trap Bath SH-WB-5GDR(-20)"
+   }
+  },
+  "VDO-PK-G4CE": {
+   "model": "VDO-PK-G4CE",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-216NG",
+    "Condenser": "Main + Auxiliary Vertical Double Hefix (Borosilicate 3.3)",
+    "Cooling Area": "0.49㎡",
+    "Receiving Flask": "5L / 1.32gallon",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "V20",
+    "Oil Mist Trap": "VOT-1020 / 1356x868x2045mm / *Option : Cold Trap Bath SH-WB-5GDR(-20)"
+   }
+  },
+  "VDO-PK-C1": {
+   "model": "VDO-PK-C1",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-30NC",
+    "Cold Trap": "SH-WB-5GDR(-20)",
+    "Vacuum Pump": "CV20",
+    "Oil Mist Trap Dimension(WxDxH)": "VOT-4080 / 953x620x1552mm"
+   }
+  },
+  "VDO-PK-C2": {
+   "model": "VDO-PK-C2",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-70NC",
+    "Cold Trap": "SH-WB-5GDR(-20)",
+    "Vacuum Pump": "CV20",
+    "Oil Mist Trap Dimension(WxDxH)": "VOT-4080 / 1053x670x1652mm",
+    "37.52x24.41x61.10\"": "41.46x26.38x65.04\""
+   }
+  },
+  "VDO-PK-C3": {
+   "model": "VDO-PK-C3",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-125NC",
+    "Cold Trap": "SH-WB-5GDR(-20)",
+    "Vacuum Pump": "CV20",
+    "Oil Mist Trap Dimension(WxDxH)": "VOT-4080 / 1103x768x1738mm",
+    "37.52x24.41x61.10\"": "43.42x30.24x68.42\""
+   }
+  },
+  "VDO-PK-C1CE": {
+   "model": "VDO-PK-C1CE",
+   "section": "01. Vacuum Drying Oven",
+   "title": "<VDO-PK-C1,2,3CE Series>",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-30NC / Main+Auxiliary",
+    "Condenser": "Vertical Double Hefix (Borosilicate 3.3) / (Borosilicate 3.3)",
+    "Receiving Flask": "3L / 0.79gallon",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "CV20",
+    "Oil Mist Trap Dimension(WxDxH)": "VOT-4080 / 1000x620x1752mm / 39.37x24.41x68.97\""
+   }
+  },
+  "VDO-PK-C2CE": {
+   "model": "VDO-PK-C2CE",
+   "section": "01. Vacuum Drying Oven",
+   "title": "<VDO-PK-C1,2,3CE Series>",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-70NC / Main+Auxiliary",
+    "Condenser": "(Borosilicate 3.3)",
+    "Cooling Area": "0.28 ㎡",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "CV20",
+    "Oil Mist Trap Dimension(WxDxH)": "VOT-4080 / 1100x670x1852mm / 43.31x26.38x72.91\""
+   }
+  },
+  "VDO-PK-C3CE": {
+   "model": "VDO-PK-C3CE",
+   "section": "01. Vacuum Drying Oven",
+   "title": "<VDO-PK-C1,2,3CE Series>",
+   "page": 6,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-125NC / Main+Auxiliary",
+    "Condenser": "Vertical Double Hefix / (Borosilicate 3.3)",
+    "Cooling Area": "0.49㎡",
+    "Receiving Flask": "5L / 1.32gallon",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "CV20",
+    "Oil Mist Trap Dimension(WxDxH)": "VOT-4080 / 1266x768x1938mm / 49.84x30.24x76.29\""
+   }
+  },
+  "VDO-PK-S1": {
+   "model": "VDO-PK-S1",
+   "section": "01. Vacuum Drying Oven",
+   "title": "<VDO-PK-S Series>",
+   "page": 7,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-30NS",
+    "Cold Trap": "SH-WB-5GDR(-40)",
+    "Vacuum Pump": "V10",
+    "Oil Mist Trap": "VOT-1020"
+   }
+  },
+  "VDO-PK-S2": {
+   "model": "VDO-PK-S2",
+   "section": "01. Vacuum Drying Oven",
+   "title": "<VDO-PK-S Series>",
+   "page": 7,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-70NS",
+    "Cold Trap": "SH-WB-5GDR(-40)",
+    "Vacuum Pump": "V10",
+    "Oil Mist Trap": "VOT-1020",
+    "1380x685x1280mm Dimension(WxDxH)": "1465x765x1450mm",
+    "54.331x26.97x30.39\"": "57.68x30.11x57.09\""
+   }
+  },
+  "VDO-PK-S3": {
+   "model": "VDO-PK-S3",
+   "section": "01. Vacuum Drying Oven",
+   "title": "<VDO-PK-S Series>",
+   "page": 7,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-125NS",
+    "Cold Trap": "SH-WB-5GDR(-40)",
+    "Vacuum Pump": "V20",
+    "Oil Mist Trap": "VOT-1020",
+    "1380x685x1280mm Dimension(WxDxH)": "1565x895x1535mm",
+    "54.331x26.97x30.39\"": "61.61x35.24x60.43\""
+   }
+  },
+  "VDO-PK-F1": {
+   "model": "VDO-PK-F1",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 7,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-175NG",
+    "Condenser": "Main + Auxiliary Vertical Double Hefix (CE-10)",
+    "Receiving Flask": "5L / 1.32 gallon",
+    "Chiller": "SH-WB-12CDR",
+    "Vacuum Pump": "PTFEVP130S",
+    "1445x955x2000mm Dimension(WxDxH)": "1545x955x2000mm",
+    "56.89x37.60x78.74\"": "60.82x37.60x78.74\""
+   }
+  },
+  "VDO-PK-F2": {
+   "model": "VDO-PK-F2",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 7,
+   "specs": {
+    "Vacuum Dry Oven": "SH-VDO-252NG",
+    "Condenser": "Main + Auxiliary Vertical Double Hefix (CE-10)",
+    "Receiving Flask": "5L / 1.32 gallon",
+    "Chiller": "SH-WB-12CDR",
+    "Vacuum Pump": "DSV330",
+    "1445x955x2000mm Dimension(WxDxH)": "1545x955x2000mm",
+    "56.89x37.60x78.74\"": "60.82x37.60x78.74\""
+   }
+  },
+  "SH-VDO-CBD1560": {
+   "model": "SH-VDO-CBD1560",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Large Vacuum Oven",
+   "page": 7,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 150℃",
+    "Vacuum Resistnace": "0 to 76cmHg ( 0 to 0.1MPa)",
+    "Temp controller": "Microprocess PID Membrane Touch Digital Controller 4ea",
+    "Heating Type": "Chamber 내부 4면 Radiant Heating",
+    "Heater Capa Dimension Internal 1300×1000×1200mm / 51x39x47\" Dimension External 1710x1550x1852mm / 67x61x73\"": "3KW x 4Side / 12.0KW / ＊사용자 요구사항에 맞게 주문제작 가능합니다."
+   }
+  },
+  "SH-CE5": {
+   "model": "SH-CE5",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Glass Condenser for Vacuum Evaporator & Oven",
+   "page": 8,
+   "specs": {
+    "Glass material": "Borosilicate 3.3",
+    "Safty Frame": "Du-Aluminum & PVC",
+    "Cooling Area": "0.28 m2",
+    "Receving Flask": "3 Liter",
+    "Dimension Internal Standard Chiller": "400x433x1391mm / 15.75x17.05x54.76\"",
+    "Cooling Capa Rotary evaporator Vacuum drying oven": "MAX 2L/H, SH-WB- / 5CDR(-30) 사용시 / Vacuum drying oven / (SH-VDO-125NG, SH-",
+    "Recommended for 70NG, SH-VDO-30NS, SH-VDO-70NS)": "VDO-175NG, SH-VDO- VDO-175NG, SH-VDO- / 252NG, SH-VDO-216NG, 252NG, SH-VDO-216NG, / SH-VDO-125NS)"
+   }
+  },
+  "SH-CE10": {
+   "model": "SH-CE10",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Glass Condenser for Vacuum Evaporator & Oven",
+   "page": 8,
+   "specs": {
+    "Glass material": "Borosilicate 3.3",
+    "Safty Frame": "Du-Aluminum & PVC",
+    "Cooling Area": "0.49 m2",
+    "Receving Flask": "5 Liter",
+    "Dimension Internal Standard Chiller": "500x533x1971mm / 15.75x17.05x54.76\"",
+    "SH-WB-5CDR(-30)": "SH-WB-12CDR(-25)",
+    "Cooling Capa Rotary evaporator Vacuum drying oven": "MAX 3.5 L/H, SH-WB- / 12CDR(-25) 사용시 / Vacuum drying oven / (SH-VDO-125NG, SH-",
+    "Recommended for 70NG, SH-VDO-30NS, SH-VDO-70NS)": "VDO-175NG, SH-VDO- VDO-175NG, SH-VDO- / 252NG, SH-VDO-216NG, 252NG, SH-VDO-216NG, / SH-VDO-125NS)"
+   }
+  },
+  "SH-CE20": {
+   "model": "SH-CE20",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Glass Condenser for Vacuum Evaporator & Oven",
+   "page": 8,
+   "specs": {
+    "Glass material": "Borosilicate 3.3",
+    "Safty Frame": "Du-Aluminum & PVC",
+    "Cooling Area": "1.4 m2",
+    "Receving Flask": "10 Liter",
+    "Dimension Internal Standard Chiller": "600x633x1971mm / 23.62x24.92x54.76\"",
+    "SH-WB-5CDR(-30)": "SH-WB-20CDR(-25)",
+    "Cooling Capa Rotary evaporator Vacuum drying oven": "MAX 5.0 L/H, SH-WB- / 20CDR(-25) 칠러 사용시",
+    "Recommended for 70NG, SH-VDO-30NS, SH-VDO-70NS)": "VDO-175NG, SH-VDO- VDO-175NG, SH-VDO- / 252NG, SH-VDO-216NG, 252NG, SH-VDO-216NG,"
+   }
+  },
+  "SH-PCV-27": {
+   "model": "SH-PCV-27",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 8,
+   "specs": {
+    "Internal Volume": "27 L",
+    "Gauge range(Analog)(Mpa)": "0 ~ -0.1",
+    "Vacuum": "Max.permissible vacuum / 1.33x10-4 (1Torr)",
+    "Internal(WxDxH)": "300x300x300 mm",
+    "Dimension": "Overall(WxDxH) 418x392x338.5 mm",
+    "Nozzle dia Quantity of shelves": "9.5 mm / 2/4",
+    "Shelves": "(Standard/Max.)",
+    "Max. load per shelf": "5 kg",
+    "Net weight": "10 kg"
+   }
+  },
+  "SH-PCV-45": {
+   "model": "SH-PCV-45",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 8,
+   "specs": {
+    "Internal Volume": "45 L",
+    "Gauge range(Analog)(Mpa)": "0 ~ -0.1",
+    "Vacuum": "Max.permissible vacuum / 1.33x10-4 (1Torr)",
+    "Internal(WxDxH)": "300x300x500 mm",
+    "Dimension": "418x392x538.5 mm",
+    "Nozzle dia Quantity of shelves": "9.5 mm / 3/6",
+    "Shelves": "(Standard/Max.)",
+    "Max. load per shelf": "5 kg",
+    "Net weight": "14 kg"
+   }
+  },
+  "SH-PCV-27U": {
+   "model": "SH-PCV-27U",
+   "section": "01. Vacuum Drying Oven",
+   "title": "폴리카보네이트 (P.C) Cubic Vacuum Box Cubic UV 차단 형",
+   "page": 8,
+   "specs": {
+    "Internal Volume": "27 L",
+    "Gauge range(Analog)(Mpa)": "0 ~ -0.1",
+    "Vacuum": "Max.permissible vacuum / 1.33x10-4 (1Torr)",
+    "Internal(WxDxH)": "300x300x300 mm",
+    "Dimension": "Overall(WxDxH) 418x392x338.5 mm",
+    "Nozzle dia Quantity of shelves": "9.5 mm / 2/4",
+    "Shelves": "(Standard/Max.)",
+    "Max. load per shelf ION": "5 kg"
+   }
+  },
+  "SH-PCV-45U": {
+   "model": "SH-PCV-45U",
+   "section": "01. Vacuum Drying Oven",
+   "title": "폴리카보네이트 (P.C) Cubic Vacuum Box Cubic UV 차단 형",
+   "page": 8,
+   "specs": {
+    "Internal Volume": "45 L",
+    "Gauge range(Analog)(Mpa)": "0 ~ -0.1",
+    "Vacuum": "Max.permissible vacuum / 1.33x10-4 (1Torr)",
+    "Internal(WxDxH)": "300x300x500 mm",
+    "Dimension": "418x392x538.5 mm",
+    "Nozzle dia Quantity of shelves": "9.5 mm / 3/6",
+    "Shelves": "(Standard/Max.)",
+    "Max. load per shelf ION": "5 kg"
+   }
+  },
+  "SH-V10": {
+   "model": "SH-V10",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-V Series",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "78L/min",
+    "Gas": "10 Pa",
+    "ballast close": "( 3.7x10-3 torr )",
+    "ballast open": "( 7.5x10-2 torr )",
+    "Noise level(dB)": "≤56"
+   }
+  },
+  "SH-V20": {
+   "model": "SH-V20",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-V Series",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "156L/min",
+    "Gas": "10 Pa",
+    "ballast close": "( 3.7x10-3 torr )",
+    "ballast open": "( 7.5x10-2 torr )",
+    "Noise level(dB)": "≤56"
+   }
+  },
+  "SH-V40": {
+   "model": "SH-V40",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-V Series",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "312L/min",
+    "Gas": "8x10-1 Pa",
+    "ballast close": "( 3.0x10-3 torr )",
+    "ballast open": "( 6.0x10-3 torr )",
+    "Noise level(dB)": "≤58"
+   }
+  },
+  "SH-V60": {
+   "model": "SH-V60",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 10,
+   "specs": {
+    "Option: Oil Mist Trap with Filter": "Pumping / 474L/min",
+    "VOT-1020 : V10, V20 VOT-4080 : V40, V60": "Speed(50/60Hz)",
+    "Gas VOT-100 : V100, V170": "4x10-1 Pa",
+    "ballast close": "( 3.0x10-3 torr )",
+    "Option: Filter for Oil Mist Trap": "Gas 8x10-1 Pa",
+    "VOTF-1020 : VOT-1020 VOTF-4080 : VOT-4080 VOTF-100 : VOT-100": "ballast open ( 6.0x10-3 torr )",
+    "Noise level(dB)": "≤58"
+   }
+  },
+  "SH-V100": {
+   "model": "SH-V100",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 10,
+   "specs": {
+    "Option: Oil Mist Trap with Filter": "Pumping / 960L/min",
+    "VOT-1020 : V10, V20 VOT-4080 : V40, V60": "Speed(50/60Hz)",
+    "Gas VOT-100 : V100, V170": "4x10-1 Pa",
+    "ballast close": "( 3.0x10-3 torr )",
+    "Option: Filter for Oil Mist Trap": "8x10-1 Pa",
+    "VOTF-1020 : VOT-1020 VOTF-4080 : VOT-4080 VOTF-100 : VOT-100": "( 6.0x10-3 torr )",
+    "Noise level(dB)": "≤ 62"
+   }
+  },
+  "SH-V170": {
+   "model": "SH-V170",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 10,
+   "specs": {
+    "Option: Oil Mist Trap with Filter": "Pumping / 1,698L/min",
+    "VOT-1020 : V10, V20 VOT-4080 : V40, V60": "Speed(50/60Hz)",
+    "Gas VOT-100 : V100, V170": "4x10-1 Pa",
+    "ballast close": "( 3.0x10-3 torr )",
+    "Option: Filter for Oil Mist Trap": "8x10-1 Pa",
+    "VOTF-1020 : VOT-1020 VOTF-4080 : VOT-4080 VOTF-100 : VOT-100": "( 6.0x10-3 torr )",
+    "Noise level(dB)": "≤65"
+   }
+  },
+  "SH-VDC7": {
+   "model": "SH-VDC7",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-VDC (Low noise) Series",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "66L/min",
+    "Gas": "10 Pa",
+    "ballast close": "( 3.7x10-3 torr )",
+    "ballast open": "( 7.5x10-2 torr )"
+   }
+  },
+  "SH-VDC10": {
+   "model": "SH-VDC10",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-VDC (Low noise) Series",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "132L/min",
+    "Gas": "10 Pa",
+    "ballast close": "( 3.7x10-3 torr )",
+    "ballast open": "( 7.5x10-2 torr )",
+    "Vacuum Drying Ovens": "Vacuum Drying Ovens / (SH-VDO-08NG, SH-",
+    "VDO-30NG, SH-VDO- Recommended for": "VDO-30NG, / Tube Furnace All / Packages"
+   }
+  },
+  "SH-VDC20": {
+   "model": "SH-VDC20",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-VDC (Low noise) Series",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "183L/min",
+    "Gas": "10 Pa",
+    "ballast close": "( 3.7x10-3 torr )",
+    "ballast open": "( 7.5x10-2 torr )",
+    "Vacuum Drying Ovens": "Vacuum Drying Ovens / (SH-VDO-70NG, SH-",
+    "VDO-30NG, SH-VDO- Recommended for": "VDO-125NG, / Tube Furnace All / Packages"
+   }
+  },
+  "SH-CV20": {
+   "model": "SH-CV20",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 10,
+   "specs": {
+    "Pumping Speed(50/60Hz) Ultimate Total Pressure without gas ballast Ultimate Total Pressure with": "167L/min / 5x10-1 Pa / 3 Pa",
+    "Noise level(dB)": "≤52"
+   }
+  },
+  "SH-PTFEVP30": {
+   "model": "SH-PTFEVP30",
+   "section": "01. Vacuum Drying Oven",
+   "title": "PTFE Diaphragm Pump",
+   "page": 11,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "33L/min",
+    "Ultimate pressure(mbar) Variable frequency permanent magnet motor, motor automatic Safety function": "6 Torr (8 mbar) / protection",
+    "Inlet / outlet": "PTFE",
+    "Dimensions": "245x252x185 mm",
+    "Power Supply(w) For solvent recovery": "180 W / NA"
+   }
+  },
+  "SH-PTFEVP30C": {
+   "model": "SH-PTFEVP30C",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 11,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "33L/min",
+    "Ultimate pressure(mbar) Safety function": "6 Torr (8 mbar) / Variable frequency permanent magnet motor, / motor automatic protection",
+    "Inlet / outlet": "PTFE",
+    "Dimensions": "245x252x185 mm",
+    "Power Supply(w) Cooling Column /": "180 W",
+    "For solvent recovery": "YES"
+   }
+  },
+  "SH-PTFEVP130": {
+   "model": "SH-PTFEVP130",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 11,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "133L/min",
+    "Ultimate pressure(mbar) Variable frequency permanent magnet motor, Safety function motor automatic protection": "22.5 Torr (30 mbar)",
+    "Inlet / outlet": "PTFE",
+    "Dimensions": "375x200x310 mm",
+    "Power Supply(w) Cooling Column /": "400 W",
+    "For solvent recovery": "NA"
+   }
+  },
+  "SH-PTFEVP130S": {
+   "model": "SH-PTFEVP130S",
+   "section": "01. Vacuum Drying Oven",
+   "title": "For Chemical",
+   "page": 11,
+   "specs": {
+    "Pumping Speed(50/60Hz)": "133L/min",
+    "Ultimate pressure(mbar) Variable frequency permanent magnet motor, Safety function motor automatic protection": "0.45 Torr (6 mbar)",
+    "Inlet / outlet": "PTFE",
+    "Dimensions": "467x234x319mm",
+    "Power Supply(w) Cooling Column /": "600 W",
+    "For solvent recovery": "NA"
+   }
+  },
+  "SH-dVP 10": {
+   "model": "SH-dVP 10",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 12,
+   "specs": {
+    "Type": "진공(감압)",
+    "Pumping Speed(50/60Hz)": "10 L/min",
+    "Vacuum Range": "198mmHg (torr) , -0.075MPa",
+    "Noise": "≤ 40 db"
+   }
+  },
+  "SH-dVP 15": {
+   "model": "SH-dVP 15",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 12,
+   "specs": {
+    "Type": "진공(감압)",
+    "Pumping Speed(50/60Hz)": "0~15 L/min",
+    "Vacuum Range": "160mmHg (torr) , -0.08MPa",
+    "Noise": "≤ 45 db"
+   }
+  },
+  "SH-dVP 30": {
+   "model": "SH-dVP 30",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 12,
+   "specs": {
+    "Type": "콤퓨레샤(가압), 진공(감압)",
+    "Pumping Speed(50/60Hz)": "30 L/min",
+    "Vacuum Range": "123mmHg(torr) , -0.085MPa",
+    "Noise": "≤ 50 db"
+   }
+  },
+  "SH-CDP30": {
+   "model": "SH-CDP30",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 13,
+   "specs": {
+    "Pump Head": "2                                                         25mmHg(torr), - 0.098Mpa / Degree",
+    "Pumping": "Pumping / 30L/Min",
+    "Speed(50/60Hz)": "Speed(50/60Hz)",
+    "Vacuum": "0.02MPa, 150mHg (torr)",
+    "Pressure": "30 Psi, 1,551mmHg (torr)"
+   }
+  },
+  "SH-WV20": {
+   "model": "SH-WV20",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 13,
+   "specs": {
+    "Pump Head": "2                                                         25mmHg(torr), - 0.098Mpa / Degree",
+    "Pumping": "Pumping / 20L/Min",
+    "Speed(50/60Hz)": "Speed(50/60Hz) / 180W",
+    "Vacuum": "0.02MPa, 150mHg (torr) / 15Lit",
+    "Pressure": "80L/Min"
+   }
+  },
+  "SH-DSV130": {
+   "model": "SH-DSV130",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 13,
+   "specs": {
+    "Pumping Speed": "130L/min",
+    "Extreme vacuum degree": "3 Pa (2.25x10-2 Torr / 3x10-2 mbar)",
+    "Dry nitrogen/Dry compressed air": "0~100 slm",
+    "Gas Purge": "Pressure NA",
+    "Exhaust port": "16 KF",
+    "Max water vapor pumping rate": "134 g/h",
+    "Oil quantity": "80 ml",
+    "Noise": "≤58 dB(A)",
+    "Ambient temperature": "5~40 °C",
+    "Operating humidity": "Below 90%",
+    "Storage temperature": "0~50 °C",
+    "Cooling mode": "Air cooling"
+   }
+  },
+  "SH-DSV330": {
+   "model": "SH-DSV330",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 13,
+   "specs": {
+    "Pumping Speed": "330L/min",
+    "Extreme vacuum degree": "3 Pa (2.25x10-2 Torr / 3x10-2 mbar)",
+    "Dry nitrogen/Dry compressed air": "0~100 slm",
+    "Joint": "NA",
+    "Inlet port Connection": "25 KF",
+    "Oil quantity": "80 ml",
+    "Noise": "≤60 dB(A)",
+    "Ambient temperature": "5~40 °C",
+    "Operating humidity": "Below 90%",
+    "Storage temperature": "0~50 °C",
+    "Cooling mode": "Air cooling"
+   }
+  },
+  "SH-DSV530": {
+   "model": "SH-DSV530",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 13,
+   "specs": {
+    "Pumping Speed": "530L/min",
+    "Extreme vacuum degree": "3 Pa (2.25x10-2 Torr / 3x10-2 mbar)",
+    "Dry nitrogen/Dry compressed air": "0~100 slm",
+    "Gas Purge": "0.05~0.1 Mpa",
+    "Joint": "One touch fitting Ф6mm",
+    "Exhaust port": "25 KF",
+    "Max water vapor pumping rate": "200 g/h",
+    "Oil quantity": "80 ml",
+    "Ambient temperature": "5~40 °C",
+    "Operating humidity": "Below 90%",
+    "Storage temperature": "0~50 °C",
+    "Cooling mode": "Air cooling"
+   }
+  },
+  "SH-DSV830": {
+   "model": "SH-DSV830",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 13,
+   "specs": {
+    "Pumping Speed": "830L/min",
+    "Extreme vacuum degree": "3 Pa (2.25x10-2 Torr / 3x10-2 mbar)",
+    "Dry nitrogen/Dry compressed air": "0~100 slm",
+    "Inlet port Connection": "40 KF",
+    "Exhaust port": "25 KF",
+    "Max water vapor pumping rate": "250 g/h",
+    "Oil quantity": "80 ml",
+    "Noise": "≤63 dB(A)",
+    "Ambient temperature": "5~40 °C",
+    "Operating humidity": "Below 90%",
+    "Storage temperature": "0~50 °C",
+    "Cooling mode": "Air cooling"
+   }
+  },
+  "SH-DV300": {
+   "model": "SH-DV300",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-DV (Oil free) Series",
+   "page": 14,
+   "specs": {
+    "Pumping Speed(50/60Hz) Ultimate Pressure": "305L/min / 2.5 Pa / ( ≤7.5×10-3 torr )",
+    "Noise Level (dB)": "≤60",
+    "Vacuum Drying Ovens": "Vacuum Drying Ovens / (SH-VDO-125NG,SH-VDO-216NG,",
+    "Recommended for": "SH-VDO-175NG, SH-VDO-252NG,",
+    "SH-VDO-125NS)": "SH-VDO-125NS)"
+   }
+  },
+  "SH-DV600": {
+   "model": "SH-DV600",
+   "section": "01. Vacuum Drying Oven",
+   "title": "SH-DV (Oil free) Series",
+   "page": 14,
+   "specs": {
+    "Pumping Speed(50/60Hz) Ultimate Pressure": "623L/min / 0.9 Pa / ( ≤7.5×10-3 torr )",
+    "Noise Level (dB)": "≤61",
+    "Vacuum Drying Ovens": "Vacuum Drying Ovens / (SH-VDO-125NG,SH-VDO-216NG,",
+    "Recommended for": "SH-V DO-175NG, SH-VDO-252NG,",
+    "SH-VDO-125NS)": "SH-VDO-125NS)"
+   }
+  },
+  "SH-HV40": {
+   "model": "SH-HV40",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Diffusion & Oil Rotary Pump",
+   "page": 14,
+   "specs": {
+    "Type Pumping Speed(50/60Hz) 2.6x10-4 Pa(2.0 x 10-6 4.6 x 10-5 Pa (3.5 x 10-7 Ultimate Total Pressure Inlet : KF25 , KF40 ,": "Diffusion & Oil Rotary / 312L/min / Torr) / Vacuum: 4 inch (ISO",
+    "Inlet Port & Outlet Port KF50 / Outlet : KF25": "100) / Exhaust Port / KF25",
+    "Air In Port": "6Ø One Touch Type (압력 5kg 이상 필요)",
+    "Water In/out Port": "12Ø One Touch Type",
+    "Diffusion Oil Capacity": "0.34 L",
+    "Roraty Oil Capacity": "0.9 L ~ 1.5 L",
+    "Ambient Temperature": "5~40℃",
+    "Noise": "≤52dB"
+   }
+  },
+  "SH-HV40T": {
+   "model": "SH-HV40T",
+   "section": "01. Vacuum Drying Oven",
+   "title": "Diffusion & Oil Rotary Pump",
+   "page": 14,
+   "specs": {
+    "Type Pumping Speed(50/60Hz) 2.6x10-4 Pa(2.0 x 10-6 4.6 x 10-5 Pa (3.5 x 10-7 Ultimate Total Pressure Inlet : KF25 , KF40 ,": "6\" Turbo & Oil Rotary / 312L/min / Torr) / Vacuum: 4 inch (ISO",
+    "Inlet Port & Outlet Port KF50 / Outlet : KF25": "100) / Exhaust Port / KF25",
+    "Air In Port": "6Ø One Touch Type (압력 5kg 이상 필요)",
+    "Water In/out Port": "12Ø One Touch Type",
+    "Diffusion Oil Capacity": "-",
+    "Roraty Oil Capacity": "0.9 L ~ 1.5 L",
+    "Ambient Temperature": "5~40℃",
+    "Noise": "≤52dB"
+   }
+  },
+  "SH-HV100": {
+   "model": "SH-HV100",
+   "section": "01. Vacuum Drying Oven",
+   "title": "01. Vacuum Drying Oven",
+   "page": 14,
+   "specs": {
+    "Type Pumping Speed(50/60Hz) Vacuum: 4 inch (ISO 100) Inlet Port & Outlet Port Exhaust Port KF40": "Diffusion & Oil Rotary / 960L/min",
+    "Air In Port": "6Ø One Touch Type (압력 5kg 이상 필요)",
+    "Diffusion Oil Capacity": "0.5 L"
+   }
+  },
+  "SH-DO-54FGB": {
+   "model": "SH-DO-54FGB",
+   "section": "02. Drying Oven",
+   "title": "Basic Model",
+   "page": 16,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉)",
+    "Dimension Internal": "380×340×420mm / 14.96x13.39x16.54\"",
+    "Dimension External": "535x510x795mm / 21.06x20.08x31.30\"",
+    "Capa": "54 L"
+   }
+  },
+  "SH-DO-100FGB": {
+   "model": "SH-DO-100FGB",
+   "section": "02. Drying Oven",
+   "title": "Basic Model",
+   "page": 16,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉)",
+    "Dimension Internal": "480×400×530mm / 18.90x15.75x20.87\"",
+    "Dimension External": "635x570x905mm / 25x22.44x35.63\"",
+    "Capa": "100 L"
+   }
+  },
+  "SH-DO-149FGB": {
+   "model": "SH-DO-149FGB",
+   "section": "02. Drying Oven",
+   "title": "Basic Model",
+   "page": 16,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉)",
+    "Dimension Internal": "555×450×600mm / 21.85x17.72x23.62\"",
+    "Dimension External": "710x615x975mm / 27.95x24.21x38.39\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-DO-54FG": {
+   "model": "SH-DO-54FG",
+   "section": "02. Drying Oven",
+   "title": "Premium Model",
+   "page": 16,
+   "specs": {
+    "Temp Range Dimension Internal 380×340×420mm 480×400×530mm 555×450×600mm 700×450×800mm Dimension External 500×630×760mm 600×690×870mm 675×740×940mm 820×740×1140mm": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉) / 14.96x13.39x16.54\" 18.90x15.75x20.87\" 21.85x17.72x23.62\" 27.56x17.72x31.50\" / 19.68x24.80x29.92\" 23.62x27.16x34.25\" 26.57x29.13x37.01\" 32.28x29.13x44.88\"",
+    "Capa": "54 L"
+   }
+  },
+  "SH-DO-100FG": {
+   "model": "SH-DO-100FG",
+   "section": "02. Drying Oven",
+   "title": "Premium Model",
+   "page": 16,
+   "specs": {
+    "Temp Range Dimension Internal 380×340×420mm 480×400×530mm 555×450×600mm 700×450×800mm Dimension External 500×630×760mm 600×690×870mm 675×740×940mm 820×740×1140mm": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉) / 14.96x13.39x16.54\" 18.90x15.75x20.87\" 21.85x17.72x23.62\" 27.56x17.72x31.50\" / 19.68x24.80x29.92\" 23.62x27.16x34.25\" 26.57x29.13x37.01\" 32.28x29.13x44.88\"",
+    "Capa": "100 L"
+   }
+  },
+  "SH-DO-149FG": {
+   "model": "SH-DO-149FG",
+   "section": "02. Drying Oven",
+   "title": "Premium Model",
+   "page": 16,
+   "specs": {
+    "Temp Range Dimension Internal 380×340×420mm 480×400×530mm 555×450×600mm 700×450×800mm Dimension External 500×630×760mm 600×690×870mm 675×740×940mm 820×740×1140mm": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉) / 14.96x13.39x16.54\" 18.90x15.75x20.87\" 21.85x17.72x23.62\" 27.56x17.72x31.50\" / 19.68x24.80x29.92\" 23.62x27.16x34.25\" 26.57x29.13x37.01\" 32.28x29.13x44.88\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-DO-250FG": {
+   "model": "SH-DO-250FG",
+   "section": "02. Drying Oven",
+   "title": "Premium Model",
+   "page": 16,
+   "specs": {
+    "Temp Range Dimension Internal 380×340×420mm 480×400×530mm 555×450×600mm 700×450×800mm Dimension External 500×630×760mm 600×690×870mm 675×740×940mm 820×740×1140mm": "Ambient +10℃ to 250℃ (Ambient +18℉ to 482℉) / 14.96x13.39x16.54\" 18.90x15.75x20.87\" 21.85x17.72x23.62\" 27.56x17.72x31.50\" / 19.68x24.80x29.92\" 23.62x27.16x34.25\" 26.57x29.13x37.01\" 32.28x29.13x44.88\"",
+    "Capa": "250 L"
+   }
+  },
+  "SH-DO-360FG": {
+   "model": "SH-DO-360FG",
+   "section": "02. Drying Oven",
+   "title": "02. Drying Oven",
+   "page": 17,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 220℃ (Ambient +18℉ to 428℉)",
+    "Dimension Internal": "600×600×1000mm / 23.62x23.62x39.37\"",
+    "Dimension External": "800×900×1420mm / 31.49x35.43x55.90\"",
+    "Capa": "360 L"
+   }
+  },
+  "SH-DO-550FG": {
+   "model": "SH-DO-550FG",
+   "section": "02. Drying Oven",
+   "title": "02. Drying Oven",
+   "page": 17,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 220℃ (Ambient +18℉ to 428℉)",
+    "Dimension Internal": "700×650×1200mm / 27.56x25.59x47.24\"",
+    "Dimension External": "900×950×1610mm / 35.43x37.40x63.38\"",
+    "Capa": "546 L"
+   }
+  },
+  "SH-DO-MF(Small)": {
+   "model": "SH-DO-MF(Small)",
+   "section": "02. Drying Oven",
+   "title": "Moving Frame For Oven",
+   "page": 17,
+   "specs": {
+    "Dimension External": "730×790×750mm / 28.74x31.10x29.52\"",
+    "Material SH-DO-54FGB, SH-DO-100FGB, SH-DO-149FGB, SH-DO-54FG,": "AL-Frame, Foot Master Castor, PVC Plate (Option: SUS Plate)",
+    "Application Model SH-DO-100FG, SH-DO-149FG,": "SH-DO-250FG / SH-DO-90FH, SH-DO-150FH"
+   }
+  },
+  "SH-DO-MF(Large)": {
+   "model": "SH-DO-MF(Large)",
+   "section": "02. Drying Oven",
+   "title": "Moving Frame For Oven",
+   "page": 17,
+   "specs": {
+    "Dimension External": "870×790×750mm / 34.25x31.10x29.52\"",
+    "Material SH-DO-54FGB, SH-DO-100FGB, SH-DO-149FGB, SH-DO-54FG,": "AL-Frame, Foot Master Castor, PVC Plate (Option: SUS Plate)",
+    "Application Model SH-DO-100FG, SH-DO-149FG,": "SH-DO-250FG / SH-DO-90FH, SH-DO-150FH"
+   }
+  },
+  "SH-DO-90FH": {
+   "model": "SH-DO-90FH",
+   "section": "02. Drying Oven",
+   "title": "350°C Drying Oven",
+   "page": 17,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 350℃ (Ambient + 18℉ to 662℉)",
+    "Dimension Internal": "450×450×450mm / 17.72x17.72x17.72\"",
+    "Dimension External": "644×633×935mm / 25.53x24.92x36.81\"",
+    "Capa": "91 L"
+   }
+  },
+  "SH-DO-150FH": {
+   "model": "SH-DO-150FH",
+   "section": "02. Drying Oven",
+   "title": "350°C Drying Oven",
+   "page": 17,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 350℃ (Ambient + 18℉ to 662℉)",
+    "Dimension Internal": "500×500×600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "694×683×1110mm / 27.32x26.89x43.70\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-DO-250FH": {
+   "model": "SH-DO-250FH",
+   "section": "02. Drying Oven",
+   "title": "02. Drying Oven",
+   "page": 17,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 350℃ (Ambient + 18℉ to 662℉)",
+    "Dimension Internal": "700x450x800mm / 27.56x17.72x31.50\"",
+    "Dimension External": "920x820x1230mm / 36.22x32.28x48.42\"",
+    "Capa": "252 L"
+   }
+  },
+  "SH-DO-360FH": {
+   "model": "SH-DO-360FH",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 350℃ (Ambient + 18℉ to 662℉)",
+    "Dimension Internal": "600x600x1000mm / 23.62x23.62x39.37\"",
+    "Dimension External": "820x970x1430mm / 32.28x38.18x56.29\"",
+    "Capa": "360 L"
+   }
+  },
+  "SH-DO-550FH": {
+   "model": "SH-DO-550FH",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 350℃ (Ambient + 18℉ to 662℉)",
+    "Dimension Internal": "700x650x1200mm / 27.56x25.59x47.24\"",
+    "Dimension External": "920x1020x1630mm / 36.22x40.15x64.17\"",
+    "Capa": "546 L"
+   }
+  },
+  "SH-DO-90FS": {
+   "model": "SH-DO-90FS",
+   "section": "03. Industrial Drying Oven",
+   "title": "500°C Drying Oven",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 500℃ (Ambient + 18℉ to 932℉)",
+    "Dimension Internal": "450×450×450mm / 17.72x17.72x17.72\"",
+    "Dimension External": "1196×700×925mm / 47.09x27.56x36.41\"",
+    "Capa": "91 L"
+   }
+  },
+  "SH-DO-150FS": {
+   "model": "SH-DO-150FS",
+   "section": "03. Industrial Drying Oven",
+   "title": "500°C Drying Oven",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 500℃ (Ambient + 18℉ to 932℉)",
+    "Dimension Internal": "500×500×600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "1296×750×1075mm / 51.02x29.53x42.32\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-DO-216FS": {
+   "model": "SH-DO-216FS",
+   "section": "03. Industrial Drying Oven",
+   "title": "500°C Drying Oven",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 500℃ (Ambient + 18℉ to 932℉)",
+    "Dimension Internal": "600×600×600mm / 23.62 x23.62 x23.62\"",
+    "Dimension External": "1440x850x1075mm / 56.69x33.46x42.32\"",
+    "Capa": "216 L"
+   }
+  },
+  "SH-DO-90FG": {
+   "model": "SH-DO-90FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "Drying Oven with HEPA Filter",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 250℃ (Ambient + 18℉ to 482℉)",
+    "Dimension Internal": "450×450×450mm / 17.72x17.72x17.72\"",
+    "Dimension External": "630×842×1562mm / 24.80x33.15x61.50\"",
+    "Capa": "90 L"
+   }
+  },
+  "SH-DO-150FG": {
+   "model": "SH-DO-150FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "Drying Oven with HEPA Filter",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 250℃ (Ambient + 18℉ to 482℉)",
+    "Dimension Internal": "600×500×500mm / 23.62x19.69x19.69\"",
+    "Dimension External": "780×892×1612mm / 30.71x35.12x63.46\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-DO-251FG": {
+   "model": "SH-DO-251FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "Drying Oven with HEPA Filter",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 250℃ (Ambient + 18℉ to 482℉)",
+    "Dimension Internal": "700×600×600mm / 27.56x23.62x23.62\"",
+    "Dimension External": "880×992×1712mm / 34.65x39.06x67.40\"",
+    "Capa": "250 L"
+   }
+  },
+  "SH-IDO-864FG": {
+   "model": "SH-IDO-864FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 18,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 200℃ (Ambient +18℉ to 392℉)",
+    "Dimension Internal": "900×800×1200mm / 35.43x31.50x47.24\"",
+    "Dimension External": "1160x1000x1870mm / 45.67x39.37x73.62\"",
+    "Capa": "864 L"
+   }
+  },
+  "SH-IDO-1152FG": {
+   "model": "SH-IDO-1152FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 200℃ (Ambient +18℉ to 392℉)",
+    "Dimension Internal": "1200×800×1200mm / 47.24x31.50x47.24\"",
+    "Dimension External": "1480x1013x1948mm / 58.27x39.88x76.69\"",
+    "Capa": "1152 L"
+   }
+  },
+  "SH-IDO-2250FG": {
+   "model": "SH-IDO-2250FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 200℃ (Ambient +18℉ to 392℉)",
+    "Dimension Internal": "1600×930×1500mm / 62.99x36.61x59.06\"",
+    "Dimension External": "2300×1145×2090mm / 90.55x45.08x82.28\"",
+    "Capa": "2232 L"
+   }
+  },
+  "SH-IDO-3612FG": {
+   "model": "SH-IDO-3612FG",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 200℃ (Ambient +18℉ to 392℉)",
+    "Dimension Internal": "2150×1120×1500mm / 84.65x44.09x59.06\"",
+    "Dimension External": "2850x1335x2090mm / 112.20x52.56x82.28\"",
+    "Capa": "3612 L"
+   }
+  },
+  "SH-IDO-864FH": {
+   "model": "SH-IDO-864FH",
+   "section": "03. Industrial Drying Oven",
+   "title": "300°C Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Dimension Internal": "900×800×1200mm / 35.43x31.50x47.24\"",
+    "Dimension External": "1160×1000×1870mm / 45.67x39.37x73.62\"",
+    "Capa": "864 L"
+   }
+  },
+  "SH-IDO-1152FH": {
+   "model": "SH-IDO-1152FH",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Dimension Internal": "1200×800×1200mm / 47.24x31.50x47.24\"",
+    "Dimension External": "1480×1013×1948mm / 58.27x39.88x76.69\"",
+    "Capa": "1152 L"
+   }
+  },
+  "SH-IDO-2250FH": {
+   "model": "SH-IDO-2250FH",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Dimension Internal": "1600×930×1500mm / 62.99x36.61x59.06\"",
+    "Dimension External": "2300x1145x2090mm / 90.55x45.07x82.28\"",
+    "Capa": "2232 L"
+   }
+  },
+  "SH-IDO-3612FH": {
+   "model": "SH-IDO-3612FH",
+   "section": "03. Industrial Drying Oven",
+   "title": "03. Industrial Drying Oven",
+   "page": 19,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Dimension Internal": "2150×1120×1500mm / 84.65x44.09x59.06\"",
+    "Dimension External": "2850x1335x2090mm / 112.20x52.56x82.28\"",
+    "Capa": "3612 L"
+   }
+  },
+  "SH-FU-3MGE": {
+   "model": "SH-FU-3MGE",
+   "section": "04. Furnace",
+   "title": "1050℃ Muffle Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1050℃ (2192℉)",
+    "Dimension Internal": "130x220x110mm / 5.12x.8.66x4.33\"",
+    "Dimension External": "300x380x405mm / 11.81x14.96x15.94\""
+   }
+  },
+  "SH-FU-5MGE": {
+   "model": "SH-FU-5MGE",
+   "section": "04. Furnace",
+   "title": "1050℃ Muffle Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1050℃ (2192℉)",
+    "Dimension Internal": "150x260x130mm / 5.91x10.24x5.12\"",
+    "Dimension External": "320x430x425mm / 12.60x16.92x16.73\""
+   }
+  },
+  "SH-FU-7MGE": {
+   "model": "SH-FU-7MGE",
+   "section": "04. Furnace",
+   "title": "1050℃ Muffle Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1050℃ (2192℉)",
+    "Capa": "7.4 L",
+    "Dimension Internal": "170x290x150mm / 6.69x11.42x5.91\"",
+    "Dimension External": "340x458x445mm / 13.39x18.03x17.52\""
+   }
+  },
+  "SH-FU-11MGE": {
+   "model": "SH-FU-11MGE",
+   "section": "04. Furnace",
+   "title": "1050℃ Muffle Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1050℃ (2192℉)",
+    "Capa": "11.2 L",
+    "Dimension Internal": "200x310x180mm / 7.87x12.20x7.09\"",
+    "Dimension External": "370x468x475mm / 14.57x18.43x18.70\""
+   }
+  },
+  "SH-FU-3MG": {
+   "model": "SH-FU-3MG",
+   "section": "04. Furnace",
+   "title": "1200°C Muffle Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "2.9 L",
+    "Dimension Internal": "130x250x90mm / 5.12x.9.87x3.54\"",
+    "Dimension External": "370x510x560mm / 14.57x20.07x22.05\""
+   }
+  },
+  "SH-FU-5MG": {
+   "model": "SH-FU-5MG",
+   "section": "04. Furnace",
+   "title": "1200°C Muffle Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "4.5 L",
+    "Dimension Internal": "150x300x100mm / 5.91x11.81x3.93\"",
+    "Dimension External": "390x560x570mm / 15.30x22.05x22.44\""
+   }
+  },
+  "SH-FU-14MG": {
+   "model": "SH-FU-14MG",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "14 L",
+    "Dimension Internal": "250x350x160mm / 9.84x13.78x6.30\"",
+    "Dimension External": "500x610x660mm / 19.69x24.01x25.98\""
+   }
+  },
+  "SH-FU-27MG": {
+   "model": "SH-FU-27MG",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "27 L",
+    "Dimension Internal": "300x300x300mm / 11.81x11.81x11.81\"",
+    "Dimension External": "580x590x825mm / 22.83x23.23x32.48\""
+   }
+  },
+  "SH-FU-64MG": {
+   "model": "SH-FU-64MG",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "64 L",
+    "Dimension Internal": "400x400x400mm / 15.74x15.74x15.74\"",
+    "Dimension External": "1000x730x910mm / 39.4x28.74x35.82\""
+   }
+  },
+  "SH-FU-125MG": {
+   "model": "SH-FU-125MG",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 20,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "125 L",
+    "Dimension Internal": "500x500x500mm / 19.68x19.68x19.68\"",
+    "Dimension External": "1150x850x1040mm / 45.27x33.46x40.94\""
+   }
+  },
+  "SH-FU-5MGQ": {
+   "model": "SH-FU-5MGQ",
+   "section": "04. Furnace",
+   "title": "1200°C Quartz Chamber Muffle Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "4.5 L",
+    "Dimension Internal": "Quartz 150x300x100mm / 5.91x11.81x3.93\"",
+    "Dimension External": "390x560x570mm / 15.30x22.05x22.44\""
+   }
+  },
+  "SH-FU-14MGQ": {
+   "model": "SH-FU-14MGQ",
+   "section": "04. Furnace",
+   "title": "1200°C Quartz Chamber Muffle Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "14 L",
+    "Dimension Internal": "Qurartz 250x350x160mm / 9.84x13.78x6.30’’",
+    "Dimension External": "500x610x660mm / 19.69x24.01x25.98''"
+   }
+  },
+  "SH-FU-64MGQ": {
+   "model": "SH-FU-64MGQ",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "64 L",
+    "Dimension Internal": "Quartz 400x400x400mm / 15.74x15.74x15.74\"",
+    "Dimension External": "1000x730x910mm / 39.4x28.74x35.82\""
+   }
+  },
+  "SH-FU-4MH": {
+   "model": "SH-FU-4MH",
+   "section": "04. Furnace",
+   "title": "1500°C Muffle Furnace",
+   "page": 21,
+   "specs": {
+    "Capa": "4.5 L",
+    "Dimension Internal": "150x200x150mm / 5.91x7.87x5.91\"",
+    "Dimension External": "820x550x680mm / 32.28x21.65x26.77\""
+   }
+  },
+  "SH-FU-11MH": {
+   "model": "SH-FU-11MH",
+   "section": "04. Furnace",
+   "title": "1500°C Muffle Furnace",
+   "page": 21,
+   "specs": {
+    "Capa": "11 L",
+    "Dimension Internal": "200x270x200mm / 7.87x10.63x7.87\"",
+    "Dimension External": "870x620x740mm / 34.25x24.41x29.13\""
+   }
+  },
+  "SH-FU-22MH": {
+   "model": "SH-FU-22MH",
+   "section": "04. Furnace",
+   "title": "1500°C Muffle Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Capa": "22 L",
+    "Dimension Internal": "250x350x250mm / 9.84x13.78x9.84\"",
+    "Dimension External": "920x700x870mm / 36.22x27.56x34.25\""
+   }
+  },
+  "SH-FU-36MH": {
+   "model": "SH-FU-36MH",
+   "section": "04. Furnace",
+   "title": "1500°C Muffle Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Capa": "36 L",
+    "Dimension Internal": "300x400x300mm / 11.81x15.75x11.81\"",
+    "Dimension External": "970x750x900mm / 38.19x29.53x35.43\""
+   }
+  },
+  "SH-FU-4MS": {
+   "model": "SH-FU-4MS",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Capa": "4.5 L",
+    "Dimension Internal": "150x200x150mm / 5.91x7.87x5.91\"",
+    "Dimension External": "920x610x770mm / 36.22x24.01x30.31\""
+   }
+  },
+  "SH-FU-11MS": {
+   "model": "SH-FU-11MS",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Capa": "11 L",
+    "Dimension Internal": "200x270x200mm / 7.87x10.63x7.87\"",
+    "Dimension External": "1000x680x840mm / 39.37x26.77x33.07\""
+   }
+  },
+  "SH-FU-22MS": {
+   "model": "SH-FU-22MS",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 21,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Capa": "22 L",
+    "Dimension Internal": "250x350x250mm / 9.84x13.78x9.84\"",
+    "Dimension External": "1080x760x910mm / 42.52x29.92x35.83\""
+   }
+  },
+  "SH-FU-1.5MGV": {
+   "model": "SH-FU-1.5MGV",
+   "section": "04. Furnace",
+   "title": "1200°C Vacuum Muffle Furnace",
+   "page": 22,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "1.5L",
+    "Dimension Internal": "115x115x115mm / 4.53x4.53x4.53\"",
+    "Dimension External": "740x610x590 mm / 29.13x24.01x23.23\""
+   }
+  },
+  "SH-FU-10MGV": {
+   "model": "SH-FU-10MGV",
+   "section": "04. Furnace",
+   "title": "1200°C Vacuum Muffle Furnace",
+   "page": 22,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "10L",
+    "Dimension Internal": "215x215x215mm / 8.46x8.46x8.46\"",
+    "Dimension External": "840x610x700mm / 33.07x24.01x27.56\""
+   }
+  },
+  "SH-FU-31MGV": {
+   "model": "SH-FU-31MGV",
+   "section": "04. Furnace",
+   "title": "1200°C Vacuum Muffle Furnace",
+   "page": 22,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "31L",
+    "Dimension Internal": "315x315x315mm / 12.40x12.40x12.40\"",
+    "Dimension External": "940x710x820mm / 37.01x27.95x32.28\""
+   }
+  },
+  "SH-FU-64MGV": {
+   "model": "SH-FU-64MGV",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 22,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "64 L",
+    "Dimension Internal": "400x400x400mm / 15.74x15.74x15.74\"",
+    "Dimension External": "1488x1169x1239mm / 58.58x46.02x48.78\""
+   }
+  },
+  "SH-FU-125MGV": {
+   "model": "SH-FU-125MGV",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 22,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "125 L",
+    "Dimension Internal": "500x500x500mm / 19.68x19.68x19.68\"",
+    "Dimension External": "1588x1269x1339mm / 62.52x49.96x52.71\""
+   }
+  },
+  "SH-FU-1.5MGVQ": {
+   "model": "SH-FU-1.5MGVQ",
+   "section": "04. Furnace",
+   "title": "1200°C Vacuum Furnace with Quartz Chamber",
+   "page": 23,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller": "Programmable Controller(SP590)",
+    "Capa": "1.5L / (석영챔버 3T)",
+    "Dimension Internal": "109x109x109mm / 4.29x4.29x4.29\"",
+    "Dimension External": "740x610x590 mm / 29.13x24.01x23.23\""
+   }
+  },
+  "SH-FU-10MGVQ": {
+   "model": "SH-FU-10MGVQ",
+   "section": "04. Furnace",
+   "title": "1200°C Vacuum Furnace with Quartz Chamber",
+   "page": 23,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller": "Programmable Controller(SP590)",
+    "Capa": "10L / (석영챔버 5T)",
+    "Dimension Internal": "205x205x205mm / 8.07x8.07x8.07\"",
+    "Dimension External": "840x610x700mm / 33.07x24.01x27.56\""
+   }
+  },
+  "SH-FU-31MGVQ": {
+   "model": "SH-FU-31MGVQ",
+   "section": "04. Furnace",
+   "title": "1200°C Vacuum Furnace with Quartz Chamber",
+   "page": 23,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller": "Programmable Controller(SP590)",
+    "Capa": "31L / (석영챔버 5T)",
+    "Dimension Internal": "305x305x305mm / 12.00x12.00x12.00\"",
+    "Dimension External": "940x710x820mm / 37.01x27.95x32.28\""
+   }
+  },
+  "SH-FU-4.5MHV": {
+   "model": "SH-FU-4.5MHV",
+   "section": "04. Furnace",
+   "title": "1500°C Vacuum Muffle Furnace",
+   "page": 23,
+   "specs": {
+    "Operating Temperature": "With Only Vacuum - 1150℃ or below",
+    "Rang": "With Only Gas - 1350℃ or below",
+    "Capa": "4.5 L",
+    "Dimension Internal": "150x200x150mm / 5.91x7.87x5.91\"",
+    "Dimension External": "630x590x830mm / 24.80x23.23x32.68\""
+   }
+  },
+  "SH-FU-18.7MHV": {
+   "model": "SH-FU-18.7MHV",
+   "section": "04. Furnace",
+   "title": "1500°C Vacuum Muffle Furnace",
+   "page": 23,
+   "specs": {
+    "Operating Temperature": "With Only Vacuum - 1150℃ or below",
+    "Rang": "With Only Gas - 1350℃ or below",
+    "Capa": "18.7 L",
+    "Dimension Internal": "250x300x250mm / 9.84x11.81x9.84\"",
+    "Dimension External": "1050X900X940mm / 41.33x35.43x37.00\""
+   }
+  },
+  "SH-FU-4.5MSV": {
+   "model": "SH-FU-4.5MSV",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 23,
+   "specs": {
+    "Operating Temperature": "With Only Vacuum - 1400℃ or below",
+    "Rang": "With Only Gas - 1700℃ or below",
+    "Volume": "4.5 L",
+    "Dimension Internal": "150x200x150mm / 5.9x7.9x5.9\"",
+    "Dimension External": "1020x670x770 mm / 40.2x26.4x30.3\""
+   }
+  },
+  "SH-FU-10MSV": {
+   "model": "SH-FU-10MSV",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 23,
+   "specs": {
+    "Operating Temperature": "With Only Vacuum - 1400℃ or below",
+    "Rang": "With Only Gas - 1700℃ or below",
+    "Volume": "10 L",
+    "Dimension Internal": "200x250x200 mm / 7.9x9.8x7.9\"",
+    "Dimension External": "1070x770x820 mm / 42.1x30.3x32.3\""
+   }
+  },
+  "SH-FU-18.7MSV": {
+   "model": "SH-FU-18.7MSV",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 23,
+   "specs": {
+    "Operating Temperature": "With Only Vacuum - 1400℃ or below",
+    "Rang": "With Only Gas - 1700℃ or below",
+    "Volume": "20 L",
+    "Dimension Internal": "200x350x250 mm / 9.8x13.8x9.8\"",
+    "Dimension External": "1120x870x890 mm / 44.1x34.3x35.0\""
+   }
+  },
+  "SH-FU-1.8MS3000 SH-FU-9.4MS3000 SH-FU-35MS3000": {
+   "model": "SH-FU-1.8MS3000 SH-FU-9.4MS3000 SH-FU-35MS3000",
+   "section": "04. Furnace",
+   "title": "2400°C / 3000°C Furnace",
+   "page": 24,
+   "specs": {
+    "Max Temp": "3000℃ (5432℉)",
+    "Running Max Temp": "With Only Vacuum 2400℃ / With Only Gas 2700℃",
+    "Dimension Internal (D×H)": "100Φx150H mm 200Φx300H mm 300Φx500H mm",
+    "Heater & Insulation": "Graphite Heating & Graphite (Hard & Soft)",
+    "Door Open Type": "Top Door open by cylinder",
+    "Vacuum System 2400°C Graphite Furnace": "Diffusion + Roots + Oil Rotary Pump / 6x 10(-5) Torr"
+   }
+  },
+  "SH-FU-4MS2400": {
+   "model": "SH-FU-4MS2400",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 24,
+   "specs": {
+    "Max Temp": "2400℃ (4352℉)",
+    "Running Max Temp": "With Only Vacuum 2000℃ / With Only Gas 2200℃",
+    "Dimension Internal (D×H)": "160Φx200H mm",
+    "Heater & Insulation": "Graphite Heating & Graphite (Hard & Soft)",
+    "Door Open Type": "Top Door open by cylinder",
+    "Vacuum System": "Diffusion + Roots + Oil Rotary Pump"
+   }
+  },
+  "SH-FU-14MS2400 SH-FU-25MS2400": {
+   "model": "SH-FU-14MS2400 SH-FU-25MS2400",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 24,
+   "specs": {
+    "Max Temp": "2400℃ (4352℉)",
+    "Running Max Temp": "With Only Vacuum 2000℃ / With Only Gas 2200℃",
+    "Dimension Internal (D×H)": "260Φx200H mm 320Φx200H mm",
+    "Heater & Insulation": "Graphite Heating & Graphite (Hard & Soft)",
+    "Door Open Type": "Top Door open by cylinder",
+    "Vacuum System": "Diffusion + Roots + Oil Rotary Pump"
+   }
+  },
+  "SH-FU3.5MGU": {
+   "model": "SH-FU3.5MGU",
+   "section": "04. Furnace",
+   "title": "1200°C Elevator Furnace",
+   "page": 24,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "3.5 L",
+    "Plate Size (mm)": "140x140mm",
+    "Dimension Internal": "150x150x180mm / 5.90x5.90x7.08\"",
+    "Dimension External": "405x490x720mm / 15.95x19.29x28.34\""
+   }
+  },
+  "SH-FU6.5MGU": {
+   "model": "SH-FU6.5MGU",
+   "section": "04. Furnace",
+   "title": "1200°C Elevator Furnace",
+   "page": 24,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Capa": "6.5 L",
+    "Plate Size (mm)": "160x160mm",
+    "Dimension Internal": "170x170x200mm / 6.69x6.69x7.87\"",
+    "Dimension External": "425X510X760mm / 16.73x20.08x29.92\""
+   }
+  },
+  "SH-FU-2MHU": {
+   "model": "SH-FU-2MHU",
+   "section": "04. Furnace",
+   "title": "1500°C Elevator Furnace",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Capa": "2.2 L",
+    "Plate Size (mm)": "120X120mm",
+    "Dimension Internal": "130X130X150mm / 5.12x5.12x5.90\"",
+    "Dimension External": "445X600X850mm / 17.52x23.62x33.46\""
+   }
+  },
+  "SH-FU-4MHU": {
+   "model": "SH-FU-4MHU",
+   "section": "04. Furnace",
+   "title": "1500°C Elevator Furnace",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Capa": "3.8 L",
+    "Plate Size (mm)": "140X140mm",
+    "Dimension Internal": "150x150x170mm / 5.90x5.90x6.69\"",
+    "Dimension External": "465X600X890mm / 18.31x23.62x35.04\""
+   }
+  },
+  "SH-FU-6MHU": {
+   "model": "SH-FU-6MHU",
+   "section": "04. Furnace",
+   "title": "1500°C Elevator Furnace",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Capa": "6.2 L",
+    "Plate Size (mm)": "160X160mm",
+    "Dimension Internal": "170X170X190mm / 6.69x6.69x7.48\"",
+    "Dimension External": "485X600X930mm / 19.09x23.62x36.61\""
+   }
+  },
+  "SH-FU-2MSU": {
+   "model": "SH-FU-2MSU",
+   "section": "04. Furnace",
+   "title": "1700°C / 1800°C Elevator Furnace",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1700℃ (3092℉) / 1800℃ (3272℉)",
+    "Capa": "2.2 L",
+    "Plate Size (mm)": "Φ120mm",
+    "Dimension Internal": "130X130X150mm / 5.12x5.12x5.90\"",
+    "Dimension External": "380X550X950mm / 14.96x21.65x37.40\""
+   }
+  },
+  "SH-FU-4MSU": {
+   "model": "SH-FU-4MSU",
+   "section": "04. Furnace",
+   "title": "1700°C / 1800°C Elevator Furnace",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1700℃ (3092℉) / 1800℃ (3272℉)",
+    "Capa": "3.8 L",
+    "Plate Size (mm)": "Φ140mm",
+    "Dimension Internal": "150x150x170mm / 5.90x5.90x6.69\"",
+    "Dimension External": "400X570X1030mm / 15.74x22.44x40.55\""
+   }
+  },
+  "SH-FU-6MSU": {
+   "model": "SH-FU-6MSU",
+   "section": "04. Furnace",
+   "title": "1700°C / 1800°C Elevator Furnace",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1700℃ (3092℉) / 1800℃ (3272℉)",
+    "Capa": "6.2 L",
+    "Plate Size (mm)": "Φ160mm",
+    "Dimension Internal": "170X170X190mm / 6.69x6.69x7.48\"",
+    "Dimension External": "450X620X1110mm / 17.72x24.41x43.70\""
+   }
+  },
+  "SH-RTCVD-100TG300": {
+   "model": "SH-RTCVD-100TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "1625x470x1128mm / 63.97x18.50x44.10\""
+   }
+  },
+  "SH-RTCVD-100TG200-3": {
+   "model": "SH-RTCVD-100TG200-3",
+   "section": "04. Furnace",
+   "title": "200mm Length x 3 Hot Zone",
+   "page": 25,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone = Length 600 mm",
+    "Dimension External": "1950x470x1128mm / 76.77x18.50x44.10\""
+   }
+  },
+  "SH-CVD-30TG150": {
+   "model": "SH-CVD-30TG150",
+   "section": "04. Furnace",
+   "title": "150mm Length Hot Zone",
+   "page": 26,
+   "specs": {
+    "Furnace Stainless Steel Pipe & Connector Components Quartz Tube (Length 500 mm)": "SH-FU-30TG150 / Gas Flowmeter 1EA / Gas Sealing Mask",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-VDC7",
+    "Oil Mist Trap Dimension": "VOT-1020 / 980x734x988mm / 38.58x28.89x38.89\""
+   }
+  },
+  "SH-CVD-50TG300": {
+   "model": "SH-CVD-50TG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace Components": "SH-FU-50TG300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap": "VOT-1020"
+   }
+  },
+  "SH-CVD-80TG300": {
+   "model": "SH-CVD-80TG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace Components": "SH-FU-80TG300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap": "VOT-1020",
+    "1265x725x1420mm Dimension": "1265x725x1440mm",
+    "49.80x28.54x55.90\"": "49.80x28.54x56.69\""
+   }
+  },
+  "SH-CVD-100TG300": {
+   "model": "SH-CVD-100TG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace Components": "SH-FU-100TG300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap": "VOT-1020",
+    "1265x725x1420mm Dimension": "1265x800x1495mm",
+    "49.80x28.54x55.90\"": "49.80x31.49x58.85\""
+   }
+  },
+  "SH-CVD-120TG300": {
+   "model": "SH-CVD-120TG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace": "SH-FU-120TG300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector",
+    "Components": "Gas Sealing Mask / Quartz Tube / Quartz Tube (Length 1200 mm) / (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap": "VOT-1020"
+   }
+  },
+  "SH-CVD-200TG300": {
+   "model": "SH-CVD-200TG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace": "SH-FU-200TG300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector",
+    "Components": "Gas Sealing Mask / Quartz Tube / Quartz Tube (Length 1200 mm) / (Length 1000 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V20",
+    "Oil Mist Trap": "VOT-1020",
+    "1265x800x1570mm Dimension": "1265x800x1600mm",
+    "49.80x31.49x61.81\"": "49.80x31.49x61.81\""
+   }
+  },
+  "SH-CVD-250TG300": {
+   "model": "SH-CVD-250TG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace": "SH-FU-250TG300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector",
+    "Components": "Gas Sealing Mask / Quartz Tube / Quartz Tube (Length 1200 mm) / (Length 1000 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V20",
+    "Oil Mist Trap": "VOT-1020",
+    "1265x800x1570mm Dimension": "1265x800x1650mm",
+    "49.80x31.49x61.81\"": "49.80x31.49x64.96\""
+   }
+  },
+  "SH-CVD-50TG600": {
+   "model": "SH-CVD-50TG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace Components": "SH-FU-50TG600 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1465x725x1420mm / 49.80x28.54x55.90\""
+   }
+  },
+  "SH-CVD-80TG600": {
+   "model": "SH-CVD-80TG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace Components": "SH-FU-80TG600 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1465x725x1440mm / 49.80x28.54x56.69\""
+   }
+  },
+  "SH-CVD-100TG600": {
+   "model": "SH-CVD-100TG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace Components": "SH-FU-100TG600 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1465x800x1495mm / 49.80x31.49x58.85\""
+   }
+  },
+  "SH-CVD-120TG600": {
+   "model": "SH-CVD-120TG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace": "SH-FU-120TG600 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector",
+    "Components": "Gas Sealing Mask / Quartz Tube / Quartz Tube (Length 1500 mm) / (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1465x800x1570mm / 49.80x31.49x61.81\""
+   }
+  },
+  "SH-CVD-200TG600": {
+   "model": "SH-CVD-200TG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace": "SH-FU-200TG600 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector",
+    "Components": "Gas Sealing Mask / Quartz Tube / Quartz Tube (Length 1500 mm) / (Length 1200 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V20",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1465x800x1600mm / 57.67x31.49x61.81\""
+   }
+  },
+  "SH-CVD-250TG600": {
+   "model": "SH-CVD-250TG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 26,
+   "specs": {
+    "Furnace": "SH-FU-250TG600 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector",
+    "Components": "Gas Sealing Mask / Quartz Tube / Quartz Tube (Length 1500 mm) / (Length 1200 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V20",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1465x800x1650mm / 57.67x31.49x64.96\""
+   }
+  },
+  "SH-CVD-50TG200-3": {
+   "model": "SH-CVD-50TG200-3",
+   "section": "04. Furnace",
+   "title": "200mm Length x 3 Hot Zone",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-50TG200-3 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1515x725x1420mm"
+   }
+  },
+  "SH-CVD-80TG200-3": {
+   "model": "SH-CVD-80TG200-3",
+   "section": "04. Furnace",
+   "title": "200mm Length x 3 Hot Zone",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-80TG200-3 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1515x725x1440mm"
+   }
+  },
+  "SH-CVD-100TG200-3": {
+   "model": "SH-CVD-100TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-100TG200-3 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1515x800x1495mm / 59.64x31.49x58.85\""
+   }
+  },
+  "SH-CVD-120TG200-3": {
+   "model": "SH-CVD-120TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-120TG200-3 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1200 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1515x800x1570mm / 59.64x31.49x61.81\""
+   }
+  },
+  "SH-CVD-200TG200-3": {
+   "model": "SH-CVD-200TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-200TG200-3 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1500 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V20",
+    "Oil Mist Trap Dimension Option": "VOT-1020 / 1515x800x1600mm / 59.64x31.49x62.99\""
+   }
+  },
+  "SH-CVD-250LTG200-3": {
+   "model": "SH-CVD-250LTG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-250TG200-3 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Quartz Tube (Length 1500 mm)"
+   }
+  },
+  "SH-CVD-50TH300": {
+   "model": "SH-CVD-50TH300",
+   "section": "04. Furnace",
+   "title": "1500°C CVD Tube Furnace (Gas Flow Package)",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-50TH300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1265x725x1485mm / 49.80x28.54x58.46\""
+   }
+  },
+  "SH-CVD-80TH300": {
+   "model": "SH-CVD-80TH300",
+   "section": "04. Furnace",
+   "title": "1500°C CVD Tube Furnace (Gas Flow Package)",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-80TH300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1265x725x1515mm / 49.80x28.54x59.64\""
+   }
+  },
+  "SH-CVD-100TH300": {
+   "model": "SH-CVD-100TH300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-100TH300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-30)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1265x800x1580mm / 49.80x31.49x62.20\""
+   }
+  },
+  "SH-CVD-120TH300": {
+   "model": "SH-CVD-120TH300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 27,
+   "specs": {
+    "Furnace Components": "SH-FU-120TH300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-30)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap Dimension": "VOT-1020 / 1265x800x1670mm / 49.80x31.49x65.74\""
+   }
+  },
+  "SH-CVD-50TS300": {
+   "model": "SH-CVD-50TS300",
+   "section": "04. Furnace",
+   "title": "1700°C/1800°C CVD Tube Furnace (Gas Flow Package)",
+   "page": 28,
+   "specs": {
+    "Furnace Components": "SH-FU-50TS300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Dimension": "1265x725x1885mm / 49.80x28.54x74.21\""
+   }
+  },
+  "SH-CVD-80TS300": {
+   "model": "SH-CVD-80TS300",
+   "section": "04. Furnace",
+   "title": "1700°C/1800°C CVD Tube Furnace (Gas Flow Package)",
+   "page": 28,
+   "specs": {
+    "Furnace Components": "SH-FU-80TS300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-5CDR(-15)",
+    "Vacuum Pump": "SH-V10",
+    "Dimension": "1265x725x1915mm / 49.80x28.54x75.39\""
+   }
+  },
+  "SH-CVD-100TS300": {
+   "model": "SH-CVD-100TS300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 28,
+   "specs": {
+    "Furnace Components": "SH-FU-100TS300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap": "VOT-1020",
+    "Dimension": "1265x800x1970mm / 49.80x31.49x77.56\"",
+    "Hammer(+Air compressor) Vessel(2L) MFC (1SLPM)": "Exhaust(GAS) Port / Gas out port / (1/8 Female / View port / Receiving / Vessel(2L)"
+   }
+  },
+  "SH-CVD-120TS300": {
+   "model": "SH-CVD-120TS300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 28,
+   "specs": {
+    "Furnace Components": "SH-FU-120TS300 / Gas Flowmeter 1EA / Stainless Steel Pipe & Connector / Gas Sealing Mask / Alumina Tube (Length 1000 mm)",
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V10",
+    "Oil Mist Trap": "VOT-1020",
+    "Dimension": "1265x800x2050mm / 49.80x31.49x80.71\"",
+    "Hammer(+Air compressor) Vessel(2L) MFC (1SLPM)": "Exhaust(GAS) Port / Gas out port / (1/8 Female / View port / Receiving / Vessel(2L)"
+   }
+  },
+  "SH-CVD-250TG200-3": {
+   "model": "SH-CVD-250TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 30,
+   "specs": {
+    "Chiller": "SH-WB-12CDR(-25)",
+    "Vacuum Pump": "SH-V20",
+    "Oil Mist Trap Dimension Option": "VOT-1020 / 1515x800x1650mm / 59.64x31.49x64.96\""
+   }
+  },
+  "SH-FU-100RKG600": {
+   "model": "SH-FU-100RKG600",
+   "section": "04. Furnace",
+   "title": "(Small Scale Rotary Kiln)",
+   "page": 31,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Dimension Hot Zone Applicable Tube Diameter &": "300mm x 2 Hot Zone=Length 600 mm",
+    "Quartz 100 Φ x 1480 mm length": "Quartz 120 Φ x 1480 mm",
+    "Dimension External": "2295x510x1345mm / 90.35x20.07x52.95\"",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0 ~ 8˚"
+   }
+  },
+  "SH-FU-120RKG600": {
+   "model": "SH-FU-120RKG600",
+   "section": "04. Furnace",
+   "title": "(Small Scale Rotary Kiln)",
+   "page": 31,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Dimension Hot Zone Applicable Tube Diameter &": "300mm x 2 Hot Zone=Length 600 mm",
+    "Quartz 100 Φ x 1480 mm length": "Quartz 120 Φ x 1480 mm",
+    "Dimension External": "2295x530x1545mm / 90.35x20.86x60.82\"",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0 ~ 8˚"
+   }
+  },
+  "SH-FU-100RKG900": {
+   "model": "SH-FU-100RKG900",
+   "section": "04. Furnace",
+   "title": "Heating jacket(left, right) with Controller",
+   "page": 31,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Dimension Hot Zone Applicable Tube Diameter &": "300mm x 3 Hot Zone=Length 900 mm",
+    "Quartz 100 Φ x 1800 mm length": "Quartz 120 Φ x 1800 mm",
+    "Dimension External": "2620x510x1345mm / 103.15x20.07x52.95\"",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0 ~ 8˚"
+   }
+  },
+  "SH-FU-120RKG900": {
+   "model": "SH-FU-120RKG900",
+   "section": "04. Furnace",
+   "title": "Heating jacket(left, right) with Controller",
+   "page": 31,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Dimension Hot Zone Applicable Tube Diameter &": "300mm x 3 Hot Zone=Length 900 mm",
+    "Quartz 100 Φ x 1800 mm length": "Quartz 120 Φ x 1800 mm",
+    "Dimension External": "2620x530x1545mm / 103.14x20.86x60.82\"",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0 ~ 8˚"
+   }
+  },
+  "SH-FU-140RKG600": {
+   "model": "SH-FU-140RKG600",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 32,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "300 mm x 2Hot Zone=Length Dimension Hot Zone Applicable Tube Diameter &": "300mm x 3 Hot Zone=Length / 600 mm",
+    "STS 310S 140 Φ x 1400 mm length": "STS 310S 140 Φ x 1720 mm",
+    "Dimension External": "2434x550x1385mm / 95.82x21.65x54.53\"",
+    "Heater": "6kW",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0~8˚"
+   }
+  },
+  "SH-FU-140RKG900": {
+   "model": "SH-FU-140RKG900",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 32,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "300 mm x 2Hot Zone=Length Dimension Hot Zone Applicable Tube Diameter &": "300mm x 3 Hot Zone=Length / 900 mm",
+    "STS 310S 140 Φ x 1400 mm length": "STS 310S 140 Φ x 1720 mm",
+    "Dimension External": "2759x550x1385mm / 108.62x21.65x54.53\"",
+    "Heater": "9kW",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0~8˚"
+   }
+  },
+  "SH-FU-100RKH600": {
+   "model": "SH-FU-100RKH600",
+   "section": "04. Furnace",
+   "title": "(Small Scale Rotary Kiln)",
+   "page": 32,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Dimension Hot Zone Applicable Tube Diameter & 고순도 Al2O3 100 Φ x 1480 mm 고순도 Al2O3 120 Φ x 1480 mm length": "300 mm x 2Hot Zone=Length 600 mm",
+    "Dimension External": "2335x630x1400mm / 91.92x24.80x55.11\"",
+    "Heater": "18.6 kW",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0~8˚"
+   }
+  },
+  "SH-FU-120RKH600": {
+   "model": "SH-FU-120RKH600",
+   "section": "04. Furnace",
+   "title": "(Small Scale Rotary Kiln)",
+   "page": 32,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Dimension Hot Zone Applicable Tube Diameter & 고순도 Al2O3 100 Φ x 1480 mm 고순도 Al2O3 120 Φ x 1480 mm length": "300 mm x 2Hot Zone=Length 600 mm",
+    "Dimension External": "2335x650x1400mm / 91.92x25.59x55.11\"",
+    "Heater": "26.6 kW",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0~8˚"
+   }
+  },
+  "SH-FU-100RKH900": {
+   "model": "SH-FU-100RKH900",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 32,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Dimension Hot Zone Applicable Tube Diameter & 고순도 Al2O3 100 Φ x 1800 mm 고순도 Al2O3 120 Φ x 1800 mm length": "300mm x 3 Hot Zone=Length 900 mm",
+    "Dimension External": "2660x630x1400mm / 104.72x24.80x55.11\"",
+    "Heater": "28 kW",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0 ~ 8˚"
+   }
+  },
+  "SH-FU-120RKH900": {
+   "model": "SH-FU-120RKH900",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 32,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Dimension Hot Zone Applicable Tube Diameter & 고순도 Al2O3 100 Φ x 1800 mm 고순도 Al2O3 120 Φ x 1800 mm length": "300mm x 3 Hot Zone=Length 900 mm",
+    "Dimension External": "2660x650x1400mm / 104.72x25.59x55.11\"",
+    "Heater": "40 kW",
+    "Tube Rotation Speed": "0 ~ 14 RPM",
+    "Feeder speed": "0 ~ 8 RPM",
+    "Tube Angle": "0 ~ 8˚"
+   }
+  },
+  "SH-FU-120RTG300": {
+   "model": "SH-FU-120RTG300",
+   "section": "04. Furnace",
+   "title": "1200°C Batch Rotary Tube Furnace",
+   "page": 33,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller": "Programmable Controller (SP570)",
+    "Heating": "114.3 Φ x 3T > 60Φ x 2.8T x 40mm (STS310S)",
+    "Middle": "120 Φ x 3T x 220mm (Quartz)",
+    "Reduce total length(700mm)": "120 Φ x 3T > 60Φ x 2.5T x 40mm (Quartz)",
+    "Cooling": "60 Φ x 2.8T x 200mm (STS310S)",
+    "End": "60 Φ x 2.5T x 200mm (Quartz)",
+    "Dimension External": "940 x 500 x 640 mm / 37.0 x 19.6 x 25.2\"",
+    "Heater Capa": "4.0 kW",
+    "Tube Rotation Speed": "0 ~ 10rpm"
+   }
+  },
+  "SH-FU-200RTG300": {
+   "model": "SH-FU-200RTG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 33,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller Heating Middle 200 Φ x 5T x 220 mm (Quartz) 250 Φ x 5T x 220 mm (Quartz)": "Programmable Controller (SP570) / 216.3 Φ x 4T x 220 mm / (STS310S)",
+    "Tube Diameter &": "216.3 Φ x 4T > 60Φ x 2.8T x",
+    "length(Fuse Type)": "Heating 40mm (STS310S)",
+    "total length(800mm) Cooling 60 Φ x 2.8T x 250mm (STS310S) 60Φ x 2.8T x 250mm (STS310S)": "Reduce 200 Φ x 5T > 60Φ x 2.5T x / 40mm (Quartz)",
+    "End": "60 Φ x 2.5T x 250mm (Quartz) 60 Φ x 2.5T x 250mm (Quartz)",
+    "Dimension External": "1040 x 580 x 720mm / 40.9 x 22.8 x 27.9\"",
+    "Heater Capa": "6.0 kW",
+    "Tube Rotation Speed": "0 ~ 10rpm"
+   }
+  },
+  "SH-FU-250RTG300": {
+   "model": "SH-FU-250RTG300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 33,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller Heating Middle 200 Φ x 5T x 220 mm (Quartz) 250 Φ x 5T x 220 mm (Quartz)": "Programmable Controller (SP570) / 267.4 Φ x 4T x 220 mm / (STS310S)",
+    "Tube Diameter &": "267.4 Φ x 4T > 60Φ x 2.8T x",
+    "length(Fuse Type)": "40mm (STS310S)",
+    "total length(800mm) Cooling 60 Φ x 2.8T x 250mm (STS310S) 60Φ x 2.8T x 250mm (STS310S)": "250 Φ x 5T > 60Φ x 2.5T x / 40mm (Quartz)",
+    "End": "60 Φ x 2.5T x 250mm (Quartz) 60 Φ x 2.5T x 250mm (Quartz)",
+    "Dimension External": "1040 x 630 x 770 mm / 40.9 x 24.8 x 29.9\"",
+    "Heater Capa": "8.0 kW",
+    "Tube Rotation Speed": "0 ~ 10rpm"
+   }
+  },
+  "SH-FU-120RTG900": {
+   "model": "SH-FU-120RTG900",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 33,
+   "specs": {
+    "3 Hot Zone": "Max Temp 1200℃ (2192℉)",
+    "Temp Controller": "Programmable Controller (SP570)",
+    "Middle Tube Diameter &": "120 Φ x 3T x 870mm (Quartz)",
+    "Heating length(Fuse Type)": "114.3 Φ x 3T > 60Φ x 2.8T x 40mm (STS310S)",
+    "Reduce total length(1350mm)": "120 Φ x 3T > 60Φ x 2.5T x 40mm (Quartz)",
+    "Cooling": "60 Φ x 2.8T x 200mm (STS310S)",
+    "End RPM Display": "60 Φ x 2.5T x 200mm (Quartz)",
+    "Dimension External PRM": "1690 x 500 x 640 mm",
+    "Controller knob": "(W×D×H) 66.5 x 19.6 x 25.2\"",
+    "Heater Capa": "8.0 kW",
+    "Temp. Controller 1, 2, 3": "Tube Rotation Speed 0 ~ 10 rpm"
+   }
+  },
+  "SH-FU-200RTG900": {
+   "model": "SH-FU-200RTG900",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 33,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller Heating Middle 200 Φ x 5T x 870 mm (Quartz) 250 Φ x 5T x 870 mm (Quartz)": "Programmable Controller (SP570) / 216.3 Φ x 4T x 870 mm / (STS310S)",
+    "Tube Diameter &": "216.3Φ x 4T > 60Φ x 2.8T x",
+    "length(Fuse Type)": "Heating 40mm (STS310S)",
+    "total length(1450mm) Cooling 60Φ x 2.8T x 250mm (STS310S) 60Φ x 2.8T x 250mm (STS310S)": "Reduce 200Φ x 5T > 60Φ x 2.5T x 40mm / (Quartz)",
+    "End": "60Φ x 2.5T x 250mm (Quartz) 60Φ x 2.5T x 250mm (Quartz)",
+    "Dimension External": "1690 x 580 x 720mm / 66.5 x 22.8 x 28.3\"",
+    "Heater Capa": "18 kW",
+    "Tube Rotation Speed": "0 ~ 10rpm"
+   }
+  },
+  "SH-FU-250RTG900": {
+   "model": "SH-FU-250RTG900",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 33,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller Heating Middle 200 Φ x 5T x 870 mm (Quartz) 250 Φ x 5T x 870 mm (Quartz)": "Programmable Controller (SP570) / 267.4 Φ x 4T x 870 mm / (STS310S)",
+    "Tube Diameter &": "267.4 Φ x 4T > 60Φ x 2.8T x",
+    "length(Fuse Type)": "40mm (STS310S)",
+    "total length(1450mm) Cooling 60Φ x 2.8T x 250mm (STS310S) 60Φ x 2.8T x 250mm (STS310S)": "250 Φ x 5T > 60Φ x 2.5T x / 40mm (Quartz)",
+    "End": "60Φ x 2.5T x 250mm (Quartz) 60Φ x 2.5T x 250mm (Quartz)",
+    "Dimension External": "1690 x 630 x 770 mm / 66.5 x 24.8 x 30.3\"",
+    "Heater Capa": "24 kW",
+    "Tube Rotation Speed": "0 ~ 10rpm"
+   }
+  },
+  "SH-FU-30TG150": {
+   "model": "SH-FU-30TG150",
+   "section": "04. Furnace",
+   "title": "150mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Temp Controller": "Programmable Controller(SP 540)",
+    "Applicable Tube Diameter": "30 Φ",
+    "Dimension Hot Zone": "Length 150 mm / 11.02x9.21x11.92\""
+   }
+  },
+  "SH-FU-50TG300": {
+   "model": "SH-FU-50TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "50 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "500x370x540mm / 19.69x14.57x21.26''"
+   }
+  },
+  "SH-FU-80TG300": {
+   "model": "SH-FU-80TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "80 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "500x400x570mm / 19.69x15.75x22.44''"
+   }
+  },
+  "SH-FU-100TG300": {
+   "model": "SH-FU-100TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "502x397x557mm / 19.76x15.63x21.93''"
+   }
+  },
+  "SH-FU-120TG300": {
+   "model": "SH-FU-120TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "120 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "502x455x630mm / 19.76x17.91x24.80''"
+   }
+  },
+  "SH-FU-200TG300": {
+   "model": "SH-FU-200TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "200 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "500x540x830mm / 19.69x21.26x32.67''"
+   }
+  },
+  "SH-FU-250TG300": {
+   "model": "SH-FU-250TG300",
+   "section": "04. Furnace",
+   "title": "300mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "250 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "500x600x880mm / 19.69x23.62x34.64''"
+   }
+  },
+  "SH-FU-50TG600": {
+   "model": "SH-FU-50TG600",
+   "section": "04. Furnace",
+   "title": "600mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "50 Φ",
+    "Dimension Hot Zone": "Length 600 mm",
+    "Dimension External": "800x370x540mm / 32.50x14.57x21.26''"
+   }
+  },
+  "SH-FU-80TG600": {
+   "model": "SH-FU-80TG600",
+   "section": "04. Furnace",
+   "title": "600mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "80 Φ",
+    "Dimension Hot Zone": "Length 600 mm",
+    "Dimension External": "800x400x570mm / 31.50x15.75x22.44''"
+   }
+  },
+  "SH-FU-100TG600": {
+   "model": "SH-FU-100TG600",
+   "section": "04. Furnace",
+   "title": "600mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "Length 600 mm",
+    "Dimension External": "800x430x600mm / 31.50x16.93x23.62''"
+   }
+  },
+  "SH-FU-120TG600": {
+   "model": "SH-FU-120TG600",
+   "section": "04. Furnace",
+   "title": "600mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "120 Φ",
+    "Dimension Hot Zone": "Length 600 mm",
+    "Dimension External": "800x460x630mm / 31.50x18.11x24.80\""
+   }
+  },
+  "SH-FU-200TG600": {
+   "model": "SH-FU-200TG600",
+   "section": "04. Furnace",
+   "title": "600mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "200 Φ",
+    "Dimension Hot Zone": "Length 600 mm",
+    "Dimension External": "800x540x830mm / 31.49x21.26x32.67\""
+   }
+  },
+  "SH-FU-250TG600": {
+   "model": "SH-FU-250TG600",
+   "section": "04. Furnace",
+   "title": "600mm Length Hot Zone",
+   "page": 34,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "250 Φ",
+    "Dimension Hot Zone": "Length 600 mm",
+    "Dimension External": "800x600x880mm / 31.49x23.62x34.64\""
+   }
+  },
+  "SH-FU-50TG200-3": {
+   "model": "SH-FU-50TG200-3",
+   "section": "04. Furnace",
+   "title": "200mm Length x 3 Hot Zone",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "50 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone=Length 600 mm",
+    "Dimension External": "850x370x540mm / 33.46x14.57x21.26\""
+   }
+  },
+  "SH-FU-80TG200-3": {
+   "model": "SH-FU-80TG200-3",
+   "section": "04. Furnace",
+   "title": "200mm Length x 3 Hot Zone",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "80 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone=Length 600 mm",
+    "Dimension External": "850x400x570mm / 33.46x15.75x22.44\""
+   }
+  },
+  "SH-FU-100TG200-3": {
+   "model": "SH-FU-100TG200-3",
+   "section": "04. Furnace",
+   "title": "200mm Length x 3 Hot Zone",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone=Length 600 mm",
+    "Dimension External": "850x430x600mm / 33.46x16.93x23.62\""
+   }
+  },
+  "SH-FU-120TG200-3": {
+   "model": "SH-FU-120TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "120 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone=Length 600 mm",
+    "Dimension External": "850x460x630mm / 33.46x18.11x24.80\""
+   }
+  },
+  "SH-FU-200TG200-3": {
+   "model": "SH-FU-200TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "200 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone=Length 600 mm",
+    "Dimension External": "850x540x830mm / 33.46x21.26x32.67\""
+   }
+  },
+  "SH-FU-250TG200-3": {
+   "model": "SH-FU-250TG200-3",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1200℃ (2192℉)",
+    "Applicable Tube Diameter": "250 Φ",
+    "Dimension Hot Zone": "200mm x 3 Hot Zone=Length 600 mm",
+    "Dimension External": "850x600x880mm / 33.46x23.62x34.64\""
+   }
+  },
+  "SH-FU-50TH300": {
+   "model": "SH-FU-50TH300",
+   "section": "04. Furnace",
+   "title": "1500°C Tube Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Applicable Tube Diameter": "50 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "680x490x660mm / 26.77x19.29x25.98\""
+   }
+  },
+  "SH-FU-80TH300": {
+   "model": "SH-FU-80TH300",
+   "section": "04. Furnace",
+   "title": "1500°C Tube Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Applicable Tube Diameter": "80 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "680x540x710mm / 26.77x21.26x27.95\""
+   }
+  },
+  "SH-FU-100TH300": {
+   "model": "SH-FU-100TH300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "680x540x710mm / 26.77x21.26x27.95\""
+   }
+  },
+  "SH-FU-120TH300": {
+   "model": "SH-FU-120TH300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1500℃ (2732℉)",
+    "Applicable Tube Diameter": "120 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "680x590x760mm / 26.77x23.23x29.92\""
+   }
+  },
+  "SH-FU-50TS300": {
+   "model": "SH-FU-50TS300",
+   "section": "04. Furnace",
+   "title": "1700°C / 1800°C Tube Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Applicable Tube Diameter": "50 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "690x580x890mm / 27.17x22.84x35.04\""
+   }
+  },
+  "SH-FU-80TS300": {
+   "model": "SH-FU-80TS300",
+   "section": "04. Furnace",
+   "title": "1700°C / 1800°C Tube Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Applicable Tube Diameter": "80 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "690x580x1010mm / 27.17x22.83x39.76\""
+   }
+  },
+  "SH-FU-100TS300": {
+   "model": "SH-FU-100TS300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Applicable Tube Diameter": "100 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "690x600x1030mm / 27.17x23.62x40.55\""
+   }
+  },
+  "SH-FU-120TS300": {
+   "model": "SH-FU-120TS300",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 35,
+   "specs": {
+    "Max Temp": "1650℃ (Mosi 2 1800℃)",
+    "Applicable Tube Diameter": "120 Φ",
+    "Dimension Hot Zone": "Length 300 mm",
+    "Dimension External": "690x640x1110mm / 27.17x25.20x43.70\""
+   }
+  },
+  "SH-LABSTEAM5": {
+   "model": "SH-LABSTEAM5",
+   "section": "04. Furnace",
+   "title": "소형 실험실용 스팀 발생장치",
+   "page": 36,
+   "specs": {
+    "Steam Generator": "간접 가열식 플라스크 보일링",
+    "Max Steam Temp. 1.5 g/min ( 200ml/분 , 질소투입시) at 100°C": "100 °C ~ 110°C",
+    "Steam Capa 0.35 g/min ( 50ml/분 , 질소투입시) at 100°C": "0.7 g/min ( 100ml/분 , 질소투입시) at 100°C",
+    "Flask Capa": "5L",
+    "Steam Supply": "캐리어 가스 이송 방식"
+   }
+  },
+  "SH-SMARTSTEAM1": {
+   "model": "SH-SMARTSTEAM1",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 36,
+   "specs": {
+    "Steam Generation": "직접가열식 STS316 밀폐형 보일링",
+    "Max Steam Temp.": "165°C (329℉ )",
+    "Boiling Tank Capacity": "0.5 L x 1 tank",
+    "Steam Capacity": "~ approx. 23g / min (By Steam Control Valve)",
+    "Material": "Wet part STS316 / Body STS304 , All Stainless Steel",
+    "Dimension(WxDxH)(mm)": "305 x 316 x 546 mm / 12.00 x 12.44 x 21.49\""
+   }
+  },
+  "SH-SMARTSTEAM2": {
+   "model": "SH-SMARTSTEAM2",
+   "section": "04. Furnace",
+   "title": "04. Furnace",
+   "page": 36,
+   "specs": {
+    "Steam Generation": "직접가열식 STS316 밀폐형 보일링",
+    "Max Steam Temp.": "500°C(932℉ )",
+    "Boiling Tank Capacity": "0.5 L x 2 tank",
+    "Steam Capacity": "~ approx. 23g / min (By Steam Control Valve)",
+    "Material": "Wet part STS316 / Body STS304 , All Stainless Steel",
+    "Dimension(WxDxH)(mm)": "330 x 316 x 941 mm / 12.99 x 12.44 x 37.04\""
+   }
+  },
+  "SH-JC60": {
+   "model": "SH-JC60",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Jaw Crusher",
+   "page": 40,
+   "specs": {
+    "Feed Port Size Capacity": "60 x 95mm / ≤ 35mm / ≤ 10mm",
+    "Max 30KG/Hr": "Max 300KG/Hr",
+    "Process": "10 Process (Speed, Time 저장)"
+   }
+  },
+  "SH-JC120": {
+   "model": "SH-JC120",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Jaw Crusher",
+   "page": 40,
+   "specs": {
+    "Feed Port Size Capacity": "120 x 200mm / ≤ 80mm / ≤ 30mm",
+    "Max 30KG/Hr": "Max 300KG/Hr",
+    "Process": "10 Process (Speed, Time 저장)"
+   }
+  },
+  "SH-DISKMILL200": {
+   "model": "SH-DISKMILL200",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Disk Mill",
+   "page": 40,
+   "specs": {
+    "회전 & 고정 Disk Material": "ZrO2 (지르코니아), 200 dia",
+    "External Case": "Stainless Steel 304",
+    "간격 표시용 Gauge": "0~30mm, 0.01mm",
+    "Disk Speed Dimension (WxDxH)": "(권장 500R.P.M) By Inverter / 600X960X1250 mm / 23.62X37.80X49.21\"",
+    "Power Source": "380V, 3Φ, 1.5KW"
+   }
+  },
+  "SH-JETMILL": {
+   "model": "SH-JETMILL",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Jet Mill",
+   "page": 40,
+   "specs": {
+    "Dimension (WxDxH)": "850x420x760 mm / 33.46x16.53x29.92\"",
+    "Power": "220V, 1Φ"
+   }
+  },
+  "SH-BALL300-1": {
+   "model": "SH-BALL300-1",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Ball Mill",
+   "page": 40,
+   "specs": {
+    "Dimension External": "493x500x350mm / 19.41x19.69x13.78\"",
+    "Dimension Roller Length, 70Φ": "300mm(11.81\") x 1stage"
+   }
+  },
+  "SH-BALL700-1": {
+   "model": "SH-BALL700-1",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Ball Mill",
+   "page": 40,
+   "specs": {
+    "Dimension External": "893x500x350mm / 35.16x19.69x13.78\"",
+    "Dimension Roller Length, 70Φ": "700mm(27.56\")x1stage"
+   }
+  },
+  "SH-BALL300-2": {
+   "model": "SH-BALL300-2",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 41,
+   "specs": {
+    "Dimension External Dimension Roller Length, 70Φ": "731x450x614mm / 28.78x17.72x24.17\" / 300mm(11.81\")x2stage"
+   }
+  },
+  "SH-BALL700-2": {
+   "model": "SH-BALL700-2",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 41,
+   "specs": {
+    "Dimension External Dimension Roller Length, 70Φ": "1131x450x614mm / 44.53x17.72x24.17\" / 700mm(27.56\")x2stage"
+   }
+  },
+  "SH-BALL300B": {
+   "model": "SH-BALL300B",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Box Ball Mill",
+   "page": 41,
+   "specs": {
+    "Dimension External Dimension Roller Length, 70Φ": "841x602x1085mm / 33.11x23.70x42.72\" / 300mm(11.81\")x2stage"
+   }
+  },
+  "SH-BALL700B": {
+   "model": "SH-BALL700B",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Box Ball Mill",
+   "page": 41,
+   "specs": {
+    "Dimension External Dimension Roller Length, 70Φ": "1241x602x1085mm / 48.86x23.70x42.72\" / 700mm(27.56\")x2stage"
+   }
+  },
+  "SH-PMC350": {
+   "model": "SH-PMC350",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "• Touch Screen Panel",
+   "page": 41,
+   "specs": {
+    "Capacity Revolution : 130 ~ 2000 R.P.M, Speed Rotation : Invariable By Revolution": "350ml x 1 cup, 권장용량 (부피 175ml, 무게 200g )",
+    "Vacuum": "-99KPa, 120L/min",
+    "Porgram Setting 585x405x650 mm Dimension(Wx DxH) 23.03x15.94x25.59\"": "5 Segment/Pattern, 8 Pattern",
+    "Weight": "85Kg",
+    "Power USB Port": "220V, 1Φ, 1.5KW, 7A"
+   }
+  },
+  "SH-PMC700": {
+   "model": "SH-PMC700",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 41,
+   "specs": {
+    "Capacity Revolution : 130 ~ 3000 R.P.M, Speed Rotation : Invariable By Revolution": "350ml x 2 cup, 권장용량(부피 175ml, 무게 200g)x 2",
+    "Vacuum": "-99KPa, 330L/min",
+    "Porgram Setting Dimension(Wx DxH) 28.74x20.07x31.10\"": "3 Segment/Pattern, 5Pattern / 730x510x790 mm",
+    "Power": "220V, 1Φ, 1.75KW, 8A"
+   }
+  },
+  "SH-DPM02": {
+   "model": "SH-DPM02",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 42,
+   "specs": {
+    "Container Capa": "3 Liter",
+    "Effective Capa": "2 Liter",
+    "Revolution": "0~61 rpm",
+    "Rotation x 2paddle": "0~125 rpm",
+    "Speed": "Dispersion x 1paddle (2 blade)",
+    "Range Dispersion x 2paddle (4 blade)": "(DPM02~10) / 0~7500 rpm",
+    "Temp Range": "-10℃~ 200℃ ( Circulation Bath 추가 연결 필요)",
+    "Vacuum Range": "-0.098 MPa ( 25 mmHg , 25 Torr)",
+    "Container": "STS304",
+    "Material": "Paddle",
+    "Body": "STS304",
+    "Dimension": "Container(Dia x H) 180 Dia x 120 H mm / External 500 x 800 x 1400mm"
+   }
+  },
+  "SH-DPM05": {
+   "model": "SH-DPM05",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 42,
+   "specs": {
+    "Container Capa": "7.5 Liter",
+    "Effective Capa": "5 Liter",
+    "Revolution": "0~51 rpm",
+    "Rotation x 2paddle": "0~112 rpm",
+    "Speed": "Dispersion x 1paddle (2 blade)",
+    "Range Dispersion x 2paddle (4 blade)": "(DPM02~10) / 0~9000 rpm",
+    "Temp Range": "-10℃~ 200℃ ( Circulation Bath 추가 연결 필요)",
+    "Vacuum Range": "-0.098 MPa ( 25 mmHg , 25 Torr)",
+    "Container": "STS304",
+    "Material": "Super Duplex Stainless Steel",
+    "Body": "STS304",
+    "Dimension": "250 Dia x 160 H mm / 700 x 1200 x 1500mm"
+   }
+  },
+  "SH-DPM10": {
+   "model": "SH-DPM10",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 42,
+   "specs": {
+    "Container Capa": "14 Liter",
+    "Effective Capa": "10 Liter",
+    "Revolution": "0~49 rpm",
+    "Rotation x 2paddle": "0~85 rpm",
+    "Speed": "Dispersion x 1paddle (2 blade)",
+    "Range Dispersion x 2paddle (4 blade)": "(DPM02~10) / 0~6000 rpm",
+    "Temp Range": "-10℃~ 200℃ ( Circulation Bath 추가 연결 필요)",
+    "Vacuum Range": "-0.098 MPa ( 25 mmHg , 25 Torr)",
+    "Container": "STS304",
+    "Body": "STS304",
+    "Dimension": "300 Dia x 200 H mm / 800 x 1350 x 1600mm"
+   }
+  },
+  "SH-DPM30": {
+   "model": "SH-DPM30",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "05. Mixer / Mill / Dispersion",
+   "page": 42,
+   "specs": {
+    "Container Capa": "40 Liter",
+    "Effective Capa": "30 Liter",
+    "Revolution": "0~43 rpm",
+    "Rotation x 2paddle": "0~84 rpm",
+    "Speed": "Dispersion x 1paddle (2 blade)",
+    "Range Dispersion x 2paddle (4 blade)": "(DPM02~10) / 0~4500 rpm",
+    "Temp Range": "-10℃~ 200℃ ( Circulation Bath 추가 연결 필요)",
+    "Vacuum Range": "-0.098 MPa ( 25 mmHg , 25 Torr)",
+    "Container": "STS304",
+    "Body": "STS304",
+    "Dimension": "400 Dia x 350 H mm / 900 x 1650 x 1800mm"
+   }
+  },
+  "SH-ROLL50": {
+   "model": "SH-ROLL50",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Three Roll Mill",
+   "page": 42,
+   "specs": {
+    "Capa": "0.02 ~ 5L/Hour",
+    "Roller Material": "ZrO2 (지르코니아)",
+    "Roller": "50mm x 150mm( 3ea )",
+    "Roller Speed Control": "By Knob / digital display",
+    "Roller interval Control": "By Handle / digital display",
+    "360 x 190 x 285 mm Dimension (WxDxH)": "14.2 x 7.5 x 11.2\""
+   }
+  },
+  "SH-ROLL80": {
+   "model": "SH-ROLL80",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Three Roll Mill",
+   "page": 42,
+   "specs": {
+    "Capa": "0.02 ~ 20L / hour",
+    "Roller Material": "ZrO2 (지르코니아)",
+    "Roller": "80mm x 200mm ( 3ea )",
+    "Roller Speed Control": "By Knob",
+    "Roller interval Control": "By Handle",
+    "360 x 190 x 285 mm Dimension (WxDxH)": "600 x 380 x 495 mm / 23.6 x 15.0 x 19.5\""
+   }
+  },
+  "SH-ROLL80D": {
+   "model": "SH-ROLL80D",
+   "section": "05. Mixer / Mill / Dispersion",
+   "title": "Three Roll Mill",
+   "page": 42,
+   "specs": {
+    "Capa": "0.02 ~ 20L / hour",
+    "Roller Material": "ZrO2 (지르코니아)",
+    "Roller": "80mm x 200mm ( 3ea )",
+    "Roller Speed Control": "By Digital Touch Panel",
+    "Roller interval Control": "By Digital Touch Panel",
+    "360 x 190 x 285 mm Dimension (WxDxH)": "690 x 380 x 495 mm / 27.2 x 15.0 x 19.5\""
+   }
+  },
+  "SH-CH-54G": {
+   "model": "SH-CH-54G",
+   "section": "08. Incubator",
+   "title": "Gravity Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 70℃ (Ambient + 9℉ to 158℉)",
+    "Capa": "54 L",
+    "Dimension Internal": "360x360x420mm / 14.17x16.54x16.54\"",
+    "Dimension External": "490x475x665mm / 19.29x18.70x26.18\""
+   }
+  },
+  "SH-CH-88G": {
+   "model": "SH-CH-88G",
+   "section": "08. Incubator",
+   "title": "Gravity Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 70℃ (Ambient + 9℉ to 158℉)",
+    "Capa": "88 L",
+    "Dimension Internal": "420x420x500mm / 16.54x16.54x19.69\"",
+    "Dimension External": "550x550x755mm / 21.65x21.65x29.72\""
+   }
+  },
+  "SH-CH-150G": {
+   "model": "SH-CH-150G",
+   "section": "08. Incubator",
+   "title": "Gravity Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 70℃ (Ambient + 9℉ to 158℉)",
+    "Capa": "150 L",
+    "Dimension Internal": "500x500x600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "630x630x850mm / 24.80x24.80x33.46\""
+   }
+  },
+  "SH-CH-149R": {
+   "model": "SH-CH-149R",
+   "section": "08. Incubator",
+   "title": "Refrigerated Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "-5℃ to 60℃ (23℉ to 60℉)",
+    "Capa IP54 등급 Concent": "150 L / 1EA"
+   }
+  },
+  "SH-CH-250R": {
+   "model": "SH-CH-250R",
+   "section": "08. Incubator",
+   "title": "Refrigerated Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "-5℃ to 60℃ (23℉ to 60℉)",
+    "Capa IP54 등급 Concent": "250 L / 1EA"
+   }
+  },
+  "SH-CH-480R": {
+   "model": "SH-CH-480R",
+   "section": "08. Incubator",
+   "title": "Refrigerated Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "-5℃ to 60℃ (23℉ to 60℉)",
+    "Capa IP54 등급 Concent": "480 L / 1EA"
+   }
+  },
+  "SH-CH-500R": {
+   "model": "SH-CH-500R",
+   "section": "08. Incubator",
+   "title": "4-Chamber Incubator",
+   "page": 50,
+   "specs": {
+    "Temp Range": "23℉ to 140℉",
+    "Capa IP54 등급 Concent 1EA x 1 Room=4EA": "125L x 4 Chambers, Total 500L"
+   }
+  },
+  "CI-150C": {
+   "model": "CI-150C",
+   "section": "08. Incubator",
+   "title": "CO2 Incubators (Dry Heat Sterilization)",
+   "page": 51,
+   "specs": {
+    "Capa": "150 L",
+    "Temp. Range": "Ambient +5°C~60°C",
+    "CO2 Range": "0~20%",
+    "Dimension External": "670x705x860mm / 26.38x27.76x33.86\"",
+    "Chamber Dimensions": "540x510x555mm / 21.26x20.08x21.85\"",
+    "Sterilization": "140°C (High Temp)"
+   }
+  },
+  "CI-191C": {
+   "model": "CI-191C",
+   "section": "08. Incubator",
+   "title": "CO2 Incubators (Dry Heat Sterilization)",
+   "page": 51,
+   "specs": {
+    "Capa": "191 L",
+    "Temp. Range": "Ambient +5°C~60°C",
+    "CO2 Range": "0~20%",
+    "Dimension External": "670x705x1010mm / 26.38x27.76x39.76\"",
+    "Chamber Dimensions": "540x510x705mm / 21.26x20.08x27.76\"",
+    "Sterilization": "140°C (High Temp)"
+   }
+  },
+  "CI-150CX": {
+   "model": "CI-150CX",
+   "section": "08. Incubator",
+   "title": "CO2 Incubators (Dry Heat Sterilization)",
+   "page": 51,
+   "specs": {
+    "Capa": "150 L",
+    "Temp. Range": "Ambient +5°C~60°C",
+    "CO2 Range": "0~20%",
+    "Humidity Type": "Evapor Naturally",
+    "Max. Humidity": "90%(@37℃) / Ambient Humidity",
+    "RH Control Range": "NA / +10%~90%",
+    "Dimension External": "670x705x860mm / 26.38x27.76x33.86\"",
+    "Chamber Dimensions": "540x510x555mm / 21.26x20.08x21.85\"",
+    "Sterilization": "140°C (High Temp) / ▼ CI-191CHX"
+   }
+  },
+  "CI-191CX": {
+   "model": "CI-191CX",
+   "section": "08. Incubator",
+   "title": "CO2 Incubators (Dry Heat Sterilization)",
+   "page": 51,
+   "specs": {
+    "Temp. Range": "Ambient +5°C~60°C",
+    "CO2 Range": "0~20%",
+    "Max. Humidity": "Ambient Humidity",
+    "RH Control Range": "NA / +10%~90%",
+    "Dimension External": "670x705x1010mm / 26.38x27.76x39.76\"",
+    "Chamber Dimensions": "540x510x705mm / 21.26x20.08x27.76\"",
+    "Sterilization": "140°C (High Temp) / ▼ CI-191CHX"
+   }
+  },
+  "CI-191CHX": {
+   "model": "CI-191CHX",
+   "section": "08. Incubator",
+   "title": "CO2 Incubators (Dry Heat Sterilization)",
+   "page": 51,
+   "specs": {
+    "Capa": "191 L",
+    "Temp. Range": "Ambient +5°C~60°C",
+    "CO2 Range": "0~20%",
+    "Humidity Type": "RH Control",
+    "Max. Humidity": "95%(@37℃) / Ambient Humidity",
+    "RH Control Range": "NA / +10%~90%",
+    "Sterilization": "140°C (High Temp) / ▼ CI-191CHX"
+   }
+  },
+  "IS-AX": {
+   "model": "IS-AX",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 52,
+   "specs": {
+    "Temp Program Control": "O        O",
+    "R.P.M Program Control": "O        O",
+    "CO2 Program Control": "X         X",
+    "Humi Program Control": "X         X",
+    "Humi alarm&display": "X        O",
+    "Door type": "Leftward Downward Upward Downward",
+    "Room Capacity Flask Load Capa Flask Load Capa": "190L / 12ea / 30ea",
+    "Capacity Clamp Capacity : 50mlx72 / 100mlx30 / 150mlx30 / 200mlx30 / 250mlx30 / 500mlx16 / 1000mlx12 / 2000mlx6 / 5000ml(Thomson)x4 Max. Capacity Sticky Mat : 50mlx80 / 100mlx42 / 150mlx42 / 200mlx30 / 250mlx30 / 500mlx20 / 1000mlx12 / 2000mlx8 / 5000ml(Thomson)x4": "190L",
+    "Temp Control 12program": "Room Temp. - 18℃~60℃ (Lowest Temp. is 4℃)",
+    "Speed Control 12program": "0 (Stop), 30~300rpm",
+    "CO2 Control 12 Program": "NA",
+    "Humidity Alarm": "NA",
+    "Humidity Controller Dimension External 970x780x620mm / 38.19x30.71x24.41\"": "NA"
+   }
+  },
+  "IS-RDS4": {
+   "model": "IS-RDS4",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 52,
+   "specs": {
+    "Oribital Dia": "26mm"
+   }
+  },
+  "IS-RDS4T IS-RDS4C5 IS-RDS4C5T IS-RDS4C5H IS-RDS6 IS-RDS6T": {
+   "model": "IS-RDS4T IS-RDS4C5 IS-RDS4C5T IS-RDS4C5H IS-RDS6 IS-RDS6T",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 52,
+   "specs": {
+    "Temp Program Control": "O          O O         O",
+    "R.P.M Program Control": "O          O O         O",
+    "CO2 Program Control": "X          O O         O",
+    "Humi Program Control": "X          X X         O",
+    "Humi alarm&display": "O          O O         O",
+    "Oribital Dia": "50mm",
+    "Door type": "Upward",
+    "Room Capacity Flask Load Capa Flask Load Capa": "250L / 15ea / 40ea"
+   }
+  },
+  "IS-RDS6C5 IS-RDS6C5T IS-RDS6C5H": {
+   "model": "IS-RDS6C5 IS-RDS6C5T IS-RDS6C5H",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 52,
+   "specs": {
+    "Temp Program Control": "O          O O           O O",
+    "R.P.M Program Control": "O          O O           O O",
+    "CO2 Program Control": "X          X O           O O",
+    "Humi Program Control": "X          X X            X O",
+    "Humi alarm&display": "O          O O           O O",
+    "Oribital Dia": "26mm 50mm",
+    "Door type": "Downward Upward Downward Upward Downward",
+    "Room Capacity Flask Load Capa Flask Load Capa": "401L / 28ea / 77ea"
+   }
+  },
+  "IS-RDS6": {
+   "model": "IS-RDS6",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 53,
+   "specs": {
+    "Capacity Clamp Capacity: 50mlx135/100mlx60/150mlx60/200mlx60/250mlx60/ Max. Capacity Sticky Mat: 50mlx187/100mlx112/150mlx104/200mlx84/250mlx77/ 500mlx40/1000mlx28/2000mlx15/3000mlx15/5000ml(Thomson)x6 Range Room Temp -18℃~60℃ ( Lowest Temp. is 4℃ ) , Accuracy ±0.1℃ , Temp Control 12program": "401L / 500mlx34/1000mlx22/2000mlx15/3000mlx12 / Uniformity ±0.5℃ (@37℃)",
+    "Speed Control 12program": "Range 0 (Stop), 30~300rpm, Accuracy ±1rpm",
+    "CO2 Control 12 Program": "NA",
+    "Humidity Alarm": "Yes / Range 10~95%,",
+    "Humidity Controller Dimension External": "NA / Accuracy ±5% / 1400x886x680mm / 55.12x34.88x26.77\""
+   }
+  },
+  "IS-RDS6C5": {
+   "model": "IS-RDS6C5",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 53,
+   "specs": {
+    "Capacity Clamp Capacity: 50mlx135/100mlx60/150mlx60/200mlx60/250mlx60/ Max. Capacity Sticky Mat: 50mlx187/100mlx112/150mlx104/200mlx84/250mlx77/ 500mlx40/1000mlx28/2000mlx15/3000mlx15/5000ml(Thomson)x6 Range Room Temp -18℃~60℃ ( Lowest Temp. is 4℃ ) , Accuracy ±0.1℃ , Temp Control 12program": "401L / 500mlx34/1000mlx22/2000mlx15/3000mlx12 / Uniformity ±0.5℃ (@37℃)",
+    "Speed Control 12program": "Range 0 (Stop), 30~300rpm, Accuracy ±1rpm",
+    "CO2 Control 12 Program": "Range 0~20%, Accuracy ±0.1%",
+    "Humidity Alarm": "Yes / Range 10~95%,",
+    "Humidity Controller Dimension External": "NA / Accuracy ±5% / 1400x886x680mm / 55.12x34.88x26.77\""
+   }
+  },
+  "IS-RDS6C5H": {
+   "model": "IS-RDS6C5H",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "09. Incubator Shaker & Shaker",
+   "page": 53,
+   "specs": {
+    "Capacity Clamp Capacity: 50mlx135/100mlx60/150mlx60/200mlx60/250mlx60/ Max. Capacity Sticky Mat: 50mlx187/100mlx112/150mlx104/200mlx84/250mlx77/ 500mlx40/1000mlx28/2000mlx15/3000mlx15/5000ml(Thomson)x6 Range Room Temp -18℃~60℃ ( Lowest Temp. is 4℃ ) , Accuracy ±0.1℃ , Temp Control 12program": "401L / 500mlx34/1000mlx22/2000mlx15/3000mlx12 / Uniformity ±0.5℃ (@37℃)",
+    "Speed Control 12program": "Range 0 (Stop), 30~300rpm, Accuracy ±1rpm",
+    "Humidity Alarm": "Yes / Range 10~95%,",
+    "Humidity Controller Dimension External": "Accuracy ±5% / 1400x886x680mm / 55.12x34.88x26.77\""
+   }
+  },
+  "IS-RDH1": {
+   "model": "IS-RDH1",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Chest-Type Incubator Shakers",
+   "page": 54,
+   "specs": {
+    "Speed": "0rpm, 30~300rpm",
+    "Temp. Range": "Ambient-15°C~60°C (Low Limit:4°C)",
+    "Dimension External": "1200x700x850mm / / 47.24x27.56x33.46\"",
+    "Dimension Internal": "960x560x350mm / / 37.80x22.05x13.78\""
+   }
+  },
+  "IS-RDH2": {
+   "model": "IS-RDH2",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Chest-Type Incubator Shakers",
+   "page": 54,
+   "specs": {
+    "Speed": "0rpm, 30~300rpm",
+    "Temp. Range": "Ambient-15°C~60°C (Low Limit:4°C)",
+    "Dimension External": "1200x700x960mm / / 47.24x27.56x37.80\"",
+    "Dimension Internal": "960x560x420mm / / 37.80x22.05x16.54\""
+   }
+  },
+  "IS-RDD3": {
+   "model": "IS-RDD3",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Bench-Top Incubator Shakers",
+   "page": 54,
+   "specs": {
+    "Speed Range": "0rpm, 30~400rpm",
+    "Temp. Range Dimension External 700x650x620mm / 29.92x25.59x24.41\" Dimension Internal 500x460x350mm / 19.69x18.11x13.78\"": "Ambient-15°C~60°C (Low Limit : 4°C)"
+   }
+  },
+  "IS-RDD83": {
+   "model": "IS-RDD83",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Mini Incubator Shakers (Double-Tire Extension)",
+   "page": 54,
+   "specs": {
+    "Temp. Range": "Ambient: -10~95℃ (Low limit: 5℃) Ambient: -10~65℃ (Low limit: 5℃)",
+    "Capacity": "4.6L / 150~1200rpm ( Microplate)",
+    "Speed Range": "150~1200rpm / 150~600rpm (Tube Block)",
+    "Platform Dimensions Interior Dimensions": "180x140mm / 7.08x5.51\"",
+    "178x225x115mm / 7x8.85x4.52\" Outside Dimensions": "178x225x127mm / 7x8.85x5\" / 296x440x316mm / 11.65x17.32x12.44\""
+   }
+  },
+  "IS-RDD84": {
+   "model": "IS-RDD84",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Mini Incubator Shakers (Double-Tire Extension)",
+   "page": 54,
+   "specs": {
+    "Temp. Range": "Ambient: -10~95℃ (Low limit: 5℃) Ambient: -10~65℃ (Low limit: 5℃)",
+    "Capacity": "5L / 150~1200rpm ( Microplate)",
+    "Speed Range": "150~1200rpm / 150~600rpm (Tube Block)",
+    "Platform Dimensions Interior Dimensions": "180x140mm / 7.08x5.51\"",
+    "178x225x115mm / 7x8.85x4.52\" Outside Dimensions": "178x225x127mm / 7x8.85x5\" / 296x440x316mm / 11.65x17.32x12.44\""
+   }
+  },
+  "IS-RDV1": {
+   "model": "IS-RDV1",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Single Door Double Layers Upright Incubator Shakers",
+   "page": 54,
+   "specs": {
+    "Speed Range Ambient-15°C~60°C Temp. Range Dimension External 700x650x1320mm / 27.56x25.59x51.97\" Dimension Internal 598x424x676mm / 23.54x16.69x26.61\"": "0rpm, 30~300rpm"
+   }
+  },
+  "IS-RDV3": {
+   "model": "IS-RDV3",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Double Doors Double Layers Upright Incubator Shakers",
+   "page": 55,
+   "specs": {
+    "Speed Temp. Range Dimension External Dimension Internal": "0rpm, 30~300rpm / Ambient-15°C~60°C / (Low Limit:4°C) / 1102x810x1458mm / 43.39x31.89x57.40\" / 1000x590x800mm / 39.37x23.23x31.50\""
+   }
+  },
+  "IS-RDV35": {
+   "model": "IS-RDV35",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Double Doors Double Layers Upright Incubator Shakers",
+   "page": 55,
+   "specs": {
+    "Speed Temp. Range Dimension External Dimension Internal": "0rpm, 30~250rpm / Ambient-15°C~60°C / (Low Limit:4°C) / 1102x810x1458mm / 43.39x31.89x57.40\" / 1000x590x800mm / 39.37x23.23x31.50\""
+   }
+  },
+  "SY-2230": {
+   "model": "SY-2230",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Water Bath Shaker",
+   "page": 55,
+   "specs": {
+    "Temp. Range": "(Ambient)+5°C~99°C",
+    "Speed Tank Internal Dimensions 528x308x226mm / 20.79x12.13x8.90\"": "20~200rpm",
+    "Dimension External": "750x380x326mm / 29.53x14.96x12.83\"",
+    "Max. Power Consumption": "1400W"
+   }
+  },
+  "OS-08W": {
+   "model": "OS-08W",
+   "section": "09. Incubator Shaker & Shaker",
+   "title": "Wrist Shaker",
+   "page": 55,
+   "specs": {
+    "Speed Range": "Variable speed: 50~450 rpm",
+    "Mixing Angle Dimension External 425x376x413mm / 16.73x14.80x16.26\"": "1~15°Adjustable"
+   }
+  },
+  "OS-03U": {
+   "model": "OS-03U",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Mini Orbital Shaker",
+   "page": 56,
+   "specs": {
+    "Orbit Size": "Φ20mm",
+    "Speed Range": "30~300rpm",
+    "Platform Dimensions Dimensions 355x240x123mm / 13.98x9.45x4.84\"": "307x267mm / 12.09x10.51\"",
+    "Ambient": "5℃~40℃"
+   }
+  },
+  "OS-06U": {
+   "model": "OS-06U",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Multi-purpose Shaker",
+   "page": 56,
+   "specs": {
+    "Speed Range": "50~450rpm",
+    "Platform Dimensions": "310x284mm / 12.20x11.18\"",
+    "Ambient Dimension External 440x296x129mm / 17.32x11.65x5.08\"": "5°C~40°C"
+   }
+  },
+  "OS-07U": {
+   "model": "OS-07U",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Microplate Shaker",
+   "page": 56,
+   "specs": {
+    "Speed Range": "150~1000rpm",
+    "Platform Dimensions": "275x235x12mm / 10.83x9.25x0.47\"",
+    "Display": "LED",
+    "Ambient Dimension External 296x440x151mm / 11.65x17.32x5.94\"": "5°C~40°C"
+   }
+  },
+  "CGⅢ-45-SF": {
+   "model": "CGⅢ-45-SF",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Monolayer and Suspension Cell Cultures",
+   "page": 56,
+   "specs": {
+    "Bottle Rotation Speed": "1~990r/h(Φ110mm Bottle) / 0     0",
+    "Rotation Mode": "Clockwise/Counter Clockwise Alternating Rotation(10 ~180 )",
+    "Bottle Positions per Deck": "5                          5",
+    "Bottle Positions": "45",
+    "Material": "Stainless Steel",
+    "Digital Control Display": "Speed/Angle/Time",
+    "Dimension External": "770x594x1850mm / 30.31x23.39x72.83\""
+   }
+  },
+  "CGⅢ-40-SF": {
+   "model": "CGⅢ-40-SF",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Monolayer and Suspension Cell Cultures",
+   "page": 56,
+   "specs": {
+    "Bottle Rotation Speed": "1~990r/h(Φ110mm Bottle) / 0     0",
+    "Rotation Mode": "Clockwise/Counter Clockwise Alternating Rotation(10 ~180 )",
+    "Bottle Positions": "40",
+    "Material": "Stainless Steel",
+    "Digital Control Display": "Speed/Angle/Time",
+    "Dimension External": "770x594x1668mm / 30.31x23.39x65.67\""
+   }
+  },
+  "CGⅢ-30-SF": {
+   "model": "CGⅢ-30-SF",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Monolayer and Suspension Cell Cultures",
+   "page": 56,
+   "specs": {
+    "Bottle Rotation Speed": "1~990r/h(Φ110mm Bottle) / 0     0",
+    "Rotation Mode": "Clockwise/Counter Clockwise Alternating Rotation(10 ~180 )",
+    "Bottle Positions per Deck": "5",
+    "Bottle Positions": "30",
+    "Material": "Stainless Steel",
+    "Digital Control Display": "Speed/Angle/Time",
+    "Dimension External": "770x594x1304mm / 30.31x23.39x51.34\""
+   }
+  },
+  "CGⅢ-16-SF": {
+   "model": "CGⅢ-16-SF",
+   "section": "10. Roller Culture Apparatus",
+   "title": "10. Roller Culture Apparatus",
+   "page": 57,
+   "specs": {
+    "Bottle Rotation Speed": "1~990r/h(Φ110mm Bottle) / 0       0",
+    "Rotation Mode": "Clockwise/Counter Clockwise Alternating Rotation(10 ~180 )",
+    "Bottle Positions per Deck": "4",
+    "Bottle Positions": "16",
+    "Material": "Stainless Steel",
+    "Digital Control Display": "Speed/Angle/Time",
+    "Dimension External": "672x598x936mm / 26.46x23.54x36.85\""
+   }
+  },
+  "PY-16": {
+   "model": "PY-16",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Roll-in Incubators",
+   "page": 57,
+   "specs": {
+    "Temp. Range": "Environment Temperature +5℃~60℃",
+    "Internal Dimensions": "745x690x1115mm / 29.33x27.17x43.90\"",
+    "Overall Dimensions": "845x885x1349mm / 33.27x34.84x53.11\""
+   }
+  },
+  "PY-30": {
+   "model": "PY-30",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Roll-in Incubators",
+   "page": 57,
+   "specs": {
+    "Temp. Range": "Environment Temperature +5℃~60℃",
+    "CO2 Control Range": "N/A",
+    "Internal Dimensions": "870x690x1480mm / 34.25x27.17x58.27\"",
+    "Overall Dimensions": "970x885x1716mm / 38.19x34.84x67.56\""
+   }
+  },
+  "PYC-16": {
+   "model": "PYC-16",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Roll-in Incubators",
+   "page": 57,
+   "specs": {
+    "Temp. Range": "Environment Temperature +5℃~60℃",
+    "CO2 Control Range": "0-20%",
+    "Internal Dimensions": "745x690x1115mm / 29.33x27.17x43.90\"",
+    "Overall Dimensions": "845x885x1349mm / 33.27x34.84x53.11\""
+   }
+  },
+  "PYC-30": {
+   "model": "PYC-30",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Roll-in Incubators",
+   "page": 57,
+   "specs": {
+    "Temp. Range": "Environment Temperature +5℃~60℃",
+    "Internal Dimensions": "870x690x1480mm / 34.25x27.17x58.27\"",
+    "Overall Dimensions": "970x885x1716mm / 38.19x34.84x67.56\""
+   }
+  },
+  "CGⅠ-06-F": {
+   "model": "CGⅠ-06-F",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Bench Top Roller Culture Apparatus",
+   "page": 57,
+   "specs": {
+    "Cell Culture Method": "Monolayer Cultures",
+    "Bottle Rotation Speed": "3~60r/h(Φ110mm Bottle)",
+    "Rotation Mode": "Clockwise/Counter Clockwise Alternating Rotation(100~1800)",
+    "Bottle Positions per Deck": "3",
+    "Bottle Positions": "6",
+    "Material": "Aluminum",
+    "Digital Control Display": "Speed/Angle/Time",
+    "Dimension External": "450x360x431.5mm / 17.72x14.17x16.99\""
+   }
+  },
+  "CG-06-F": {
+   "model": "CG-06-F",
+   "section": "10. Roller Culture Apparatus",
+   "title": "Bench Top Roller Culture Apparatus",
+   "page": 57,
+   "specs": {
+    "Cell Culture Method": "Suspension Cultures",
+    "Bottle Rotation Speed": "60~900r/h(Φ110mm Bottle)",
+    "Rotation Mode": "Clockwise/Counter Clockwise Alternating Rotation(100~1800)",
+    "Bottle Positions per Deck": "3",
+    "Bottle Positions": "6",
+    "Material": "Aluminum",
+    "Digital Control Display": "Speed/Angle/Time",
+    "Dimension External": "450x360x431.5mm / 17.72x14.17x16.99\""
+   }
+  },
+  "SH-AC-18B": {
+   "model": "SH-AC-18B",
+   "section": "11. Autoclave",
+   "title": "- Class B AUTOCLAVE",
+   "page": 58,
+   "specs": {
+    "Temp Range": "Max 138℃ (280.4℉)",
+    "Volume": "18 L",
+    "Tray": "3 EA",
+    "Chamber size": "∅∅247x350mm",
+    "Dimension External USB port and USB stick": "480x700x450mm / 18.89x27.56x17.71\" / Standard",
+    "Printer": "Option"
+   }
+  },
+  "SH-AC-23B": {
+   "model": "SH-AC-23B",
+   "section": "11. Autoclave",
+   "title": "- Class B AUTOCLAVE",
+   "page": 58,
+   "specs": {
+    "Temp Range": "Max 138℃ (280.4℉)",
+    "Volume": "23 L",
+    "Tray": "3 EA",
+    "Chamber size": "∅247x450mm",
+    "Dimension External USB port and USB stick": "480x700x450mm / 18.89x27.56x17.71\" / Standard",
+    "Printer": "Option"
+   }
+  },
+  "SH-AC-33B": {
+   "model": "SH-AC-33B",
+   "section": "11. Autoclave",
+   "title": "11. Autoclave",
+   "page": 58,
+   "specs": {
+    "Temp Range": "Max 138℃ (280.4℉)",
+    "Volume": "33 L",
+    "Tray": "Stainless Steel Rack",
+    "Chamber size": "Ø319x417mm",
+    "Dimension External USB port and USB stick": "640x640x560mm / 25.2X25.2X22.0\" / Standard",
+    "Printer": "Standard(Built-in)"
+   }
+  },
+  "SH-AC-18N": {
+   "model": "SH-AC-18N",
+   "section": "11. Autoclave",
+   "title": "- Class N AUTOCLAVE",
+   "page": 59,
+   "specs": {
+    "Temp Range": "Max 138℃ (280.4℉)",
+    "Volume": "18 L",
+    "Tray": "3 EA",
+    "Chamber size": "∅∅247x350mm",
+    "Dimension External": "480x700x450mm / 18.89x27.56x17.71\"",
+    "USB port and USB stick": "Standard",
+    "Printer": "Option"
+   }
+  },
+  "SH-AC-23N": {
+   "model": "SH-AC-23N",
+   "section": "11. Autoclave",
+   "title": "- Class N AUTOCLAVE",
+   "page": 59,
+   "specs": {
+    "Temp Range": "Max 138℃ (280.4℉)",
+    "Volume": "23 L",
+    "Tray": "3 EA",
+    "Chamber size": "∅247x450mm",
+    "Dimension External": "480x700x450mm / 18.89x27.56x17.71\"",
+    "USB port and USB stick": "Standard",
+    "Printer": "Option"
+   }
+  },
+  "SH-AC-60M": {
+   "model": "SH-AC-60M",
+   "section": "11. Autoclave",
+   "title": "Vertical Autoclave",
+   "page": 59,
+   "specs": {
+    "Temp Range": "Max 130℃(266℉)",
+    "Temp&Pressure": "121℃(249.8℉) / 20psig (0.14MPa) / 125℃(257℉) / 24psig (0.16MPa) / 130℃(266℉) / 30psig (0.2MPa)",
+    "Capa Dimension Internal": "60 L / 344Øx650Hmm / 13.54x25.59\"",
+    "Dimension External": "550x680x1090mm / 21.65x26.77x42.91\""
+   }
+  },
+  "SH-AC-80M": {
+   "model": "SH-AC-80M",
+   "section": "11. Autoclave",
+   "title": "Vertical Autoclave",
+   "page": 59,
+   "specs": {
+    "Temp Range": "Max 130℃(266℉)",
+    "Temp&Pressure": "121℃(249.8℉) / 20psig (0.14MPa) / 125℃(257℉) / 24psig (0.16MPa) / 130℃(266℉) / 30psig (0.2MPa)",
+    "Capa Dimension Internal": "80 L / 400Øx650Hmm / 15.75x25.59\"",
+    "Dimension External": "600x730x1150mm / 23.62x28.74x45.28\""
+   }
+  },
+  "SH-AC-100M": {
+   "model": "SH-AC-100M",
+   "section": "11. Autoclave",
+   "title": "Vertical Autoclave",
+   "page": 59,
+   "specs": {
+    "Temp Range": "Max 130℃(266℉)",
+    "Temp&Pressure": "121℃(249.8℉) / 20psig (0.14MPa) / 125℃(257℉) / 24psig (0.16MPa) / 130℃(266℉) / 30psig (0.2MPa)",
+    "Capa Dimension Internal": "100 L / 440Øx650Hmm / 17.32x25.59\"",
+    "Dimension External": "600x780x1183mm / 23.62x30.71x46.58\""
+   }
+  },
+  "SH-AC-150M": {
+   "model": "SH-AC-150M",
+   "section": "11. Autoclave",
+   "title": "11. Autoclave",
+   "page": 59,
+   "specs": {
+    "Temp Range": "Max 130℃(266℉)",
+    "Temp&Pressure": "121℃(249.8℉) / 20psig (0.14MPa) / 125℃(257℉) / 24psig (0.16MPa) / 130℃(266℉) / 30psig (0.2MPa)",
+    "Capa Dimension Internal": "150 L / 514Øx748.43Hmm / 20.34x29.47\"",
+    "Dimension External": "608x750x1078mm / 23.94x29.53x42.44\""
+   }
+  },
+  "SH-HD-900V": {
+   "model": "SH-HD-900V",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Laminar Clean Bench",
+   "page": 60,
+   "specs": {
+    "Type": "Laminar Vertical Down Flow",
+    "Dimension Internal": "860x613×690mm / 33.86x24.13x27.17\"",
+    "Dimension External": "966x696×1820mm / 35.43x30.71x74.80\""
+   }
+  },
+  "SH-HD-1500V": {
+   "model": "SH-HD-1500V",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Laminar Clean Bench",
+   "page": 60,
+   "specs": {
+    "Type": "Laminar Vertical Down Flow",
+    "Dimension Internal": "1391x613×690mm / 54.76x24.13x27.36\"",
+    "Dimension External": "1496x696×1820mm / 59.06x30.71x74.80\""
+   }
+  },
+  "SH-HD-1900V": {
+   "model": "SH-HD-1900V",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Laminar Clean Bench",
+   "page": 60,
+   "specs": {
+    "Type": "Laminar Vertical Down Flow",
+    "Dimension Internal": "1891x613×690mm / 74.45x24.13x27.36\"",
+    "Dimension External": "1996x696×1820mm / 74.80x30.71x74.80\""
+   }
+  },
+  "SH-HD-900B": {
+   "model": "SH-HD-900B",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Biosafety Cabinet",
+   "page": 60,
+   "specs": {
+    "Type": "Bio Hazard Type(ClassⅡA2)",
+    "Dimension Internal": "740x600x750mm / 29.13x23.62x29.53\"",
+    "Dimension External": "900x825×1875mm / 35.43x32.48x73.81\""
+   }
+  },
+  "SH-HD-1500B": {
+   "model": "SH-HD-1500B",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Biosafety Cabinet",
+   "page": 60,
+   "specs": {
+    "Type": "Bio Hazard Type(ClassⅡA2)",
+    "Dimension Internal": "1340x600x750mm / 52.76x23.62x29.53\"",
+    "Dimension External": "1500x825×1900mm / 59.06x32.48x74.80\""
+   }
+  },
+  "SH-HD-1900B": {
+   "model": "SH-HD-1900B",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Biosafety Cabinet",
+   "page": 60,
+   "specs": {
+    "Type": "Bio Hazard Type(ClassⅡA2)",
+    "Dimension Internal": "1740x600x750mm / 68.50x23.62x29.53\"",
+    "Dimension External": "1900x825×1900mm / 74.80x32.48x74.80\""
+   }
+  },
+  "SH-HS120000": {
+   "model": "SH-HS120000",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Rapid, Accurate Colony Counter",
+   "page": 60,
+   "specs": {
+    "LxWxH": "170x30mm / 7.4x1.2\" / Package Includes",
+    "eCount Colony Counter": "Hand Tally Adapter",
+    "Black Sharpie® Pen": "Weighted Stand / *Long-life Battery included"
+   }
+  },
+  "SH-HS120228": {
+   "model": "SH-HS120228",
+   "section": "12. Clean Bench & Colony Counter",
+   "title": "Rapid, Accurate Colony Counter",
+   "page": 60,
+   "specs": {
+    "LxWxH": "CR1225 Battery / Package Includes",
+    "eCount Colony Counter": "Hand Tally Adapter",
+    "Black Sharpie® Pen": "Weighted Stand / *Long-life Battery included"
+   }
+  },
+  "TR-01": {
+   "model": "TR-01",
+   "section": "13. Mixer",
+   "title": "Tube Revolvers",
+   "page": 61,
+   "specs": {
+    "Product Name": "Fix Speed Tube Revolver",
+    "Rotation Speed 84x0.5ml tubes, 60x1.5ml/2.0ml tubes, 28x5ml/7ml tubes, Capacity 24x10ml tubes, 6x50ml tubes Dimension External 225x148x195mm / 8.86x5.83x7.68\"": "16rpm"
+   }
+  },
+  "TR-02U": {
+   "model": "TR-02U",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 61,
+   "specs": {
+    "Product Name": "Variable Speed Tube Revolver with Digital Display",
+    "Rotation Speed 84x0.5ml tubes, 60x1.5ml/2.0ml tubes, 28x5ml/7ml tubes, Capacity 24x10ml tubes, 6x50ml tubes Dimension External 260x148x195mm / 10.24x5.83x7.68\"": "10~40rpm"
+   }
+  },
+  "TR-03": {
+   "model": "TR-03",
+   "section": "13. Mixer",
+   "title": "Tube Rotator",
+   "page": 62,
+   "specs": {
+    "Product Name": "Standard Tube Rotator",
+    "Speed Range": "20rpm",
+    "Tilt Angle": "90°~180°",
+    "Carousel Capacity Dimension External": "12x50ml/18x15ml/48x2ml/9x50ml & 9x15ml & 12x2ml / 334x215x405mm / 13.15x8.46x15.94\""
+   }
+  },
+  "TR-04U": {
+   "model": "TR-04U",
+   "section": "13. Mixer",
+   "title": "Tube Rotator",
+   "page": 62,
+   "specs": {
+    "Product Name": "Digital Tube Rotator",
+    "Speed Range": "2~80rpm",
+    "Tilt Angle": "90°~180°",
+    "Carousel Capacity Dimension External": "12x50ml/18x15ml/48x2ml/9x50ml & 9x15ml & 12x2ml / 334x215x405mm / 13.15x8.46x15.94\""
+   }
+  },
+  "TR-05U": {
+   "model": "TR-05U",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 62,
+   "specs": {
+    "Product Name": "High Profile Tube Rotator",
+    "Speed Range 95°~180° Six steps Tilt Angle 95°,112°, 129°, 146°, 163°, 180° 50x9~11mm Tube (1.5/2ml), 30x14~18mm Tube (15ml) 15x27~34mm": "5~80rpm",
+    "Carousel Capacity 64x14mm Drum Carousel Dimension External 440x296x466mm / 17.32x11.65x18.35\"": "Tube (50ml), 10x10~15ml, 20x5~7ml Tube 64x18.5mm Drum Carousel,"
+   }
+  },
+  "VM-01U": {
+   "model": "VM-01U",
+   "section": "13. Mixer",
+   "title": "Vortex Mixers",
+   "page": 62,
+   "specs": {
+    "Operation Mode": "Touch Control, Timed or Continuous Run",
+    "Orbital Diameter": "Circular Orbit, 4.5mm Dia.",
+    "Stirring Speed": "200~3000rpm",
+    "Speed Display": "Panel Marker",
+    "Timing Display": "LED",
+    "Max. Load": "0.5 kg",
+    "Dimensions(WxDxH)": "205x155x108mm / 8.07x6.10x4.25\""
+   }
+  },
+  "VM-02U": {
+   "model": "VM-02U",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 63,
+   "specs": {
+    "Operation Mode": "Touch Control, Timed or Continuous Run",
+    "Orbital Diameter": "Circular Orbit, 4.5mm Dia.",
+    "Stirring Speed": "200~3000rpm",
+    "Speed Display": "LED Digital Display",
+    "Timing Display": "LED",
+    "Max. Load": "0.5 kg",
+    "Dimensions(WxDxH)": "205x155x108mm / 8.07x6.10x4.25\""
+   }
+  },
+  "VM-03U": {
+   "model": "VM-03U",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 63,
+   "specs": {
+    "Product Name": "Mini Vortex Mixer",
+    "Color": "Blue",
+    "Orbital Diamenter": "Φ4.5mm / Φ0.18\"",
+    "Speed": "3000rpm",
+    "Dimension External (ΦxH)": "96x85mm / 3.78x3.35\""
+   }
+  },
+  "VM-03RU": {
+   "model": "VM-03RU",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 63,
+   "specs": {
+    "Product Name": "Mini Vortex Mixer",
+    "Color": "Red",
+    "Orbital Diamenter": "Φ4.5mm / Φ0.18\"",
+    "Speed": "3000rpm",
+    "Dimension External (ΦxH)": "96x85mm / 3.78x3.35\""
+   }
+  },
+  "VM-03GU": {
+   "model": "VM-03GU",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 63,
+   "specs": {
+    "Product Name": "Mini Vortex Mixer",
+    "Color": "Green",
+    "Orbital Diamenter": "Φ4.5mm / Φ0.18\"",
+    "Speed": "3000rpm",
+    "Dimension External (ΦxH)": "96x85mm / 3.78x3.35\""
+   }
+  },
+  "VM-03PU": {
+   "model": "VM-03PU",
+   "section": "13. Mixer",
+   "title": "13. Mixer",
+   "page": 63,
+   "specs": {
+    "Product Name": "Mini Vortex Mixer",
+    "Color": "Purple",
+    "Orbital Diamenter": "Φ4.5mm / Φ0.18\"",
+    "Speed": "3000rpm",
+    "Dimension External (ΦxH)": "96x85mm / 3.78x3.35\""
+   }
+  },
+  "NS-01": {
+   "model": "NS-01",
+   "section": "13. Mixer",
+   "title": "3D Nutating Shaker",
+   "page": 63,
+   "specs": {
+    "Speed": "20rpm",
+    "Tilt Angle": "20°",
+    "Max.Load": "0.8 kg",
+    "Dimension External (L×W×H)": "260x260x190mm / 10.24x10.24x7.48\""
+   }
+  },
+  "NS-11U": {
+   "model": "NS-11U",
+   "section": "13. Mixer",
+   "title": "20° 3D Digital Nutating Mixer",
+   "page": 63,
+   "specs": {
+    "Speed Range": "2~60rpm",
+    "Tilt Angle": "20°",
+    "Dimension External (L×W×H)": "440x296x255mm / 17.32x11.65x10.04\"",
+    "Max. Load": "0.8kg"
+   }
+  },
+  "NS-10": {
+   "model": "NS-10",
+   "section": "13. Mixer",
+   "title": "20° 3D Nutating Mixer",
+   "page": 64,
+   "specs": {
+    "Speed Range": "20rpm",
+    "Tilt Angle": "20°",
+    "Dimension External (L×W×H)": "440x296x261mm / 17.32x11.65x10.28\"",
+    "Max. Load": "0.8kg"
+   }
+  },
+  "NS-12U": {
+   "model": "NS-12U",
+   "section": "13. Mixer",
+   "title": "7° 3D Digital Nutating Mixer",
+   "page": 64,
+   "specs": {
+    "Speed Range": "2~80rpm",
+    "Tilt Angle": "7°",
+    "Dimension External (L×W×H)": "440x296x189mm / 17.32x11.65x7.44\"",
+    "Max. Load": "0.8kg"
+   }
+  },
+  "NS-13U": {
+   "model": "NS-13U",
+   "section": "13. Mixer",
+   "title": "Multi Modes Nutating Mixer",
+   "page": 64,
+   "specs": {
+    "Speed Range": "5~100rpm",
+    "Turning Angle(reciprocal mode)": "0~360°",
+    "Turning Angle(vibration mode)": "0~5°",
+    "Tilt Angle": "7°",
+    "Dimension External (L×W×H)": "440x296x226mm / 17.32x11.65x8.90\"",
+    "Max. Load": "1 kg"
+   }
+  },
+  "NS-14U": {
+   "model": "NS-14U",
+   "section": "14. Stirrer",
+   "title": "2D Adjustable Rocker",
+   "page": 65,
+   "specs": {
+    "Speed Range": "1~50rpm",
+    "Tilt Angle": "1~15°(adjustable in 1° increments)",
+    "Dimension External (W×D×H)": "440x296x209mm / 17.32x11.65x8.23\"",
+    "Max. Load": "4.5 kg"
+   }
+  },
+  "NS-04": {
+   "model": "NS-04",
+   "section": "14. Stirrer",
+   "title": "2D Rocker",
+   "page": 65,
+   "specs": {
+    "Speed": "20rpm",
+    "Speed Control": "N/A",
+    "Tilt Angle": "±10°",
+    "Display": "N/A",
+    "Dimension External (W×D×H)": "355x240x123mm / 13.98X9.45X4.84\""
+   }
+  },
+  "NS-05U": {
+   "model": "NS-05U",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 65,
+   "specs": {
+    "Speed": "2~80rpm",
+    "Speed Control": "1rpm",
+    "Tilt Angle": "±10°",
+    "Display": "LED",
+    "Dimension External (W×D×H)": "355x240x123mm / 13.98X9.45X4.84\""
+   }
+  },
+  "SH-120155": {
+   "model": "SH-120155",
+   "section": "14. Stirrer",
+   "title": "Mini Magnetic Stirrer (Motorless Driven Mechanism)",
+   "page": 65,
+   "specs": {
+    "Speed Range": "200 to 2200 rpm (Infinitely adjustable)",
+    "Capacity": "Up to 3L H2O",
+    "LxWxH": "183x132x47mm / 7.2x5.2x1.85\"",
+    "UOM": "1 ea, 8 ea/cs",
+    "Noise Level": "Full speed, unloaded: 53 dB"
+   }
+  },
+  "SH-120584": {
+   "model": "SH-120584",
+   "section": "14. Stirrer",
+   "title": "Magnetic Induction Stirrer (Motorless Driven Mechanism)",
+   "page": 66,
+   "specs": {
+    "Operating Temp.": "Range 2°C to 40°C",
+    "Speed Range": "10 to 2,000 rpm variable, 1 rpm increments",
+    "Capacity": "3 liters plus",
+    "LxWxH": "245x195x75mm / 9.7x7.7x3\"",
+    "UOM": "1 ea, 2 ea/cs"
+   }
+  },
+  "MS-01U": {
+   "model": "MS-01U",
+   "section": "14. Stirrer",
+   "title": "Magnetic Stirrer (Motorless Driven Mechanism)",
+   "page": 66,
+   "specs": {
+    "Stirring Speed": "80~2000rpm",
+    "Display Screen": "LED",
+    "Maximum Capacity": "2000ml",
+    "Platform Dimensions": "140x140mm / 5.51x5.51\"",
+    "Outside Dimensions(WxDxH)": "160x200x48mm / 6.30x7.87x1.89\""
+   }
+  },
+  "MS-01FU": {
+   "model": "MS-01FU",
+   "section": "14. Stirrer",
+   "title": "Low profile Magnetic Stirrer (Motorless Driven Mechanism)",
+   "page": 66,
+   "specs": {
+    "Speed": "15~1500rpm",
+    "Max.Capacity": "500ml",
+    "Platform Dimensions": "110x110mm / 4.33x4.33\"",
+    "Max.Load": "2 kg"
+   }
+  },
+  "MS-04BSU": {
+   "model": "MS-04BSU",
+   "section": "14. Stirrer",
+   "title": "Position Magnetic Stirrer (Motorless Driven Mechanism)",
+   "page": 67,
+   "specs": {
+    "Stirring Speed": "80~2000rpm",
+    "Number of Stirring Positions": "4",
+    "Maximum Capacity(Water)": "1000ml",
+    "Viscosity Level": "5",
+    "Platform Dimensions": "250X270mm / 9.84x10.63\""
+   }
+  },
+  "MS-06BSU": {
+   "model": "MS-06BSU",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 67,
+   "specs": {
+    "Stirring Speed": "80~2000rpm",
+    "Number of Stirring Positions": "6",
+    "Maximum Capacity(Water)": "1000ml",
+    "Viscosity Level": "5",
+    "Platform Dimensions": "385X270mm / 15.16x10.63\"",
+    "Dimension External (W×D×H)": "280X528X40mm / 11.02x20.79x1.57\""
+   }
+  },
+  "MS-15BSU": {
+   "model": "MS-15BSU",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 67,
+   "specs": {
+    "Stirring Speed": "80~2000rpm",
+    "Number of Stirring Positions": "15",
+    "Maximum Capacity(Water)": "500mlx8, 200mlx15",
+    "Viscosity Level": "5",
+    "Platform Dimensions": "385X270mm / 15.16x10.63\"",
+    "Dimension External (W×D×H)": "280X528X40mm / 11.02x20.79x1.57\""
+   }
+  },
+  "SH-HSD-M3": {
+   "model": "SH-HSD-M3",
+   "section": "14. Stirrer",
+   "title": "Multi Hotplate Stirrer",
+   "page": 68,
+   "specs": {
+    "Stitter Speed Range": "80 to 1,500rpm",
+    "Speed control resolution Maximum Stirring Volume(H2O)": "5 rpm / 20Lit.",
+    "Plate Dimension": "140 x 140mm x 3 Place",
+    "heating Temperature": "Max. 350℃",
+    "Temp Accuracy": "±0.3℃",
+    "Dimensions(WxDxH)": "500x240x110mm",
+    "Accessories": "- / SH-HSHC"
+   }
+  },
+  "SH-HSD-M3-Set": {
+   "model": "SH-HSD-M3-Set",
+   "section": "14. Stirrer",
+   "title": "Multi Hotplate Stirrer",
+   "page": 68,
+   "specs": {
+    "Stitter Speed Range": "80 to 1,500rpm",
+    "Speed control resolution Maximum Stirring Volume(H2O)": "5 rpm / 20Lit.",
+    "Plate Dimension": "140 x 140mm x 3 Place",
+    "heating Temperature": "Max. 350℃",
+    "Temp Accuracy": "±0.3℃",
+    "Dimensions(WxDxH)": "500x240x110mm",
+    "Accessories": "- / SH-HSHC"
+   }
+  },
+  "SH-HSD-M6": {
+   "model": "SH-HSD-M6",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 68,
+   "specs": {
+    "Stitter Speed Range": "80 to 1,500rpm",
+    "Speed control resolution Maximum Stirring Volume(H2O)": "5 rpm / 20Lit.",
+    "Plate Dimension": "140 x 140mm x 6(2x3) Place",
+    "heating Temperature": "Max. 350℃",
+    "Temp Accuracy": "±0.3℃",
+    "Display Temp Resolution": "0.1℃",
+    "Control": "0.1℃",
+    "Dimensions(WxDxH)": "500x430x130mm"
+   }
+  },
+  "MS-05H": {
+   "model": "MS-05H",
+   "section": "14. Stirrer",
+   "title": "Multi-Position Hot Plate Stirrers",
+   "page": 68,
+   "specs": {
+    "Stirring Speed": "0rpm,100~1200rpm",
+    "Temp. Range": "Ambient +5°C~120°C",
+    "Max. Capacity (water)": "500ml",
+    "Number of Stirring Positions 130x612x78mm Dimension External (W×D×H) 5.12x24.09x3.07\"": "5"
+   }
+  },
+  "MS-10H": {
+   "model": "MS-10H",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 68,
+   "specs": {
+    "Stirring Speed": "0rpm,100~1200rpm",
+    "Temp. Range": "Ambient +5°C~120°C",
+    "Max. Capacity (water)": "500ml",
+    "Number of Stirring Positions 214x612x78mm Dimension External (W×D×H) 8.43x24.09x3.07\"": "10"
+   }
+  },
+  "MS-15H": {
+   "model": "MS-15H",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 68,
+   "specs": {
+    "Stirring Speed": "0rpm,100~1200rpm",
+    "Temp. Range": "Ambient +5°C~120°C",
+    "Max. Capacity (water)": "500ml",
+    "Number of Stirring Positions 310x612x78mm Dimension External (W×D×H) 12.20x24.09x3.07\"": "15"
+   }
+  },
+  "MLX-104": {
+   "model": "MLX-104",
+   "section": "14. Stirrer",
+   "title": "Mini Centrifuges",
+   "page": 69,
+   "specs": {
+    "Rotating Speed": "4000rpm",
+    "G-force(RCF)": "900g",
+    "Noise Level": "≤60dB",
+    "Dimension External (W×D×H)": "155x140x115mm / 6.10x5.51x4.53\""
+   }
+  },
+  "MLX-106": {
+   "model": "MLX-106",
+   "section": "14. Stirrer",
+   "title": "Mini Centrifuges",
+   "page": 69,
+   "specs": {
+    "Rotating Speed": "6000rpm",
+    "G-force(RCF)": "2000g",
+    "Noise Level": "≤60dB",
+    "Dimension External (W×D×H)": "155x140x115mm / 6.10x5.51x4.53\""
+   }
+  },
+  "MLX-110": {
+   "model": "MLX-110",
+   "section": "14. Stirrer",
+   "title": "Mini Centrifuges",
+   "page": 69,
+   "specs": {
+    "Rotating Speed": "10000rpm",
+    "G-force(RCF)": "5000g",
+    "Noise Level": "≤60dB",
+    "Dimension External (W×D×H)": "155x140x115mm / 6.10x5.51x4.53\""
+   }
+  },
+  "MLX-200F": {
+   "model": "MLX-200F",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 69,
+   "specs": {
+    "Rotating Speed": "6000rpm 9200rpm",
+    "5ml": "2414g 5677g",
+    "Rotor": "G-force(RCF) 1.5ml 2012g 4731g",
+    "0.2ml": "1509g 3549g",
+    "Noise Level": "≤60dB",
+    "Dimension External (W×D×H)": "187x240x139mm / 7.36x9.45x5.47\""
+   }
+  },
+  "SH-OSDV-25": {
+   "model": "SH-OSDV-25",
+   "section": "14. Stirrer",
+   "title": "Digital Overhead Stirrer",
+   "page": 70,
+   "specs": {
+    "Stirring Capacity": "Max.25 Lit.(H2O)",
+    "Maximum Viscosity": "70,000 mPas",
+    "Maximum Torque": "130Ncm",
+    "Gear Rate": "2.0:1",
+    "Speed Range": "30 to 2,000rpm",
+    "Display": "Touch Color LCD",
+    "Controller": "Digital PID Feedback Control, High Performance MCU",
+    "Viscosity Measurement Range Others - Special function": "1/0,000 to 100,000 mPas (15% Deviation) / Torque Measuring Function in real time, Viscosity Calculation / Target Viscosity Operation, Real Time Monitoring by USB port / SH-OSSR030, SH-OSHC010, SH-",
+    "Accessories": "- / OSIP010"
+   }
+  },
+  "SH-OSDV-25-Set": {
+   "model": "SH-OSDV-25-Set",
+   "section": "14. Stirrer",
+   "title": "Digital Overhead Stirrer",
+   "page": 70,
+   "specs": {
+    "Stirring Capacity": "Max.25 Lit.(H2O)",
+    "Maximum Viscosity": "70,000 mPas",
+    "Maximum Torque": "130Ncm",
+    "Gear Rate": "2.0:1",
+    "Speed Range": "30 to 2,000rpm",
+    "Display": "Touch Color LCD",
+    "Controller": "Digital PID Feedback Control, High Performance MCU",
+    "Viscosity Measurement Range Others - Special function": "1/0,000 to 100,000 mPas (15% Deviation) / Torque Measuring Function in real time, Viscosity Calculation / Target Viscosity Operation, Real Time Monitoring by USB port / SH-OSSR030, SH-OSHC010, SH-",
+    "Accessories": "- / OSIP010"
+   }
+  },
+  "SH-OSDV-60": {
+   "model": "SH-OSDV-60",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 70,
+   "specs": {
+    "Stirring Capacity": "Max.60 Lit.(H2O)",
+    "Maximum Viscosity": "150,000 mPas",
+    "Maximum Torque": "293Ncm",
+    "Gear Rate": "4.5:1",
+    "Speed Range": "15 to 800rpm",
+    "Display": "Touch Color LCD",
+    "Controller": "Digital PID Feedback Control, High Performance MCU",
+    "Viscosity Measurement Range Others - Special function": "1/0,000 to 100,000 mPas (15% Deviation) / Torque Measuring Function in real time, Viscosity Calculation / Target Viscosity Operation, Real Time Monitoring by USB port / SH-OSSR030, SH-OSHC010, SH-",
+    "Accessories": "- / OSIP030"
+   }
+  },
+  "SH-OSDV-60-Set": {
+   "model": "SH-OSDV-60-Set",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 70,
+   "specs": {
+    "Stirring Capacity": "Max.60 Lit.(H2O)",
+    "Maximum Viscosity": "150,000 mPas",
+    "Maximum Torque": "293Ncm",
+    "Gear Rate": "4.5:1",
+    "Speed Range": "15 to 800rpm",
+    "Display": "Touch Color LCD",
+    "Controller": "Digital PID Feedback Control, High Performance MCU",
+    "Viscosity Measurement Range Others - Special function": "1/0,000 to 100,000 mPas (15% Deviation) / Torque Measuring Function in real time, Viscosity Calculation / Target Viscosity Operation, Real Time Monitoring by USB port / SH-OSSR030, SH-OSHC010, SH-",
+    "Accessories": "- / OSIP030"
+   }
+  },
+  "SH-OSD-25": {
+   "model": "SH-OSD-25",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 70,
+   "specs": {
+    "Stirring Capacity": "Max.25Lit.(H2O)",
+    "Speed Range": "100 to 2,000rpm",
+    "Timer": "99hr 59min",
+    "Display": "Digital LCD Display with Back-Light Function",
+    "Accessories": "N/A"
+   }
+  },
+  "SH-OSD-25-Set": {
+   "model": "SH-OSD-25-Set",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 70,
+   "specs": {
+    "Maximum Viscosity": "70,000mPas",
+    "Maximum Torque": "120 Ncm",
+    "Timer": "99hr 59min",
+    "Display": "Digital LCD Display with Back-Light Function / SH-OSSR030,",
+    "Accessories": "SH-OSHC010, SH- / OSIP010"
+   }
+  },
+  "SH-OSD-60": {
+   "model": "SH-OSD-60",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 70,
+   "specs": {
+    "Stirring Capacity": "Max.60Lit.(H2O)",
+    "Timer": "99hr 59min",
+    "Display": "Digital LCD Display with Back-Light Function",
+    "Accessories": "N/A"
+   }
+  },
+  "SH-OSD-60-Set": {
+   "model": "SH-OSD-60-Set",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 70,
+   "specs": {
+    "Maximum Viscosity": "150,000mPas",
+    "Maximum Torque": "270 Ncm",
+    "Speed Range": "50 to 800rpm",
+    "Timer": "99hr 59min",
+    "Display": "Digital LCD Display with Back-Light Function / SH-OSSR030,",
+    "Accessories": "SH-OSHC010, SH- / OSIP030"
+   }
+  },
+  "SH-HZD": {
+   "model": "SH-HZD",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 71,
+   "specs": {
+    "Speed Range": "2,000 to 27,000rpm(without load)",
+    "Maximum Volume (H2O)": "2,500ml",
+    "Display Usable Dispersing Tool": "3 Digit FND / Ø8mm Stator 'SH-HZ1008', Ø10mm Stator 'SH-HZ1010' / Ø18mm Stator 'SH-HZ1018', Ø25mm Stator 'SH-HZ1025' / HZD-Set A : SH-HZ1018, SH-OSSR030, SH-OSHC010",
+    "Accessories": "N/A / HZD-Set B : SH-HZ1025, SH-OSSR030, SH-OSHC010"
+   }
+  },
+  "SH-HZD-Set(A, B)": {
+   "model": "SH-HZD-Set(A, B)",
+   "section": "14. Stirrer",
+   "title": "14. Stirrer",
+   "page": 71,
+   "specs": {
+    "Speed Range": "2,000 to 27,000rpm(without load)",
+    "Maximum Volume (H2O)": "2,500ml",
+    "Display Usable Dispersing Tool": "3 Digit FND / Ø8mm Stator 'SH-HZ1008', Ø10mm Stator 'SH-HZ1010' / Ø18mm Stator 'SH-HZ1018', Ø25mm Stator 'SH-HZ1025' / HZD-Set A : SH-HZ1018, SH-OSSR030, SH-OSHC010",
+    "Accessories": "N/A / HZD-Set B : SH-HZ1025, SH-OSSR030, SH-OSHC010"
+   }
+  },
+  "SH-HM-SET": {
+   "model": "SH-HM-SET",
+   "section": "14. Stirrer",
+   "title": "Homo Mixer & Disper",
+   "page": 71,
+   "specs": {
+    "Speed Range": "500 to 13,000 rpm(without load)",
+    "Speed Control Resolution": "50rpm",
+    "Maximum Volume (H2O)": "Max. 3 Lit.",
+    "Motor Wattage Working Direction": "300W / Forward & Reverse / (Can change automatically by program operation)",
+    "Motor Type": "Brushless DC Motor",
+    "Safety Devices": "Overload, Current & Heat Protector for Motor, Electric Error Code Display",
+    "Permissible Temp. & Humidity": "5℃~40℃, <80%",
+    "Setting Tool": "'SH-HMT' Homo Mixer Tool",
+    "Turbine Material": "SUS304",
+    "Shaft": "SUS304",
+    "Accessories": "SH-HMT, SH-OSSR040"
+   }
+  },
+  "SH-HD-SET": {
+   "model": "SH-HD-SET",
+   "section": "14. Stirrer",
+   "title": "Homo Mixer & Disper",
+   "page": 71,
+   "specs": {
+    "Speed Range": "500 to 8,000 rpm(without load)",
+    "Speed Control Resolution": "10rpm",
+    "Maximum Volume (H2O)": "Max. 5 Lit.",
+    "Motor Wattage Working Direction": "300W / Forward & Reverse / (Can change automatically by program operation)",
+    "Motor Type": "Brushless DC Motor",
+    "Safety Devices": "Overload, Current & Heat Protector for Motor, Electric Error Code Display",
+    "Permissible Temp. & Humidity": "5℃~40℃, <80%",
+    "Setting Tool": "'SH-HDT' Homo Disper Tool",
+    "Turbine Material": "SUS316",
+    "Shaft": "SUS304",
+    "Accessories": "SH-HDT, SH-OSSR040"
+   }
+  },
+  "SH-RE-1L": {
+   "model": "SH-RE-1L",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 72,
+   "specs": {
+    "Operating Ambient Temperature": "5~35℃ / 41~95℉",
+    "Rotation Speed": "20~300rpm",
+    "Evaporating speed": "22ml/min",
+    "Bath temp. control range Evaporating Flask Capacity": "Ambient~99.9℃/ Ambient~212℉ / 1L / 0.26 gallon",
+    "Head Lift": "Manual"
+   }
+  },
+  "SH-RE-1LA": {
+   "model": "SH-RE-1LA",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 72,
+   "specs": {
+    "Operating Ambient Temperature": "5~35℃ / 41~95℉",
+    "Rotation Speed": "20~300rpm",
+    "Evaporating speed": "22ml/min",
+    "Bath temp. control range Evaporating Flask Capacity": "Ambient~99.9℃/ Ambient~212℉ / 1L / 0.26 gallon",
+    "Head Lift": "Automatic"
+   }
+  },
+  "SH-RE-5L": {
+   "model": "SH-RE-5L",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 72,
+   "specs": {
+    "Operating Ambient Temperature": "5~35℃ / 41~95℉",
+    "Rotation Speed Bath temp. control range Evaporating Flask Capacity Receiving Flask Capacity": "30～180 rpm / Ambient~99℃/Ambient~210℉ / 5L / 1.32 gallon / 3L / 0.79 gallon",
+    "Bath Lift": "Automatic"
+   }
+  },
+  "SH-RE-10L": {
+   "model": "SH-RE-10L",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 72,
+   "specs": {
+    "Operating Ambient Temperature": "5~35℃ / 41~95℉",
+    "Rotation Speed Bath temp. control range Evaporating Flask Capacity Receiving Flask Capacity": "30 ~ 130 rpm / Ambient~99℃/Ambient~210℉ / 10L / 2.64 gallon / 5L / 1.32 gallon",
+    "Bath Lift": "Automatic"
+   }
+  },
+  "RE-PK-5L": {
+   "model": "RE-PK-5L",
+   "section": "15. Rotary Evaporator",
+   "title": "Rotary Evaporator Package",
+   "page": 73,
+   "specs": {
+    "Rotary Evaporator Cold Trap(Option) Vacuum Pump": "SH-RE-5L / SH-WB-5GDR / (-40℃ or -80℃) / SH-PTFEVP30C",
+    "Chiller": "SH-WB-5CDR(-30)"
+   }
+  },
+  "RE-PK-10L": {
+   "model": "RE-PK-10L",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 73,
+   "specs": {
+    "Rotary Evaporator Cold Trap(Option) Vacuum Pump": "SH-RE-10L / SH-WB-5GDR / (-40℃ or -80℃) / SH-PTFEVP30C",
+    "Chiller": "SH-WB-12CDR"
+   }
+  },
+  "RE-PK-20L": {
+   "model": "RE-PK-20L",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 74,
+   "specs": {
+    "Rotary Evaporator Cold Trap(Option) Vacuum Pump": "SH-RE-20L / SH-WB-5GDR / (-40℃ or -80℃) / SH-PTFEVP30C",
+    "Chiller": "SH-WB-20CDR"
+   }
+  },
+  "RE-PK-50L": {
+   "model": "RE-PK-50L",
+   "section": "15. Rotary Evaporator",
+   "title": "15. Rotary Evaporator",
+   "page": 74,
+   "specs": {
+    "Rotary Evaporator Cold Trap(Option) Vacuum Pump": "SH-RE-50L / SH-WB-5GDR / (-40℃ or -80℃) / 2047 or SH-PTFEVP60C",
+    "Chiller": "SH-WB-40CDR"
+   }
+  },
+  "SH-VPC": {
+   "model": "SH-VPC",
+   "section": "15. Rotary Evaporator",
+   "title": "Vacuum Controller for SH Rotary Evaporator",
+   "page": 74,
+   "specs": {
+    "Vacuum Reference": "Absolute",
+    "Sensor": "SEN-775i-NPT-OEM",
+    "Resolution": "± 0.1 Torr",
+    "Units": "Torr, mbar",
+    "Accuracy": "±2.66 mbar; ± 2 Torr",
+    "Range": "1~1013 mbar; 1~775 Torr",
+    "Control band Product Dimensions 114.3x158.75x85.725mm / 4.5 x 6.25 x 3.375\"": "±2.66 mbar; ±2 Torr"
+   }
+  },
+  "SH-SVPC": {
+   "model": "SH-SVPC",
+   "section": "15. Rotary Evaporator",
+   "title": "Digital Program Vacuum Controller",
+   "page": 74,
+   "specs": {
+    "Vacuum Reference": "Absolute",
+    "Sensor": "DPCP, 측정범위 7.5x10(-6) ~ 1000 Torr",
+    "Resolution": "± 0.1 Torr",
+    "Units": "Torr, mTorr, KPa",
+    "Accuracy": "± 5% at Reading",
+    "Range": "Control 0.01~775Torr / Measure 7.5x10(-6)~1000Torr",
+    "Control band": "±2.66 mbar; ±2 Torr",
+    "Product Dimensions": "가로 설치시 234.95x107.95x120.65mm / / 세로 설치시 120.65x107.95x234.95mm"
+   }
+  },
+  "SH-WB-6GDN": {
+   "model": "SH-WB-6GDN",
+   "section": "16. Water Bath & Chiller",
+   "title": "Multi-Purpose Water Bath:",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 99℃ (Ambient + 9℉ to 210℉)",
+    "Ring Cover Lid Type": "2 holes in 1 row",
+    "Capa": "6.7 L",
+    "Dimension Internal": "300x160x140mm / 11.81x6.30x5.51\"",
+    "Dimension External": "345x205x280mm / 13.58x8.07x11.02\""
+   }
+  },
+  "SH-WB-11GDN": {
+   "model": "SH-WB-11GDN",
+   "section": "16. Water Bath & Chiller",
+   "title": "Multi-Purpose Water Bath:",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 99℃ (Ambient + 9℉ to 210℉)",
+    "Ring Cover Lid Type": "4 holes in 2 row",
+    "Capa": "12.6L",
+    "Dimension Internal": "300x300x140mm / 11.81x11.81x5.51\"",
+    "Dimension External": "345x345x280mm / 13.38x13.58x11.02\""
+   }
+  },
+  "SH-WB-22GDN": {
+   "model": "SH-WB-22GDN",
+   "section": "16. Water Bath & Chiller",
+   "title": "Multi-Purpose Water Bath:",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 99℃ (Ambient + 9℉ to 210℉)",
+    "Ring Cover Lid Type": "6 holes in 2 row",
+    "Capa": "19.3 L",
+    "Dimension Internal": "460x300x140mm / 18.11x11.81x5.51\"",
+    "Dimension External": "505x345x280mm / 19.88x13.38x11.02\""
+   }
+  },
+  "SH-WB-10GDH": {
+   "model": "SH-WB-10GDH",
+   "section": "16. Water Bath & Chiller",
+   "title": "General-Purpose Oil Bath",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Capa": "13 L",
+    "Dimension Internal": "250x300x170mm / 9.84x11.81x6.69\"",
+    "Dimension External": "635x385x345mm / 25.00x15.15x13.58\""
+   }
+  },
+  "SH-WB-20GDH": {
+   "model": "SH-WB-20GDH",
+   "section": "16. Water Bath & Chiller",
+   "title": "General-Purpose Oil Bath",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Capa": "24 L",
+    "Dimension Internal": "350x400x170mm / 13.78x15.75x6.69\"",
+    "Dimension External": "732x485x345mm / 28.81x19.09x13.58\""
+   }
+  },
+  "SH-WB-40GDH": {
+   "model": "SH-WB-40GDH",
+   "section": "16. Water Bath & Chiller",
+   "title": "General-Purpose Oil Bath",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +10℃ to 300℃ (Ambient +18℉ to 572℉)",
+    "Capa": "48 L",
+    "Dimension Internal": "600x400x200mm / 23.62x15.75x7.87\"",
+    "Dimension External": "1035x500x390mm / 40.74x19.68x15.35\""
+   }
+  },
+  "SH-WB-11CDN": {
+   "model": "SH-WB-11CDN",
+   "section": "16. Water Bath & Chiller",
+   "title": "Circulating Water Bath",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 99℃ (Ambient + 9℉ to 210℉)",
+    "Capa": "10.8 L",
+    "Dimension Internal": "300x300x140mm / 11.81x11.81x5.51\"",
+    "Dimension External": "345x345x391mm / 13.58x13.58x15.39\""
+   }
+  },
+  "SH-WB-22CDN": {
+   "model": "SH-WB-22CDN",
+   "section": "16. Water Bath & Chiller",
+   "title": "Circulating Water Bath",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 99℃ (Ambient + 9℉ to 210℉)",
+    "Capa": "21.8 L",
+    "Dimension Internal": "460x300x140mm / 18.11x11.81x5.51\"",
+    "Dimension External": "505x345x391mm / 19.88x13.58x15.39\""
+   }
+  },
+  "SH-WB-48CDN": {
+   "model": "SH-WB-48CDN",
+   "section": "16. Water Bath & Chiller",
+   "title": "Circulating Water Bath",
+   "page": 77,
+   "specs": {
+    "Temp Range": "Ambient +5℃ to 99℃ (Ambient + 9℉ to 210℉)",
+    "Capa": "48 L",
+    "Dimension Internal": "600x400x200mm / 23.62x15.75x7.87\"",
+    "Dimension External": "1005x485x440mm / 39.56x19.09x17.32\""
+   }
+  },
+  "SH-WB-7CDR": {
+   "model": "SH-WB-7CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "Refrigerated Circulating Bath",
+   "page": 78,
+   "specs": {
+    "Capa": "6.8 L",
+    "Max flow Recirculating": "2~16 L/min (tested with clean water at 20℃)",
+    "Max Head Pump": "3.5 meter (tested with clean water at 20℃)",
+    "Max Head": "5.1 psig (tested with clean water at 20℃)",
+    "Dimension Internal": "150x300x150mm / 5.91x11.81x5.90\"",
+    "Dimension External": "340x417x605mm / 13.38x16.41x23.82\""
+   }
+  },
+  "SH-WB-13CDR": {
+   "model": "SH-WB-13CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "Refrigerated Circulating Bath",
+   "page": 78,
+   "specs": {
+    "Capa": "13 L",
+    "Max flow Recirculating": "2~16 L/min (tested with clean water at 20℃)",
+    "Max Head Pump": "3.5 meter (tested with clean water at 20℃)",
+    "Max Head": "5.1 psig (tested with clean water at 20℃)",
+    "Dimension Internal": "250x350x150mm / 9.84x13.78x5.90\"",
+    "Dimension External": "440x455x645mm / 17.32x17.91x25.39\""
+   }
+  },
+  "SH-WB-22CDR": {
+   "model": "SH-WB-22CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "Refrigerated Circulating Bath",
+   "page": 78,
+   "specs": {
+    "Capa": "22L",
+    "Max flow Recirculating": "2~16 L/min (tested with clean water at 20℃)",
+    "Max Head Pump": "3.5 meter (tested with clean water at 20℃)",
+    "Max Head": "5.1 psig (tested with clean water at 20℃)",
+    "Dimension Internal": "350x420x150mm / 13.78x16.54x5.90\"",
+    "Dimension External": "540x520x700mm / 21.26x20.47x27.55\""
+   }
+  },
+  "SH-WB-5CDR": {
+   "model": "SH-WB-5CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "Recirculating Chiller",
+   "page": 78,
+   "specs": {
+    "Order Number": "SH-WB-5CDR(-30) SH-WB-5CDR(-70)",
+    "Ambient -50℃ to Ambient (Low": "Ambient -90℃ to Ambient (Low",
+    "Temp Control Range": "limit -30℃) limit -70℃)",
+    "Ambient -28℉ to Ambient": "Ambient -162℉ to Ambient",
+    "Reservior Capa": "5L",
+    "Max flow Recirculating": "16 L/min (tested with distilled water at 20℃)",
+    "Max Head Pump": "3.5 meter (tested with distilled water at 20℃)",
+    "Max pressure": "5.1 psig (tested with distilled water at 20℃)",
+    "Dimension Internal": "180Φ×210Hmm / 7.09Φx8.27H\"",
+    "Dimension External": "465×560×847mm 505×620×887mm / 18.18x22.04x33.35\" 19.88x24.41x34.92\""
+   }
+  },
+  "SH-WB-12CDR": {
+   "model": "SH-WB-12CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "16. Water Bath & Chiller",
+   "page": 78,
+   "specs": {
+    "Order Number": "SH-WB-12CDR(-25) / Ambient -45℃ to / Ambient / Ambient -50℃ to Ambient (Low limit -25℃)",
+    "Temp Control Range": "(Low limit -20℃) / Ambient -28℉ to Ambient / Ambient -28℉ to / Ambient",
+    "Reservior Capa": "12 L",
+    "Max flow Recirculating": "23.0 L/min (tested with distilled water at 20℃)",
+    "Max Head Pump": "9 meter (tested with distilled water at 20℃)",
+    "Max pressure": "12.8psig (tested with distilled water at 20℃)",
+    "Dimension Internal": "220Φx250Hmm / 8.66Φ x9.84H\"",
+    "Dimension External": "482x614x811mm / 18.98x24.17x31.93\""
+   }
+  },
+  "SH-WB-20CDR": {
+   "model": "SH-WB-20CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "16. Water Bath & Chiller",
+   "page": 78,
+   "specs": {
+    "Order Number": "SH-WB-20CDR(-25) / Ambient -45℃ to / Ambient / Ambient -50℃ to Ambient (Low limit -25℃)",
+    "Temp Control Range": "(Low limit -20℃) / Ambient -28℉ to Ambient / Ambient -28℉ to / Ambient",
+    "Reservior Capa": "20 L",
+    "Max flow Recirculating": "23.0 L/min (tested with distilled water at 20℃)",
+    "Max Head Pump": "9 meter (tested with distilled water at 20℃)",
+    "Max pressure": "12.8psig (tested with distilled water at 20℃)",
+    "Dimension Internal": "280Φx295Hmm / 11.02Φx11.61H\"",
+    "Dimension External": "442x644x1135mm / 17.40x25.35x44.68\""
+   }
+  },
+  "SH-WB-40CDR": {
+   "model": "SH-WB-40CDR",
+   "section": "16. Water Bath & Chiller",
+   "title": "16. Water Bath & Chiller",
+   "page": 78,
+   "specs": {
+    "Order Number": "SH-WB-40CDR(-20) / Ambient -45℃ to / Ambient / Ambient -50℃ to Ambient (Low limit -25℃)",
+    "Temp Control Range": "(Low limit -20℃) / Ambient -28℉ to Ambient / Ambient -28℉ to / Ambient",
+    "Reservior Capa": "40 L",
+    "Max flow Recirculating": "23.0 L/min (tested with distilled water at 20℃)",
+    "Max Head Pump": "9 meter (tested with distilled water at 20℃)",
+    "Max pressure": "12.8psig (tested with distilled water at 20℃)",
+    "Dimension Internal": "350Φx390Hmm / 13.78Φx15.35H\"",
+    "Dimension External": "533x764x1179mm / 20.98x30.08x46.42\""
+   }
+  },
+  "SH-WB-2UC": {
+   "model": "SH-WB-2UC",
+   "section": "16. Water Bath & Chiller",
+   "title": "Digital Ultrasonic Cleaner",
+   "page": 79,
+   "specs": {
+    "Temperature range": "Ambient + 5℃~80℃(41~176℉)",
+    "Capacity": "2L",
+    "Working Frequency": "40KHz",
+    "Ultrasonic Power": "70W",
+    "Heating Power": "100W",
+    "Timing time Inner Tank Dimension 150x135x100mm / 5.91x5.31x3.93\" Packing Size 242x227x275mm / 9.52x8.93x10.83\"": "10~600s"
+   }
+  },
+  "SH-WB-5UC": {
+   "model": "SH-WB-5UC",
+   "section": "16. Water Bath & Chiller",
+   "title": "Power Adjustable Ultrasonic Cleaner",
+   "page": 79,
+   "specs": {
+    "Temperature range": "Ambient + 5℃~80℃(41~176℉)",
+    "Capacity": "5L",
+    "Working Frequency": "40KHz",
+    "Ultrasonic Power": "120W",
+    "Degas Function": "YES",
+    "Heating Power": "200W",
+    "Timing time": "1~99mins",
+    "Power Regulation": "0~100%",
+    "Inner Tank Dimension 240x135x150mm": "9.45x5.31x5.91\"",
+    "Packing Size": "342x240x355mm 412x357x380mm 472x437x470mm / 657x450x475mm / 13.46x9.45x13.98\" 16.22x14.06x14.96\" 18.58x17.20x18.50\" 25.87x17.72x18.70\""
+   }
+  },
+  "SH-WB-11UC": {
+   "model": "SH-WB-11UC",
+   "section": "16. Water Bath & Chiller",
+   "title": "Power Adjustable Ultrasonic Cleaner",
+   "page": 79,
+   "specs": {
+    "Temperature range": "Ambient + 5℃~80℃(41~176℉)",
+    "Capacity": "11L",
+    "Working Frequency": "40KHz",
+    "Ultrasonic Power": "240W",
+    "Degas Function": "YES",
+    "Heating Power": "300W",
+    "Timing time": "1~99mins",
+    "Power Regulation": "0~100%",
+    "Inner Tank Dimension 240x135x150mm": "300x240x150mm / 11.81x9.45x5.91\"",
+    "Packing Size": "342x240x355mm 412x357x380mm 472x437x470mm / 657x450x475mm / 13.46x9.45x13.98\" 16.22x14.06x14.96\" 18.58x17.20x18.50\" 25.87x17.72x18.70\""
+   }
+  },
+  "SH-WB-20UC": {
+   "model": "SH-WB-20UC",
+   "section": "16. Water Bath & Chiller",
+   "title": "Power Adjustable Ultrasonic Cleaner",
+   "page": 79,
+   "specs": {
+    "Temperature range": "Ambient + 5℃~80℃(41~176℉)",
+    "Capacity": "20L",
+    "Working Frequency": "40KHz",
+    "Ultrasonic Power": "360W",
+    "Degas Function": "YES",
+    "Heating Power": "400W",
+    "Timing time": "1~99mins",
+    "Power Regulation": "0~100%",
+    "Inner Tank Dimension 240x135x150mm": "330x300x200mm / 500x300x200mm / 12.99x11.81x7.87\" 19.69x11.81x7.87\"",
+    "Packing Size": "342x240x355mm 412x357x380mm 472x437x470mm / 657x450x475mm / 13.46x9.45x13.98\" 16.22x14.06x14.96\" 18.58x17.20x18.50\" 25.87x17.72x18.70\""
+   }
+  },
+  "SH-WB-30UC": {
+   "model": "SH-WB-30UC",
+   "section": "16. Water Bath & Chiller",
+   "title": "Power Adjustable Ultrasonic Cleaner",
+   "page": 79,
+   "specs": {
+    "Temperature range": "Ambient + 5℃~80℃(41~176℉)",
+    "Capacity": "30L",
+    "Working Frequency": "40KHz",
+    "Ultrasonic Power": "600W",
+    "Degas Function": "YES",
+    "Heating Power": "600W",
+    "Timing time": "1~99mins",
+    "Power Regulation": "0~100%",
+    "Packing Size": "342x240x355mm 412x357x380mm 472x437x470mm / 657x450x475mm / 13.46x9.45x13.98\" 16.22x14.06x14.96\" 18.58x17.20x18.50\" 25.87x17.72x18.70\""
+   }
+  },
+  "WB-02": {
+   "model": "WB-02",
+   "section": "16. Water Bath & Chiller",
+   "title": "Mini Water Bath",
+   "page": 79,
+   "specs": {
+    "Temp. Range": "Ambient +5°C~95°C",
+    "Max.Capacity Dimension External 262x143x96mm / 10.31x5.63x3.78\"": "240ml"
+   }
+  },
+  "DB-02": {
+   "model": "DB-02",
+   "section": "16. Water Bath & Chiller",
+   "title": "Digital Dry Bath",
+   "page": 79,
+   "specs": {
+    "Temp. Range": "Ambient +5°C~120°C",
+    "No.of block Dimension External 262X143X96mm / 10.31x5.63x3.78\"": "1"
+   }
+  },
+  "SH-BL200": {
+   "model": "SH-BL200",
+   "section": "17. Measuring Instrument",
+   "title": "SH Precision Balances",
+   "page": 82,
+   "specs": {
+    "Repeatability": "0.0001 g",
+    "Liner": "±0.0003 g",
+    "Pan Size": "Φ 80mm",
+    "Dimension": "300x200x295mm",
+    "Case": "ABS Shell",
+    "Display": "LCD / WA RRAN"
+   }
+  },
+  "SH-BL220S": {
+   "model": "SH-BL220S",
+   "section": "17. Measuring Instrument",
+   "title": "SH Precision Balances",
+   "page": 82,
+   "specs": {
+    "Capacity": "220 g",
+    "Dimension": "340x215x350mm",
+    "Case": "Aluminum Shell",
+    "Display": "5 Inch touch screen / WA RRAN"
+   }
+  },
+  "SH-BL310": {
+   "model": "SH-BL310",
+   "section": "17. Measuring Instrument",
+   "title": "SH Precision Balances",
+   "page": 82,
+   "specs": {
+    "Capacity": "310 g",
+    "Repeatability": "0.001 g(1 mg)",
+    "Liner": "±0.003 g",
+    "Pan Size": "Φ 90mm",
+    "Dimension": "270x200x270mm",
+    "Case": "ABS Shell",
+    "Display": "LCD / WA RRAN"
+   }
+  },
+  "SH-BL610": {
+   "model": "SH-BL610",
+   "section": "17. Measuring Instrument",
+   "title": "SH Precision Balances",
+   "page": 82,
+   "specs": {
+    "Capacity": "610 g",
+    "Repeatability": "0.01 g",
+    "Liner": "±0.03 g",
+    "Pan Size": "Φ 130 mm",
+    "Dimension": "230x190x70mm",
+    "Case": "ABS Shell",
+    "Display": "LCD / WA RRAN"
+   }
+  },
+  "SH-MA110E": {
+   "model": "SH-MA110E",
+   "section": "17. Measuring Instrument",
+   "title": "SH Moisture Balance",
+   "page": 82,
+   "specs": {
+    "Capacity": "110 g",
+    "Readability": "0.001 g",
+    "Sensor": "Common Load Cell",
+    "Max temp": "160℃",
+    "Display": "5 Inch touch screen",
+    "Heating Space": "30mm",
+    "Step Heating": "NA",
+    "Networking Rapid Reduce Temperature": "NA / NA",
+    "Case": "ABS"
+   }
+  },
+  "SH-MA110C": {
+   "model": "SH-MA110C",
+   "section": "17. Measuring Instrument",
+   "title": "17. Measuring Instrument",
+   "page": 82,
+   "specs": {
+    "Capacity": "110 g",
+    "Readability": "0.001g",
+    "Sensor": "HBM Load Cell",
+    "Max temp": "199℃",
+    "Display": "LCD",
+    "Heating Space": "22mm",
+    "Step Heating": "NA",
+    "Networking Rapid Reduce Temperature": "NA / NA",
+    "Case": "Aluminum"
+   }
+  },
+  "SH-MA110S": {
+   "model": "SH-MA110S",
+   "section": "17. Measuring Instrument",
+   "title": "17. Measuring Instrument",
+   "page": 82,
+   "specs": {
+    "Capacity": "110 g",
+    "Readability": "0.0001 g",
+    "Sensor": "Magnetic Sensor",
+    "Max temp": "230℃",
+    "Display": "7 Inch touch panel",
+    "Heating Space": "35mm",
+    "Step Heating": "YES",
+    "Networking Rapid Reduce Temperature": "YES / YES",
+    "Case": "Aluminum"
+   }
+  },
+  "SH-CH-150U1": {
+   "model": "SH-CH-150U1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-25℃ ~ 120℃",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-25℃ ~ 120℃(-13℉~248℉)",
+    "Dimension Internal": "500x500x600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "920x995x1555mm / 36.22x39.17x61.22\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-CH-288U1": {
+   "model": "SH-CH-288U1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-25℃ ~ 120℃",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-25℃ ~ 120℃(-13℉~248℉)",
+    "Dimension Internal": "600x600x800mm / 23.62x23.62x31.50\"",
+    "Dimension External": "1020x1095x1755mm / 40.15x43.11x69.09\"",
+    "Capa": "288 L"
+   }
+  },
+  "SH-CH-408U1": {
+   "model": "SH-CH-408U1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-25℃ ~ 120℃",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-25℃ ~ 120℃(-13℉~248℉)",
+    "Dimension Internal": "850x600x800mm / 33.46x23.62x31.50\"",
+    "Dimension External": "1270x1095x1805mm / 50 .00x43.11x71.06\"",
+    "Capa": "408 L"
+   }
+  },
+  "SH-CH-800U1": {
+   "model": "SH-CH-800U1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-25℃ ~ 120℃(-13℉~248℉)",
+    "Dimension Internal": "1000x800x1000mm / 39.37x31.50x39.37\"",
+    "Dimension External": "1520x1325x2100mm / 59.84x52.16x82.67\"",
+    "Capa": "800 L"
+   }
+  },
+  "SH-CH-1200U1": {
+   "model": "SH-CH-1200U1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-25℃ ~ 120℃(-13℉~248℉)",
+    "Dimension Internal": "1200x1000x1000mm / 47.24x39.37x39.37\"",
+    "Dimension External": "1790x1525x2100mm / 70.47x60.03x82.67\"",
+    "Capa": "1200 L"
+   }
+  },
+  "SH-CH-150U2": {
+   "model": "SH-CH-150U2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-50℃ ~ 120℃",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-50℃ ~ 120℃(-58℉~248℉)",
+    "Dimension Internal": "500x500x600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "920x995x1555mm / 36.22x39.17x61.22\"",
+    "Capa": "150 L"
+   }
+  },
+  "SH-CH-288U2": {
+   "model": "SH-CH-288U2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-50℃ ~ 120℃",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-50℃ ~ 120℃(-58℉~248℉)",
+    "Dimension Internal": "600x600x800mm / 23.62x23.62x31.50\"",
+    "Dimension External": "1020x1095x1755mm / 40.15x43.11x69.09\"",
+    "Capa": "288 L"
+   }
+  },
+  "SH-CH-408U2": {
+   "model": "SH-CH-408U2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-50℃ ~ 120℃",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-50℃ ~ 120℃(-58℉~248℉)",
+    "Dimension Internal": "850x600x800mm / 33.46x23.62x31.50\"",
+    "Dimension External": "1270x1095x1805mm / 50.00x43.11x71.06\"",
+    "Capa": "408 L"
+   }
+  },
+  "SH-CH-800U2": {
+   "model": "SH-CH-800U2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-50℃ ~ 120℃(-58℉~248℉)",
+    "Dimension Internal": "1000x800x1000mm / 39.37x31.50x39.37\"",
+    "Dimension External": "1520x1325x2100mm / 59.84x52.16x82.67\"",
+    "Capa": "800 L"
+   }
+  },
+  "SH-CH-1200U2": {
+   "model": "SH-CH-1200U2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 84,
+   "specs": {
+    "Temp Range": "-50℃ ~ 120℃(-58℉~248℉)",
+    "Dimension Internal": "1200x1000x1000mm / 47.24x39.37x39.37\"",
+    "Dimension External": "1790x1525x2100mm / 70.47x60.03x82.67\"",
+    "Capa": "1200 L"
+   }
+  },
+  "SH-CTH-150SC": {
+   "model": "SH-CTH-150SC",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "15℃ ~ 120℃",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "15℃ ~ 120℃(59℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃(68℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃(176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃(185℉~194℉)",
+    "Dimension Internal": "500x500x600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "950x995x1595mm / 37.40x39.17x62.79\""
+   }
+  },
+  "SH-CTH-288SC": {
+   "model": "SH-CTH-288SC",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "15℃ ~ 120℃",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "15℃ ~ 120℃(59℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃(68℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃(176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃(185℉~194℉)",
+    "Dimension Internal": "600x600x800mm / 23.62x23.62x31.50\"",
+    "Dimension External": "1050x1095x1795mm / 41.22x43.11x70.66\""
+   }
+  },
+  "SH-CTH-408SC": {
+   "model": "SH-CTH-408SC",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "15℃ ~ 120℃",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "15℃ ~ 120℃(59℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃(68℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃(176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃(185℉~194℉)",
+    "Dimension Internal": "850x600x800mm / 33.46x23.62x31.50\"",
+    "Dimension External": "1300x1095x1845mm / 51.18x43.11x72.63\""
+   }
+  },
+  "SH-CTH-800SC": {
+   "model": "SH-CTH-800SC",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "15℃ ~ 120℃ (59℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃(68℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃(176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃(185℉~194℉)",
+    "Dimension Internal": "1000x800x1000mm / 39.37x31.50x39.37\"",
+    "Dimension External": "1615x1325x2100mm / 63.58x52.16x82.67\""
+   }
+  },
+  "SH-CTH-1200SC": {
+   "model": "SH-CTH-1200SC",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "15℃ ~ 120℃ (59℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃(68℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃(176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃(185℉~194℉)",
+    "Dimension Internal": "1200x1000x1000mm / 47.24x39.37x39.37\"",
+    "Dimension External": "1790x1525x2100mm / 70.47x60.03x82.67\""
+   }
+  },
+  "SH-CTH-150SCR1": {
+   "model": "SH-CTH-150SCR1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-25℃ ~ 120℃",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "-25℃ ~ 120℃ (-13℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "500x500x600mm / 19.69x19.69x23.62\"",
+    "Dimension External": "950x995x1595mm / 37.40x39.17x62.79\""
+   }
+  },
+  "SH-CTH-288SCR1": {
+   "model": "SH-CTH-288SCR1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-25℃ ~ 120℃",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "-25℃ ~ 120℃ (-13℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "600x600x800mm / 23.62x23.62x31.50\"",
+    "Dimension External": "1050x1095x1795mm / 41.22x43.11x70.66\""
+   }
+  },
+  "SH-CTH-408SCR1": {
+   "model": "SH-CTH-408SCR1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-25℃ ~ 120℃",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "-25℃ ~ 120℃ (-13℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "850x600x800mm / 33.46x23.62x31.50\"",
+    "Dimension External": "1300x1095x1845mm / 51.18x43.11x72.63\""
+   }
+  },
+  "SH-CTH-800SCR1": {
+   "model": "SH-CTH-800SCR1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "-25℃ ~ 120℃ (-13℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "1000x800x1000mm / 39.37x31.50x39.37\"",
+    "Dimension External": "1620x1445x2100mm / 63.78x56.89x82.67\""
+   }
+  },
+  "SH-CTH-1200SCR1": {
+   "model": "SH-CTH-1200SCR1",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 85,
+   "specs": {
+    "Temp Range Humi Range": "-25℃ ~ 120℃ (-13℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "1200x1000x1000mm / 47.24x39.37x39.37\"",
+    "Dimension External": "1820x1645x2100mm / 71.65x64.76x82.67\""
+   }
+  },
+  "SH-CTH-150SCR2": {
+   "model": "SH-CTH-150SCR2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-50℃ ~ 120℃",
+   "page": 86,
+   "specs": {
+    "Temp Range Humi Range": "-50℃ ~ 120℃ (-58℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "500x500x600mm / 19.69x19.69x23.62''",
+    "Dimension External": "950x995x1595mm / 37.40x39.17x62.79''"
+   }
+  },
+  "SH-CTH-288SCR2": {
+   "model": "SH-CTH-288SCR2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-50℃ ~ 120℃",
+   "page": 86,
+   "specs": {
+    "Temp Range Humi Range": "-50℃ ~ 120℃ (-58℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "600x600x800mm / 23.62x23.62x31.50''",
+    "Dimension External": "1050x1095x1795mm / 41.22x43.11x70.66''"
+   }
+  },
+  "SH-CTH-408SCR2": {
+   "model": "SH-CTH-408SCR2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "-50℃ ~ 120℃",
+   "page": 86,
+   "specs": {
+    "Temp Range Humi Range": "-50℃ ~ 120℃ (-58℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "850x600x800mm / 33.46x23.62x31.50''",
+    "Dimension External": "1300x1095x1845mm / 51.18x43.11x72.63''"
+   }
+  },
+  "SH-CTH-800SCR2": {
+   "model": "SH-CTH-800SCR2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 86,
+   "specs": {
+    "Temp Range Humi Range": "-50℃ ~ 120℃ (-58℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "1000x800x1000mm / 39.37x31.50x39.37''",
+    "Dimension External": "1620x1445x2100mm / 63.78x56.89x82.67''"
+   }
+  },
+  "SH-CTH-1200SCR2": {
+   "model": "SH-CTH-1200SCR2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 86,
+   "specs": {
+    "Temp Range Humi Range": "-50℃ ~ 120℃ (-58℉~248℉) / 50% ~ 98% at Temp 20℃ ~ 35℃ (68℉~95℉) / 30% ~ 98% at Temp 35℃ ~ 80℃ (95℉~176℉) / 25% ~ 90% at Temp 80℃ ~ 85℃ (176℉~185℉) / 20% ~ 80% at Temp 85℃ ~ 90℃ (185℉~194℉)",
+    "Dimension Internal": "1200x1000x1000mm / 47.24x39.37x39.37''",
+    "Dimension External": "1820x1645x2100mm / 71.65x64.76x82.67''"
+   }
+  },
+  "SH-TST27-2": {
+   "model": "SH-TST27-2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "Thermal Shock Tester (-50℃ to 180℃)",
+   "page": 86,
+   "specs": {
+    "Type": "Air to Air 2-Zone (Elevating type)",
+    "Dimension Internal": "300x300x300(mm) / 11.8x11.8x11.8''",
+    "Dimension External": "1130x1800x1845(mm) / 44.4x70.8x72.6''",
+    "Volume of chamber Range": "27 L / -50 ℃ ~ 180℃ / (Cycle range -40 ℃ ~ 150℃, Variation : 5 min.)"
+   }
+  },
+  "SH-TST64-2": {
+   "model": "SH-TST64-2",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "Thermal Shock Tester (-50℃ to 180℃)",
+   "page": 86,
+   "specs": {
+    "Type": "Air to Air 2-Zone (Elevating type)",
+    "Dimension Internal": "400x400x400(mm) / 15.7x15.7x15.7''",
+    "Dimension External": "1230x1900x2045(mm) / 48.4x74.8x80.5''",
+    "Volume of chamber Range": "62 L / -50 ℃ ~ 180℃ / (Cycle range -40 ℃ ~ 150℃, Variation : 5 min.)"
+   }
+  },
+  "SH-TST27-3": {
+   "model": "SH-TST27-3",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 86,
+   "specs": {
+    "Type": "Air to Air 3-Zone (Air substitution type)",
+    "Dimension Internal": "300x300x300(mm) / 11.8x11.8x11.8''",
+    "Dimension External": "1130x1800x1820mm / 44.4x 0.8x71.6''",
+    "Volume of chamber Range": "27 L / -50 ℃ ~ 180℃ / (Cycle range -40 ℃ ~ 150℃, Variation : 5 min.)"
+   }
+  },
+  "SH-TST64-3": {
+   "model": "SH-TST64-3",
+   "section": "18. Climate Chamber & 배터리 시험챔버",
+   "title": "18. Climate Chamber & 배터리 시험챔버",
+   "page": 86,
+   "specs": {
+    "Type": "Air to Air 3-Zone (Air substitution type)",
+    "Dimension Internal": "400x400x400mm / 15.7 x 15.7 x 15.7''",
+    "Dimension External": "1230x1900x2020mm / 48.4 x 74.8 x 79.5''",
+    "Volume of chamber Range": "62 L / -50 ℃ ~ 180℃ / (Cycle range -40 ℃ ~ 150℃, Variation : 5 min.)"
+   }
+  },
+  "SH-DS-3T": {
+   "model": "SH-DS-3T",
+   "section": "19. Desiccator",
+   "title": "Desiccator",
+   "page": 87,
+   "specs": {
+    "Dimension Internal": "270x300x400mm / 10.63x11.81x15.75\"",
+    "Dimension External": "320x330x480mm / 12.60x12.99x18.90\"",
+    "Body": "PMMA",
+    "Frame Material": "ABS",
+    "Shelve": "ABS",
+    "Caster": "N/A",
+    "Temp / Humi gauge": "Digital built in",
+    "Dehumidifier Component Shelves": "built in / 3 EA, 270x300mm / 10.63x11.81''"
+   }
+  },
+  "SH-DS-10": {
+   "model": "SH-DS-10",
+   "section": "19. Desiccator",
+   "title": "19. Desiccator",
+   "page": 87,
+   "specs": {
+    "Dimension Internal": "560x483x731mm / 22.05x19.02x28.78\"",
+    "Dimension External": "574x535x765mm / 22.60x20.87x30.12\" / Essential",
+    "Body": "PMMA",
+    "Frame": "AL",
+    "Material": "Optional",
+    "Shelve": "SUS / valve 2EA / Silca tray",
+    "Caster": "N/A",
+    "Temp / Humi gauge": "Digital built in",
+    "Component": "Dehumidifier Option / 2 EA, 460x490mm",
+    "Shelves": "Gas flowmeter / Dehumidifier / 18.11x19.29\" / *제습기가 주문되지 않은 경우 Silca Tray가 제공됩니다."
+   }
+  },
+  "SH-DS-12": {
+   "model": "SH-DS-12",
+   "section": "19. Desiccator",
+   "title": "19. Desiccator",
+   "page": 87,
+   "specs": {
+    "Dimension Internal": "560x483x986mm / 22.05x19.02x38.82\"",
+    "Dimension External": "574x535x1090mm / 22.60x20.87x42.91\"",
+    "Body": "PMMA",
+    "Frame Material": "AL / Optional",
+    "Shelve": "SUS / Silca tray / Optional",
+    "Caster": "N/A",
+    "Temp / Humi gauge": "Digital built in",
+    "Component Shelves": "Dehumidifier Option / 4 EA, 460x490(mm) / 18.11x19.29\" / *제습기가 주문되지 않은 경우 Silca Tray가 제공됩니다."
+   }
+  },
+  "SH-DS-20": {
+   "model": "SH-DS-20",
+   "section": "19. Desiccator",
+   "title": "19. Desiccator",
+   "page": 87,
+   "specs": {
+    "Dimension Internal": "560x483x1486mm / 22.05x19.02x58.50\"",
+    "Dimension External": "574x535x1770mm / 22.60x20.87x69.69\" / Essential",
+    "Body": "PMMA",
+    "Frame Material": "AL",
+    "Shelve": "SUS",
+    "Caster": "PA",
+    "Temp / Humi gauge": "Digital built in",
+    "Dehumidifier Component": "Option / 4 EA, 460x490mm",
+    "Shelves": "Gas flowmeter / 18.11x19.29\""
+   }
+  },
+  "SH-DS-40": {
+   "model": "SH-DS-40",
+   "section": "20. Hood",
+   "title": "20. Hood",
+   "page": 88,
+   "specs": {
+    "Dimension Internal": "1138x483x1486mm / 44.80x19.02x58.50'' / Basic composition",
+    "Dimension External": "1164x535x1770mm / 45.83x20.87x69.69''",
+    "Body": "PMMA",
+    "Frame Material": "AL",
+    "Shelve": "SUS",
+    "Caster": "PA",
+    "Temp / Humi gauge": "Digital built in / Dehumidifier / Gas flowmeter",
+    "Component": "Dehumidifier Option",
+    "Shelves": "8 EA, 460x490(mm)"
+   }
+  },
+  "SH-VDS-12": {
+   "model": "SH-VDS-12",
+   "section": "20. Hood",
+   "title": "Vacuum Desiccator",
+   "page": 88,
+   "specs": {
+    "Dimension Internal": "260x180x260mm / 10.23x7.09x10.24''",
+    "Material": "Body",
+    "Valves": "8MM VALVE 2EA",
+    "Component": "Gauge",
+    "Dehumidifier": "Silica tray",
+    "Shelves": "2 EA"
+   }
+  },
+  "SH-VDS-19": {
+   "model": "SH-VDS-19",
+   "section": "20. Hood",
+   "title": "Vacuum Desiccator",
+   "page": 88,
+   "specs": {
+    "Dimension Internal": "260x200x360mm / 10.24x7.87x14.17''",
+    "Material": "PMMA",
+    "Valves": "8MM VALVE 2EA",
+    "Component": "Vacuum gauge",
+    "Dehumidifier": "Silica tray",
+    "Shelves": "3 EA"
+   }
+  },
+  "SH-VDS-36": {
+   "model": "SH-VDS-36",
+   "section": "20. Hood",
+   "title": "Vacuum Desiccator",
+   "page": 88,
+   "specs": {
+    "Dimension Internal": "260x300x460mm / 10.24x11.81x18.11''",
+    "Valves": "8MM VALVE 2EA",
+    "Dehumidifier": "Silica tray",
+    "Shelves": "4 EA"
+   }
+  },
+  "SH-VDS-29": {
+   "model": "SH-VDS-29",
+   "section": "20. Hood",
+   "title": "20. Hood",
+   "page": 88,
+   "specs": {
+    "Dimension Internal": "260x280x410mm / 10.24x11.02x16.14''",
+    "Material": "Body",
+    "Valves": "8MM VALVE 2EA",
+    "Component": "Gauge Vacuum gauge",
+    "Dehumidifier": "Silica tray",
+    "Shelves": "4 EA"
+   }
+  },
+  "SH-VDS-43": {
+   "model": "SH-VDS-43",
+   "section": "20. Hood",
+   "title": "20. Hood",
+   "page": 88,
+   "specs": {
+    "Dimension Internal": "300x280x510mm / 11.81x11.02x20.18''",
+    "Material": "PMMA",
+    "Valves": "8MM VALVE 2EA",
+    "Dehumidifier": "Silica tray",
+    "Shelves": "5 EA"
+   }
+  },
+  "SH-HD-1800UP": {
+   "model": "SH-HD-1800UP",
+   "section": "20. Hood",
+   "title": "Fume Hood",
+   "page": 88,
+   "specs": {
+    "Type": "Fume Hood Type",
+    "Dimension External": "1800x800x2350mm / 70.87x31.50x92.52''",
+    "Dimension Internal": "1624x676x1160mm / 63.93x26.64x45.67''"
+   }
+  },
+  "SH-HD-MUP": {
+   "model": "SH-HD-MUP",
+   "section": "20. Hood",
+   "title": "20. Hood",
+   "page": 89,
+   "specs": {
+    "Power": "200W",
+    "Air volume": "330㎥/h",
+    "Noise": "≤63dB(A)",
+    "Filtration 265x405x550mm Size(WxDxH) 10.43x15.94x21.65\"": "0.3㎛ 99.7%",
+    "Size of flange & Cover": "Ø75mm / Ø260mm",
+    "Filter Change Alarm": "Yes"
+   }
+  },
+  "SH-HD-700UP": {
+   "model": "SH-HD-700UP",
+   "section": "20. Hood",
+   "title": "Table Top Fume Hood",
+   "page": 89,
+   "specs": {
+    "Type": "Table Top Ducted Fume Hood Type",
+    "Dimension External": "700x620x1150mm / 27.6x24.4x45.3''",
+    "Dimension Internal": "640x550x700mm / 25.2x21.7 x27.6''"
+   }
+  },
+  "SH-HDPP-1200UP": {
+   "model": "SH-HDPP-1200UP",
+   "section": "20. Hood",
+   "title": "PP Fume Hood",
+   "page": 89,
+   "specs": {
+    "Type": "Ducted PP Fume Hood Type",
+    "Dimension External": "1240x800x2200mm / 48.8x31.5x86.6",
+    "Dimension Internal": "1020x570x872mm / 40.2x22.4x34.3''"
+   }
+  },
+  "SH-HDPP-1500UP": {
+   "model": "SH-HDPP-1500UP",
+   "section": "20. Hood",
+   "title": "PP Fume Hood",
+   "page": 89,
+   "specs": {
+    "Type": "Ducted PP Fume Hood Type",
+    "Dimension External": "1540x800x2200mm / 60.6x31.5x86.6''",
+    "Dimension Internal": "1320x570x872mm / 52.0x22.4x34.3''"
+   }
+  },
+  "SH-HDPP-1800UP": {
+   "model": "SH-HDPP-1800UP",
+   "section": "20. Hood",
+   "title": "PP Fume Hood",
+   "page": 89,
+   "specs": {
+    "Type": "Ducted PP Fume Hood Type",
+    "Dimension External": "1840x800x2200mm / 72.4x31.5x86.6''",
+    "Dimension Internal": "1620x570x872mm / 63.8x22.4x34.3''"
+   }
+  }
+ }
+}

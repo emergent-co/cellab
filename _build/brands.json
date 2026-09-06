@@ -833,10 +833,32 @@
     "Chrome 은 한 번에 여러 파일을 내려받으면 두 번째를 막는다 — 다운로드는 한 번에 하나씩.",
     "원본 사진이 790x507(3:2)이라 1200x900(4:3) 캔버스에 모서리 평균색 배경으로 얹어 정규화한다(피팅·튜빙은 배경이 파랑이라 흰색으로 채우면 어색하다).",
     "프리토크 피팅 토크 단위가 제조사 표기 'N/m' — 토크 단위 N·m 로 옮기고 variants.note 에 명시했다.",
-    "빌드 REQ_SPEC 린터는 <th> 를 24자까지만 읽는다 — required_specs 로 쓸 라벨은 영문 병기를 포함해 24자 이하로, 마침표·하이픈 없이 적는다."
+    "빌드 REQ_SPEC 린터는 <th> 를 24자까지만 읽는다 — required_specs 로 쓸 라벨은 영문 병기를 포함해 24자 이하로, 마침표·하이픈 없이 적는다.",
+    "families 매칭은 슬러그 부분일치라 순서가 중요하다 — 'adapter'/'tooling' 이 fitting 으로 잡히므로 accessory 를 정확 슬러그 목록으로 맨 앞에 둔다."
    ],
    "default_required_specs": [],
    "families": {
+    "accessory": {
+     "match": [
+      "expansion-module",
+      "db15-rs485-communication-cable",
+      "analog-signal-control-module",
+      "isolated-rs485-repeater",
+      "serial-usb-30-to-rs232-rs485-adapter",
+      "rs232-ttl-10-voltage-level-translator-shifter",
+      "lw-10-surge-protector",
+      "power-adapter",
+      "runze-pipe-cutter",
+      "plain-washer",
+      "hand-screwed-tooling-for-flangeless-fittings",
+      "torque-tooling-three-piece-union",
+      "fluid-pressure-test-kit",
+      "gastight-syringe",
+      "ps10-cross-contamination-free-fluid-management-system",
+      "three-way-solenoid-valve"
+     ],
+     "required_specs": []
+    },
     "valve": {
      "match": [
       "selector-valve",
@@ -871,7 +893,17 @@
       "connector",
       "union",
       "ferrule",
-      "clamp"
+      "clamp",
+      "joint",
+      "tubing-set",
+      "plug",
+      "bulkhead",
+      "luer",
+      "barb",
+      "three-piece",
+      "quick-connect",
+      "flangeless",
+      "flanged"
      ],
      "required_specs": [
       "나사 규격 (Thread)",
@@ -882,13 +914,12 @@
      "match": [
       "tube",
       "tubing",
-      "hose"
+      "hose",
+      "capillary"
      ],
      "required_specs": [
       "재질 (Material)",
-      "사용 온도 (Temperature)",
-      "내경 범위 (Inner diameter)",
-      "외경 범위 (Outer diameter)"
+      "사용 온도 (Temperature)"
      ]
     }
    },

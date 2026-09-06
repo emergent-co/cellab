@@ -37,8 +37,12 @@ CSS = ('\n/* 오른쪽 구매창 — 본문 밖 여백에 붙는 sticky 레일 *
        '.dt-info .dt-buy{margin:16px 0 0;max-width:420px}\n') % (BP, RAIL)
 
 def disc(p):
-    """정가 대비 3% 이상 상시 할인 — 만원 미만 버림 (build.py 와 같은 식)"""
-    return int(p * 0.97) // 10000 * 10000
+    """정가 대비 3% 할인 (build.py 와 같은 식).
+
+    2026-09-05: «만원 미만 버림» 을 뺐다. 삼흥 매입가가 정가의 95% 안팎이라
+    3% 위에 만원까지 더 깎으면 마진이 사라진다 — 실제로 10개 품목이 원가 이하로 내려갔다
+    (SH-dVP10 매입 351,500 · 표시가 350,000). 이제 3% 만 적용한다."""
+    return int(p * 0.97)
 
 def rows_leadfluid(t):
     """table.price-tbl — <td>모델</td> … <td class="krw">가격원</td>"""

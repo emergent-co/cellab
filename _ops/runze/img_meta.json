@@ -1,0 +1,1649 @@
+{
+ "selector-valve-sv-04b": {
+  "gal": [
+   "selector-valve-sv-04b-1.jpg",
+   "selector-valve-sv-04b-2.jpg",
+   "selector-valve-sv-04b-3.jpg"
+  ],
+  "det": [
+   "selector-valve-sv-04b-d1.jpg",
+   "selector-valve-sv-04b-d2.jpg",
+   "selector-valve-sv-04b-d3.jpg",
+   "selector-valve-sv-04b-d4.jpg"
+  ]
+ },
+ "selector-valve-sv-07b": {
+  "gal": [
+   "selector-valve-sv-07b-1.jpg",
+   "selector-valve-sv-07b-2.jpg",
+   "selector-valve-sv-07b-3.jpg",
+   "selector-valve-sv-07b-4.jpg"
+  ],
+  "det": [
+   "selector-valve-sv-07b-d1.jpg",
+   "selector-valve-sv-07b-d2.jpg",
+   "selector-valve-sv-07b-d3.jpg",
+   "selector-valve-sv-07b-d4.jpg"
+  ]
+ },
+ "selector-valve-sv07m": {
+  "gal": [
+   "selector-valve-sv07m-1.jpg",
+   "selector-valve-sv07m-2.jpg",
+   "selector-valve-sv07m-3.jpg",
+   "selector-valve-sv07m-4.jpg",
+   "selector-valve-sv07m-5.jpg",
+   "selector-valve-sv07m-6.jpg",
+   "selector-valve-sv07m-7.jpg",
+   "selector-valve-sv07m-8.jpg"
+  ],
+  "det": []
+ },
+ "multiport-selector-valve": {
+  "gal": [
+   "multiport-selector-valve-1.jpg",
+   "multiport-selector-valve-2.jpg",
+   "multiport-selector-valve-3.jpg",
+   "multiport-selector-valve-4.jpg"
+  ],
+  "det": [
+   "multiport-selector-valve-d1.jpg",
+   "multiport-selector-valve-d2.jpg",
+   "multiport-selector-valve-d3.jpg",
+   "multiport-selector-valve-d4.jpg"
+  ]
+ },
+ "multi-channel-selector-valves": {
+  "gal": [
+   "multi-channel-selector-valves-1.jpg",
+   "multi-channel-selector-valves-2.jpg",
+   "multi-channel-selector-valves-3.jpg",
+   "multi-channel-selector-valves-4.jpg",
+   "multi-channel-selector-valves-5.jpg",
+   "multi-channel-selector-valves-6.jpg",
+   "multi-channel-selector-valves-7.jpg",
+   "multi-channel-selector-valves-8.jpg"
+  ],
+  "det": [
+   "multi-channel-selector-valves-d1.jpg",
+   "multi-channel-selector-valves-d2.jpg",
+   "multi-channel-selector-valves-d3.jpg",
+   "multi-channel-selector-valves-d4.jpg",
+   "multi-channel-selector-valves-d5.jpg",
+   "multi-channel-selector-valves-d6.jpg",
+   "multi-channel-selector-valves-d7.jpg",
+   "multi-channel-selector-valves-d8.jpg",
+   "multi-channel-selector-valves-d9.jpg",
+   "multi-channel-selector-valves-d10.jpg",
+   "multi-channel-selector-valves-d11.jpg"
+  ]
+ },
+ "two-position-switching-valve": {
+  "gal": [
+   "two-position-switching-valve-1.jpg",
+   "two-position-switching-valve-2.jpg",
+   "two-position-switching-valve-3.jpg"
+  ],
+  "det": [
+   "two-position-switching-valve-d1.jpg",
+   "two-position-switching-valve-d2.jpg",
+   "two-position-switching-valve-d3.jpg",
+   "two-position-switching-valve-d4.jpg"
+  ]
+ },
+ "3-way-switching-valve": {
+  "gal": [
+   "3-way-switching-valve-1.jpg",
+   "3-way-switching-valve-2.jpg",
+   "3-way-switching-valve-3.jpg",
+   "3-way-switching-valve-4.jpg",
+   "3-way-switching-valve-5.jpg",
+   "3-way-switching-valve-6.jpg"
+  ],
+  "det": [
+   "3-way-switching-valve-d1.jpg",
+   "3-way-switching-valve-d2.jpg",
+   "3-way-switching-valve-d3.jpg",
+   "3-way-switching-valve-d4.jpg",
+   "3-way-switching-valve-d5.jpg",
+   "3-way-switching-valve-d6.jpg",
+   "3-way-switching-valve-d7.jpg",
+   "3-way-switching-valve-d8.jpg",
+   "3-way-switching-valve-d9.jpg",
+   "3-way-switching-valve-d10.jpg",
+   "3-way-switching-valve-d11.jpg",
+   "3-way-switching-valve-d12.jpg",
+   "3-way-switching-valve-d13.jpg",
+   "3-way-switching-valve-d14.jpg",
+   "3-way-switching-valve-d15.jpg",
+   "3-way-switching-valve-d16.jpg",
+   "3-way-switching-valve-d17.jpg"
+  ]
+ },
+ "mrv-01bm-high-pressure-valve": {
+  "gal": [
+   "mrv-01bm-high-pressure-valve-1.jpg",
+   "mrv-01bm-high-pressure-valve-2.jpg",
+   "mrv-01bm-high-pressure-valve-3.jpg",
+   "mrv-01bm-high-pressure-valve-4.jpg",
+   "mrv-01bm-high-pressure-valve-5.jpg",
+   "mrv-01bm-high-pressure-valve-6.jpg",
+   "mrv-01bm-high-pressure-valve-7.jpg",
+   "mrv-01bm-high-pressure-valve-8.jpg"
+  ],
+  "det": [
+   "mrv-01bm-high-pressure-valve-d1.jpg",
+   "mrv-01bm-high-pressure-valve-d2.jpg",
+   "mrv-01bm-high-pressure-valve-d3.jpg",
+   "mrv-01bm-high-pressure-valve-d4.jpg",
+   "mrv-01bm-high-pressure-valve-d5.jpg",
+   "mrv-01bm-high-pressure-valve-d6.jpg",
+   "mrv-01bm-high-pressure-valve-d7.jpg",
+   "mrv-01bm-high-pressure-valve-d8.jpg",
+   "mrv-01bm-high-pressure-valve-d9.jpg",
+   "mrv-01bm-high-pressure-valve-d10.jpg",
+   "mrv-01bm-high-pressure-valve-d11.jpg",
+   "mrv-01bm-high-pressure-valve-d12.jpg"
+  ]
+ },
+ "ceramic-valve-head-component": {
+  "gal": [
+   "ceramic-valve-head-component-1.jpg",
+   "ceramic-valve-head-component-2.jpg",
+   "ceramic-valve-head-component-3.jpg",
+   "ceramic-valve-head-component-4.jpg",
+   "ceramic-valve-head-component-5.jpg",
+   "ceramic-valve-head-component-6.jpg",
+   "ceramic-valve-head-component-7.jpg",
+   "ceramic-valve-head-component-8.jpg"
+  ],
+  "det": [
+   "ceramic-valve-head-component-d1.jpg",
+   "ceramic-valve-head-component-d2.jpg",
+   "ceramic-valve-head-component-d3.jpg",
+   "ceramic-valve-head-component-d4.jpg",
+   "ceramic-valve-head-component-d5.jpg",
+   "ceramic-valve-head-component-d6.jpg"
+  ]
+ },
+ "fep-tube": {
+  "gal": [
+   "fep-tube-1.jpg",
+   "fep-tube-3.jpg",
+   "fep-tube-4.jpg",
+   "fep-tube-2.jpg"
+  ],
+  "det": [
+   "fep-tube-d3.jpg",
+   "fep-tube-d1.jpg",
+   "fep-tube-d2.jpg",
+   "fep-tube-d4.jpg"
+  ]
+ },
+ "ptfe-tube": {
+  "gal": [
+   "ptfe-tube-1.jpg",
+   "ptfe-tube-2.jpg",
+   "ptfe-tube-3.jpg"
+  ],
+  "det": [
+   "ptfe-tube-d1.jpg",
+   "ptfe-tube-d2.jpg",
+   "ptfe-tube-d3.jpg",
+   "ptfe-tube-d4.jpg",
+   "ptfe-tube-d5.jpg",
+   "ptfe-tube-d6.jpg",
+   "ptfe-tube-d7.jpg"
+  ]
+ },
+ "peek-capillary-tube": {
+  "gal": [
+   "peek-capillary-tube-1.jpg",
+   "peek-capillary-tube-2.jpg"
+  ],
+  "det": [
+   "peek-capillary-tube-d1.jpg",
+   "peek-capillary-tube-d2.jpg"
+  ]
+ },
+ "silicone-tube": {
+  "gal": [
+   "silicone-tube-1.jpg",
+   "silicone-tube-2.jpg",
+   "silicone-tube-3.jpg"
+  ],
+  "det": [
+   "silicone-tube-d1.jpg",
+   "silicone-tube-d2.jpg",
+   "silicone-tube-d3.jpg"
+  ]
+ },
+ "viton-tube": {
+  "gal": [
+   "viton-tube-1.jpg",
+   "viton-tube-2.jpg",
+   "viton-tube-3.jpg",
+   "viton-tube-4.jpg"
+  ],
+  "det": []
+ },
+ "ptfe-black-tube": {
+  "gal": [
+   "ptfe-black-tube-1.jpg",
+   "ptfe-black-tube-5.jpg",
+   "ptfe-black-tube-3.jpg",
+   "ptfe-black-tube-2.jpg",
+   "ptfe-black-tube-4.jpg",
+   "ptfe-black-tube-7.jpg",
+   "ptfe-black-tube-6.jpg",
+   "ptfe-black-tube-8.jpg"
+  ],
+  "det": [
+   "ptfe-black-tube-d1.jpg",
+   "ptfe-black-tube-d2.jpg",
+   "ptfe-black-tube-d3.jpg",
+   "ptfe-black-tube-d4.jpg",
+   "ptfe-black-tube-d5.jpg",
+   "ptfe-black-tube-d6.jpg",
+   "ptfe-black-tube-d7.jpg",
+   "ptfe-black-tube-d8.jpg",
+   "ptfe-black-tube-d9.jpg"
+  ]
+ },
+ "pvc-tube": {
+  "gal": [
+   "pvc-tube-1.jpg",
+   "pvc-tube-2.jpg",
+   "pvc-tube-3.jpg",
+   "pvc-tube-4.jpg",
+   "pvc-tube-5.jpg",
+   "pvc-tube-6.jpg",
+   "pvc-tube-7.jpg",
+   "pvc-tube-8.jpg"
+  ],
+  "det": [
+   "pvc-tube-d2.jpg",
+   "pvc-tube-d3.jpg",
+   "pvc-tube-d6.jpg",
+   "pvc-tube-d7.jpg",
+   "pvc-tube-d8.jpg",
+   "pvc-tube-d9.jpg",
+   "pvc-tube-d10.jpg",
+   "pvc-tube-d1.jpg",
+   "pvc-tube-d4.jpg",
+   "pvc-tube-d5.jpg"
+  ]
+ },
+ "rubber-tube": {
+  "gal": [
+   "rubber-tube-1.jpg",
+   "rubber-tube-2.jpg",
+   "rubber-tube-3.jpg",
+   "rubber-tube-4.jpg",
+   "rubber-tube-5.jpg",
+   "rubber-tube-6.jpg",
+   "rubber-tube-7.jpg"
+  ],
+  "det": [
+   "rubber-tube-d1.jpg",
+   "rubber-tube-d2.jpg",
+   "rubber-tube-d3.jpg",
+   "rubber-tube-d4.jpg"
+  ]
+ },
+ "saint-gobain-hose": {
+  "gal": [
+   "saint-gobain-hose-1.jpg",
+   "saint-gobain-hose-2.jpg",
+   "saint-gobain-hose-3.jpg",
+   "saint-gobain-hose-4.jpg",
+   "saint-gobain-hose-5.jpg",
+   "saint-gobain-hose-6.jpg",
+   "saint-gobain-hose-7.jpg",
+   "saint-gobain-hose-8.jpg"
+  ],
+  "det": [
+   "saint-gobain-hose-d1.jpg",
+   "saint-gobain-hose-d2.jpg",
+   "saint-gobain-hose-d3.jpg",
+   "saint-gobain-hose-d5.jpg",
+   "saint-gobain-hose-d4.jpg",
+   "saint-gobain-hose-d6.jpg",
+   "saint-gobain-hose-d7.jpg",
+   "saint-gobain-hose-d8.jpg",
+   "saint-gobain-hose-d9.jpg",
+   "saint-gobain-hose-d10.jpg",
+   "saint-gobain-hose-d11.jpg"
+  ]
+ },
+ "expansion-module": {
+  "gal": [
+   "expansion-module-2.jpg",
+   "expansion-module-3.jpg",
+   "expansion-module-1.jpg",
+   "expansion-module-4.jpg",
+   "expansion-module-8.jpg",
+   "expansion-module-5.jpg",
+   "expansion-module-6.jpg",
+   "expansion-module-7.jpg"
+  ],
+  "det": [
+   "expansion-module-d1.jpg",
+   "expansion-module-d2.jpg",
+   "expansion-module-d3.jpg",
+   "expansion-module-d4.jpg",
+   "expansion-module-d5.jpg",
+   "expansion-module-d6.jpg"
+  ]
+ },
+ "db15-rs485-communication-cable": {
+  "gal": [
+   "db15-rs485-communication-cable-1.jpg",
+   "db15-rs485-communication-cable-2.jpg",
+   "db15-rs485-communication-cable-3.jpg",
+   "db15-rs485-communication-cable-4.jpg",
+   "db15-rs485-communication-cable-5.jpg",
+   "db15-rs485-communication-cable-6.jpg",
+   "db15-rs485-communication-cable-7.jpg",
+   "db15-rs485-communication-cable-8.jpg"
+  ],
+  "det": []
+ },
+ "analog-signal-control-module": {
+  "gal": [
+   "analog-signal-control-module-1.jpg",
+   "analog-signal-control-module-2.jpg",
+   "analog-signal-control-module-3.jpg",
+   "analog-signal-control-module-4.jpg",
+   "analog-signal-control-module-5.jpg",
+   "analog-signal-control-module-6.jpg",
+   "analog-signal-control-module-7.jpg",
+   "analog-signal-control-module-8.jpg",
+   "analog-signal-control-module-9.jpg"
+  ],
+  "det": [
+   "analog-signal-control-module-d1.jpg",
+   "analog-signal-control-module-d2.jpg",
+   "analog-signal-control-module-d3.jpg",
+   "analog-signal-control-module-d4.jpg",
+   "analog-signal-control-module-d5.jpg",
+   "analog-signal-control-module-d6.jpg",
+   "analog-signal-control-module-d7.jpg"
+  ]
+ },
+ "isolated-rs485-repeater": {
+  "gal": [
+   "isolated-rs485-repeater-1.jpg",
+   "isolated-rs485-repeater-2.jpg",
+   "isolated-rs485-repeater-3.jpg",
+   "isolated-rs485-repeater-4.jpg",
+   "isolated-rs485-repeater-5.jpg",
+   "isolated-rs485-repeater-6.jpg",
+   "isolated-rs485-repeater-7.jpg",
+   "isolated-rs485-repeater-8.jpg"
+  ],
+  "det": [
+   "isolated-rs485-repeater-d1.jpg",
+   "isolated-rs485-repeater-d2.jpg",
+   "isolated-rs485-repeater-d3.jpg",
+   "isolated-rs485-repeater-d4.jpg",
+   "isolated-rs485-repeater-d5.jpg"
+  ]
+ },
+ "serial-usb-30-to-rs232-rs485-adapter": {
+  "gal": [
+   "serial-usb-30-to-rs232-rs485-adapter-1.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-2.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-3.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-4.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-5.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-6.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-7.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-8.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-9.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-10.jpg"
+  ],
+  "det": [
+   "serial-usb-30-to-rs232-rs485-adapter-d1.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-d2.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-d3.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-d4.jpg",
+   "serial-usb-30-to-rs232-rs485-adapter-d5.jpg"
+  ]
+ },
+ "rs232-ttl-10-voltage-level-translator-shifter": {
+  "gal": [
+   "rs232-ttl-10-voltage-level-translator-shifter-1.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-2.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-3.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-4.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-5.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-6.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-7.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-8.jpg"
+  ],
+  "det": [
+   "rs232-ttl-10-voltage-level-translator-shifter-d1.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-d2.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-d3.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-d4.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-d5.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-d6.jpg",
+   "rs232-ttl-10-voltage-level-translator-shifter-d7.jpg"
+  ]
+ },
+ "lw-10-surge-protector": {
+  "gal": [
+   "lw-10-surge-protector-1.jpg",
+   "lw-10-surge-protector-2.jpg",
+   "lw-10-surge-protector-3.jpg",
+   "lw-10-surge-protector-4.jpg",
+   "lw-10-surge-protector-5.jpg",
+   "lw-10-surge-protector-6.jpg",
+   "lw-10-surge-protector-7.jpg",
+   "lw-10-surge-protector-8.jpg"
+  ],
+  "det": [
+   "lw-10-surge-protector-d1.jpg",
+   "lw-10-surge-protector-d2.jpg",
+   "lw-10-surge-protector-d3.jpg"
+  ]
+ },
+ "three-way-solenoid-valve": {
+  "gal": [
+   "three-way-solenoid-valve-1.jpg",
+   "three-way-solenoid-valve-2.jpg",
+   "three-way-solenoid-valve-3.jpg",
+   "three-way-solenoid-valve-4.jpg",
+   "three-way-solenoid-valve-5.jpg",
+   "three-way-solenoid-valve-6.jpg",
+   "three-way-solenoid-valve-7.jpg",
+   "three-way-solenoid-valve-8.jpg"
+  ],
+  "det": [
+   "three-way-solenoid-valve-d1.jpg",
+   "three-way-solenoid-valve-d2.jpg",
+   "three-way-solenoid-valve-d3.jpg",
+   "three-way-solenoid-valve-d4.jpg",
+   "three-way-solenoid-valve-d5.jpg",
+   "three-way-solenoid-valve-d6.jpg",
+   "three-way-solenoid-valve-d7.jpg",
+   "three-way-solenoid-valve-d8.jpg",
+   "three-way-solenoid-valve-d9.jpg"
+  ]
+ },
+ "power-adapter": {
+  "gal": [
+   "power-adapter-1.jpg",
+   "power-adapter-2.jpg",
+   "power-adapter-3.jpg",
+   "power-adapter-4.jpg",
+   "power-adapter-5.jpg",
+   "power-adapter-6.jpg",
+   "power-adapter-7.jpg",
+   "power-adapter-8.jpg"
+  ],
+  "det": [
+   "power-adapter-d1.jpg",
+   "power-adapter-d2.jpg",
+   "power-adapter-d3.jpg",
+   "power-adapter-d4.jpg",
+   "power-adapter-d5.jpg",
+   "power-adapter-d6.jpg"
+  ]
+ },
+ "runze-pipe-cutter": {
+  "gal": [
+   "runze-pipe-cutter-1.jpg",
+   "runze-pipe-cutter-2.jpg",
+   "runze-pipe-cutter-3.jpg"
+  ],
+  "det": [
+   "runze-pipe-cutter-d1.jpg",
+   "runze-pipe-cutter-d2.jpg",
+   "runze-pipe-cutter-d3.jpg",
+   "runze-pipe-cutter-d4.jpg"
+  ]
+ },
+ "plain-washer": {
+  "gal": [
+   "plain-washer-1.jpg",
+   "plain-washer-2.jpg",
+   "plain-washer-3.jpg",
+   "plain-washer-4.jpg",
+   "plain-washer-5.jpg",
+   "plain-washer-6.jpg",
+   "plain-washer-8.jpg",
+   "plain-washer-7.jpg"
+  ],
+  "det": [
+   "plain-washer-d1.jpg",
+   "plain-washer-d2.jpg",
+   "plain-washer-d3.jpg",
+   "plain-washer-d5.jpg",
+   "plain-washer-d4.jpg",
+   "plain-washer-d6.jpg"
+  ]
+ },
+ "gastight-syringe": {
+  "gal": [
+   "gastight-syringe-1.jpg",
+   "gastight-syringe-2.jpg",
+   "gastight-syringe-3.jpg"
+  ],
+  "det": [
+   "gastight-syringe-d1.jpg",
+   "gastight-syringe-d2.jpg",
+   "gastight-syringe-d3.jpg",
+   "gastight-syringe-d4.jpg",
+   "gastight-syringe-d5.jpg"
+  ]
+ },
+ "torque-tooling-three-piece-union": {
+  "gal": [
+   "torque-tooling-three-piece-union-1.jpg",
+   "torque-tooling-three-piece-union-2.jpg",
+   "torque-tooling-three-piece-union-3.jpg",
+   "torque-tooling-three-piece-union-5.jpg",
+   "torque-tooling-three-piece-union-6.jpg",
+   "torque-tooling-three-piece-union-4.jpg"
+  ],
+  "det": [
+   "torque-tooling-three-piece-union-d2.jpg",
+   "torque-tooling-three-piece-union-d1.jpg",
+   "torque-tooling-three-piece-union-d3.jpg",
+   "torque-tooling-three-piece-union-d4.jpg",
+   "torque-tooling-three-piece-union-d5.jpg",
+   "torque-tooling-three-piece-union-d6.jpg",
+   "torque-tooling-three-piece-union-d7.jpg",
+   "torque-tooling-three-piece-union-d8.jpg",
+   "torque-tooling-three-piece-union-d9.jpg",
+   "torque-tooling-three-piece-union-d10.jpg",
+   "torque-tooling-three-piece-union-d11.jpg"
+  ]
+ },
+ "hand-screwed-tooling-for-flangeless-fittings": {
+  "gal": [
+   "hand-screwed-tooling-for-flangeless-fittings-1.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-2.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-3.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-4.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-5.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-6.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-7.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-8.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-9.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-10.jpg"
+  ],
+  "det": [
+   "hand-screwed-tooling-for-flangeless-fittings-d1.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d2.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d3.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d4.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d5.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d6.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d7.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d8.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d9.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d10.jpg",
+   "hand-screwed-tooling-for-flangeless-fittings-d11.jpg"
+  ]
+ },
+ "fluid-pressure-test-kit": {
+  "gal": [
+   "fluid-pressure-test-kit-1.jpg",
+   "fluid-pressure-test-kit-2.jpg",
+   "fluid-pressure-test-kit-3.jpg",
+   "fluid-pressure-test-kit-4.jpg",
+   "fluid-pressure-test-kit-5.jpg",
+   "fluid-pressure-test-kit-6.jpg",
+   "fluid-pressure-test-kit-7.jpg",
+   "fluid-pressure-test-kit-8.jpg"
+  ],
+  "det": [
+   "fluid-pressure-test-kit-d1.jpg",
+   "fluid-pressure-test-kit-d2.jpg",
+   "fluid-pressure-test-kit-d3.jpg",
+   "fluid-pressure-test-kit-d5.jpg",
+   "fluid-pressure-test-kit-d4.jpg",
+   "fluid-pressure-test-kit-d6.jpg",
+   "fluid-pressure-test-kit-d7.jpg"
+  ]
+ },
+ "ps10-cross-contamination-free-fluid-management-system": {
+  "gal": [
+   "ps10-cross-contamination-free-fluid-management-system-1.jpg",
+   "ps10-cross-contamination-free-fluid-management-system-2.jpg"
+  ],
+  "det": [
+   "ps10-cross-contamination-free-fluid-management-system-d1.jpg",
+   "ps10-cross-contamination-free-fluid-management-system-d2.jpg",
+   "ps10-cross-contamination-free-fluid-management-system-d3.jpg"
+  ]
+ },
+ "barbed-t-connectors": {
+  "gal": [
+   "barbed-t-connectors-1.jpg",
+   "barbed-t-connectors-2.jpg",
+   "barbed-t-connectors-3.jpg",
+   "barbed-t-connectors-4.jpg"
+  ],
+  "det": [
+   "barbed-t-connectors-d1.jpg"
+  ]
+ },
+ "barbed-y-connectors": {
+  "gal": [
+   "barbed-y-connectors-1.jpg",
+   "barbed-y-connectors-2.jpg",
+   "barbed-y-connectors-3.jpg",
+   "barbed-y-connectors-4.jpg"
+  ],
+  "det": [
+   "barbed-y-connectors-d1.jpg"
+  ]
+ },
+ "barbed-elbow-connectors": {
+  "gal": [
+   "barbed-elbow-connectors-1.jpg",
+   "barbed-elbow-connectors-2.jpg",
+   "barbed-elbow-connectors-3.jpg",
+   "barbed-elbow-connectors-4.jpg",
+   "barbed-elbow-connectors-5.jpg"
+  ],
+  "det": [
+   "barbed-elbow-connectors-d1.jpg",
+   "barbed-elbow-connectors-d2.jpg"
+  ]
+ },
+ "barbed-union": {
+  "gal": [
+   "barbed-union-1.jpg",
+   "barbed-union-2.jpg",
+   "barbed-union-3.jpg",
+   "barbed-union-4.jpg",
+   "barbed-union-5.jpg",
+   "barbed-union-6.jpg"
+  ],
+  "det": [
+   "barbed-union-d1.jpg",
+   "barbed-union-d2.jpg"
+  ]
+ },
+ "cross-barbed-connectors": {
+  "gal": [
+   "cross-barbed-connectors-1.jpg",
+   "cross-barbed-connectors-2.jpg",
+   "cross-barbed-connectors-3.jpg",
+   "cross-barbed-connectors-4.jpg"
+  ],
+  "det": [
+   "cross-barbed-connectors-d1.jpg",
+   "cross-barbed-connectors-d2.jpg",
+   "cross-barbed-connectors-d3.jpg",
+   "cross-barbed-connectors-d4.jpg",
+   "cross-barbed-connectors-d5.jpg",
+   "cross-barbed-connectors-d6.jpg"
+  ]
+ },
+ "barb-to-female-adapter": {
+  "gal": [
+   "barb-to-female-adapter-1.jpg",
+   "barb-to-female-adapter-2.jpg",
+   "barb-to-female-adapter-3.jpg",
+   "barb-to-female-adapter-4.jpg",
+   "barb-to-female-adapter-5.jpg"
+  ],
+  "det": [
+   "barb-to-female-adapter-d1.jpg",
+   "barb-to-female-adapter-d2.jpg",
+   "barb-to-female-adapter-d3.jpg",
+   "barb-to-female-adapter-d4.jpg"
+  ]
+ },
+ "barb-to-male-adapter": {
+  "gal": [
+   "barb-to-male-adapter-1.jpg",
+   "barb-to-male-adapter-2.jpg",
+   "barb-to-male-adapter-3.jpg",
+   "barb-to-male-adapter-4.jpg",
+   "barb-to-male-adapter-5.jpg",
+   "barb-to-male-adapter-6.jpg",
+   "barb-to-male-adapter-7.jpg",
+   "barb-to-male-adapter-8.jpg"
+  ],
+  "det": [
+   "barb-to-male-adapter-d1.jpg",
+   "barb-to-male-adapter-d2.jpg",
+   "barb-to-male-adapter-d3.jpg"
+  ]
+ },
+ "elbow-barb-to-male-adapter": {
+  "gal": [
+   "elbow-barb-to-male-adapter-1.jpg",
+   "elbow-barb-to-male-adapter-2.jpg",
+   "elbow-barb-to-male-adapter-3.jpg"
+  ],
+  "det": [
+   "elbow-barb-to-male-adapter-d1.jpg",
+   "elbow-barb-to-male-adapter-d2.jpg"
+  ]
+ },
+ "elbow-barbed-bulkhead-connector": {
+  "gal": [
+   "elbow-barbed-bulkhead-connector-1.jpg",
+   "elbow-barbed-bulkhead-connector-2.jpg",
+   "elbow-barbed-bulkhead-connector-3.jpg",
+   "elbow-barbed-bulkhead-connector-4.jpg",
+   "elbow-barbed-bulkhead-connector-5.jpg",
+   "elbow-barbed-bulkhead-connector-6.jpg",
+   "elbow-barbed-bulkhead-connector-7.jpg",
+   "elbow-barbed-bulkhead-connector-8.jpg"
+  ],
+  "det": [
+   "elbow-barbed-bulkhead-connector-d1.jpg",
+   "elbow-barbed-bulkhead-connector-d2.jpg",
+   "elbow-barbed-bulkhead-connector-d3.jpg",
+   "elbow-barbed-bulkhead-connector-d4.jpg",
+   "elbow-barbed-bulkhead-connector-d5.jpg",
+   "elbow-barbed-bulkhead-connector-d6.jpg",
+   "elbow-barbed-bulkhead-connector-d7.jpg",
+   "elbow-barbed-bulkhead-connector-d8.jpg",
+   "elbow-barbed-bulkhead-connector-d9.jpg",
+   "elbow-barbed-bulkhead-connector-d10.jpg",
+   "elbow-barbed-bulkhead-connector-d11.jpg"
+  ]
+ },
+ "barbed-check-valves": {
+  "gal": [
+   "barbed-check-valves-1.jpg",
+   "barbed-check-valves-2.jpg",
+   "barbed-check-valves-3.jpg",
+   "barbed-check-valves-4.jpg",
+   "barbed-check-valves-5.jpg"
+  ],
+  "det": [
+   "barbed-check-valves-d1.jpg",
+   "barbed-check-valves-d2.jpg",
+   "barbed-check-valves-d3.jpg",
+   "barbed-check-valves-d4.jpg",
+   "barbed-check-valves-d5.jpg",
+   "barbed-check-valves-d6.jpg",
+   "barbed-check-valves-d7.jpg",
+   "barbed-check-valves-d8.jpg",
+   "barbed-check-valves-d9.jpg",
+   "barbed-check-valves-d10.jpg",
+   "barbed-check-valves-d11.jpg"
+  ]
+ },
+ "male-luer-adapter": {
+  "gal": [
+   "male-luer-adapter-1.jpg",
+   "male-luer-adapter-2.jpg",
+   "male-luer-adapter-3.jpg",
+   "male-luer-adapter-4.jpg",
+   "male-luer-adapter-5.jpg",
+   "male-luer-adapter-8.jpg",
+   "male-luer-adapter-6.jpg",
+   "male-luer-adapter-7.jpg",
+   "male-luer-adapter-9.jpg"
+  ],
+  "det": [
+   "male-luer-adapter-d1.jpg"
+  ]
+ },
+ "female-luer-to-barbed-adapters": {
+  "gal": [
+   "female-luer-to-barbed-adapters-1.jpg",
+   "female-luer-to-barbed-adapters-2.jpg",
+   "female-luer-to-barbed-adapters-3.jpg",
+   "female-luer-to-barbed-adapters-4.jpg"
+  ],
+  "det": [
+   "female-luer-to-barbed-adapters-d1.jpg"
+  ]
+ },
+ "female-luer-bulkhead": {
+  "gal": [
+   "female-luer-bulkhead-1.jpg",
+   "female-luer-bulkhead-2.jpg",
+   "female-luer-bulkhead-3.jpg",
+   "female-luer-bulkhead-4.jpg",
+   "female-luer-bulkhead-5.jpg",
+   "female-luer-bulkhead-6.jpg",
+   "female-luer-bulkhead-7.jpg",
+   "female-luer-bulkhead-8.jpg"
+  ],
+  "det": [
+   "female-luer-bulkhead-d1.jpg",
+   "female-luer-bulkhead-d2.jpg",
+   "female-luer-bulkhead-d3.jpg"
+  ]
+ },
+ "luer-to-luer-adapter": {
+  "gal": [
+   "luer-to-luer-adapter-1.jpg",
+   "luer-to-luer-adapter-2.jpg",
+   "luer-to-luer-adapter-3.jpg"
+  ],
+  "det": [
+   "luer-to-luer-adapter-d1.jpg",
+   "luer-to-luer-adapter-d2.jpg",
+   "luer-to-luer-adapter-d3.jpg"
+  ]
+ },
+ "luer-to-thread-adapter": {
+  "gal": [
+   "luer-to-thread-adapter-1.jpg",
+   "luer-to-thread-adapter-2.jpg",
+   "luer-to-thread-adapter-3.jpg",
+   "luer-to-thread-adapter-4.jpg"
+  ],
+  "det": [
+   "luer-to-thread-adapter-d3.jpg",
+   "luer-to-thread-adapter-d1.jpg",
+   "luer-to-thread-adapter-d2.jpg",
+   "luer-to-thread-adapter-d4.jpg"
+  ]
+ },
+ "peek-luer-adapter": {
+  "gal": [
+   "peek-luer-adapter-1.jpg",
+   "peek-luer-adapter-2.jpg",
+   "peek-luer-adapter-3.jpg",
+   "peek-luer-adapter-4.jpg",
+   "peek-luer-adapter-5.jpg",
+   "peek-luer-adapter-6.jpg"
+  ],
+  "det": [
+   "peek-luer-adapter-d1.jpg",
+   "peek-luer-adapter-d2.jpg",
+   "peek-luer-adapter-d3.jpg"
+  ]
+ },
+ "low-pressure-unions": {
+  "gal": [
+   "low-pressure-unions-1.jpg",
+   "low-pressure-unions-2.jpg",
+   "low-pressure-unions-3.jpg"
+  ],
+  "det": [
+   "low-pressure-unions-d1.jpg",
+   "low-pressure-unions-d2.jpg",
+   "low-pressure-unions-d3.jpg",
+   "low-pressure-unions-d4.jpg"
+  ]
+ },
+ "low-pressure-tees": {
+  "gal": [
+   "low-pressure-tees-1.jpg",
+   "low-pressure-tees-2.jpg",
+   "low-pressure-tees-3.jpg"
+  ],
+  "det": [
+   "low-pressure-tees-d1.jpg",
+   "low-pressure-tees-d2.jpg"
+  ]
+ },
+ "low-pressure-crosses": {
+  "gal": [
+   "low-pressure-crosses-1.jpg",
+   "low-pressure-crosses-2.jpg",
+   "low-pressure-crosses-3.jpg"
+  ],
+  "det": [
+   "low-pressure-crosses-d1.jpg",
+   "low-pressure-crosses-d2.jpg"
+  ]
+ },
+ "low-pressure-y-connectors": {
+  "gal": [
+   "low-pressure-y-connectors-1.jpg",
+   "low-pressure-y-connectors-2.jpg",
+   "low-pressure-y-connectors-3.jpg"
+  ],
+  "det": [
+   "low-pressure-y-connectors-d1.jpg",
+   "low-pressure-y-connectors-d2.jpg"
+  ]
+ },
+ "low-pressure-male-union": {
+  "gal": [
+   "low-pressure-male-union-1.jpg",
+   "low-pressure-male-union-2.jpg",
+   "low-pressure-male-union-3.jpg"
+  ],
+  "det": [
+   "low-pressure-male-union-d1.jpg"
+  ]
+ },
+ "low-pressure-bulkhead-unions": {
+  "gal": [
+   "low-pressure-bulkhead-unions-1.jpg",
+   "low-pressure-bulkhead-unions-2.jpg",
+   "low-pressure-bulkhead-unions-3.jpg",
+   "low-pressure-bulkhead-unions-4.jpg"
+  ],
+  "det": [
+   "low-pressure-bulkhead-unions-d1.jpg",
+   "low-pressure-bulkhead-unions-d2.jpg",
+   "low-pressure-bulkhead-unions-d3.jpg",
+   "low-pressure-bulkhead-unions-d4.jpg"
+  ]
+ },
+ "flangeless-fittings": {
+  "gal": [
+   "flangeless-fittings-1.jpg",
+   "flangeless-fittings-3.jpg",
+   "flangeless-fittings-2.jpg",
+   "flangeless-fittings-6.jpg",
+   "flangeless-fittings-7.jpg",
+   "flangeless-fittings-4.jpg",
+   "flangeless-fittings-8.jpg",
+   "flangeless-fittings-5.jpg"
+  ],
+  "det": [
+   "flangeless-fittings-d1.jpg",
+   "flangeless-fittings-d2.jpg",
+   "flangeless-fittings-d3.jpg",
+   "flangeless-fittings-d5.jpg",
+   "flangeless-fittings-d4.jpg",
+   "flangeless-fittings-d6.jpg",
+   "flangeless-fittings-d7.jpg",
+   "flangeless-fittings-d8.jpg",
+   "flangeless-fittings-d9.jpg",
+   "flangeless-fittings-d10.jpg",
+   "flangeless-fittings-d11.jpg",
+   "flangeless-fittings-d12.jpg",
+   "flangeless-fittings-d13.jpg",
+   "flangeless-fittings-d14.jpg",
+   "flangeless-fittings-d15.jpg",
+   "flangeless-fittings-d16.jpg"
+  ]
+ },
+ "flangeless-fittings-1": {
+  "gal": [
+   "flangeless-fittings-1-1.jpg",
+   "flangeless-fittings-1-2.jpg",
+   "flangeless-fittings-1-4.jpg",
+   "flangeless-fittings-1-3.jpg",
+   "flangeless-fittings-1-5.jpg"
+  ],
+  "det": [
+   "flangeless-fittings-1-d1.jpg"
+  ]
+ },
+ "super-flangeless-fittings": {
+  "gal": [
+   "super-flangeless-fittings-1.jpg",
+   "super-flangeless-fittings-2.jpg",
+   "super-flangeless-fittings-3.jpg",
+   "super-flangeless-fittings-4.jpg",
+   "super-flangeless-fittings-5.jpg"
+  ],
+  "det": [
+   "super-flangeless-fittings-d1.jpg",
+   "super-flangeless-fittings-d2.jpg",
+   "super-flangeless-fittings-d3.jpg"
+  ]
+ },
+ "anti-twist-flangeless-fitting": {
+  "gal": [
+   "anti-twist-flangeless-fitting-1.jpg",
+   "anti-twist-flangeless-fitting-2.jpg",
+   "anti-twist-flangeless-fitting-3.jpg",
+   "anti-twist-flangeless-fitting-4.jpg",
+   "anti-twist-flangeless-fitting-5.jpg"
+  ],
+  "det": [
+   "anti-twist-flangeless-fitting-d1.jpg",
+   "anti-twist-flangeless-fitting-d2.jpg",
+   "anti-twist-flangeless-fitting-d3.jpg",
+   "anti-twist-flangeless-fitting-d4.jpg",
+   "anti-twist-flangeless-fitting-d5.jpg",
+   "anti-twist-flangeless-fitting-d6.jpg",
+   "anti-twist-flangeless-fitting-d7.jpg",
+   "anti-twist-flangeless-fitting-d8.jpg",
+   "anti-twist-flangeless-fitting-d9.jpg",
+   "anti-twist-flangeless-fitting-d10.jpg",
+   "anti-twist-flangeless-fitting-d11.jpg",
+   "anti-twist-flangeless-fitting-d12.jpg",
+   "anti-twist-flangeless-fitting-d13.jpg",
+   "anti-twist-flangeless-fitting-d14.jpg",
+   "anti-twist-flangeless-fitting-d15.jpg"
+  ]
+ },
+ "three-piece-set": {
+  "gal": [
+   "three-piece-set-1.jpg",
+   "three-piece-set-2.jpg",
+   "three-piece-set-3.jpg",
+   "three-piece-set-4.jpg",
+   "three-piece-set-5.jpg",
+   "three-piece-set-6.jpg",
+   "three-piece-set-7.jpg",
+   "three-piece-set-8.jpg"
+  ],
+  "det": [
+   "three-piece-set-d1.jpg",
+   "three-piece-set-d2.jpg",
+   "three-piece-set-d3.jpg",
+   "three-piece-set-d4.jpg",
+   "three-piece-set-d5.jpg",
+   "three-piece-set-d6.jpg",
+   "three-piece-set-d7.jpg",
+   "three-piece-set-d8.jpg",
+   "three-piece-set-d9.jpg",
+   "three-piece-set-d10.jpg"
+  ]
+ },
+ "peek-flangeless-fittings": {
+  "gal": [
+   "peek-flangeless-fittings-1.jpg",
+   "peek-flangeless-fittings-2.jpg",
+   "peek-flangeless-fittings-3.jpg",
+   "peek-flangeless-fittings-4.jpg",
+   "peek-flangeless-fittings-5.jpg"
+  ],
+  "det": [
+   "peek-flangeless-fittings-d1.jpg",
+   "peek-flangeless-fittings-d2.jpg",
+   "peek-flangeless-fittings-d3.jpg",
+   "peek-flangeless-fittings-d4.jpg",
+   "peek-flangeless-fittings-d5.jpg",
+   "peek-flangeless-fittings-d6.jpg",
+   "peek-flangeless-fittings-d7.jpg",
+   "peek-flangeless-fittings-d8.jpg"
+  ]
+ },
+ "peek-hand-tighten-flangeless-fitting-two-piece-set": {
+  "gal": [
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-1.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-2.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-3.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-4.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-5.jpg"
+  ],
+  "det": [
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d1.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d2.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d3.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d4.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d5.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d6.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d7.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d8.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d9.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d10.jpg",
+   "peek-hand-tighten-flangeless-fitting-two-piece-set-d11.jpg"
+  ]
+ },
+ "peek-big-bore-flangeless-fitting--two-piece-set": {
+  "gal": [
+   "peek-big-bore-flangeless-fitting--two-piece-set-1.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-2.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-3.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-4.jpg"
+  ],
+  "det": [
+   "peek-big-bore-flangeless-fitting--two-piece-set-d1.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-d2.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-d3.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-d4.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-d5.jpg",
+   "peek-big-bore-flangeless-fitting--two-piece-set-d6.jpg"
+  ]
+ },
+ "ultra-mini-peek-flangeless-fitting-three-piece-set": {
+  "gal": [
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-1.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-2.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-3.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-4.jpg"
+  ],
+  "det": [
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d1.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d2.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d3.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d4.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d5.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d6.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d7.jpg",
+   "ultra-mini-peek-flangeless-fitting-three-piece-set-d8.jpg"
+  ]
+ },
+ "bulkhead-three-piece-union": {
+  "gal": [
+   "bulkhead-three-piece-union-1.jpg",
+   "bulkhead-three-piece-union-2.jpg",
+   "bulkhead-three-piece-union-3.jpg"
+  ],
+  "det": [
+   "bulkhead-three-piece-union-d1.jpg",
+   "bulkhead-three-piece-union-d2.jpg"
+  ]
+ },
+ "anti-twist-adapter": {
+  "gal": [
+   "anti-twist-adapter-1.jpg",
+   "anti-twist-adapter-2.jpg",
+   "anti-twist-adapter-3.jpg",
+   "anti-twist-adapter-4.jpg",
+   "anti-twist-adapter-5.jpg"
+  ],
+  "det": [
+   "anti-twist-adapter-d1.jpg",
+   "anti-twist-adapter-d2.jpg",
+   "anti-twist-adapter-d3.jpg",
+   "anti-twist-adapter-d4.jpg",
+   "anti-twist-adapter-d5.jpg"
+  ]
+ },
+ "anti-twist-tube-inverted-cone-joint": {
+  "gal": [
+   "anti-twist-tube-inverted-cone-joint-1.jpg",
+   "anti-twist-tube-inverted-cone-joint-2.jpg",
+   "anti-twist-tube-inverted-cone-joint-3.jpg",
+   "anti-twist-tube-inverted-cone-joint-4.jpg",
+   "anti-twist-tube-inverted-cone-joint-5.jpg",
+   "anti-twist-tube-inverted-cone-joint-6.jpg",
+   "anti-twist-tube-inverted-cone-joint-7.jpg",
+   "anti-twist-tube-inverted-cone-joint-8.jpg"
+  ],
+  "det": [
+   "anti-twist-tube-inverted-cone-joint-d1.jpg",
+   "anti-twist-tube-inverted-cone-joint-d2.jpg",
+   "anti-twist-tube-inverted-cone-joint-d3.jpg",
+   "anti-twist-tube-inverted-cone-joint-d4.jpg",
+   "anti-twist-tube-inverted-cone-joint-d5.jpg",
+   "anti-twist-tube-inverted-cone-joint-d6.jpg",
+   "anti-twist-tube-inverted-cone-joint-d7.jpg",
+   "anti-twist-tube-inverted-cone-joint-d8.jpg",
+   "anti-twist-tube-inverted-cone-joint-d9.jpg"
+  ]
+ },
+ "peek-adapter": {
+  "gal": [
+   "peek-adapter-1.jpg",
+   "peek-adapter-2.jpg"
+  ],
+  "det": [
+   "peek-adapter-d1.jpg",
+   "peek-adapter-d2.jpg",
+   "peek-adapter-d3.jpg",
+   "peek-adapter-d4.jpg",
+   "peek-adapter-d5.jpg",
+   "peek-adapter-d6.jpg",
+   "peek-adapter-d7.jpg",
+   "peek-adapter-d8.jpg",
+   "peek-adapter-d9.jpg",
+   "peek-adapter-d10.jpg"
+  ]
+ },
+ "peek-one-piece-fittings": {
+  "gal": [
+   "peek-one-piece-fittings-1.jpg",
+   "peek-one-piece-fittings-2.jpg",
+   "peek-one-piece-fittings-3.jpg",
+   "peek-one-piece-fittings-4.jpg",
+   "peek-one-piece-fittings-5.jpg",
+   "peek-one-piece-fittings-6.jpg",
+   "peek-one-piece-fittings-7.jpg",
+   "peek-one-piece-fittings-8.jpg"
+  ],
+  "det": [
+   "peek-one-piece-fittings-d1.jpg",
+   "peek-one-piece-fittings-d2.jpg",
+   "peek-one-piece-fittings-d3.jpg",
+   "peek-one-piece-fittings-d4.jpg",
+   "peek-one-piece-fittings-d5.jpg",
+   "peek-one-piece-fittings-d6.jpg",
+   "peek-one-piece-fittings-d7.jpg",
+   "peek-one-piece-fittings-d8.jpg",
+   "peek-one-piece-fittings-d9.jpg",
+   "peek-one-piece-fittings-d10.jpg"
+  ]
+ },
+ "peek-identification-joint": {
+  "gal": [
+   "peek-identification-joint-1.jpg",
+   "peek-identification-joint-2.jpg",
+   "peek-identification-joint-3.jpg",
+   "peek-identification-joint-4.jpg",
+   "peek-identification-joint-5.jpg",
+   "peek-identification-joint-6.jpg",
+   "peek-identification-joint-7.jpg",
+   "peek-identification-joint-8.jpg"
+  ],
+  "det": [
+   "peek-identification-joint-d1.jpg",
+   "peek-identification-joint-d2.jpg",
+   "peek-identification-joint-d3.jpg",
+   "peek-identification-joint-d4.jpg",
+   "peek-identification-joint-d5.jpg",
+   "peek-identification-joint-d6.jpg",
+   "peek-identification-joint-d7.jpg",
+   "peek-identification-joint-d8.jpg",
+   "peek-identification-joint-d9.jpg"
+  ]
+ },
+ "peek-coned-plug": {
+  "gal": [
+   "peek-coned-plug-1.jpg",
+   "peek-coned-plug-2.jpg",
+   "peek-coned-plug-3.jpg",
+   "peek-coned-plug-4.jpg",
+   "peek-coned-plug-5.jpg",
+   "peek-coned-plug-6.jpg",
+   "peek-coned-plug-7.jpg",
+   "peek-coned-plug-8.jpg",
+   "peek-coned-plug-9.jpg",
+   "peek-coned-plug-10.jpg"
+  ],
+  "det": [
+   "peek-coned-plug-d1.jpg",
+   "peek-coned-plug-d2.jpg",
+   "peek-coned-plug-d3.jpg",
+   "peek-coned-plug-d4.jpg",
+   "peek-coned-plug-d5.jpg",
+   "peek-coned-plug-d6.jpg",
+   "peek-coned-plug-d7.jpg",
+   "peek-coned-plug-d8.jpg",
+   "peek-coned-plug-d9.jpg",
+   "peek-coned-plug-d10.jpg",
+   "peek-coned-plug-d11.jpg",
+   "peek-coned-plug-d12.jpg"
+  ]
+ },
+ "peek-female-thread-fitting": {
+  "gal": [
+   "peek-female-thread-fitting-1.jpg",
+   "peek-female-thread-fitting-2.jpg",
+   "peek-female-thread-fitting-3.jpg",
+   "peek-female-thread-fitting-4.jpg",
+   "peek-female-thread-fitting-5.jpg",
+   "peek-female-thread-fitting-6.jpg",
+   "peek-female-thread-fitting-7.jpg",
+   "peek-female-thread-fitting-8.jpg"
+  ],
+  "det": [
+   "peek-female-thread-fitting-d1.jpg",
+   "peek-female-thread-fitting-d2.jpg",
+   "peek-female-thread-fitting-d3.jpg",
+   "peek-female-thread-fitting-d4.jpg",
+   "peek-female-thread-fitting-d5.jpg",
+   "peek-female-thread-fitting-d6.jpg",
+   "peek-female-thread-fitting-d7.jpg",
+   "peek-female-thread-fitting-d8.jpg",
+   "peek-female-thread-fitting-d9.jpg",
+   "peek-female-thread-fitting-d10.jpg",
+   "peek-female-thread-fitting-d11.jpg"
+  ]
+ },
+ "peek-female-thread-fittings": {
+  "gal": [
+   "peek-female-thread-fittings-1.jpg",
+   "peek-female-thread-fittings-2.jpg",
+   "peek-female-thread-fittings-3.jpg",
+   "peek-female-thread-fittings-4.jpg",
+   "peek-female-thread-fittings-5.jpg",
+   "peek-female-thread-fittings-6.jpg",
+   "peek-female-thread-fittings-7.jpg",
+   "peek-female-thread-fittings-8.jpg"
+  ],
+  "det": [
+   "peek-female-thread-fittings-d1.jpg",
+   "peek-female-thread-fittings-d2.jpg",
+   "peek-female-thread-fittings-d3.jpg",
+   "peek-female-thread-fittings-d4.jpg",
+   "peek-female-thread-fittings-d5.jpg",
+   "peek-female-thread-fittings-d6.jpg",
+   "peek-female-thread-fittings-d7.jpg",
+   "peek-female-thread-fittings-d9.jpg",
+   "peek-female-thread-fittings-d8.jpg",
+   "peek-female-thread-fittings-d10.jpg",
+   "peek-female-thread-fittings-d11.jpg"
+  ]
+ },
+ "peek-female-thread-straight-adapter": {
+  "gal": [
+   "peek-female-thread-straight-adapter-1.jpg",
+   "peek-female-thread-straight-adapter-2.jpg",
+   "peek-female-thread-straight-adapter-3.jpg"
+  ],
+  "det": [
+   "peek-female-thread-straight-adapter-d1.jpg",
+   "peek-female-thread-straight-adapter-d2.jpg",
+   "peek-female-thread-straight-adapter-d3.jpg",
+   "peek-female-thread-straight-adapter-d4.jpg",
+   "peek-female-thread-straight-adapter-d5.jpg",
+   "peek-female-thread-straight-adapter-d6.jpg",
+   "peek-female-thread-straight-adapter-d7.jpg",
+   "peek-female-thread-straight-adapter-d8.jpg",
+   "peek-female-thread-straight-adapter-d9.jpg",
+   "peek-female-thread-straight-adapter-d10.jpg",
+   "peek-female-thread-straight-adapter-d11.jpg",
+   "peek-female-thread-straight-adapter-d12.jpg",
+   "peek-female-thread-straight-adapter-d13.jpg",
+   "peek-female-thread-straight-adapter-d14.jpg"
+  ]
+ },
+ "peek-female-thread-elbow-adapter": {
+  "gal": [
+   "peek-female-thread-elbow-adapter-1.jpg",
+   "peek-female-thread-elbow-adapter-2.jpg",
+   "peek-female-thread-elbow-adapter-3.jpg",
+   "peek-female-thread-elbow-adapter-4.jpg"
+  ],
+  "det": [
+   "peek-female-thread-elbow-adapter-d1.jpg",
+   "peek-female-thread-elbow-adapter-d2.jpg",
+   "peek-female-thread-elbow-adapter-d3.jpg",
+   "peek-female-thread-elbow-adapter-d4.jpg"
+  ]
+ },
+ "peek-female-thread-t-adapter": {
+  "gal": [
+   "peek-female-thread-t-adapter-1.jpg",
+   "peek-female-thread-t-adapter-2.jpg",
+   "peek-female-thread-t-adapter-3.jpg",
+   "peek-female-thread-t-adapter-4.jpg"
+  ],
+  "det": [
+   "peek-female-thread-t-adapter-d1.jpg",
+   "peek-female-thread-t-adapter-d2.jpg",
+   "peek-female-thread-t-adapter-d3.jpg",
+   "peek-female-thread-t-adapter-d4.jpg"
+  ]
+ },
+ "peek-female-thread-y-adapter": {
+  "gal": [
+   "peek-female-thread-y-adapter-1.jpg",
+   "peek-female-thread-y-adapter-2.jpg",
+   "peek-female-thread-y-adapter-3.jpg",
+   "peek-female-thread-y-adapter-4.jpg"
+  ],
+  "det": [
+   "peek-female-thread-y-adapter-d1.jpg",
+   "peek-female-thread-y-adapter-d2.jpg",
+   "peek-female-thread-y-adapter-d3.jpg",
+   "peek-female-thread-y-adapter-d4.jpg"
+  ]
+ },
+ "peek-female-thread-cross-adapter": {
+  "gal": [
+   "peek-female-thread-cross-adapter-1.jpg",
+   "peek-female-thread-cross-adapter-2.jpg",
+   "peek-female-thread-cross-adapter-3.jpg",
+   "peek-female-thread-cross-adapter-4.jpg"
+  ],
+  "det": [
+   "peek-female-thread-cross-adapter-d1.jpg",
+   "peek-female-thread-cross-adapter-d2.jpg",
+   "peek-female-thread-cross-adapter-d3.jpg",
+   "peek-female-thread-cross-adapter-d4.jpg"
+  ]
+ },
+ "peek-female-thread-luer-adapter": {
+  "gal": [
+   "peek-female-thread-luer-adapter-1.jpg",
+   "peek-female-thread-luer-adapter-2.jpg",
+   "peek-female-thread-luer-adapter-3.jpg",
+   "peek-female-thread-luer-adapter-4.jpg"
+  ],
+  "det": [
+   "peek-female-thread-luer-adapter-d1.jpg",
+   "peek-female-thread-luer-adapter-d2.jpg",
+   "peek-female-thread-luer-adapter-d3.jpg",
+   "peek-female-thread-luer-adapter-d4.jpg"
+  ]
+ },
+ "peek-female-thread-bulkhead-union": {
+  "gal": [
+   "peek-female-thread-bulkhead-union-1.jpg",
+   "peek-female-thread-bulkhead-union-2.jpg",
+   "peek-female-thread-bulkhead-union-3.jpg",
+   "peek-female-thread-bulkhead-union-4.jpg",
+   "peek-female-thread-bulkhead-union-5.jpg"
+  ],
+  "det": [
+   "peek-female-thread-bulkhead-union-d1.jpg",
+   "peek-female-thread-bulkhead-union-d2.jpg",
+   "peek-female-thread-bulkhead-union-d3.jpg",
+   "peek-female-thread-bulkhead-union-d4.jpg"
+  ]
+ },
+ "flanged-fittings": {
+  "gal": [
+   "flanged-fittings-2.jpg",
+   "flanged-fittings-1.jpg",
+   "flanged-fittings-3.jpg"
+  ],
+  "det": [
+   "flanged-fittings-d4.jpg",
+   "flanged-fittings-d1.jpg",
+   "flanged-fittings-d2.jpg",
+   "flanged-fittings-d5.jpg",
+   "flanged-fittings-d3.jpg",
+   "flanged-fittings-d6.jpg"
+  ]
+ },
+ "flanged-tubing-set": {
+  "gal": [
+   "flanged-tubing-set-1.jpg",
+   "flanged-tubing-set-2.jpg",
+   "flanged-tubing-set-3.jpg",
+   "flanged-tubing-set-4.jpg",
+   "flanged-tubing-set-5.jpg",
+   "flanged-tubing-set-6.jpg"
+  ],
+  "det": [
+   "flanged-tubing-set-d1.jpg",
+   "flanged-tubing-set-d2.jpg",
+   "flanged-tubing-set-d3.jpg",
+   "flanged-tubing-set-d4.jpg",
+   "flanged-tubing-set-d5.jpg",
+   "flanged-tubing-set-d6.jpg",
+   "flanged-tubing-set-d7.jpg",
+   "flanged-tubing-set-d8.jpg",
+   "flanged-tubing-set-d9.jpg",
+   "flanged-tubing-set-d10.jpg",
+   "flanged-tubing-set-d11.jpg",
+   "flanged-tubing-set-d12.jpg",
+   "flanged-tubing-set-d13.jpg",
+   "flanged-tubing-set-d14.jpg"
+  ]
+ },
+ "peek-flanged-fittings": {
+  "gal": [
+   "peek-flanged-fittings-1.jpg",
+   "peek-flanged-fittings-2.jpg",
+   "peek-flanged-fittings-3.jpg",
+   "peek-flanged-fittings-4.jpg",
+   "peek-flanged-fittings-5.jpg",
+   "peek-flanged-fittings-6.jpg"
+  ],
+  "det": [
+   "peek-flanged-fittings-d1.jpg",
+   "peek-flanged-fittings-d2.jpg",
+   "peek-flanged-fittings-d3.jpg",
+   "peek-flanged-fittings-d4.jpg",
+   "peek-flanged-fittings-d5.jpg",
+   "peek-flanged-fittings-d6.jpg",
+   "peek-flanged-fittings-d7.jpg",
+   "peek-flanged-fittings-d8.jpg",
+   "peek-flanged-fittings-d9.jpg",
+   "peek-flanged-fittings-d10.jpg",
+   "peek-flanged-fittings-d11.jpg",
+   "peek-flanged-fittings-d12.jpg",
+   "peek-flanged-fittings-d13.jpg",
+   "peek-flanged-fittings-d15.jpg",
+   "peek-flanged-fittings-d14.jpg",
+   "peek-flanged-fittings-d16.jpg",
+   "peek-flanged-fittings-d17.jpg",
+   "peek-flanged-fittings-d18.jpg",
+   "peek-flanged-fittings-d19.jpg"
+  ]
+ },
+ "pps-flanged-fitting-two-piece-set": {
+  "gal": [
+   "pps-flanged-fitting-two-piece-set-1.jpg",
+   "pps-flanged-fitting-two-piece-set-2.jpg",
+   "pps-flanged-fitting-two-piece-set-3.jpg",
+   "pps-flanged-fitting-two-piece-set-4.jpg",
+   "pps-flanged-fitting-two-piece-set-5.jpg",
+   "pps-flanged-fitting-two-piece-set-6.jpg",
+   "pps-flanged-fitting-two-piece-set-7.jpg",
+   "pps-flanged-fitting-two-piece-set-8.jpg"
+  ],
+  "det": [
+   "pps-flanged-fitting-two-piece-set-d1.jpg",
+   "pps-flanged-fitting-two-piece-set-d2.jpg",
+   "pps-flanged-fitting-two-piece-set-d3.jpg",
+   "pps-flanged-fitting-two-piece-set-d4.jpg",
+   "pps-flanged-fitting-two-piece-set-d5.jpg",
+   "pps-flanged-fitting-two-piece-set-d6.jpg",
+   "pps-flanged-fitting-two-piece-set-d7.jpg",
+   "pps-flanged-fitting-two-piece-set-d8.jpg",
+   "pps-flanged-fitting-two-piece-set-d9.jpg"
+  ]
+ },
+ "ultra-mini-peek-flanged-fittings-two-piece-set": {
+  "gal": [
+   "ultra-mini-peek-flanged-fittings-two-piece-set-1.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-2.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-3.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-4.jpg"
+  ],
+  "det": [
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d1.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d2.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d3.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d4.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d5.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d6.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d7.jpg",
+   "ultra-mini-peek-flanged-fittings-two-piece-set-d8.jpg"
+  ]
+ },
+ "10-32-unf-stainless-steel-hplc-ferrule-fitting": {
+  "gal": [
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-1.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-2.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-3.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-4.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-5.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-6.jpg"
+  ],
+  "det": [
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-d1.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-d2.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-d3.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-d4.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-d5.jpg",
+   "10-32-unf-stainless-steel-hplc-ferrule-fitting-d6.jpg"
+  ]
+ },
+ "plastic-hose-clamps": {
+  "gal": [
+   "plastic-hose-clamps-1.jpg",
+   "plastic-hose-clamps-2.jpg",
+   "plastic-hose-clamps-3.jpg",
+   "plastic-hose-clamps-4.jpg"
+  ],
+  "det": [
+   "plastic-hose-clamps-d1.jpg"
+  ]
+ },
+ "panel-mount-bulkheads": {
+  "gal": [
+   "panel-mount-bulkheads-1.jpg",
+   "panel-mount-bulkheads-2.jpg",
+   "panel-mount-bulkheads-3.jpg",
+   "panel-mount-bulkheads-4.jpg",
+   "panel-mount-bulkheads-5.jpg"
+  ],
+  "det": [
+   "panel-mount-bulkheads-d1.jpg",
+   "panel-mount-bulkheads-d2.jpg",
+   "panel-mount-bulkheads-d3.jpg",
+   "panel-mount-bulkheads-d4.jpg",
+   "panel-mount-bulkheads-d5.jpg"
+  ]
+ },
+ "plugs-for-14-28-flat-bottom-ports": {
+  "gal": [
+   "plugs-for-14-28-flat-bottom-ports-1.jpg",
+   "plugs-for-14-28-flat-bottom-ports-2.jpg",
+   "plugs-for-14-28-flat-bottom-ports-3.jpg"
+  ],
+  "det": [
+   "plugs-for-14-28-flat-bottom-ports-d1.jpg",
+   "plugs-for-14-28-flat-bottom-ports-d2.jpg",
+   "plugs-for-14-28-flat-bottom-ports-d3.jpg",
+   "plugs-for-14-28-flat-bottom-ports-d4.jpg",
+   "plugs-for-14-28-flat-bottom-ports-d5.jpg",
+   "plugs-for-14-28-flat-bottom-ports-d6.jpg"
+  ]
+ },
+ "quick-connect-fittings": {
+  "gal": [
+   "quick-connect-fittings-1.jpg",
+   "quick-connect-fittings-2.jpg",
+   "quick-connect-fittings-3.jpg",
+   "quick-connect-fittings-4.jpg",
+   "quick-connect-fittings-5.jpg",
+   "quick-connect-fittings-6.jpg",
+   "quick-connect-fittings-7.jpg",
+   "quick-connect-fittings-8.jpg",
+   "quick-connect-fittings-9.jpg",
+   "quick-connect-fittings-10.jpg",
+   "quick-connect-fittings-11.jpg",
+   "quick-connect-fittings-12.jpg"
+  ],
+  "det": [
+   "quick-connect-fittings-d1.jpg",
+   "quick-connect-fittings-d2.jpg",
+   "quick-connect-fittings-d3.jpg",
+   "quick-connect-fittings-d4.jpg",
+   "quick-connect-fittings-d5.jpg",
+   "quick-connect-fittings-d6.jpg",
+   "quick-connect-fittings-d7.jpg",
+   "quick-connect-fittings-d8.jpg",
+   "quick-connect-fittings-d9.jpg",
+   "quick-connect-fittings-d10.jpg",
+   "quick-connect-fittings-d11.jpg",
+   "quick-connect-fittings-d12.jpg",
+   "quick-connect-fittings-d13.jpg",
+   "quick-connect-fittings-d14.jpg",
+   "quick-connect-fittings-d15.jpg",
+   "quick-connect-fittings-d16.jpg",
+   "quick-connect-fittings-d17.jpg",
+   "quick-connect-fittings-d18.jpg",
+   "quick-connect-fittings-d19.jpg",
+   "quick-connect-fittings-d20.jpg"
+  ]
+ },
+ "bulkhead-quick-connect-fitting": {
+  "gal": [
+   "bulkhead-quick-connect-fitting-1.jpg",
+   "bulkhead-quick-connect-fitting-2.jpg",
+   "bulkhead-quick-connect-fitting-3.jpg",
+   "bulkhead-quick-connect-fitting-4.jpg",
+   "bulkhead-quick-connect-fitting-5.jpg",
+   "bulkhead-quick-connect-fitting-6.jpg",
+   "bulkhead-quick-connect-fitting-7.jpg",
+   "bulkhead-quick-connect-fitting-8.jpg"
+  ],
+  "det": [
+   "bulkhead-quick-connect-fitting-d1.jpg",
+   "bulkhead-quick-connect-fitting-d2.jpg",
+   "bulkhead-quick-connect-fitting-d3.jpg",
+   "bulkhead-quick-connect-fitting-d4.jpg",
+   "bulkhead-quick-connect-fitting-d5.jpg",
+   "bulkhead-quick-connect-fitting-d6.jpg",
+   "bulkhead-quick-connect-fitting-d7.jpg",
+   "bulkhead-quick-connect-fitting-d8.jpg"
+  ]
+ }
+}
