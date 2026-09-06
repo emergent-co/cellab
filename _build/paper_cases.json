@@ -6,11 +6,11 @@
    "fl": false,
    "title": "열처리 · 증착 (퍼니스)",
    "caption": "배터리 소재 소성 · 소성·소결 · CVD · 가스 분위기",
-   "all_url": "/magazine/",
+   "all_url": "/blog/",
    "all_label": "열처리·증착 매거진 전체",
    "cards": [
     {
-     "url": "/magazine/sodium-cathode-atmosphere-dca/",
+     "url": "/blog/sodium-cathode-atmosphere-dca/",
      "img": "/img/product/sh/tube-1500.jpg",
      "alt": "튜브퍼니스 소성",
      "process": [
@@ -24,7 +24,7 @@
      "span": "w"
     },
     {
-     "url": "/magazine/si-anode-cvd-carbon-coating/",
+     "url": "/blog/si-anode-cvd-carbon-coating/",
      "img": "/img/product/sh/tube-1500.jpg",
      "alt": "실리콘 음극 CVD 탄소 코팅 셋업 — 튜브퍼니스",
      "process": [
@@ -37,7 +37,7 @@
      "proc": "coat"
     },
     {
-     "url": "/magazine/sofc-hcl-syngas/",
+     "url": "/blog/sofc-hcl-syngas/",
      "img": "/img/product/sh/tube-1500.jpg",
      "alt": "튜브퍼니스",
      "process": [
@@ -50,7 +50,7 @@
      "proc": "calcine"
     },
     {
-     "url": "/magazine/cuo-nanowire-thermal-oxidation/",
+     "url": "/blog/cuo-nanowire-thermal-oxidation/",
      "img": "/img/product/sh/muffle-1050.jpg",
      "alt": "구리 열산화 튜브퍼니스 셋업",
      "process": [
@@ -63,7 +63,7 @@
      "proc": "calcine"
     },
     {
-     "url": "/magazine/guide-calcination-furnace-atmosphere/",
+     "url": "/blog/guide-calcination-furnace-atmosphere/",
      "img": "/img/product/sh/gas-flow-package.jpg",
      "alt": "튜브퍼니스 가스 분위기 선정 가이드",
      "process": [
@@ -76,7 +76,7 @@
      "proc": "calcine"
     },
     {
-     "url": "/magazine/troubleshooting-calcination-batch-variation/",
+     "url": "/blog/troubleshooting-calcination-batch-variation/",
      "img": "/img/product/sh/muffle-1500.jpg",
      "alt": "소성 배치 편차 트러블슈팅",
      "process": [
@@ -99,7 +99,7 @@
    "all_label": "사례 아카이브 전체",
    "cards": [
     {
-     "url": "/magazine/nickel-hydroxide-coprecipitation-cstr/",
+     "url": "/blog/nickel-hydroxide-coprecipitation-cstr/",
      "img": "/img/pump-guide.jpg",
      "alt": "연동펌프 정량 공급",
      "process": [
@@ -113,7 +113,7 @@
      "span": "t"
     },
     {
-     "url": "/magazine/aorfb-flowfield-electrolyte-pump/",
+     "url": "/blog/aorfb-flowfield-electrolyte-pump/",
      "img": "/img/leadfluid/official/bt101l-1.jpg",
      "alt": "연동펌프 전해액 순환",
      "process": [
@@ -139,7 +139,7 @@
      "proc": "electrolyte"
     },
     {
-     "url": "/magazine/guide-pump-selection-energy-fluids/",
+     "url": "/blog/guide-pump-selection-energy-fluids/",
      "img": "/img/pump-guide.jpg",
      "alt": "펌프 선정 가이드",
      "process": [
@@ -152,7 +152,7 @@
      "proc": "coprecip electrolyte"
     },
     {
-     "url": "/magazine/glossary-pump-fluid-terms/",
+     "url": "/blog/glossary-pump-fluid-terms/",
      "img": "/img/leadfluid/official/bt101l-1.jpg",
      "alt": "펌프 용어사전",
      "process": [

@@ -180,7 +180,7 @@ news = ('''
     <section class="bb-sec">
       <div class="bb-eyebrow">SETUP &amp; RESEARCH</div>
       <h2 class="bb-title">최신연구</h2>
-      <a class="bb-va" href="/magazine/">View all</a>
+      <a class="bb-va" href="/blog/">View all</a>
       <div class="news-grid">''' + news_rail.replace('<div class="prod-rail" id="prodRail">', '', 1).rsplit('</div>', 1)[0] + '''</div>
 ''' + (('      ' + first_box.strip() + '\n') if first_box else '') + '''    </section>
 ''')

@@ -31,7 +31,7 @@
     { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 보증 신뢰 진단 품질', c:'호환 장비' },
     { t:'연동펌프 유량 캘리브레이션 방법', u:'/pump/atoz/flow-calibration/', k:'유량 캘리브레이션 보정 calibration 연동펌프 설정값 실제유량 드리프트 저울 메스실린더 보정계수 재현성', c:'펌프를 고를 때' },
     { t:'연동펌프 튜브 규격·펌프헤드 가이드', u:'/pump/atoz/tube-size-guide/', k:'튜브 규격 번호 내경 mm 13 14 16 25 17 18 펌프헤드 YT25 YZ35 튜브 재질 실리콘 tygon pharmed viton 연동펌프', c:'펌프를 고를 때' },
-    { t:'셋업 사례 — 논문 셋업·가이드·도입 사례', u:'/magazine/', k:'셋업 사례 매거진 논문 셋업 분석 열처리 증착 퍼니스 유체 펌프 공정 조건 장비 magazine setups', c:'셋업 사례' },
+    { t:'블로그 — 논문 셋업·가이드·도입 사례', u:'/blog/', k:'블로그 셋업 사례 매거진 논문 셋업 분석 열처리 증착 퍼니스 유체 펌프 공정 조건 장비 blog magazine setups', c:'블로그' },
     { t:'온도컨트롤러(SP590·NOVA500E) 사용법 가이드', u:'/temp-controller-guide/', k:'온도컨트롤러 sp590 sp570 nova500e 삼원테크 사용법 전기로 온도 설정 승온 유지 하강 반복 hold 무한반복 rs485 가상 시뮬레이터 삼흥에너지', c:'호환 장비' },
     { t:'문의하기 · 자주 묻는 질문(FAQ)', u:'/contact/', k:'문의 상담 수리 개발 견적 실험 질문 faq 가격 할인 납기 배송 설치 보증 정량펌프 연동펌프 튜브 채널 제어 소프트웨어', c:'문의하기' }
   ];
@@ -87,12 +87,12 @@
         ['펌프','/product/?c=pump',[['연동펌프','/product/?c=pump&s=peri'],['정량펌프','/product/?c=pump&q=%EC%A0%95%EB%9F%89%ED%8E%8C%ED%94%84'],['시린지펌프','/product/?c=pump&s=syr'],['기어펌프','/product/?c=pump&s=gear'],['방폭펌프','/product/?c=pump&s=ex'],['펌프헤드','/product/?c=pump&s=head']]],
         ['유량·압력','/product/?c=gas',[['질량유량계(MFC)','/product/?c=gas'],['압력 컨트롤러','/product/?c=gas&s=press']]],
         ['전기화학 셀·전극','/product/?c=echem',[['전해셀·반응셀','/product/?c=echem&s=fam%3Acell'],['기준전극','/product/?c=echem&s=fam%3Aref'],['작업전극','/product/?c=echem&s=fam%3Aworking'],['상대전극','/product/?c=echem&s=fam%3Acounter'],['RDE·RRDE','/product/?c=echem&s=fam%3Arde'],['클램프·홀더','/product/?c=echem&s=fam%3Aholder']]],
-        ['인시츄 관찰','/product/?c=echem&s=fam%3Ainsitu',[['인시츄 셀 전체','/product/?c=echem&s=fam%3Ainsitu'],['CIS-OM-003 표준형','/magazine/insitu-li-dendrite-observation/'],['002 비커형','/magazine/insitu-cell-002/'],['004 고저온','/magazine/insitu-cell-004/'],['005 극저온','/magazine/insitu-cell-005/']]],
+        ['인시츄 관찰','/product/?c=echem&s=fam%3Ainsitu',[['인시츄 셀 전체','/product/?c=echem&s=fam%3Ainsitu'],['CIS-OM-003 표준형','/blog/insitu-li-dendrite-observation/'],['002 비커형','/blog/insitu-cell-002/'],['004 고저온','/blog/insitu-cell-004/'],['005 극저온','/blog/insitu-cell-005/']]],
         ['시료 전처리','/product/?c=prep',[['펠릿 다이(금형)','/product/?c=prep&s=die'],['펠릿 프레스','/product/?c=prep&s=pellet'],['전극 슬라이서','/product/?c=prep&s=slicer']]],
         ['그 외 장비군','/product/',[['건조·농축','/product/?c=dry'],['배양·항온·멸균','/product/?c=culture'],['교반·분산·분쇄','/product/?c=mix'],['진공','/product/?c=vacuum'],['안전·측정','/product/?c=safety']]],
         ['카탈로그·메뉴얼','/product/',[['통합 카탈로그','/product/'],['메뉴얼','/manuals/']]]
       ] },
-    { href:'/magazine/', label:'Setup Blog', icon:'feed' },
+    { href:'/blog/', label:'블로그', icon:'feed' },
     { href:'/about/', label:'Company', icon:'contact' }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
@@ -160,7 +160,7 @@
     '</header>' +
     '<nav class="ch-nav" aria-label="주 메뉴">' + topNavHTML + '</nav>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">에너지·배터리·수전해 실험장비 원스톱 스토어<br>논문 셋업으로 검증된 장비 구성 · 셋업 매거진 운영</div>' +
+      '<div class="ch-side-foot">에너지·배터리·수전해 실험장비 원스톱 스토어<br>논문 셋업으로 검증된 장비 구성 · 실험 셋업 블로그 운영</div>' +
       '<a id="adminNav" href="/admin" style="display:block;margin:12px 14px 8px;font-size:11px;color:#9aa3ad;text-decoration:none;border-top:1px solid #e6eaf0;padding-top:9px">\u2699 관리자</a>' +
       '<a id="adminOut" href="#" style="display:none;margin:0 14px 10px;font-size:10.5px;color:#b3b9c2;text-decoration:none">로그아웃</a>' +
     '</aside>' +
@@ -177,7 +177,7 @@
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>에너지·배터리·수전해 실험장비 원스톱 스토어 · 셋업 매거진</span></div>' +
+            '<span>에너지·배터리·수전해 실험장비 원스톱 스토어 · 실험 셋업 블로그</span></div>' +
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> (이머전트) · 이영현 · 070-8983-2600 · 사업자등록 328-03-02926<br>' +
           '부산광역시 · 서비스·도매/소매업 · 정밀·과학기기 도매, 화학제품 도매, 전기·전자·정밀기기 수리</div>' +
@@ -298,7 +298,7 @@
     if (window.self === window.top && path.indexOf('/pump/') === 0 && !document.querySelector('.lf-sticky')) {
       var lf = document.createElement('a');
       lf.className = 'lf-sticky';
-      lf.href = '/magazine/pump-selection-wizard/';
+      lf.href = '/blog/pump-selection-wizard/';
       lf.innerHTML = '<span class="lf-name">리드플루이드(LeadFluid)</span><span class="lf-go">펌프 보기 →</span>';
       document.body.appendChild(lf);
       document.body.classList.add('has-lfsticky');
@@ -310,7 +310,7 @@
       window.addEventListener('scroll', lfScroll, { passive: true });
       lfScroll();
     }
-    // 매거진 글 페이지: 우측 '관련 제품' 레일 주입 (article.sd-wrap 페이지 공통)
+    // 블로그 글 페이지: 우측 '관련 제품' 레일 주입 (article.sd-wrap 페이지 공통)
     var art = document.querySelector('article.sd-wrap');
     if (art && !document.querySelector('.art-rail')) {
       var HEAT_PRODS = [
@@ -322,11 +322,11 @@
         { u:'/brands/sh-scientific/rotary-tube-furnace/', i:'/img/product/sh/rotary-tube-furnace.jpg', n:'회전 튜브로 300mm', d:'분말을 굴리며 균일 소성 — 배치 편차 해결.', d2:'배치식 · 가스 분위기 겸용 · 파일럿 전 단계', p:/*P:rotary*/'1,285만 원~' }
       ];
       var FLUID_PRODS = [
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt101s-1.jpg', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:/*P:bt101s*/'94만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt300s-1.jpg', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:/*P:bt300s*/'166만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/bt600s-1.jpg', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:/*P:bt600s*/'212만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/ct3001f-1.jpg', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:/*P:ct3001*/'224만 원~' },
-        { u:'/magazine/pump-selection-wizard/', i:'/img/leadfluid/official/tyd01-01-1.jpg', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:/*P:tyd01*/'232만 원~' },
+        { u:'/blog/pump-selection-wizard/', i:'/img/leadfluid/official/bt101s-1.jpg', n:'BT101S 연동펌프', d:'정량 공급·공침 표준. RS-485 제어.', d2:'유량 캘리브레이션 · 다양한 펌프헤드 호환', p:/*P:bt101s*/'94만 원~' },
+        { u:'/blog/pump-selection-wizard/', i:'/img/leadfluid/official/bt300s-1.jpg', n:'BT300S 연동펌프', d:'중유량 이송·분주 — 랩 범용.', d2:'분배·타이머 운전 · 정량 분주 모드', p:/*P:bt300s*/'166만 원~' },
+        { u:'/blog/pump-selection-wizard/', i:'/img/leadfluid/official/bt600s-1.jpg', n:'BT600S 연동펌프', d:'대유량 순환·이송. 다채널 헤드 확장.', d2:'반응기 순환·스케일업 · 멀티채널 구성', p:/*P:bt600s*/'212만 원~' },
+        { u:'/blog/pump-selection-wizard/', i:'/img/leadfluid/official/ct3001f-1.jpg', n:'CT3001F 기어펌프', d:'무맥동 연속 이송 — PEEK 내화학 헤드.', d2:'전해액·유기용매 순환 · 논문 검증 모델', p:/*P:ct3001*/'224만 원~' },
+        { u:'/blog/pump-selection-wizard/', i:'/img/leadfluid/official/tyd01-01-1.jpg', n:'TYD01 시린지펌프', d:'미량 정밀 주입·전해액 정량.', d2:'저맥동 정밀 주입 · 시린지 규격 대응', p:/*P:tyd01*/'232만 원~' },
         { u:'/brands/alicat/', i:'/img/product/%EC%95%8C%EB%A6%AC%EC%BA%A3%20%EC%A0%9C%ED%92%88.jpg', n:'Alicat 질량유량계(MFC)', d:'가스 유량 sccm 정밀 제어·기록.', d2:'다기체 대응 · Modbus·RS-485 로그', p:'견적 문의' }
       ];
       var ECHEM_PRODS = [
@@ -358,7 +358,7 @@
         '<button type="button" class="ar-order" id="arOrderBtn">' +
           '<span class="ao-ic">🛒</span>' +
           '<span class="ao-bd"><span class="ao-t">셋업 구성에 필요한 부품 주문하기</span>' +
-          '<span class="ao-d">필요한 장비를 골라 견적 문의 — 매거진 독자 할인가</span></span>' +
+          '<span class="ao-d">필요한 장비를 골라 견적 문의 — 블로그 독자 할인가</span></span>' +
           '<span class="ao-go">＋</span>' +
         '</button>';
       layout.appendChild(rail);

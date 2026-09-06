@@ -442,7 +442,7 @@ def build_requests():
 # 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
 CRAWLER_LINKS = [
     ('/', '홈'),
-    ('/about/', '실험셋업연구소 회사소개 — 실험 셋업 매거진·논문 셋업·장비 안내'),
+    ('/about/', '실험셋업연구소 회사소개 — 실험 셋업 블로그·논문 셋업·장비 안내'),
     ('/brands/sh-scientific/guide/', '삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업'),
     ('/brands/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
     ('/brands/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
@@ -463,32 +463,32 @@ CRAWLER_LINKS = [
     ('/application/flow-chemistry.html', 'flow chemistry 연속흐름 반응'),
     ('/brands/leadfluid/blog/', '펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업'),
     ('/pump/atoz/', '펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결'),
-    ('/magazine/pump-selection-wizard/', '펌프 선택 위저드 — 종류·유량·용도로 고르기'),
+    ('/blog/pump-selection-wizard/', '펌프 선택 위저드 — 종류·유량·용도로 고르기'),
     ('/pump/atoz/peristaltic-flow-setpoint-mismatch/', '연동펌프 유량이 설정값과 다른 이유'),
     ('/pump/atoz/tubing-crush-tear-causes/', '연동펌프 튜빙 씹힘·찢어짐 원인·해결'),
     ('/pump/atoz/flow-calibration/', '연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정'),
     ('/pump/atoz/tube-size-guide/', '연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
-    ('/magazine/', '셋업 사례 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)'),
+    ('/blog/', '블로그 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)'),
     ('/materials/', '소재 — 전기화학 재료·소모품, CO2RR 촉매, 멤브레인, 연마용품'),
     ('/info/', '제품 정보 — 부품·장비 소개, 브랜드별 장비 비교, FAQ·제품상담'),
     ('/wiki/', '배터리 사전 — 공정·재료·전기화학·장비 용어를 위키형으로 설명'),
-    ('/magazine/deposition/', '증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장'),
-    ('/magazine/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
-    ('/magazine/oxidation/', '산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산'),
-    ('/magazine/sodium-cathode-atmosphere-dca/', '소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)'),
-    ('/magazine/aorfb-flowfield-electrolyte-pump/', '레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)'),
-    ('/magazine/nickel-hydroxide-coprecipitation-cstr/', '배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)'),
-    ('/magazine/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
-    ('/magazine/guide-calcination-furnace-atmosphere/', '소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통'),
-    ('/magazine/troubleshooting-calcination-batch-variation/', '소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅'),
-    ('/magazine/glossary-heat-gas-terms/', '하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)'),
-    ('/magazine/guide-pump-selection-energy-fluids/', '전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)'),
-    ('/magazine/glossary-pump-fluid-terms/', 'mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)'),
-    ('/magazine/si-anode-cvd-carbon-coating/', '실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)'),
-    ('/magazine/electrode-slurry-mixing-thick-cathode/', '초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)'),
-    ('/magazine/electrode-vacuum-post-drying-moisture/', '전극 진공 후건조·잔류 수분 관리 셋업 — 압력 사이클과 노점 (Batteries & Supercaps 2021)'),
-    ('/magazine/cuo-nanowire-thermal-oxidation/', '구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)'),
+    ('/blog/deposition/', '증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장'),
+    ('/blog/heat-treatment/', '열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우'),
+    ('/blog/oxidation/', '산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산'),
+    ('/blog/sodium-cathode-atmosphere-dca/', '소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)'),
+    ('/blog/aorfb-flowfield-electrolyte-pump/', '레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)'),
+    ('/blog/nickel-hydroxide-coprecipitation-cstr/', '배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)'),
+    ('/blog/sofc-hcl-syngas/', '석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)'),
+    ('/blog/guide-calcination-furnace-atmosphere/', '소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통'),
+    ('/blog/troubleshooting-calcination-batch-variation/', '소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅'),
+    ('/blog/glossary-heat-gas-terms/', '하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)'),
+    ('/blog/guide-pump-selection-energy-fluids/', '전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)'),
+    ('/blog/glossary-pump-fluid-terms/', 'mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)'),
+    ('/blog/si-anode-cvd-carbon-coating/', '실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)'),
+    ('/blog/electrode-slurry-mixing-thick-cathode/', '초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)'),
+    ('/blog/electrode-vacuum-post-drying-moisture/', '전극 진공 후건조·잔류 수분 관리 셋업 — 압력 사이클과 노점 (Batteries & Supercaps 2021)'),
+    ('/blog/cuo-nanowire-thermal-oxidation/', '구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)'),
     ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
     ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)'),
@@ -502,7 +502,7 @@ CRAWLER_LINKS = [
 
 def _crawler_nav_html():
     def grp(h):
-        if h.startswith('/setups/') or h.startswith('/magazine/') or h.startswith('/compare/') or h in ('/', '/trust/', '/contact/'):
+        if h.startswith('/setups/') or h.startswith('/blog/') or h.startswith('/compare/') or h in ('/', '/trust/', '/contact/'):
             return '사례·신뢰'
         if h.startswith('/pumps/') or h.startswith('/pump/') or h.startswith('/brands/leadfluid/') or h.startswith('/troubleshooting/') or h in ('/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
             return '펌프·제어'
@@ -523,20 +523,20 @@ def _crawler_nav_html():
 def inject_setup_cta():
     """논문 셋업 글 하단에 '이 셋업 구성 그대로 견적·솔루션' CTA를 정적 주입(마커 기반 idempotent).
     셋업명을 ?setup=로 문의폼에 전달해 자동 채움. setups/·furnace/setups/·pump/setups/ 개별 글과
-    magazine 논문글만 대상(허브 index·카테고리 허브 제외). </article> 포함 + h1 존재 조건."""
+    블로그 논문글만 대상(허브 index·카테고리 허브 제외). </article> 포함 + h1 존재 조건."""
     from urllib.parse import quote
     START, END = '<!--SETUPCTA_START-->', '<!--SETUPCTA_END-->'
     HUB = {'setups/index.html', 'furnace/setups/index.html', 'pump/setups/index.html'}
     EXTRA = {
-        'magazine/sofc-hcl-syngas/index.html',
-        'magazine/sodium-cathode-atmosphere-dca/index.html',
-        'magazine/aorfb-flowfield-electrolyte-pump/index.html',
-        'magazine/nickel-hydroxide-coprecipitation-cstr/index.html',
-        'magazine/si-anode-cvd-carbon-coating/index.html',
-        'magazine/cuo-nanowire-thermal-oxidation/index.html',
-        'magazine/electrode-slurry-mixing-thick-cathode/index.html',
-        'magazine/electrode-vacuum-post-drying-moisture/index.html',
-    }  # 매거진 논문글(명시적으로만)
+        'blog/sofc-hcl-syngas/index.html',
+        'blog/sodium-cathode-atmosphere-dca/index.html',
+        'blog/aorfb-flowfield-electrolyte-pump/index.html',
+        'blog/nickel-hydroxide-coprecipitation-cstr/index.html',
+        'blog/si-anode-cvd-carbon-coating/index.html',
+        'blog/cuo-nanowire-thermal-oxidation/index.html',
+        'blog/electrode-slurry-mixing-thick-cathode/index.html',
+        'blog/electrode-vacuum-post-drying-moisture/index.html',
+    }  # 블로그 논문글(명시적으로만)
     count = 0
     for dirpath, filenames in html_tree():
         rel_dir = os.path.relpath(dirpath, ROOT_DIR).replace(os.sep, '/')
@@ -631,7 +631,7 @@ def _setup_card(p):
     )
 
 def build_rss():
-    """_build/posts.json → feed.xml(RSS 2.0) 생성. 매거진 구독·AI 애그리게이터용.
+    """_build/posts.json → feed.xml(RSS 2.0) 생성. 블로그 구독·AI 애그리게이터용.
     최신순, 최대 30편. 콘텐츠(magazine·setup·guide) 포함."""
     from datetime import datetime, timezone, timedelta
     posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
@@ -670,10 +670,10 @@ def build_rss():
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
         '  <channel>\n'
-        '    <title>실험셋업연구소 — 실험 셋업 매거진</title>\n'
-        f'    <link>{BASE_URL_LD}/magazine/</link>\n'
+        '    <title>실험셋업연구소 블로그 — 실험 셋업</title>\n'
+        f'    <link>{BASE_URL_LD}/blog/</link>\n'
         '    <atom:link href="' + BASE_URL_LD + '/feed.xml" rel="self" type="application/rss+xml"/>\n'
-        '    <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>\n'
+        '    <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 블로그.</description>\n'
         '    <language>ko</language>\n'
         f'    <lastBuildDate>{now822}</lastBuildDate>\n'
         + '\n'.join(items) + '\n'
@@ -728,7 +728,7 @@ def build_home_paper_cases():
         )
         total_cards += 1
     parts.append('</div>')
-    parts.append('<a class="mag-all" href="/magazine/">셋업 사례 전체 &rarr;</a>')
+    parts.append('<a class="mag-all" href="/blog/">블로그 전체 &rarr;</a>')
     section = '\n    '.join(parts)
 
     html = read(html_path)
@@ -800,8 +800,8 @@ ORG_WEBSITE_GRAPH = {
             "telephone": "+82-70-8983-2600",
             "founder": {"@type": "Person", "name": "이영현"},
             "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"],
-            "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 셋업 매거진",
-            "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 셋업 매거진. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 매거진을 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 매거진에서 다룬 장비는 정가 대비 3% 이상 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
+            "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 실험 셋업 블로그",
+            "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 실험 셋업 블로그. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 블로그를 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 블로그에서 다룬 장비는 정가 대비 3% 이상 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.",
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "부산광역시",
@@ -834,10 +834,10 @@ ORG_WEBSITE_GRAPH = {
 }
 
 BREADCRUMB_SECTIONS = {
-    'magazine': ('셋업 사례', '/magazine/'),
+    'blog': ('블로그', '/blog/'),
     'application': ('실험 가이드', '/application/'),
     'pumps': ('펌프 종류', '/pumps/'),
-    'setups': ('셋업 사례', '/magazine/'),
+    'setups': ('블로그', '/blog/'),
     'requests': ('소프트웨어 제어', '/requests/'),
     'trust': ('믿고 도입할 때', '/trust/'),
     'contact': ('문의하기', '/contact/'),
@@ -2994,8 +2994,8 @@ def build_search_index():
                 cat = '장비 카탈로그'
             elif url.startswith('/wiki'):
                 cat = '배터리 사전'
-            elif url.startswith('/magazine'):
-                cat = '매거진'
+            elif url.startswith('/blog'):
+                cat = '블로그'
             elif url.startswith('/setups') or url.startswith('/furnace/setups') or url.startswith('/pump/setups'):
                 cat = '셋업 사례'
             elif url.startswith('/pump/atoz'):
@@ -3101,13 +3101,13 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
-        ('magazine/',     '0.9', 'weekly'),   # 실험 셋업 매거진 허브
+        ('blog/',     '0.9', 'weekly'),   # 블로그 허브
         ('materials/',               '0.9', 'weekly'),   # 소재 허브
         ('info/',                    '0.9', 'weekly'),   # 제품 정보 허브
         ('wiki/',                    '0.9', 'weekly'),   # 배터리 사전 인덱스
-        ('magazine/deposition/',     '0.8', 'monthly'),  # 증착 허브
-        ('magazine/heat-treatment/', '0.8', 'monthly'),  # 열처리 허브
-        ('magazine/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브
+        ('blog/deposition/',     '0.8', 'monthly'),  # 증착 허브
+        ('blog/heat-treatment/', '0.8', 'monthly'),  # 열처리 허브
+        ('blog/oxidation/',      '0.8', 'monthly'),  # 산화·확산 허브
         ('guides/',       '0.8', 'monthly'),  # 선택 가이드 허브
         ('manuals/',      '0.6', 'monthly'),  # 메뉴얼 모음 허브
         ('manuals/furnace/', '0.6', 'monthly'),  # 퍼니스·온도컨트롤러 메뉴얼
@@ -3126,7 +3126,7 @@ def main():
         ('furnace/setups/alicat-mfc-tubefurnace/', '0.7', 'monthly'),  # 도입 스토리 (튜브퍼니스 MFC)
         ('brands/leadfluid/blog/', '0.8', 'weekly'),
         ('pump/atoz/', '0.8', 'weekly'),
-        ('magazine/pump-selection-wizard/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
+        ('blog/pump-selection-wizard/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
         ('brands/leadfluid/pump-heads/','0.8', 'monthly'),
         ('brands/leadfluid/bq80s/','0.8', 'monthly'),
         ('brands/leadfluid/bt100f/','0.8', 'monthly'),
@@ -3331,7 +3331,7 @@ def main():
     # GEO: 도입·논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
     build_setups()  # /setups/index.html 논문 셋업 6편 정적 렌더 (posts.json type=setup)
     build_home_paper_cases()  # 홈 '논문 사례' 카드 정적 렌더 (paper_cases.json · 공정 변수 SSOT)
-    build_rss()  # feed.xml (RSS 2.0) — 매거진 구독·애그리게이터
+    build_rss()  # feed.xml (RSS 2.0) — 블로그 구독·애그리게이터
     inject_setup_cta()  # 논문 셋업 글 하단 '이 셋업 그대로 견적·솔루션' CTA(?setup= 전달)
     build_all_products()  # 전 제품 통합 카탈로그 (브랜드 허브 카드 자동 수집)
     build_product_pages()  # 제품 상세페이지 (products/<brand>.json SSOT · 손 HTML 금지)

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험용 퍼니스는 어떻게 선택해야 할까 — 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준 | 실험셋업연구소</title>
+<meta name="description" content="실험용 퍼니스(전기로) 선택 가이드. 박스형(머플로)과 튜브형(튜브퍼니스)의 차이, 발열체별 온도 등급(칸탈 1200℃·SiC 1500℃·MoSi₂ 1700~1900℃), 최고온도와 연속 사용온도의 차이, 균일 온도구간, 분위기(N₂·Ar) 제어, 도가니·튜브 재질 주의사항까지 수치로 정리했습니다.">
+<link rel="canonical" href="https://rndsetup.com/blog/guide-furnace-selection-box-vs-tube/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="실험용 퍼니스는 어떻게 선택해야 할까 — 박스형 vs 튜브형">
+<meta property="og:description" content="사용 온도·시료 처리량·분위기 제어, 세 가지 질문이면 퍼니스 형태가 정해집니다. 발열체 온도 등급표와 선택 체크리스트 5개 항목.">
+<meta property="og:url" content="https://rndsetup.com/blog/guide-furnace-selection-box-vs-tube/">
+<meta property="og:image" content="https://rndsetup.com/img/blog/furnace-selection-guide.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"headline":"실험용 퍼니스는 어떻게 선택해야 할까 — 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준",
+"datePublished":"2026-08-24",
+"dateModified":"2026-08-24",
+"inLanguage":"ko",
+"image":"https://rndsetup.com/img/blog/furnace-selection-guide.jpg",
+"about":{"@type":"Thing","name":"실험용 퍼니스(전기로) 선택 기준","url":"https://rndsetup.com/product/"},
+"author":{"@type":"Person","@id":"https://rndsetup.com/#yhlee","name":"이영현","url":"https://rndsetup.com/about/#author","affiliation":{"@type":"Organization","name":"실험셋업연구소"}},
+"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},
+"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/blog/guide-furnace-selection-box-vs-tube/"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"박스형 퍼니스와 튜브형 퍼니스는 언제 무엇을 골라야 하나요?","acceptedAnswer":{"@type":"Answer","text":"대기(공기) 중에서 여러 도가니를 한 번에 소성·소결한다면 챔버가 넓은 박스형(머플로)이 우선입니다. 반면 질소·아르곤 등으로 분위기를 제어해야 하거나, 환원·탄화처럼 산소를 차단해야 하는 공정이라면 튜브형(튜브퍼니스)이 적합합니다. 처리량은 박스형(3~125L급 챔버), 분위기 제어는 튜브형(Φ30~250mm 튜브)이 기준입니다."}},
+{"@type":"Question","name":"퍼니스의 최고온도와 실제 사용온도는 왜 다르게 봐야 하나요?","acceptedAnswer":{"@type":"Answer","text":"표기된 최고온도는 단시간 도달 한계이고, 발열체 수명을 위해 상시 운전은 통상 200℃ 낮게 잡습니다. 예를 들어 SiC 발열체 1500℃급은 권장 상시 1300℃ 이하, MoSi₂ 1800℃급은 1600℃ 이하가 일반적입니다. 튜브형은 튜브 재질 한계(석영 약 1100℃, 알루미나 약 1600~1700℃)도 함께 확인해야 합니다."}}
+]}
+</script>
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "이머전트", "Emergent", "emergent co."], "legalName": "이머전트", "taxID": "328-03-02926", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "slogan": "에너지·배터리·수전해 실험장비 원스톱 스토어 + 실험 셋업 블로그", "description": "에너지·배터리·수전해 실험장비 원스톱 스토어이자 실험 셋업 블로그. 튜브퍼니스·전기로, 정량·연동펌프, 전기화학 셀·전극(가오스유니온 838종), 질량유량계(MFC) 등 1,700여 SKU를 정품 공급한다. 논문과 현장이 실제로 쓴 에너지·소재 공정 셋업을 공정 → 조건 → 필요 장비 순으로 분석해 공유하는 블로그를 함께 운영한다. 소성·증착(퍼니스)·가스 분위기·유량 제어와 유체·펌프 조건을 셋업 단위로 정리하고, 배터리 소재 R&D·파일럿 라인 등 제조사가 완제품으로 다루지 않는 통합·특수 셋업은 직접 설계·공급한다. 블로그에서 다룬 장비는 정가 대비 3% 이상 상시 할인가로 안내하며, 구매·수리·국내 A/S(구매 시 3년 무상보증)는 실험 장비 수리 전문 업체 이머전트(Emergent co)가 맡는다. 리드플루이드(LeadFluid)·삼흥에너지(SH Scientific)·Alicat 질량유량계(MFC) 등을 정품으로 안내한다.", "address": {"@type": "PostalAddress", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험 장비 시스템 통합", "실험 기기 통합 제어", "온도 제어", "진공 제어", "유량 제어", "측정 기기 연동", "Modbus·RS-485 통합 제어", "실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "마그네틱 펌프", "질량유량계(MFC)", "질량유량계 다기체 보정", "sccm·slm 가스 유량 제어", "압력 컨트롤러", "배압 레귤레이터(BPR)", "관류배양", "연속배양(chemostat)", "flow chemistry 연속흐름 반응", "열처리로(전기로·튜브퍼니스)", "튜브퍼니스(관상로)", "머플로(박스형 전기로)", "진공 전기로", "회전 튜브로(로터리 킬른)", "엘리베이터 전기로", "3존 튜브퍼니스", "소성(firing)", "하소(calcination)", "소결(sintering)", "어닐링(소둔)", "가스 분위기 제어", "산소 분압(pO2) 제어", "동적 분위기 제어(DCA)", "CVD 탄소 코팅", "열산화", "배터리 양극재 전구체 공침", "전해액 순환", "수전해·전기화학 셋업", "전기화학 셀(H셀·GDE·MEA)", "기준전극·작업전극·상대전극", "CO2 환원(CO2RR) 촉매", "배터리 테스트 셀(코인·in-situ)", "배터리 용어 사전", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "실험 셋업 정보"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 정품 안내·국내 A/S(이머전트)", "serviceType": "실험실 펌프 정품 안내 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 정품 안내·시스템 연동", "serviceType": "질량유량계 정품 안내 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END-->
+<link rel="stylesheet" href="/assets/site.css?v=531a690a">
+<style>
+.msc-tbl{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 6px;border:1px solid #e5e3dc;border-radius:8px;overflow:hidden}
+.msc-tbl th,.msc-tbl td{padding:9px 12px;text-align:left;border-top:1px solid #eceae3;vertical-align:top}
+.msc-tbl thead th{background:#f6f5f0;color:#555;font-weight:700;font-size:12.5px;border-top:none}
+.msc-tbl .hot{background:#FDF7EC}
+.msc-note{font-size:12.5px;color:#777;margin:2px 0 20px}
+</style>
+</head>
+<body>
+<div id="pumplab-header"></div>
+
+<article class="sd-wrap">
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/blog/">매거진</a> › 가이드 · 열처리·증착</div>
+  <h1>실험용 퍼니스는 어떻게 선택해야 할까<br>— 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준</h1>
+  <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:6px 0 2px">실험셋업연구소 블로그 · 가이드 · 글 <a href="/about/#author" style="color:inherit;text-decoration:underline;text-underline-offset:2px">이영현</a> · <time datetime="2026-08-24">2026년 8월 24일</time> 발행 · 읽는 시간 약 6분</div>
+
+  <div class="sd-answer">
+    <b>퍼니스는 세 가지 질문으로 좁힙니다 — ① 실제 사용 온도(발열체 등급), ② 시료 크기·처리량, ③ 분위기 제어 필요 여부.</b> 대기 중 다량 소성이면 박스형(머플로), 질소·아르곤 분위기나 환원·탄화 공정이면 튜브형(튜브퍼니스)입니다.
+  </div>
+
+  <figure style="margin:26px auto 6px;max-width:680px;text-align:center">
+    <img src="/img/blog/furnace-selection-guide.jpg" alt="박스형 머플 퍼니스(왼쪽, 도어 개방·도가니 2개)와 튜브형 퍼니스(오른쪽, 석영 튜브·플랜지·가스 라인) 비교 3D 렌더링" style="width:100%;border-radius:12px;border:1px solid #EAEAEA">
+    <figcaption style="font-size:12px;color:#8a929c;margin-top:8px;line-height:1.6">박스형(머플) 퍼니스와 튜브형 퍼니스 — 넓은 챔버에 다수 도가니 vs 밀봉 튜브와 가스 라인. (실험셋업연구소 렌더링)</figcaption>
+  </figure>
+
+  <div class="sd-body">
+    <h2>왜 퍼니스 선택이 결과를 좌우하나</h2>
+    <p>퍼니스(전기로)는 소재·재료의 합성과 열처리에 쓰이는 가장 기본적인 실험 장비입니다. 그런데 실험 목적에 맞지 않는 퍼니스를 쓰면, <b>설정 온도에 도달했더라도</b> 화합물의 조성이나 결정구조가 예상과 다르게 형성될 수 있습니다. 시료가 놓인 위치의 실제 온도가 설정값과 다르거나, 분위기 중 산소가 반응에 개입하기 때문입니다. 그래서 퍼니스는 모델명이 아니라 <b>사용 최고 온도 · 시료 크기와 처리량 · 분위기 제어 필요 여부</b>를 기준으로 골라야 합니다.</p>
+
+    <h2>1. 박스형 퍼니스 (Box / Muffle Furnace)</h2>
+    <p>가장 흔한 형태로, 내부에 비교적 넓은 사각 챔버가 있어 <b>여러 개의 도가니를 동시에</b> 열처리하기 좋습니다. 실험실용은 챔버 3L급 소형부터 27L, 크게는 64~125L급까지 나오며, 도가니를 넣고 꺼내기 쉬운 단순한 구조가 장점입니다.</p>
+    <p>산화물·세라믹의 소성(calcination)과 소결(sintering), 회화(ashing), 시료 전처리처럼 <b>대기(공기) 조건에서 비교적 많은 양을 처리</b>하는 공정에 널리 쓰입니다. 챔버 내부 온도 균일도는 기종에 따라 통상 ±5~10℃ 수준이므로, 정밀한 실험이라면 시료를 챔버 중앙부에 배치하는 것이 안전합니다.</p>
+
+    <h2>2. 튜브형 퍼니스 (Tube Furnace)</h2>
+    <p>길쭉한 가열부에 석영관 또는 알루미나관을 끼우고 그 안에서 시료를 열처리하는 방식입니다. 실험실용 튜브 지름은 Φ30mm 소형부터 Φ50·80·100·120mm가 일반적이고, 대용량은 Φ250mm급까지 있습니다.</p>
+    <p>가장 큰 특징은 <b>열처리 분위기(atmosphere)를 제어하기 쉽다</b>는 점입니다. 튜브 양끝을 플랜지로 밀봉하고 질소(N₂)·아르곤(Ar) 같은 불활성 가스를 흘려 산화를 억제하거나, 수소 혼합가스(안전을 위해 통상 4% H₂/Ar)로 환원 분위기를 만들 수 있습니다. 가스 유량은 튜브 지름에 따라 대략 수십~수백 sccm을 흘리며, 승온 전에 30분 이상 퍼지해 잔류 산소를 몰아내는 것이 기본입니다. 유량 재현이 중요하면 로터미터 대신 <a href="/product/?q=질량유량계">질량유량계(MFC)</a>를 붙입니다.</p>
+    <p>한 가지 주의할 점은 <b>튜브 재질의 온도 한계</b>입니다. 석영관은 약 1100℃ 이상에서 장시간 사용하면 실투(失透)로 뿌옇게 변하며 약해지므로 1200℃급 이상 공정에는 알루미나관(약 1600~1700℃까지)을 씁니다. 또 균일 온도구간(uniform zone)은 가열 길이 전체가 아니라 <b>중앙부 약 1/3 구간</b>이므로, 시료(보트)는 반드시 중앙에 배치합니다.</p>
+
+    <table class="msc-tbl">
+      <thead><tr><th></th><th>박스형(머플로)</th><th>튜브형(튜브퍼니스)</th></tr></thead>
+      <tbody>
+        <tr><td><b>처리량</b></td><td class="hot">챔버 3~125L, 다수 도가니 동시 처리</td><td>튜브 Φ30~250mm, 보트 1~수 개</td></tr>
+        <tr><td><b>분위기</b></td><td>대기(공기)가 기본</td><td class="hot">N₂·Ar·혼합가스·진공까지 제어 용이</td></tr>
+        <tr><td><b>대표 공정</b></td><td>소성·소결·회화·전처리</td><td>분위기 소성, 탄화, 환원, CVD</td></tr>
+        <tr><td><b>시료 출입</b></td><td class="hot">도어 개폐, 간편</td><td>플랜지 개폐, 밀봉 확인 필요</td></tr>
+        <tr><td><b>확장</b></td><td>진공형 파생 모델</td><td class="hot">가스플로 패키지·3존·회전형 등 다양</td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">두 형태 모두 컨트롤러는 프로그램 승온(다단 램프·유지)을 지원하는 PID 방식이 표준입니다.</p>
+
+    <h2>퍼니스 선택 시 확인해야 할 5가지</h2>
+    <p><b>① 실제 사용 온도와 발열체 등급.</b> 표기된 최고온도는 단시간 도달 한계이고, 발열체 수명을 위해 <b>상시 운전은 통상 200℃ 낮게</b> 잡습니다. 실사용 온도에 여유 200℃ 이상을 더한 등급을 고르는 것이 안전합니다.</p>
+
+    <table class="msc-tbl">
+      <thead><tr><th>발열체</th><th>등급(최고온도)</th><th>권장 상시 사용온도</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>칸탈(FeCrAl) 와이어</td><td>1050~1200℃</td><td>~1000℃</td><td>소성·회화 등 범용, 가장 경제적</td></tr>
+        <tr><td class="hot">SiC(실리콘카바이드)</td><td class="hot">1400~1500℃</td><td class="hot">1000~1300℃</td><td class="hot">고온 소결·유리/세라믹</td></tr>
+        <tr><td>MoSi₂(이규화몰리브덴)</td><td>1700~1900℃</td><td>1000~1600℃</td><td>초고온 소결, 저온 장시간 유지는 비권장</td></tr>
+      </tbody>
+    </table>
+    <p class="msc-note">권장 상시 온도는 제조사·모델에 따라 다르며, 표는 일반적인 범위입니다. 승온 속도는 세라믹 부품 보호를 위해 통상 5~10℃/min을 권장합니다.</p>
+
+    <p><b>② 시료 크기와 처리량.</b> 도가니 여러 개를 한 번에 처리해야 하면 넓은 챔버의 박스형이, 소량 시료를 특정 분위기에서 처리해야 하면 튜브형이 적합합니다. 도가니 높이·보트 길이가 균일구간 안에 들어가는지도 함께 확인하세요.</p>
+    <p><b>③ 분위기 제어 필요 여부.</b> 공기면 박스형으로 충분하고, 불활성·환원·가변 분위기가 필요하면 튜브형+가스 라인(니들밸브·로터미터 또는 MFC)입니다. 공정 중 가스를 바꿔야 한다면 다채널 MFC 구성이 필요합니다 — 자세한 기준은 <a href="/blog/guide-calcination-furnace-atmosphere/">소성·하소용 퍼니스와 가스 분위기 선정 가이드</a>에 정리했습니다.</p>
+    <p><b>④ 온도 제어 정확도와 균일성.</b> 컨트롤러가 설정값을 일정하게 유지해도 챔버·튜브 내부의 모든 위치가 같은 온도인 것은 아닙니다. 시료 위치에 따라 실제 열처리 온도가 수십 ℃까지 차이 날 수 있고, 이는 재현성 문제로 직결됩니다. 같은 레시피인데 배치마다 결과가 다르다면 <a href="/blog/troubleshooting-calcination-batch-variation/">배치 편차 7가지 점검표</a>를 먼저 확인해 보세요.</p>
+    <p><b>⑤ 확장 계획.</b> 지금은 대기 소성만 해도, 향후 분위기 공정이 예상되면 처음부터 가스플로 패키지형 튜브로나 진공 파생형을 고르는 편이 재구매를 막습니다.</p>
+
+    <p>실험셋업연구소(이머전트)는 <b>퍼니스 내부 실측 온도 확인(내부 온도 측정) 서비스</b>를 제공합니다. 별도 열전대로 시료 위치의 실제 온도를 측정해 설정값과의 편차를 확인해 드리며, 주 사용 온도와 실험 조건을 알려주시면 그에 맞는 퍼니스 선택도 <a href="/contact/">문의하기</a>에서 안내해 드립니다.</p>
+
+    <h2>사용 시 주의해야 할 점</h2>
+    <p><b>냉각 전 개방 금지.</b> 열처리 종료 직후 시료를 꺼내지 말고, 통상 200℃ 이하로 내려간 뒤 개방합니다. 급격한 온도 변화는 도가니·세라믹 튜브에 열충격 균열을 일으키고, 시료 자체도 급랭으로 상이 달라질 수 있습니다.</p>
+    <p><b>시료–내화물 반응 확인.</b> 열처리 중 발생하는 증기·반응 생성물이 발열체와 단열재를 오염·손상시킬 수 있습니다. 특히 리튬염 계열(배터리 양극재 전구체 등)은 고온에서 알루미나 도가니를 침식하므로 도가니를 소모품으로 관리하거나 MgO 등 대체 재질을 검토합니다. 부식성·가연성 증기가 나오는 시료는 배기 라인과 후드 아래 설치가 기본입니다.</p>
+    <p><b>과승온 방지.</b> 컨트롤러의 과열 방지(OTP) 설정과 독립 과승온 차단기가 있는지 확인하고, 무인 운전 시에는 반드시 활성화합니다.</p>
+  </div>
+
+  <div class="sd-related">
+    <h3>관련 콘텐츠</h3>
+    <div class="sd-rel-grid">
+      <a class="sd-rc" href="/blog/guide-calcination-furnace-atmosphere/"><div class="cat">가이드 · 심화</div><div class="t">소성·하소용 퍼니스·가스 분위기 선정 가이드</div><div class="d">분위기 가스·유량 제어(MFC)까지 5가지 축 심화판.</div></a>
+      <a class="sd-rc" href="/blog/troubleshooting-calcination-batch-variation/"><div class="cat">트러블슈팅</div><div class="t">소성 배치마다 결과가 다른 7가지 이유</div><div class="d">이미 장비가 있는데 편차가 난다면 이 점검표부터.</div></a>
+      <a class="sd-rc" href="/product/?q=%ED%8D%BC%EB%8B%88%EC%8A%A4"><div class="cat">제품</div><div class="t">퍼니스 전체 보기 — 머플로·튜브퍼니스·진공·회전킬른</div><div class="d">발열체 등급별 27종, 최저가와 사양 비교.</div></a>
+    </div>
+  </div>
+</article>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 실험 셋업 블로그·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/product/">제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 (삼흥에너지·리드플루이드·Alicat·가오스유니온)</a></li><li><a href="/brands/gaossunion/co2rr-catalyst/">CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드</a></li><li><a href="/brands/hench/pellet-press-yp-15/">Hench YP-15 수동 유압 펠릿 프레스 15T — IR(KBr)·XRD 시료 압편기</a></li><li><a href="/brands/hench/cylindrical-die-hmy-11-14/">Hench HMY 원통형 펠릿 다이 Φ11–14mm — KBr 펠릿·XRD 분말 시료 성형 몰드</a></li><li><a href="/brands/hench/automatic-pellet-press-hap-2s/">Hench HAP-2S 자동 유압 펠릿 프레스 2T — 프로그램 가압·보압·탈형</a></li><li><a href="/brands/hench/isostatic-press-yp-40j/">Hench YP-40J/S 수동 등정압 펠릿 프레스 40T — 등정압 챔버 내압 ≤300MPa</a></li><li><a href="/brands/hench/vacuum-hot-press-vhp-200d/">Hench VHP-200D 진공 자동 열압기 — 진공 챔버 가열·가압 성형</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/guides/">선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/materials/">소재 — 전기화학 재료·소모품, CO2RR 촉매, 멤브레인, 연마용품</a></li><li><a href="/info/">제품 정보 — 부품·장비 소개, 브랜드별 장비 비교, FAQ·제품상담</a></li><li><a href="/wiki/">배터리 사전 — 공정·재료·전기화학·장비 용어를 위키형으로 설명</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/blog/pump-selection-wizard/">펌프 선택 위저드 — 종류·유량·용도로 고르기</a></li><li><a href="/blog/">셋업 사례 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)</a></li><li><a href="/blog/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/blog/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/blog/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/blog/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/blog/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/blog/nickel-hydroxide-coprecipitation-cstr/">배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)</a></li><li><a href="/blog/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/blog/guide-calcination-furnace-atmosphere/">소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</a></li><li><a href="/blog/troubleshooting-calcination-batch-variation/">소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅</a></li><li><a href="/blog/glossary-heat-gas-terms/">하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)</a></li><li><a href="/blog/guide-pump-selection-energy-fluids/">전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)</a></li><li><a href="/blog/glossary-pump-fluid-terms/">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)</a></li><li><a href="/blog/si-anode-cvd-carbon-coating/">실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)</a></li><li><a href="/blog/electrode-slurry-mixing-thick-cathode/">초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)</a></li><li><a href="/blog/electrode-vacuum-post-drying-moisture/">전극 진공 후건조·잔류 수분 관리 셋업 — 압력 사이클과 노점 (Batteries &amp; Supercaps 2021)</a></li><li><a href="/blog/cuo-nanowire-thermal-oxidation/">구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/contact/">문의하기 · 자주 묻는 질문(FAQ) — 견적·수리 A/S·제어 소프트웨어</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js?v=cb69e427" defer></script>
+</body>
+</html>

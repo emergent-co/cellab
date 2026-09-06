@@ -353,11 +353,13 @@ async function post(request, env) {
       qty: Math.min(99999, Math.max(0, Math.round(Number(i.qty) || 0))),   // 정수 · 상한
       price: Math.min(9999999999, Math.max(0, Math.round(Number(i.price) || 0))),  // 음수 금지 · 상한
       note: cut(i.note, 300),
+      // 0원(무료 제공)과 «단가를 안 적음» 은 다르다 — 화면이 구분해서 알려준다
+      priced: i.priced === true,
     }))
     .filter((i) => i.name);
   if (!raw.length) return json({ error: 'no_items', message: '품목을 1개 이상 입력해주세요.' }, 400);
   if (raw.length > 40) return json({ error: 'too_many', message: '품목은 40개까지 넣을 수 있습니다.' }, 400);
-  const unpriced = raw.filter((i) => !i.price);
+  const unpriced = raw.filter((i) => !i.price && !i.priced);
   if (unpriced.length) {
     return json({ error: 'no_price', message: `단가가 비어 있는 품목이 ${unpriced.length}개 있습니다.` }, 400);
   }

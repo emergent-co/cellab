@@ -12,7 +12,7 @@
 
 ## 주요 페이지 (정확한 URL)
 
-> 사이트 메뉴(NAV) 5개: 툴·실험장비(/product/, 하위: 통합 카탈로그·메뉴얼 /manuals/) · 소재(/materials/) · 셋업 사례(/magazine/) · 유용한 정보(하위: 제품 정보 /info/ · 배터리 사전 /wiki/) · 문의하기(/contact/, 하위: FAQ /contact/ · 회사소개 /about/)
+> 사이트 메뉴(NAV) 5개: 툴·실험장비(/product/, 하위: 통합 카탈로그·메뉴얼 /manuals/) · 소재(/materials/) · 셋업 사례(/blog/) · 유용한 정보(하위: 제품 정보 /info/ · 배터리 사전 /wiki/) · 문의하기(/contact/, 하위: FAQ /contact/ · 회사소개 /about/)
 
 - [홈 = 실험장비 원스톱 스토어](https://rndsetup.com/): 히어로 검색 + 배터리 공정별/실험 용도별 장비 찾기 + 최신 논문 셋업 + 구글 리뷰
 - [소재](https://rndsetup.com/materials/): 전기화학 재료·소모품 65종, CO2RR 촉매 79종, 전극 연마용품, 클램프·홀더 허브
@@ -23,19 +23,19 @@
   - [가스 유량 제어 비교 (MFC/로터미터/니들밸브)](https://rndsetup.com/info/compare-mfc/)
   - [전기화학 셀 비교 (H셀/단실/GDE/MEA)](https://rndsetup.com/info/compare-echem-cell/)
 - [배터리 사전](https://rndsetup.com/wiki/): 공정·재료·전기화학·장비·단위 용어 34개를 위키 형식(정의→개요→실무 포인트→같이 보기)으로 설명. 각 항목 /wiki/<슬러그>/
-- [셋업 사례](https://rndsetup.com/magazine/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
-  - [소성·하소용 튜브퍼니스·가스 분위기 선정 가이드](https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/): 배터리 양극재·세라믹·촉매·분말 소재 공통 — 최고온도·튜브 지름·분위기·유량 제어(MFC)·기록 5축 선정 기준
-  - [소성 배치마다 결과가 다른 7가지 이유 — 트러블슈팅](https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/): 승온 편차·균열구간·적재량·유량 드리프트·전환 타이밍·흡습·리크 — 배치 편차 점검표(양극재·세라믹·촉매·분말 공통)
-  - [하소 vs 소성 vs 소결, sccm이란 — 용어사전](https://rndsetup.com/magazine/glossary-heat-gas-terms/): 열처리·가스 유량 용어 12개 정의 — 하소·소성·소결·어닐링, sccm·slm, MFC, 산소 분압, 퍼지, 균열구간, DCA
-  - [전해액·전구체·부식성 유체 펌프 선정 가이드](https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/): 연동 vs 시린지 vs 기어 — 유량·유체 성질·접액 재질·맥동·채널 제어 5축 선정 기준(흐름전지·공침·슬러리·수처리 공통)
-  - [mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전](https://rndsetup.com/magazine/glossary-pump-fluid-terms/): 펌프 사양서·논문 용어 11개 — rpm과 유량, 캘리브레이션, 맥동, 접액부, 튜브 재질, 체류시간, 다채널 동기, Modbus·RS-485
-  - [소듐 양극재 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)](https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/): 튜브퍼니스 + 다채널 MFC, 승온 2% O₂ → 유지 불활성 전환으로 상순도 확보
-  - [실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 (Nature Communications 2018)](https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/): 실란 550℃·50 sccm 증착 + 아세틸렌 900℃·5분 코팅(탄소 7 wt%) — 200사이클 유지율 54→95%
-  - [구리 열산화 CuO 나노와이어 셋업 (Scientific Reports 2019)](https://rndsetup.com/magazine/cuo-nanowire-thermal-oxidation/): 공기 10℃/min→450℃·2h — Cu₂O·CuO 온도창과 표면 미세구조가 나노와이어 밀도 결정 (가스센서·태양전지·촉매 소재)
-  - [레독스흐름전지(AORFB) 전해액 순환 셋업 (PNAS 2024)](https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/): 유로 설계 + 연동펌프 140 mL/min 전해액 순환
-  - [배터리 양극재 전구체 공침 CSTR 셋업 (Chem. Eng. Technol. 2023)](https://rndsetup.com/magazine/nickel-hydroxide-coprecipitation-cstr/): 연동펌프 3채널 정량 공급 + N₂ 분위기·체류시간 제어
-  - [석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 논문 셋업 분석 (J. Power Sources 2007)](https://rndsetup.com/magazine/sofc-hcl-syngas/): 다채널 MFC + 튜브퍼니스 800·900℃ 가스 분위기 제어 셋업
-- [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/magazine/pump-selection-wizard/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
+- [셋업 사례](https://rndsetup.com/blog/): 논문 셋업·가이드·용어사전·도입 사례를 열처리·증착/유체·펌프로 정리한 허브 (구 셋업 매거진+사례 아카이브 통합)
+  - [소성·하소용 튜브퍼니스·가스 분위기 선정 가이드](https://rndsetup.com/blog/guide-calcination-furnace-atmosphere/): 배터리 양극재·세라믹·촉매·분말 소재 공통 — 최고온도·튜브 지름·분위기·유량 제어(MFC)·기록 5축 선정 기준
+  - [소성 배치마다 결과가 다른 7가지 이유 — 트러블슈팅](https://rndsetup.com/blog/troubleshooting-calcination-batch-variation/): 승온 편차·균열구간·적재량·유량 드리프트·전환 타이밍·흡습·리크 — 배치 편차 점검표(양극재·세라믹·촉매·분말 공통)
+  - [하소 vs 소성 vs 소결, sccm이란 — 용어사전](https://rndsetup.com/blog/glossary-heat-gas-terms/): 열처리·가스 유량 용어 12개 정의 — 하소·소성·소결·어닐링, sccm·slm, MFC, 산소 분압, 퍼지, 균열구간, DCA
+  - [전해액·전구체·부식성 유체 펌프 선정 가이드](https://rndsetup.com/blog/guide-pump-selection-energy-fluids/): 연동 vs 시린지 vs 기어 — 유량·유체 성질·접액 재질·맥동·채널 제어 5축 선정 기준(흐름전지·공침·슬러리·수처리 공통)
+  - [mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전](https://rndsetup.com/blog/glossary-pump-fluid-terms/): 펌프 사양서·논문 용어 11개 — rpm과 유량, 캘리브레이션, 맥동, 접액부, 튜브 재질, 체류시간, 다채널 동기, Modbus·RS-485
+  - [소듐 양극재 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)](https://rndsetup.com/blog/sodium-cathode-atmosphere-dca/): 튜브퍼니스 + 다채널 MFC, 승온 2% O₂ → 유지 불활성 전환으로 상순도 확보
+  - [실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 (Nature Communications 2018)](https://rndsetup.com/blog/si-anode-cvd-carbon-coating/): 실란 550℃·50 sccm 증착 + 아세틸렌 900℃·5분 코팅(탄소 7 wt%) — 200사이클 유지율 54→95%
+  - [구리 열산화 CuO 나노와이어 셋업 (Scientific Reports 2019)](https://rndsetup.com/blog/cuo-nanowire-thermal-oxidation/): 공기 10℃/min→450℃·2h — Cu₂O·CuO 온도창과 표면 미세구조가 나노와이어 밀도 결정 (가스센서·태양전지·촉매 소재)
+  - [레독스흐름전지(AORFB) 전해액 순환 셋업 (PNAS 2024)](https://rndsetup.com/blog/aorfb-flowfield-electrolyte-pump/): 유로 설계 + 연동펌프 140 mL/min 전해액 순환
+  - [배터리 양극재 전구체 공침 CSTR 셋업 (Chem. Eng. Technol. 2023)](https://rndsetup.com/blog/nickel-hydroxide-coprecipitation-cstr/): 연동펌프 3채널 정량 공급 + N₂ 분위기·체류시간 제어
+  - [석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 논문 셋업 분석 (J. Power Sources 2007)](https://rndsetup.com/blog/sofc-hcl-syngas/): 다채널 MFC + 튜브퍼니스 800·900℃ 가스 분위기 제어 셋업
+- [리드플루이드(LeadFluid) 선택 가이드](https://rndsetup.com/blog/pump-selection-wizard/): 연동·시린지·기어·마그네틱 정량펌프 선택·전체 사양·튜브 규격·구매·국내 직접 A/S·3년 보증·Modbus·RS485 제어 (개별 모델 페이지는 선택 가이드로 통합)
   - [리드플루이드 메뉴얼](https://rndsetup.com/brands/leadfluid/manuals/): 모델별 사용 메뉴얼
   - [리드플루이드 블로그](https://rndsetup.com/brands/leadfluid/blog/): 실제 도입 셋업·논문 사례
 - [삼흥에너지(SH Scientific) 선택 가이드](https://rndsetup.com/brands/sh-scientific/guide/): 튜브퍼니스·전기로 종류·최고온도별 선택·견적 — 설치·지역 A/S. 온도컨트롤러에 Alicat MFC 가스 유량 연동한 무인·재현 셋업 지원
@@ -51,7 +51,7 @@
   - [글로브박스 전용 가열 압편기 VH-25T](https://rndsetup.com/brands/hench/hot-pellet-press-vh-25t/): SUS304 글로브박스 일체형, 실온~500℃ · 25T
 - [ALICAT](https://rndsetup.com/brands/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
-- [펌프 종류·선택](https://rndsetup.com/magazine/pump-selection-wizard/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
+- [펌프 종류·선택](https://rndsetup.com/blog/pump-selection-wizard/): 연동(페리스탈틱)·시린지·정량·기어·마그네틱 펌프 종류별 특성·선택 기준을 선택 가이드에 통합
 - [기체 유량 제어(MFC)](https://rndsetup.com/brands/alicat/): 질량유량계(Alicat MC-Series 등) 공급·시스템 연동. 튜브퍼니스 가스 분위기·CVD·촉매·가스 혼합비 제어 셋업 정보
 - [소프트웨어 제어](https://rndsetup.com/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
 - [실험 가이드(응용 분야)](https://rndsetup.com/application/): LeadFluid 공식 응용 분류 기준 분야별 펌프 셋업

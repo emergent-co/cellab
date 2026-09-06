@@ -1,7 +1,7 @@
 # 인시츄 시리즈 002·004·005편 생성 (003 파일을 골격으로) + 003 라인업 링크화
 import os, re, json
 
-BASE = 'magazine/insitu-li-dendrite-observation/index.html'
+BASE = 'blog/insitu-li-dendrite-observation/index.html'
 base = open(BASE, encoding='utf-8').read()
 
 def seg(h, a, b):
@@ -23,10 +23,10 @@ STYLE = seg(base, '<style>', '</style>') + '</style>'
 HEADLD_ORG = ''  # build가 주입
 
 ROWS = {
- '003': ('<b>CIS-OM-003</b><br>표준형', 'PEEK · 고순도 Ti 가동 전극(재질 커스텀)', '석영창 Φ24 mm · 두께 0.05 mm · 최소 작동거리 1 mm', '상온 · 가압 모듈 옵션 최대 6 MPa', '시료 10×10 mm · 0.6~2 mm · 액체·전고체 겸용', '/magazine/insitu-li-dendrite-observation/'),
- '002': ('<b>CIS-OM-002</b><br>비커형', '석영 비커 5 mL · PTFE 셸(O링 밀봉) · 순티타늄 전극', '비커 측벽 개방 광학 경로 · 전극 간격 3 mm', '상온', '아연 대칭 전지 등 수계 입문', '/magazine/insitu-cell-002/'),
- '004': ('<b>CIS-OM-004</b><br>고저온형', 'PEEK · 기본 유리질 탄소(GC) 전극', '석영창 Φ24 mm · 최소 작동거리 1 mm', '<b>−30~150℃</b> · ±1℃ 프로그램 — 냉각·가열 플랫폼 분리(교체식)', '시료 10×10 mm · 0.6~2 mm · 본체 두께 33 mm · 가압 모듈 옵션', '/magazine/insitu-cell-004/'),
- '005': ('<b>CIS-OM-005</b><br>극저온형', 'PEEK + 구리 · 냉각·가열 유닛 분리', '석영창 Φ10 mm · 초점거리 &lt;2 mm', '<b>−100~100℃</b> · 대기압~약한 양압', '본체 약 60×70×50 mm · 액체·폴리머 리튬전지, 전극+분리막 &lt;10×10 mm', '/magazine/insitu-cell-005/'),
+ '003': ('<b>CIS-OM-003</b><br>표준형', 'PEEK · 고순도 Ti 가동 전극(재질 커스텀)', '석영창 Φ24 mm · 두께 0.05 mm · 최소 작동거리 1 mm', '상온 · 가압 모듈 옵션 최대 6 MPa', '시료 10×10 mm · 0.6~2 mm · 액체·전고체 겸용', '/blog/insitu-li-dendrite-observation/'),
+ '002': ('<b>CIS-OM-002</b><br>비커형', '석영 비커 5 mL · PTFE 셸(O링 밀봉) · 순티타늄 전극', '비커 측벽 개방 광학 경로 · 전극 간격 3 mm', '상온', '아연 대칭 전지 등 수계 입문', '/blog/insitu-cell-002/'),
+ '004': ('<b>CIS-OM-004</b><br>고저온형', 'PEEK · 기본 유리질 탄소(GC) 전극', '석영창 Φ24 mm · 최소 작동거리 1 mm', '<b>−30~150℃</b> · ±1℃ 프로그램 — 냉각·가열 플랫폼 분리(교체식)', '시료 10×10 mm · 0.6~2 mm · 본체 두께 33 mm · 가압 모듈 옵션', '/blog/insitu-cell-004/'),
+ '005': ('<b>CIS-OM-005</b><br>극저온형', 'PEEK + 구리 · 냉각·가열 유닛 분리', '석영창 Φ10 mm · 초점거리 &lt;2 mm', '<b>−100~100℃</b> · 대기압~약한 양압', '본체 약 60×70×50 mm · 액체·폴리머 리튬전지, 전극+분리막 &lt;10×10 mm', '/blog/insitu-cell-005/'),
 }
 def lineup(cur):
     out = ['<h2 style="margin-top:26px">시리즈 라인업</h2>\n    <table class="msc-tbl">\n      <thead><tr><th>모델</th><th>몸체 · 전극</th><th>관찰창 · 광학</th><th>온도 · 압력</th><th>시료 · 용도</th></tr></thead>\n      <tbody>']
@@ -51,7 +51,7 @@ MODELS = {
  feats=[('① 석영 비커 광학 경로','비커 측벽이 그대로 창이라 <b>창 정렬·밀착 작업이 없습니다</b>. 세척 후 반복 사용합니다.'),
         ('② 고정 3 mm 전극 간격','전극 간격이 셀에 고정되어 있어 <b>실험 간 재현성</b>이 확보됩니다.'),
         ('③ PTFE 셸 · O링 밀봉','전해액 증발을 막고 장시간 관찰을 지원합니다.'),
-        ('④ 수계 입문용','아연 대칭 전지 등 수계 전해질은 글러브박스 없이 시작할 수 있어 <b>시리즈에서 가장 간단한 구성</b>입니다. 리튬(유기 전해액)은 밀봉·주액 구조를 갖춘 <a href="/magazine/insitu-li-dendrite-observation/" style="color:#0F69AF;font-weight:700">표준형 003</a>이 맞습니다.')],
+        ('④ 수계 입문용','아연 대칭 전지 등 수계 전해질은 글러브박스 없이 시작할 수 있어 <b>시리즈에서 가장 간단한 구성</b>입니다. 리튬(유기 전해액)은 밀봉·주액 구조를 갖춘 <a href="/blog/insitu-li-dendrite-observation/" style="color:#0F69AF;font-weight:700">표준형 003</a>이 맞습니다.')],
  exp='아연 덴드라이트 성장·용해 관찰, 수계 전해질 첨가제 비교, 대칭셀 정전류 사이클과 전압-영상 동기 — 옆에서 보는 전극 단면 형상 변화가 그대로 기록됩니다.',
  equip=[["CIS-OM-002 관찰 셀","석영 비커 5 mL · Ti 전극 3 mm 간격"],["덴드라이트 관찰 전용 현미경","대물 5~100× 5종 · 인시츄 배터리 클램프 스테이지 · U820 카메라"],["포텐시오스탯·사이클러","정전류 도금·박리, 전압 로그 기록"],["전해액·시료 준비","수계 전해질 · 아연 포일 등"]],
  faq=[('CIS-OM-002로 리튬 전지도 관찰할 수 있나요?','수계 전지용 개방-비커 구조라 유기 전해액·리튬메탈에는 권장하지 않습니다. 리튬 관찰은 밀봉·별도 주액 피팅을 갖춘 표준형 CIS-OM-003을 쓰는 것이 맞습니다.'),
@@ -69,7 +69,7 @@ MODELS = {
  spec=[('Model','CIS-OM-004 High and Low Temperature Microscopic Observation Cell'),('Body · Electrode','PEEK body · standard <b>glassy carbon (GC)</b> electrode'),('Window','Quartz Φ24 mm · min working distance 1 mm'),('Liquid · Gas','Gas purge + online liquid addition'),('Temperature','<b>−30 to 150 ℃</b> · ±1 ℃ programmable'),('Platform','Independent cooling / heating platforms (swapped in use; sealing unaffected)'),('Sample','10×10 mm rectangle · thickness 0.6–2 mm · body thickness 33 mm'),('Option','Pressurized solid-state module, max 6 MPa (60 kg) · higher customizable')],
  feats=[('① −30~150℃ · ±1℃ 프로그램','저온 도금(저온 충전 덴드라이트)부터 고온 가속 열화까지 <b>온도 스케줄을 걸어 두고 관찰</b>합니다.'),
         ('② 냉각·가열 플랫폼 분리','저온용·고온용 플랫폼이 분리된 교체식입니다. 교체는 <b>관찰 셀의 밀봉과 무관</b>해 시료를 유지한 채 온도 영역을 바꿉니다.'),
-        ('③ 표준형과 같은 관찰 골격','석영창 Φ24 mm·최소 작동거리 1 mm·별도 주액 피팅·가스 퍼지 — <a href="/magazine/insitu-li-dendrite-observation/" style="color:#0F69AF;font-weight:700">003편</a>의 기포 제거·현미경 호환 방법이 그대로 적용됩니다.'),
+        ('③ 표준형과 같은 관찰 골격','석영창 Φ24 mm·최소 작동거리 1 mm·별도 주액 피팅·가스 퍼지 — <a href="/blog/insitu-li-dendrite-observation/" style="color:#0F69AF;font-weight:700">003편</a>의 기포 제거·현미경 호환 방법이 그대로 적용됩니다.'),
         ('④ 가압 전고체 모듈 옵션','최대 6 MPa(60 kg) 정압 모듈로 온도×압력 조건의 전고체 관찰도 가능합니다.')],
  exp='저온 충전 시 리튬 도금 형상, 온도별 전해액·첨가제 성능 비교, 고온 계면 열화 진행, 온도 스케줄과 전압-영상 동기 기록.',
  equip=[["CIS-OM-004 관찰 셀","−30~150℃ ±1℃ · 석영창 Φ24 mm"],["냉각·가열 플랫폼","온도 영역별 분리 교체식"],["가압 전고체 모듈(옵션)","정압 최대 6 MPa(60 kg)"],["덴드라이트 관찰 전용 현미경","대물 5~100× 5종 · U820 카메라"],["글러브박스","Ar 분위기 조립·이송"],["포텐시오스탯·사이클러","정전류 도금·박리, 전압 로그 기록"],["튜브·밸브·주사기","주액·퍼지·기포 제거"]],
@@ -107,22 +107,22 @@ PAGE = '''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{name} {model} — In-situ Microscopic Observation System 시리즈 | 실험셋업연구소</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="https://rndsetup.com/magazine/{slug}/">
+<link rel="canonical" href="https://rndsetup.com/blog/{slug}/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="{name} {model} — In-situ Microscopic Observation System 시리즈">
 <meta property="og:description" content="{desc_short}">
-<meta property="og:url" content="https://rndsetup.com/magazine/{slug}/">
-<meta property="og:image" content="https://rndsetup.com/img/magazine/insitu-{num}-hero.jpg">
+<meta property="og:url" content="https://rndsetup.com/blog/{slug}/">
+<meta property="og:image" content="https://rndsetup.com/img/blog/insitu-{num}-hero.jpg">
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"TechArticle",
 "headline":"{name} {model} — In-situ Microscopic Observation System 시리즈",
 "datePublished":"2026-09-01",
 "inLanguage":"ko",
-"image":"https://rndsetup.com/img/magazine/insitu-{num}-hero.jpg",
-"about":{{"@type":"Thing","name":"{name} {model} 인시츄 관찰 셋업","url":"https://rndsetup.com/magazine/{slug}/"}},
+"image":"https://rndsetup.com/img/blog/insitu-{num}-hero.jpg",
+"about":{{"@type":"Thing","name":"{name} {model} 인시츄 관찰 셋업","url":"https://rndsetup.com/blog/{slug}/"}},
 "author":{{"@type":"Person","@id":"https://rndsetup.com/#yhlee","name":"이영현","url":"https://rndsetup.com/about/#author","affiliation":{{"@type":"Organization","name":"실험셋업연구소"}}}},
 "publisher":{{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"}},
-"mainEntityOfPage":{{"@type":"WebPage","@id":"https://rndsetup.com/magazine/{slug}/"}}}}
+"mainEntityOfPage":{{"@type":"WebPage","@id":"https://rndsetup.com/blog/{slug}/"}}}}
 </script>
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{faq_ld}]}}
@@ -134,7 +134,7 @@ PAGE = '''<!DOCTYPE html>
 <div id="pumplab-header"></div>
 
 <article class="sd-wrap">
-  <div class="sd-crumb"><a href="/">홈</a> › <a href="/magazine/">매거진</a> › 인시츄 셀 · 시리즈</div>
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/blog/">매거진</a> › 인시츄 셀 · 시리즈</div>
   <h1>In-situ Microscopic Observation System 시리즈<br>— {name} ({model})</h1>
   <div class="sd-meta">현미경용 인시츄 셀 시리즈 · {model} 편</div>
   <div class="sd-byline" style="font-size:13px;color:#8a8f98;margin:4px 0 2px;text-align:center">실험셋업연구소 매거진 · 글 <a href="/about/#author" style="color:inherit;text-decoration:underline;text-underline-offset:2px">이영현</a> · <time datetime="2026-09-01">2026년 9월 1일</time> 발행</div>
@@ -155,7 +155,7 @@ PAGE = '''<!DOCTYPE html>
     <h2>{model} — {name}</h2>
     <p>{intro}</p>
     <figure style="margin:14px 0 6px">
-      <img src="/img/magazine/insitu-{num}-hero.jpg" alt="{model} {name} 제품 사진" loading="lazy" style="display:block;width:100%;max-width:420px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <img src="/img/blog/insitu-{num}-hero.jpg" alt="{model} {name} 제품 사진" loading="lazy" style="display:block;width:100%;max-width:420px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
     </figure>
     {dlbox}
 
@@ -197,7 +197,7 @@ PAGE = '''<!DOCTYPE html>
   <div class="sd-related">
     <h3>관련 콘텐츠</h3>
     <div class="sd-rel-grid">
-      <a class="sd-rc" href="/magazine/insitu-li-dendrite-observation/"><div class="cat">인시츄 셀 · 시리즈</div><div class="t">표준형 CIS-OM-003 편</div><div class="d">셀 구조·격벽·기포 제거·전고체 겸용 — 시리즈 기준편.</div></a>
+      <a class="sd-rc" href="/blog/insitu-li-dendrite-observation/"><div class="cat">인시츄 셀 · 시리즈</div><div class="t">표준형 CIS-OM-003 편</div><div class="d">셀 구조·격벽·기포 제거·전고체 겸용 — 시리즈 기준편.</div></a>
       <a class="sd-rc" href="/brands/hefei/om003-microscope-cell/"><div class="cat">제품 상세</div><div class="t">CIS-OM-003 제품 페이지</div><div class="d">사양·정가·구성 옵션.</div></a>
       <a class="sd-rc" href="/brands/gaossunion/special-cell-dendrite/"><div class="cat">전기화학 · 셀</div><div class="t">C031-5 덴드라이트 관찰 셀</div><div class="d">코인셀 모사 — 사파이어 창 구성.</div></a>
     </div>
@@ -264,14 +264,14 @@ for num, m in MODELS.items():
     feat_rows = '\n'.join(f'    <h3 style="font-size:16px;color:#2A2570;margin:16px 0 4px">{t}</h3>\n    <p>{b}</p>' for t, b in m['feats'])
     tag_spans = ''.join(f'<span>{t}</span>' for t in m['tags'].split())
     popup = POPUP.replace('[매거진] 장비 문의 — in-situ 리튬 덴드라이트 관찰 셋업', f'[매거진] 장비 문의 — {m["model"]} {m["name"]}')
-    popup = popup.replace('매거진 · in-situ 리튬 덴드라이트 관찰 (/magazine/insitu-li-dendrite-observation/)', f'매거진 · {m["model"]} {m["name"]} (/magazine/{m["slug"]}/)')
+    popup = popup.replace('매거진 · in-situ 리튬 덴드라이트 관찰 (/blog/insitu-li-dendrite-observation/)', f'매거진 · {m["model"]} {m["name"]} (/blog/{m["slug"]}/)')
     html = PAGE.format(num=num, slug=m['slug'], name=m['name'], model=m['model'], desc=m['desc'],
                        desc_short=m['desc'][:110], ans_ko=m['ans_ko'], ans_en=m['ans_en'], intro=m['intro'],
                        spec_rows=spec_rows, feat_rows=feat_rows, exp=m['exp'], scope=SCOPE,
                        lineup=lineup(num), buy=BUY, dlbox=DLBOX, popup=popup, lbx=LBX, style=STYLE,
                        equip_js=json.dumps(m['equip'], ensure_ascii=False), faq_ld=faq_ld,
                        tag_spans=tag_spans, summary_field=m['summary_field'])
-    d = f'magazine/{m["slug"]}'
+    d = f'blog/{m["slug"]}'
     os.makedirs(d, exist_ok=True)
     fo = open(d + '/index.html', 'w', encoding='utf-8'); fo.write(html); fo.flush(); os.fsync(fo.fileno()); fo.close()
     assert html.rstrip().endswith('</html>')
@@ -294,8 +294,8 @@ for num, m in MODELS.items():
             "title": f"{m['name']} {m['model']} — In-situ Microscopic Observation System 시리즈",
             "summary": m['post_sum'], "date": "2026-09-01",
             "tags": ["인시츄 셀", "덴드라이트", m['model']],
-            "url": f"/magazine/{m['slug']}/",
+            "url": f"/blog/{m['slug']}/",
             "model_focus": f"{m['model']} 인시츄 관찰 셀", "application": "인시츄 셀 · 시리즈",
-            "image": f"/img/magazine/insitu-{num}-hero.jpg"})
+            "image": f"/img/blog/insitu-{num}-hero.jpg"})
 json.dump(d, open('_build/posts.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print('posts.json:', len(d['posts']), '건')

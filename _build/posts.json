@@ -12,10 +12,10 @@
     "덴드라이트",
     "CIS-OM-005"
    ],
-   "url": "/magazine/insitu-cell-005/",
+   "url": "/blog/insitu-cell-005/",
    "model_focus": "CIS-OM-005 인시츄 관찰 셀",
    "application": "인시츄 셀 · 시리즈",
-   "image": "/img/magazine/insitu-005-hero.jpg"
+   "image": "/img/blog/insitu-005-hero.jpg"
   },
   {
    "type": "magazine",
@@ -28,10 +28,10 @@
     "덴드라이트",
     "CIS-OM-004"
    ],
-   "url": "/magazine/insitu-cell-004/",
+   "url": "/blog/insitu-cell-004/",
    "model_focus": "CIS-OM-004 인시츄 관찰 셀",
    "application": "인시츄 셀 · 시리즈",
-   "image": "/img/magazine/insitu-004-hero.jpg"
+   "image": "/img/blog/insitu-004-hero.jpg"
   },
   {
    "type": "magazine",
@@ -44,10 +44,10 @@
     "덴드라이트",
     "CIS-OM-002"
    ],
-   "url": "/magazine/insitu-cell-002/",
+   "url": "/blog/insitu-cell-002/",
    "model_focus": "CIS-OM-002 인시츄 관찰 셀",
    "application": "인시츄 셀 · 시리즈",
-   "image": "/img/magazine/insitu-002-hero.jpg"
+   "image": "/img/blog/insitu-002-hero.jpg"
   },
   {
    "type": "magazine",
@@ -62,10 +62,10 @@
     "전고체",
     "operando"
    ],
-   "url": "/magazine/insitu-li-dendrite-observation/",
+   "url": "/blog/insitu-li-dendrite-observation/",
    "model_focus": "CIS-OM in-situ 관찰 셀 · OPR-DM01 광학계",
    "application": "인시츄 셀 · 덴드라이트 관찰",
-   "image": "/img/magazine/insitu-003-hero.jpg"
+   "image": "/img/blog/insitu-003-hero.jpg"
   },
   {
    "type": "magazine",
@@ -80,10 +80,10 @@
     "머플로",
     "튜브퍼니스"
    ],
-   "url": "/magazine/guide-furnace-selection-box-vs-tube/",
+   "url": "/blog/guide-furnace-selection-box-vs-tube/",
    "model_focus": "머플로 · 튜브퍼니스",
    "application": "열처리 · 선정 가이드",
-   "image": "/img/magazine/furnace-selection-guide.jpg"
+   "image": "/img/blog/furnace-selection-guide.jpg"
   },
   {
    "type": "magazine",
@@ -98,10 +98,10 @@
     "가스센서",
     "에너지소재"
    ],
-   "url": "/magazine/cuo-nanowire-thermal-oxidation/",
+   "url": "/blog/cuo-nanowire-thermal-oxidation/",
    "model_focus": "튜브퍼니스 · MFC",
    "application": "열처리·증착 · 산화·확산",
-   "image": "/img/magazine/cuo-oxidation-setup-3d.jpg",
+   "image": "/img/blog/cuo-oxidation-setup-3d.jpg",
    "journal": "Scientific Reports",
    "doi": "10.1038/s41598-018-37172-8"
   },
@@ -118,10 +118,10 @@
     "탄소코팅",
     "증착"
    ],
-   "url": "/magazine/si-anode-cvd-carbon-coating/",
+   "url": "/blog/si-anode-cvd-carbon-coating/",
    "model_focus": "튜브퍼니스 · MFC",
    "application": "열처리·증착 · CVD",
-   "image": "/img/magazine/si-cvd-setup-3d.jpg",
+   "image": "/img/blog/si-cvd-setup-3d.jpg",
    "journal": "Nature Communications",
    "doi": "10.1038/s41467-018-05398-9"
   },
@@ -138,7 +138,7 @@
     "맥동",
     "접액부"
    ],
-   "url": "/magazine/glossary-pump-fluid-terms/",
+   "url": "/blog/glossary-pump-fluid-terms/",
    "model_focus": "연동·시린지·기어 펌프",
    "application": "유체·펌프 · 용어사전",
    "image": "/img/pump-guide.jpg"
@@ -156,7 +156,7 @@
     "전구체공침",
     "에너지소재"
    ],
-   "url": "/magazine/guide-pump-selection-energy-fluids/",
+   "url": "/blog/guide-pump-selection-energy-fluids/",
    "model_focus": "연동·시린지·기어 펌프",
    "application": "유체·펌프 · 선정 가이드",
    "image": "/img/pump-guide.jpg"
@@ -174,7 +174,7 @@
     "소결",
     "sccm"
    ],
-   "url": "/magazine/glossary-heat-gas-terms/",
+   "url": "/blog/glossary-heat-gas-terms/",
    "model_focus": "튜브퍼니스 · MFC",
    "application": "열처리 · 용어사전",
    "image": "/img/rnd-guide.jpg"
@@ -192,7 +192,7 @@
     "재현성",
     "에너지소재"
    ],
-   "url": "/magazine/troubleshooting-calcination-batch-variation/",
+   "url": "/blog/troubleshooting-calcination-batch-variation/",
    "model_focus": "튜브퍼니스 · MFC",
    "application": "열처리 · 트러블슈팅",
    "image": "/img/rnd-guide.jpg"
@@ -210,7 +210,7 @@
     "에너지소재",
     "튜브퍼니스"
    ],
-   "url": "/magazine/guide-calcination-furnace-atmosphere/",
+   "url": "/blog/guide-calcination-furnace-atmosphere/",
    "model_focus": "튜브퍼니스 · MFC",
    "application": "열처리 · 선정 가이드",
    "image": "/img/rnd-guide.jpg"
@@ -228,10 +228,10 @@
     "CSTR",
     "연동펌프"
    ],
-   "url": "/magazine/nickel-hydroxide-coprecipitation-cstr/",
+   "url": "/blog/nickel-hydroxide-coprecipitation-cstr/",
    "model_focus": "연동펌프 3채널 · CSTR",
    "application": "유체·펌프 · 전구체 공침",
-   "image": "/img/magazine/nickel-cstr-setup-3d.jpg",
+   "image": "/img/blog/nickel-cstr-setup-3d.jpg",
    "journal": "Chemical Engineering & Technology",
    "doi": "10.1002/ceat.202300086"
   },
@@ -248,10 +248,10 @@
     "전해액순환",
     "연동펌프"
    ],
-   "url": "/magazine/aorfb-flowfield-electrolyte-pump/",
+   "url": "/blog/aorfb-flowfield-electrolyte-pump/",
    "model_focus": "연동펌프 · 플로우 셀",
    "application": "유체·펌프 · 전해액 순환",
-   "image": "/img/magazine/aorfb-setup-3d.jpg",
+   "image": "/img/blog/aorfb-setup-3d.jpg",
    "journal": "PNAS",
    "doi": "10.1073/pnas.2406182121"
   },
@@ -269,10 +269,10 @@
     "MFC",
     "튜브퍼니스"
    ],
-   "url": "/magazine/sodium-cathode-atmosphere-dca/",
+   "url": "/blog/sodium-cathode-atmosphere-dca/",
    "model_focus": "튜브퍼니스 · 다채널 MFC",
    "application": "열처리·증착 · 소성·가스분위기",
-   "image": "/img/magazine/dca-setup-diagram-3d.jpg",
+   "image": "/img/blog/dca-setup-diagram-3d.jpg",
    "journal": "Nature Communications",
    "doi": "10.1038/s41467-025-57665-1"
   },
@@ -289,10 +289,10 @@
     "MFC",
     "튜브퍼니스"
    ],
-   "url": "/magazine/sofc-hcl-syngas/",
+   "url": "/blog/sofc-hcl-syngas/",
    "model_focus": "Alicat MFC · 튜브퍼니스",
    "application": "열처리·증착 · 가스분위기",
-   "image": "/img/magazine/sofc-setup-3d.jpg",
+   "image": "/img/blog/sofc-setup-3d.jpg",
    "journal": "Journal of Power Sources",
    "doi": "10.1016/j.jpowsour.2007.03.018"
   },
@@ -384,7 +384,7 @@
     "정량이송",
     "기어펌프"
    ],
-   "url": "/magazine/electrode-slurry-mixing-thick-cathode/",
+   "url": "/blog/electrode-slurry-mixing-thick-cathode/",
    "model_focus": "플래니터리 믹서 · 정량 급액 펌프 · 4존 건조",
    "application": "유체·펌프 · 슬러리·전극 코팅",
    "journal": "Energy Technology",
@@ -404,7 +404,7 @@
     "노점",
     "칼피셔"
    ],
-   "url": "/magazine/electrode-vacuum-post-drying-moisture/",
+   "url": "/blog/electrode-vacuum-post-drying-moisture/",
    "model_focus": "진공 건조 오븐 · 진공펌프 · 칼피셔 수분측정",
    "application": "열처리·증착 · 진공 건조·수분 관리",
    "journal": "Batteries & Supercaps",

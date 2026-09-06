@@ -1,7 +1,7 @@
 # 인시츄 글: 논문 요소 제거 + '현미경용 인시츄 셀 시리즈' 003편으로 재구성
 import os, re
 
-p = 'magazine/insitu-li-dendrite-observation/index.html'
+p = 'blog/insitu-li-dendrite-observation/index.html'
 h = open(p, encoding='utf-8').read()
 
 # ── 1) head: 타이틀·메타에서 논문 제거 ──
@@ -66,14 +66,14 @@ b = h.find('<h2>전고체까지 같은 셀로')
 assert 0 < a < b
 # 결과 이미지 2장은 보존
 seg = h[a:b]
-figs = re.findall(r'<figure[^>]*>\s*<img src="/img/magazine/hefei-(?:depth-fusion|timelapse)\.jpg".*?</figure>', seg, flags=re.S)
+figs = re.findall(r'<figure[^>]*>\s*<img src="/img/blog/hefei-(?:depth-fusion|timelapse)\.jpg".*?</figure>', seg, flags=re.S)
 scope = '''<h2 style="margin-top:26px">창 스펙과 현미경 호환</h2>
     <p>보유 현미경과의 호환은 위 카드의 세 수치 — <b>창 두께 0.05 mm(Φ24) · 창-샘플 거리 0.6 mm · 본체 60×70×30 mm</b> — 를 대물 작동거리·스테이지 공간과 대조하면 됩니다.</p>
 
     <h2 style="margin-top:26px">공통 광학계 — 덴드라이트 관찰 전용 현미경</h2>
     <p>시리즈 전 모델이 함께 쓰는 전용 광학계입니다. <b>덴드라이트 관찰 전용 대물 5종(5~100×)</b>과 <b>인시츄 배터리 클램프가 달린 2층 스테이지</b>가 일반 금속현미경과의 차이입니다.</p>
     <figure style="margin:12px 0 10px">
-      <img src="/img/magazine/hefei-dendrite-scope.jpg" alt="덴드라이트 관찰 전용 현미경 — 삼안 경통, 5공 터렛(5~100배 덴드라이트 관찰 대물), 인시츄 배터리 클램프 스테이지, U820 카메라" loading="lazy" style="display:block;width:100%;max-width:360px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <img src="/img/blog/hefei-dendrite-scope.jpg" alt="덴드라이트 관찰 전용 현미경 — 삼안 경통, 5공 터렛(5~100배 덴드라이트 관찰 대물), 인시츄 배터리 클램프 스테이지, U820 카메라" loading="lazy" style="display:block;width:100%;max-width:360px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
     </figure>
     <div class="bx-spec" style="max-width:560px;margin:6px 0 4px">
       <span>대물렌즈</span><span><b>5 / 10 / 20 / 50 / 100×</b> 덴드라이트 관찰 전용 · 수동 5공 터렛</span>

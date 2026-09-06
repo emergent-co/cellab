@@ -1,7 +1,7 @@
 # 인시츄 003편 v2: 제품 우선 구성(소개→구조→스펙→특징→조립→가능한 실험→시리즈)
 import os, re
 
-p = 'magazine/insitu-li-dendrite-observation/index.html'
+p = 'blog/insitu-li-dendrite-observation/index.html'
 h = open(p, encoding='utf-8').read()
 
 def bal(start_pat, tag='div'):
@@ -24,9 +24,9 @@ CARD  = bal('<div style="background:#fff;border:1px solid #D8E4F2;border-radius:
 STACK = bal('<div style="background:#F4F8FC;border:1px solid #D8E4F2;border-radius:12px;padding:14px 16px;margin:0 0 14px">')
 SYR   = re.search(r'<figure style="margin:14px 0 4px">.*?insitu-bubble-syringe.*?</figure>', h, re.S).group(0)
 VID   = re.search(r'<div class="msc-vid">.*?</div>\s*<p class="msc-note">[^<]*bilibili[^<]*</p>', h, re.S).group(0)
-SCOPEF= re.search(r'<figure style="margin:12px 0 10px">\s*<img src="/img/magazine/hefei-dendrite-scope\.jpg".*?</figure>', h, re.S).group(0)
+SCOPEF= re.search(r'<figure style="margin:12px 0 10px">\s*<img src="/img/blog/hefei-dendrite-scope\.jpg".*?</figure>', h, re.S).group(0)
 SCOPES= bal('<div class="bx-spec" style="max-width:560px;margin:6px 0 4px">')
-RES   = re.findall(r'<figure[^>]*>\s*<img src="/img/magazine/hefei-(?:depth-fusion|timelapse)\.jpg".*?</figure>', h, re.S)
+RES   = re.findall(r'<figure[^>]*>\s*<img src="/img/blog/hefei-(?:depth-fusion|timelapse)\.jpg".*?</figure>', h, re.S)
 LIN_A = h.find('<details class="msc-acc">'); LIN_B = h.find('</details>', LIN_A) + 10
 LINEUP = h[LIN_A:LIN_B]
 DL    = bal('<div class="msc-dl">')
@@ -47,7 +47,7 @@ BODY = f'''{ANSWER}
     <h2>CIS-OM-003 — 현미경 위에서 전지 내부를 보는 셀</h2>
     <p><b>현미경용 인시츄 셀 시리즈(In-situ Microscopic Observation System)</b>의 표준형입니다. 코인셀이 전압·효율 숫자만 남길 때, 이 셀은 도금·박리가 진행되는 <b>계면 그 자체</b>를 전압 곡선과 같은 시간축에서 보여줍니다. 실험셋업연구소가 Hefei In-situ Technology에서 소싱하며, 국내 견적·A/S를 지원합니다. <a href="/brands/hefei/om003-microscope-cell/" style="font-weight:800;color:#0F69AF">제품 상세·가격 보기 →</a></p>
     <figure style="margin:14px 0 6px">
-      <img src="/img/magazine/insitu-003-hero.jpg" alt="CIS-OM-003 현미경용 인시츄 관찰 셀 — PEEK 몸체, 석영 관찰창, 양측 티타늄 가동 전극, 하단 주액·퍼지 피팅" loading="lazy" style="display:block;width:100%;max-width:520px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
+      <img src="/img/blog/insitu-003-hero.jpg" alt="CIS-OM-003 현미경용 인시츄 관찰 셀 — PEEK 몸체, 석영 관찰창, 양측 티타늄 가동 전극, 하단 주액·퍼지 피팅" loading="lazy" style="display:block;width:100%;max-width:520px;margin:0 auto;border:1px solid var(--line);border-radius:12px;background:#fff">
     </figure>
     {DL}
 

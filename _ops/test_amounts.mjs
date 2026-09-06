@@ -129,5 +129,35 @@ for (const [v, want] of [
   ['2026-13-05 14:00:00', null], ['2026-09-05 24:00:00', null], ['', null], [null, null],
 ]) eq(`예약형식 ${JSON.stringify(v)}`, validSendAt(v), want);
 
+// 7) 0원(무료 제공) 품목 — «빈칸» 과 구분되는가
+const dqPriced = mk(grab(HTML, 'function dqPriced('));
+[[{price:0, pset:true}, true,  '0 을 적은 무료 품목'],
+ [{price:0},            false, '단가를 안 적은 줄'],
+ [{price:0, pset:false},false, '적었다 지운 줄'],
+ [{price:350000},       true,  '값이 있는 줄'],
+ [{price:350000, pset:true}, true, '제품표에서 채운 줄']]
+ .forEach(([it, want, name]) => eq('0원 판별 · ' + name, dqPriced(it), want));
+
+// 서버 가드도 같은 판단을 하는가 (issue.js 의 unpriced 조건)
+const SRC = read('functions/api/admin/issue.js');
+if (!/const unpriced = raw\.filter\(\(i\) => !i\.price && !i\.priced\);/.test(SRC))
+  { fail++; run++; console.log('  ✗ 서버 0원 허용 조건이 바뀌었다 — 테스트를 고쳐라'); }
+else {
+  const srv = (i) => !i.price && !i.priced;
+  eq('서버 · 0원 표시된 품목 통과', srv({price:0, priced:true}), false);
+  eq('서버 · 단가 없는 품목 거절', srv({price:0, priced:false}), true);
+  eq('서버 · 값 있는 품목 통과', srv({price:350000, priced:false}), false);
+}
+
+// 0원 줄이 섞여도 서류 3줄 정합이 유지되는가
+[[{qty:1,price:0,name:'x'},{qty:2,price:358900,name:'y'}],
+ [{qty:3,price:0,name:'x'}]].forEach((raw, k) => {
+  [false, true].forEach((vi) => {
+    const { items, totals } = compute(raw, vi);
+    eq(`0원 혼합 #${k+1} [${vi?'포함':'별도'}] Σ금액=합계`, items.reduce((s,i)=>s+i.amount,0), totals.total);
+    eq(`0원 혼합 #${k+1} [${vi?'포함':'별도'}] 합계−공급가=부가세`, totals.total-totals.supply, totals.vat);
+  });
+});
+
 console.log(fail ? `\n실패 ${fail} / 검사 ${run}` : `\n통과 — 검사 ${run}건 전부 일치 (케이스 ${CASES.length} × 2기준)`);
 process.exit(fail ? 1 : 0);

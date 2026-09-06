@@ -30,12 +30,12 @@
 - `.gitattributes` 삭제·임의수정 금지.
 
 ## 4. 구조 요약 (2026-08 기준)
-- **NAV 5개**(2026-08): 툴·실험장비(`/product/`, sub: 통합 카탈로그·메뉴얼) · 소재(`/materials/`) · 셋업 사례(`/magazine/`) · 유용한 정보(sub: 제품 정보 `/info/`·배터리 사전 `/wiki/`) · 문의하기(`/contact/`, sub: 문의하기(챗)·FAQ·회사소개). 홈 밴드 CTA(재료·소모품→/materials/, 툴·장비→/product/)와 연결. 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
+- **NAV 5개**(2026-08): 툴·실험장비(`/product/`, sub: 통합 카탈로그·메뉴얼) · 소재(`/materials/`) · 셋업 사례(`/blog/`) · 유용한 정보(sub: 제품 정보 `/info/`·배터리 사전 `/wiki/`) · 문의하기(`/contact/`, sub: 문의하기(챗)·FAQ·회사소개). 홈 밴드 CTA(재료·소모품→/materials/, 툴·장비→/product/)와 연결. 상단 가로 메뉴바(스크롤 시 반투명 고정) + 모바일 드로어. 규칙: **하위 메뉴가 있는 상위 메뉴는 noclick**, 첫 하위탭 href = 대표 href.
 - **문의·FAQ = `/contact/` 원페이지**(2026-08 통합): 정답블록 → 검색 필터 → 카테고리 탭(구매·견적/수리·A/S/제어·소프트웨어/배송·기타) → FAQ 아코디언 26문 → 문의 폼(`#form`, Formspree `mnjkzppj`). **FAQPage JSON-LD 26문 전량 정적 렌더**(JS는 표시 토글만). `/faq/`는 301 + 파일 삭제.
-- **유용한 정보(2026-08 신설)**: NAV '에너지 랩 A to Z' 폐지 → '유용한 정보'(noclick, sub: 제품 정보 `/info/` · 배터리 사전 `/wiki/`). `/magazine/battery/` 커리큘럼은 삭제+301→`/wiki/`.
+- **유용한 정보(2026-08 신설)**: NAV '에너지 랩 A to Z' 폐지 → '유용한 정보'(noclick, sub: 제품 정보 `/info/` · 배터리 사전 `/wiki/`). `/blog/battery/` 커리큘럼은 삭제+301→`/wiki/`.
   - `/info/` = **브랜드별 장비 비교 전용**(카드 검색창 포함). 비교 글=단품 모델·유형 비교(`compare-peristaltic|muffle|furnace|mfc|echem-cell/`+기존 `/compare/`), 각 글 하단에 **선택 위저드**(글의 비교 기준을 질문으로 변환→모델 직링크). 부품소개·FAQ 블록 없음, 단순 브랜드 소개 없음. NAV 제품소개 sub에서 '선택 가이드' 제거됨(위저드로 대체).
   - `/wiki/` = 배터리 사전(위키형). **SSOT=`_build/wiki.json`** — 항목 추가는 JSON 1건, `build_wiki()`가 항목 페이지·인덱스·DefinedTerm JSON-LD·sitemap·검색 인덱스 전부 자동 생성. 원본 생성 스크립트 `_ops/make_wiki.py`.
-- **콘텐츠 허브 = `/magazine/` "셋업 사례"** — 논문 셋업·가이드·용어사전·트러블슈팅·도입 사례를 3열 카드로 통합. `/setups/` 인덱스는 301→`/magazine/` (세부 사례 글 URL은 유지). 공정 허브: battery(커리큘럼)·deposition·heat-treatment·oxidation.
+- **콘텐츠 허브 = `/blog/` "셋업 사례"** — 논문 셋업·가이드·용어사전·트러블슈팅·도입 사례를 3열 카드로 통합. `/setups/` 인덱스는 301→`/blog/` (세부 사례 글 URL은 유지). 공정 허브: battery(커리큘럼)·deposition·heat-treatment·oxidation.
 - **제품**: 삼흥 상세 `/brands/sh-scientific/<slug>/` 150+, 리드플루이드 모델 페이지 78개 잔존(+`guide` 위저드) — **모델 페이지 정리 여부는 보류 중(유입 있음)**.
 - **가오스유니온(Gaoss Union) 전기화학** `/brands/gaossunion/` (2026-08 신규): 허브 + 계열 9장(기준전극·RHE·상대전극·작업전극·RDE/RRDE·전극클램프·연마용품·전기화학재료·CO₂RR촉매) · **322 SKU**.
   가격 = 2026 카탈로그 EUR × **1,620원**(SQL 상단 주석에 기준 명시) · **3% 상시 할인 대상 아님**(홈 시작가 키에 넣지 않으면 자동 미적용) · 국제 운송비 별도.

@@ -1,6 +1,6 @@
 # 003편 v3: 사용자 검수 반영 16건
 import os, re
-p = 'magazine/insitu-li-dendrite-observation/index.html'
+p = 'blog/insitu-li-dendrite-observation/index.html'
 h = open(p, encoding='utf-8').read()
 R = []
 def rep(a, b, must=True):
@@ -33,8 +33,8 @@ rep('코인셀이 전압·효율 숫자만 남길 때, 이 셀은 도금·박리
     '충방전 중 배터리 셀 안에서 일어나는 <b>계면의 변화(덴드라이트 등)</b>를 시각적으로 실시간 관찰하기 위해 만들어졌습니다.')
 rep(' 실험셋업연구소가 Hefei In-situ Technology에서 소싱하며, 국내 견적·A/S를 지원합니다. <a href="/brands/hefei/om003-microscope-cell/" style="font-weight:800;color:#0F69AF">제품 상세·가격 보기 →</a>', '')
 # 5) 기본구조: 확대 합성 이미지로 교체(적층 카드 내 이미지)
-rep('src="/img/magazine/insitu-cell-stack.jpg" alt="CIS-OM-003 셀 내부 적층 분해도',
-    'src="/img/magazine/insitu-003-structure.jpg" alt="CIS-OM-003 관찰창 부위를 원형으로 표시하고 확대한 내부 적층 분해도')
+rep('src="/img/blog/insitu-cell-stack.jpg" alt="CIS-OM-003 셀 내부 적층 분해도',
+    'src="/img/blog/insitu-003-structure.jpg" alt="CIS-OM-003 관찰창 부위를 원형으로 표시하고 확대한 내부 적층 분해도')
 rep('style="display:block;width:100%;max-width:560px;margin:0 auto;border:1px solid #C9D6E6;border-radius:10px;background:#fff">',
     'style="display:block;width:100%;max-width:680px;margin:0 auto;border:1px solid #C9D6E6;border-radius:10px;background:#fff">')
 # 6) Specification (h2·라벨·값 영어)

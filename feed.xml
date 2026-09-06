@@ -2,151 +2,151 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>실험셋업연구소 — 실험 셋업 매거진</title>
-    <link>https://rndsetup.com/magazine/</link>
+    <link>https://rndsetup.com/blog/</link>
     <atom:link href="https://rndsetup.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>논문이 실제로 쓴 실험 셋업을 공정·조건·필요 장비 순으로 분석해 공유하는 실험 셋업 매거진.</description>
     <language>ko</language>
-    <lastBuildDate>Sun, 06 Sep 2026 14:42:06 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 15:38:10 +0900</lastBuildDate>
     <item>
       <title>극저온 인시츄 셀 CIS-OM-005 — In-situ Microscopic Observation System 시리즈</title>
-      <link>https://rndsetup.com/magazine/insitu-cell-005/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-cell-005/</guid>
+      <link>https://rndsetup.com/blog/insitu-cell-005/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/insitu-cell-005/</guid>
       <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[설계온도 −100~100℃의 극저온형 인시츄 셀. PEEK+구리 몸체, 석영창 Φ10 mm·초점거리 <2 mm로 통전 상태의 전극 표면 형상을 관찰한다. 액체·폴리머 리튬전지 대응, 대기압~약한 양압 설계.]]></description>
       <category>인시츄 셀</category><category>덴드라이트</category><category>CIS-OM-005</category>
     </item>
     <item>
       <title>고저온 인시츄 셀 CIS-OM-004 — In-situ Microscopic Observation System 시리즈</title>
-      <link>https://rndsetup.com/magazine/insitu-cell-004/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-cell-004/</guid>
+      <link>https://rndsetup.com/blog/insitu-cell-004/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/insitu-cell-004/</guid>
       <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[−30~150℃를 ±1℃ 프로그램 제어하며 전지 계면을 관찰하는 온도 제어형 인시츄 셀. 냉각·가열 플랫폼 분리 교체식(밀봉 무관), 표준형과 같은 석영창·주액 피팅 골격, 가압 전고체 모듈(최대 6 MPa) 옵션.]]></description>
       <category>인시츄 셀</category><category>덴드라이트</category><category>CIS-OM-004</category>
     </item>
     <item>
       <title>석영 비커형 인시츄 셀 CIS-OM-002 — In-situ Microscopic Observation System 시리즈</title>
-      <link>https://rndsetup.com/magazine/insitu-cell-002/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-cell-002/</guid>
+      <link>https://rndsetup.com/blog/insitu-cell-002/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/insitu-cell-002/</guid>
       <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[석영 비커 5 mL·순티타늄 전극 3 mm 간격의 입문형 인시츄 셀. 비커 측벽이 그대로 광학 경로가 되어 아연 대칭 전지 등 수계 전지의 덴드라이트·계면 변화를 글러브박스 없이 관찰한다. PTFE 셸·O링 밀봉.]]></description>
       <category>인시츄 셀</category><category>덴드라이트</category><category>CIS-OM-002</category>
     </item>
     <item>
       <title>측면 관찰용 인시츄 셀 CIS-OM-003 — In-situ Microscopic Observation System 시리즈</title>
-      <link>https://rndsetup.com/magazine/insitu-li-dendrite-observation/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/insitu-li-dendrite-observation/</guid>
+      <link>https://rndsetup.com/blog/insitu-li-dendrite-observation/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/insitu-li-dendrite-observation/</guid>
       <pubDate>Tue, 01 Sep 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[현미경용 인시츄 셀 시리즈 003편. 셀 구조·조립 영상, 격벽(PEEK)이 덴드라이트가 자랄 공간을 만드는 이유, 별도 주액 피팅·주사기 음압 기포 제거, 창 스펙(0.05mm)·현미경 호환, 전고체 가압(최대 6 MPa) 겸용과 시료 커스텀까지 정리했다.]]></description>
       <category>인시츄 셀</category><category>리튬메탈</category><category>덴드라이트</category><category>전고체</category><category>operando</category>
     </item>
     <item>
       <title>실험용 퍼니스는 어떻게 선택해야 할까 — 박스형(머플) vs 튜브형, 온도·처리량·분위기 기준</title>
-      <link>https://rndsetup.com/magazine/guide-furnace-selection-box-vs-tube/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/guide-furnace-selection-box-vs-tube/</guid>
+      <link>https://rndsetup.com/blog/guide-furnace-selection-box-vs-tube/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/guide-furnace-selection-box-vs-tube/</guid>
       <pubDate>Mon, 24 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[사용 온도(발열체 등급)·시료 처리량·분위기 제어, 세 질문으로 퍼니스를 고르는 법. 칸탈 1200℃·SiC 1500℃·MoSi₂ 1700~1900℃ 등급표와 선택 체크리스트 5·사용 주의 3.]]></description>
       <category>가이드</category><category>퍼니스</category><category>전기로</category><category>머플로</category><category>튜브퍼니스</category>
     </item>
     <item>
       <title>초후막 양극, 믹싱만 바꿔 1C 용량 1.67배 — 슬러리 믹싱·전극 코팅 셋업</title>
-      <link>https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/electrode-slurry-mixing-thick-cathode/</guid>
+      <link>https://rndsetup.com/blog/electrode-slurry-mixing-thick-cathode/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/electrode-slurry-mixing-thick-cathode/</guid>
       <pubDate>Sun, 23 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[같은 NCM622 조성·같은 슬롯다이 코터로 믹싱 궤적만 바꿔 초후막 양극(50 mg/cm²)의 굴곡도를 12.5→5.5로 낮추고 1C 면적용량을 67% 올린 파일럿 셋업.]]></description>
       <category>배터리</category><category>양극</category><category>슬러리</category><category>전극코팅</category><category>정량이송</category>
     </item>
     <item>
       <title>전극 잔류 수분, 진공 후건조로 88%까지 — 건조·수분 관리 셋업</title>
-      <link>https://rndsetup.com/magazine/electrode-vacuum-post-drying-moisture/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/electrode-vacuum-post-drying-moisture/</guid>
+      <link>https://rndsetup.com/blog/electrode-vacuum-post-drying-moisture/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/electrode-vacuum-post-drying-moisture/</guid>
       <pubDate>Sun, 23 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[온도를 올리는 대신 80℃ 고정에 10 mbar 진공·아르곤 퍼지 14회를 붙여 NCM622 양극 잔류 수분을 34 ppm까지 낮춘 후건조 절차. 재흡습은 1시간이면 새 평형에 도달한다.]]></description>
       <category>배터리</category><category>전극건조</category><category>잔류수분</category><category>진공건조</category><category>노점</category>
     </item>
     <item>
       <title>구리를 가열하면 나노와이어가 자란다 — CuO 열산화 셋업 (산화·확산)</title>
-      <link>https://rndsetup.com/magazine/cuo-nanowire-thermal-oxidation/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/cuo-nanowire-thermal-oxidation/</guid>
+      <link>https://rndsetup.com/blog/cuo-nanowire-thermal-oxidation/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/cuo-nanowire-thermal-oxidation/</guid>
       <pubDate>Mon, 10 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[공기 중 10℃/min→450℃·2h 열산화로 CuO 나노와이어 성장 — Cu₂O(70~110℃)→CuO(200~270℃) 온도창과 표면 미세구조가 밀도를 좌우. 가스센서·태양전지·촉매·배터리 음극 소재.]]></description>
       <category>산화확산</category><category>열산화</category><category>나노와이어</category><category>가스센서</category><category>에너지소재</category>
     </item>
     <item>
       <title>실리콘 음극이 부서지지 않게 — 아세틸렌 CVD 탄소 코팅 셋업 (2D 실리콘 나노시트)</title>
-      <link>https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/si-anode-cvd-carbon-coating/</guid>
+      <link>https://rndsetup.com/blog/si-anode-cvd-carbon-coating/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/si-anode-cvd-carbon-coating/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[실란 CVD 550℃·50 sccm으로 만든 50 nm 실리콘 시트에 아세틸렌 900℃·5분으로 탄소 7 wt% 코팅 — 200사이클 유지율 54→95%. 짧은 CVD의 재현은 온도×가스 시퀀스 자동화가 관건.]]></description>
       <category>리튬배터리</category><category>실리콘음극</category><category>CVD</category><category>탄소코팅</category><category>증착</category>
     </item>
     <item>
       <title>mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전</title>
-      <link>https://rndsetup.com/magazine/glossary-pump-fluid-terms/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/glossary-pump-fluid-terms/</guid>
+      <link>https://rndsetup.com/blog/glossary-pump-fluid-terms/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/glossary-pump-fluid-terms/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[연동펌프 유량이 rpm으로 표시되는 이유부터 캘리브레이션·맥동·접액부·튜브 재질·체류시간·다채널 동기·Modbus까지 용어 11개 정리.]]></description>
       <category>용어사전</category><category>연동펌프</category><category>유량</category><category>맥동</category><category>접액부</category>
     </item>
     <item>
       <title>전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어</title>
-      <link>https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/guide-pump-selection-energy-fluids/</guid>
+      <link>https://rndsetup.com/blog/guide-pump-selection-energy-fluids/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/guide-pump-selection-energy-fluids/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[유량·정밀도, 유체 성질, 접액 재질, 맥동·전단, 채널 수·제어 — 5축으로 공정에 맞는 펌프 유형을 고르는 법. 공정별 일반 선택표 포함.]]></description>
       <category>가이드</category><category>펌프선정</category><category>전해액순환</category><category>전구체공침</category><category>에너지소재</category>
     </item>
     <item>
       <title>하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전</title>
-      <link>https://rndsetup.com/magazine/glossary-heat-gas-terms/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/glossary-heat-gas-terms/</guid>
+      <link>https://rndsetup.com/blog/glossary-heat-gas-terms/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/glossary-heat-gas-terms/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[에너지·소재 공정 용어 정리 — 하소·소성·소결·어닐링 차이, sccm·slm, MFC vs 로터미터, 산소 분압, 퍼지, 균열구간, DCA까지 한 페이지 사전.]]></description>
       <category>용어사전</category><category>하소</category><category>소성</category><category>소결</category><category>sccm</category>
     </item>
     <item>
       <title>소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 점검표</title>
-      <link>https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/troubleshooting-calcination-batch-variation/</guid>
+      <link>https://rndsetup.com/blog/troubleshooting-calcination-batch-variation/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/troubleshooting-calcination-batch-variation/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[승온 편차·균열구간 이탈·적재량·유량 드리프트·분위기 전환 타이밍·흡습·리크 — 배치 간 편차 7항목 점검표와 증상별 우선 의심 원인.]]></description>
       <category>트러블슈팅</category><category>소성</category><category>배치편차</category><category>재현성</category><category>에너지소재</category>
     </item>
     <item>
       <title>소성·하소용 튜브퍼니스와 가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</title>
-      <link>https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/guide-calcination-furnace-atmosphere/</guid>
+      <link>https://rndsetup.com/blog/guide-calcination-furnace-atmosphere/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/guide-calcination-furnace-atmosphere/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[최고온도·튜브 지름·분위기 가스·유량 제어(MFC)·기록 — 5가지 축으로 소성·하소 퍼니스 셋업을 고르는 법. 공정별 일반 조건표 포함.]]></description>
       <category>가이드</category><category>소성</category><category>하소</category><category>에너지소재</category><category>튜브퍼니스</category>
     </item>
     <item>
       <title>배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급</title>
-      <link>https://rndsetup.com/magazine/nickel-hydroxide-coprecipitation-cstr/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/nickel-hydroxide-coprecipitation-cstr/</guid>
+      <link>https://rndsetup.com/blog/nickel-hydroxide-coprecipitation-cstr/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/nickel-hydroxide-coprecipitation-cstr/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[Ni(OH)₂ 전구체 공침 — 금속염·NaOH·암모니아 3용액을 연동펌프로 정량 공급, N₂ 분위기·40℃·체류시간 ≥2.5h가 품질을 좌우.]]></description>
       <category>배터리소재</category><category>양극재전구체</category><category>공침</category><category>CSTR</category><category>연동펌프</category>
     </item>
     <item>
       <title>레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min</title>
-      <link>https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/aorfb-flowfield-electrolyte-pump/</guid>
+      <link>https://rndsetup.com/blog/aorfb-flowfield-electrolyte-pump/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/aorfb-flowfield-electrolyte-pump/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[수계 유기 흐름전지(AORFB)는 전해액 순환·유로 설계가 성능을 좌우. 연동펌프 140 mL/min + flow-through 유로로 300 mA/cm² 충전.]]></description>
       <category>레독스흐름전지</category><category>AORFB</category><category>ESS</category><category>전해액순환</category><category>연동펌프</category>
     </item>
     <item>
       <title>소듐 양극재를 상순도로 — 소성 분위기를 &#x27;바꾸는&#x27; 셋업 (동적 분위기 제어·DCA)</title>
-      <link>https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/sodium-cathode-atmosphere-dca/</guid>
+      <link>https://rndsetup.com/blog/sodium-cathode-atmosphere-dca/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/sodium-cathode-atmosphere-dca/</guid>
       <pubDate>Sun, 09 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[O3 소듐 양극재는 고정 분위기로는 상순도 합성이 안 된다. 승온 2% O₂ → 고온 유지 불활성으로 바꾸는 튜브퍼니스 + 다채널 MFC 셋업.]]></description>
       <category>소듐전지</category><category>양극재</category><category>소성</category><category>가스분위기</category><category>MFC</category>
     </item>
     <item>
       <title>석탄 합성가스 속 HCl이 SOFC 성능에 미치는 영향 — 다가스 분위기·온도 정밀 제어 셋업</title>
-      <link>https://rndsetup.com/magazine/sofc-hcl-syngas/</link>
-      <guid isPermaLink="true">https://rndsetup.com/magazine/sofc-hcl-syngas/</guid>
+      <link>https://rndsetup.com/blog/sofc-hcl-syngas/</link>
+      <guid isPermaLink="true">https://rndsetup.com/blog/sofc-hcl-syngas/</guid>
       <pubDate>Fri, 07 Aug 2026 09:00:00 +0900</pubDate>
       <description><![CDATA[다채널 MFC + 튜브퍼니스 800·900℃ 셋업. 미량 HCl의 가역적 열화와 재현 조건 정리.]]></description>
       <category>연료전지</category><category>SOFC</category><category>가스분위기</category><category>MFC</category><category>튜브퍼니스</category>
