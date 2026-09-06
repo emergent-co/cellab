@@ -6474,7 +6474,10 @@ function dqBatch(made, to, note){
       + fxBlock()
       + dqField('dqBWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
+      /* 한 벌을 뽑고 나서 틀린 걸 발견하는 자리다. 여기서 되돌아갈 길이 없으면
+         발송을 멈추는 것 말고 할 수 있는 게 없다. */
       + '<div class="twobtn"><button class="btn gray" data-x>나중에</button>'
+      + '<button class="btn ghost" id="dqBFix">내용 수정</button>'
       + '<button class="btn ok" id="dqBSend">발송</button></div></div>';
 
   fxBind();
@@ -6503,6 +6506,26 @@ function dqBatch(made, to, note){
     toast('국세청 발행 완료 ('+r.mode+')');
     dqHist();
   };
+  /* 뽑은 한 벌을 통째로 취소하고, 그 내용을 발행 폼으로 되돌린다.
+     한 벌 중 한 장만 고치면 세 장의 금액이 어긋나므로 «전부 취소하고 다시»가 맞다. */
+  $('#dqBFix').onclick = async function(){
+    if (!confirm(made.length + '종을 모두 취소하고 내용을 발행 폼으로 되돌립니다.\n\n'
+      + '고쳐서 다시 발행하면 새 문서번호로 나갑니다. 계속할까요?')) return;
+    var fb = $('#dqBFix'); fb.disabled = true; fb.textContent = '되돌리는 중…';
+    var d = await fetch('/api/admin/docs/'+made[0].id,{headers:AH})
+      .then(function(x){return x.json();}).catch(function(){return{};});
+    if (!d.document){ fb.disabled = false; fb.textContent = '내용 수정';
+      return alert('문서를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.'); }
+    await Promise.all(made.map(function(m){
+      return fetch('/api/admin/docs/'+m.id,{method:'POST',headers:AH,
+        body:JSON.stringify({action:'void', reason:'내용 수정을 위해 취소'})}).catch(function(){}); }));
+    dqLoadForEdit(d.document, d.payload || {}, made.map(function(m){ return m.type; }));
+    w.remove();
+    paintDocs(); dqHist();
+    if (d.document.customer_id) dqLoadClient(d.document.customer_id);
+    toast(made.length + '종을 취소하고 내용을 불러왔습니다 — 고친 뒤 다시 발행하세요');
+  };
+
   $('#dqBSend').onclick = async function(){
     if (!pick.length) return alert('보낼 문서를 하나 이상 골라주세요.');
     var addr = $('#dqBTo').value.trim();
@@ -6735,6 +6758,40 @@ async function nsPreview(id){
   if (bt && r.missing && r.missing.length){ bt.disabled = true; bt.title = r.missing.join(' · '); }
 }
 
+/* 발행된 문서 내용을 발행 폼으로 되돌린다.
+   단건 «내용 수정» 과 묶음 «내용 수정» 이 함께 쓴다.
+   types 를 주면(묶음) 새 한 벌을 다시 만드는 것이라 dqDocId 를 비운다. */
+function dqLoadForEdit(doc, p, types){
+  p = p || {};
+  /* 쓰다 만 다른 건의 거래처·문의·할 일이 남아 있으면, 그 문서가 엉뚱한 거래처에 붙고
+     상관없는 할 일이 완료 처리된다. 문서 값으로만 채우도록 먼저 비운다. */
+  dqCli = null; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
+  dqGuest = null; dqCliHint = null; dqContacts = []; dqContact = null; dqContactCid = null;
+  dqTodo = null; dqInq = null; dqStaleIds = [];
+  var many = !!(types && types.length > 1);
+  dqDocId = many ? null : doc.id;
+  dqTypes = (types && types.length) ? types.slice() : [doc.type];
+  dqTitle = p.title || ''; dqTitleAuto = !dqTitle;
+  dqNote = p.note || '';
+  dqVat = !!(p.totals && p.totals.vat_included);
+  dqTarget = dqVat ? (Number((p.totals||{}).total) || 0) : 0;
+  dqDates = {}; if (p.issue_date) dqTypes.forEach(function(ty){ dqDates[ty] = p.issue_date; });
+  dqItems = (p.items||[]).map(function(i){
+    /* price_in 은 발행할 때 화면에 적혀 있던 단가 그대로다. 없던 시절 문서만
+       amount÷수량 으로 되돌린다(10원 어긋날 수 있다).
+       비고에 남은 «정가 · 할인율» 을 되읽어, 수정 중에 기준을 바꿔도 문구가 살아 있게 한다. */
+    var m = String(i.note||'').match(/^정가 ([\d,]+)원 · ([\d.]+)% 할인$/);
+    var lp = m ? Number(m[1].replace(/,/g,'')) : 0;
+    return { name:i.name, spec:i.spec||'', qty:i.qty||1, note:i.note||'', pset: true,
+             list: lp ? (dqVat ? Math.round(lp/1.1) : lp) : 0,
+             disc: m ? Number(m[2]) : 0,
+             src: m ? 'auto' : 'manual',
+             price: Number(i.price_in) > 0 ? Number(i.price_in)
+                  : (dqVat ? r10((i.amount||0)/(i.qty||1)) : Math.round(i.unit_price||0)) }; });
+  if (!dqItems.length) dqItems = [{name:'',spec:'',qty:1,price:0,note:''}];
+  dqSrc = { order_id: doc.order_id, settlement_id: doc.settlement_id, source: doc.source };
+}
+
 async function dqOpen(id){
   var w = waitModal('문서');
   var d = await fetch('/api/admin/docs/'+id,{headers:AH}).then(function(r){return r.json();}).catch(function(){return{};});
@@ -6809,7 +6866,10 @@ async function dqOpen(id){
       + fxBlock()
       + dqField('dqWhen','예약 발송 (선택 · 비우면 즉시 발송)','datetime-local','','')
       + '<p class="dnote">예약은 5분마다 확인합니다 — 정한 시각에서 최대 5분 늦게 나갈 수 있습니다.</p>'
+      /* 잘못 적힌 걸 발견하는 건 이 자리다 — 고치는 길과 버리는 길을 나란히 둔다.
+         전에는 «이어서 수정» 이 모달 맨 아래 «닫기» 옆에 있어, 취소 말고는 길이 없어 보였다. */
       + '<div class="twobtn"><button class="btn gray" id="dqVoid">문서 취소</button>'
+      + (doc.status==='작성됨' ? '<button class="btn ghost" id="dqEdit">내용 수정</button>' : '')
       + '<button class="btn ok" id="dqSend">발송</button></div></div>')
 
     /* 보내고 나서 «이건 뭐로 잡을까»를 묻는다 — 순서가 그렇다.
@@ -6860,8 +6920,7 @@ async function dqOpen(id){
             return '<div class="kv"><span>'+esc(String(e.created_at||'').slice(5,16))+'</span><span>'
               + esc(e.detail||e.action)+(e.result==='fail'?' <em class="warn">실패</em>':'')+'</span></div>'; }).join('')
         + '</div>' : '')
-    + '<div class="mrow"><button class="btn gray" data-x>닫기</button>'
-      + (doc.status==='작성됨' ? '<button class="btn ghost" id="dqEdit">이어서 수정</button>' : '') + '</div>';
+    + '<div class="mrow"><button class="btn gray" data-x>닫기</button></div>';
 
   if ($('#nsIssue')) $('#nsIssue').onclick = async function(){
     if (!confirm('국세청으로 세금계산서를 발행합니다.\n\n'
@@ -6974,35 +7033,13 @@ async function dqOpen(id){
     w.remove(); toast('예약을 취소했습니다'); dqHist();
   };
   if ($('#dqEdit')) $('#dqEdit').onclick = function(){
-    /* 쓰다 만 다른 건의 거래처·문의·할 일이 남아 있으면, 그 문서가 엉뚱한 거래처에 붙고
-       상관없는 할 일이 완료 처리된다. 문서 값으로만 채우도록 먼저 비운다. */
-    dqCli = null; dqProfiles = []; dqBill = null; dqOrders = []; dqSettles = [];
-    dqGuest = null; dqCliHint = null; dqContacts = []; dqContact = null; dqContactCid = null;
-    dqTodo = null; dqInq = null;
-    dqDocId = doc.id; dqTypes = [doc.type]; dqTitle = p.title||''; dqTitleAuto = !dqTitle;
-    dqNote = p.note || '';
-    dqVat = !!(p.totals && p.totals.vat_included);
-    dqTarget = dqVat ? (tot.total||0) : 0;
-    dqDates = {}; if (p.issue_date) dqDates[doc.type] = p.issue_date;
-    dqItems = (p.items||[]).map(function(i){
-      /* price_in 은 발행할 때 화면에 적혀 있던 단가 그대로다. 없던 시절 문서만
-         amount÷수량 으로 되돌린다(10원 어긋날 수 있다).
-         비고에 남은 «정가 · 할인율» 을 되읽어, 수정 중에 기준을 바꿔도 문구가 살아 있게 한다. */
-      var m = String(i.note||'').match(/^정가 ([\d,]+)원 · ([\d.]+)% 할인$/);
-      var lp = m ? Number(m[1].replace(/,/g,'')) : 0;
-      return { name:i.name, spec:i.spec||'', qty:i.qty||1, note:i.note||'', pset: true,
-               list: lp ? (dqVat ? Math.round(lp/1.1) : lp) : 0,
-               disc: m ? Number(m[2]) : 0,
-               src: m ? 'auto' : 'manual',
-               price: Number(i.price_in) > 0 ? Number(i.price_in)
-                    : (dqVat ? r10((i.amount||0)/(i.qty||1)) : Math.round(i.unit_price||0)) }; });
-    if (!dqItems.length) dqItems = [{name:'',spec:'',qty:1,price:0,note:''}];
-    dqSrc = { order_id: doc.order_id, settlement_id: doc.settlement_id, source: doc.source };
+    dqLoadForEdit(doc, p);
     w.remove();
     paintDocs();
     if (doc.customer_id) dqLoadClient(doc.customer_id);
     toast('내용을 불러왔습니다 — 고친 뒤 ‘수정 저장’을 누르세요');
   };
+
   if ($('#dqVoid')) $('#dqVoid').onclick = async function(){
     if (!confirm('이 문서를 취소 처리할까요? 예약된 발송도 함께 취소됩니다.')) return;
     await fetch('/api/admin/docs/'+doc.id,{method:'POST',headers:AH,body:JSON.stringify({action:'void'})});

@@ -16883,6 +16883,2791 @@
     "url": "https://www.runzefluid.com/products/bulkhead-quick-connect-fitting.html",
     "label": "Runze Fluid 제품 페이지"
    }
+  },
+  {
+   "slug": "syringe-pump-sy-06b",
+   "name": "시린지 펌프 SY-06B",
+   "name_en": "Runze Fluid Syringe Pump SY-06B",
+   "sub": "60 mm 스트로크 · M01~M12 분배 밸브 선택 · 밸브 전환 ≤280 ms · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 밸브 일체형 모듈",
+   "title": "Runze Fluid 시린지 펌프 SY-06B — 60mm 스트로크 밸브 일체형 정량 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid 시린지 펌프 SY-06B — 정격 스트로크 60 mm(6000 스텝), 선속도 0.005~30 mm/s, M01~M12 분배 밸브 선택, 습부 붕규산 유리·PCTFE·사파이어·PTFE, 최대 0.7 MPa. RS232/RS485/CAN. 가격 문의.",
+   "images": [
+    "syringe-pump-sy-06b-1.jpg",
+    "syringe-pump-sy-06b-2.jpg",
+    "syringe-pump-sy-06b-3.jpg",
+    "syringe-pump-sy-06b-4.jpg",
+    "syringe-pump-sy-06b-5.jpg",
+    "syringe-pump-sy-06b-6.jpg",
+    "syringe-pump-sy-06b-7.jpg",
+    "syringe-pump-sy-06b-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 시린지 펌프 SY-06B",
+   "answer": "시린지 펌프 SY-06B는 정격 스트로크 60 mm에 분배 밸브를 얹은 밸브 일체형 시린지 펌프 모듈로, 마이크로리터에서 밀리리터까지 자동 피펫팅·희석·분주를 상위 컴퓨터 제어로 수행합니다.",
+   "features": [
+    "정격 스트로크 <b>60 mm · 6000 스텝(표준 모드)</b> — 스텝당 분해능 0.01 mm입니다",
+    "선속도 <b>0.005 ~ 30 mm/s</b>, 정격 스트로크 주행 시간 <b>2 s ~ 12000 s</b>(매질 물)로 극저맥동 정량이 가능합니다",
+    "분배 밸브를 <b>M01 · M02 · M03 · M04 · M05 · M06 · M10 · M12</b> 중에서 골라 조합합니다 — 인접 포트 간 전환 시간 ≤280 ms",
+    "습부는 <b>붕규산 유리 · PCTFE · 사파이어 · PTFE</b> 로 금속이 없습니다 — 최대 압력 0.7 MPa",
+    "구동부는 <b>사다리꼴 나사(리드 2 mm)</b> 이며 <b>TTL 3채널</b> 입력을 받습니다",
+    "<b>RS232 / RS485 / CAN</b> 제어 — 주소와 파라미터를 통신으로 설정하고 여러 대를 직렬로 연결해 쓸 수 있습니다",
+    "제조사는 SY-06B를 <b>60 mm 스트로크 · 마이크로 스테핑 구동</b> 사양의 CX 계열 대체 모델로 안내합니다 (최대 25 mL 정량)"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PCTFE · 사파이어 · PTFE (Borosilicate glass, PCTFE, Sapphire, PTFE)"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "60 mm · 6000 스텝 (표준 모드)"
+    ],
+    [
+     "분해능 (Resolution)",
+     "0.01 mm / 스텝"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.005 ~ 30 mm/s"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "2 s ~ 12000 s (정격 스트로크 · 매질 물)"
+    ],
+    [
+     "밸브 모델 (Valve model)",
+     "M01 · M02 · M03 · M04 · M05 · M06 · M10 · M12"
+    ],
+    [
+     "밸브 전환 시간 (Valve switching)",
+     "≤280 ms (인접 포트 간)"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 2 mm (Trapezoidal screw)"
+    ],
+    [
+     "입력 신호 (Input signal)",
+     "TTL 3채널 (3 channels TTL)"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "0.7 MPa"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485 / CAN"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "주소 설정 (Address setting)",
+     "통신으로 설정 (Via communication)"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"/brands/runze/selector-valve-sv-07/\">셀렉터 밸브 SV-07</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#정량펌프",
+     "/product/"
+    ],
+    [
+     "#밸브일체형",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-SY06B-60-M□□</b> 형태로, <b>60</b> 은 정격 스트로크 60 mm, <b>M□□</b> 는 조합할 분배 밸브 모델(M01~M12)을 뜻합니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-06b-d1.jpg\" alt=\"모델 번호 구성 — Model No. · Rated stroke 60 mm · Valve model\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · Rated stroke 60 mm · Valve model</figcaption></figure></div>"
+    },
+    {
+     "h": "분배 밸브 유로 구성 (Valve options)",
+     "html": "<p>C 포트가 시린지에 연결되는 공통 포트입니다. 밸브 모델에 따라 유로 논리가 달라집니다.</p><ul><li><b>M01</b> — Y 유로 (C-1 / 1-2 / C-2 연동)</li><li><b>M02</b> — T 유로 (C-1-2 / C-1 / 1-2 / C-2 연동)</li><li><b>M03</b> — 분배 유로 (C-1 / C-2 / C-3 연동)</li><li><b>M04</b> — 라디오 유로 (C-1 / 1-2 / 2-3 / C-3 연동)</li><li><b>M05</b> — 바이패스 유로 (C-1 / 2-3 연동, C-3 / 1-2 연동)</li><li><b>M06 · M10 · M12</b> — 분배 유로 (C 가 1~6 / 1~9 / 1~12 포트에 선택 연결)</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-06b-d4.jpg\" alt=\"밸브 모델별 유로 논리 M01~M05\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 M01~M05</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-06b-d5.jpg\" alt=\"밸브 모델별 유로 논리 M06 · M10 · M12\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 M06 · M10 · M12</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-06b-d6.jpg\" alt=\"적용 가능한 기밀 시린지 규격 — 정격 스트로크 60 mm 기준\" loading=\"lazy\"><figcaption>적용 가능한 기밀 시린지 규격 — 정격 스트로크 60 mm 기준</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-06b-d2.jpg\" alt=\"SY-06B 외형 (제조사 자료)\" loading=\"lazy\"><figcaption>SY-06B 외형 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-06b-d3.jpg\" alt=\"SY-06B 외형 (제조사 자료)\" loading=\"lazy\"><figcaption>SY-06B 외형 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>마이크로리터~밀리리터 구간의 정밀 액체 이송에 씁니다.</p><ul><li>자동 피펫팅 · 희석 · 분주 (Automatic pipetting, dilution, dispensing)</li><li>의료 분석 장비 (Medical analysis equipment)</li><li>실험실 자동화 · 전처리 장비</li><li>온라인 수질 분석기</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "사양",
+     "q": "SY-06B의 정격 스트로크와 분해능은 어떻게 되나요?",
+     "a": "정격 스트로크 60 mm에 표준 모드 6000 스텝이며, 스텝당 분해능은 0.01 mm입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "주입 속도는 어디까지 조절되나요?",
+     "a": "선속도 0.005~30 mm/s이고, 정격 스트로크를 주행하는 데 2초에서 12000초까지 걸리도록 설정할 수 있습니다(매질 물 기준)."
+    },
+    {
+     "tag": "밸브",
+     "q": "밸브 모델 M01~M12는 무엇이 다른가요?",
+     "a": "유로 논리가 다릅니다. M01은 Y 유로, M02는 T 유로, M03·M04·M05는 3포트 분배·라디오·바이패스 유로이고, M06·M10·M12는 공통 포트가 각각 6·9·12 포트에 선택 연결되는 분배 유로입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "붕규산 유리, PCTFE, 사파이어, PTFE입니다. 최대 압력 정격은 0.7 MPa입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 통신으로 제어하나요?",
+     "a": "RS232 · RS485 · CAN을 지원합니다. RS232/RS485는 9600~115200 bps, CAN은 100 Kbps~1 Mbps이며 TTL 3채널 입력도 받습니다."
+    },
+    {
+     "tag": "확장",
+     "q": "여러 대를 같이 쓸 수 있나요?",
+     "a": "직렬로 연결해 여러 대를 함께 제어할 수 있습니다. 주소와 파라미터는 통신으로 설정합니다."
+    },
+    {
+     "tag": "소모품",
+     "q": "시린지는 어떤 규격을 쓰나요?",
+     "a": "정격 스트로크 60 mm 규격의 기밀 시린지를 씁니다. 25 µL부터 250 µL 이상까지 용량별로 선택합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 시린지 펌프 SY-06B",
+    "sku": "SY-06B",
+    "category": "시린지 펌프 · 밸브 일체형 모듈",
+    "description": "정격 스트로크 60 mm(6000 스텝) 밸브 일체형 시린지 펌프. 선속도 0.005~30 mm/s, M01~M12 분배 밸브, 습부 붕규산 유리·PCTFE·사파이어·PTFE, 0.7 MPa, RS232/RS485/CAN.",
+    "models": [
+     "SY-06B"
+    ],
+    "count": 8
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/syringe-pump-sy-06b.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "syringe-pump-sy-08",
+   "name": "시린지 펌프 SY-08",
+   "name_en": "Runze Fluid Syringe Pump SY-08",
+   "sub": "5 / 12.5 / 25 mL · 정격 스트로크 30 mm(12000 스텝) · 42×42 mm 슬림 바디 · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+   "title": "Runze Fluid 시린지 펌프 SY-08 — 5·12.5·25 mL 산업용 정밀 시린지 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid 시린지 펌프 SY-08 — 5 / 12.5 / 25 mL, 정격 스트로크 30 mm(12000 스텝), 분해능 0.416~2.083 µL, 습부 붕규산 유리·PCTFE·PTFE, 정압 0-0.8 MPa, RS232/RS485/CAN. 가격 문의.",
+   "images": [
+    "syringe-pump-sy-08-1.jpg",
+    "syringe-pump-sy-08-2.jpg",
+    "syringe-pump-sy-08-3.jpg",
+    "syringe-pump-sy-08-4.jpg",
+    "syringe-pump-sy-08-5.jpg",
+    "syringe-pump-sy-08-6.jpg",
+    "syringe-pump-sy-08-7.jpg",
+    "syringe-pump-sy-08-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 시린지 펌프 SY-08",
+   "answer": "시린지 펌프 SY-08은 42×42 mm 단면의 슬림 바디에 5·12.5·25 mL 시린지를 물리는 산업용 정밀 시린지 펌프로, 정격 스트로크 30 mm를 12000 스텝으로 나눠 마이크로리터 단위 액체를 이송합니다.",
+   "features": [
+    "용량 <b>5 mL · 12.5 mL · 25 mL</b> 세 가지 — 정격 스트로크는 모두 30 mm(12000 스텝)입니다",
+    "유량 정확도 <b>≤1%</b>, 반복 정밀도 <b>0.3~0.7%</b> (정격 스트로크 100% 기준)",
+    "수명 <b>무누출 300만 회</b> — 정격 스트로크 1회를 1회로 세고 매질은 순수입니다",
+    "습부는 <b>붕규산 유리 실린더 · PCTFE 밸브헤드 · PTFE 피스톤</b> 으로 강산·강염기(98% 황산 등) 이송이 가능합니다",
+    "최대 피스톤 구동력 <b>≥100 N</b>, 구동부는 사다리꼴 나사(리드 1 mm)입니다",
+    "단면 <b>42×42 mm</b> 로 좁은 장비 안에도 세워 넣기 좋습니다 — 순중량 0.56~0.66 kg",
+    "<b>RS232 / RS485 / CAN</b> 제어, 주소·파라미터를 통신으로 설정합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PCTFE 밸브헤드 · PTFE 피스톤"
+    ],
+    [
+     "유량 정확도 (Accuracy)",
+     "≤1% @100% 정격 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.7% @100% 정격 스트로크"
+    ],
+    [
+     "수명 (Service life)",
+     "무누출 300만 회 (매질 물)"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "30 mm · 12000 스텝"
+    ],
+    [
+     "최대 피스톤 힘 (Piston drive)",
+     "≥100 N"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 1 mm"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "정압 0-0.8 MPa · 부압 0-0.06 MPa (유지 시간은 시험 기준)"
+    ],
+    [
+     "채널 (Channel)",
+     "단일 채널 (Single channel)"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "주소 설정 (Address setting)",
+     "통신으로 설정 (Via communication)"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A · 최대 15 W"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 이하 · 비결로"
+    ]
+   ],
+   "variants": {
+    "heading": "용량별 규격 (Volume)",
+    "head": [
+     "항목",
+     "5 mL",
+     "12.5 mL",
+     "25 mL"
+    ],
+    "rows": [
+     [
+      "최대 회전수 (Max speed)",
+      "600 rpm",
+      "600 rpm",
+      "500 rpm"
+     ],
+     [
+      "선속도 (Linear speed)",
+      "0.017-10 mm/s",
+      "0.017-10 mm/s",
+      "0.017-8.33 mm/s"
+     ],
+     [
+      "주행 시간 (Running time)",
+      "3-1800 s",
+      "3-1800 s",
+      "3.6-1800 s"
+     ],
+     [
+      "분해능 (Resolution)",
+      "0.0025 mm / 0.416 µL",
+      "0.0025 mm / 1.042 µL",
+      "0.0025 mm / 2.083 µL"
+     ],
+     [
+      "시린지 내경 (Syringe ID)",
+      "14.55 mm",
+      "23.03 mm",
+      "32.57 mm"
+     ],
+     [
+      "치수 L×W×H (Dimension)",
+      "42×42×192.8 mm",
+      "42×42×201.8 mm",
+      "42×42×201.8 mm"
+     ],
+     [
+      "순중량 (Net weight)",
+      "0.56 kg",
+      "0.62 kg",
+      "0.66 kg"
+     ]
+    ],
+    "note": "제조사 신형 브로슈어는 25 mL 최대 회전수를 450 rpm, 순중량을 0.53 / 0.58 / 0.63 kg, 정격 전원을 DC24V/1.5A 로 표기하고 배압을 1.32 / 0.51 / 0.28 MPa 로 추가 명시합니다. 습부에는 PVDF 나사 포트와 FFKM 실링을 포함합니다."
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-08.pdf\" rel=\"nofollow\">SY-08 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-08-syringe-pump-ascii-v1-6.pdf\" rel=\"nofollow\">SY-08 ASCII 통신 매뉴얼 V1.6 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=mYFD3WrbIGM\" rel=\"nofollow\">SY-08 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#정밀분주",
+     "/product/"
+    ],
+    [
+     "#산업용시린지펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB08-LS-0.9-1-□-1-Q</b> 형태입니다. <b>0.9</b> 는 스텝 각도, 그 다음 <b>1</b> 은 나사 리드 1 mm, <b>□</b> 는 용량(5 · 12.5 · 25), 마지막 <b>1</b> 은 단일 채널, <b>Q</b> 는 드라이버 포함을 뜻합니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-08-d1.jpg\" alt=\"모델 번호 구성 — Model No. · 스텝 각도 · 나사 리드 · 용량 · 채널 · 드라이버\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · 스텝 각도 · 나사 리드 · 용량 · 채널 · 드라이버</figcaption></figure></div>"
+    },
+    {
+     "h": "제조사 기술 사양표 (Technical parameters)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-08-d2.jpg\" alt=\"SY-08 정밀 마이크로 시린지 펌프 — 컴팩트 · 내산내알칼리\" loading=\"lazy\"><figcaption>SY-08 정밀 마이크로 시린지 펌프 — 컴팩트 · 내산내알칼리</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d3.jpg\" alt=\"제조사 기술 파라미터 표 (용량별 배압 · 속도 · 분해능 포함)\" loading=\"lazy\"><figcaption>제조사 기술 파라미터 표 (용량별 배압 · 속도 · 분해능 포함)</figcaption></figure></div>"
+    },
+    {
+     "h": "수명 · 내식성 (Service life & chemical resistance)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-08-d4.jpg\" alt=\"무누출 300만 회 — 상온 상압 순수 이송 자체 시험 결과\" loading=\"lazy\"><figcaption>무누출 300만 회 — 상온 상압 순수 이송 자체 시험 결과</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d5.jpg\" alt=\"한 손에 들어오는 크기와 무게\" loading=\"lazy\"><figcaption>한 손에 들어오는 크기와 무게</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d6.jpg\" alt=\"98% 황산 등 강산·강염기 이송 · PVDF 나사 포트\" loading=\"lazy\"><figcaption>98% 황산 등 강산·강염기 이송 · PVDF 나사 포트</figcaption></figure></div>"
+    },
+    {
+     "h": "밸브 옵션 · 외형 치수 (Valve options & dimensions)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-08-d7.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d8.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d9.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d10.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d11.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d12.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d13.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d14.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d15.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d16.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d17.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-08-d18.jpg\" alt=\"밸브 옵션 · 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 옵션 · 외형 치수 도면 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>미량 액체를 정밀하게 옮겨야 하는 분석·검사 장비에 씁니다.</p><ul><li>환경 분석 기기 (Environmental analysis instruments)</li><li>의료 분석 장비 (Medical analysis instruments)</li><li>고정밀 비표준 샘플링 설비</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "용량",
+     "q": "SY-08은 어떤 용량이 있나요?",
+     "a": "5 mL, 12.5 mL, 25 mL 세 가지입니다. 정격 스트로크는 모두 30 mm(12000 스텝)이고 시린지 내경만 14.55 / 23.03 / 32.57 mm로 달라집니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "한 스텝에 얼마나 나오나요?",
+     "a": "5 mL은 0.416 µL, 12.5 mL은 1.042 µL, 25 mL은 2.083 µL입니다. 스텝당 이동 거리는 모두 0.0025 mm입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "강산도 이송할 수 있나요?",
+     "a": "습부가 붕규산 유리 실린더, PCTFE 밸브헤드, PTFE 피스톤이라 98% 황산 같은 강산·강염기도 이송할 수 있습니다. 불산과 이 재질들과 반응하는 액체는 피해야 합니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 어떻게 되나요?",
+     "a": "정압 0-0.8 MPa, 부압 0-0.06 MPa입니다. 유지 시간은 시험 조건에 따라 달라집니다."
+    },
+    {
+     "tag": "수명",
+     "q": "수명은 얼마나 되나요?",
+     "a": "제조사 자체 시험에서 상온 상압 순수 기준 무누출 300만 회입니다. 정격 스트로크 1회를 1회로 셉니다."
+    },
+    {
+     "tag": "설치",
+     "q": "장비에 넣기에 크기가 어떤가요?",
+     "a": "단면이 42×42 mm이고 높이는 192.8~201.8 mm, 무게는 0.56~0.66 kg입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 통신을 지원하나요?",
+     "a": "RS232, RS485, CAN을 지원합니다. RS232/RS485는 9600~115200 bps, CAN은 100 Kbps~1 Mbps입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 시린지 펌프 SY-08",
+    "sku": "SY-08",
+    "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+    "description": "5/12.5/25 mL 산업용 정밀 시린지 펌프. 정격 스트로크 30 mm(12000 스텝), 분해능 0.416~2.083 µL, 습부 붕규산 유리·PCTFE·PTFE, 정압 0-0.8 MPa, RS232/RS485/CAN.",
+    "models": [
+     "SY-08-5ML",
+     "SY-08-12.5ML",
+     "SY-08-25ML"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/Syringe%20Pump-sy-08.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "syringe-pump-sy-09",
+   "name": "시린지 펌프 SY-09",
+   "name_en": "Runze Fluid Syringe Pump SY-09",
+   "sub": "3 / 8 mL · 엔코더 내장 · 정격 스트로크 18 / 19.2 mm · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+   "title": "Runze Fluid 시린지 펌프 SY-09 — 3·8 mL 엔코더 내장 수직형 시린지 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid 시린지 펌프 SY-09 — 3 / 8 mL, 정격 스트로크 18 mm(3600 스텝) · 19.2 mm(3840 스텝), 분해능 0.833 / 2.083 µL, 엔코더 내장 탈조 보정, 습부 붕규산 유리·PCTFE·PTFE, RS232/RS485/CAN. 가격 문의.",
+   "images": [
+    "peristaltic-pump-sy-09-1.jpg",
+    "peristaltic-pump-sy-09-2.jpg",
+    "peristaltic-pump-sy-09-3.jpg",
+    "peristaltic-pump-sy-09-4.jpg",
+    "peristaltic-pump-sy-09-5.jpg",
+    "peristaltic-pump-sy-09-6.jpg",
+    "peristaltic-pump-sy-09-7.jpg",
+    "peristaltic-pump-sy-09-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 시린지 펌프 SY-09",
+   "answer": "시린지 펌프 SY-09는 엔코더를 내장한 3·8 mL 수직형 정밀 시린지 펌프로, 상위 컴퓨터 명령을 사다리꼴 나사로 직선 운동으로 바꿔 피스톤을 움직이는 분석장비용 정량 펌프입니다.",
+   "features": [
+    "용량 <b>3 mL · 8 mL</b> — 정격 스트로크 18 mm(3600 스텝) / 19.2 mm(3840 스텝)입니다",
+    "<b>엔코더 내장</b> — 탈조를 자동 보정하고 모터 상태를 통신으로 조회할 수 있습니다",
+    "유량 정확도 <b>≤1%</b>, 반복 정밀도 <b>0.3~0.7%</b>, 수명 <b>무누출 300만 회</b>(매질 물)",
+    "분해능 <b>0.005 mm</b> — 3 mL은 0.833 µL, 8 mL은 2.083 µL 입니다",
+    "습부는 <b>붕규산 유리 · PCTFE 밸브헤드 · PTFE 피스톤</b>, 하우징은 일체 사출 PPS 로 내식·방청입니다",
+    "<b>Tecan 프로토콜과 커스텀 프로토콜</b> 을 함께 지원하며 RS232/RS485 로 여러 대를 캐스케이드할 수 있습니다",
+    "세분화(마이크로스텝) <b>2~32 단계</b>, 회전 방향 CW/CCW, 강제 정지·리셋·펌웨어 버전 조회를 명령으로 지원합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PCTFE 밸브헤드 · PTFE 피스톤"
+    ],
+    [
+     "유량 정확도 (Accuracy)",
+     "≤1% @100% 정격 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.7% @100% 정격 스트로크"
+    ],
+    [
+     "수명 (Service life)",
+     "무누출 300만 회 (매질 물)"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 1 mm"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "정압 0-0.8 MPa · 부압 0-0.06 MPa (유지 시간은 시험 기준)"
+    ],
+    [
+     "채널 (Channel)",
+     "단일 채널 (Single channel)"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "세분화 (Subdivision)",
+     "2 ~ 32 단계 설정"
+    ],
+    [
+     "주소 설정 (Address setting)",
+     "통신으로 설정 (Via communication)"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A · 최대 15 W"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 이하 · 비결로"
+    ]
+   ],
+   "variants": {
+    "heading": "용량별 규격 (Volume)",
+    "head": [
+     "항목",
+     "3 mL",
+     "8 mL"
+    ],
+    "rows": [
+     [
+      "정격 스트로크 (Rated stroke)",
+      "18 mm · 3600 스텝",
+      "19.2 mm · 3840 스텝"
+     ],
+     [
+      "최대 회전수 (Max speed)",
+      "600 rpm",
+      "300 rpm"
+     ],
+     [
+      "선속도 (Linear speed)",
+      "0.017-10 mm/s",
+      "0.017-5 mm/s"
+     ],
+     [
+      "주행 시간 (Running time)",
+      "1.8-1080 s",
+      "3.84-1129 s"
+     ],
+     [
+      "분해능 (Resolution)",
+      "0.005 mm / 0.833 µL",
+      "0.005 mm / 2.083 µL"
+     ],
+     [
+      "시린지 내경 (Syringe ID)",
+      "14.55 mm",
+      "23.03 mm"
+     ],
+     [
+      "치수 L×W×H (Dimension)",
+      "51×41.5×155.2 mm",
+      "51×41.5×157.2 mm"
+     ],
+     [
+      "순중량 (Net weight)",
+      "0.56 kg",
+      "0.62 kg"
+     ]
+    ],
+    "note": "제조사 신형 브로슈어는 치수를 51×49.7×170.4 mm / 51×49.1×172 mm, 순중량을 0.45 / 0.49 kg 으로 표기하고 배압 1.5 MPa(3 mL) · 0.89 MPa(8 mL) 를 추가로 명시합니다. 습부에는 PVDF 나사 포트와 FFKM 실링을 포함합니다."
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/syringe-pump-sy-09s/\">시린지 펌프 SY-09S</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-09-syring-pump-v1-8-manual.pdf\" rel=\"nofollow\">SY-09 매뉴얼 V1.8 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-09-syringe-pump.pdf\" rel=\"nofollow\">SY-09 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=ch9Kx0YK3rI\" rel=\"nofollow\">SY-09 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#엔코더내장",
+     "/product/"
+    ],
+    [
+     "#정량주입",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-LS-18-1-3ML-M-Q</b> 형태입니다. <b>1.8</b> 은 스텝 각도, <b>1</b> 은 나사 리드 1 mm, 그 다음이 용량, <b>M</b> 은 코드디스크(엔코더) 포함, <b>Q</b> 는 드라이버 포함을 뜻합니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d1.jpg\" alt=\"모델 번호 구성 — Model No. · 스텝 각도 · 나사 리드 · 용량 · 엔코더 · 드라이버\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · 스텝 각도 · 나사 리드 · 용량 · 엔코더 · 드라이버</figcaption></figure></div>"
+    },
+    {
+     "h": "드라이버 포트 핀 배열 (Driver port)",
+     "html": "<p>+ · − 가 DC24V 전원, TX · RX · GND 가 RS232, H · L 이 CANH · CANL, A · B 가 RS485A · RS485B 입니다. 반대편은 A+/A− · B+/B− 모터 상 배선, IO1 포토커플러 신호, A · B 엔코더 상, NC(미사용), +5V, GND, PE 접지입니다.</p>"
+    },
+    {
+     "h": "기능 · 명령 (Function)",
+     "html": "<ul><li><b>주소 설정</b> — 시리얼 포트로 설정</li><li><b>통신 속도 설정</b> — RS232 / RS485 / CAN 각각 설정</li><li><b>CAN 목적지 주소</b> — 여러 대 병렬 제어 시 우선 주소 지정</li><li><b>속도 설정</b> — 3 mL 1~600 rpm, 8 mL 1~300 rpm (기체·액체·모델에 따라 차이)</li><li><b>세분화 설정</b> — 2~32 단계</li><li><b>파라미터 · 버전 조회</b>, <b>공장 초기화</b>, <b>CW/CCW 방향</b>, <b>리셋(원점 복귀)</b>, <b>강제 정지</b>, <b>모터 상태 조회</b></li></ul>"
+    },
+    {
+     "h": "제조사 기술 자료 (Technical data)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d2.jpg\" alt=\"고정밀 수직형 미니 시린지 펌프 — 컴팩트 · 엔코더 내장 · 무누출 300만 회\" loading=\"lazy\"><figcaption>고정밀 수직형 미니 시린지 펌프 — 컴팩트 · 엔코더 내장 · 무누출 300만 회</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d3.jpg\" alt=\"제조사 기술 파라미터 표 (배압 · 치수 · 중량 포함)\" loading=\"lazy\"><figcaption>제조사 기술 파라미터 표 (배압 · 치수 · 중량 포함)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d4.jpg\" alt=\"무누출 300만 회 — 상온 상압 순수 이송 자체 시험 결과\" loading=\"lazy\"><figcaption>무누출 300만 회 — 상온 상압 순수 이송 자체 시험 결과</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d5.jpg\" alt=\"한 손에 들어오는 크기\" loading=\"lazy\"><figcaption>한 손에 들어오는 크기</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d6.jpg\" alt=\"내산·내알칼리 구조와 습부 재질 구성\" loading=\"lazy\"><figcaption>내산·내알칼리 구조와 습부 재질 구성</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d7.jpg\" alt=\"수입 스텝모터 · 저마찰 베어링 구조\" loading=\"lazy\"><figcaption>수입 스텝모터 · 저마찰 베어링 구조</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d8.jpg\" alt=\"이중 프로토콜(Tecan · 커스텀) 지원과 엔코더 탈조 보정\" loading=\"lazy\"><figcaption>이중 프로토콜(Tecan · 커스텀) 지원과 엔코더 탈조 보정</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d9.jpg\" alt=\"분해능 0.005 mm · 최소 샘플링 0.833 / 2.083 µL\" loading=\"lazy\"><figcaption>분해능 0.005 mm · 최소 샘플링 0.833 / 2.083 µL</figcaption></figure><figure><img src=\"/img/runze/peristaltic-pump-sy-09-d10.jpg\" alt=\"RS232/RS485 배선과 전원 배선 — 다중 캐스케이드 지원\" loading=\"lazy\"><figcaption>RS232/RS485 배선과 전원 배선 — 다중 캐스케이드 지원</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>미량 정량이 필요한 분석·검사 라인에 씁니다.</p><ul><li>의료 분석 장비 (Medical analysis equipment)</li><li>크로마토그래피 분석기 (Chromatographic analyzers)</li><li>식품·음료 검사 분석 시스템</li><li>수질 온라인 분석기 (Water quality on-line analyzer)</li><li>석유 검사 장비 · 바이오의약 추출 장치</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "용량",
+     "q": "SY-09은 어떤 용량이 있나요?",
+     "a": "3 mL과 8 mL입니다. 정격 스트로크는 각각 18 mm(3600 스텝), 19.2 mm(3840 스텝)입니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "최소 토출량은 얼마인가요?",
+     "a": "스텝당 0.005 mm 이동이며 3 mL은 0.833 µL, 8 mL은 2.083 µL입니다."
+    },
+    {
+     "tag": "엔코더",
+     "q": "엔코더가 내장되면 뭐가 좋나요?",
+     "a": "탈조가 생기면 자동으로 보정하고 모터 상태를 통신으로 조회할 수 있어, 무인 운전 중 위치 오차를 잡아냅니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 프로토콜을 지원하나요?",
+     "a": "Tecan 프로토콜과 커스텀 프로토콜을 함께 지원합니다. 물리 계층은 RS232 · RS485 · CAN입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "속도는 어디까지 올릴 수 있나요?",
+     "a": "3 mL은 1~600 rpm, 8 mL은 1~300 rpm입니다. 기체와 액체, 모델에 따라 차이가 있습니다."
+    },
+    {
+     "tag": "수명",
+     "q": "수명은 얼마나 되나요?",
+     "a": "제조사 자체 시험에서 상온 상압 순수 기준 무누출 300만 회입니다."
+    },
+    {
+     "tag": "확장",
+     "q": "여러 대를 하나의 버스에 물릴 수 있나요?",
+     "a": "RS232/RS485 버스로 여러 대를 캐스케이드할 수 있고, CAN에서는 우선 주소를 지정해 병렬 제어합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 시린지 펌프 SY-09",
+    "sku": "SY-09",
+    "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+    "description": "3/8 mL 엔코더 내장 수직형 정밀 시린지 펌프. 정격 스트로크 18/19.2 mm, 분해능 0.833/2.083 µL, 습부 붕규산 유리·PCTFE·PTFE, RS232/RS485/CAN.",
+    "models": [
+     "SY-09-3ML",
+     "SY-09-8ML"
+    ],
+    "count": 2
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/peristaltic-pump-sy-09.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "syringe-pump-sy-09s",
+   "name": "시린지 펌프 SY-09S",
+   "name_en": "Runze Fluid Syringe Pump SY-09S",
+   "sub": "3 / 8 mL · 엔코더 + 솔레노이드 밸브 내장 · 듀얼 포트 PPS 펌프헤드 · RS232 / RS485",
+   "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+   "title": "Runze Fluid 시린지 펌프 SY-09S — 솔레노이드 밸브 내장 3·8 mL 시린지 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid 시린지 펌프 SY-09S — 3 / 8 mL, 엔코더와 솔레노이드 밸브 내장, 듀얼 포트 PPS 펌프헤드, 펌프헤드 데드볼륨 35 µL, 정격 스트로크 18 / 19.2 mm, RS232/RS485. 가격 문의.",
+   "images": [
+    "syringe-pump-sy-09s-1.jpg",
+    "syringe-pump-sy-09s-2.jpg",
+    "syringe-pump-sy-09s-3.jpg",
+    "syringe-pump-sy-09s-4.jpg",
+    "syringe-pump-sy-09s-5.jpg",
+    "syringe-pump-sy-09s-6.jpg",
+    "syringe-pump-sy-09s-7.jpg",
+    "syringe-pump-sy-09s-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 시린지 펌프 SY-09S",
+   "answer": "시린지 펌프 SY-09S는 SY-09에 솔레노이드 밸브까지 펌프헤드에 넣은 모델로, 별도 분배 밸브 없이 듀얼 포트 PPS 헤드 하나로 흡입·토출 유로를 전환하는 3·8 mL 정밀 시린지 펌프입니다.",
+   "features": [
+    "<b>솔레노이드 밸브 내장</b> — 듀얼 포트 PPS 펌프헤드로 흡입·토출 유로를 하나의 헤드에서 전환합니다",
+    "<b>엔코더 내장</b> — 탈조를 자동 보정하고 위치를 되먹임합니다",
+    "용량 <b>3 mL · 8 mL</b>, 정격 스트로크 18 mm(3600 스텝) / 19.2 mm(3840 스텝)",
+    "분해능 <b>0.005 mm</b> — 3 mL은 0.833 µL, 8 mL은 2.083 µL 입니다",
+    "습부는 <b>붕규산 유리 · PTFE · PPS · PEEK / EPDM / FKM(솔레노이드 밸브)</b> 이며 하우징은 일체 사출 PPS 입니다",
+    "펌프헤드 데드볼륨 <b>35 µL</b> — 캐리오버를 줄여야 하는 미량 분석에 유리합니다",
+    "<b>Tecan 프로토콜과 커스텀 프로토콜</b> 을 함께 지원하고 RS232/RS485 버스로 여러 대를 캐스케이드합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE · PPS · PEEK / EPDM / FKM (솔레노이드 밸브)"
+    ],
+    [
+     "유량 정확도 (Accuracy)",
+     "≤1% @100% 정격 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.7% @100% 정격 스트로크"
+    ],
+    [
+     "수명 (Service life)",
+     "무누출 300만 회"
+    ],
+    [
+     "펌프헤드 데드볼륨 (Dead volume)",
+     "35 µL"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 1 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF 암나사"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485 버스"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "9600 · 19200 · 38400 · 57600 · 115200 bps"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 이하 · 비결로"
+    ]
+   ],
+   "variants": {
+    "heading": "용량별 규격 (Volume)",
+    "head": [
+     "항목",
+     "3 mL",
+     "8 mL"
+    ],
+    "rows": [
+     [
+      "정격 스트로크 (Rated stroke)",
+      "18 mm · 3600 스텝",
+      "19.2 mm · 3840 스텝"
+     ],
+     [
+      "최대 회전수 (Max speed)",
+      "600 rpm",
+      "300 rpm"
+     ],
+     [
+      "선속도 (Linear speed)",
+      "0.017-10 mm/s",
+      "0.017-5 mm/s"
+     ],
+     [
+      "주행 시간 (Running time)",
+      "1.8-1080 s",
+      "3.84-1152 s"
+     ],
+     [
+      "분해능 (Resolution)",
+      "0.005 mm / 0.833 µL",
+      "0.005 mm / 2.083 µL"
+     ],
+     [
+      "시린지 내경 (Syringe ID)",
+      "14.55 mm",
+      "23.03 mm"
+     ],
+     [
+      "순중량 (Net weight)",
+      "0.48 kg",
+      "0.50 kg"
+     ]
+    ],
+    "note": "사양은 제조사 브로슈어 표기이며, 펌프헤드 데드볼륨은 유로 구성에 따라 35 µL 와 116.5 µL 두 값이 함께 표기됩니다."
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/syringe-pump-sy-09/\">시린지 펌프 SY-09</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#솔레노이드밸브내장",
+     "/product/"
+    ],
+    [
+     "#미량분주",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 기술 자료 (Technical data)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy-09s-d1.jpg\" alt=\"고정밀 시린지 펌프 SY-09S — 컴팩트 · 엔코더/솔레노이드 밸브 내장 · 무누출 300만 회\" loading=\"lazy\"><figcaption>고정밀 시린지 펌프 SY-09S — 컴팩트 · 엔코더/솔레노이드 밸브 내장 · 무누출 300만 회</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d2.jpg\" alt=\"제조사 기술 파라미터 표 (용량 · 스트로크 · 분해능 · 데드볼륨)\" loading=\"lazy\"><figcaption>제조사 기술 파라미터 표 (용량 · 스트로크 · 분해능 · 데드볼륨)</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d3.jpg\" alt=\"무누출 300만 회 — 상온 상압 순수 이송 자체 시험 결과\" loading=\"lazy\"><figcaption>무누출 300만 회 — 상온 상압 순수 이송 자체 시험 결과</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d4.jpg\" alt=\"한 손에 들어오는 크기\" loading=\"lazy\"><figcaption>한 손에 들어오는 크기</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d5.jpg\" alt=\"듀얼 포트 PPS 펌프헤드와 습부 재질 구성\" loading=\"lazy\"><figcaption>듀얼 포트 PPS 펌프헤드와 습부 재질 구성</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d6.jpg\" alt=\"수입 스텝모터 · 저마찰 베어링 구조\" loading=\"lazy\"><figcaption>수입 스텝모터 · 저마찰 베어링 구조</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d7.jpg\" alt=\"엔코더 · 솔레노이드 밸브 내장 · 이중 프로토콜 지원\" loading=\"lazy\"><figcaption>엔코더 · 솔레노이드 밸브 내장 · 이중 프로토콜 지원</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d8.jpg\" alt=\"분해능 0.005 mm · 최소 샘플링 0.833 / 2.083 µL\" loading=\"lazy\"><figcaption>분해능 0.005 mm · 최소 샘플링 0.833 / 2.083 µL</figcaption></figure><figure><img src=\"/img/runze/syringe-pump-sy-09s-d9.jpg\" alt=\"RS232/RS485 버스 배선과 전원 배선 — 다중 캐스케이드\" loading=\"lazy\"><figcaption>RS232/RS485 버스 배선과 전원 배선 — 다중 캐스케이드</figcaption></figure></div>"
+    },
+    {
+     "h": "주의 사항 (Chemical compatibility)",
+     "html": "<p>습부는 붕규산 유리, PTFE, PPS 와 솔레노이드 밸브의 PEEK / EPDM / FKM 입니다. 대부분의 액체와 유기 용매를 견디지만 <b>불산(HF)</b> 과 위 재질에 반응하는 액체에는 쓸 수 없습니다.</p>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>밸브를 따로 달기 어려운 좁은 장비 안에서 흡입·토출을 함께 처리해야 할 때 씁니다.</p><ul><li>의료 분석 장비 · 체외진단 장비</li><li>수질 온라인 분석기</li><li>실험실 자동 전처리 장비</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "차이",
+     "q": "SY-09과 SY-09S는 뭐가 다른가요?",
+     "a": "SY-09S는 펌프헤드에 솔레노이드 밸브가 들어가 있습니다. 별도 분배 밸브 없이 듀얼 포트 PPS 헤드 하나로 흡입·토출 유로를 전환합니다."
+    },
+    {
+     "tag": "데드볼륨",
+     "q": "펌프헤드 데드볼륨은 얼마인가요?",
+     "a": "제조사 표기 기준 35 µL입니다. 유로 구성에 따라 116.5 µL 값이 함께 표기되므로 실제 구성으로 확인이 필요합니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "붕규산 유리, PTFE, PPS이며 솔레노이드 밸브 쪽은 PEEK, EPDM, FKM입니다. 불산과 이 재질들에 반응하는 액체는 피해야 합니다."
+    },
+    {
+     "tag": "제어",
+     "q": "통신은 무엇을 지원하나요?",
+     "a": "RS232와 RS485 버스입니다. 9600~115200 bps이며 여러 대를 데이지체인으로 물릴 수 있습니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "최소 토출량은 얼마인가요?",
+     "a": "3 mL은 0.833 µL, 8 mL은 2.083 µL입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 시린지 펌프 SY-09S",
+    "sku": "SY-09S",
+    "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+    "description": "솔레노이드 밸브·엔코더 내장 3/8 mL 정밀 시린지 펌프. 듀얼 포트 PPS 펌프헤드, 데드볼륨 35 µL, 정격 스트로크 18/19.2 mm, RS232/RS485.",
+    "models": [
+     "SY-09S-3ML",
+     "SY-09S-8ML"
+    ],
+    "count": 2
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/syringe-pump-sy-09s.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "oem-syringe-pump",
+   "name": "OEM 시린지 펌프",
+   "name_en": "Runze Fluid OEM Syringe Pump",
+   "sub": "50 / 100 mL 대용량 · 볼스크류 구동 · 3포트 고압 밸브 조합 · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · OEM 대용량 모듈",
+   "title": "Runze Fluid OEM 시린지 펌프 — 50·100 mL 대용량 커스터마이즈 모듈 | 실험셋업연구소",
+   "desc": "Runze Fluid OEM 시린지 펌프 — 50 / 100 mL 대용량, 정확도 ≤1%, 볼스크류(리드 2 mm) 구동, 습부 붕규산 유리 실린더·PTFE 피스톤, 정압 0-1.0 MPa, RS232/RS485/CAN. 크기·재질·마운팅 커스터마이즈. 가격 문의.",
+   "images": [
+    "oem-syringe-pump-1.jpg",
+    "oem-syringe-pump-2.jpg",
+    "oem-syringe-pump-3.jpg",
+    "oem-syringe-pump-4.jpg",
+    "oem-syringe-pump-5.jpg",
+    "oem-syringe-pump-6.jpg",
+    "oem-syringe-pump-7.jpg"
+   ],
+   "image_alt": "Runze Fluid OEM 시린지 펌프",
+   "answer": "OEM 시린지 펌프는 50·100 mL 대용량 시린지를 볼스크류로 구동하는 장비 내장형 모듈로, 용량·재질·마운팅 홀·부속 구성을 장비에 맞춰 주문 제작하는 라인입니다.",
+   "features": [
+    "용량 <b>50 mL · 100 mL</b> 대용량 — 표준 시린지 펌프로 감당하기 어려운 구간을 커버합니다",
+    "정확도 <b>≤1% @100% 스트로크</b>, 반복 정밀도 <b>0.3~0.7%</b>",
+    "수명 <b>무누출 300만 회</b>(매질 물), 포토센서로 피스톤 원점을 검출합니다",
+    "구동부는 <b>볼스크류(리드 2 mm)</b> — 회전 운동을 직선 운동으로 바꿔 정밀도와 역구동성을 함께 확보합니다",
+    "습부는 <b>붕규산 유리 실린더 · PTFE 피스톤 · PTFE 출구</b> 이며 푸시로드는 304 스테인리스입니다",
+    "<b>3포트 고압 밸브</b> 를 얹은 수평형, 50 mL 3연 병렬형 등 조합 구성이 가능합니다",
+    "<b>커스터마이즈</b> — 시린지 용량(50/100 mL), 재질(SST · POM · PEEK), 마운팅 홀 위치를 도면대로 제작합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 실린더 · PTFE 피스톤 · PTFE 출구"
+    ],
+    [
+     "용량 (Volume)",
+     "50 mL · 100 mL"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.7% @100% 스트로크"
+    ],
+    [
+     "수명 (Service life)",
+     "무누출 300만 회 (매질 물)"
+    ],
+    [
+     "원점 검출 (Detection)",
+     "포토센서로 피스톤 원점 검출"
+    ],
+    [
+     "구동부 (Actuator)",
+     "볼스크류 · 리드 2 mm (Ball screw)"
+    ],
+    [
+     "압력 (Pressure)",
+     "0-1.0 MPa (공기) · 0-1.2 MPa (물)"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "정압 0-1.0 MPa · 부압 0-0.05 MPa"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485 / CAN"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 1.5A · 최대 15 W"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "납기 (Delivery time)",
+     "약 20~25 영업일 (제조사 표기)"
+    ]
+   ],
+   "variants": {
+    "heading": "드라이버 포트 핀 배열 (Driver port)",
+    "head": [
+     "포트",
+     "설명",
+     "포트",
+     "설명"
+    ],
+    "rows": [
+     [
+      "H",
+      "CANH",
+      "B+ / B−",
+      "B상 배선"
+     ],
+     [
+      "L",
+      "CANL",
+      "A+ / A−",
+      "A상 배선"
+     ],
+     [
+      "A",
+      "RS485 A",
+      "O1",
+      "포토커플러 배선"
+     ],
+     [
+      "B",
+      "RS485 B",
+      "O2",
+      "포토커플러 배선"
+     ],
+     [
+      "GND",
+      "GND",
+      "O3",
+      "포토커플러 배선"
+     ],
+     [
+      "RX",
+      "RS232 RX",
+      "V1",
+      "포토커플러 전원"
+     ],
+     [
+      "TX",
+      "RS232 TX",
+      "V2",
+      "포토커플러 전원"
+     ],
+     [
+      "−",
+      "DC24V",
+      "V3",
+      "포토커플러 전원"
+     ],
+     [
+      "+",
+      "DC24V",
+      "GND",
+      "GND"
+     ]
+    ]
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"/brands/runze/3-way-switching-valve/\">3방 스위칭 밸브 MRV-01B</a> · <a href=\"/brands/runze/flangeless-fittings/\">플랜지리스 피팅</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#OEM시린지펌프",
+     "/product/"
+    ],
+    [
+     "#대용량시린지펌프",
+     "/product/"
+    ],
+    [
+     "#장비내장모듈",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "커스터마이즈 범위 (Customization)",
+     "html": "<ul><li><b>크기</b> — 통상 50 mL 대용량 시린지, 50 mL / 100 mL 주문 제작. 고붕규산 유리 몸체, 304 스테인리스 푸시로드, PTFE 피스톤, 최대 압력 0.68 MPa, 표준 1/4-28 UNF 나사</li><li><b>재질</b> — SST · POM · PEEK</li><li><b>마운팅</b> — 고객 도면에 맞춘 마운팅 홀 가공, 패널 사전 타공, 커스텀 부품 지원</li></ul>"
+    },
+    {
+     "h": "대표 구성 (Typical configurations)",
+     "html": "<ol><li><b>100 mL 수평형 + 3포트 고압 밸브</b> — 내식·내열·무보수 구성. 스테인리스 부품을 배치 설계했고 대부분을 내식·내열 재질로 씁니다.</li><li><b>100 mL 수평형 / 50 mL 3포트 수평형</b> — 3포트 고압 밸브 · 스텝모터 · 기밀 시린지 · 포토커플러 · 리니어 가이드 · 볼스크류 구성</li><li><b>50 mL 3연 수평형</b> — 50 mL 기밀 시린지 3개를 나란히 병렬 구동. 패널 사전 타공과 커스텀 부품을 지원합니다.</li></ol><div class=\"det-imgs\"><figure><img src=\"/img/runze/oem-syringe-pump-d1.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/oem-syringe-pump-d2.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/oem-syringe-pump-d3.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/oem-syringe-pump-d4.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/oem-syringe-pump-d5.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/oem-syringe-pump-d6.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/oem-syringe-pump-d7.jpg\" alt=\"OEM 시린지 펌프 구성 예 (제조사 자료)\" loading=\"lazy\"><figcaption>OEM 시린지 펌프 구성 예 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>대용량 정량이 필요한 장비에 넣어 씁니다.</p><ul><li>정용량 분주 시스템 (Constant specific volume dispensing)</li><li>프로그래머블 제어 시스템</li><li>의료·산업·실험실·환경 분석 장비</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "용량",
+     "q": "OEM 시린지 펌프는 몇 mL까지 나오나요?",
+     "a": "통상 50 mL와 100 mL입니다. 고붕규산 유리 몸체에 304 스테인리스 푸시로드, PTFE 피스톤 구성이며 최대 압력은 0.68 MPa입니다."
+    },
+    {
+     "tag": "구동",
+     "q": "일반 시린지 펌프와 구동부가 다른가요?",
+     "a": "볼스크류(리드 2 mm)를 씁니다. 사다리꼴 나사보다 정밀도와 역구동 효율이 좋아 대용량 구동에 유리합니다."
+    },
+    {
+     "tag": "커스터마이즈",
+     "q": "어디까지 맞춤 제작이 되나요?",
+     "a": "시린지 용량, 재질(SST·POM·PEEK), 마운팅 홀 위치와 패널 타공, 부속 부품 구성까지 도면대로 제작합니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 어떻게 되나요?",
+     "a": "공기 0-1.0 MPa, 물 0-1.2 MPa이고, 회로 기준 정압 0-1.0 MPa, 부압 0-0.05 MPa입니다."
+    },
+    {
+     "tag": "납기",
+     "q": "납기는 얼마나 걸리나요?",
+     "a": "제조사 표기 기준 약 20~25 영업일입니다. 커스터마이즈 범위에 따라 달라지므로 사양 확정 후 다시 확인이 필요합니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 통신을 지원하나요?",
+     "a": "RS232 · RS485 · CAN입니다. RS232/RS485는 9600~115200 bps, CAN은 100 Kbps~1 Mbps입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid OEM 시린지 펌프",
+    "sku": "OEM-SYRINGE-PUMP",
+    "category": "시린지 펌프 · OEM 대용량 모듈",
+    "description": "50/100 mL 대용량 OEM 시린지 펌프 모듈. 볼스크류(리드 2 mm) 구동, 정확도 ≤1%, 습부 붕규산 유리·PTFE, 0-1.2 MPa(물), RS232/RS485/CAN, 크기·재질·마운팅 커스터마이즈.",
+    "models": [
+     "OEM 50ML",
+     "OEM 100ML"
+    ],
+    "count": 2
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/oem-syringe-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "8-channel-micro-syringe-pump-module",
+   "name": "8채널 마이크로 시린지 펌프 SY-03B T-DK",
+   "name_en": "Runze Fluid SY-03B T-DK 8-Channel Micro Syringe Pump",
+   "sub": "8채널 독립 구동 · 채널별 3방 솔레노이드 밸브 · 정격 스트로크 60 mm · ASCII / Modbus",
+   "category": "시린지 펌프 · 다채널 모듈",
+   "title": "Runze Fluid 8채널 마이크로 시린지 펌프 SY-03B T-DK — 나노리터 병렬 분주 모듈 | 실험셋업연구소",
+   "desc": "Runze Fluid SY-03B T-DK 8채널 마이크로 시린지 펌프 — 채널마다 3방 솔레노이드 밸브 독립 제어, 시린지 50 µL~5 mL, 정격 스트로크 60 mm(6000/48000 스텝), 최대 900 rpm, 0.15 MPa, RS232/RS485/CAN · ASCII/Modbus. 가격 문의.",
+   "images": [
+    "8-channel-micro-syringe-pump-module-1.jpg",
+    "8-channel-micro-syringe-pump-module-2.jpg",
+    "8-channel-micro-syringe-pump-module-3.jpg",
+    "8-channel-micro-syringe-pump-module-4.jpg",
+    "8-channel-micro-syringe-pump-module-5.jpg",
+    "8-channel-micro-syringe-pump-module-6.jpg",
+    "8-channel-micro-syringe-pump-module-7.jpg",
+    "8-channel-micro-syringe-pump-module-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 8채널 마이크로 시린지 펌프 SY-03B T-DK",
+   "answer": "SY-03B T-DK는 시린지 8개를 동기 병렬 리드스크류로 밀면서 채널마다 3방 솔레노이드 밸브를 따로 제어하는 8채널 마이크로 시린지 펌프 모듈로, IVD·시약 분주·실험실 자동화 라인에 통째로 넣어 씁니다.",
+   "features": [
+    "<b>8채널 독립 유로</b> — 동기 병렬 리드스크류로 밀고, 채널마다 3방 솔레노이드 밸브가 유로를 따로 끊고 엽니다",
+    "액량 정확도 <b>≤1%</b>, 반복 오차 <b>0.3~0.5%</b>, 제어 분해능 <b>0.01 mm / 스텝</b>",
+    "정격 스트로크 <b>60 mm</b> — 표준 6000 스텝, 마이크로스텝 모드 48000 스텝",
+    "최대 <b>900 rpm</b>, 선속도 <b>0.01 ~ 60 mm/s</b>, 정격 스트로크 주행 1 s ~ 6000 s",
+    "시린지 <b>50 µL · 100 µL · 250 µL · 500 µL · 1 mL · 2.5 mL · 5 mL</b> 선택 (Runze TK60 시린지 호환)",
+    "<b>ASCII / Modbus</b> 프로토콜을 RS232 · RS485 · CAN 위에서 지원하고, 주소는 DIP 스위치로 지정합니다",
+    "구동부 · 시린지 · 밸브 모듈 · 제어 기판이 <b>한 덩어리로 통합</b> 되어 장비에 그대로 얹을 수 있습니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE · FKM · PPS · PEEK"
+    ],
+    [
+     "채널 (Channels)",
+     "8채널 독립 제어"
+    ],
+    [
+     "시린지 용량 (Syringe)",
+     "50 · 100 · 250 · 500 µL · 1 · 2.5 · 5 mL (Runze TK60 호환)"
+    ],
+    [
+     "액량 정확도 (Accuracy)",
+     "≤1%"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.5%"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "60 mm · 6000 스텝 (마이크로스텝 48000 스텝)"
+    ],
+    [
+     "제어 분해능 (Resolution)",
+     "0.01 mm / 스텝"
+    ],
+    [
+     "최대 속도 (Max speed)",
+     "900 rpm"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.01 ~ 60 mm/s"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "1 s ~ 6000 s (정격 스트로크)"
+    ],
+    [
+     "밸브 형식 (Valve type)",
+     "3방 솔레노이드 밸브 (3-way solenoid)"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "0.15 MPa"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 리드스크류 · 리드 6 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF 암나사"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485 / CAN · ASCII / Modbus"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 38400 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A"
+    ],
+    [
+     "치수 W×H×D (Dimension)",
+     "187 × 254 × 117.5 mm · 마운팅 홀 4 × Ø4.5 mm"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/syringe-pump-sy03b-in-dk-series/\">시린지 펌프 SY-03B DK 시리즈</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"/brands/runze/three-way-solenoid-valve/\">3방 솔레노이드 밸브</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#다채널시린지펌프",
+     "/product/"
+    ],
+    [
+     "#IVD분주",
+     "/product/"
+    ],
+    [
+     "#실험실자동화",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "구성 (Module layout)",
+     "html": "<ul><li>전환 밸브 헤드 (Switching valve head)</li><li>샘플러 — 50 µL · 100 µL · 250 µL · 500 µL · 1 mL · 1.25 mL · 2.5 mL · 5 mL 선택</li><li>상태 표시등 · 방열 홀 · 손조임 나사</li><li>3방 솔레노이드 밸브 8조</li><li>스텝모터 · 주소 설정 DIP 스위치 · M3 접지 홀</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d5.jpg\" alt=\"구동부에서 밸브 헤드 유로까지 통합 설계 — 밸브 헤드 · 샘플러 · 표시등 · 솔레노이드 밸브 · DIP 주소\" loading=\"lazy\"><figcaption>구동부에서 밸브 헤드 유로까지 통합 설계 — 밸브 헤드 · 샘플러 · 표시등 · 솔레노이드 밸브 · DIP 주소</figcaption></figure><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d3.jpg\" alt=\"동기 병렬 리드스크류 구동과 채널별 독립 솔레노이드 밸브 전환 모드\" loading=\"lazy\"><figcaption>동기 병렬 리드스크류 구동과 채널별 독립 솔레노이드 밸브 전환 모드</figcaption></figure><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d7.jpg\" alt=\"제조사 기술 파라미터 표\" loading=\"lazy\"><figcaption>제조사 기술 파라미터 표</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<p>전체 치수는 폭 187 mm × 높이 254 mm × 깊이 117.5 mm 이고, 마운팅 홀은 4 × Ø4.5 mm 입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d8.jpg\" alt=\"외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>외형 치수 도면 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d1.jpg\" alt=\"8채널 마이크로 시린지 펌프 — 8조 솔레노이드 밸브 모듈\" loading=\"lazy\"><figcaption>8채널 마이크로 시린지 펌프 — 8조 솔레노이드 밸브 모듈</figcaption></figure><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d2.jpg\" alt=\"다채널 병렬 유체 제어 구성\" loading=\"lazy\"><figcaption>다채널 병렬 유체 제어 구성</figcaption></figure><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d4.jpg\" alt=\"나노리터 안정 출력 · 반복 오차 0.3~0.5%\" loading=\"lazy\"><figcaption>나노리터 안정 출력 · 반복 오차 0.3~0.5%</figcaption></figure><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d6.jpg\" alt=\"상위 제어 장비와의 접속 — 다중 프로토콜 · 통신 인터페이스\" loading=\"lazy\"><figcaption>상위 제어 장비와의 접속 — 다중 프로토콜 · 통신 인터페이스</figcaption></figure><figure><img src=\"/img/runze/8-channel-micro-syringe-pump-module-d9.jpg\" alt=\"모듈 외형\" loading=\"lazy\"><figcaption>모듈 외형</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>IVD 체외진단 시스템</li><li>시약 분주 시스템 (Reagent dispensing)</li><li>실험실 자동화 장비</li><li>미세유체 플랫폼 (Microfluidic platforms)</li><li>자동 샘플링 시스템</li><li>크로마토그래피 · 생화학 분석기</li></ul>"
+    },
+    {
+     "h": "OEM 대응",
+     "html": "<p>제조사는 IVD·실험실 자동화·분석장비 제조사를 대상으로 채널 수, 스트로크 길이, 통신 프로토콜, 기구 통합 방식을 맞춘 OEM 모듈을 공급합니다.</p>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "구조",
+     "q": "8채널이 각각 따로 움직이나요?",
+     "a": "밀어내는 리드스크류는 동기 병렬 구동이고, 유로는 채널마다 3방 솔레노이드 밸브가 따로 제어합니다. 그래서 흡입·토출·유로 전환을 채널별로 다르게 걸 수 있습니다."
+    },
+    {
+     "tag": "시린지",
+     "q": "시린지는 어떤 용량을 쓸 수 있나요?",
+     "a": "50 µL, 100 µL, 250 µL, 500 µL, 1 mL, 2.5 mL, 5 mL입니다. Runze TK60 시린지와 호환됩니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "분해능은 얼마인가요?",
+     "a": "스텝당 0.01 mm이고 정격 스트로크 60 mm를 표준 6000 스텝, 마이크로스텝 모드에서 48000 스텝으로 나눕니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 어떻게 되나요?",
+     "a": "최대 액회로 압력은 0.15 MPa입니다. 솔레노이드 밸브가 들어간 구성이라 고압용은 아닙니다."
+    },
+    {
+     "tag": "제어",
+     "q": "프로토콜은 무엇을 지원하나요?",
+     "a": "ASCII와 Modbus를 지원하며 물리 계층은 RS232 · RS485 · CAN입니다. 주소는 본체 DIP 스위치로 지정합니다."
+    },
+    {
+     "tag": "설치",
+     "q": "장비에 넣을 때 치수가 어떻게 되나요?",
+     "a": "폭 187 mm, 높이 254 mm, 깊이 117.5 mm이고 마운팅 홀은 4 × Ø4.5 mm입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "붕규산 유리, PTFE, FKM, PPS, PEEK입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 8채널 마이크로 시린지 펌프 SY-03B T-DK",
+    "sku": "SY-03B T-DK",
+    "category": "시린지 펌프 · 다채널 모듈",
+    "description": "8채널 독립 솔레노이드 밸브 마이크로 시린지 펌프 모듈. 시린지 50 µL~5 mL, 정격 스트로크 60 mm(6000/48000 스텝), 최대 900 rpm, 0.15 MPa, RS232/RS485/CAN, ASCII/Modbus.",
+    "models": [
+     "SY-03B T-DK"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/8-channel-micro-syringe-pump-module.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "syringe-pump-sy03b-in-dk-series",
+   "name": "시린지 펌프 SY-03B DK 시리즈",
+   "name_en": "Runze Fluid Syringe Pump SY-03B DK Series",
+   "sub": "시린지 25 µL~5 mL · 솔레노이드 밸브 · 0.1~900 rpm · 마이크로스텝 48000 스텝 · RS232 / RS485",
+   "category": "시린지 펌프 · 다채널 모듈",
+   "title": "Runze Fluid 시린지 펌프 SY-03B DK 시리즈 — 병렬 마이크로 시린지 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid 시린지 펌프 SY-03B DK — 시린지 여러 개를 병렬 구동하는 마이크로 시린지 펌프. 25 µL~5 mL, 정격 스트로크 60 mm(6000/48000 스텝), 0.1~900 rpm, 습부 붕규산 유리·PTFE·FKM·PEEK(PPS), 0.2 MPa, RS232/RS485. 가격 문의.",
+   "images": [
+    "syringe-pump-sy03b-in-dk-series-1.jpg"
+   ],
+   "image_alt": "Runze Fluid 시린지 펌프 SY-03B DK 시리즈",
+   "answer": "SY-03B DK 시리즈는 시린지 여러 개를 고정밀 병렬 구동하는 마이크로 시린지 펌프로, 스텝모터가 시린지와 밸브를 함께 움직여 정량 흡입·분주하며 시린지는 교체할 수 있습니다.",
+   "features": [
+    "시린지 <b>25 µL ~ 5 mL</b> (25 · 50 · 100 · 250 · 500 µL · 1 · 1.25 · 2.5 · 5 mL) — 교체형입니다",
+    "플런저 속도 <b>0.1 ~ 900 rpm</b>, 선속도 0.01 ~ 100 mm/s, 정격 스트로크 주행 1.8 s ~ 6000 s",
+    "정격 스트로크 <b>60 mm</b> — 표준 6000 스텝, 마이크로스텝 모드 48000 스텝, 분해능 0.01 mm/스텝",
+    "<b>가감속 곡선 · 백래시 보정 · 탈조 검출</b> 을 프로그래밍할 수 있고 오프라인 자동 운전과 에러 진단을 지원합니다",
+    "습부는 <b>붕규산 유리 · PTFE · FKM · PEEK(PPS)</b>, 최대 압력 0.2 MPa",
+    "구동부는 <b>사다리꼴 나사(리드 6 mm)</b>, 밸브는 솔레노이드 밸브입니다",
+    "<b>RS232 / RS485</b> — 최대 15개 주소를 개별 할당해 여러 대를 병렬 제어합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE · FKM · PEEK (PPS)"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.5% @100% 스트로크"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "60 mm · 6000 스텝 (마이크로스텝 48000 스텝)"
+    ],
+    [
+     "회전수 범위 (RPM range)",
+     "0.1 ~ 900 rpm"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.01 ~ 100 mm/s (매질 물)"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "1.8 s ~ 6000 s (정격 스트로크)"
+    ],
+    [
+     "분해능 (Resolution)",
+     "0.01 mm / 스텝"
+    ],
+    [
+     "밸브 형식 (Valve type)",
+     "솔레노이드 밸브 (Solenoid valve)"
+    ],
+    [
+     "시린지 (Syringe)",
+     "25 · 50 · 100 · 250 · 500 µL · 1 · 1.25 · 2.5 · 5 mL"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "0.2 MPa"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 6 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232 / RS485 9600 · 38400 bps"
+    ],
+    [
+     "통신 주소 (Address)",
+     "개별 주소 최대 15개"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A · 최대 18 W"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "65 × 150 × 261.3 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "2.2 kg"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/8-channel-micro-syringe-pump-module/\">8채널 마이크로 시린지 펌프 SY-03B T-DK</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-03b-syringe-pump.pdf\" rel=\"nofollow\">SY-03B 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-03b-ascii-code-instruction-manuall.pdf\" rel=\"nofollow\">SY-03B ASCII 통신 매뉴얼 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=SirjQFUbf0I\" rel=\"nofollow\">SY-03B 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#병렬분주",
+     "/product/"
+    ],
+    [
+     "#프로그래머블펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "펌웨어 기능 (Firmware)",
+     "html": "<ul><li>가감속 프로그래밍 (Programmable acceleration / deceleration)</li><li>동작 종료 명령 (Termination of movement)</li><li>플런저 속도 프로그래밍</li><li>에러 진단 조회 (Diagnostic query error)</li><li>백래시 보정 프로그래밍 (Clearance compensation)</li><li>절대 위치 · 상대 위치 지정</li><li>주행 중 속도 변경 (Change speed on the fly)</li><li>비휘발성 메모리 프로그래밍</li></ul>"
+    },
+    {
+     "h": "배선 구성 (Wiring diagram)",
+     "html": "<p>여러 대를 병렬 제어할 때는 <b>RS485</b> 로 데이지체인하고 각 펌프에 DC24V를 공급합니다. 한 대만 쓸 때는 <b>RS232 또는 RS485</b> 를 씁니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy03b-in-dk-series-d1.jpg\" alt=\"병렬 제어 배선과 단독 제어 배선 — RS485 다중 연결 / RS232·RS485 단독 연결\" loading=\"lazy\"><figcaption>병렬 제어 배선과 단독 제어 배선 — RS485 다중 연결 / RS232·RS485 단독 연결</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-sy03b-in-dk-series-d2.jpg\" alt=\"SY-03B DK 외형 치수 도면\" loading=\"lazy\"><figcaption>SY-03B DK 외형 치수 도면</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>마이크로리터~밀리리터 구간의 자동 피펫팅·희석·분주에 씁니다.</p><ul><li>실험실 자동 전처리 장비</li><li>체외진단·의료 분석 장비</li><li>분석기기 시약 정량 공급</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "차이",
+     "q": "SY-03B DK와 SY-03B T-DK는 뭐가 다른가요?",
+     "a": "T-DK가 8채널로 고정된 완성 모듈이고, DK 시리즈는 시린지를 병렬로 묶는 기본 라인입니다. DK 쪽은 시린지 25 µL부터 쓸 수 있고 최대 압력이 0.2 MPa로 조금 더 높습니다."
+    },
+    {
+     "tag": "속도",
+     "q": "플런저 속도 범위는 어떻게 되나요?",
+     "a": "0.1 rpm에서 900 rpm까지이고 선속도로는 0.01~100 mm/s입니다. 정격 스트로크 한 번 주행에 1.8초에서 6000초까지 설정됩니다."
+    },
+    {
+     "tag": "제어",
+     "q": "몇 대까지 한 버스에 물릴 수 있나요?",
+     "a": "개별 주소를 최대 15개까지 할당할 수 있습니다. RS485로 데이지체인해 병렬 제어합니다."
+    },
+    {
+     "tag": "기능",
+     "q": "백래시 보정이 되나요?",
+     "a": "백래시 보정을 프로그래밍할 수 있고 탈조 검출, 가감속 곡선, 주행 중 속도 변경, 에러 진단도 지원합니다."
+    },
+    {
+     "tag": "소모품",
+     "q": "시린지는 교체할 수 있나요?",
+     "a": "교체할 수 있습니다. 25 µL부터 5 mL까지 아홉 가지 용량 중에서 고릅니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 시린지 펌프 SY-03B DK 시리즈",
+    "sku": "SY-03B-DK",
+    "category": "시린지 펌프 · 다채널 모듈",
+    "description": "시린지 병렬 구동 마이크로 시린지 펌프. 25 µL~5 mL 교체형, 정격 스트로크 60 mm(6000/48000 스텝), 0.1~900 rpm, 습부 붕규산 유리·PTFE·FKM·PEEK, 0.2 MPa, RS232/RS485.",
+    "models": [
+     "SY-03B-DK"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/syringe-pump-sy03b-in-dk-series.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "high-precision-syringe-pump",
+   "name": "고정밀 시린지 펌프 SY-01C",
+   "name_en": "Runze Fluid Smart SY-01C High Precision Syringe Pump",
+   "sub": "정격 스트로크 30 mm(3000 스텝) · M01~M12 분배 밸브 · 최대 450 rpm · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 밸브 일체형 모듈",
+   "title": "Runze Fluid 고정밀 시린지 펌프 SY-01C — 30mm 스트로크 밸브 일체형 모듈 | 실험셋업연구소",
+   "desc": "Runze Fluid Smart SY-01C 고정밀 시린지 펌프 — 정격 스트로크 30 mm(3000 스텝), 분해능 0.0025 mm, 최대 450 rpm, 시린지 25 µL~5 mL, M01~M12 분배 밸브, 습부 붕규산 유리·PTFE·사파이어·PCTFE. RS485/CAN 최대 15대 개별 주소. 가격 문의.",
+   "images": [
+    "high-precision-syringe-pump-1.jpg",
+    "high-precision-syringe-pump-2.jpg",
+    "high-precision-syringe-pump-3.jpg",
+    "high-precision-syringe-pump-4.jpg",
+    "high-precision-syringe-pump-5.jpg",
+    "high-precision-syringe-pump-6.jpg",
+    "high-precision-syringe-pump-7.jpg",
+    "high-precision-syringe-pump-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 고정밀 시린지 펌프 SY-01C",
+   "answer": "Smart SY-01C는 정격 스트로크 30 mm에 분배 밸브를 얹은 마이크로 시린지 펌프로, 마이크로리터에서 밀리리터까지 정량 이송하며 RS485·CAN으로 최대 15대까지 개별 주소를 붙여 함께 제어합니다.",
+   "features": [
+    "정격 스트로크 <b>30 mm · 3000 스텝(표준 모드)</b>, 스텝당 분해능 <b>0.0025 mm</b>",
+    "최대 <b>450 rpm</b>, 선속도 0.0333 ~ 15 mm/s, 정격 스트로크 주행 2 s ~ 900 s (매질 물)",
+    "정확도 <b>≤1%</b>, 반복 정밀도 <b>0.3~0.5%</b> (정격 스트로크 100% 기준)",
+    "시린지 <b>25 · 50 · 125 · 250 · 500 µL · 1.25 · 2.5 · 5 mL (ILS 시린지)</b> 중에서 고릅니다",
+    "분배 밸브 <b>M01 · M02 · M03 · M04 · M05 · M06 · M10 · M12</b> 조합",
+    "습부는 <b>붕규산 유리 · PTFE · 사파이어 · PCTFE</b> 로 금속이 없습니다",
+    "<b>RS485 / CAN 으로 최대 15대</b> 를 개별 주소로 제어하며 무보수 스텝모터 구동입니다",
+    "치수 <b>142.7 × 127 × 45 mm</b>, 순중량 1.5 kg — 상·하부 M3 마운팅 홀로 세로·가로 설치 모두 됩니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE · 사파이어 · PCTFE"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 정격 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.5% @100% 정격 스트로크"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "30 mm · 3000 스텝 (표준 모드)"
+    ],
+    [
+     "최대 속도 (Max speed)",
+     "450 rpm"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.0333 ~ 15 mm/s (매질 물)"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "2 s ~ 900 s (정격 스트로크)"
+    ],
+    [
+     "분해능 (Resolution)",
+     "0.0025 mm / 스텝"
+    ],
+    [
+     "시린지 (Syringe)",
+     "25 · 50 · 125 · 250 · 500 µL · 1.25 · 2.5 · 5 mL (ILS 시린지)"
+    ],
+    [
+     "밸브 모델 (Valve model)",
+     "M01 · M02 · M03 · M04 · M05 · M06 · M10 · M12"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 2 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "통신 주소 (Address)",
+     "개별 주소 최대 15개"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "142.7 × 127 × 45 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "1.5 kg"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/multi-channel-syringe-pump/\">멀티채널 시린지 펌프 SY-01B</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#고정밀분주",
+     "/product/"
+    ],
+    [
+     "#SY01C",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-SY01C-30-M□□</b> 형태입니다. <b>30</b> 은 정격 스트로크 30 mm, <b>M□□</b> 는 조합할 분배 밸브 모델입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/high-precision-syringe-pump-d1.jpg\" alt=\"모델 번호 구성 — Model No. · Rated stroke 30 mm · Valve model\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · Rated stroke 30 mm · Valve model</figcaption></figure></div>"
+    },
+    {
+     "h": "분배 밸브 유로 구성 (Valve options)",
+     "html": "<p>C 포트가 시린지에 연결되는 공통 포트입니다.</p><ul><li><b>M01</b> — Y 유로 (C-1 / 1-2 / C-2 연동)</li><li><b>M02</b> — T 유로 (C-1-2 / C-1 / 1-2 / C-2 연동)</li><li><b>M03</b> — 분배 유로 (C-1 / C-2 / C-3 연동)</li><li><b>M04</b> — 라디오 유로 (C-1 / 1-2 / 2-3 / C-3 연동)</li><li><b>M05</b> — 바이패스 유로 (C-1 / 2-3 연동, C-3 / 1-2 연동)</li><li><b>M06 · M10 · M12</b> — 분배 유로 (C 가 1~6 / 1~9 / 1~12 포트에 선택 연결)</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/high-precision-syringe-pump-d2.jpg\" alt=\"밸브 모델별 유로 논리 M01~M12와 시린지 구성\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 M01~M12와 시린지 구성</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 · 마운팅 (Dimension, unit: mm)",
+     "html": "<p>상부 2-M3, 하부 M3, 측면 4-M3 마운팅 홀이 있습니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/high-precision-syringe-pump-d3.jpg\" alt=\"외형 치수와 마운팅 홀 배치 도면\" loading=\"lazy\"><figcaption>외형 치수와 마운팅 홀 배치 도면</figcaption></figure></div>"
+    },
+    {
+     "h": "포트 정의 · 배선 (Port definition & wiring)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/high-precision-syringe-pump-d4.jpg\" alt=\"포트 정의와 단독 시린지 펌프 배선 — 통신 · 전원 · 종단 저항 · 로터리 스위치\" loading=\"lazy\"><figcaption>포트 정의와 단독 시린지 펌프 배선 — 통신 · 전원 · 종단 저항 · 로터리 스위치</figcaption></figure><figure><img src=\"/img/runze/high-precision-syringe-pump-d5.jpg\" alt=\"SY-01C 외형 (제조사 자료)\" loading=\"lazy\"><figcaption>SY-01C 외형 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>미량 정량이 필요한 분석·진단 장비에 넣어 씁니다.</p><ul><li>자동 피펫팅 · 희석 · 분주</li><li>체외진단(IVD) 분석기</li><li>환경 모니터링 시스템</li><li>실험실 자동화 장비</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "사양",
+     "q": "SY-01C의 정격 스트로크와 분해능은?",
+     "a": "정격 스트로크 30 mm에 표준 3000 스텝이고 스텝당 0.0025 mm입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "최대 속도는 얼마인가요?",
+     "a": "450 rpm이며 선속도로는 0.0333~15 mm/s입니다. 정격 스트로크 한 번에 2초에서 900초까지 걸리도록 설정합니다."
+    },
+    {
+     "tag": "시린지",
+     "q": "어떤 시린지를 쓰나요?",
+     "a": "ILS 시린지 25 µL, 50 µL, 125 µL, 250 µL, 500 µL, 1.25 mL, 2.5 mL, 5 mL 중에서 고릅니다."
+    },
+    {
+     "tag": "밸브",
+     "q": "밸브는 어떤 것을 붙일 수 있나요?",
+     "a": "M01부터 M12까지 여덟 가지 분배 밸브를 붙일 수 있습니다. 유로 논리가 Y·T·분배·라디오·바이패스로 나뉩니다."
+    },
+    {
+     "tag": "제어",
+     "q": "몇 대까지 같이 제어하나요?",
+     "a": "RS485 또는 CAN으로 최대 15대까지 개별 주소를 할당해 제어합니다."
+    },
+    {
+     "tag": "설치",
+     "q": "크기와 설치 방법은?",
+     "a": "142.7 × 127 × 45 mm, 1.5 kg입니다. 상부 2-M3, 하부 M3, 측면 4-M3 마운팅 홀이 있어 세워서도 눕혀서도 고정할 수 있습니다."
+    },
+    {
+     "tag": "압력",
+     "q": "최대 압력 정격은?",
+     "a": "제조사 사양표에 이 항목이 비어 있습니다. 압력 조건이 중요한 용도라면 SY-01B(0.7 MPa)나 SY-06B(0.7 MPa)로 검토하는 편이 안전합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 고정밀 시린지 펌프 SY-01C",
+    "sku": "SY-01C",
+    "category": "시린지 펌프 · 밸브 일체형 모듈",
+    "description": "정격 스트로크 30 mm(3000 스텝) 밸브 일체형 마이크로 시린지 펌프. 분해능 0.0025 mm, 최대 450 rpm, 시린지 25 µL~5 mL, M01~M12 밸브, RS232/RS485/CAN 최대 15대.",
+    "models": [
+     "SY-01C"
+    ],
+    "count": 8
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/high-precision-syringe-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "multi-channel-syringe-pump",
+   "name": "멀티채널 시린지 펌프 SY-01B",
+   "name_en": "Runze Fluid Smart SY-01B Multi-Channel Syringe Pump",
+   "sub": "정격 스트로크 30 mm(12000 / 96000 스텝) · M01~M12 분배 밸브 · 0.7 MPa · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 밸브 일체형 모듈",
+   "title": "Runze Fluid 멀티채널 시린지 펌프 SY-01B — 마이크로스텝 96000 정밀 분주 모듈 | 실험셋업연구소",
+   "desc": "Runze Fluid Smart SY-01B 멀티채널 시린지 펌프 — 정격 스트로크 30 mm(표준 12000 스텝 · 마이크로스텝 96000 스텝), 최대 450 rpm, 최대 압력 0.7 MPa, 시린지 25 µL~5 mL, M01~M12 분배 밸브, 습부 붕규산 유리·PTFE·사파이어·PCTFE. 가격 문의.",
+   "images": [
+    "multi-channel-syringe-pump-1.jpg",
+    "multi-channel-syringe-pump-2.jpg",
+    "multi-channel-syringe-pump-3.jpg",
+    "multi-channel-syringe-pump-4.jpg",
+    "multi-channel-syringe-pump-5.jpg"
+   ],
+   "image_alt": "Runze Fluid 멀티채널 시린지 펌프 SY-01B",
+   "answer": "Smart SY-01B는 정격 스트로크 30 mm를 마이크로스텝에서 96000 스텝까지 쪼개는 밸브 일체형 시린지 펌프로, 좁은 공간에 여러 대를 나란히 넣어 다채널 정량 분주 라인을 만드는 데 씁니다.",
+   "features": [
+    "정격 스트로크 <b>30 mm</b> — 표준 12000 스텝, <b>마이크로스텝 모드 96000 스텝</b>",
+    "최대 <b>450 rpm</b>, 선속도 0.0067 ~ 15 mm/s, 정격 스트로크 주행 2 s ~ 4500 s (매질 물)",
+    "정확도 <b>≤1%</b>, 반복 정밀도 <b>0.3~0.5%</b>, 스텝당 분해능 0.0025 mm",
+    "최대 압력 정격 <b>0.7 MPa</b>, 습부는 붕규산 유리 · PTFE · 사파이어 · PCTFE 입니다",
+    "시린지 <b>25 · 50 · 125 · 250 · 500 µL · 1.25 · 2.5 · 5 mL (ILS 시린지)</b>, 분배 밸브 <b>M01~M12</b> 조합",
+    "펌웨어에서 <b>가감속 곡선 · 백래시 보정 · 절대/상대 위치 · 주행 중 속도 변경 · 비휘발성 메모리</b> 를 프로그래밍합니다",
+    "치수 <b>45 × 143.3 × 127 mm</b>, 1.5 kg — 설치 면적이 작아 여러 대를 나란히 배치하기 좋습니다",
+    "제조사는 SY-01B·SY-03B 계열을 <b>30 mm 스트로크 업계 표준 규격</b> 의 기능 대체 모듈로 안내합니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE · 사파이어 · PCTFE"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.5% @100% 스트로크"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "30 mm · 12000 스텝 (마이크로스텝 96000 스텝)"
+    ],
+    [
+     "최대 속도 (Max speed)",
+     "450 rpm"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.0067 ~ 15 mm/s (매질 물)"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "2 s ~ 4500 s (정격 스트로크)"
+    ],
+    [
+     "분해능 (Resolution)",
+     "0.0025 mm / 스텝"
+    ],
+    [
+     "시린지 (Syringe)",
+     "25 · 50 · 125 · 250 · 500 µL · 1.25 · 2.5 · 5 mL (ILS 시린지)"
+    ],
+    [
+     "밸브 모델 (Valve model)",
+     "M01 · M02 · M03 · M04 · M05 · M06 · M10 · M12"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "0.7 MPa"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 1 mm / 2 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232 / RS485 9600 · 38400 bps"
+    ],
+    [
+     "통신 주소 (Address)",
+     "개별 주소 최대 15개"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A · 최대 25 W"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "45 × 143.3 × 127 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "1.5 kg"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/high-precision-syringe-pump/\">고정밀 시린지 펌프 SY-01C</a> · <a href=\"/brands/runze/syringe-pump-sy03b-in-dk-series/\">시린지 펌프 SY-03B DK</a> · <a href=\"https://www.runzefluid.com/uploads/file/mart-sy-01b-syringe-pump.pdf\" rel=\"nofollow\">SY-01B 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-01b-ascii-code-instruction-manuall-v1-1.pdf\" rel=\"nofollow\">SY-01B ASCII 통신 매뉴얼 V1.1 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=-G57RfCf2ws\" rel=\"nofollow\">SY-01B 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#멀티채널시린지펌프",
+     "/product/"
+    ],
+    [
+     "#IVD분석기",
+     "/product/"
+    ],
+    [
+     "#마이크로스텝",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-SY01B-30-M□□-□</b> 형태입니다. <b>30</b> 은 정격 스트로크 30 mm, <b>M□□</b> 는 분배 밸브 모델, 마지막 자리는 시린지 구성입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/multi-channel-syringe-pump-d1.jpg\" alt=\"모델 번호 구성 — Model No. · Rated stroke 30 mm · Valve model · Syringe\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · Rated stroke 30 mm · Valve model · Syringe</figcaption></figure></div>"
+    },
+    {
+     "h": "분배 밸브 유로 구성 (Valve options)",
+     "html": "<p>C 포트가 시린지에 연결되는 공통 포트입니다.</p><ul><li><b>M01</b> — Y 유로 (C-1 / 1-2 / C-2 연동)</li><li><b>M02</b> — T 유로 (C-1-2 / C-1 / 1-2 / C-2 연동)</li><li><b>M03</b> — 분배 유로 (C-1 / C-2 / C-3 연동)</li><li><b>M04</b> — 라디오 유로 (C-1 / 1-2 / 2-3 / C-3 연동)</li><li><b>M05</b> — 바이패스 유로 (C-1 / 2-3 연동, C-3 / 1-2 연동)</li><li><b>M06 · M10 · M12</b> — 분배 유로 (C 가 1~6 / 1~9 / 1~12 포트에 선택 연결)</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/multi-channel-syringe-pump-d3.jpg\" alt=\"밸브 모델별 유로 논리 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-syringe-pump-d4.jpg\" alt=\"밸브 모델별 유로 논리 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/multi-channel-syringe-pump-d5.jpg\" alt=\"밸브 모델별 유로 논리 (제조사 자료)\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "펌웨어 기능 (Firmware)",
+     "html": "<ul><li>가감속 프로그래밍</li><li>동작 종료 명령</li><li>피스톤 속도 프로그래밍</li><li>에러 진단 조회</li><li>백래시 보정 프로그래밍</li><li>절대 위치 · 상대 위치 지정</li><li>주행 중 속도 변경</li><li>비휘발성 메모리 프로그래밍</li></ul>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>설치 공간이 좁은 자동 분석 장비에 여러 대를 넣어 다채널로 씁니다.</p><ul><li>체외진단(IVD) 분석기</li><li>환경 모니터링 시스템</li><li>유전자 시퀀서 (Genetic sequencers)</li><li>실험실 자동화 · 시약 정량 공급</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "차이",
+     "q": "SY-01B와 SY-01C는 뭐가 다른가요?",
+     "a": "둘 다 정격 스트로크 30 mm이지만 SY-01B가 표준 12000 스텝·마이크로스텝 96000 스텝으로 더 잘게 쪼개고 최대 압력 0.7 MPa가 명시돼 있습니다. SY-01C는 표준 3000 스텝이고 통신 속도 선택폭이 넓습니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "마이크로스텝 모드는 무엇인가요?",
+     "a": "정격 스트로크 30 mm를 96000 스텝으로 나눠 구동하는 모드입니다. 표준 모드는 12000 스텝입니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 얼마인가요?",
+     "a": "최대 0.7 MPa입니다."
+    },
+    {
+     "tag": "시린지",
+     "q": "시린지 용량은 어떻게 고르나요?",
+     "a": "ILS 시린지 25 µL부터 5 mL까지 여덟 가지 중에서 고릅니다. 필요한 최소 토출량과 1회 분주량을 함께 보고 정합니다."
+    },
+    {
+     "tag": "제어",
+     "q": "통신 속도는 어떻게 되나요?",
+     "a": "RS232/RS485에서 9600 bps와 38400 bps입니다. 개별 주소는 최대 15개까지 할당합니다."
+    },
+    {
+     "tag": "기능",
+     "q": "백래시 보정이 되나요?",
+     "a": "됩니다. 가감속 곡선, 절대/상대 위치, 주행 중 속도 변경, 비휘발성 메모리도 함께 프로그래밍할 수 있습니다."
+    },
+    {
+     "tag": "설치",
+     "q": "여러 대를 나란히 넣을 수 있나요?",
+     "a": "치수가 45 × 143.3 × 127 mm로 폭이 좁아 여러 대를 붙여 배치하기 좋습니다. 무게는 1.5 kg입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 멀티채널 시린지 펌프 SY-01B",
+    "sku": "SY-01B",
+    "category": "시린지 펌프 · 밸브 일체형 모듈",
+    "description": "정격 스트로크 30 mm(12000/96000 스텝) 밸브 일체형 시린지 펌프. 최대 450 rpm, 0.7 MPa, 시린지 25 µL~5 mL, M01~M12 밸브, RS232/RS485/CAN.",
+    "models": [
+     "SY-01B"
+    ],
+    "count": 8
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/multi-channel-syringe-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "programmable-syringe-pump",
+   "name": "프로그래머블 시린지 펌프 MiNi SY-04",
+   "name_en": "Runze Fluid MiNi SY-04 Programmable Syringe Pump",
+   "sub": "5 / 10 / 20 mL · KSS 볼스크류 · 단채널 · 이중채널 · 42×42 mm · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+   "title": "Runze Fluid 프로그래머블 시린지 펌프 MiNi SY-04 — 5·10·20 mL 볼스크류 정량 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid MiNi SY-04 프로그래머블 시린지 펌프 — 5 / 10 / 20 mL, KSS 볼스크류(리드 1 mm), 분해능 0.4154~2.0833 µL, 압력 0-1.2 MPa(물), 수명 무누출 300만 회, 습부 붕규산 유리·PTFE, RS232/RS485/CAN. 가격 문의.",
+   "images": [
+    "programmable-syringe-pump-1.jpg",
+    "programmable-syringe-pump-2.jpg",
+    "programmable-syringe-pump-3.jpg",
+    "programmable-syringe-pump-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 프로그래머블 시린지 펌프 MiNi SY-04",
+   "answer": "MiNi SY-04는 42×42 mm 금속 하우징에 KSS 볼스크류를 넣은 5·10·20 mL 프로그래머블 시린지 펌프로, 단채널과 이중채널 구성 중에서 골라 소형 장비 안에 넣어 정량 이송에 씁니다.",
+   "features": [
+    "용량 <b>5 mL · 10 mL · 20 mL</b> — 정격 스트로크 30 mm(12000 스텝) / 24.08 mm(9632 스텝) / 24 mm(9600 스텝)",
+    "구동부가 <b>KSS 볼스크류(리드 1 mm)</b> — 소형기에서 정밀도와 수명을 함께 잡습니다",
+    "정확도 <b>≤1%</b>, 반복 정밀도 <b>3‰ ~ 7‰</b> (정격 스트로크 100% 기준)",
+    "압력 정격 <b>0-1.0 MPa(공기) · 0-1.2 MPa(물)</b>, 수명 무누출 <b>300만 회</b>",
+    "<b>포토센서로 피스톤 원점</b> 을 검출합니다",
+    "<b>단채널 · 이중채널</b> 구성과 드라이버 유무를 주문 코드로 선택합니다",
+    "습부는 <b>붕규산 유리 · PTFE</b>, 하우징은 금속입니다 — 상한 리미트에 OMRON 포토커플러(NPN) 2개",
+    "치수 <b>42×42×191 mm(드라이버 없음) / 42×42×206.2 mm(드라이버 포함)</b>, 0.72 kg"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "3‰ ~ 7‰ @100% 스트로크"
+    ],
+    [
+     "압력 정격 (Pressure rating)",
+     "0-1.0 MPa (공기) · 0-1.2 MPa (물)"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "정압 0-1.0 MPa · 부압 0-0.05 MPa (시험 기준)"
+    ],
+    [
+     "수명 (Service life)",
+     "무누출 300만 회 (매질 물)"
+    ],
+    [
+     "원점 검출 (Detection)",
+     "포토센서로 피스톤 원점 검출"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.017 ~ 5 mm/s"
+    ],
+    [
+     "구동부 (Actuator)",
+     "KSS 볼스크류 · 리드 1 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "유로 채널 (Channel)",
+     "단채널 · 이중채널 선택"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485 / CAN"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 1.5A · 최대 15 W"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "42×42×191 mm (드라이버 없음) · 42×42×206.2 mm (드라이버 포함)"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.72 kg"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "80% 미만 · 비결로"
+    ]
+   ],
+   "variants": {
+    "heading": "용량별 규격 (Volume)",
+    "head": [
+     "항목",
+     "5 mL",
+     "10 mL",
+     "20 mL"
+    ],
+    "rows": [
+     [
+      "정격 스트로크 (Rated stroke)",
+      "30 mm · 12000 스텝",
+      "24.08 mm · 9632 스텝",
+      "24 mm · 9600 스텝"
+     ],
+     [
+      "시린지 내경 (Syringe ID)",
+      "14.55 mm",
+      "23 mm",
+      "32 mm"
+     ],
+     [
+      "모터 속도 (Motor speed)",
+      "300 rpm",
+      "300 rpm",
+      "250 rpm"
+     ],
+     [
+      "주행 시간 (Running time)",
+      "6 s – 1765 s",
+      "4.8 s – 1416 s",
+      "5.76 s – 1412 s"
+     ],
+     [
+      "분해능 (Resolution)",
+      "0.0025 mm / 0.4154 µL",
+      "0.0025 mm / 1.0381 µL",
+      "0.0025 mm / 2.0833 µL"
+     ]
+    ]
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/syringe-pump-sy-08/\">시린지 펌프 SY-08</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"https://www.runzefluid.com/uploads/file/mini-sy-04.pdf\" rel=\"nofollow\">MiNi SY-04 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/mini-sy-04-syringe-pump-v2-7.pdf\" rel=\"nofollow\">MiNi SY-04 매뉴얼 V2.7 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=A3LyYjxruqM\" rel=\"nofollow\">MiNi SY-04 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#볼스크류",
+     "/product/"
+    ],
+    [
+     "#소형정량펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-LS-0.9-1-□-□-□</b> 형태입니다. <b>0.9</b> 는 스텝 각도, <b>1</b> 은 나사 리드 1 mm, 그 다음이 용량(5 · 10 · 20 mL), 채널(1 단채널 · 2 이중채널), 마지막이 드라이버 유무(Q 포함 · 생략 미포함)입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/programmable-syringe-pump-d1.jpg\" alt=\"모델 번호 구성 — 스텝 각도 · 리드 · 용량 · 채널 · 드라이버\" loading=\"lazy\"><figcaption>모델 번호 구성 — 스텝 각도 · 리드 · 용량 · 채널 · 드라이버</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 구조 (Product structure)",
+     "html": "<p>금속 하우징에 붕규산 시린지를 물리고, 상한 리미트에 OMRON 포토커플러(NPN) 2개를 씁니다. 4×M3 마운팅 홀이 있으며, 마운팅 홀더는 RS232/RS485/CAN 드라이버가 달린 MiNi SY-04 구성에만 포함됩니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/programmable-syringe-pump-d2.jpg\" alt=\"단채널 · 이중채널 구조 — 금속 하우징 · 붕규산 시린지 · 상한 포토커플러 · 4×M3 마운팅 홀\" loading=\"lazy\"><figcaption>단채널 · 이중채널 구조 — 금속 하우징 · 붕규산 시린지 · 상한 포토커플러 · 4×M3 마운팅 홀</figcaption></figure></div>"
+    },
+    {
+     "h": "드라이버 포트 · 외형 치수 (Driver port & dimension)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/programmable-syringe-pump-d3.jpg\" alt=\"드라이버 포트 배치 — GND · RX · TX · − · + / V3 · V2 · V1 · O3 · O2 · O1\" loading=\"lazy\"><figcaption>드라이버 포트 배치 — GND · RX · TX · − · + / V3 · V2 · V1 · O3 · O2 · O1</figcaption></figure><figure><img src=\"/img/runze/programmable-syringe-pump-d4.jpg\" alt=\"용량별 외형 치수 도면 (5 / 10 / 20 mL)\" loading=\"lazy\"><figcaption>용량별 외형 치수 도면 (5 / 10 / 20 mL)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>리드스크류와 고정밀 붕규산 실린더 조합이라 소형 장비에 넣기 좋습니다.</p><ul><li>소형 분석 장비 정량 이송</li><li>시약 분주 · 희석</li><li>온라인 모니터링 설비</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "용량",
+     "q": "MiNi SY-04는 어떤 용량이 있나요?",
+     "a": "5 mL, 10 mL, 20 mL입니다. 정격 스트로크는 각각 30 mm, 24.08 mm, 24 mm이고 스텝 수는 12000 / 9632 / 9600입니다."
+    },
+    {
+     "tag": "구동",
+     "q": "볼스크류를 쓰면 뭐가 다른가요?",
+     "a": "KSS 볼스크류(리드 1 mm)를 써서 사다리꼴 나사보다 마찰이 적고 역구동 효율이 좋습니다. 반복 정밀도는 3‰~7‰입니다."
+    },
+    {
+     "tag": "채널",
+     "q": "이중채널은 무엇인가요?",
+     "a": "시린지 두 개를 한 몸체에 넣어 동시에 구동하는 구성입니다. 주문 코드의 채널 자리에서 1(단채널)과 2(이중채널)를 고릅니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 어떻게 되나요?",
+     "a": "공기 0-1.0 MPa, 물 0-1.2 MPa입니다. 회로 기준으로는 정압 0-1.0 MPa, 부압 0-0.05 MPa입니다."
+    },
+    {
+     "tag": "설치",
+     "q": "드라이버 없이도 쓸 수 있나요?",
+     "a": "드라이버 없는 구성도 있습니다. 다만 마운팅 홀더는 RS232/RS485/CAN 드라이버가 달린 구성에만 들어갑니다. 치수도 191 mm와 206.2 mm로 달라집니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "붕규산 유리와 PTFE입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 프로그래머블 시린지 펌프 MiNi SY-04",
+    "sku": "MiNi SY-04",
+    "category": "시린지 펌프 · 산업용 정밀 시린지 펌프",
+    "description": "5/10/20 mL 프로그래머블 시린지 펌프. KSS 볼스크류(리드 1 mm), 분해능 0.4154~2.0833 µL, 0-1.2 MPa(물), 습부 붕규산 유리·PTFE, 단채널·이중채널, RS232/RS485/CAN.",
+    "models": [
+     "MiNi SY-04-5ML",
+     "MiNi SY-04-10ML",
+     "MiNi SY-04-20ML"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/programmable-syringe-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "stepper-motor-syringe-pump",
+   "name": "스텝모터 플런저 펌프 RPM-01",
+   "name_en": "Runze Fluid RPM-01 Stepper Motor Syringe Pump",
+   "sub": "1 / 2 / 3 mL 분주 · 편심 기어 구동 · 이중 유로 연속 토출 · 1-360 mL/min · RS232 / RS485 / CAN",
+   "category": "시린지 펌프 · 마이크로 플런저 펌프",
+   "title": "Runze Fluid 스텝모터 플런저 펌프 RPM-01 — 연속 토출형 정량 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid RPM-01 스텝모터 플런저 펌프 — 1 / 2 / 3 mL 분주 분해능, 편심 기어 구동으로 맥동 없는 연속 토출, 유량 1-360 mL/min, 압력 0.3 MPa(물), 습부 붕규산 유리·PTFE, RS232/RS485/CAN. 가격 문의.",
+   "images": [
+    "stepper-motor-syringe-pump-1.jpg",
+    "stepper-motor-syringe-pump-2.jpg"
+   ],
+   "image_alt": "Runze Fluid 스텝모터 플런저 펌프 RPM-01",
+   "answer": "RPM-01은 편심 기어로 플런저를 왕복시키는 이중 유로 정량 펌프로, 연동펌프와 달리 흡입과 토출이 끊기지 않고 이어지는 연속 토출을 하면서 1회 1~3 mL 단위로 분주합니다.",
+   "features": [
+    "<b>연속 토출</b> — 이중 유로 구조로 흡입과 토출이 번갈아 이어져 연동펌프처럼 끊기지 않습니다",
+    "1회 분주 <b>1 mL · 2 mL · 3 mL</b> 시린지 용량 선택",
+    "유량 <b>1 ~ 360 mL/min</b> (RPM-01-D), 정격 속도 1 ~ 120 rpm",
+    "정확도 <b>≤1%</b>, 반복 정밀도 <b>0.3~0.7%</b>, 수명 무누출 <b>300만 회</b>(매질 물)",
+    "구동부는 <b>편심 기어(Eccentric gear)</b> — 회전 운동을 플런저 왕복으로 바꿉니다",
+    "습부는 <b>붕규산 유리 · PTFE</b> 로 시료를 오염시키지 않고 부식성 액체를 견딥니다",
+    "<b>무보수 스텝모터</b> 구동에 RS232 / RS485 / CAN 제어(드라이버 포함 사양)"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE"
+    ],
+    [
+     "시린지 용량 (Syringe volume)",
+     "1 mL · 2 mL · 3 mL"
+    ],
+    [
+     "분주 분해능 (Dispensing)",
+     "1 mL · 2 mL · 3 mL"
+    ],
+    [
+     "정격 최대 속도 (Max speed)",
+     "120 rpm (RPM-01-D)"
+    ],
+    [
+     "정격 최소 속도 (Min speed)",
+     "1 rpm"
+    ],
+    [
+     "유량 (Flow rate)",
+     "1 ~ 360 mL/min (RPM-01-D)"
+    ],
+    [
+     "토출 특성 (Flow regularity)",
+     "연속 토출 (연동펌프 대체)"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.7% @100% 스트로크"
+    ],
+    [
+     "압력 정격 (Pressure rating)",
+     "0.3 MPa (매질 물)"
+    ],
+    [
+     "수명 (Service life)",
+     "무누출 300만 회 (매질 물)"
+    ],
+    [
+     "구동부 (Actuator)",
+     "편심 기어 (Eccentric gear)"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "유로 채널 (Channel)",
+     "이중 유로 (Double channel)"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485 / CAN (드라이버 포함 사양)"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232/RS485 9600 · 19200 · 38400 · 57600 · 115200 bps<br>CAN 100K · 200K · 500K · 1M bps"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 1.5A · 최대 15 W"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "98.3 × 42 × 116.4 mm (RPM-01-D)"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.8 kg (RPM-01-D)"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "80% 미만"
+    ]
+   ],
+   "variants": {
+    "heading": "드라이버 포트 핀 배열 (Driver port)",
+    "head": [
+     "포트",
+     "설명",
+     "포트",
+     "설명"
+    ],
+    "rows": [
+     [
+      "H",
+      "CANH",
+      "B+ / B−",
+      "B상 배선"
+     ],
+     [
+      "L",
+      "CANL",
+      "A+ / A−",
+      "A상 배선"
+     ],
+     [
+      "A",
+      "RS485 A",
+      "O1",
+      "포토커플러 배선"
+     ],
+     [
+      "B",
+      "RS485 B",
+      "O2",
+      "포토커플러 배선"
+     ],
+     [
+      "GND",
+      "GND",
+      "O3",
+      "포토커플러 배선"
+     ],
+     [
+      "RX",
+      "RS232 RX",
+      "V1",
+      "포토커플러 전원"
+     ],
+     [
+      "TX",
+      "RS232 TX",
+      "V2",
+      "포토커플러 전원"
+     ],
+     [
+      "−",
+      "DC24V",
+      "V3",
+      "포토커플러 전원"
+     ],
+     [
+      "+",
+      "DC24V",
+      "GND",
+      "GND"
+     ]
+    ]
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/rp42-industrial-micro-syringe-pump/\">산업용 마이크로 플런저 펌프 RP42</a> · <a href=\"https://www.runzefluid.com/uploads/file/rpm-01.pdf\" rel=\"nofollow\">RPM-01 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/rpm-01-users-manula-v2-5.pdf\" rel=\"nofollow\">RPM-01 매뉴얼 V2.5 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=u9K_wAPWLKI\" rel=\"nofollow\">RPM-01 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#플런저펌프",
+     "/product/"
+    ],
+    [
+     "#연속토출",
+     "/product/"
+    ],
+    [
+     "#정량펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "구조 · 배관 연결 (Structure & tubing)",
+     "html": "<p>이중 유로 구조로 한쪽이 흡입할 때 다른 쪽이 토출합니다. 배관은 1/4-28 UNF 로 연결합니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/stepper-motor-syringe-pump-d1.jpg\" alt=\"RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/stepper-motor-syringe-pump-d2.jpg\" alt=\"RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/stepper-motor-syringe-pump-d3.jpg\" alt=\"RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/stepper-motor-syringe-pump-d4.jpg\" alt=\"RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/stepper-motor-syringe-pump-d5.jpg\" alt=\"RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>RPM-01 구조와 배관 연결 · 외형 치수 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "연동펌프와의 차이",
+     "html": "<p>연동펌프는 롤러가 튜브를 눌러 밀기 때문에 튜브 수명과 맥동을 함께 관리해야 합니다. RPM-01은 붕규산 유리 실린더와 PTFE 플런저로 밀어내므로 튜브 마모가 없고 토출이 끊기지 않습니다. 대신 유량 상한이 360 mL/min 이고 압력 정격은 0.3 MPa 입니다.</p>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>시약 연속 정량 공급</li><li>온라인 분석기 시료 이송</li><li>부식성 액체 정량 — 습부에 금속과 튜브가 없습니다</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "원리",
+     "q": "RPM-01은 시린지 펌프인가요 플런저 펌프인가요?",
+     "a": "편심 기어로 플런저를 왕복시키는 플런저(피스톤) 정량 펌프입니다. 제조사는 스텝모터 시린지 펌프 계열로 분류하지만 동작은 왕복 플런저 방식입니다."
+    },
+    {
+     "tag": "유량",
+     "q": "유량은 얼마까지 나오나요?",
+     "a": "RPM-01-D 기준 1~360 mL/min입니다. 속도는 1~120 rpm입니다."
+    },
+    {
+     "tag": "차이",
+     "q": "연동펌프 대신 쓸 수 있나요?",
+     "a": "제조사가 연동펌프 대체 용도로 안내합니다. 튜브 마모가 없고 토출이 끊기지 않는 대신 압력 정격이 0.3 MPa로 낮습니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "붕규산 유리와 PTFE입니다. 시료를 오염시키지 않습니다."
+    },
+    {
+     "tag": "분주",
+     "q": "1회 분주량은 어떻게 되나요?",
+     "a": "시린지 용량에 따라 1 mL, 2 mL, 3 mL입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "통신 제어가 되나요?",
+     "a": "드라이버가 포함된 사양에서 RS232 · RS485 · CAN을 지원합니다. 주소와 파라미터는 시리얼 포트로 설정합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 스텝모터 플런저 펌프 RPM-01",
+    "sku": "RPM-01",
+    "category": "시린지 펌프 · 마이크로 플런저 펌프",
+    "description": "편심 기어 구동 이중 유로 정량 플런저 펌프. 1/2/3 mL 분주, 유량 1-360 mL/min, 0.3 MPa(물), 습부 붕규산 유리·PTFE, 연속 토출, RS232/RS485/CAN.",
+    "models": [
+     "RPM-01",
+     "RPM-01-D"
+    ],
+    "count": 3
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/stepper-motor-syringe-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "syringe-pump-microfluidics",
+   "name": "미세유체 시린지 펌프 SY-03B",
+   "name_en": "Runze Fluid SY-03B Microfluidic Syringe Pump",
+   "sub": "정격 스트로크 60 mm(6000 / 48000 스텝) · 시린지 25 µL~25 mL · M01~M10 분배 밸브 · 0.7 MPa",
+   "category": "시린지 펌프 · 밸브 일체형 모듈",
+   "title": "Runze Fluid 미세유체 시린지 펌프 SY-03B — 25 µL~25 mL 프로그래머블 정량 모듈 | 실험셋업연구소",
+   "desc": "Runze Fluid SY-03B 미세유체 시린지 펌프 — 정격 스트로크 60 mm(표준 6000 · 마이크로스텝 48000), 0.1~600 rpm, 시린지 25 µL~25 mL, M01~M10 분배 밸브, 습부 붕규산 유리·PTFE·사파이어·PCTFE, 0.7 MPa, RS232/RS485. 가격 문의.",
+   "images": [
+    "syringe-pump-microfluidics-1.jpg",
+    "syringe-pump-microfluidics-2.jpg",
+    "syringe-pump-microfluidics-3.jpg",
+    "syringe-pump-microfluidics-4.jpg",
+    "syringe-pump-microfluidics-5.jpg"
+   ],
+   "image_alt": "Runze Fluid 미세유체 시린지 펌프 SY-03B",
+   "answer": "SY-03B는 정격 스트로크 60 mm에 분배 밸브를 얹은 프로그래머블 시린지 펌프로, 25 µL부터 25 mL까지 시린지를 바꿔 끼우며 미세유체·자동 전처리 라인에서 정량 흡입과 분주를 수행합니다.",
+   "features": [
+    "정격 스트로크 <b>60 mm</b> — 표준 6000 스텝, <b>마이크로스텝 모드 48000 스텝</b>, 분해능 0.01 mm/스텝",
+    "회전수 <b>0.1 ~ 600 rpm</b>, 선속도 0.01 ~ 60 mm/s, 정격 스트로크 주행 1 s ~ 6000 s",
+    "시린지 <b>25 · 50 · 100 · 250 · 500 µL · 1 · 2.5 · 5 · 10 · 25 mL</b> — Runze 계열에서 가장 넓은 용량 폭입니다",
+    "분배 밸브 <b>M01 ~ M10</b> — Y · T · 분배 · 라디오 · 바이패스와 다포트 분배 유로를 고릅니다",
+    "습부는 <b>붕규산 유리 · PTFE · 사파이어 · PCTFE</b>, 최대 압력 <b>0.7 MPa</b>",
+    "펌웨어에서 <b>가감속 · 백래시 보정 · 절대/상대 위치 · 주행 중 속도 변경 · 비휘발성 메모리</b> 를 프로그래밍합니다",
+    "<b>RS232 / RS485</b> 로 최대 15대 개별 주소 제어, 치수 65 × 145.5 × 253.3 mm · 2.2 kg"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "붕규산 유리 · PTFE · 사파이어 · PCTFE"
+    ],
+    [
+     "정확도 (Accuracy)",
+     "≤1% @100% 스트로크"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.5% @100% 스트로크"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "60 mm · 6000 스텝 (마이크로스텝 48000 스텝)"
+    ],
+    [
+     "회전수 범위 (RPM range)",
+     "0.1 ~ 600 rpm"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.01 ~ 60 mm/s (매질 물)"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "1 s ~ 6000 s (정격 스트로크)"
+    ],
+    [
+     "분해능 (Resolution)",
+     "0.01 mm / 스텝"
+    ],
+    [
+     "시린지 (Syringe)",
+     "25 · 50 · 100 · 250 · 500 µL · 1 · 2.5 · 5 · 10 · 25 mL (ILS)"
+    ],
+    [
+     "밸브 모델 (Valve model)",
+     "M01 ~ M10"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "0.7 MPa"
+    ],
+    [
+     "구동부 (Actuator)",
+     "사다리꼴 나사 · 리드 6 mm / 1 mm"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232 / RS485 9600 · 38400 bps"
+    ],
+    [
+     "통신 주소 (Address)",
+     "개별 주소 최대 15개"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 3A · 최대 35 W"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "65 × 145.5 × 253.3 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "2.2 kg"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5℃ ~ 55℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "상대습도 80% 미만 · 비결로"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/syringe-pump-sy03b-in-dk-series/\">시린지 펌프 SY-03B DK</a> · <a href=\"/brands/runze/8-channel-micro-syringe-pump-module/\">8채널 마이크로 시린지 펌프 SY-03B T-DK</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"https://www.runzefluid.com/uploads/file/sy-03b-syringe-pump.pdf\" rel=\"nofollow\">SY-03B 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=CzMfAISYRlw\" rel=\"nofollow\">SY-03B 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#미세유체",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#자동전처리",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-SY03B-60-M□□-□</b> 형태입니다. <b>60</b> 은 정격 스트로크 60 mm, <b>M□□</b> 는 분배 밸브 모델, 마지막 자리는 제어 스텝 수(6000 스텝, ASCII 코드)입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-microfluidics-d1.jpg\" alt=\"모델 번호 구성 — Model No. · Rated stroke 60 mm · Valve model · Control steps\" loading=\"lazy\"><figcaption>모델 번호 구성 — Model No. · Rated stroke 60 mm · Valve model · Control steps</figcaption></figure></div>"
+    },
+    {
+     "h": "분배 밸브 유로 구성 (Valve options)",
+     "html": "<p>C 포트가 시린지에 연결되는 공통 포트입니다.</p><ul><li><b>M01</b> — Y 유로 (C-1 / 1-2 / C-2 연동)</li><li><b>M02</b> — T 유로 (C-1-2 / C-1 / 1-2 / C-2 연동)</li><li><b>M03</b> — 분배 유로 (C-1 / C-2 / C-3 연동)</li><li><b>M04</b> — 라디오 유로 (C-1 / 1-2 / 2-3 / C-3 연동)</li><li><b>M05</b> — 바이패스 유로 (C-1 / 2-3 연동, C-3 / 1-2 연동)</li><li><b>M06 ~ M10</b> — 다포트 분배 유로. 공통 포트가 6 · 8 · 10 · 12 · 15 포트 중 하나에 선택 연결되며, 모델별 포트 수는 제조사 밸브 옵션 도면 표기를 따릅니다</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-microfluidics-d2.jpg\" alt=\"밸브 모델별 유로 논리 M01~M10\" loading=\"lazy\"><figcaption>밸브 모델별 유로 논리 M01~M10</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 시린지 규격 (K60 syringe)",
+     "html": "<p>정격 스트로크 60 mm 규격의 K60 기밀 시린지를 씁니다. 50 µL 부터 50 mL 까지 <b>RZ-K60-□-W-1-U</b> 코드로 지정합니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-microfluidics-d3.jpg\" alt=\"K60 시린지 용량별 치수 도면 — RZ-K60-50ML ~ RZ-K60-50ul\" loading=\"lazy\"><figcaption>K60 시린지 용량별 치수 도면 — RZ-K60-50ML ~ RZ-K60-50ul</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<p>상부 6-M4, 하부 4-M3 마운팅 홀이 있습니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/syringe-pump-microfluidics-d4.jpg\" alt=\"SY-03B 외형 치수와 상·하부 마운팅 홀 배치\" loading=\"lazy\"><figcaption>SY-03B 외형 치수와 상·하부 마운팅 홀 배치</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>마이크로리터~밀리리터 구간을 프로그램으로 다루는 장비에 씁니다.</p><ul><li>미세유체(Microfluidics) 플랫폼</li><li>자동 피펫팅 · 희석 · 분주</li><li>실험실 자동 전처리 · 분석기기 시약 공급</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "용량",
+     "q": "SY-03B는 시린지를 어디까지 물릴 수 있나요?",
+     "a": "25 µL부터 25 mL까지 열 가지입니다. Runze 시린지 펌프 중에서 용량 폭이 가장 넓습니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "마이크로스텝 모드는 몇 스텝인가요?",
+     "a": "정격 스트로크 60 mm를 표준 6000 스텝, 마이크로스텝 모드에서 48000 스텝으로 나눕니다. 스텝당 이동은 0.01 mm입니다."
+    },
+    {
+     "tag": "밸브",
+     "q": "밸브는 몇 포트까지 되나요?",
+     "a": "M06부터 M10까지가 다포트 분배 유로이고 6·8·10·12·15 포트 구성이 있습니다. 모델별 포트 수는 제조사 밸브 옵션 도면 표기를 따릅니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 얼마인가요?",
+     "a": "최대 0.7 MPa입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "몇 대까지 같이 제어하나요?",
+     "a": "RS232/RS485로 개별 주소를 최대 15개까지 할당합니다. 통신 속도는 9600 bps와 38400 bps입니다."
+    },
+    {
+     "tag": "소모품",
+     "q": "시린지 규격은 어떻게 지정하나요?",
+     "a": "정격 스트로크 60 mm용 K60 기밀 시린지를 쓰며 RZ-K60-용량-W-1-U 코드로 지정합니다."
+    },
+    {
+     "tag": "설치",
+     "q": "크기와 무게는?",
+     "a": "65 × 145.5 × 253.3 mm, 2.2 kg입니다. 상부 6-M4, 하부 4-M3 마운팅 홀이 있습니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 미세유체 시린지 펌프 SY-03B",
+    "sku": "SY-03B",
+    "category": "시린지 펌프 · 밸브 일체형 모듈",
+    "description": "정격 스트로크 60 mm(6000/48000 스텝) 프로그래머블 시린지 펌프. 시린지 25 µL~25 mL, M01~M10 분배 밸브, 습부 붕규산 유리·PTFE·사파이어·PCTFE, 0.7 MPa, RS232/RS485.",
+    "models": [
+     "SY-03B"
+    ],
+    "count": 10
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/syringe-pump-microfluidics.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "dlk-10-syringe-pump",
+   "name": "시린지 펌프 DLK-10",
+   "name_en": "Runze Fluid DLK-10 Syringe Pump",
+   "sub": "듀얼 모터 · 알루미나 세라믹 밸브헤드 · 정격 스트로크 60 mm(12000 / 96000 스텝) · 최대 900 rpm",
+   "category": "시린지 펌프 · 밸브 일체형 모듈",
+   "title": "Runze Fluid 시린지 펌프 DLK-10 — 듀얼 모터 세라믹 밸브헤드 정량 모듈 | 실험셋업연구소",
+   "desc": "Runze Fluid DLK-10 시린지 펌프 — 듀얼 모터 구동, 알루미나 세라믹 밸브헤드, 정격 스트로크 60 mm(표준 12000 · 마이크로스텝 96000 스텝), 최대 900 rpm, 액회로 0.6 MPa, 시린지 25 µL~5 mL, ASCII / Modbus. 가격 문의.",
+   "images": [
+    "dlk-10-syringe-pump-1.jpg",
+    "dlk-10-syringe-pump-2.jpg",
+    "dlk-10-syringe-pump-3.jpg",
+    "dlk-10-syringe-pump-4.jpg",
+    "dlk-10-syringe-pump-5.jpg",
+    "dlk-10-syringe-pump-6.jpg"
+   ],
+   "image_alt": "Runze Fluid 시린지 펌프 DLK-10",
+   "answer": "DLK-10은 시린지 구동 모터와 밸브 구동 모터를 따로 두는 듀얼 모터 시린지 펌프로, 알루미나 세라믹 밸브헤드를 써서 내식·내열 조건에서 고정밀 정량 이송을 하는 분석장비용 코어 모듈입니다.",
+   "features": [
+    "<b>듀얼 모터</b> 구조 — 시린지와 밸브를 따로 구동해 출력이 안정적입니다",
+    "밸브헤드 재질 <b>알루미나 세라믹</b> — 내식·내열이고 시린지는 고붕규산 유리입니다",
+    "정격 스트로크 <b>60 mm</b> — 표준 12000 스텝, <b>마이크로스텝 96000 스텝</b>, 최소 분해능 0.005 mm/스텝",
+    "최대 <b>900 rpm</b>, 선속도 0.005 ~ 30 mm/s, 정격 스트로크 주행 2 s ~ 12000 s (매질 순수)",
+    "액량 정확도 <b>≤1%</b>, 반복 오차 <b>0.3~0.5%</b> (정격 스트로크 기준)",
+    "시린지 <b>25 · 50 · 100 · 250 · 500 µL · 1.25 · 2.5 · 5 mL</b> 선택",
+    "<b>ASCII 코드 제어</b> 기본, <b>Modbus 제어</b> 커스터마이즈 가능 — 여러 대를 직렬로 씁니다"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "고붕규산 유리 시린지 · 알루미나 세라믹 밸브헤드"
+    ],
+    [
+     "액량 정확도 (Accuracy)",
+     "≤1% (정격 스트로크)"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.5% (정격 스트로크)"
+    ],
+    [
+     "정격 스트로크 (Rated stroke)",
+     "60 mm · 12000 스텝 (마이크로스텝 96000 스텝)"
+    ],
+    [
+     "최대 속도 (Max speed)",
+     "900 rpm"
+    ],
+    [
+     "선속도 (Linear speed)",
+     "0.005 ~ 30 mm/s (매질 순수)"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "2 s ~ 12000 s (정격 스트로크)"
+    ],
+    [
+     "제어 분해능 (Resolution)",
+     "0.005 mm / 스텝"
+    ],
+    [
+     "시린지 (Syringe)",
+     "25 · 50 · 100 · 250 · 500 µL · 1.25 · 2.5 · 5 mL"
+    ],
+    [
+     "최대 압력 (Max pressure)",
+     "액회로 기준 0.6 MPa"
+    ],
+    [
+     "구동 (Drive)",
+     "듀얼 스텝모터 (시린지 · 밸브 개별 구동)"
+    ],
+    [
+     "제어 방식 (Control)",
+     "ASCII 코드 · Modbus (커스터마이즈)"
+    ],
+    [
+     "통신 속도 (Baud rate)",
+     "RS232 / RS485 9600 · 19200 · 38400 · 57600 · 115200 bps"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/syringe-pump-microfluidics/\">미세유체 시린지 펌프 SY-03B</a> · <a href=\"/brands/runze/gastight-syringe/\">기밀 시린지</a> · <a href=\"/brands/runze/ceramic-valve-head-component/\">세라믹 밸브 헤드 어셈블리</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#시린지펌프",
+     "/product/"
+    ],
+    [
+     "#세라믹밸브헤드",
+     "/product/"
+    ],
+    [
+     "#듀얼모터",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 기술 자료 (Technical data)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/dlk-10-syringe-pump-d8.jpg\" alt=\"제조사 제품 소개 — 정격 스트로크 · 속도 · 분해능 · 적용 시린지 · 습부 재질 · 통신 속도\" loading=\"lazy\"><figcaption>제조사 제품 소개 — 정격 스트로크 · 속도 · 분해능 · 적용 시린지 · 습부 재질 · 통신 속도</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d2.jpg\" alt=\"액량 정확도 ≤1% · 반복 오차 0.3~0.5% · 최소 분해능 0.005 mm · 액회로 0.6 MPa\" loading=\"lazy\"><figcaption>액량 정확도 ≤1% · 반복 오차 0.3~0.5% · 최소 분해능 0.005 mm · 액회로 0.6 MPa</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d6.jpg\" alt=\"알루미나 세라믹 밸브헤드와 듀얼 모터 구조\" loading=\"lazy\"><figcaption>알루미나 세라믹 밸브헤드와 듀얼 모터 구조</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d7.jpg\" alt=\"듀얼 모터 주입 — 스텝모터로 첨가량을 정밀 제어\" loading=\"lazy\"><figcaption>듀얼 모터 주입 — 스텝모터로 첨가량을 정밀 제어</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d5.jpg\" alt=\"고정밀 마이크로 인젝션 구조\" loading=\"lazy\"><figcaption>고정밀 마이크로 인젝션 구조</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d4.jpg\" alt=\"샘플러 구성도 (DLK 주입 펌프)\" loading=\"lazy\"><figcaption>샘플러 구성도 (DLK 주입 펌프)</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d3.jpg\" alt=\"환경 검사 · 실험 분석 · 의료 분석 · 크로마토그래피 적용\" loading=\"lazy\"><figcaption>환경 검사 · 실험 분석 · 의료 분석 · 크로마토그래피 적용</figcaption></figure><figure><img src=\"/img/runze/dlk-10-syringe-pump-d1.jpg\" alt=\"DLK-10 외형\" loading=\"lazy\"><figcaption>DLK-10 외형</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<p>고정밀·고안정 유체 이송이 필요한 분석 장비의 코어 부품으로 씁니다.</p><ul><li>실험실 기기 솔루션</li><li>의료 체외진단(IVD) 분석 장비</li><li>크로마토그래피 분석기</li><li>자동 생화학 분석기 · 혈액 분석기</li><li>미량원소 분석기 · 전해질 분석기</li><li>식품·음료 검사 분석 시스템</li><li>수질 온라인 분석기</li><li>석유 검사 장비 · 바이오의약 추출 장치</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "구조",
+     "q": "듀얼 모터가 무슨 뜻인가요?",
+     "a": "시린지를 미는 모터와 밸브를 돌리는 모터를 따로 두는 구조입니다. 두 동작이 서로 간섭하지 않아 출력이 안정적입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "밸브헤드 재질이 세라믹인 이유는?",
+     "a": "알루미나 세라믹이 내식성과 내열성이 좋고 마모에 강해서입니다. 시린지는 고붕규산 유리입니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "최소 분해능은 얼마인가요?",
+     "a": "스텝당 0.005 mm입니다. 정격 스트로크 60 mm를 표준 12000 스텝, 마이크로스텝 모드에서 96000 스텝으로 나눕니다."
+    },
+    {
+     "tag": "속도",
+     "q": "최대 속도는 얼마인가요?",
+     "a": "900 rpm이며 선속도로는 0.005~30 mm/s입니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 어떻게 되나요?",
+     "a": "액회로 기준 최대 0.6 MPa입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "Modbus로 제어할 수 있나요?",
+     "a": "기본은 ASCII 코드 제어이고 Modbus 제어는 커스터마이즈로 지원합니다. 여러 대를 직렬로 연결해 쓸 수 있습니다."
+    },
+    {
+     "tag": "시린지",
+     "q": "어떤 시린지를 물릴 수 있나요?",
+     "a": "25 µL, 50 µL, 100 µL, 250 µL, 500 µL, 1.25 mL, 2.5 mL, 5 mL입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 시린지 펌프 DLK-10",
+    "sku": "DLK-10",
+    "category": "시린지 펌프 · 밸브 일체형 모듈",
+    "description": "듀얼 모터 · 알루미나 세라믹 밸브헤드 시린지 펌프. 정격 스트로크 60 mm(12000/96000 스텝), 최대 900 rpm, 액회로 0.6 MPa, 시린지 25 µL~5 mL, ASCII/Modbus.",
+    "models": [
+     "DLK-10"
+    ],
+    "count": 8
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/dlk-10-syringe-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
   }
  ]
 }

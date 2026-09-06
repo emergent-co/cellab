@@ -1,0 +1,671 @@
+{
+"12v-peristaltic-pump": {
+"gal": [
+"12v-peristaltic-pump-1.jpg",
+"12v-peristaltic-pump-2.jpg",
+"12v-peristaltic-pump-3.jpg",
+"12v-peristaltic-pump-4.jpg"
+],
+"det": [
+"12v-peristaltic-pump-d1.jpg",
+"12v-peristaltic-pump-d2.jpg",
+"12v-peristaltic-pump-d3.jpg",
+"12v-peristaltic-pump-d4.jpg"
+]
+},
+"8-channel-micro-syringe-pump-module": {
+"gal": [
+"8-channel-micro-syringe-pump-module-1.jpg",
+"8-channel-micro-syringe-pump-module-2.jpg",
+"8-channel-micro-syringe-pump-module-3.jpg",
+"8-channel-micro-syringe-pump-module-4.jpg",
+"8-channel-micro-syringe-pump-module-5.jpg",
+"8-channel-micro-syringe-pump-module-6.jpg",
+"8-channel-micro-syringe-pump-module-7.jpg",
+"8-channel-micro-syringe-pump-module-8.jpg"
+],
+"det": [
+"8-channel-micro-syringe-pump-module-d1.jpg",
+"8-channel-micro-syringe-pump-module-d2.jpg",
+"8-channel-micro-syringe-pump-module-d3.jpg",
+"8-channel-micro-syringe-pump-module-d4.jpg",
+"8-channel-micro-syringe-pump-module-d5.jpg",
+"8-channel-micro-syringe-pump-module-d6.jpg",
+"8-channel-micro-syringe-pump-module-d7.jpg",
+"8-channel-micro-syringe-pump-module-d8.jpg",
+"8-channel-micro-syringe-pump-module-d9.jpg"
+]
+},
+"Syringe Pump-sy-08": {
+"gal": [
+"syringe-pump-sy-08-1.jpg",
+"syringe-pump-sy-08-2.jpg",
+"syringe-pump-sy-08-3.jpg",
+"syringe-pump-sy-08-4.jpg",
+"syringe-pump-sy-08-5.jpg",
+"syringe-pump-sy-08-6.jpg",
+"syringe-pump-sy-08-7.jpg",
+"syringe-pump-sy-08-8.jpg"
+],
+"det": [
+"syringe-pump-sy-08-d1.jpg",
+"syringe-pump-sy-08-d2.jpg",
+"syringe-pump-sy-08-d3.jpg",
+"syringe-pump-sy-08-d4.jpg",
+"syringe-pump-sy-08-d5.jpg",
+"syringe-pump-sy-08-d6.jpg",
+"syringe-pump-sy-08-d7.jpg",
+"syringe-pump-sy-08-d8.jpg",
+"syringe-pump-sy-08-d9.jpg",
+"syringe-pump-sy-08-d10.jpg",
+"syringe-pump-sy-08-d11.jpg",
+"syringe-pump-sy-08-d12.jpg",
+"syringe-pump-sy-08-d13.jpg",
+"syringe-pump-sy-08-d14.jpg",
+"syringe-pump-sy-08-d15.jpg",
+"syringe-pump-sy-08-d16.jpg",
+"syringe-pump-sy-08-d17.jpg",
+"syringe-pump-sy-08-d18.jpg"
+]
+},
+"bj-rz01b-42-stepper-peristaltic-pump": {
+"gal": [
+"bj-rz01b-42-stepper-peristaltic-pump-1.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-2.jpg"
+],
+"det": [
+"bj-rz01b-42-stepper-peristaltic-pump-d1.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d2.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d3.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d4.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d5.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d6.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d7.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d8.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d9.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d10.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d11.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d12.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d13.jpg",
+"bj-rz01b-42-stepper-peristaltic-pump-d14.jpg"
+]
+},
+"dlk-10-syringe-pump": {
+"gal": [
+"dlk-10-syringe-pump-1.jpg",
+"dlk-10-syringe-pump-2.jpg",
+"dlk-10-syringe-pump-3.jpg",
+"dlk-10-syringe-pump-4.jpg",
+"dlk-10-syringe-pump-5.jpg",
+"dlk-10-syringe-pump-6.jpg"
+],
+"det": [
+"dlk-10-syringe-pump-d1.jpg",
+"dlk-10-syringe-pump-d2.jpg",
+"dlk-10-syringe-pump-d3.jpg",
+"dlk-10-syringe-pump-d4.jpg",
+"dlk-10-syringe-pump-d5.jpg",
+"dlk-10-syringe-pump-d6.jpg",
+"dlk-10-syringe-pump-d7.jpg",
+"dlk-10-syringe-pump-d8.jpg",
+"dlk-10-syringe-pump-d9.jpg",
+"dlk-10-syringe-pump-d10.jpg",
+"dlk-10-syringe-pump-d11.jpg"
+]
+},
+"high-precision-syringe-pump": {
+"gal": [
+"high-precision-syringe-pump-1.jpg",
+"high-precision-syringe-pump-2.jpg",
+"high-precision-syringe-pump-3.jpg",
+"high-precision-syringe-pump-4.jpg",
+"high-precision-syringe-pump-5.jpg",
+"high-precision-syringe-pump-6.jpg",
+"high-precision-syringe-pump-7.jpg",
+"high-precision-syringe-pump-8.jpg"
+],
+"det": [
+"high-precision-syringe-pump-d1.jpg",
+"high-precision-syringe-pump-d2.jpg",
+"high-precision-syringe-pump-d3.jpg",
+"high-precision-syringe-pump-d4.jpg",
+"high-precision-syringe-pump-d5.jpg"
+]
+},
+"industrial-peristaltic-pump": {
+"gal": [
+"industrial-peristaltic-pump-1.jpg",
+"industrial-peristaltic-pump-2.jpg",
+"industrial-peristaltic-pump-3.jpg",
+"industrial-peristaltic-pump-4.jpg",
+"industrial-peristaltic-pump-5.jpg",
+"industrial-peristaltic-pump-6.jpg",
+"industrial-peristaltic-pump-7.jpg"
+],
+"det": [
+"industrial-peristaltic-pump-d1.jpg",
+"industrial-peristaltic-pump-d2.jpg",
+"industrial-peristaltic-pump-d3.jpg",
+"industrial-peristaltic-pump-d4.jpg",
+"industrial-peristaltic-pump-d5.jpg"
+]
+},
+"lm40b-micro-peristaltic-pump": {
+"gal": [
+"lm40b-micro-peristaltic-pump-1.jpg",
+"lm40b-micro-peristaltic-pump-2.jpg",
+"lm40b-micro-peristaltic-pump-3.jpg",
+"lm40b-micro-peristaltic-pump-4.jpg",
+"lm40b-micro-peristaltic-pump-5.jpg",
+"lm40b-micro-peristaltic-pump-6.jpg"
+],
+"det": [
+"lm40b-micro-peristaltic-pump-d1.jpg",
+"lm40b-micro-peristaltic-pump-d2.jpg",
+"lm40b-micro-peristaltic-pump-d3.jpg",
+"lm40b-micro-peristaltic-pump-d4.jpg",
+"lm40b-micro-peristaltic-pump-d5.jpg",
+"lm40b-micro-peristaltic-pump-d6.jpg",
+"lm40b-micro-peristaltic-pump-d7.jpg"
+]
+},
+"lm80c-intelligent-large-flow-peristaltic-pump": {
+"gal": [
+"lm80c-intelligent-large-flow-peristaltic-pump-1.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-2.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-3.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-4.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-5.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-6.jpg"
+],
+"det": [
+"lm80c-intelligent-large-flow-peristaltic-pump-d1.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d2.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d3.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d4.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d5.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d6.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d7.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d8.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d9.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d10.jpg",
+"lm80c-intelligent-large-flow-peristaltic-pump-d11.jpg"
+]
+},
+"micro-peristaltic-pump": {
+"gal": [
+"micro-peristaltic-pump-1.jpg",
+"micro-peristaltic-pump-2.jpg",
+"micro-peristaltic-pump-3.jpg",
+"micro-peristaltic-pump-4.jpg",
+"micro-peristaltic-pump-5.jpg",
+"micro-peristaltic-pump-6.jpg",
+"micro-peristaltic-pump-7.jpg",
+"micro-peristaltic-pump-8.jpg",
+"micro-peristaltic-pump-9.jpg"
+],
+"det": [
+"micro-peristaltic-pump-d1.jpg",
+"micro-peristaltic-pump-d2.jpg",
+"micro-peristaltic-pump-d3.jpg",
+"micro-peristaltic-pump-d4.jpg",
+"micro-peristaltic-pump-d5.jpg",
+"micro-peristaltic-pump-d6.jpg",
+"micro-peristaltic-pump-d7.jpg",
+"micro-peristaltic-pump-d8.jpg",
+"micro-peristaltic-pump-d9.jpg",
+"micro-peristaltic-pump-d10.jpg",
+"micro-peristaltic-pump-d11.jpg",
+"micro-peristaltic-pump-d12.jpg",
+"micro-peristaltic-pump-d13.jpg"
+]
+},
+"mini-peristaltic-pump": {
+"gal": [
+"mini-peristaltic-pump-1.jpg",
+"mini-peristaltic-pump-2.jpg",
+"mini-peristaltic-pump-3.jpg",
+"mini-peristaltic-pump-4.jpg",
+"mini-peristaltic-pump-5.jpg",
+"mini-peristaltic-pump-6.jpg",
+"mini-peristaltic-pump-7.jpg",
+"mini-peristaltic-pump-8.jpg",
+"mini-peristaltic-pump-9.jpg"
+],
+"det": [
+"mini-peristaltic-pump-d1.jpg",
+"mini-peristaltic-pump-d2.jpg",
+"mini-peristaltic-pump-d3.jpg",
+"mini-peristaltic-pump-d4.jpg",
+"mini-peristaltic-pump-d5.jpg",
+"mini-peristaltic-pump-d6.jpg",
+"mini-peristaltic-pump-d7.jpg"
+]
+},
+"miniature-peristaltic-pump": {
+"gal": [
+"miniature-peristaltic-pump-1.jpg",
+"miniature-peristaltic-pump-2.jpg",
+"miniature-peristaltic-pump-3.jpg",
+"miniature-peristaltic-pump-4.jpg"
+],
+"det": [
+"miniature-peristaltic-pump-d1.jpg",
+"miniature-peristaltic-pump-d2.jpg",
+"miniature-peristaltic-pump-d3.jpg",
+"miniature-peristaltic-pump-d4.jpg"
+]
+},
+"multi-channel-syringe-pump": {
+"gal": [
+"multi-channel-syringe-pump-1.jpg",
+"multi-channel-syringe-pump-2.jpg",
+"multi-channel-syringe-pump-3.jpg",
+"multi-channel-syringe-pump-4.jpg",
+"multi-channel-syringe-pump-5.jpg"
+],
+"det": [
+"multi-channel-syringe-pump-d1.jpg",
+"multi-channel-syringe-pump-d2.jpg",
+"multi-channel-syringe-pump-d3.jpg",
+"multi-channel-syringe-pump-d4.jpg",
+"multi-channel-syringe-pump-d5.jpg"
+]
+},
+"oem-syringe-pump": {
+"gal": [
+"oem-syringe-pump-1.jpg",
+"oem-syringe-pump-2.jpg",
+"oem-syringe-pump-3.jpg",
+"oem-syringe-pump-4.jpg",
+"oem-syringe-pump-5.jpg",
+"oem-syringe-pump-6.jpg",
+"oem-syringe-pump-7.jpg"
+],
+"det": [
+"oem-syringe-pump-d1.jpg",
+"oem-syringe-pump-d2.jpg",
+"oem-syringe-pump-d3.jpg",
+"oem-syringe-pump-d4.jpg",
+"oem-syringe-pump-d5.jpg",
+"oem-syringe-pump-d6.jpg",
+"oem-syringe-pump-d7.jpg"
+]
+},
+"peristaltic-dosing-pump": {
+"gal": [
+"peristaltic-dosing-pump-1.jpg",
+"peristaltic-dosing-pump-2.jpg",
+"peristaltic-dosing-pump-3.jpg",
+"peristaltic-dosing-pump-4.jpg"
+],
+"det": [
+"peristaltic-dosing-pump-d1.jpg",
+"peristaltic-dosing-pump-d2.jpg",
+"peristaltic-dosing-pump-d3.jpg",
+"peristaltic-dosing-pump-d4.jpg"
+]
+},
+"peristaltic-hose-pump": {
+"gal": [
+"peristaltic-hose-pump-1.jpg",
+"peristaltic-hose-pump-2.jpg",
+"peristaltic-hose-pump-3.jpg",
+"peristaltic-hose-pump-4.jpg"
+],
+"det": [
+"peristaltic-hose-pump-d1.jpg",
+"peristaltic-hose-pump-d2.jpg",
+"peristaltic-hose-pump-d3.jpg",
+"peristaltic-hose-pump-d4.jpg",
+"peristaltic-hose-pump-d5.jpg",
+"peristaltic-hose-pump-d6.jpg",
+"peristaltic-hose-pump-d7.jpg",
+"peristaltic-hose-pump-d8.jpg",
+"peristaltic-hose-pump-d9.jpg"
+]
+},
+"peristaltic-metering-pump": {
+"gal": [
+"peristaltic-metering-pump-1.jpg",
+"peristaltic-metering-pump-2.jpg",
+"peristaltic-metering-pump-3.jpg",
+"peristaltic-metering-pump-4.jpg",
+"peristaltic-metering-pump-5.jpg",
+"peristaltic-metering-pump-6.jpg",
+"peristaltic-metering-pump-7.jpg",
+"peristaltic-metering-pump-8.jpg",
+"peristaltic-metering-pump-9.jpg",
+"peristaltic-metering-pump-10.jpg",
+"peristaltic-metering-pump-11.jpg",
+"peristaltic-metering-pump-12.jpg",
+"peristaltic-metering-pump-13.jpg"
+],
+"det": [
+"peristaltic-metering-pump-d1.jpg",
+"peristaltic-metering-pump-d2.jpg",
+"peristaltic-metering-pump-d3.jpg",
+"peristaltic-metering-pump-d4.jpg",
+"peristaltic-metering-pump-d5.jpg",
+"peristaltic-metering-pump-d6.jpg",
+"peristaltic-metering-pump-d7.jpg",
+"peristaltic-metering-pump-d8.jpg",
+"peristaltic-metering-pump-d9.jpg",
+"peristaltic-metering-pump-d10.jpg",
+"peristaltic-metering-pump-d11.jpg",
+"peristaltic-metering-pump-d12.jpg",
+"peristaltic-metering-pump-d13.jpg",
+"peristaltic-metering-pump-d14.jpg",
+"peristaltic-metering-pump-d15.jpg",
+"peristaltic-metering-pump-d16.jpg",
+"peristaltic-metering-pump-d17.jpg",
+"peristaltic-metering-pump-d18.jpg",
+"peristaltic-metering-pump-d19.jpg",
+"peristaltic-metering-pump-d20.jpg"
+]
+},
+"peristaltic-pump-price": {
+"gal": [
+"peristaltic-pump-price-1.jpg",
+"peristaltic-pump-price-2.jpg",
+"peristaltic-pump-price-3.jpg",
+"peristaltic-pump-price-4.jpg"
+],
+"det": [
+"peristaltic-pump-price-d1.jpg",
+"peristaltic-pump-price-d2.jpg",
+"peristaltic-pump-price-d3.jpg",
+"peristaltic-pump-price-d4.jpg"
+]
+},
+"peristaltic-pump-sy-09": {
+"gal": [
+"peristaltic-pump-sy-09-1.jpg",
+"peristaltic-pump-sy-09-2.jpg",
+"peristaltic-pump-sy-09-3.jpg",
+"peristaltic-pump-sy-09-4.jpg",
+"peristaltic-pump-sy-09-5.jpg",
+"peristaltic-pump-sy-09-6.jpg",
+"peristaltic-pump-sy-09-7.jpg",
+"peristaltic-pump-sy-09-8.jpg"
+],
+"det": [
+"peristaltic-pump-sy-09-d1.jpg",
+"peristaltic-pump-sy-09-d2.jpg",
+"peristaltic-pump-sy-09-d3.jpg",
+"peristaltic-pump-sy-09-d4.jpg",
+"peristaltic-pump-sy-09-d5.jpg",
+"peristaltic-pump-sy-09-d6.jpg",
+"peristaltic-pump-sy-09-d7.jpg",
+"peristaltic-pump-sy-09-d8.jpg",
+"peristaltic-pump-sy-09-d9.jpg",
+"peristaltic-pump-sy-09-d10.jpg",
+"peristaltic-pump-sy-09-d11.jpg",
+"peristaltic-pump-sy-09-d12.jpg",
+"peristaltic-pump-sy-09-d13.jpg",
+"peristaltic-pump-sy-09-d14.jpg",
+"peristaltic-pump-sy-09-d15.jpg",
+"peristaltic-pump-sy-09-d16.jpg",
+"peristaltic-pump-sy-09-d17.jpg"
+]
+},
+"precision-dispense-piston-pump": {
+"gal": [
+"precision-dispense-piston-pump-1.jpg",
+"precision-dispense-piston-pump-2.jpg",
+"precision-dispense-piston-pump-3.jpg",
+"precision-dispense-piston-pump-4.jpg",
+"precision-dispense-piston-pump-5.jpg",
+"precision-dispense-piston-pump-6.jpg",
+"precision-dispense-piston-pump-7.jpg"
+],
+"det": [
+"precision-dispense-piston-pump-d1.jpg",
+"precision-dispense-piston-pump-d2.jpg",
+"precision-dispense-piston-pump-d3.jpg",
+"precision-dispense-piston-pump-d4.jpg",
+"precision-dispense-piston-pump-d5.jpg"
+]
+},
+"programmable-syringe-pump": {
+"gal": [
+"programmable-syringe-pump-1.jpg",
+"programmable-syringe-pump-2.jpg",
+"programmable-syringe-pump-3.jpg",
+"programmable-syringe-pump-4.jpg"
+],
+"det": [
+"programmable-syringe-pump-d1.jpg",
+"programmable-syringe-pump-d2.jpg",
+"programmable-syringe-pump-d3.jpg",
+"programmable-syringe-pump-d4.jpg"
+]
+},
+"rz35-industrial-high-flow-pump-head": {
+"gal": [
+"rz35-industrial-high-flow-pump-head-1.jpg",
+"rz35-industrial-high-flow-pump-head-2.jpg",
+"rz35-industrial-high-flow-pump-head-3.jpg",
+"rz35-industrial-high-flow-pump-head-4.jpg",
+"rz35-industrial-high-flow-pump-head-5.jpg",
+"rz35-industrial-high-flow-pump-head-6.jpg"
+],
+"det": [
+"rz35-industrial-high-flow-pump-head-d1.jpg",
+"rz35-industrial-high-flow-pump-head-d2.jpg",
+"rz35-industrial-high-flow-pump-head-d3.jpg",
+"rz35-industrial-high-flow-pump-head-d4.jpg",
+"rz35-industrial-high-flow-pump-head-d5.jpg"
+]
+},
+"small-peristaltic-pump-bj-rz-01": {
+"gal": [
+"small-peristaltic-pump-bj-rz-01-1.jpg",
+"small-peristaltic-pump-bj-rz-01-2.jpg",
+"small-peristaltic-pump-bj-rz-01-3.jpg",
+"small-peristaltic-pump-bj-rz-01-4.jpg",
+"small-peristaltic-pump-bj-rz-01-5.jpg",
+"small-peristaltic-pump-bj-rz-01-6.jpg",
+"small-peristaltic-pump-bj-rz-01-7.jpg",
+"small-peristaltic-pump-bj-rz-01-8.jpg"
+],
+"det": [
+"small-peristaltic-pump-bj-rz-01-d1.jpg",
+"small-peristaltic-pump-bj-rz-01-d2.jpg",
+"small-peristaltic-pump-bj-rz-01-d3.jpg",
+"small-peristaltic-pump-bj-rz-01-d4.jpg",
+"small-peristaltic-pump-bj-rz-01-d5.jpg",
+"small-peristaltic-pump-bj-rz-01-d6.jpg",
+"small-peristaltic-pump-bj-rz-01-d7.jpg",
+"small-peristaltic-pump-bj-rz-01-d8.jpg",
+"small-peristaltic-pump-bj-rz-01-d9.jpg",
+"small-peristaltic-pump-bj-rz-01-d10.jpg"
+]
+},
+"small-peristaltic-pump-bj-rz-02": {
+"gal": [
+"small-peristaltic-pump-bj-rz-02-1.jpg",
+"small-peristaltic-pump-bj-rz-02-2.jpg",
+"small-peristaltic-pump-bj-rz-02-3.jpg",
+"small-peristaltic-pump-bj-rz-02-4.jpg",
+"small-peristaltic-pump-bj-rz-02-5.jpg",
+"small-peristaltic-pump-bj-rz-02-6.jpg",
+"small-peristaltic-pump-bj-rz-02-7.jpg"
+],
+"det": [
+"small-peristaltic-pump-bj-rz-02-d1.jpg",
+"small-peristaltic-pump-bj-rz-02-d2.jpg",
+"small-peristaltic-pump-bj-rz-02-d3.jpg",
+"small-peristaltic-pump-bj-rz-02-d4.jpg",
+"small-peristaltic-pump-bj-rz-02-d5.jpg",
+"small-peristaltic-pump-bj-rz-02-d6.jpg",
+"small-peristaltic-pump-bj-rz-02-d7.jpg",
+"small-peristaltic-pump-bj-rz-02-d8.jpg",
+"small-peristaltic-pump-bj-rz-02-d9.jpg",
+"small-peristaltic-pump-bj-rz-02-d10.jpg"
+]
+},
+"stepper-motor-syringe-pump": {
+"gal": [
+"stepper-motor-syringe-pump-1.jpg",
+"stepper-motor-syringe-pump-2.jpg"
+],
+"det": [
+"stepper-motor-syringe-pump-d1.jpg",
+"stepper-motor-syringe-pump-d2.jpg",
+"stepper-motor-syringe-pump-d3.jpg",
+"stepper-motor-syringe-pump-d4.jpg",
+"stepper-motor-syringe-pump-d5.jpg"
+]
+},
+"syringe-pump-microfluidics": {
+"gal": [
+"syringe-pump-microfluidics-1.jpg",
+"syringe-pump-microfluidics-2.jpg",
+"syringe-pump-microfluidics-3.jpg",
+"syringe-pump-microfluidics-4.jpg",
+"syringe-pump-microfluidics-5.jpg"
+],
+"det": [
+"syringe-pump-microfluidics-d1.jpg",
+"syringe-pump-microfluidics-d2.jpg",
+"syringe-pump-microfluidics-d3.jpg",
+"syringe-pump-microfluidics-d4.jpg"
+]
+},
+"syringe-pump-sy-06b": {
+"gal": [
+"syringe-pump-sy-06b-1.jpg",
+"syringe-pump-sy-06b-2.jpg",
+"syringe-pump-sy-06b-3.jpg",
+"syringe-pump-sy-06b-4.jpg",
+"syringe-pump-sy-06b-5.jpg",
+"syringe-pump-sy-06b-6.jpg",
+"syringe-pump-sy-06b-7.jpg",
+"syringe-pump-sy-06b-8.jpg"
+],
+"det": [
+"syringe-pump-sy-06b-d1.jpg",
+"syringe-pump-sy-06b-d2.jpg",
+"syringe-pump-sy-06b-d3.jpg",
+"syringe-pump-sy-06b-d4.jpg",
+"syringe-pump-sy-06b-d5.jpg",
+"syringe-pump-sy-06b-d6.jpg"
+]
+},
+"syringe-pump-sy-09s": {
+"gal": [
+"syringe-pump-sy-09s-1.jpg",
+"syringe-pump-sy-09s-2.jpg",
+"syringe-pump-sy-09s-3.jpg",
+"syringe-pump-sy-09s-4.jpg",
+"syringe-pump-sy-09s-5.jpg",
+"syringe-pump-sy-09s-6.jpg",
+"syringe-pump-sy-09s-7.jpg",
+"syringe-pump-sy-09s-8.jpg"
+],
+"det": [
+"syringe-pump-sy-09s-d1.jpg",
+"syringe-pump-sy-09s-d2.jpg",
+"syringe-pump-sy-09s-d3.jpg",
+"syringe-pump-sy-09s-d4.jpg",
+"syringe-pump-sy-09s-d5.jpg",
+"syringe-pump-sy-09s-d6.jpg",
+"syringe-pump-sy-09s-d7.jpg",
+"syringe-pump-sy-09s-d8.jpg",
+"syringe-pump-sy-09s-d9.jpg",
+"syringe-pump-sy-09s-d10.jpg",
+"syringe-pump-sy-09s-d11.jpg",
+"syringe-pump-sy-09s-d12.jpg",
+"syringe-pump-sy-09s-d13.jpg",
+"syringe-pump-sy-09s-d14.jpg"
+]
+},
+"syringe-pump-sy03b-in-dk-series": {
+"gal": [
+"syringe-pump-sy03b-in-dk-series-1.jpg"
+],
+"det": [
+"syringe-pump-sy03b-in-dk-series-d1.jpg",
+"syringe-pump-sy03b-in-dk-series-d2.jpg"
+]
+},
+"ts600-industrial-high-flow-peristaltic-pump": {
+"gal": [
+"ts600-industrial-high-flow-peristaltic-pump-1.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-2.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-3.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-4.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-5.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-6.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-7.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-8.jpg"
+],
+"det": [
+"ts600-industrial-high-flow-peristaltic-pump-d1.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d2.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d3.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d4.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d5.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d6.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d7.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d8.jpg",
+"ts600-industrial-high-flow-peristaltic-pump-d9.jpg"
+]
+},
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump": {
+"gal": [
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-1.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-2.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-3.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-4.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-5.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-6.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-7.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-8.jpg"
+],
+"det": [
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d1.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d2.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d3.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d4.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d5.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d6.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d7.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d8.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d9.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d10.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d11.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d12.jpg",
+"zl-ws-ys-rz01b-dc-motor-peristaltic-pump-d13.jpg"
+]
+},
+"zlys-fg-16-peristaltic-pump": {
+"gal": [
+"zlys-fg-16-peristaltic-pump-1.jpg",
+"zlys-fg-16-peristaltic-pump-2.jpg",
+"zlys-fg-16-peristaltic-pump-3.jpg",
+"zlys-fg-16-peristaltic-pump-4.jpg",
+"zlys-fg-16-peristaltic-pump-5.jpg",
+"zlys-fg-16-peristaltic-pump-6.jpg",
+"zlys-fg-16-peristaltic-pump-7.jpg",
+"zlys-fg-16-peristaltic-pump-8.jpg"
+],
+"det": [
+"zlys-fg-16-peristaltic-pump-d1.jpg",
+"zlys-fg-16-peristaltic-pump-d2.jpg",
+"zlys-fg-16-peristaltic-pump-d3.jpg",
+"zlys-fg-16-peristaltic-pump-d4.jpg",
+"zlys-fg-16-peristaltic-pump-d5.jpg",
+"zlys-fg-16-peristaltic-pump-d6.jpg",
+"zlys-fg-16-peristaltic-pump-d7.jpg",
+"zlys-fg-16-peristaltic-pump-d8.jpg",
+"zlys-fg-16-peristaltic-pump-d9.jpg",
+"zlys-fg-16-peristaltic-pump-d10.jpg",
+"zlys-fg-16-peristaltic-pump-d11.jpg",
+"zlys-fg-16-peristaltic-pump-d12.jpg",
+"zlys-fg-16-peristaltic-pump-d13.jpg",
+"zlys-fg-16-peristaltic-pump-d14.jpg"
+]
+}
+}
