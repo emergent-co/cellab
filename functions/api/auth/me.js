@@ -21,8 +21,10 @@ export async function onRequest({ request, env }) {
     const admin = me.role === 'admin';
     // 못 들어오는 이유를 구분해서 준다 — 승인 전인지, 선불 거래처인지에 따라 갈 곳이 다르다
     if (!admin && !isMember(me)) {
+      /* 'prepaid'  = 멤버십으로 승인됐지만 선불로 거래하는 거래처 → /member/ 에서 이유를 보여준다
+         'general'  = 카카오로 그냥 가입한 일반회원 → /member-general/ 로 보낸다 */
       return json({ login: true, member: false, admin,
-        reason: isApproved(me) && !isPostpaid(me) ? 'prepaid' : 'pending',
+        reason: isApproved(me) && !isPostpaid(me) ? 'prepaid' : 'general',
         customer: me, lab: null, members: [] });
     }
     const info = await labInfo(env, me);

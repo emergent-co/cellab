@@ -566,11 +566,19 @@
         p.innerHTML =
           '<div class="ah"><div class="av"></div><div><div class="an"></div><div class="ae"></div></div></div>' +
           '<ul>' +
-          '<li><a href="/member/#orders"><span class="i">&#128203;</span>주문내역</a></li>' +
-          '<li><a href="/member/#new"><span class="i">&#128722;</span>주문하기</a></li>' +
-          '<li><a href="/member/#settle"><span class="i">&#128179;</span>정산 내역</a></li>' +
-          '<li class="sep"></li>' +
-          '<li><a href="/member/#me"><span class="i">&#9881;&#65039;</span>프로필 설정</a></li>' +
+          /* 멤버십(후불)만 주문·정산 화면을 쓴다. 일반회원에게 /member/ 링크를 보여주면
+             눌러도 튕겨 나오므로, 아예 자기 마이페이지로만 열어준다. */
+          (d.member === true
+            ? '<li><a href="/member/#orders"><span class="i">&#128203;</span>주문내역</a></li>' +
+              '<li><a href="/member/#new"><span class="i">&#128722;</span>주문하기</a></li>' +
+              '<li><a href="/member/#settle"><span class="i">&#128179;</span>정산 내역</a></li>' +
+              '<li class="sep"></li>' +
+              '<li><a href="/member/#me"><span class="i">&#9881;&#65039;</span>프로필 설정</a></li>'
+            : '<li><a href="/member-general/#orders"><span class="i">&#128203;</span>주문내역</a></li>' +
+              '<li><a href="/member-general/#address"><span class="i">&#128230;</span>배송지 관리</a></li>' +
+              '<li class="sep"></li>' +
+              '<li><a href="/member-general/#profile"><span class="i">&#9881;&#65039;</span>회원정보</a></li>' +
+              '<li><a href="/member-general/#membership"><span class="i">&#11088;</span>멤버십 전환</a></li>') +
           '<li><a href="#logout" class="out"><span class="i">&#10162;</span>로그아웃</a></li>' +
           '</ul>';
         p.querySelector('.av').textContent = initial;

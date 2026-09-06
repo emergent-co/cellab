@@ -4,8 +4,8 @@ import { kstISO, createSession, sessionCookie } from '../_lib.js';
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
-  const next = decodeURIComponent(url.searchParams.get('state') || '/member/');
-  if (!code) return Response.redirect(`${url.origin}/member/?err=no_code`, 302);
+  const next = decodeURIComponent(url.searchParams.get('state') || '/member-general/');
+  if (!code) return Response.redirect(`${url.origin}/login/?err=no_code`, 302);
 
   const redirectUri = `${url.origin}/api/auth/callback`;
   const body = new URLSearchParams({
@@ -23,7 +23,7 @@ export async function onRequestGet({ request, env }) {
   });
   const tok = await tr.json();
   if (!tok.access_token) {
-    return Response.redirect(`${url.origin}/member/?err=token&d=${encodeURIComponent(tok.error_description || tok.error || '')}`, 302);
+    return Response.redirect(`${url.origin}/login/?err=token&d=${encodeURIComponent(tok.error_description || tok.error || '')}`, 302);
   }
 
   const ur = await fetch('https://kapi.kakao.com/v2/user/me', {
@@ -31,7 +31,7 @@ export async function onRequestGet({ request, env }) {
   });
   const me = await ur.json();
   const kakaoId = String(me.id || '');
-  if (!kakaoId) return Response.redirect(`${url.origin}/member/?err=profile`, 302);
+  if (!kakaoId) return Response.redirect(`${url.origin}/login/?err=profile`, 302);
 
   const acc = me.kakao_account || {};
   const nickname = (acc.profile && acc.profile.nickname) || '';
@@ -40,31 +40,32 @@ export async function onRequestGet({ request, env }) {
   const email = (acc.email || '').trim();
   const phone = normPhone(acc.phone_number);
 
-  // 조회→수정(또는 추가)→자동승인 세 번을 한 번의 UPSERT 로 묶는다.
+  // 조회→수정(또는 추가)를 한 번의 UPSERT 로 묶는다.
   // D1 왕복 한 번이 60ms 쯤이라, 로그인처럼 사람이 기다리는 길목에서는 그대로 체감된다.
-  // 새로 들어온 사람은 '대기'로 둔다 — 멤버십(후불)인지 일반 거래처(선불)인지는 관리자가 고른다.
-  // 자동 승인하면 아무나 후불 장부에 올라가고, 나중에 되돌리려면 이미 주문이 쌓여 있다.
+  // 새로 들어온 사람은 '일반'(선불) — 카카오만으로 여기까지다. 바로 /member-general/ 를 쓴다.
+  // 멤버십(후불 장부)은 요청 → 사장이 준 가입코드 → /api/membership/redeem 으로만 올라간다.
+  // 자동 승인하면 아무나 후불 장부에 오르고, 되돌리려 할 때는 이미 주문이 쌓여 있다.
   // 이미 있는 사람의 access·billing_mode 는 건드리지 않는다.
   const NOW = kstISO();
   const up = await env.DB.prepare(
     `INSERT INTO customers (kakao_id, name, email, phone, access, billing_mode, created_at, updated_at)
-     VALUES (?1, ?2, ?3, ?4, '대기', '선불', ?5, ?5)
+     VALUES (?1, ?2, ?3, ?4, '일반', '선불', ?5, ?5)
      ON CONFLICT(kakao_id) DO UPDATE SET
        name  = COALESCE(NULLIF(customers.name,''),  ?2),
        email = COALESCE(NULLIF(customers.email,''), ?3),
        phone = COALESCE(NULLIF(customers.phone,''), ?4),
-       access = COALESCE(NULLIF(customers.access,''), '대기'),
+       access = COALESCE(NULLIF(customers.access,''), '일반'),
        billing_mode = COALESCE(NULLIF(customers.billing_mode,''), '선불'),
        updated_at = ?5
      RETURNING id`
   ).bind(kakaoId, name, email, phone, NOW).first();
   const cid = up && up.id;
-  if (!cid) return Response.redirect(`${url.origin}/member/?err=save`, 302);
+  if (!cid) return Response.redirect(`${url.origin}/login/?err=save`, 302);
 
   const token = await createSession(env, cid);
   return new Response(null, {
     status: 302,
-    headers: { Location: `${url.origin}${next.startsWith('/') ? next : '/member/'}`, 'Set-Cookie': sessionCookie(token) },
+    headers: { Location: `${url.origin}${next.startsWith('/') ? next : '/member-general/'}`, 'Set-Cookie': sessionCookie(token) },
   });
 }
 

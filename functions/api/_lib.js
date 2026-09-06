@@ -196,6 +196,15 @@ export const STATUSES = ['요청접수', '견적발송', '견적승인', '발주
  *   - billing_mode '후불' : 쓴 만큼 쌓아두고 중간정산하는 방식. 이 화면 전체가 그 전제로 짜여 있다.
  * 선불 고객은 여기 들어오지 않는다 — 주문 이력은 선불 전용 페이지에서 본다.
  */
+/* access 값
+ *   '일반'   : 카카오로 바로 가입한 사람. /member-general/ 만 쓴다.
+ *   '승인'   : 사장이 준 가입코드를 넣어 멤버십으로 올라온 사람.
+ *   '거래처' : 계정 없이 서류만 나가는 오프라인 거래처.
+ *   '거절'   : 막은 계정.
+ *   ('대기'  : 옛 값. 지금은 '일반'과 같게 취급한다.) */
+export const ACCESS_GENERAL = '일반';
+export function isBlocked(c)  { return !!(c && c.access === '거절'); }
+export function isGeneral(c)  { return !!(c && !isApproved(c) && !isBlocked(c)); }
 export function isApproved(c) { return !!(c && c.access === '승인'); }
 export function isPostpaid(c) { return !!(c && (c.billing_mode || '선불') === '후불'); }
 export function isMember(c) { return isApproved(c) && isPostpaid(c); }
@@ -207,7 +216,7 @@ export function memberGate(me) {
   if (!isApproved(me)) {
     return json({
       error: 'not_member',
-      message: '주문·정산은 멤버십 회원만 이용할 수 있습니다. 견적 문의로 남겨주시면 연락드리겠습니다.',
+      message: '주문·정산은 멤버십 회원만 이용할 수 있습니다. 멤버십은 요청 후 발급받은 가입코드로 전환됩니다.',
     }, 403);
   }
   if (!isPostpaid(me)) {
@@ -216,6 +225,13 @@ export function memberGate(me) {
       message: '이 화면은 후불(멤버십) 거래처 전용입니다. 선불 거래는 주문 조회 페이지에서 확인해주세요.',
     }, 403);
   }
+  return null;
+}
+
+/** 일반회원 화면(/member-general/) 앞 문지기. 로그인만 되어 있으면 통과한다. */
+export function generalGate(me) {
+  if (!me) return json({ error: 'login_required' }, 401);
+  if (isBlocked(me)) return json({ error: 'blocked', message: '이용이 제한된 계정입니다.' }, 403);
   return null;
 }
 

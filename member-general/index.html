@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>마이페이지 — 실험셋업연구소</title>
+<link rel="canonical" href="https://rndsetup.com/member-general/">
+<link rel="stylesheet" href="/assets/site.css?v=531a690a">
+<style>
+/* 본사이트 헤더·푸터를 그대로 쓴다(#pumplab-header / #pumplab-footer).
+   여기 있는 것은 마이페이지 본문 레이아웃뿐이다. 색은 site.css 의 머크 토큰. */
+.mg-wrap{max-width:1080px;margin:34px auto 88px;padding:0 18px}
+.mg-h1{font-family:"Noto Serif KR",Georgia,serif;font-size:clamp(21px,2.6vw,27px);font-weight:800;color:#1A1A1A;letter-spacing:-.02em}
+.mg-sub{font-size:13.5px;color:#6B7280;margin-top:6px}
+.mg-top{display:flex;align-items:center;gap:16px;border:1px solid #EAEAEA;border-radius:16px;
+  background:#fff;padding:20px 22px;margin:20px 0 22px;flex-wrap:wrap}
+.mg-av{width:48px;height:48px;border-radius:50%;background:var(--merck-soft,#EAF4FB);color:var(--merck,#3B3695);
+  display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;flex:0 0 auto}
+.mg-who b{display:block;font-size:16.5px;font-weight:800;color:#1A1A1A}
+.mg-who small{display:block;font-size:12.5px;color:#8a929c;margin-top:2px}
+.mg-badge{display:inline-block;background:#F2F4F6;color:#4b5563;font-size:11.5px;font-weight:800;
+  border-radius:999px;padding:4px 11px;letter-spacing:.02em;margin-left:8px;vertical-align:2px}
+.mg-top .sp{flex:1}
+.mg-out{background:0;border:1px solid #E2E4E9;border-radius:10px;padding:9px 15px;font-size:13px;
+  font-weight:700;color:#6B7280;cursor:pointer}
+.mg-out:hover{background:#F4F5F7}
+.mg-grid{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:start}
+.mg-menu{border:1px solid #EAEAEA;border-radius:14px;background:#fff;overflow:hidden;position:sticky;top:86px}
+.mg-menu a{display:block;padding:14px 18px;font-size:14.5px;font-weight:700;color:#6B7280;
+  border-bottom:1px solid #F3F4F6;text-decoration:none;cursor:pointer}
+.mg-menu a:last-child{border-bottom:0}
+.mg-menu a.on{color:var(--merck,#3B3695);background:var(--merck-soft,#EAF4FB);font-weight:800;
+  box-shadow:inset 3px 0 0 var(--merck,#3B3695)}
+.mg-menu a:hover{background:#FAFBFC}
+.mg-body{min-width:0}
+.mg-card{border:1px solid #EAEAEA;border-radius:16px;background:#fff;padding:24px 24px 26px}
+.mg-card + .mg-card{margin-top:16px}
+.mg-card h2{font-size:16.5px;font-weight:800;color:#1A1A1A;margin-bottom:4px}
+.mg-card .cdesc{font-size:13px;color:#8a929c;line-height:1.65;margin-bottom:18px}
+.mg-list{list-style:none;margin:0;padding:0}
+.mg-row{border:1px solid #EDEFF2;border-radius:12px;padding:14px 16px;margin-bottom:9px;
+  display:flex;align-items:center;gap:12px;cursor:pointer;background:#fff}
+.mg-row:hover{border-color:#CBD5E1;background:#FCFDFE}
+.mg-row .t{flex:1;min-width:0}
+.mg-row .t b{display:block;font-size:14.5px;font-weight:700;color:#1A1A1A;line-height:1.45}
+.mg-row .t small{display:block;font-size:12px;color:#8a929c;margin-top:3px}
+.mg-row .a{flex:0 0 auto;font-size:14.5px;font-weight:800;color:#1A1A1A;font-variant-numeric:tabular-nums}
+.st{display:inline-block;font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;margin-right:6px;
+  background:#F2F4F6;color:#4b5563;vertical-align:1px}
+.st.go{background:var(--merck-soft,#EAF4FB);color:var(--merck,#3B3695)}
+.st.ok{background:#E9F5EF;color:#1a6e56}
+.st.no{background:#FDF6E9;color:#92400E}
+.mg-empty{padding:44px 16px;text-align:center;font-size:13.5px;color:#9aa3ad;line-height:1.8}
+.mg-empty a{color:var(--merck-link,#0F69AF);font-weight:700;text-decoration:none}
+</style>
+<style>
+.mg-f label{display:block;font-size:12.5px;font-weight:700;color:#4b5563;margin:14px 0 6px}
+.mg-f label.req::after{content:" *";color:#C2410C}
+.mg-f input,.mg-f textarea,.mg-f select{width:100%;border:1px solid #DDE1E6;border-radius:10px;
+  padding:11px 13px;font-size:14px;background:#fff;font-family:inherit}
+.mg-f input:focus,.mg-f textarea:focus{outline:0;border-color:var(--merck,#3B3695)}
+.mg-f input[readonly]{background:#F7F8FA;color:#6B7280}
+.mg-f textarea{min-height:92px;resize:vertical;line-height:1.6}
+.mg-f .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mg-f .hint{font-size:11.5px;color:#9aa3ad;margin-top:5px;line-height:1.6}
+.mg-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:11px;
+  padding:13px 22px;font-size:14.5px;font-weight:800;cursor:pointer;text-decoration:none}
+.mg-btn.pri{background:var(--merck,#3B3695);color:#fff}
+.mg-btn.pri:hover{background:var(--merck-d,#2A2570)}
+.mg-btn.gy{background:#F4F5F7;color:#26313c;border:1px solid #E2E4E9}
+.mg-btn:disabled{opacity:.55;cursor:default}
+.mg-acts{margin-top:20px;display:flex;gap:9px;flex-wrap:wrap}
+.pcwrap{display:none;height:420px;border:1px solid #DDE1E6;border-radius:10px;margin-top:9px;overflow:hidden}
+.addrrow{display:flex;gap:8px}
+.addrrow input{flex:1}
+.chk{display:flex;align-items:center;gap:7px;font-size:13.5px;color:#4b5563;margin-top:14px;font-weight:600}
+.chk input{width:auto}
+.mb-lead{border:1px solid var(--merck-line,#D8E4F2);background:var(--merck-soft,#EAF4FB);border-radius:12px;
+  padding:16px 18px;font-size:13.5px;color:#2f3d4c;line-height:1.75}
+.mb-lead b{color:var(--merck,#3B3695)}
+.mb-step{list-style:none;margin:16px 0 0;padding:0;counter-reset:s}
+.mb-step li{counter-increment:s;position:relative;padding:9px 0 9px 32px;font-size:13.5px;color:#3a4550;line-height:1.65}
+.mb-step li::before{content:counter(s);position:absolute;left:0;top:9px;width:21px;height:21px;border-radius:50%;
+  background:var(--merck,#3B3695);color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.code-in{letter-spacing:.22em;text-transform:uppercase;font-weight:800;font-size:17px;text-align:center}
+.mg-det{border:1px solid #EAEAEA;border-radius:14px;background:#FAFBFC;padding:18px;margin-top:12px}
+.mg-det table{width:100%;border-collapse:collapse;font-size:13px}
+.mg-det th,.mg-det td{padding:9px 6px;border-bottom:1px solid #EDEFF2;text-align:left}
+.mg-det th{font-size:11.5px;color:#8a929c;font-weight:700;white-space:nowrap}
+.mg-det td.r{text-align:right;font-variant-numeric:tabular-nums}
+.mg-det .sum{display:flex;justify-content:flex-end;gap:14px;font-size:14.5px;font-weight:800;padding-top:12px}
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:#1A1A1A;
+  color:#fff;padding:12px 20px;border-radius:11px;font-size:13.5px;font-weight:700;opacity:0;
+  pointer-events:none;transition:.22s;z-index:9999}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:820px){
+  .mg-grid{grid-template-columns:1fr}
+  .mg-menu{position:static;display:flex;overflow-x:auto;border-radius:12px}
+  .mg-menu a{flex:0 0 auto;border-bottom:0;border-right:1px solid #F3F4F6;padding:13px 16px;font-size:13.5px;white-space:nowrap}
+  .mg-menu a.on{box-shadow:inset 0 -3px 0 var(--merck,#3B3695)}
+  .mg-card{padding:20px 17px 22px}
+  .mg-f .two{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="pumplab-header"></div>
+
+<main>
+  <div class="mg-wrap">
+    <h1 class="mg-h1">마이페이지</h1>
+    <p class="mg-sub">주문 내역과 회원 정보를 확인하고 관리합니다.</p>
+
+    <div class="mg-card" id="needLogin" hidden style="text-align:center;padding:52px 22px">
+      <h2>로그인이 필요합니다</h2>
+      <p class="cdesc">카카오로 시작하시면 바로 일반회원으로 이용하실 수 있습니다.</p>
+      <a class="mg-btn pri" href="/api/auth/kakao?next=%2Fmember-general%2F">카카오로 시작하기</a>
+    </div>
+
+    <div id="shell" hidden>
+      <div class="mg-top">
+        <div class="mg-av" id="av">C</div>
+        <div class="mg-who">
+          <b><span id="whoName">—</span> 님<span class="mg-badge">일반회원</span></b>
+          <small id="whoMail"></small>
+        </div>
+        <div class="sp"></div>
+        <button class="mg-out" id="logout">로그아웃</button>
+      </div>
+
+      <div class="mg-grid">
+        <nav class="mg-menu" id="menu">
+          <a data-v="orders" class="on">주문 내역</a>
+          <a data-v="profile">회원정보</a>
+          <a data-v="address">배송지 관리</a>
+          <a data-v="membership">멤버십</a>
+        </nav>
+        <div class="mg-body" id="body"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/brands/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 실험 셋업 블로그·논문 셋업·장비 안내</a></li><li><a href="/brands/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/brands/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/brands/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/product/">제품 통합 카탈로그 — 전기로·펌프·질량유량계(MFC)·전기화학 (삼흥에너지·리드플루이드·Alicat·가오스유니온)</a></li><li><a href="/brands/gaossunion/co2rr-catalyst/">CO₂ 환원(CO₂RR) 촉매·전극 — Ag·Sn·Bi₂O₃·Cu 분말과 GDE 캐소드, IrO₂ 애노드</a></li><li><a href="/brands/hench/pellet-press-yp-15/">Hench YP-15 수동 유압 펠릿 프레스 15T — IR(KBr)·XRD 시료 압편기</a></li><li><a href="/brands/hench/cylindrical-die-hmy-11-14/">Hench HMY 원통형 펠릿 다이 Φ11–14mm — KBr 펠릿·XRD 분말 시료 성형 몰드</a></li><li><a href="/brands/hench/automatic-pellet-press-hap-2s/">Hench HAP-2S 자동 유압 펠릿 프레스 2T — 프로그램 가압·보압·탈형</a></li><li><a href="/brands/hench/isostatic-press-yp-40j/">Hench YP-40J/S 수동 등정압 펠릿 프레스 40T — 등정압 챔버 내압 ≤300MPa</a></li><li><a href="/brands/hench/vacuum-hot-press-vhp-200d/">Hench VHP-200D 진공 자동 열압기 — 진공 챔버 가열·가압 성형</a></li><li><a href="/manuals/">메뉴얼 모음 — 전기로·온도컨트롤러·펌프·MFC 사용 메뉴얼</a></li><li><a href="/guides/">선택 가이드 — 퍼니스·펌프·질량유량계(MFC)·전기화학 장비 고르는 법</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/materials/">소재 — 전기화학 재료·소모품, CO2RR 촉매, 멤브레인, 연마용품</a></li><li><a href="/info/">제품 정보 — 부품·장비 소개, 브랜드별 장비 비교, FAQ·제품상담</a></li><li><a href="/wiki/">배터리 사전 — 공정·재료·전기화학·장비 용어를 위키형으로 설명</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/blog/pump-selection-wizard/">펌프 선택 위저드 — 종류·유량·용도로 고르기</a></li><li><a href="/blog/">블로그 — 논문 셋업·가이드·용어사전·도입 사례 (에너지·소재 공정)</a></li><li><a href="/blog/deposition/">증착 공정 셋업 — CVD·ALD·MOCVD 박막 성장</a></li><li><a href="/blog/heat-treatment/">열처리 공정 셋업 — 하소·소둔·소결·경화·리플로우</a></li><li><a href="/blog/oxidation/">산화·확산 공정 셋업 — 건식/습식 산화·불순물 확산</a></li><li><a href="/blog/sodium-cathode-atmosphere-dca/">소듐 양극재 상순도 합성 — 소성 동적 분위기 제어(DCA) 셋업 (Nature Communications 2025)</a></li><li><a href="/blog/aorfb-flowfield-electrolyte-pump/">레독스흐름전지 전해액 순환 셋업 — 유로 설계 + 연동펌프 140 mL/min (PNAS 2024)</a></li><li><a href="/blog/nickel-hydroxide-coprecipitation-cstr/">배터리 양극재 전구체 공침 셋업 — CSTR + 연동펌프 3채널 정량 공급 (Chem. Eng. Technol. 2023)</a></li><li><a href="/blog/sofc-hcl-syngas/">석탄 합성가스 HCl이 SOFC 성능에 미치는 영향 — 가스 분위기·온도 제어 셋업 (J. Power Sources 2007)</a></li><li><a href="/blog/guide-calcination-furnace-atmosphere/">소성·하소용 튜브퍼니스·가스 분위기 선정 가이드 — 배터리 양극재·세라믹·촉매·분말 소재 공통</a></li><li><a href="/blog/troubleshooting-calcination-batch-variation/">소성 배치마다 결과가 다른 7가지 이유 — 양극재·세라믹·촉매·분말 소재 공통 트러블슈팅</a></li><li><a href="/blog/glossary-heat-gas-terms/">하소 vs 소성 vs 소결, sccm이란 — 열처리·가스 유량 용어사전 (에너지·소재 공정)</a></li><li><a href="/blog/guide-pump-selection-energy-fluids/">전해액·전구체·부식성 유체 펌프 선정 가이드 — 연동 vs 시린지 vs 기어 (에너지·소재 공정)</a></li><li><a href="/blog/glossary-pump-fluid-terms/">mL/min과 rpm, 맥동, 접액부란 — 펌프·유체 용어사전 (에너지·소재 공정)</a></li><li><a href="/blog/si-anode-cvd-carbon-coating/">실리콘 음극 아세틸렌 CVD 탄소 코팅 셋업 — 튜브퍼니스+MFC (Nature Communications 2018)</a></li><li><a href="/blog/electrode-slurry-mixing-thick-cathode/">초후막 양극 슬러리 믹싱·전극 코팅 셋업 — 믹싱 궤적과 굴곡도 (Energy Technology 2023)</a></li><li><a href="/blog/electrode-vacuum-post-drying-moisture/">전극 진공 후건조·잔류 수분 관리 셋업 — 압력 사이클과 노점 (Batteries &amp; Supercaps 2021)</a></li><li><a href="/blog/cuo-nanowire-thermal-oxidation/">구리 열산화 CuO 나노와이어 성장 셋업 — 공기 450℃ (Scientific Reports 2019)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/contact/">문의하기 · 자주 묻는 질문(FAQ) — 견적·수리 A/S·제어 소프트웨어</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js?v=ee3f2241" defer></script>
+
+<script>
+(function(){
+'use strict';
+var $ = function(s){ return document.querySelector(s); };
+var esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+var won = function(n){ return Number(n||0).toLocaleString('ko-KR'); };
+var J = function(u,o){ return fetch(u, Object.assign({credentials:'same-origin'}, o||{}))
+  .then(function(r){ return r.json(); }).catch(function(){ return {}; }); };
+var POST = function(u,d){ return J(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(d)}); };
+
+var me = null, view = 'orders', cache = {}, tt;
+function toast(m){ var t=$('#toast'); t.textContent=m; t.classList.add('on');
+  clearTimeout(tt); tt=setTimeout(function(){ t.classList.remove('on'); }, 2400); }
+
+/* 진행 상태 → 색. 끝난 것과 진행 중인 것을 눈으로 갈라야 목록이 읽힌다. */
+function stCls(s){
+  if (s==='완료'||s==='수령확인') return 'ok';
+  if (s==='취소'||s==='보류'||s==='거절') return 'no';
+  if (s==='요청접수'||s==='접수') return '';
+  return 'go';
+}
+function ymd(s){ return String(s||'').slice(0,10); }
+
+async function viewOrders(){
+  $('#body').innerHTML = '<div class="mg-card"><h2>주문 내역</h2>'
+    + '<p class="cdesc">주문과 견적 문의를 최근 순으로 보여드립니다. 눌러서 품목과 발행 서류를 확인하실 수 있습니다.</p>'
+    + '<div id="olist" class="mg-empty">불러오는 중…</div><div id="odet"></div></div>';
+  var r = cache.orders || (cache.orders = await J('/api/general/orders'));
+  var os = r.orders || [], qs = r.inquiries || [];
+
+  if (!os.length && !qs.length){
+    $('#olist').innerHTML = '아직 주문 내역이 없습니다.<br>'
+      + '<a href="/product/">제품 카탈로그 둘러보기</a> · <a href="/cart/">장바구니에서 견적 문의</a>';
+    return;
+  }
+  var h = '<ul class="mg-list">';
+  os.forEach(function(o){
+    h += '<li class="mg-row" data-o="'+o.id+'"><div class="t">'
+       + '<b><span class="st '+stCls(o.status)+'">'+esc(o.status||'')+'</span>'+esc(o.title||o.order_no||'')+'</b>'
+       + '<small>'+esc(o.order_no||'')+' · '+ymd(o.created_at)+(o.item_count?' · 품목 '+o.item_count+'건':'')+'</small>'
+       + '</div><div class="a">'+(o.total_amount?won(o.total_amount)+'원':'—')+'</div></li>';
+  });
+  qs.forEach(function(q){
+    var n = (q.items||[]).length;
+    h += '<li class="mg-row" data-q="'+q.id+'"><div class="t">'
+       + '<b><span class="st '+stCls(q.status)+'">견적문의 '+esc(q.status||'접수')+'</span>'
+       + esc((q.items&&q.items[0]&&q.items[0].name) || '문의')+(n>1?' 외 '+(n-1)+'건':'')+'</b>'
+       + '<small>'+ymd(q.created_at)+' · 담당자가 확인 후 회신드립니다</small>'
+       + '</div><div class="a">—</div></li>';
+  });
+  $('#olist').innerHTML = h + '</ul>';
+  $('#olist').className = '';
+
+  $('#olist').addEventListener('click', function(e){
+    var row = e.target.closest('.mg-row'); if (!row) return;
+    if (row.dataset.o) openOrder(row.dataset.o);
+    else openInquiry(qs.filter(function(x){ return String(x.id)===row.dataset.q; })[0]);
+  });
+}
+
+async function openOrder(id){
+  var box = $('#odet'); box.innerHTML = '<div class="mg-det">불러오는 중…</div>';
+  var r = await J('/api/general/orders?id='+encodeURIComponent(id));
+  if (!r.order){ box.innerHTML = '<div class="mg-det">주문을 찾을 수 없습니다.</div>'; return; }
+  var o = r.order, it = r.items || [], dc = r.documents || [];
+  var DT = {quote:'견적서',statement:'거래명세서',taxinvoice:'세금계산서'};
+  var rows = it.map(function(i){
+    return '<tr><td>'+esc(i.name||'')+(i.spec?'<br><small style="color:#8a929c">'+esc(i.spec)+'</small>':'')+'</td>'
+         + '<td class="r">'+won(i.qty)+' '+esc(i.unit||'EA')+'</td>'
+         + '<td class="r">'+(i.unit_price?won(i.unit_price)+'원':'—')+'</td></tr>';
+  }).join('');
+  var docs = dc.length ? '<p style="margin-top:14px;font-size:12.5px;color:#8a929c">발행 서류 '
+      + dc.map(function(d){ return esc(DT[d.type]||d.type)+' '+esc(d.doc_no||''); }).join(' · ')
+      + '<br>서류 원본은 등록하신 이메일로 발송됩니다.</p>' : '';
+  box.innerHTML = '<div class="mg-det">'
+    + '<table><thead><tr><th>품목</th><th style="text-align:right">수량</th><th style="text-align:right">단가</th></tr></thead>'
+    + '<tbody>'+(rows||'<tr><td colspan="3">품목 정보가 없습니다.</td></tr>')+'</tbody></table>'
+    + '<div class="sum"><span>합계(VAT 포함)</span><span>'+won(o.total_amount)+'원</span></div>'
+    + (o.ship_address?'<p style="margin-top:12px;font-size:12.5px;color:#6B7280">배송지 '+esc(o.ship_address)+'</p>':'')
+    + docs + '</div>';
+}
+
+function openInquiry(q){
+  if (!q) return;
+  var rows = (q.items||[]).map(function(i){
+    return '<tr><td>'+esc(i.name||'')+(i.spec?'<br><small style="color:#8a929c">'+esc(i.spec)+'</small>':'')+'</td>'
+         + '<td class="r">'+won(i.qty)+'</td></tr>';
+  }).join('');
+  $('#odet').innerHTML = '<div class="mg-det">'
+    + '<table><thead><tr><th>문의 품목</th><th style="text-align:right">수량</th></tr></thead>'
+    + '<tbody>'+(rows||'<tr><td colspan="2">품목 없음</td></tr>')+'</tbody></table>'
+    + (q.note?'<p style="margin-top:12px;font-size:13px;white-space:pre-wrap">'+esc(q.note)+'</p>':'')
+    + '<p style="margin-top:12px;font-size:12.5px;color:#8a929c">회신은 등록하신 이메일 또는 연락처로 드립니다.</p></div>';
+}
+
+function viewProfile(){
+  var c = me || {};
+  $('#body').innerHTML = '<div class="mg-card mg-f"><h2>회원정보</h2>'
+    + '<p class="cdesc">주문·서류가 실제로 오가는 곳입니다. 카카오 계정 메일이 개인 메일이면 업무 이메일을 따로 적어주세요.</p>'
+    + '<div class="two">'
+    +   '<div><label class="req">이름</label><input id="p-name" value="'+esc(c.name||'')+'"></div>'
+    +   '<div><label>연락처</label><input id="p-phone" value="'+esc(c.phone||'')+'" placeholder="010-0000-0000"></div>'
+    + '</div>'
+    + '<label>카카오 계정 이메일</label><input value="'+esc(c.email||'')+'" readonly>'
+    + '<label class="req">업무 이메일</label><input id="p-wmail" value="'+esc(c.work_email||'')+'" placeholder="서류를 받으실 주소">'
+    + '<div class="hint">견적서·거래명세서·세금계산서가 이 주소로 갑니다.</div>'
+    + '<label>소속 (기관 · 연구실 · 회사)</label><input id="p-company" value="'+esc(c.company||'')+'">'
+    + '<h2 style="margin-top:28px">사업자 정보 <span style="font-size:12px;font-weight:600;color:#9aa3ad">(세금계산서가 필요할 때)</span></h2>'
+    + '<div class="two">'
+    +   '<div><label>사업자등록번호</label><input id="p-bizno" value="'+esc(c.biz_no||'')+'" placeholder="000-00-00000"></div>'
+    +   '<div><label>대표자</label><input id="p-ceo" value="'+esc(c.ceo||'')+'"></div>'
+    + '</div>'
+    + '<div class="two">'
+    +   '<div><label>업태</label><input id="p-btype" value="'+esc(c.biz_type||'')+'"></div>'
+    +   '<div><label>종목</label><input id="p-bitem" value="'+esc(c.biz_item||'')+'"></div>'
+    + '</div>'
+    + '<label>계산서 수신 이메일</label><input id="p-tmail" value="'+esc(c.tax_email||'')+'">'
+    + '<label>사업장 주소</label><input id="p-addr" value="'+esc(c.address||'')+'">'
+    + '<div class="mg-acts"><button class="mg-btn pri" id="p-save">저장</button></div></div>';
+
+  $('#p-save').onclick = async function(){
+    var b = {
+      name: $('#p-name').value.trim(), phone: $('#p-phone').value.trim(),
+      work_email: $('#p-wmail').value.trim(), company: $('#p-company').value.trim(),
+      biz_no: $('#p-bizno').value.trim(), ceo: $('#p-ceo').value.trim(),
+      biz_type: $('#p-btype').value.trim(), biz_item: $('#p-bitem').value.trim(),
+      tax_email: $('#p-tmail').value.trim(), address: $('#p-addr').value.trim()
+    };
+    if (!b.name) return alert('이름을 입력해주세요.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.work_email)) return alert('업무 이메일 형식을 확인해주세요.');
+    this.disabled = true; this.textContent = '저장 중…';
+    var r = await POST('/api/auth/me', b);
+    this.disabled = false; this.textContent = '저장';
+    if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
+    me = r.customer; paintWho(); toast('저장되었습니다');
+  };
+}
+
+async function viewAddress(){
+  $('#body').innerHTML = '<div class="mg-card mg-f"><h2>배송지 관리</h2>'
+    + '<p class="cdesc">최대 10곳까지 저장하실 수 있습니다. 기본 배송지는 주문·견적 문의에 먼저 채워집니다.</p>'
+    + '<div id="slist" class="mg-empty">불러오는 중…</div>'
+    + '<div id="sform" hidden>'
+    +   '<label class="req">받는 곳 (소속 · 이름)</label><input id="s-org" placeholder="예) 부산대학교 재료공학과 000연구실">'
+    +   '<label class="req">주소</label>'
+    +   '<div class="addrrow"><input id="s-addr" placeholder="주소 검색을 눌러주세요" readonly>'
+    +     '<button class="mg-btn gy" id="s-find" style="padding:11px 16px;font-size:13.5px">주소 검색</button></div>'
+    +   '<input id="s-post" type="hidden">'
+    +   '<input id="s-detail" placeholder="상세주소 (동·호수, 연구동 등)" style="margin-top:8px">'
+    +   '<div id="s-wrap" class="pcwrap"></div>'
+    +   '<label class="chk"><input type="checkbox" id="s-def" checked> 기본 배송지로 사용</label>'
+    +   '<div class="mg-acts"><button class="mg-btn pri" id="s-go">저장</button>'
+    +     '<button class="mg-btn gy" id="s-cancel">취소</button></div>'
+    + '</div>'
+    + '<div class="mg-acts" id="sadd"><button class="mg-btn gy" id="s-new">＋ 배송지 추가</button></div></div>';
+
+  await paintSites();
+
+  $('#s-new').onclick = function(){ $('#sform').hidden = false; $('#sadd').hidden = true; $('#s-org').focus(); };
+  $('#s-cancel').onclick = function(){ $('#sform').hidden = true; $('#sadd').hidden = false; };
+  $('#s-find').onclick = function(e){ e.preventDefault(); openPostcode(); };
+  $('#s-go').onclick = async function(){
+    var org = $('#s-org').value.trim();
+    if (!org) return alert('받는 곳을 입력해주세요.');
+    if (!$('#s-addr').value.trim()) return alert('주소 검색으로 주소를 선택해주세요.');
+    this.disabled = true; this.textContent = '저장 중…';
+    var r = await POST('/api/general/sites', {
+      org_name: org, address: $('#s-addr').value.trim(), postcode: $('#s-post').value,
+      address_detail: $('#s-detail').value.trim(), is_default: $('#s-def').checked });
+    this.disabled = false; this.textContent = '저장';
+    if (!r.ok) return alert(r.message || '저장하지 못했습니다.');
+    $('#sform').hidden = true; $('#sadd').hidden = false;
+    $('#s-org').value = ''; $('#s-addr').value = ''; $('#s-post').value = ''; $('#s-detail').value = '';
+    cache.sites = null; await paintSites(); toast('배송지가 추가되었습니다');
+  };
+}
+
+async function paintSites(){
+  var r = cache.sites || (cache.sites = await J('/api/general/sites'));
+  var ss = r.sites || [];
+  var box = $('#slist');
+  if (!ss.length){ box.className = 'mg-empty'; box.innerHTML = '저장된 배송지가 없습니다.'; return; }
+  box.className = 'mg-list';
+  box.innerHTML = ss.map(function(s){
+    return '<li class="mg-row" style="cursor:default"><div class="t">'
+      + '<b>'+(s.is_default?'<span class="st go">기본</span>':'')+esc(s.org_name||'')+'</b>'
+      + '<small>'+esc(s.address||'')+'</small></div>'
+      + '<button class="mg-out" data-del="'+s.id+'">삭제</button></li>';
+  }).join('');
+  if (!box.dataset.bound){
+    box.dataset.bound = '1';
+    box.addEventListener('click', async function(e){
+      var b = e.target.closest('[data-del]'); if (!b) return;
+      if (!confirm('이 배송지를 삭제할까요?')) return;
+      await J('/api/general/sites?id='+b.dataset.del, {method:'DELETE'});
+      cache.sites = null; await paintSites(); toast('삭제되었습니다');
+    });
+  }
+}
+
+/* 다음(카카오) 우편번호 서비스 — 열 때 한 번만 불러온다 */
+function loadPostcode(cb){
+  if (window.daum && window.daum.Postcode) return cb();
+  var s = document.createElement('script');
+  s.src = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+  s.onload = cb;
+  s.onerror = function(){ toast('주소 검색을 불러오지 못했습니다'); };
+  document.head.appendChild(s);
+}
+function openPostcode(){
+  var wrap = $('#s-wrap');
+  loadPostcode(function(){
+    wrap.style.display = 'block'; wrap.innerHTML = '';
+    new daum.Postcode({ width:'100%', height:'100%',
+      oncomplete: function(d){
+        var road = d.roadAddress || d.jibunAddress || '', extra = '';
+        if (d.bname && /[동로가]$/.test(d.bname)) extra += d.bname;
+        if (d.buildingName && d.apartment === 'Y') extra += (extra?', ':'') + d.buildingName;
+        if (extra) road += ' (' + extra + ')';
+        $('#s-addr').value = road; $('#s-post').value = d.zonecode || '';
+        wrap.style.display = 'none'; $('#s-detail').focus();
+      },
+      onresize: function(sz){ wrap.style.height = sz.height + 'px'; }
+    }).embed(wrap);
+  });
+}
+
+function viewMembership(){
+  var c = me || {};
+  $('#body').innerHTML = '<div class="mg-card mg-f"><h2>멤버십 회원 전환</h2>'
+    + '<p class="cdesc">멤버십은 정기적으로 거래하시는 연구실 · 기관을 위한 후불 계정입니다.</p>'
+    + '<div class="mb-lead">포사이언스 · 네이버 · 머크 등 <b>여러 곳에서 사는 것을 한 번에</b> 주문하고, '
+    +   '건별 결제 없이 <b>후불로 모아 정산</b>합니다. 주문 · 견적서 · 거래명세서 · 세금계산서가 한 화면에서 이어집니다.</div>'
+    + '<ol class="mb-step">'
+    +   '<li>아래 <b>멤버십 요청하기</b>로 소속과 연락처를 남깁니다.</li>'
+    +   '<li>확인 후 <b>가입코드</b>를 이메일로 보내드립니다.</li>'
+    +   '<li>받으신 코드를 아래에 입력하시면 그 자리에서 멤버십이 열립니다.</li>'
+    + '</ol>'
+    + '<h2 style="margin-top:30px">가입코드 입력</h2>'
+    + '<p class="cdesc">이미 코드를 받으셨다면 여기에 입력해주세요.</p>'
+    + '<input id="m-code" class="code-in" maxlength="12" placeholder="ABCD2345" autocomplete="off">'
+    + '<div class="mg-acts"><button class="mg-btn pri" id="m-go">멤버십 열기</button></div>'
+    + '<h2 style="margin-top:34px">멤버십 요청하기</h2>'
+    + '<p class="cdesc">코드가 없으시면 여기에 남겨주세요. 확인 후 코드를 보내드립니다.</p>'
+    + '<div class="two">'
+    +   '<div><label class="req">성함</label><input id="m-name" value="'+esc(c.name||'')+'"></div>'
+    +   '<div><label>연락처</label><input id="m-phone" value="'+esc(c.phone||'')+'"></div>'
+    + '</div>'
+    + '<label class="req">소속 (기관 · 연구실 · 회사)</label><input id="m-org" value="'+esc(c.company||'')+'">'
+    + '<label class="req">가입코드를 받으실 이메일</label><input id="m-mail" value="'+esc(c.work_email||c.email||'')+'">'
+    + '<label>남기실 말씀</label><textarea id="m-note" placeholder="주로 구매하시는 품목, 예상 거래 규모 등"></textarea>'
+    + '<div class="mg-acts"><button class="mg-btn pri" id="m-req">요청 보내기</button></div></div>';
+
+  $('#m-go').onclick = redeem;
+  $('#m-code').addEventListener('keydown', function(e){ if (e.key === 'Enter') redeem(); });
+  $('#m-req').onclick = async function(){
+    var b = { name:$('#m-name').value.trim(), phone:$('#m-phone').value.trim(),
+              org_name:$('#m-org').value.trim(), email:$('#m-mail').value.trim(),
+              note:$('#m-note').value.trim() };
+    if (!b.name) return alert('성함을 입력해주세요.');
+    if (!b.org_name) return alert('소속을 입력해주세요.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email)) return alert('이메일 형식을 확인해주세요.');
+    this.disabled = true; this.textContent = '보내는 중…';
+    var r = await POST('/api/membership/request', b);
+    this.disabled = false; this.textContent = '요청 보내기';
+    if (!r.ok) return alert(r.message || '요청을 보내지 못했습니다.');
+    alert(r.message || '요청이 접수되었습니다.');
+  };
+}
+
+async function redeem(){
+  var code = $('#m-code').value.trim();
+  if (!code) return $('#m-code').focus();
+  var btn = $('#m-go'); btn.disabled = true; btn.textContent = '확인 중…';
+  var r = await POST('/api/membership/redeem', { code: code });
+  btn.disabled = false; btn.textContent = '멤버십 열기';
+  if (!r.ok) return alert(r.message || '코드를 확인해주세요.');
+  location.href = '/member/';
+}
+
+var VIEWS = { orders:viewOrders, profile:viewProfile, address:viewAddress, membership:viewMembership };
+function go(v, push){
+  if (!VIEWS[v]) v = 'orders';
+  view = v;
+  Array.prototype.forEach.call(document.querySelectorAll('#menu a'), function(a){
+    a.classList.toggle('on', a.dataset.v === v); });
+  if (push !== false) history.replaceState(null, '', '#' + v);
+  VIEWS[v]();
+}
+function paintWho(){
+  var c = me || {};
+  $('#whoName').textContent = c.name || '고객';
+  $('#whoMail').textContent = c.work_email || c.email || '';
+  $('#av').textContent = (c.name || 'C').charAt(0);
+}
+
+(async function init(){
+  var r = await J('/api/auth/me');
+  if (!r || !r.login){ $('#needLogin').hidden = false; return; }
+  // 멤버십(승인·후불)인 사람이 여기 오면 주문·정산 화면으로 보낸다 — 볼 것이 그쪽에 있다
+  if (r.member === true){ location.replace('/member/'); return; }
+  me = r.customer || {};
+  $('#shell').hidden = false;
+  paintWho();
+
+  $('#logout').onclick = function(){
+    J('/api/auth/me', {method:'DELETE'}).then(function(){ location.href = '/'; });
+  };
+  $('#menu').addEventListener('click', function(e){
+    var a = e.target.closest('a[data-v]'); if (!a) return;
+    e.preventDefault(); go(a.dataset.v);
+  });
+  window.addEventListener('hashchange', function(){ go((location.hash||'').slice(1), false); });
+
+  /* 로그인 페이지에서 코드를 넣고 온 경우 — ?code=XXXX 를 물고 돌아온다.
+     주소창에 코드가 남지 않게 즉시 지우고 바로 전환을 시도한다. */
+  var qc = new URLSearchParams(location.search).get('code');
+  if (qc){
+    history.replaceState(null, '', location.pathname + '#membership');
+    go('membership', false);
+    $('#m-code').value = qc.toUpperCase();
+    await redeem();
+    return;
+  }
+  go((location.hash||'').slice(1) || 'orders', false);
+})();
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ import { settlement, ledger } from '../_settle.js';
 
 // '거래처' = 로그인 계정이 아니라 서류 발행용으로만 들고 있는 곳(기존 사이트에서 옮겨온 것).
 // 멤버십 권한은 없다 — isMember() 는 '승인' 만 통과시킨다.
-const ACCESS = ['승인', '대기', '거절', '거래처'];
+const ACCESS = ['승인', '일반', '대기', '거절', '거래처'];   // '대기'는 옛 값(= '일반')
 const safe = (s) => { try { return JSON.parse(s || '[]'); } catch { return []; } };
 
 export async function onRequest({ request, env }) {
@@ -112,7 +112,9 @@ async function get(request, env) {
   // ---------------- 목록 ----------------
   const w = [], bind = [];
   const access = u.get('access');
-  if (access && ACCESS.includes(access)) { w.push('c.access=?'); bind.push(access); }
+  // '일반'을 고르면 옛 값 '대기'도 같이 보여준다 — 같은 뜻이고 데이터에 둘 다 남아 있다
+  if (access === '일반') { w.push("c.access IN ('일반','대기')"); }
+  else if (access && ACCESS.includes(access)) { w.push('c.access=?'); bind.push(access); }
   const mode = u.get('mode');
   if (mode === '후불' || mode === '선불') { w.push('c.billing_mode=?'); bind.push(mode); }
   const q = (u.get('q') || '').trim();
@@ -134,12 +136,12 @@ async function get(request, env) {
             (SELECT COUNT(*) FROM documents d WHERE d.customer_id=c.id) AS docs_n
        FROM customers c LEFT JOIN labs l ON l.id=c.lab_id
        ${where}
-      ORDER BY (c.access='대기') DESC, c.company, c.id LIMIT 300`).bind(...bind).all();
+      ORDER BY (c.access IN ('일반','대기')) DESC, c.company, c.id LIMIT 300`).bind(...bind).all();
 
   const clients = (results || []).map((r) => ({ ...r, due: (r.spent || 0) - (r.paid || 0) }));
   const stats = (await env.DB.prepare(
     `SELECT SUM(CASE WHEN access='승인' THEN 1 ELSE 0 END) AS ok,
-            SUM(CASE WHEN access='대기' THEN 1 ELSE 0 END) AS wait,
+            SUM(CASE WHEN access IN ('일반','대기') THEN 1 ELSE 0 END) AS wait,
             SUM(CASE WHEN access='거절' THEN 1 ELSE 0 END) AS no,
             SUM(CASE WHEN access='거래처' THEN 1 ELSE 0 END) AS client,
             SUM(CASE WHEN billing_mode='후불' THEN 1 ELSE 0 END) AS post,
