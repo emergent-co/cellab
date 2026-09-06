@@ -819,12 +819,12 @@
   "runze": {
    "name_ko": "Runze Fluid",
    "name_en": "Runze Fluid",
-   "pipeline": "_build/products/runze.json → build_product_pages() · 허브는 _ops/runze/gen_hub.py 로 생성(수기 편집 금지)",
+   "pipeline": "_build/products/runze.json → build_product_pages() · 허브는 _ops/runze/gen_hub.py 로 생성(수기 편집 금지) · 표 이관은 _ops/runze/helper23.py + _pcommon.py",
    "page_unit": "model",
    "reference_page": "brands/runze/selector-valve-sv-07/",
    "source": {
     "url": "https://www.runzefluid.com/",
-    "collect": "제조사 사이트 원문 수집. 클라우드·로컬 VM 모두 egress 차단 → Chrome(claude-in-chrome)에서 same-origin fetch. 본문 컨테이너는 .product_detail_content, 제품 사진은 .img_sign_li img(슬러그 파일명, 790x527, furniture 없음). sitemap.xml 에 제품 상세 129건. 사양은 표(94/129) 또는 'Technical Specifications' 불릿(10/129), 나머지 25건은 치수 도면 PDF·카탈로그 PDF 로 보완."
+    "collect": "제조사 사이트 원문 수집. 클라우드·로컬 VM 모두 egress 차단 → Chrome(claude-in-chrome)에서 same-origin fetch. 본문 컨테이너는 .product_detail_content, 제품 사진은 .img_sign_li img(슬러그 파일명, 790x527, furniture 없음). sitemap.xml 에 제품 상세 129건. 사양은 표(94/129) 또는 'Technical Specifications' 불릿(10/129), 나머지 25건은 치수 도면 PDF·카탈로그 PDF 로 보완. 2차 수집(연동/시린지 34종)은 본문 텍스트가 거의 없고 상세 이미지에 사양표가 들어 있어, tesseract OCR(_ops/runze/ocr23.py)로 275장을 텍스트화해 사양을 옮겼다."
    },
    "pricing": "제조사가 전 제품 가격 비공개. 파일럿은 buybox [] 견적 전용. 판매가는 overseas-pricing 으로 별도 산정.",
    "pitfalls": [
@@ -835,7 +835,11 @@
     "프리토크 피팅 토크 단위가 제조사 표기 'N/m' — 토크 단위 N·m 로 옮기고 variants.note 에 명시했다.",
     "빌드 REQ_SPEC 린터는 <th> 를 24자까지만 읽는다 — required_specs 로 쓸 라벨은 영문 병기를 포함해 24자 이하로, 마침표·하이픈 없이 적는다.",
     "families 매칭은 슬러그 부분일치라 순서가 중요하다 — 'adapter'/'tooling' 이 fitting 으로 잡히므로 accessory 를 정확 슬러그 목록으로 맨 앞에 둔다.",
-    "슬러그 peristaltic-pump-sy-09 는 실제로 시린지 펌프 SY-09 다 — 등재 슬러그를 syringe-pump-sy-09 로 바꿨다. families 매칭 순서상 syringe-pump 를 peristaltic-pump 앞에 둔다."
+    "슬러그 peristaltic-pump-sy-09 는 실제로 시린지 펌프 SY-09 다 — 등재 슬러그를 syringe-pump-sy-09 로 바꿨다. families 매칭 순서상 syringe-pump 를 peristaltic-pump 앞에 둔다.",
+    "Chrome 다운로드는 탭당 1회다 — 배치마다 새 탭을 열고 navigate 후 스크립트를 다시 정의한다. javascript_tool 은 45초 CDP 타임아웃이 있어 await 로 끝까지 기다리면 실패로 보인다: 작업을 window.__ST 로 진행률만 남기고 fire-and-forget 으로 던진 뒤 폴링한다.",
+    "본문에 사양표가 없는 페이지(시린지 SY-09S, DLK-10, BJ-RZ01B, ZL 계열 등)는 상세 이미지가 유일한 출처다 — pytesseract --psm 6 으로 OCR 해서 옮기고, 표가 아닌 사진은 캡션만 단다.",
+    "제조사 HTML 표와 신형 브로슈어 이미지가 서로 다른 값을 말하는 경우가 있다(SY-08 중량·전원, SY-09 치수, ZL-RZ01B 유량 145 vs 152, 롤러 PPS vs POM) — HTML 표를 본문 사양으로 쓰고 브로슈어 차이는 variants.note 에 남긴다.",
+    "슬러그가 제품과 어긋난 페이지가 있다 — peristaltic-pump-sy-09 는 시린지 펌프 SY-09, peristaltic-pump-price 는 SR400 탁상형 연동펌프다. 등재 슬러그를 syringe-pump-sy-09 / sr400-peristaltic-pump 로 바로잡았다."
    ],
    "default_required_specs": [],
    "families": {

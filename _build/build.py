@@ -1078,6 +1078,103 @@ def build_prices():
 
 # 전 제품 통합 카탈로그 — brands/<brand>/index.html 의 dscard를 수집해 brands/index.html에 정적 주입.
 # 갱신 1곳 원칙: 브랜드 허브에 카드를 추가하면 빌드만으로 통합 카탈로그에 자동 반영된다.
+# 통합 카탈로그에 일부러 안 싣는 상세페이지. 여기 없는 페이지가 카드를 못 가지면
+# 린터 NOT_IN_CATALOG 가 빌드를 세운다 — 올려놓고 검색에서 안 나오는 사고를 막는다.
+# ── 검색 동의어 사전 (SSOT) ────────────────────────────────────────────
+# 헤더 검색(search-index.json)과 통합 카탈로그(data-k) 가 **같은 사전**을 본다.
+# 예전에는 SYN_GROUPS(74) 와 SEARCH_SYN(40) 두 벌이 따로 놀아서, 한쪽에서만
+# 나오는 말이 생겼다. 새 동의어는 여기에만 넣는다.
+# 규칙: 그 제품군에서만 쓰는 말만 넣는다. 한 낱말로 쪼개도 뜻이 유지되는 말만 넣는다.
+#       일반어를 넣으면 낱말 단위로 쪼개질 때 엉뚱한 카드를 오염시킨다.
+_SEARCH_SYN = [
+    ['머플로', '박스퍼니스', '박스로', '박스전기로', '박스 전기로', '머플 퍼니스', '머플전기로', 'muffle', '마플로', '마이플로'],
+    ['진공전기로', '진공 전기로', '진공로', '진공 퍼니스', '진공 머플로', '진공머플로', 'vacuum muffle', 'vacuum furnace', '진공 소성'],
+    ['유리탄소', 'glassy carbon', '글라시카본', '글래시카본', '유리질 탄소', 'gc'],
+    ['질량유량계', '유량제어기', '유량 제어기', '유량컨트롤러', 'mfc', 'mass flow', '매스플로우', '메스플로우', 'mass flow controller'],
+    ['기어펌프', '기어 펌프', 'gear pump', '마이크로기어', '마이크로기어펌프'],
+    ['회전증발기', '로터리증발기', '로타리증발기', '로타리 증발기', '감압농축', 'rotary evaporator', '로터리 증발기', '감압농축기', '에바포레이터', '회전증발농축기', 'evaporator'],
+    ['회전로', '회전튜브로', '로터리킬른', '로타리킬른', 'rotary kiln', '로터리 퍼니스'],
+    ['펠릿 프레스', '펠릿프레스', '압편기', '분말성형기', '분말 성형기', '타블렛 프레스', '타정기', '정제성형기', 'pellet press', 'tablet press'],
+    ['kbr', '브롬화칼륨', 'ir 펠릿', '적외 시료', 'ftir', 'ft-ir', '적외분광', '적외선분광'],
+    ['핫프레스', '열간프레스', '가열프레스', 'hot press', '열압', '열압기', '가열 프레스'],
+    ['진공열압', '진공핫프레스', 'vacuum hot press', '진공 가열가압', '진공 열압', '진공열압기'],
+    ['크림퍼', '실링기', '밀봉기', '코인셀 실링', 'crimper', 'sealer', '전지 밀봉'],
+    ['슬라이서', '펀칭', '타발', '디스크커터', '전극 커터', 'slicer', 'puncher', '전극 슬라이서', '전극 펀칭', '타발기', 'electrode cutter'],
+    ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic', '아이소스태틱'],
+    ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'yg-15', 'yt15', 'wc'],
+    ['형광분석', 'xrf', 'x선형광', '엑스선형광', '형광 압편'],
+    ['글로브박스', '글러브박스', 'glovebox', 'glove box', '수분 차단 작업'],
+    ['로터리밸브', '스위치밸브', '셀렉터밸브', 'selector valve', 'rotary valve', '유로 전환'],
+    ['스팀제너레이터', '증기발생기', 'steam generator'],
+    ['전고체', '전고체전지', 'solid-state', 'solid state', 'all-solid-state', '고체전해질'],
+    ['코인셀', '버튼셀', 'coin cell', 'button cell', '2032', '2032형', 'cr2032', 'cr2016'],
+    ['인시츄', '인시추', '인시투', 'in-situ', 'in situ', 'insitu', '오퍼란도', 'operando', '실시간 관찰'],
+    ['덴드라이트', 'dendrite', '수지상', '수지상정'],
+    ['이차전지', '배터리', 'battery', '리튬이온', 'li-ion', '전지'],
+    ['전해셀', '전해조', '전기화학 셀', 'electrochemical cell'],
+    ['수전해', '물분해', 'water splitting', 'electrolysis', '전기분해'],
+    ['펠릿 다이', '펠릿다이', '압편 금형', '성형 몰드', '펠릿 몰드', 'pellet die'],
+    ['퍼니스', '전기로', '소성로', '열처리로', '소결로', '하소로', 'furnace', '튜브퍼니스', '관상로', '어닐링로', '어닐링', 'annealing', '하소', '튜브전기로', '튜브 전기로', 'tube furnace'],
+    ['튜브퍼니스', '관상로', '튜브 퍼니스', 'tube furnace'],
+    ['건조기', '오븐', '드라이오븐', 'oven'],
+    ['진공건조기', '진공오븐', '진공 건조'],
+    ['열풍건조기', '열풍 오븐', '강제순환 건조기', '컨벡션 오븐'],
+    ['항온수조', '워터배스', '항온조'],
+    ['칠러', '냉각순환수조', '저온순환수조', 'chiller'],
+    ['인큐베이터', '배양기', 'incubator'],
+    ['진탕배양기', '쉐이킹 인큐베이터', '셰이킹 인큐베이터', '진탕 배양'],
+    ['오토클레이브', '멸균기', 'autoclave', '고압증기멸균'],
+    ['흄후드', '퓸후드', 'fume hood', '배기 후드', '국소배기'],
+    ['클린벤치', '무균작업대', 'BSC', '무균 벤치'],
+    ['교반기', '스터러', 'stirrer'],
+    ['오버헤드 교반기', '임펠러 교반기', 'overhead stirrer'],
+    ['마그네틱 교반기', '자석 교반기', 'magnetic stirrer'],
+    ['핫플레이트', '가열교반기', 'hotplate'],
+    ['볼밀', '분쇄기', '밀링', '그라인더', 'ball mill'],
+    ['호모게나이저', '균질기', 'homogenizer'],
+    ['로터리베인', '유회전 펌프', '오일 진공펌프'],
+    ['다이어프램 펌프', '다이아프램 펌프', '무오일 펌프', '오일프리 펌프'],
+    ['연동펌프', '페리스탈틱펌프', '튜빙펌프', '호스펌프', '정량펌프', 'peristaltic', '페리스탈틱'],
+    ['시린지펌프', '주사기펌프', '실린지펌프', 'syringe'],
+    ['압력컨트롤러', '배압레귤레이터', 'bpr', '압력제어', '배압조절기', '압력조절기', '백프레셔', 'back pressure', '배압'],
+    ['전자저울', '분석저울', '정밀저울', '실험실 저울', 'balance'],
+    ['수분측정기', '수분계', '수분 분석'],
+    ['초음파세척기', '소니케이터', 'sonicator'],
+    ['원심분리기', 'centrifuge'],
+    ['기준전극', 'reference electrode', '레퍼런스 전극'],
+    ['상대전극', 'counter electrode', '백금전극', '카운터 전극'],
+    ['작업전극', 'working electrode', '유리탄소전극', '워킹 전극'],
+    ['이온교환막', '나피온', '멤브레인', 'nafion'],
+    ['카본페이퍼', '가스확산층', 'gdl', '카본펠트'],
+    ['전극 홀더', '전극 클램프'],
+    ['전극 연마', '연마 패드', '알루미나 분말'],
+    ['전기화학', 'electrochemical', 'echem'],
+    ['회전전극', 'rde', 'rrde', '회전원판전극', '회전링원판전극'],
+    ['사파이어', 'sapphire'],
+    ['석영', '쿼츠', 'quartz', 'fused silica', '용융석영'],
+    ['라만', 'raman'],
+    ['현미경', 'microscope', '광학관찰'],
+    ['runze', '룬제', '런제', 'runzefluid', '룬즈'],
+    ['dodochem', '두두켐', '두두캠', '도도켐'],
+    ['alicat', '알리캣', '알리캇', '앨리캣'],
+    ['동결건조', '동결건조기', '프리즈드라이', 'freeze dry', 'lyophilizer', '냉동건조'],
+    ['하프셀', 'half cell', '반쪽셀', '반셀'],
+    ['풀셀', 'full cell', '완전셀'],
+    ['celgard', '셀가드', '셀가드분리막'],
+    ['super p', '슈퍼피', 'superp', '카본블랙', 'carbon black'],
+    ['케첸블랙', 'ketjen', 'ketjenblack', '케첸'],
+    ['실린지밸브', '시린지밸브', 'syringe valve', '주사기밸브'],
+    ['마그네틱바', '마그네틱 바', '자석바', 'stir bar', '교반자'],
+    ['cmc', '카복시메틸셀룰로스', '카르복시메틸셀룰로오스'],
+    ['인시츄셀', '인시추셀', 'in-situ cell', 'insitu cell'],
+]
+
+
+ALLPROD_SKIP = {
+    '/brands/sh-scientific/rotary-tube-furnace/':     '연속식 회전킬른 RKG600/900 과 같은 제품군 — 구 모델명 페이지',
+    '/brands/sh-scientific/rotary-tube-furnace-pro/': '연속식 회전킬른 RKG600/900 과 같은 제품군 — 구 모델명 페이지',
+}
+
 ALLPROD_BRANDS = [
     ('sh-scientific', '삼흥에너지', ''),
     ('leadfluid', '리드플루이드', 'pump'),
@@ -1427,84 +1524,7 @@ def build_all_products():
     ]
 
     # 검색 동의어 그룹 — 그룹 내 단어가 하나라도 있으면 나머지도 data-k에 추가 (검색 리콜 확대)
-    SYN_GROUPS = [
-        ['머플로', '박스퍼니스', '박스로', '박스전기로', '박스 전기로', '머플 퍼니스', '머플전기로', 'muffle'],
-        ['진공전기로', '진공 전기로', '진공로', '진공 퍼니스', '진공 머플로', '진공머플로', 'vacuum muffle', 'vacuum furnace', '진공 소성'],
-        ['유리탄소', 'glassy carbon', '글라시카본', '글래시카본', '유리질 탄소'],
-        ['질량유량계', '유량제어기', '유량 제어기', '유량컨트롤러', 'mfc', 'mass flow', '매스플로우', '메스플로우'],
-        ['기어펌프', '기어 펌프', 'gear pump', '마이크로기어'],
-        ['회전증발기', '로터리증발기', '로타리증발기', '로타리 증발기', '감압농축', 'rotary evaporator'],
-        ['회전로', '회전튜브로', '로터리킬른', '로타리킬른', 'rotary kiln', '로터리 퍼니스'],
-        ['펠릿 프레스', '펠릿프레스', '압편기', '분말성형기', '분말 성형기', '타블렛 프레스', '타정기', '정제성형기', 'pellet press', 'tablet press'],
-        ['kbr', '브롬화칼륨', 'ir 펠릿', '적외 시료', 'ftir', 'ft-ir', '적외분광', '적외선분광'],
-        ['핫프레스', '열간프레스', '가열프레스', 'hot press', '열압', '열압기'],
-        ['진공열압', '진공핫프레스', 'vacuum hot press', '진공 가열가압'],
-        ['크림퍼', '실링기', '밀봉기', '코인셀 실링', 'crimper', 'sealer', '전지 밀봉'],
-        ['슬라이서', '펀칭', '타발', '디스크커터', '전극 커터', 'slicer', 'puncher'],
-        ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic', '아이소스태틱'],
-        ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'yg-15', 'yt15'],
-        ['형광분석', 'xrf', 'x선형광', '엑스선형광', '형광 압편'],
-        ['글로브박스', '글러브박스', 'glovebox', 'glove box', '수분 차단 작업'],
-        ['로터리밸브', '스위치밸브', '셀렉터밸브', 'selector valve', 'rotary valve', '유로 전환'],
-        ['로터리 증발기', '회전증발기', '감압농축기', 'rotary evaporator', '에바포레이터'],
-        ['스팀제너레이터', '증기발생기', 'steam generator'],
-        # 전기화학·전지 계열 — build_search_index()의 SEARCH_SYN 과 같은 축을 카탈로그 검색에도 적용한다.
-        ['전고체', '전고체전지', 'solid-state', 'solid state', 'all-solid-state', '고체전해질'],
-        ['코인셀', '버튼셀', 'coin cell', 'button cell', '2032', '2032형', 'cr2032', 'cr2016'],
-        ['인시츄', '인시추', '인시투', 'in-situ', 'in situ', 'insitu', '오퍼란도', 'operando'],
-        ['덴드라이트', 'dendrite', '수지상', '수지상정'],
-        ['이차전지', '배터리', 'battery', '리튬이온', 'li-ion', '전지'],
-        ['전해셀', '전해조', '전기화학 셀', 'electrochemical cell'],
-        ['수전해', '물분해', 'water splitting', 'electrolysis', '전기분해'],
-        # 시료 전처리(압편) 계열
-        ['펠릿 다이', '펠릿다이', '압편 금형', '성형 몰드', '펠릿 몰드', 'pellet die'],
-        ['펠릿 프레스', '압편기', '분말성형기', 'pellet press', 'tablet press'],
-        ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic'],
-        ['가열 프레스', '열간프레스', 'hot press', '열압기'],
-        ['진공 열압', 'vacuum hot press', '진공열압기'],
-        ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'wc'],
-        ['형광분석', 'xrf', 'x선형광', '엑스선형광'],
-        ['글로브박스', '글러브박스', 'glovebox', 'glove box'],
-        ['전극 슬라이서', '전극 펀칭', '타발기', '디스크커터', 'electrode cutter', 'slicer'],
-        ['퍼니스', '전기로', '소성로', '열처리로', '소결로', '하소로', 'furnace'],
-        ['튜브퍼니스', '관상로', '튜브 퍼니스', 'tube furnace'],
-        ['머플로', '박스퍼니스', '박스로', '머플 퍼니스'],
-        ['건조기', '오븐', '드라이오븐', 'oven'],
-        ['진공건조기', '진공오븐', '진공 건조'],
-        ['열풍건조기', '열풍 오븐', '강제순환 건조기', '컨벡션 오븐'],
-        ['항온수조', '워터배스', '항온조'],
-        ['칠러', '냉각순환수조', '저온순환수조', 'chiller'],
-        ['인큐베이터', '배양기', 'incubator'],
-        ['진탕배양기', '쉐이킹 인큐베이터', '셰이킹 인큐베이터', '진탕 배양'],
-        ['오토클레이브', '멸균기', 'autoclave', '고압증기멸균'],
-        ['흄후드', '퓸후드', 'fume hood', '배기 후드', '국소배기'],
-        ['클린벤치', '무균작업대', 'BSC', '무균 벤치'],
-        ['교반기', '스터러', 'stirrer'],
-        ['오버헤드 교반기', '임펠러 교반기', 'overhead stirrer'],
-        ['마그네틱 교반기', '자석 교반기', 'magnetic stirrer'],
-        ['핫플레이트', '가열교반기', 'hotplate'],
-        ['볼밀', '분쇄기', '밀링', '그라인더', 'ball mill'],
-        ['호모게나이저', '균질기', 'homogenizer'],
-        ['회전증발농축기', '로터리증발기', '에바포레이터', 'evaporator', '감압농축'],
-        ['로터리베인', '유회전 펌프', '오일 진공펌프'],
-        ['다이어프램 펌프', '다이아프램 펌프', '무오일 펌프', '오일프리 펌프'],
-        ['연동펌프', '페리스탈틱펌프', '튜빙펌프', '호스펌프', '정량펌프', 'peristaltic'],
-        ['시린지펌프', '주사기펌프', '실린지펌프', 'syringe'],
-        ['기어펌프', '마이크로기어펌프'],
-        ['질량유량계', 'mfc', '유량컨트롤러', '매스플로우', 'mass flow'],
-        ['압력컨트롤러', '배압레귤레이터', 'bpr', '압력제어'],
-        ['전자저울', '분석저울', '정밀저울', '실험실 저울', 'balance'],
-        ['수분측정기', '수분계', '수분 분석'],
-        ['초음파세척기', '소니케이터', 'sonicator'],
-        ['원심분리기', 'centrifuge'],
-        ['기준전극', 'reference electrode'],
-        ['상대전극', 'counter electrode', '백금전극'],
-        ['작업전극', 'working electrode', '유리탄소전극'],
-        ['이온교환막', '나피온', '멤브레인', 'nafion'],
-        ['카본페이퍼', '가스확산층', 'gdl', '카본펠트'],
-        ['전극 홀더', '전극 클램프'],
-        ['전극 연마', '연마 패드', '알루미나 분말'],
-    ]
+    SYN_GROUPS = _SEARCH_SYN          # 통합 사전 — 카탈로그·헤더가 같은 것을 본다
 
 
     # ---- SQL(SSOT) 가격 폴백: 상세페이지에 가격이 없는 카드용 ----
@@ -1617,8 +1637,7 @@ def build_all_products():
                 continue
             href = a.group(1)
             title = clean(a.group(2))
-            # 카탈로그 제외 목록 — 중복 카드 (연속식 회전킬른 RKG600/900과 동일 제품군, 구 모델명 페이지)
-            if href in ('/brands/sh-scientific/rotary-tube-furnace/', '/brands/sh-scientific/rotary-tube-furnace-pro/'):
+            if href.rstrip('/') + '/' in ALLPROD_SKIP:
                 continue
             img = re.search(r'<img src="([^"]+)"[^>]*alt="([^"]*)"', block)
             src = img.group(1) if img else ''
@@ -2540,11 +2559,24 @@ def inject_source_line():
         print('  자료 출처 한 줄: 신규 %d개 · 갱신 %d개' % (made, upd))
 
 
+def _catalog_urls():
+    """통합 카탈로그(product/index.html)에 카드가 실린 상세페이지 URL 집합."""
+    p = os.path.join(ROOT_DIR, 'product', 'index.html')
+    if not os.path.isfile(p):
+        return None
+    try:
+        seg = read(p).split('<!--ALLPROD_START-->')[1].split('<!--ALLPROD_END-->')[0]
+    except IndexError:
+        return None
+    return {u.rstrip('/') + '/' for u in re.findall(r'href="(/brands/[^"]+)"', seg)}
+
+
 def lint_detail_pages():
     root = os.path.join(ROOT_DIR, 'brands')
     if not os.path.isdir(root):
         return
     profiles = _brand_profiles()
+    cat_urls = _catalog_urls()
     warns, checked = [], 0
     for brand in sorted(os.listdir(root)):
         bdir = os.path.join(root, brand)
@@ -2658,6 +2690,15 @@ def lint_detail_pages():
             if not re.search(r'자료 출처|출처 —|spec-src|카탈로그[^<]{0,12}원문', body):
                 warns.append((rel, 'NO_SOURCE',
                               '제조사 원문 출처 표기가 없다 — 어디서 가져온 값인지 페이지에 남길 것'))
+
+            # 2-7) 통합 카탈로그에 카드가 없다 = /product/ 검색에서 안 나온다
+            #      카드는 브랜드 허브의 <article class="dscard"> 에서 수집된다.
+            #      상세페이지만 만들고 허브에 카드를 안 넣으면 고객이 제품을 못 찾는다.
+            if cat_urls is not None and ('/' + rel) not in cat_urls \
+                    and ('/' + rel) not in ALLPROD_SKIP:
+                warns.append((rel, 'NOT_IN_CATALOG',
+                              '통합 카탈로그(/product/)에 카드가 없다 — 검색으로 찾을 수 없다. '
+                              'brands/%s/index.html 에 <article class="dscard"> 를 추가할 것' % brand))
 
             # 3) 금지 색상
             low = body.lower()
@@ -2884,48 +2925,7 @@ def build_search_index():
                  'node_modules', 'img', 'assets', 'out', '.wrangler'}
     # 검색 동의어 — 한 그룹의 말이 페이지에 하나라도 있으면 나머지 말을 색인에 덧붙인다.
     # 사이트 표기가 'in-situ'인데 사람은 '인시츄'로 찾는 문제를 한 곳에서 해결한다.
-    SEARCH_SYN = [
-        ['머플로', '박스퍼니스', '박스로', '박스전기로', '박스 전기로', '머플 퍼니스', '머플전기로', 'muffle'],
-        ['진공전기로', '진공 전기로', '진공로', '진공 퍼니스', '진공 머플로', '진공머플로', 'vacuum muffle', 'vacuum furnace', '진공 소성'],
-        ['유리탄소', 'glassy carbon', '글라시카본', '글래시카본', '유리질 탄소'],
-        ['질량유량계', '유량제어기', '유량 제어기', '유량컨트롤러', 'mfc', 'mass flow', '매스플로우', '메스플로우'],
-        ['기어펌프', '기어 펌프', 'gear pump', '마이크로기어'],
-        ['회전증발기', '로터리증발기', '로타리증발기', '로타리 증발기', '감압농축', 'rotary evaporator'],
-        ['회전로', '회전튜브로', '로터리킬른', '로타리킬른', 'rotary kiln', '로터리 퍼니스'],
-        ['펠릿 프레스', '펠릿프레스', '압편기', '분말성형기', '분말 성형기', '타블렛 프레스', '타정기', '정제성형기', 'pellet press', 'tablet press'],
-        ['kbr', '브롬화칼륨', 'ir 펠릿', '적외 시료', 'ftir', 'ft-ir', '적외분광', '적외선분광'],
-        ['핫프레스', '열간프레스', '가열프레스', 'hot press', '열압', '열압기'],
-        ['진공열압', '진공핫프레스', 'vacuum hot press', '진공 가열가압'],
-        ['크림퍼', '실링기', '밀봉기', '코인셀 실링', 'crimper', 'sealer', '전지 밀봉'],
-        ['슬라이서', '펀칭', '타발', '디스크커터', '전극 커터', 'slicer', 'puncher'],
-        ['등정압', '등방압', '냉간등방압', 'cip', 'isostatic', '아이소스태틱'],
-        ['초경합금', '초경', '텅스텐카바이드', 'tungsten carbide', 'yg-15', 'yt15'],
-        ['형광분석', 'xrf', 'x선형광', '엑스선형광', '형광 압편'],
-        ['글로브박스', '글러브박스', 'glovebox', 'glove box', '수분 차단 작업'],
-        ['로터리밸브', '스위치밸브', '셀렉터밸브', 'selector valve', 'rotary valve', '유로 전환'],
-        ['로터리 증발기', '회전증발기', '감압농축기', 'rotary evaporator', '에바포레이터'],
-        ['스팀제너레이터', '증기발생기', 'steam generator'],
-        ['인시츄', '인시추', '인시투', 'in-situ', 'in situ', 'insitu', '오퍼란도', 'operando', '실시간 관찰'],
-        ['덴드라이트', 'dendrite', '수지상', '수지상정'],
-        ['전기화학', 'electrochemical', 'echem'],
-        ['기준전극', 'reference electrode', '레퍼런스 전극'],
-        ['상대전극', 'counter electrode', '카운터 전극'],
-        ['작업전극', 'working electrode', '워킹 전극'],
-        ['회전전극', 'rde', 'rrde', '회전원판전극', '회전링원판전극'],
-        ['유리탄소', 'gc', 'glassy carbon', '글라시카본', '글래시카본'],
-        ['전해셀', '전해조', '전기화학 셀', 'electrochemical cell'],
-        ['코인셀', 'coin cell', '2032', '2032형'],
-        ['수전해', '물분해', 'water splitting', 'electrolysis', '전기분해'],
-        ['이차전지', '배터리', 'battery', '리튬이온', 'li-ion'],
-        ['전고체', 'solid-state', 'solid state', '고체전해질'],
-        ['퍼니스', '전기로', '튜브퍼니스', '관상로', 'furnace'],
-        ['질량유량계', 'mfc', 'mass flow controller', '유량제어기'],
-        ['연동펌프', '페리스탈틱', 'peristaltic', '정량펌프'],
-        ['사파이어', 'sapphire'],
-        ['석영', '쿼츠', 'quartz', 'fused silica', '용융석영'],
-        ['라만', 'raman'],
-        ['현미경', 'microscope', '광학관찰'],
-    ]
+    SEARCH_SYN = _SEARCH_SYN          # 통합 사전 (모듈 최상단 한 곳)
 
     def syn_expand(text):
         low = text.lower()

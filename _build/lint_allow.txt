@@ -50,3 +50,18 @@ brands/hench/hot-pellet-press-hzt-800fg/ REQ_SPEC
 brands/hench/hot-pellet-press-vh-25t/ REQ_SPEC          # 글로브박스형: 제어 방식·무게 미공개
 brands/hench/hot-pellet-press-yph-800a/ REQ_SPEC
 brands/hench/hot-pellet-press-yph-800eg/ REQ_SPEC
+
+# 통합 카탈로그에 카드가 없어 /product/ 검색에서 안 나오는 페이지 (2026-09-06 린터 신설로 발견).
+# brands/<brand>/index.html 에 <article class="dscard"> 를 추가하면 자동으로 카드가 생기고
+# 이 줄을 지운다. CVD 6종은 삼흥 전용 대화창이 등재 작업 중이다.
+brands/alicat/controller/ NOT_IN_CATALOG
+brands/sh-scientific/cvd-1200-300mm/ NOT_IN_CATALOG
+brands/sh-scientific/cvd-1200-3zone/ NOT_IN_CATALOG
+brands/sh-scientific/cvd-1200-600mm/ NOT_IN_CATALOG
+brands/sh-scientific/cvd-1500/ NOT_IN_CATALOG
+brands/sh-scientific/cvd-1700/ NOT_IN_CATALOG
+brands/sh-scientific/cvd-1800/ NOT_IN_CATALOG
+brands/sh-scientific/elevator-1700/ NOT_IN_CATALOG
+brands/sh-scientific/muffle-1200-quartz/ NOT_IN_CATALOG
+brands/sh-scientific/rotary-kiln-1500-2zone/ NOT_IN_CATALOG
+brands/sh-scientific/rotary-kiln-1500-3zone/ NOT_IN_CATALOG
