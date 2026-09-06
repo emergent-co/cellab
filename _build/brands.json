@@ -834,7 +834,8 @@
     "원본 사진이 790x507(3:2)이라 1200x900(4:3) 캔버스에 모서리 평균색 배경으로 얹어 정규화한다(피팅·튜빙은 배경이 파랑이라 흰색으로 채우면 어색하다).",
     "프리토크 피팅 토크 단위가 제조사 표기 'N/m' — 토크 단위 N·m 로 옮기고 variants.note 에 명시했다.",
     "빌드 REQ_SPEC 린터는 <th> 를 24자까지만 읽는다 — required_specs 로 쓸 라벨은 영문 병기를 포함해 24자 이하로, 마침표·하이픈 없이 적는다.",
-    "families 매칭은 슬러그 부분일치라 순서가 중요하다 — 'adapter'/'tooling' 이 fitting 으로 잡히므로 accessory 를 정확 슬러그 목록으로 맨 앞에 둔다."
+    "families 매칭은 슬러그 부분일치라 순서가 중요하다 — 'adapter'/'tooling' 이 fitting 으로 잡히므로 accessory 를 정확 슬러그 목록으로 맨 앞에 둔다.",
+    "슬러그 peristaltic-pump-sy-09 는 실제로 시린지 펌프 SY-09 다 — 등재 슬러그를 syringe-pump-sy-09 로 바꿨다. families 매칭 순서상 syringe-pump 를 peristaltic-pump 앞에 둔다."
    ],
    "default_required_specs": [],
    "families": {
@@ -877,14 +878,26 @@
     "syringe-pump": {
      "match": [
       "syringe-pump",
-      "piston-pump"
+      "piston-pump",
+      "dlk-10"
      ],
      "required_specs": [
-      "정격 스트로크 (Rated stroke)",
-      "통신 속도 (Baud rate)",
-      "전원 (Power supply)",
       "습부 재질 (Wetted material)"
      ]
+    },
+    "peristaltic-pump": {
+     "match": [
+      "peristaltic",
+      "pump-head",
+      "bj-rz",
+      "zl-ws",
+      "zlys",
+      "ts600",
+      "lm40b",
+      "lm80c",
+      "12v-"
+     ],
+     "required_specs": []
     },
     "fitting": {
      "match": [

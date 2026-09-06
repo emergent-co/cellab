@@ -19668,6 +19668,1719 @@
     "url": "https://www.runzefluid.com/products/dlk-10-syringe-pump.html",
     "label": "Runze Fluid 제품 페이지"
    }
+  },
+  {
+   "slug": "precision-dispense-piston-pump",
+   "name": "정밀 분주 피스톤 펌프 RP-01",
+   "name_en": "Runze Fluid RP-01 Precision Dispense Piston Pump",
+   "sub": "6 mL · 단공 / 이중공 밸브헤드 · 엔코더 · 드라이버 · 솔레노이드 밸브 조합 9종 · 세라믹 습부",
+   "category": "시린지 펌프 · 마이크로 플런저 펌프",
+   "title": "Runze Fluid 정밀 분주 피스톤 펌프 RP-01 — 6 mL 세라믹 밸브헤드 정량 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid RP-01 정밀 분주 피스톤 펌프 — 6 mL, 분해능 0.005 mm / 1.5707 µL, 최대 500 rpm, 압력 0.075-0.2 MPa, 습부 PC·세라믹·PTFE, 단공/이중공 밸브헤드와 엔코더·드라이버·솔레노이드 밸브 조합 9종. 가격 문의.",
+   "images": [
+    "precision-dispense-piston-pump-1.jpg",
+    "precision-dispense-piston-pump-2.jpg",
+    "precision-dispense-piston-pump-3.jpg",
+    "precision-dispense-piston-pump-4.jpg",
+    "precision-dispense-piston-pump-5.jpg",
+    "precision-dispense-piston-pump-6.jpg",
+    "precision-dispense-piston-pump-7.jpg"
+   ],
+   "image_alt": "Runze Fluid 정밀 분주 피스톤 펌프 RP-01",
+   "answer": "RP-01은 6 mL 정량을 1.5707 µL 단위로 밀어내는 피스톤 펌프로, 단공·이중공 밸브헤드에 엔코더·드라이버·솔레노이드 밸브를 붙이고 빼는 조합 9종으로 장비 사양에 맞춰 고릅니다.",
+   "features": [
+    "용량 <b>6 mL</b>, 분해능 <b>0.005 mm / 1.5707 µL</b>, 반복 정밀도 0.3~0.7%(스트로크 100%)",
+    "최대 <b>500 rpm</b>, 정격 스트로크 주행 2.292 s ~ 1146 s",
+    "밸브헤드 <b>단공(single hole) · 이중공(double hole)</b> 선택",
+    "습부는 <b>PC · 세라믹 · PTFE</b>, 연결부는 1/4-28 UNF 암나사입니다",
+    "압력 <b>0.075 ~ 0.2 MPa</b> — 저압 정량 분주 구간입니다",
+    "<b>엔코더 · 드라이버 · 솔레노이드 밸브</b> 를 넣고 빼는 조합으로 총 9개 모델이 있습니다",
+    "35 스텝모터(1.8°, 홀딩 토크 350 mN·m) 구동, DC24V / 1.5A · 15 W · 보증 1년(제조사 표기)"
+   ],
+   "specs": [
+    [
+     "습부 재질 (Wetted material)",
+     "PC · 세라믹 · PTFE"
+    ],
+    [
+     "용량 (Volume)",
+     "6 mL"
+    ],
+    [
+     "분해능 (Resolution)",
+     "0.005 mm / 1.5707 µL"
+    ],
+    [
+     "반복 정밀도 (Repeatability)",
+     "0.3 ~ 0.7% (스트로크 100%)"
+    ],
+    [
+     "최대 속도 (Max speed)",
+     "500 rpm"
+    ],
+    [
+     "주행 시간 (Running time)",
+     "2.292 s ~ 1146 s (정격 스트로크)"
+    ],
+    [
+     "압력 (Pressure)",
+     "0.075 ~ 0.2 MPa"
+    ],
+    [
+     "밸브헤드 (Valve head)",
+     "단공 · 이중공 (밸브 포함)"
+    ],
+    [
+     "연결부 (Connection)",
+     "1/4-28 UNF 암나사"
+    ],
+    [
+     "모터 (Motor)",
+     "35 스텝모터 · 스텝 각도 1.8°"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V / 1.5A · 15 W"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "5 ~ 55℃"
+    ],
+    [
+     "보증 (Warranty)",
+     "1년 (제조사 표기)"
+    ],
+    [
+     "커스터마이즈 (Customization)",
+     "OEM 대응"
+    ]
+   ],
+   "variants": {
+    "heading": "모델 구성 9종 (Model)",
+    "head": [
+     "모델",
+     "밸브헤드",
+     "용량",
+     "드라이버",
+     "엔코더",
+     "솔레노이드 밸브"
+    ],
+    "rows": [
+     [
+      "ZSB-RP01-LS-1.8-1-6-2",
+      "이중공",
+      "6 mL",
+      "−",
+      "−",
+      "−"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-F-2",
+      "이중공",
+      "6 mL",
+      "−",
+      "−",
+      "○"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-M-2",
+      "이중공",
+      "6 mL",
+      "−",
+      "○",
+      "−"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-M-F-2",
+      "이중공",
+      "6 mL",
+      "−",
+      "○",
+      "○"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-M-Q-2",
+      "이중공",
+      "6 mL",
+      "○",
+      "○",
+      "−"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-M-Q-F-2",
+      "이중공",
+      "6 mL",
+      "○",
+      "○",
+      "○"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-1",
+      "단공",
+      "6 mL",
+      "−",
+      "−",
+      "−"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-M-1",
+      "단공",
+      "6 mL",
+      "−",
+      "○",
+      "−"
+     ],
+     [
+      "ZSB-RP01-LS-1.8-1-6-M-Q-1",
+      "단공",
+      "6 mL",
+      "○",
+      "○",
+      "−"
+     ]
+    ],
+    "note": "코드 끝자리 1 은 단공 밸브, 2 는 이중공 밸브를 뜻합니다. M 은 엔코더, Q 는 드라이버, F 는 솔레노이드 밸브 포함을 뜻하며 단공 구성에는 솔레노이드 밸브가 들어가지 않습니다."
+   },
+   "buybox": [],
+   "related": "유체 연결: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/stepper-motor-syringe-pump/\">스텝모터 플런저 펌프 RPM-01</a> · <a href=\"/brands/runze/rp42-industrial-micro-syringe-pump/\">산업용 마이크로 플런저 펌프 RP42</a> · <a href=\"https://www.runzefluid.com/uploads/file/rp-01-piston-pump.pdf\" rel=\"nofollow\">RP-01 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/rp-01-piston-pump-v1-1.pdf\" rel=\"nofollow\">RP-01 매뉴얼 V1.1 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=_eMEbl_F3Kc\" rel=\"nofollow\">RP-01 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#피스톤펌프",
+     "/product/"
+    ],
+    [
+     "#정밀분주",
+     "/product/"
+    ],
+    [
+     "#의료분석장비",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 번호 체계 (Model number)",
+     "html": "<p>주문 코드는 <b>ZSB-RP01-LS-1.8-1-6-□-□</b> 형태입니다. <b>1.8</b> 은 스텝 각도, <b>1</b> 은 리드 1 mm, <b>6</b> 은 6 mL 용량, 그 다음이 옵션(M 엔코더 · Q 드라이버 · F 솔레노이드 밸브), 마지막이 채널(1 단공 · 2 이중공)입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/precision-dispense-piston-pump-d1.jpg\" alt=\"모델 번호 구성 — 스텝 각도 · 리드 · 용량 · 엔코더/드라이버/솔레노이드 밸브 · 채널\" loading=\"lazy\"><figcaption>모델 번호 구성 — 스텝 각도 · 리드 · 용량 · 엔코더/드라이버/솔레노이드 밸브 · 채널</figcaption></figure></div>"
+    },
+    {
+     "h": "드라이버 포트 핀 배열 (Driver port)",
+     "html": "<p>H · L 이 CANH · CANL, A · B 가 RS485A · RS485B, GND · RXD · TXD 가 RS232, − · + 가 DC24V 입니다. 반대편은 A+/A− · B+/B− 모터 상 배선, IO1(NC), IO2 · IO3 엔코더 A/B상, IO4 포토커플러, +5V, PE, GND 입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/precision-dispense-piston-pump-d2.jpg\" alt=\"드라이버 포트 배치 — RS232 · 전원 · 표시등\" loading=\"lazy\"><figcaption>드라이버 포트 배치 — RS232 · 전원 · 표시등</figcaption></figure></div>"
+    },
+    {
+     "h": "전기 사양 (Electrical parameters)",
+     "html": "<p><b>35 스텝모터</b> — 최대 출력 10.8 W, 스텝 각도 1.8°, 정격 전압 3.6 V, 정격 전류 1.5 A, 홀딩 토크 350 mN·m, 저항 2.4 Ω ±0.24 Ω, 인덕턴스 3.6 mH, 구동 토크 12 mN·m, 회전 관성 43 g·cm², 절연 100 Ω MIN, 최고 온도 80℃, 절연 등급 B. 출력 전류는 모터 정격 전류를 넘기지 않아야 합니다.</p><p><b>솔레노이드 밸브</b> — 동작 전압 24V ±10%, 기동 전류 154 mA, 정상 전류 42 mA, 기동 소비전력 3.7 W, 정상 소비전력 1 W 미만, 허용 누설 전류 4 mA, 절연 저항 100 MΩ MIN, 적색 LED 표시등, 서지 흡수 다이오드 내장.</p>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<p>단채널·L형 이중채널·솔레노이드 이중공 구성별로 치수가 다르며 마운팅 홀은 2-3.5 입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/precision-dispense-piston-pump-d3.jpg\" alt=\"구성별 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>구성별 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/precision-dispense-piston-pump-d4.jpg\" alt=\"구성별 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>구성별 외형 치수 도면 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/precision-dispense-piston-pump-d5.jpg\" alt=\"구성별 외형 치수 도면 (제조사 자료)\" loading=\"lazy\"><figcaption>구성별 외형 치수 도면 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>미생물 검출 (Micro biology detection)</li><li>의료 분석 시스템 (Medical analysis)</li><li>마이크로리터~밀리리터 정량 분주</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "모델",
+     "q": "RP-01은 모델이 왜 아홉 개인가요?",
+     "a": "밸브헤드가 단공·이중공 두 가지이고, 여기에 엔코더(M)·드라이버(Q)·솔레노이드 밸브(F)를 넣고 빼는 조합이 붙기 때문입니다. 단공 구성에는 솔레노이드 밸브가 들어가지 않습니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "1 스텝에 얼마나 나오나요?",
+     "a": "0.005 mm 이동에 1.5707 µL입니다. 반복 정밀도는 스트로크 100% 기준 0.3~0.7%입니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 얼마인가요?",
+     "a": "0.075~0.2 MPa입니다. 저압 정량 분주용이라 고압 라인에는 맞지 않습니다."
+    },
+    {
+     "tag": "재질",
+     "q": "습부 재질은 무엇인가요?",
+     "a": "PC, 세라믹, PTFE입니다. 연결부는 1/4-28 UNF 암나사입니다."
+    },
+    {
+     "tag": "모터",
+     "q": "모터 사양은 어떻게 되나요?",
+     "a": "35 스텝모터로 스텝 각도 1.8°, 정격 3.6 V / 1.5 A, 홀딩 토크 350 mN·m, 구동 토크 12 mN·m입니다."
+    },
+    {
+     "tag": "엔코더",
+     "q": "엔코더는 꼭 필요한가요?",
+     "a": "위치 되먹임이 필요 없는 단순 반복 분주라면 없는 구성으로도 됩니다. 탈조 감시나 위치 확인이 필요하면 M이 붙은 구성을 고릅니다."
+    },
+    {
+     "tag": "보증",
+     "q": "보증 기간은 얼마인가요?",
+     "a": "제조사 표기 기준 1년입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 정밀 분주 피스톤 펌프 RP-01",
+    "sku": "RP-01",
+    "category": "시린지 펌프 · 마이크로 플런저 펌프",
+    "description": "6 mL 정밀 분주 피스톤 펌프. 분해능 0.005 mm/1.5707 µL, 최대 500 rpm, 0.075-0.2 MPa, 습부 PC·세라믹·PTFE, 단공/이중공 밸브헤드에 엔코더·드라이버·솔레노이드 밸브 조합 9종.",
+    "models": [
+     "RP-01"
+    ],
+    "count": 9
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/precision-dispense-piston-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "miniature-peristaltic-pump",
+   "name": "미니어처 연동펌프 헤드 RZ1030-4",
+   "name_en": "Runze Fluid RZ1030-4 Miniature Peristaltic Pump Head",
+   "sub": "POM 4롤러 · ABS 헤드 · 0-500 rpm · 0-170 mL/min · 퀵 튜브 장착 · 58 g",
+   "category": "연동펌프 · 펌프헤드",
+   "title": "Runze Fluid 미니어처 연동펌프 헤드 RZ1030-4 — 0-170 mL/min 소형 펌프헤드 | 실험셋업연구소",
+   "desc": "Runze Fluid RZ1030-4 미니어처 연동펌프 헤드 — POM 4롤러, ABS 엔지니어링 플라스틱 헤드, 0-500 rpm, 유량 0-170 mL/min, 튜브 ID 0.64-3.0 mm, 2 bar, 57×65×23 mm · 58 g. 스텝모터·DC모터 호환. 가격 문의.",
+   "images": [
+    "miniature-peristaltic-pump-1.jpg",
+    "miniature-peristaltic-pump-2.jpg",
+    "miniature-peristaltic-pump-3.jpg",
+    "miniature-peristaltic-pump-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 미니어처 연동펌프 헤드 RZ1030-4",
+   "answer": "RZ1030-4는 POM 4롤러에 ABS 헤드를 쓴 58 g짜리 미니어처 연동펌프 헤드로, 스텝모터나 DC모터에 직접 물려 0-170 mL/min 구간을 다루는 장비 내장용 헤드입니다.",
+   "features": [
+    "롤러 <b>POM 4롤러</b>, 헤드 <b>ABS 엔지니어링 플라스틱</b> — 검정색",
+    "<b>퀵 튜브 장착(Fast tubing)</b> — 공구 없이 튜브를 갈아 끼웁니다",
+    "<b>스텝모터 · DC모터</b> 어느 쪽에도 물릴 수 있고 회전수 0-500 rpm 입니다",
+    "유량 <b>0 ~ 170 mL/min</b>, 튜브 ID 0.64-3.0 mm · 두께 0.8-1.0 mm · 외경 5 mm 이하",
+    "압력 정격 <b>최대 2 bar(30 psi)</b>, 흡입 양정 5 m · 토출 양정 8 m",
+    "치수 <b>57 × 65 × 23 mm</b>, 58 g — 4-M3 마운팅 홀",
+    "습부는 튜브 내면뿐이라 <b>강산·강염기·유기용매·입자 포함 액체</b> 도 튜브만 맞으면 이송합니다"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0 ~ 170 mL/min"
+    ],
+    [
+     "모델 (Model No.)",
+     "RZ1030-4"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "POM 4롤러"
+    ],
+    [
+     "헤드 재질 (Pump head)",
+     "ABS 엔지니어링 플라스틱"
+    ],
+    [
+     "퀵 튜브 (Fast tubing)",
+     "지원"
+    ],
+    [
+     "호환 모터 (Motor)",
+     "스텝모터 · DC모터"
+    ],
+    [
+     "회전수 (Motor speed)",
+     "0 ~ 500 rpm"
+    ],
+    [
+     "튜브 규격 (Tubing size)",
+     "ID 0.64-3.0 mm · WT 0.8-1.0 mm · OD ≤5 mm"
+    ],
+    [
+     "튜브 수명 (Tubing life)",
+     "실리콘 ≥200 h · BPT 고무 ≥1000 h"
+    ],
+    [
+     "압력 정격 (Pressure)",
+     "최대 2 bar (30 psi)"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0-40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "소음 (Max noise)",
+     "65 dB"
+    ],
+    [
+     "흡입 · 양정 (Suction · Head)",
+     "흡입 5 m · 양정 8 m"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "57 × 65 × 23 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "58 g"
+    ]
+   ],
+   "variants": {
+    "heading": "적용 연동펌프 튜브 (Peristaltic tubing)",
+    "head": [
+     "재질 (Material)",
+     "특성 (Features)",
+     "수명 (Service life)"
+    ],
+    "rows": [
+     [
+      "실리콘 (Silicone)",
+      "식품 등급 · 유연성 높음 · 사용 온도 −4℃ ~ +180℃ · 비부식성 액체용",
+      "≥200 h"
+     ],
+     [
+      "PharMed BPT",
+      "Saint-Gobain · FDA 규격 · 사용 온도 −51℃ ~ +132℃ · 약산·약염기 대응",
+      "≥1000 h"
+     ],
+     [
+      "Viton",
+      "MasterFlex · FDA 규격 · 사용 온도 −20℃ ~ +260℃ · 강산·강염기 대응",
+      "≥1000 h"
+     ]
+    ],
+    "note": "튜브 수명은 상온 20℃·무가압 조건에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 매질·회전수·사용 환경에 따라 달라지며 회전수가 낮고 액성이 순할수록 길어집니다. 정량 정밀도를 유지하려면 튜브를 주기적으로 교체합니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/mini-peristaltic-pump/\">미니 연동펌프 BJ-RZ1030</a> · <a href=\"/brands/runze/12v-peristaltic-pump/\">12V 연동펌프 ZL12-RZ1030</a> · <a href=\"https://www.youtube.com/watch?v=WSRScBa2Oy4\" rel=\"nofollow\">RZ1030-4 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#펌프헤드",
+     "/product/"
+    ],
+    [
+     "#소형연동펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "연동펌프의 작동 원리",
+     "html": "<p>미니 연동펌프는 저압 펌프로 일반 사용 압력이 0.7 MPa를 넘지 않습니다(대형 호스펌프는 1 MPa 이상). 롤러가 탄성 튜브를 번갈아 누르고 놓으면 튜브 안에 음압이 생기면서 액체가 밀려 나갑니다. 손가락 두 개로 호스를 집어 훑는 것과 같은 동작입니다. 입자가 든 액체는 물론 강산·강염기·강한 유기용매도 튜브 재질만 맞으면 이송할 수 있습니다.</p>"
+    },
+    {
+     "h": "연동펌프의 장점",
+     "html": "<ol><li><b>무오염</b> — 액체가 튜브 내면에만 닿고 펌프 본체에는 닿지 않습니다</li><li><b>정밀도</b> — 반복 정밀도와 안정도가 높습니다</li><li><b>낮은 전단력</b> — 전단에 민감한 액체와 부식성 액체 이송에 적합합니다</li><li><b>기밀성</b> — 자흡력이 좋고 공회전이 가능하며 역류를 막습니다</li><li><b>간단한 유지보수</b> — 밸브와 실링이 없습니다</li><li><b>낮은 가격</b> — 헤드 디스크를 플라스틱으로 만들어 원가를 낮췄습니다</li></ol>"
+    },
+    {
+     "h": "유지보수 · 주의 사항",
+     "html": "<p>연동펌프는 드라이버 · 펌프헤드 · 튜브 세 부분으로 나뉩니다. 이 중 <b>튜브가 소모품</b> 이라 주기적으로 갈아야 하고, 드라이버와 펌프헤드는 무보수 부품이라 건조하게 유지하고 청소만 하면 됩니다.</p><p>펌프헤드가 상하는 경우는 대체로 세 가지입니다. 첫째 설계 회전수를 넘겨 돌린 경우, 둘째 높은 곳에서 떨어뜨려 헤드가 변형·파손된 경우, 셋째 튜브가 새서 액체가 롤러와 주축 베어링으로 들어가 베어링을 망가뜨린 경우입니다.</p>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/miniature-peristaltic-pump-d4.jpg\" alt=\"RZ1030-4 외형 치수와 4-M3 마운팅 홀\" loading=\"lazy\"><figcaption>RZ1030-4 외형 치수와 4-M3 마운팅 홀</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/miniature-peristaltic-pump-d1.jpg\" alt=\"RZ1030-4 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>RZ1030-4 펌프헤드 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/miniature-peristaltic-pump-d2.jpg\" alt=\"RZ1030-4 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>RZ1030-4 펌프헤드 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/miniature-peristaltic-pump-d3.jpg\" alt=\"RZ1030-4 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>RZ1030-4 펌프헤드 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "유량",
+     "q": "RZ1030-4는 유량이 얼마나 나오나요?",
+     "a": "0~170 mL/min입니다. 튜브 내경과 회전수에 따라 달라지며 최대 회전수는 500 rpm입니다."
+    },
+    {
+     "tag": "모터",
+     "q": "모터는 따로 준비해야 하나요?",
+     "a": "펌프헤드 단품이라 모터는 따로 물립니다. 스텝모터와 DC모터 모두 호환됩니다. 완제품이 필요하면 BJ-RZ1030(스텝모터)이나 ZL12-RZ1030(DC모터) 구성을 봅니다."
+    },
+    {
+     "tag": "튜브",
+     "q": "어떤 튜브를 쓰나요?",
+     "a": "내경 0.64~3.0 mm, 두께 0.8~1.0 mm, 외경 5 mm 이하입니다. 실리콘·PharMed BPT·Viton 중에서 액성에 맞춰 고릅니다."
+    },
+    {
+     "tag": "수명",
+     "q": "튜브는 얼마나 쓰나요?",
+     "a": "실리콘 200시간 이상, PharMed BPT와 Viton은 1000시간 이상입니다. 상온 무가압 순수 기준이라 실제 조건에서는 달라집니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력은 얼마까지 견디나요?",
+     "a": "최대 2 bar(30 psi)입니다. 흡입 양정 5 m, 토출 양정 8 m입니다."
+    },
+    {
+     "tag": "설치",
+     "q": "크기와 고정 방법은?",
+     "a": "57 × 65 × 23 mm에 58 g이고 4-M3 마운팅 홀로 고정합니다."
+    },
+    {
+     "tag": "오염",
+     "q": "액체가 펌프 안쪽에 닿나요?",
+     "a": "닿지 않습니다. 액체는 튜브 내면에만 접촉하므로 시료 오염이 없고 밸브·실링도 없습니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 미니어처 연동펌프 헤드 RZ1030-4",
+    "sku": "RZ1030-4",
+    "category": "연동펌프 · 펌프헤드",
+    "description": "POM 4롤러 미니어처 연동펌프 헤드. 0-500 rpm, 0-170 mL/min, 튜브 ID 0.64-3.0 mm, 최대 2 bar, 57×65×23 mm, 58 g, 스텝모터·DC모터 호환.",
+    "models": [
+     "RZ1030-4"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/miniature-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "12v-peristaltic-pump",
+   "name": "12V 연동펌프 ZL12-RZ1030-4",
+   "name_en": "Runze Fluid ZL12/ZL24-RZ1030-4-300R 12V Peristaltic Pump",
+   "sub": "12V / 24V DC 모터 일체형 · 300 rpm · 0-120 mL/min · POM 4롤러 · 255 g",
+   "category": "연동펌프 · DC모터 일체형",
+   "title": "Runze Fluid 12V 연동펌프 ZL12-RZ1030-4 — DC모터 일체형 소형 연동펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid 12V 연동펌프 ZL12/ZL24-RZ1030-4-300R — 12V/24V DC 모터 일체형, 300 rpm, 유량 0-120 mL/min, POM 4롤러, 튜브 ID 0.64-3.0 mm, 최대 2 bar, 90×57×65 mm · 255 g. 가격 문의.",
+   "images": [
+    "12v-peristaltic-pump-1.jpg",
+    "12v-peristaltic-pump-2.jpg",
+    "12v-peristaltic-pump-3.jpg",
+    "12v-peristaltic-pump-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 12V 연동펌프 ZL12-RZ1030-4",
+   "answer": "ZL12/ZL24-RZ1030-4-300R은 RZ1030-4 헤드에 12V 또는 24V DC 모터를 붙인 일체형 소형 연동펌프로, 전원만 넣으면 바로 도는 저가·저맥동 정량 이송용입니다.",
+   "features": [
+    "<b>12V / 24V DC 모터</b> 일체형 — 전원을 넣으면 바로 돕니다",
+    "회전수 <b>300 rpm</b> 고정, 유량 <b>0 ~ 120 mL/min</b>",
+    "정격 전류 0.15 A, 정격 출력 <b>1.8 W(12V) / 3.6 W(24V)</b>, 최대 15 W",
+    "롤러 <b>POM 4롤러</b>, 헤드 ABS 엔지니어링 플라스틱",
+    "튜브 ID 0.64-3.0 mm · 두께 0.8-1.0 mm · 외경 5 mm 이하, 압력 정격 최대 2 bar(30 psi)",
+    "흡입 양정 5 m · 토출 양정 8 m, 소음 65 dB",
+    "치수 <b>90 × 57 × 65 mm</b>, 255 g — 4-Ø4.1 마운팅 홀"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0 ~ 120 mL/min"
+    ],
+    [
+     "모델 (Model No.)",
+     "ZL12-RZ1030-4-300R · ZL24-RZ1030-4-300R"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "POM 4롤러"
+    ],
+    [
+     "헤드 재질 (Pump head)",
+     "ABS 엔지니어링 플라스틱"
+    ],
+    [
+     "모터 (Motor type)",
+     "12V / 24V DC 모터"
+    ],
+    [
+     "회전수 (Motor speed)",
+     "300 rpm"
+    ],
+    [
+     "정격 전류 (Rated current)",
+     "0.15 A"
+    ],
+    [
+     "정격 출력 (Rated power)",
+     "1.8 W (12V) · 3.6 W (24V) · 최대 15 W"
+    ],
+    [
+     "튜브 규격 (Tubing size)",
+     "ID 0.64-3.0 mm · WT 0.8-1.0 mm · OD ≤5 mm"
+    ],
+    [
+     "튜브 수명 (Tubing life)",
+     "실리콘 ≥200 h · BPT 고무 ≥1000 h"
+    ],
+    [
+     "압력 정격 (Pressure)",
+     "최대 2 bar (30 psi)"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0-40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "소음 (Max noise)",
+     "65 dB"
+    ],
+    [
+     "흡입 · 양정 (Suction · Head)",
+     "흡입 5 m · 양정 8 m"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "90 × 57 × 65 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "255 g"
+    ]
+   ],
+   "variants": {
+    "heading": "튜브 규격별 최대 유량 (mL/min · 300 rpm)",
+    "head": [
+     "튜브",
+     "ID×WT (mm)",
+     "ZL12-RZ1030-4-300R",
+     "ZL24-RZ1030-4-300R"
+    ],
+    "rows": [
+     [
+      "고무 튜브",
+      "0.64 × 0.8",
+      "6",
+      "10"
+     ],
+     [
+      "고무 튜브",
+      "0.76 × 0.8",
+      "9",
+      "13"
+     ],
+     [
+      "고무 튜브",
+      "0.89 × 0.8",
+      "10",
+      "16"
+     ],
+     [
+      "고무 튜브",
+      "1.02 × 0.8",
+      "13",
+      "22"
+     ],
+     [
+      "고무 튜브",
+      "1.14 × 0.8",
+      "14",
+      "24"
+     ],
+     [
+      "고무 튜브",
+      "1.30 × 0.8",
+      "22",
+      "32"
+     ],
+     [
+      "고무 튜브",
+      "1.42 × 0.8",
+      "28",
+      "36"
+     ],
+     [
+      "고무 튜브",
+      "1.52 × 0.8",
+      "31",
+      "41"
+     ],
+     [
+      "고무 튜브",
+      "1.65 × 0.8",
+      "37",
+      "46"
+     ],
+     [
+      "고무 튜브",
+      "1.85 × 0.8",
+      "46",
+      "54"
+     ],
+     [
+      "고무 튜브",
+      "2.06 × 0.8",
+      "55",
+      "67"
+     ],
+     [
+      "고무 튜브",
+      "2.29 × 0.8",
+      "58",
+      "96"
+     ],
+     [
+      "고무 튜브",
+      "2.54 × 0.8",
+      "95",
+      "112"
+     ],
+     [
+      "고무 튜브",
+      "2.79 × 0.8",
+      "105",
+      "125"
+     ],
+     [
+      "실리콘 튜브",
+      "1 × 1",
+      "15",
+      "23"
+     ],
+     [
+      "실리콘 튜브",
+      "2 × 1",
+      "47",
+      "86"
+     ],
+     [
+      "실리콘 튜브",
+      "3 × 1",
+      "122",
+      "140"
+     ]
+    ],
+    "note": "상온 상압에서 순수를 이송해 잰 값입니다. 매질과 사용 환경에 따라 실제 유량은 달라집니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/miniature-peristaltic-pump/\">미니어처 연동펌프 헤드 RZ1030-4</a> · <a href=\"/brands/runze/mini-peristaltic-pump/\">미니 연동펌프 BJ-RZ1030</a> · <a href=\"https://www.youtube.com/watch?v=_2QP7HLIT60\" rel=\"nofollow\">12V 연동펌프 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#12V연동펌프",
+     "/product/"
+    ],
+    [
+     "#DC모터펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "적용 튜브 (Peristaltic tubing)",
+     "html": "<p>실리콘 · PharMed BPT · Viton 세 가지를 액성에 맞춰 고릅니다.</p><ul><li><b>실리콘</b> — 식품 등급 · −4℃ ~ +180℃ · 비부식성 액체 · 수명 200시간 이상</li><li><b>PharMed BPT</b> — Saint-Gobain · FDA 규격 · −51℃ ~ +132℃ · 약산·약염기 · 1000시간 이상</li><li><b>Viton</b> — MasterFlex · FDA 규격 · −20℃ ~ +260℃ · 강산·강염기 · 1000시간 이상</li></ul>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/12v-peristaltic-pump-d4.jpg\" alt=\"ZL12/ZL24-RZ1030-4 외형 치수와 4-Ø4.1 마운팅 홀\" loading=\"lazy\"><figcaption>ZL12/ZL24-RZ1030-4 외형 치수와 4-Ø4.1 마운팅 홀</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/12v-peristaltic-pump-d1.jpg\" alt=\"12V 연동펌프 (제조사 자료)\" loading=\"lazy\"><figcaption>12V 연동펌프 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/12v-peristaltic-pump-d2.jpg\" alt=\"12V 연동펌프 (제조사 자료)\" loading=\"lazy\"><figcaption>12V 연동펌프 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/12v-peristaltic-pump-d3.jpg\" alt=\"12V 연동펌프 (제조사 자료)\" loading=\"lazy\"><figcaption>12V 연동펌프 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "전압",
+     "q": "12V와 24V 중 어느 쪽을 골라야 하나요?",
+     "a": "같은 튜브에서 24V 모델이 유량이 더 많이 나옵니다. 예를 들어 실리콘 3×1 튜브에서 12V는 122 mL/min, 24V는 140 mL/min입니다. 장비 전원에 맞춰 고르면 됩니다."
+    },
+    {
+     "tag": "유량",
+     "q": "유량은 어떻게 조절하나요?",
+     "a": "이 모델은 300 rpm 고정이라 튜브 규격으로 유량을 정합니다. 속도 조절이 필요하면 스텝모터 구성인 BJ-RZ1030이나 컨트롤러가 붙은 LM 시리즈를 봅니다."
+    },
+    {
+     "tag": "튜브",
+     "q": "어떤 튜브를 쓸 수 있나요?",
+     "a": "내경 0.64~3.0 mm, 두께 0.8~1.0 mm, 외경 5 mm 이하입니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력은 얼마까지 되나요?",
+     "a": "최대 2 bar(30 psi)이고 흡입 양정 5 m, 토출 양정 8 m입니다."
+    },
+    {
+     "tag": "소비전력",
+     "q": "소비전력은 얼마인가요?",
+     "a": "정격 1.8 W(12V) 또는 3.6 W(24V), 정격 전류 0.15 A입니다. 최대 15 W입니다."
+    },
+    {
+     "tag": "설치",
+     "q": "크기와 고정 방법은?",
+     "a": "90 × 57 × 65 mm, 255 g이고 4-Ø4.1 마운팅 홀로 고정합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 12V 연동펌프 ZL12-RZ1030-4",
+    "sku": "ZL12-RZ1030-4-300R",
+    "category": "연동펌프 · DC모터 일체형",
+    "description": "12V/24V DC 모터 일체형 소형 연동펌프. 300 rpm, 0-120 mL/min, POM 4롤러, 튜브 ID 0.64-3.0 mm, 최대 2 bar, 90×57×65 mm, 255 g.",
+    "models": [
+     "ZL12-RZ1030-4-300R",
+     "ZL24-RZ1030-4-300R"
+    ],
+    "count": 2
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/12v-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "mini-peristaltic-pump",
+   "name": "미니 연동펌프 BJ-RZ1030",
+   "name_en": "Runze Fluid BJ-RZ1030-4 / BJ-RZ1030B Mini Peristaltic Pump",
+   "sub": "NMB 42 스텝모터 일체형 · 0-400 rpm · 9-183 mL/min · POM 4 / 8롤러 저맥동",
+   "category": "연동펌프 · 스텝모터 일체형",
+   "title": "Runze Fluid 미니 연동펌프 BJ-RZ1030-4 / BJ-RZ1030B — 42 스텝모터 저맥동 | 실험셋업연구소",
+   "desc": "Runze Fluid 미니 연동펌프 BJ-RZ1030-4 / BJ-RZ1030B — NMB 1.8° 42 스텝모터 일체형, 0-400 rpm, 유량 12.5-170 / 9-183 mL/min, POM 4 또는 8롤러 저맥동, ABS·PPS 헤드, 최대 2 bar. 가격 문의.",
+   "images": [
+    "mini-peristaltic-pump-1.jpg",
+    "mini-peristaltic-pump-2.jpg",
+    "mini-peristaltic-pump-3.jpg",
+    "mini-peristaltic-pump-4.jpg",
+    "mini-peristaltic-pump-5.jpg",
+    "mini-peristaltic-pump-6.jpg",
+    "mini-peristaltic-pump-7.jpg",
+    "mini-peristaltic-pump-8.jpg",
+    "mini-peristaltic-pump-9.jpg"
+   ],
+   "image_alt": "Runze Fluid 미니 연동펌프 BJ-RZ1030",
+   "answer": "BJ-RZ1030은 NMB 1.8° 42 스텝모터를 RZ1030 헤드에 직결한 미니 연동펌프로, 4롤러 저맥동 기본형(BJ-RZ1030-4)과 PPS 헤드에 4/8롤러를 고르는 상위형(BJ-RZ1030B) 두 가지가 있습니다.",
+   "features": [
+    "<b>NMB 1.8° 42 스텝모터</b> 직결 — 24V DC, 정격 1.1 A, 최대 9.2 W",
+    "회전수 <b>0 ~ 400 rpm</b> 무단 조절 — 스텝 구동이라 유량을 정밀하게 맞춥니다",
+    "<b>BJ-RZ1030-4</b> — ABS 헤드 · POM 4롤러 저맥동 · 12.5 ~ 170 mL/min · 424 g",
+    "<b>BJ-RZ1030B</b> — PPS 헤드 · POM 4 또는 8롤러 · 9 ~ 183 mL/min · 432 g (8롤러는 맥동이 더 작습니다)",
+    "튜브 ID 0.64-3.0 mm · 두께 0.8-1.0 mm · 외경 5 mm 이하, 압력 정격 최대 2 bar(30 psi)",
+    "튜브 수명 실리콘 ≥200 h, PharMed BPT · Viton ≥1000 h",
+    "소음 70 dB, 흡입 양정 약 5 m, 사용 환경 0-40℃ · 상대습도 80% 이하"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "12.5 ~ 170 mL/min (BJ-RZ1030-4) · 9 ~ 183 mL/min (BJ-RZ1030B)"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "POM 4롤러 (저맥동) · BJ-RZ1030B 는 4 / 8롤러 선택"
+    ],
+    [
+     "헤드 재질 (Pump head)",
+     "ABS 엔지니어링 플라스틱 (−4) · PPS (B)"
+    ],
+    [
+     "모터 (Motor type)",
+     "NMB 1.8° 42 스텝모터"
+    ],
+    [
+     "입력 전압 (Input voltage)",
+     "24V DC"
+    ],
+    [
+     "정격 전류 (Rated current)",
+     "1.1 A"
+    ],
+    [
+     "최대 출력 (Max power)",
+     "9.2 W"
+    ],
+    [
+     "회전수 (Motor speed)",
+     "0 ~ 400 rpm"
+    ],
+    [
+     "튜브 규격 (Tubing size)",
+     "ID 0.64-3.0 mm · WT 0.8-1.0 mm · OD ≤5 mm"
+    ],
+    [
+     "튜브 수명 (Tubing life)",
+     "실리콘 ≥200 h · BPT 고무 ≥1000 h · Viton ≥1000 h"
+    ],
+    [
+     "압력 정격 (Pressure)",
+     "최대 2 bar (30 psi)"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0-40℃ · 상대습도 80% 이하 · 비결로"
+    ],
+    [
+     "소음 (Max noise)",
+     "70 dB"
+    ],
+    [
+     "흡입 (Suction)",
+     "약 5 m"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "57 × 57 × 63.5 mm (−4) · 57 × 57 × 72.4 mm (B)"
+    ],
+    [
+     "순중량 (Net weight)",
+     "424 g (−4) · 432 g (B)"
+    ]
+   ],
+   "variants": {
+    "heading": "튜브 규격별 최대 유량 (mL/min)",
+    "head": [
+     "모델 · 롤러",
+     "0.64",
+     "1.02",
+     "1.42",
+     "1.85",
+     "2.29",
+     "2.79",
+     "실리콘 1×1",
+     "실리콘 2×1",
+     "실리콘 3×1"
+    ],
+    "rows": [
+     [
+      "BJ-RZ1030-4 (4롤러)",
+      "12.5",
+      "28.2",
+      "51.9",
+      "89",
+      "112.6",
+      "146.9",
+      "26.1",
+      "105",
+      "170"
+     ],
+     [
+      "BJ-RZ1030B (4롤러)",
+      "12",
+      "25",
+      "47",
+      "70",
+      "94",
+      "128",
+      "24",
+      "74",
+      "183"
+     ],
+     [
+      "BJ-RZ1030B (8롤러)",
+      "9",
+      "21",
+      "38",
+      "55",
+      "71",
+      "81",
+      "17",
+      "57",
+      "114"
+     ]
+    ],
+    "note": "고무 튜브는 두께 0.8 mm 기준 내경(mm) 값이고, 실리콘 튜브는 내경×두께(mm) 값입니다. 상온 20℃·무가압에서 순수를 이송해 잰 참고값이며 매질·조건·압력·온습도에 따라 달라집니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/miniature-peristaltic-pump/\">미니어처 연동펌프 헤드 RZ1030-4</a> · <a href=\"/brands/runze/12v-peristaltic-pump/\">12V 연동펌프 ZL12-RZ1030</a> · <a href=\"https://www.runzefluid.com/uploads/file/bj-rz1030-4-peristaltic-pump.pdf\" rel=\"nofollow\">BJ-RZ1030-4 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=iCIzbFI_LM4\" rel=\"nofollow\">BJ-RZ1030 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#스텝모터연동펌프",
+     "/product/"
+    ],
+    [
+     "#저맥동",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모터 사양 · 배선 (Motor & wiring)",
+     "html": "<p><b>42 스텝모터</b> — 최대 출력 9.2 W, 스텝 각도 1.8°, 2상, 상전압 4.6 V, 상전류 1.1 A, 저항 3.8 Ω ±0.38 Ω, 인덕턴스 5.2 mH, 절연 100 MΩ MIN, 최고 온도 80℃, 절연 등급 B.</p><p>모터 배선 색은 <b>A+ 주황 · A− 파랑 · B+ 빨강 · B− 노랑</b> 입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/mini-peristaltic-pump-d7.jpg\" alt=\"42 스텝모터 사양과 모터 배선 색 정의\" loading=\"lazy\"><figcaption>42 스텝모터 사양과 모터 배선 색 정의</figcaption></figure></div>"
+    },
+    {
+     "h": "튜브 장착 (Tubing installation)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/mini-peristaltic-pump-d4.jpg\" alt=\"튜브 장착 순서 (제조사 자료)\" loading=\"lazy\"><figcaption>튜브 장착 순서 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/mini-peristaltic-pump-d5.jpg\" alt=\"BJ-RZ1030-4 외형 치수\" loading=\"lazy\"><figcaption>BJ-RZ1030-4 외형 치수</figcaption></figure><figure><img src=\"/img/runze/mini-peristaltic-pump-d6.jpg\" alt=\"BJ-RZ1030B-4 / 8 외형 치수\" loading=\"lazy\"><figcaption>BJ-RZ1030B-4 / 8 외형 치수</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/mini-peristaltic-pump-d1.jpg\" alt=\"BJ-RZ1030 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ-RZ1030 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/mini-peristaltic-pump-d2.jpg\" alt=\"BJ-RZ1030 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ-RZ1030 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/mini-peristaltic-pump-d3.jpg\" alt=\"BJ-RZ1030 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ-RZ1030 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 튜브 (Peristaltic tubing)",
+     "html": "<ul><li><b>실리콘</b> — 식품 등급 · −4℃ ~ +180℃ · 비부식성 액체 · 수명 200시간 이상</li><li><b>PharMed BPT</b> — Saint-Gobain · FDA 규격 · −51℃ ~ +132℃ · 약산·약염기 · 1000시간 이상</li><li><b>Viton</b> — MasterFlex · FDA 규격 · −20℃ ~ +260℃ · 강산·강염기 · 1000시간 이상</li></ul><p>수명은 상온 20℃·무가압에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 회전수가 낮고 액성이 순할수록 길어지며, 정량 정밀도를 유지하려면 주기적으로 교체합니다.</p>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "선택",
+     "q": "BJ-RZ1030-4와 BJ-RZ1030B는 뭐가 다른가요?",
+     "a": "헤드 재질과 롤러 수가 다릅니다. -4는 ABS 헤드에 4롤러 고정이고, B는 PPS 헤드에 4롤러와 8롤러를 고를 수 있습니다. B의 8롤러는 유량이 줄지만 맥동이 더 작습니다."
+    },
+    {
+     "tag": "유량",
+     "q": "유량 범위는 어떻게 되나요?",
+     "a": "BJ-RZ1030-4는 12.5~170 mL/min, BJ-RZ1030B는 9~183 mL/min입니다. 튜브 규격과 회전수로 결정됩니다."
+    },
+    {
+     "tag": "제어",
+     "q": "속도를 조절할 수 있나요?",
+     "a": "42 스텝모터 구동이라 0~400 rpm 사이에서 무단 조절됩니다. 별도 드라이버로 스텝 펄스를 넣어 제어합니다."
+    },
+    {
+     "tag": "배선",
+     "q": "모터 배선 색 정의는?",
+     "a": "A+ 주황, A− 파랑, B+ 빨강, B− 노랑입니다. 2상 스텝모터이고 상전압 4.6 V, 상전류 1.1 A입니다."
+    },
+    {
+     "tag": "맥동",
+     "q": "맥동을 줄이려면 어떻게 하나요?",
+     "a": "BJ-RZ1030B의 8롤러 구성을 고르면 맥동이 작아집니다. 다만 같은 튜브에서 유량은 4롤러 대비 30% 정도 줄어듭니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은?",
+     "a": "최대 2 bar(30 psi)입니다."
+    },
+    {
+     "tag": "소음",
+     "q": "소음은 어느 정도인가요?",
+     "a": "최대 70 dB입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 미니 연동펌프 BJ-RZ1030",
+    "sku": "BJ-RZ1030",
+    "category": "연동펌프 · 스텝모터 일체형",
+    "description": "NMB 42 스텝모터 일체형 미니 연동펌프. 0-400 rpm, 12.5-170 / 9-183 mL/min, POM 4·8롤러 저맥동, 최대 2 bar, 튜브 ID 0.64-3.0 mm.",
+    "models": [
+     "BJ-RZ1030-4",
+     "BJ-RZ1030B"
+    ],
+    "count": 2
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/mini-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "micro-peristaltic-pump",
+   "name": "마이크로 연동펌프 LM40A",
+   "name_en": "Runze Fluid LM40A Micro Peristaltic Pump",
+   "sub": "박스형 컨트롤러 일체형 · 0.1-400 rpm · 속도 분해능 ±0.1 rpm · 풋스위치 · RS485 · IP31",
+   "category": "연동펌프 · 컨트롤러 일체형",
+   "title": "Runze Fluid 마이크로 연동펌프 LM40A — 박스형 속도 제어 연동펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid LM40A 마이크로 연동펌프 — 박스형 컨트롤러 일체형, 0.1~400 rpm, 속도 분해능 ±0.1 rpm, 유량 0.03~117 mL/min(RZ1030 헤드), 풋스위치·외부 신호·RS485 제어, DC24V, IP31. 가격 문의.",
+   "images": [
+    "micro-peristaltic-pump-1.jpg",
+    "micro-peristaltic-pump-2.jpg",
+    "micro-peristaltic-pump-3.jpg",
+    "micro-peristaltic-pump-4.jpg",
+    "micro-peristaltic-pump-5.jpg",
+    "micro-peristaltic-pump-6.jpg",
+    "micro-peristaltic-pump-7.jpg",
+    "micro-peristaltic-pump-8.jpg",
+    "micro-peristaltic-pump-9.jpg"
+   ],
+   "image_alt": "Runze Fluid 마이크로 연동펌프 LM40A",
+   "answer": "LM40A는 컨트롤러를 케이스 안에 넣은 박스형 연동펌프로, 0.1 rpm 단위로 속도를 맞추고 키패드·풋스위치·외부 신호·RS485 네 가지 방식으로 운전하는 충전·분주용 소형 펌프입니다.",
+   "features": [
+    "<b>박스형 일체형</b> — 컨트롤러와 펌프헤드가 한 케이스에 들어가 별도 드라이버가 필요 없습니다",
+    "속도 <b>0.1 ~ 300 / 400 rpm</b>, 속도 분해능 <b>±0.1 rpm</b>",
+    "유량 <b>0.03 ~ 117 mL/min</b> (RZ1030 헤드 · 두께 0.8 mm · 내경 2.54 mm 이하 기준)",
+    "<b>풋스위치</b> 로 시동·정지 (키패드 제어 모드에서), 외부 제어 모드에서는 <b>속도 · 방향 · ON/OFF 신호</b> 를 받습니다",
+    "<b>RS485</b> 통신 제어 모드 지원 — 상위 시스템에서 속도와 방향을 지정합니다",
+    "정·역 전환 가능 — 액체 이송 방향을 CW/CCW 로 바꿉니다",
+    "보호 등급 <b>IP31</b>, DC24V ±10% · 최대 18 W, 치수 173 × 105 × 96 mm · 1.45 kg"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0.03 ~ 117 mL/min (RZ1030 헤드)"
+    ],
+    [
+     "모델 (Model)",
+     "LM40A"
+    ],
+    [
+     "속도 (Speed)",
+     "0.1 rpm ~ 300 / 400 rpm"
+    ],
+    [
+     "속도 분해능 (Speed resolution)",
+     "±0.1 rpm"
+    ],
+    [
+     "적용 펌프헤드 (Pump head)",
+     "RZ1030 (두께 0.8 mm · 내경 ≤2.54 mm · 최대 400 rpm)"
+    ],
+    [
+     "풋스위치 입력 (Foot pedal)",
+     "시동·정지 제어 (키패드 제어 모드 전용)"
+    ],
+    [
+     "속도 신호 입력 (Speed signal)",
+     "다중 속도 신호 지원 (외부 제어 모드 전용)"
+    ],
+    [
+     "방향 신호 입력 (Direction)",
+     "다중 방향 신호 지원 (외부 제어 모드 전용)"
+    ],
+    [
+     "ON/OFF 신호 입력 (ON/OFF)",
+     "다중 ON/OFF 신호 지원 (외부 제어 모드 전용)"
+    ],
+    [
+     "통신 (Communication)",
+     "RS485 (통신 제어 모드 전용)"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V ±10% · 최대 18 W"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0 ~ 40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "보호 등급 (Protection)",
+     "IP31"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "173 × 105 × 96 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "1.45 kg"
+    ]
+   ],
+   "variants": {
+    "heading": "적용 연동펌프 튜브 (Peristaltic tubing)",
+    "head": [
+     "재질 (Material)",
+     "특성 (Features)",
+     "수명 (Service life)"
+    ],
+    "rows": [
+     [
+      "실리콘 (Silicone)",
+      "식품 등급 · 유연성 높음 · 사용 온도 −4℃ ~ +180℃ · 비부식성 액체용",
+      "≥200 h"
+     ],
+     [
+      "PharMed BPT",
+      "Saint-Gobain · FDA 규격 · 사용 온도 −51℃ ~ +132℃ · 약산·약염기 대응",
+      "≥1000 h"
+     ],
+     [
+      "Viton",
+      "MasterFlex · FDA 규격 · 사용 온도 −20℃ ~ +260℃ · 강산·강염기 대응",
+      "≥1000 h"
+     ]
+    ],
+    "note": "튜브 수명은 상온 20℃·무가압 조건에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 매질·회전수·사용 환경에 따라 달라지며 회전수가 낮고 액성이 순할수록 길어집니다. 정량 정밀도를 유지하려면 튜브를 주기적으로 교체합니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/lm80c-intelligent-large-flow-peristaltic-pump/\">LM80C 대유량 연동펌프</a> · <a href=\"/brands/runze/miniature-peristaltic-pump/\">미니어처 연동펌프 헤드 RZ1030-4</a> · <a href=\"https://www.runzefluid.com/uploads/file/lm40a-intelligent-filling-peristaltic-pump-instruction-manual.pdf\" rel=\"nofollow\">LM40A 매뉴얼 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=_mdR4t1rHXw\" rel=\"nofollow\">LM40A 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#충전펌프",
+     "/product/"
+    ],
+    [
+     "#속도제어",
+     "/product/"
+    ],
+    [
+     "#풋스위치",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "제조사 신형 자료 — YZ 펌프헤드 구성",
+     "html": "<p>제조사 신형 브로슈어는 LM40A 박스형 연동펌프에 <b>YZ1515S · YZ2515S</b> 펌프헤드(3롤러 / 6롤러 선택)를 얹은 구성을 함께 안내합니다. 이 구성에서는 속도 0.1 ~ 400 rpm, 유량 최대 1295 mL/min, RS232 / RS485 통신 제어, 스테인리스 로터, CE 인증, 풋스위치 지원으로 표기합니다. 위 사양표는 RZ1030 헤드 기준이므로 헤드 구성에 따라 유량 범위가 크게 달라집니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/micro-peristaltic-pump-d4.jpg\" alt=\"LM40A 박스형 연동펌프 제품 파라미터 — YZ1515S / YZ2515S 헤드 구성\" loading=\"lazy\"><figcaption>LM40A 박스형 연동펌프 제품 파라미터 — YZ1515S / YZ2515S 헤드 구성</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d2.jpg\" alt=\"펌프헤드·로터 수별 최대 참고 유량표와 YZ1515S-3 로터 유량 곡선\" loading=\"lazy\"><figcaption>펌프헤드·로터 수별 최대 참고 유량표와 YZ1515S-3 로터 유량 곡선</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d3.jpg\" alt=\"YZ1515S-6 · YZ2515S-3 · YZ2515S-6 로터 유량 곡선\" loading=\"lazy\"><figcaption>YZ1515S-6 · YZ2515S-3 · YZ2515S-6 로터 유량 곡선</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d1.jpg\" alt=\"휴대형 박스 타입 · 57 스텝모터 · 스테인리스 로터 · 풋스위치 지원\" loading=\"lazy\"><figcaption>휴대형 박스 타입 · 57 스텝모터 · 스테인리스 로터 · 풋스위치 지원</figcaption></figure></div>"
+    },
+    {
+     "h": "제조사 자료 (Reference)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/micro-peristaltic-pump-d5.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d6.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d7.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d8.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d9.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d10.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d11.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d12.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/micro-peristaltic-pump-d13.jpg\" alt=\"LM40A 제조사 자료\" loading=\"lazy\"><figcaption>LM40A 제조사 자료</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>소량 충전 · 분주 (Filling · dispensing)</li><li>실험실 시약 정량 이송</li><li>온라인 분석기 시료 공급</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "제어",
+     "q": "LM40A는 어떻게 조작하나요?",
+     "a": "키패드 제어, 풋스위치 제어, 외부 신호 제어, RS485 통신 제어 네 가지 모드가 있습니다. 풋스위치는 키패드 모드에서만, 외부 속도·방향·ON/OFF 신호는 외부 제어 모드에서만 동작합니다."
+    },
+    {
+     "tag": "유량",
+     "q": "유량은 얼마까지 나오나요?",
+     "a": "RZ1030 헤드 기준 0.03~117 mL/min입니다. 제조사 신형 자료의 YZ1515S·YZ2515S 헤드 구성에서는 최대 1295 mL/min까지 표기됩니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "속도를 얼마나 세밀하게 맞출 수 있나요?",
+     "a": "±0.1 rpm 단위입니다. 0.1 rpm부터 400 rpm까지 설정합니다."
+    },
+    {
+     "tag": "방향",
+     "q": "역방향으로 돌릴 수 있나요?",
+     "a": "CW와 CCW를 바꿀 수 있습니다. 외부 제어 모드에서는 방향 신호로도 전환합니다."
+    },
+    {
+     "tag": "전원",
+     "q": "전원은 무엇인가요?",
+     "a": "DC24V ±10%이고 최대 소비전력은 18 W입니다."
+    },
+    {
+     "tag": "보호",
+     "q": "방진·방수 등급은?",
+     "a": "IP31입니다. 물이 튀는 환경에는 별도 보호가 필요합니다."
+    },
+    {
+     "tag": "헤드",
+     "q": "펌프헤드는 무엇을 쓰나요?",
+     "a": "기본 사양은 RZ1030 헤드이며 두께 0.8 mm, 내경 2.54 mm 이하 튜브를 400 rpm까지 씁니다. 대유량이 필요하면 YZ 계열 헤드 구성을 검토합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 마이크로 연동펌프 LM40A",
+    "sku": "LM40A",
+    "category": "연동펌프 · 컨트롤러 일체형",
+    "description": "박스형 컨트롤러 일체형 마이크로 연동펌프. 0.1~400 rpm, 속도 분해능 ±0.1 rpm, 0.03~117 mL/min(RZ1030 헤드), 풋스위치·외부 신호·RS485 제어, DC24V, IP31.",
+    "models": [
+     "LM40A"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/micro-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "lm40b-micro-peristaltic-pump",
+   "name": "지능형 충전 연동펌프 LM40B",
+   "name_en": "Runze Fluid LM40B Intelligent Filling Peristaltic Pump",
+   "sub": "0.1-400 rpm · ±0.1 rpm · 0.03-152 mL/min · 헤드 4종 선택 · 풋스위치 · RS485 · 전류/전압 제어",
+   "category": "연동펌프 · 컨트롤러 일체형",
+   "title": "Runze Fluid 지능형 충전 연동펌프 LM40B — 헤드 4종 선택 정량 충전 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid LM40B 지능형 충전 연동펌프 — 0.1~400 rpm, 속도 정밀도 ±0.1 rpm, 유량 0.03~152 mL/min, 펌프헤드 RZ1030-4 / RZ1030B / RZ-01 / RZ-02 선택, 키패드·풋스위치·RS485·전류/전압 제어, DC24V, IP31. 가격 문의.",
+   "images": [
+    "lm40b-micro-peristaltic-pump-1.jpg",
+    "lm40b-micro-peristaltic-pump-2.jpg",
+    "lm40b-micro-peristaltic-pump-3.jpg",
+    "lm40b-micro-peristaltic-pump-4.jpg",
+    "lm40b-micro-peristaltic-pump-5.jpg",
+    "lm40b-micro-peristaltic-pump-6.jpg"
+   ],
+   "image_alt": "Runze Fluid 지능형 충전 연동펌프 LM40B",
+   "answer": "LM40B는 병 충전과 반복 분주를 겨냥한 지능형 연동펌프로, 펌프헤드를 네 가지 중에서 고르고 키패드·풋스위치·RS485·전류/전압 네 가지 방식으로 운전하며 속도를 ±0.1 rpm 으로 맞춥니다.",
+   "features": [
+    "펌프헤드 <b>RZ1030-4 · RZ1030B · RZ-01 · RZ-02</b> 네 가지 중에서 고릅니다",
+    "속도 <b>0.1 ~ 400 rpm</b>, 속도 정밀도 <b>±0.1 rpm</b> — 모터 세분화가 자동으로 맞춰집니다",
+    "유량 <b>0.03 ~ 152 mL/min</b> (헤드와 튜브에 따라)",
+    "<b>병 충전과 무한 반복(무한 루프)</b> 을 통신 제어 모드에서 지원합니다",
+    "키패드 패널과 <b>로터리 엔코더</b> 로 속도를 조절하고, 독립 LED로 정·역 회전 · 풋스위치 상태 · 모터 구동 · 외부 제어 유효 여부를 표시합니다",
+    "외부 제어 — <b>풋스위치 · RS485 · 전류/전압 제어</b>. 한 버튼으로 최고속(Fast speed) 전환",
+    "하우징이 산화되지 않는 재질이고 중문·영문 표시를 지원합니다 — DC24V ±10% · 최대 20 W · IP31 · 0.9 kg(헤드 제외)"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0.03 ~ 152 mL/min"
+    ],
+    [
+     "모델 (Product name)",
+     "LM40B 시리즈 지능형 연동펌프"
+    ],
+    [
+     "적용 펌프헤드 (Pump head)",
+     "RZ1030-4 · RZ1030B · RZ-01 · RZ-02"
+    ],
+    [
+     "모터 (Motor type)",
+     "일본 수입 스텝모터"
+    ],
+    [
+     "속도 범위 (Speed range)",
+     "0.1 ~ 400 rpm"
+    ],
+    [
+     "속도 정밀도 (Speed accuracy)",
+     "±0.1 rpm"
+    ],
+    [
+     "롤러 재질 (Roller material)",
+     "POM / PPS"
+    ],
+    [
+     "표시 언어 (Language)",
+     "중문 / 영문"
+    ],
+    [
+     "외부 제어 (External control)",
+     "풋스위치 · RS485 · 전류/전압 제어"
+    ],
+    [
+     "풋스위치 입력 (Foot pedal)",
+     "시동·정지 (키패드 제어 모드 전용)"
+    ],
+    [
+     "속도 신호 입력 (Speed signal)",
+     "다중 스위칭 제어 입력 (외부 제어 모드 전용)"
+    ],
+    [
+     "방향 신호 입력 (Steering)",
+     "방향 전환 입력 (외부 제어 · 풋스위치 모드 전용)"
+    ],
+    [
+     "기동 신호 입력 (Start signal)",
+     "기동·정지 스위치 입력 (외부 제어 모드 전용)"
+    ],
+    [
+     "최고속 (Fast speed)",
+     "한 버튼 전환"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V ±10% · 최대 20 W"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0 ~ 40℃ · 상대습도 80% 미만"
+    ],
+    [
+     "보호 등급 (Protection)",
+     "IP31"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "180.1 × 107.4 × 101.5 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "0.9 kg (펌프헤드 제외)"
+    ]
+   ],
+   "variants": {
+    "heading": "펌프헤드·튜브별 최대 유량 (mL/min)",
+    "head": [
+     "펌프헤드 · 롤러",
+     "튜브 두께",
+     "튜브 내경 (mm)",
+     "최대 유량"
+    ],
+    "rows": [
+     [
+      "RZ1030 / RZ1030B · 4롤러",
+      "0.8 mm",
+      "0.64 / 1.02 / 1.42 / 1.85 / 2.29 / 2.79",
+      "12 / 25 / 47 / 70 / 94 / 128"
+     ],
+     [
+      "RZ-01 · 4롤러",
+      "0.8 mm",
+      "0.64 / 1.02 / 1.42 / 1.85 / 2.29 / 2.79",
+      "12 / 22 / 42 / 60 / 88 / 96"
+     ],
+     [
+      "RZ-01 · 4롤러",
+      "1.6 mm",
+      "1.6 / 2.4 / 3.2",
+      "48 / 94 / 152"
+     ],
+     [
+      "RZ-02 · 3 / 6롤러",
+      "0.8 mm",
+      "−",
+      "0.054 ~ 142.564"
+     ],
+     [
+      "RZ-02 · 3 / 6롤러",
+      "1.6 mm",
+      "−",
+      "0.029 ~ 135.878"
+     ]
+    ],
+    "note": "RZ1030 / RZ1030B 4롤러 0.8 mm 두께 전체 계열은 내경 0.64 · 0.76 · 0.89 · 1.02 · 1.14 · 1.30 · 1.42 · 1.52 · 1.65 · 1.85 · 2.06 · 2.29 · 2.54 · 2.79 mm 에서 각각 12 · 15 · 18 · 25 · 32 · 38 · 47 · 50 · 56 · 70 · 87 · 94 · 113 · 128 mL/min, RZ-01 은 12 · 13 · 16 · 22 · 28 · 34 · 42 · 44 · 47 · 60 · 65 · 88 · 90 · 96 mL/min 입니다. 상온 무가압 순수 기준 참고값입니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/micro-peristaltic-pump/\">마이크로 연동펌프 LM40A</a> · <a href=\"/brands/runze/lm80c-intelligent-large-flow-peristaltic-pump/\">LM80C 대유량 연동펌프</a> · <a href=\"/brands/runze/db15-rs485-communication-cable/\">DB15-RS485 통신 케이블</a> · <a href=\"https://www.runzefluid.com/uploads/file/lm40b-intelligent-filling-peristaltic-pump-instruction-manual.pdf\" rel=\"nofollow\">LM40B 매뉴얼 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=PCOKnWJnyKw\" rel=\"nofollow\">LM40B 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#충전펌프",
+     "/product/"
+    ],
+    [
+     "#정량분주",
+     "/product/"
+    ],
+    [
+     "#RS485제어",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "펌프헤드 4종 비교 (Pump head)",
+     "html": "<ul><li><b>LM40B-RZ1030</b> — 하우징/롤러 ABS / POM. 구조 성능이 좋고 ABS 라 내식성이 있으며 튜브 교체가 쉽습니다.</li><li><b>LM40B-RZ1030B</b> — 하우징/롤러 PPS / PPS. PPS 라 내식·내마모가 더 좋고 튜브 교체가 쉽습니다.</li><li><b>LM40B-RZ-01</b> — 하우징/롤러 PC / PPS. 가격 대비 성능이 좋고 크기가 작습니다. 투명 하우징이라 튜브 상태를 눈으로 확인할 수 있고, 슬롯 설계로 바브-암나사 어댑터를 붙이기 쉽습니다.</li><li><b>LM40B-RZ-02</b> — 하우징/롤러 PPS / PPS. 가격 경쟁력이 있고 스프링 클램프 구조라 튜브 장착이 더 쉽습니다.</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d2.jpg\" alt=\"펌프헤드 4종 — LM40B-RZ1030 / RZ1030B / RZ-01 / RZ-02 재질과 특징\" loading=\"lazy\"><figcaption>펌프헤드 4종 — LM40B-RZ1030 / RZ1030B / RZ-01 / RZ-02 재질과 특징</figcaption></figure></div>"
+    },
+    {
+     "h": "제어 방식 · 부속 (Control mode & accessories)",
+     "html": "<ol><li><b>패널 제어</b> — 펌프 단독</li><li><b>통신 제어</b> — 펌프 + DB15-RS485 통신 케이블 + USB 시리얼 변환기</li><li><b>풋스위치 제어</b> — 펌프 + 풋 페달</li><li><b>전류/전압 제어</b> — 펌프 + 전압/전류 제어 입력</li></ol><div class=\"det-imgs\"><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d6.jpg\" alt=\"제어 방식 네 가지와 필요한 부속 구성\" loading=\"lazy\"><figcaption>제어 방식 네 가지와 필요한 부속 구성</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 튜브 · 참고 유량 (Tubing & flow rate)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d5.jpg\" alt=\"펌프헤드별 적용 튜브 규격과 참고 유량표\" loading=\"lazy\"><figcaption>펌프헤드별 적용 튜브 규격과 참고 유량표</figcaption></figure></div>"
+    },
+    {
+     "h": "외형 치수 · 제품 사진",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d3.jpg\" alt=\"LM40B 외형 · 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM40B 외형 · 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d4.jpg\" alt=\"LM40B 외형 · 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM40B 외형 · 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d1.jpg\" alt=\"LM40B 외형 · 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM40B 외형 · 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm40b-micro-peristaltic-pump-d7.jpg\" alt=\"LM40B 외형 · 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM40B 외형 · 치수 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "헤드",
+     "q": "펌프헤드는 어떤 기준으로 고르나요?",
+     "a": "내식성이 중요하면 PPS 하우징인 RZ1030B나 RZ-02, 튜브 상태를 눈으로 봐야 하면 투명 하우징인 RZ-01, 큰 유량이 필요하면 1.6 mm 두께 튜브를 쓰는 RZ-01(최대 152 mL/min)을 고릅니다."
+    },
+    {
+     "tag": "유량",
+     "q": "유량은 얼마까지 나오나요?",
+     "a": "헤드와 튜브에 따라 0.03~152 mL/min입니다. RZ-01에 두께 1.6 mm·내경 3.2 mm 튜브를 쓸 때가 152 mL/min으로 가장 큽니다."
+    },
+    {
+     "tag": "제어",
+     "q": "제어 방식은 몇 가지인가요?",
+     "a": "패널(키패드) 제어, RS485 통신 제어, 풋스위치 제어, 전류/전압 제어 네 가지입니다. 통신 제어에는 DB15-RS485 케이블과 USB 시리얼 변환기가 필요합니다."
+    },
+    {
+     "tag": "충전",
+     "q": "병 충전 반복이 되나요?",
+     "a": "통신 제어 모드에서 병 충전과 무한 반복 루프를 지원합니다."
+    },
+    {
+     "tag": "정밀도",
+     "q": "속도 정밀도는 얼마인가요?",
+     "a": "±0.1 rpm입니다. 모터 세분화가 자동으로 맞춰집니다."
+    },
+    {
+     "tag": "표시",
+     "q": "운전 상태를 어떻게 확인하나요?",
+     "a": "독립 LED로 정·역 회전, 풋스위치 상태, 모터 구동 여부, 외부 제어 인터페이스 유효 여부를 표시합니다."
+    },
+    {
+     "tag": "차이",
+     "q": "LM40A와 LM40B는 뭐가 다른가요?",
+     "a": "LM40B가 펌프헤드 선택폭이 넓고(4종) 전류/전압 제어와 최고속 원터치 버튼, 로터리 엔코더 조작이 추가됐습니다. 유량 상한도 117 mL/min에서 152 mL/min로 늘었습니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 지능형 충전 연동펌프 LM40B",
+    "sku": "LM40B",
+    "category": "연동펌프 · 컨트롤러 일체형",
+    "description": "지능형 충전 연동펌프. 0.1~400 rpm, ±0.1 rpm, 0.03~152 mL/min, 펌프헤드 RZ1030-4/RZ1030B/RZ-01/RZ-02 선택, 키패드·풋스위치·RS485·전류전압 제어, DC24V, IP31.",
+    "models": [
+     "LM40B-RZ1030",
+     "LM40B-RZ1030B",
+     "LM40B-RZ-01",
+     "LM40B-RZ-02"
+    ],
+    "count": 4
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/lm40b-micro-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "lm80c-intelligent-large-flow-peristaltic-pump",
+   "name": "산업용 대유량 연동펌프 LM80C",
+   "name_en": "Runze Fluid LM80C Intelligent Large Flow Peristaltic Pump",
+   "sub": "LM80C-RZ35-3H-U · 1-500 rpm · 스테인리스 바디·로터 · 연속/정량/예약/교정 4모드 · DC48V 144 W",
+   "category": "연동펌프 · 산업용 대유량",
+   "title": "Runze Fluid 산업용 대유량 연동펌프 LM80C — 4모드 정량 제어 일체형 | 실험셋업연구소",
+   "desc": "Runze Fluid LM80C 산업용 대유량 연동펌프 — LM80C-RZ35-3H-U, 1~500 rpm, 스테인리스 바디·로터, 연속·정량·예약·교정 4모드, RS232/RS485, DC48V ±10% · 144 W, 417.6×195.1×298.64 mm · 13 kg, IP3. 가격 문의.",
+   "images": [
+    "lm80c-intelligent-large-flow-peristaltic-pump-1.jpg",
+    "lm80c-intelligent-large-flow-peristaltic-pump-2.jpg",
+    "lm80c-intelligent-large-flow-peristaltic-pump-3.jpg",
+    "lm80c-intelligent-large-flow-peristaltic-pump-4.jpg",
+    "lm80c-intelligent-large-flow-peristaltic-pump-5.jpg",
+    "lm80c-intelligent-large-flow-peristaltic-pump-6.jpg"
+   ],
+   "image_alt": "Runze Fluid 산업용 대유량 연동펌프 LM80C",
+   "answer": "LM80C는 스테인리스 바디에 지능형 제어 패널을 붙인 일체형 산업용 대유량 연동펌프로, 연속·정량·예약·교정 네 가지 모드로 화학 원료와 식품 원료 이송, 반응기 투입 같은 작업을 처리합니다.",
+   "features": [
+    "<b>연속 · 정량 · 예약 · 교정</b> 네 가지 운전 모드 — 패널 메뉴에서 고릅니다",
+    "속도 <b>1 ~ 500 rpm</b>(펌프헤드와 튜브에 따라 최고 속도가 조금 달라집니다), 속도 정밀도 1 rpm",
+    "<b>스테인리스 바디와 스테인리스 로터</b> — 산업 현장용 일체형 구조입니다",
+    "<b>RS232 / RS485</b> 통신 제어",
+    "전원 <b>DC48V ±10% · 144 W</b>, 치수 417.6 × 195.1 × 298.64 mm · 13 kg",
+    "동작 환경 0 ~ 40℃ · 상대습도 80% 미만, 보호 등급 IP3",
+    "화학 원료 이송 · 반응기 투입 · 식품 원료 이송 같은 산업 정량 이송에 씁니다"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "펌프헤드·튜브 구성에 따름 (RZ35 대유량 헤드)"
+    ],
+    [
+     "모델 (Model No.)",
+     "LM80C-RZ35-3H-U"
+    ],
+    [
+     "속도 범위 (Speed range)",
+     "1 ~ 500 rpm"
+    ],
+    [
+     "속도 정밀도 (Speed accuracy)",
+     "1 rpm"
+    ],
+    [
+     "운전 모드 (Working mode)",
+     "연속 · 정량 · 예약 · 교정 (Continuous · Rationing · Booking · Calibration)"
+    ],
+    [
+     "통신 (Communication)",
+     "RS232 / RS485"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC48V ±10%"
+    ],
+    [
+     "소비전력 (Power)",
+     "144 W"
+    ],
+    [
+     "동작 온도 (Operating temp)",
+     "0 ~ 40℃"
+    ],
+    [
+     "동작 습도 (Operating humidity)",
+     "80% 미만"
+    ],
+    [
+     "보호 등급 (Protection)",
+     "IP3"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "417.6 × 195.1 × 298.64 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "13 kg"
+    ]
+   ],
+   "variants": {
+    "heading": "운전 모드 (Working mode)",
+    "head": [
+     "모드",
+     "동작"
+    ],
+    "rows": [
+     [
+      "연속 (Continuous)",
+      "특별한 조건 없이 액체를 계속 이송합니다. 모터를 연속 운전하며 속도와 유량을 실시간으로 감시합니다."
+     ],
+     [
+      "정량 (Rationing)",
+      "지정한 부피만큼 한 번에 분주합니다. 시간·속도·액량을 정해 운전합니다."
+     ],
+     [
+      "예약 (Booking)",
+      "지정한 속도에서 지정 부피를 N회 반복 분주합니다."
+     ],
+     [
+      "교정 (Calibration)",
+      "다른 모드를 시작하기 전이나 펌프·튜브를 교체한 뒤 분주량과 유량의 정확도를 맞춥니다."
+     ]
+    ]
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/rz35-industrial-high-flow-pump-head/\">RZ35 대유량 펌프헤드</a> · <a href=\"/brands/runze/ts600-industrial-high-flow-peristaltic-pump/\">TS600 산업용 대유량 연동펌프</a> · <a href=\"https://www.youtube.com/watch?v=P_EA4ZvcpE8\" rel=\"nofollow\">LM80C 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#대유량연동펌프",
+     "/product/"
+    ],
+    [
+     "#산업용연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량충전",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "4가지 운전 모드 (Four modes)",
+     "html": "<p>패널 메뉴에서 <b>Calibrate · Inquiry · Settings · Rationing · Booking · Flow</b> 항목을 다룹니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d5.jpg\" alt=\"4가지 운전 모드 — 연속 · 정량 · 예약 · 교정\" loading=\"lazy\"><figcaption>4가지 운전 모드 — 연속 · 정량 · 예약 · 교정</figcaption></figure></div>"
+    },
+    {
+     "h": "성능 파라미터 (Performance)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d7.jpg\" alt=\"제조사 성능 파라미터 — 모델·속도·모드·통신·전원·치수·중량·보호등급\" loading=\"lazy\"><figcaption>제조사 성능 파라미터 — 모델·속도·모드·통신·전원·치수·중량·보호등급</figcaption></figure></div>"
+    },
+    {
+     "h": "구조 (Structure)",
+     "html": "<p>스테인리스 바디와 스테인리스 로터에 지능형 제어 패널을 얹은 일체형 구조입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d4.jpg\" alt=\"스테인리스 바디 · 스테인리스 로터 · 지능형 제어 패널 구성\" loading=\"lazy\"><figcaption>스테인리스 바디 · 스테인리스 로터 · 지능형 제어 패널 구성</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>화학 원료 이송 (Chemical raw material transportation)</li><li>반응기 투입 (Reactor feeding)</li><li>식품 원료 이송 (Food raw material transportation)</li></ul><div class=\"det-imgs\"><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d3.jpg\" alt=\"대표 적용 — 화학 원료 이송 · 반응기 투입 · 식품 원료 이송\" loading=\"lazy\"><figcaption>대표 적용 — 화학 원료 이송 · 반응기 투입 · 식품 원료 이송</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d1.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d2.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d6.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d8.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d9.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d10.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/lm80c-intelligent-large-flow-peristaltic-pump-d11.jpg\" alt=\"LM80C (제조사 자료)\" loading=\"lazy\"><figcaption>LM80C (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "모드",
+     "q": "정량 모드와 예약 모드는 뭐가 다른가요?",
+     "a": "정량 모드는 지정한 부피를 한 번 분주하고, 예약 모드는 같은 부피를 정해진 횟수(N회)만큼 반복 분주합니다."
+    },
+    {
+     "tag": "교정",
+     "q": "교정 모드는 언제 쓰나요?",
+     "a": "다른 모드를 시작하기 전이나 펌프·튜브를 교체한 뒤에 씁니다. 분주량과 유량의 정확도를 맞추는 절차입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "속도 범위는 어떻게 되나요?",
+     "a": "1~500 rpm입니다. 최고 속도는 펌프헤드와 튜브 조합에 따라 조금 달라집니다."
+    },
+    {
+     "tag": "전원",
+     "q": "전원은 무엇인가요?",
+     "a": "DC48V ±10%이고 소비전력은 144 W입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "본체 재질은 무엇인가요?",
+     "a": "바디와 로터가 스테인리스입니다. 산업 현장에서 쓸 수 있게 만든 일체형 구조입니다."
+    },
+    {
+     "tag": "통신",
+     "q": "상위 시스템과 연동되나요?",
+     "a": "RS232와 RS485를 지원합니다."
+    },
+    {
+     "tag": "설치",
+     "q": "크기와 무게는?",
+     "a": "417.6 × 195.1 × 298.64 mm에 13 kg입니다. 보호 등급은 IP3입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 산업용 대유량 연동펌프 LM80C",
+    "sku": "LM80C-RZ35-3H-U",
+    "category": "연동펌프 · 산업용 대유량",
+    "description": "스테인리스 바디 산업용 대유량 연동펌프. 1~500 rpm, 연속·정량·예약·교정 4모드, RS232/RS485, DC48V 144 W, 13 kg, IP3.",
+    "models": [
+     "LM80C-RZ35-3H-U"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/lm80c-intelligent-large-flow-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
   }
  ]
 }
