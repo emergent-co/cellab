@@ -4318,7 +4318,7 @@ function mItems(box, items, opts){
         +'<div class="r1"><input class="nm" placeholder="품명" value="'+esc(it.name||'')+'">'
         + (opts.spec ? '<input class="sp" placeholder="규격" value="'+esc(it.spec||'')+'">' : '') +'</div>'
         +'<div class="r2"><input class="qy" type="number" min="1" value="'+(it.qty||1)+'" title="수량">'
-        +'<input class="pr" type="text" inputmode="numeric" value="'+(it.price?won(it.price):'')+'" title="'+esc(opts.priceLabel||'단가')+'" placeholder="'+esc(opts.priceLabel||'단가')+'">'
+        +'<input class="pr" type="text" inputmode="numeric" value="'+(dqPriced(it)?won(it.price):'')+'" title="'+esc(opts.priceLabel||'단가')+'" placeholder="'+esc(opts.priceLabel||'단가')+'">'
         +'<span class="sb">'+won(Math.round((it.qty||0)*(it.price||0)))+'원</span>'
         +(items.length>1?'<button class="dx">×</button>':'')+'</div></div>'; }).join('');
     box.querySelectorAll('.dq').forEach(function(el){
@@ -4326,10 +4326,15 @@ function mItems(box, items, opts){
       el.querySelector('.nm').oninput = function(e){ items[i].name = e.target.value; };
       var sp = el.querySelector('.sp'); if (sp) sp.oninput = function(e){ items[i].spec = e.target.value; };
       el.querySelector('.qy').oninput = function(e){ items[i].qty = Math.max(1,Number(e.target.value)||1); sum(el,i); };
-      el.querySelector('.pr').oninput = function(e){ items[i].price = numFmt(e.target); sum(el,i); };
+      /* 0원(사은품·무상 제공)도 적을 수 있어야 한다 — «0 을 적었다» 와 «비워 뒀다» 를 구분해 둔다.
+         전에는 0 을 적어도 다음 순간 빈칸으로 지워졌다. */
+      el.querySelector('.pr').oninput = function(e){
+        items[i].pset = String(e.target.value).replace(/[^\d]/g,'') !== '';
+        items[i].price = numFmt(e.target); sum(el,i); };
       el.querySelector('.pr').onblur  = function(e){
-        items[i].price = numVal(e.target);
-        e.target.value = items[i].price ? won(items[i].price) : ''; sum(el,i); };
+        var typed = String(e.target.value).replace(/[^\d]/g,'') !== '';
+        items[i].price = numVal(e.target); items[i].pset = typed;
+        e.target.value = typed ? won(items[i].price) : ''; sum(el,i); };
       var x = el.querySelector('.dx'); if (x) x.onclick = function(){ items.splice(i,1); paint(); };
     });
     if (opts.onChange) opts.onChange();
