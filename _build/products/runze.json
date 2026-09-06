@@ -21381,6 +21381,1361 @@
     "url": "https://www.runzefluid.com/products/lm80c-intelligent-large-flow-peristaltic-pump.html",
     "label": "Runze Fluid 제품 페이지"
    }
+  },
+  {
+   "slug": "rz35-industrial-high-flow-pump-head",
+   "name": "산업용 대유량 펌프헤드 RZ35",
+   "name_en": "Runze Fluid RZ35-3H-U Industrial High Flow Pump Head",
+   "sub": "PSU 하우징 · 304 스테인리스 3롤러 · 100-900 rpm · 73# / 82# 튜브 · 0.2 MPa · 1.74 kg",
+   "category": "연동펌프 · 펌프헤드",
+   "title": "Runze Fluid 산업용 대유량 펌프헤드 RZ35 — 73#·82# 튜브 스테인리스 3롤러 | 실험셋업연구소",
+   "desc": "Runze Fluid RZ35-3H-U 산업용 대유량 펌프헤드 — PSU 하우징, 304 스테인리스 3롤러, 100~900 rpm, 73# / 82# 고무·실리콘 튜브, 튜브 수압 0.2 MPa, 1.74 kg. 가격 문의.",
+   "images": [
+    "rz35-industrial-high-flow-pump-head-1.jpg",
+    "rz35-industrial-high-flow-pump-head-2.jpg",
+    "rz35-industrial-high-flow-pump-head-3.jpg",
+    "rz35-industrial-high-flow-pump-head-4.jpg",
+    "rz35-industrial-high-flow-pump-head-5.jpg",
+    "rz35-industrial-high-flow-pump-head-6.jpg"
+   ],
+   "image_alt": "Runze Fluid 산업용 대유량 펌프헤드 RZ35",
+   "answer": "RZ35-3H-U는 PSU 하우징에 304 스테인리스 롤러 3개를 넣은 산업용 대유량 펌프헤드로, 73#·82# 굵은 튜브를 물려 100~900 rpm 구간에서 대유량을 뽑습니다.",
+   "features": [
+    "하우징 <b>PSU</b>, 롤러 <b>304 스테인리스 3롤러</b> — 산업 현장 조건을 견딥니다",
+    "회전수 <b>100 ~ 900 rpm</b>",
+    "적용 튜브 <b>73# · 82#</b> 고무 튜브 또는 실리콘 튜브",
+    "튜브 수압 <b>0.2 MPa</b>",
+    "중량 <b>1.74 kg</b> — LM80C 등 대유량 구동부에 물려 씁니다"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "73# / 82# 튜브 · 100-900 rpm 구간 (구동부 구성에 따름)"
+    ],
+    [
+     "모델 (Model No.)",
+     "RZ35-3H-U"
+    ],
+    [
+     "하우징 재질 (Housing)",
+     "PSU"
+    ],
+    [
+     "롤러 재질 (Roller)",
+     "304 스테인리스 (304 SST)"
+    ],
+    [
+     "롤러 수 (Rollers)",
+     "3롤러"
+    ],
+    [
+     "회전수 (Speed)",
+     "100 ~ 900 rpm"
+    ],
+    [
+     "적용 튜브 (Pump tube)",
+     "73# · 82# 고무 튜브 / 실리콘 튜브"
+    ],
+    [
+     "튜브 수압 (Water pressure)",
+     "0.2 MPa"
+    ],
+    [
+     "중량 (Weight)",
+     "1.74 kg"
+    ]
+   ],
+   "variants": {
+    "heading": "적용 연동펌프 튜브 (Peristaltic tubing)",
+    "head": [
+     "재질 (Material)",
+     "특성 (Features)",
+     "수명 (Service life)"
+    ],
+    "rows": [
+     [
+      "실리콘 (Silicone)",
+      "식품 등급 · 유연성 높음 · 사용 온도 −4℃ ~ +180℃ · 비부식성 액체용",
+      "≥200 h"
+     ],
+     [
+      "PharMed BPT",
+      "Saint-Gobain · FDA 규격 · 사용 온도 −51℃ ~ +132℃ · 약산·약염기 대응",
+      "≥1000 h"
+     ]
+    ],
+    "note": "튜브 수명은 상온 20℃·무가압 조건에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 매질·회전수·사용 환경에 따라 달라지며 회전수가 낮고 액성이 순할수록 길어집니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/lm80c-intelligent-large-flow-peristaltic-pump/\">LM80C 대유량 연동펌프</a> · <a href=\"/brands/runze/ts600-industrial-high-flow-peristaltic-pump/\">TS600 산업용 대유량 연동펌프</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#대유량펌프헤드",
+     "/product/"
+    ],
+    [
+     "#산업용펌프헤드",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "외형 치수 · 장착 순서 (Dimension & installation)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/rz35-industrial-high-flow-pump-head-d4.jpg\" alt=\"RZ35 외형 치수 도면\" loading=\"lazy\"><figcaption>RZ35 외형 치수 도면</figcaption></figure><figure><img src=\"/img/runze/rz35-industrial-high-flow-pump-head-d5.jpg\" alt=\"펌프헤드 장착 순서\" loading=\"lazy\"><figcaption>펌프헤드 장착 순서</figcaption></figure></div>"
+    },
+    {
+     "h": "참고 유량 (Flow rate)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/rz35-industrial-high-flow-pump-head-d3.jpg\" alt=\"73# · 82# 튜브 참고 유량표\" loading=\"lazy\"><figcaption>73# · 82# 튜브 참고 유량표</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/rz35-industrial-high-flow-pump-head-d1.jpg\" alt=\"RZ35 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>RZ35 펌프헤드 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/rz35-industrial-high-flow-pump-head-d2.jpg\" alt=\"RZ35 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>RZ35 펌프헤드 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "튜브",
+     "q": "RZ35는 어떤 튜브를 쓰나요?",
+     "a": "73#과 82# 고무 튜브 또는 실리콘 튜브입니다. 굵은 튜브를 쓰는 대유량 헤드입니다."
+    },
+    {
+     "tag": "재질",
+     "q": "롤러 재질이 스테인리스인 이유는?",
+     "a": "304 스테인리스라 굵은 튜브를 누르는 하중과 산업 현장의 사용 조건을 견디기 위해서입니다. 하우징은 PSU입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "회전수 범위는 어떻게 되나요?",
+     "a": "100~900 rpm입니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력은 얼마까지 되나요?",
+     "a": "튜브 수압 기준 0.2 MPa입니다."
+    },
+    {
+     "tag": "구성",
+     "q": "모터가 포함되나요?",
+     "a": "펌프헤드 단품입니다. LM80C 같은 대유량 구동부에 물려 씁니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 산업용 대유량 펌프헤드 RZ35",
+    "sku": "RZ35-3H-U",
+    "category": "연동펌프 · 펌프헤드",
+    "description": "PSU 하우징 · 304 스테인리스 3롤러 산업용 대유량 펌프헤드. 100~900 rpm, 73#/82# 튜브, 튜브 수압 0.2 MPa, 1.74 kg.",
+    "models": [
+     "RZ35-3H-U"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/rz35-industrial-high-flow-pump-head.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "ts600-industrial-high-flow-peristaltic-pump",
+   "name": "산업용 대유량 연동펌프 TS600",
+   "name_en": "Runze Fluid TS600 Industrial High Flow Peristaltic Pump",
+   "sub": "최대 14.28 L/min · 73# / 82# 튜브 · PSU 하우징·스테인리스 로터 · 86 스텝모터 · ≤900 rpm",
+   "category": "연동펌프 · 산업용 대유량",
+   "title": "Runze Fluid 산업용 대유량 연동펌프 TS600 — 최대 14.28 L/min 일체형 | 실험셋업연구소",
+   "desc": "Runze Fluid TS600 산업용 대유량 연동펌프 — 최대 유량 14.28 L/min, 73# / 82# 튜브, PSU 하우징·스테인리스 3롤러, 86 스텝모터(홀딩 토크 8.5 N·m), 회전수 900 rpm 이하, 튜브 출구압 0.2 MPa, 8.75 kg. 가격 문의.",
+   "images": [
+    "ts600-industrial-high-flow-peristaltic-pump-1.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-2.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-3.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-4.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-5.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-6.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-7.jpg",
+    "ts600-industrial-high-flow-peristaltic-pump-8.jpg"
+   ],
+   "image_alt": "Runze Fluid 산업용 대유량 연동펌프 TS600",
+   "answer": "TS600은 73#·82# 굵은 튜브로 최대 14.28 L/min을 내는 일체형 산업용 연동펌프로, 86 스텝모터와 전용 컨트롤러로 속도·이송량·지연·반복 횟수를 설정해 화학 원료와 식품 원료 이송에 씁니다.",
+   "features": [
+    "최대 유량 <b>14.28 L/min</b> (매질 청수 기준) — 73# · 82# 튜브 적용",
+    "펌프헤드 <b>PSU 하우징 + 스테인리스 로터 3개</b>",
+    "구동 <b>86 스텝모터</b> — 스텝 각도 1.8°, 홀딩 토크 8.5 N·m, 절연 100 MΩ MIN(500 VDC), 사용 온도 −20℃ ~ +50℃",
+    "회전수 <b>900 rpm 이하</b>, 구동 토크 1.61 N·m, 튜브 출구압 0.2 MPa",
+    "<b>산업용 모터 컨트롤러</b> — 속도 · 이송 거리 · 지연 · 반복 횟수를 엔코더 노브로 설정하고 정·역 표시등으로 상태를 봅니다",
+    "저소음 · 고안정 · 긴 수명을 겨냥한 정밀 가공 일체형 구조, 중량 8.75 kg"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "최대 14.28 L/min (매질 청수)"
+    ],
+    [
+     "모델 (Product name)",
+     "TS600"
+    ],
+    [
+     "적용 튜브 (Tube)",
+     "73# · 82#"
+    ],
+    [
+     "롤러 (Roller)",
+     "스테인리스 3롤러"
+    ],
+    [
+     "펌프헤드 (Pump head)",
+     "PSU 하우징 · 스테인리스 로터"
+    ],
+    [
+     "회전수 (Speed range)",
+     "≤900 rpm"
+    ],
+    [
+     "구동 토크 (Driver torque)",
+     "1.61 N·m"
+    ],
+    [
+     "튜브 출구압 (Outlet pressure)",
+     "0.2 MPa"
+    ],
+    [
+     "모터 (Motor)",
+     "86 스텝모터 · 스텝 각도 1.8° · 홀딩 토크 8.5 N·m"
+    ],
+    [
+     "절연 (Insulation)",
+     "100 MΩ MIN · 500 VDC"
+    ],
+    [
+     "사용 온도 (Ambient temp)",
+     "−20℃ ~ +50℃"
+    ],
+    [
+     "중량 (Weight)",
+     "8.75 kg"
+    ]
+   ],
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/lm80c-intelligent-large-flow-peristaltic-pump/\">LM80C 대유량 연동펌프</a> · <a href=\"/brands/runze/rz35-industrial-high-flow-pump-head/\">RZ35 대유량 펌프헤드</a> · <a href=\"https://www.youtube.com/watch?v=aCdpuqbwrs8\" rel=\"nofollow\">TS600 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#대유량연동펌프",
+     "/product/"
+    ],
+    [
+     "#산업용연동펌프",
+     "/product/"
+    ],
+    [
+     "#원료이송",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모터 · 컨트롤러 (Motor & controller)",
+     "html": "<p>구동은 <b>86 스텝모터</b> 입니다. 스텝 각도 1.8°, 홀딩 토크 8.5 N·m, 절연 100 MΩ MIN(500 VDC), 사용 온도 −20℃ ~ +50℃ 입니다.</p><p>산업용 모터 컨트롤러로 <b>속도 · 이송 거리 · 지연 시간 · 반복 횟수</b> 를 설정합니다. 정회전·역회전 표시등과 엔코더 설정 노브가 있습니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d4.jpg\" alt=\"86 스텝모터 사양과 모터 인터페이스 배선 정의\" loading=\"lazy\"><figcaption>86 스텝모터 사양과 모터 인터페이스 배선 정의</figcaption></figure><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d5.jpg\" alt=\"산업용 모터 컨트롤러 — 속도·거리·지연·반복 횟수 설정\" loading=\"lazy\"><figcaption>산업용 모터 컨트롤러 — 속도·거리·지연·반복 횟수 설정</figcaption></figure></div>"
+    },
+    {
+     "h": "성능 · 구조 (Performance & structure)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d2.jpg\" alt=\"최대 유량 14.28 L/min · 73#·82# 튜브 적용 · 대표 적용 분야\" loading=\"lazy\"><figcaption>최대 유량 14.28 L/min · 73#·82# 튜브 적용 · 대표 적용 분야</figcaption></figure><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d3.jpg\" alt=\"정밀 가공 일체형 구조 — PSU 하우징 · 스테인리스 로터\" loading=\"lazy\"><figcaption>정밀 가공 일체형 구조 — PSU 하우징 · 스테인리스 로터</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>화학 원료 이송 (Chemical raw material transportation)</li><li>반응기 투입 (Reactor feeding)</li><li>식품 원료 이송 (Food raw material transportation)</li></ul>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d1.jpg\" alt=\"TS600 (제조사 자료)\" loading=\"lazy\"><figcaption>TS600 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d6.jpg\" alt=\"TS600 (제조사 자료)\" loading=\"lazy\"><figcaption>TS600 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d7.jpg\" alt=\"TS600 (제조사 자료)\" loading=\"lazy\"><figcaption>TS600 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d8.jpg\" alt=\"TS600 (제조사 자료)\" loading=\"lazy\"><figcaption>TS600 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/ts600-industrial-high-flow-peristaltic-pump-d9.jpg\" alt=\"TS600 (제조사 자료)\" loading=\"lazy\"><figcaption>TS600 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "유량",
+     "q": "TS600은 유량이 얼마나 나오나요?",
+     "a": "최대 14.28 L/min입니다. 청수를 매질로 잰 값이고 73#·82# 튜브를 씁니다."
+    },
+    {
+     "tag": "튜브",
+     "q": "어떤 튜브를 쓰나요?",
+     "a": "73#과 82# 굵은 튜브입니다. RZ35 헤드와 같은 계열의 튜브 규격입니다."
+    },
+    {
+     "tag": "모터",
+     "q": "모터 사양은 어떻게 되나요?",
+     "a": "86 스텝모터로 스텝 각도 1.8°, 홀딩 토크 8.5 N·m입니다. 구동 토크는 1.61 N·m이고 회전수는 900 rpm 이하입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "어떤 항목을 설정할 수 있나요?",
+     "a": "속도, 이송 거리, 지연 시간, 반복 횟수를 컨트롤러 엔코더로 설정합니다. 정·역 회전은 표시등으로 확인합니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력은 얼마까지 되나요?",
+     "a": "튜브 출구압 기준 0.2 MPa입니다."
+    },
+    {
+     "tag": "차이",
+     "q": "LM80C와 TS600 중 어느 쪽을 골라야 하나요?",
+     "a": "LM80C는 연속·정량·예약·교정 4모드와 RS232/RS485 통신이 들어간 지능형 제어형이고, TS600은 컨트롤러로 속도·거리·지연·반복을 설정하는 이송 중심 구성입니다. 통신 연동이 필요하면 LM80C, 단순 대유량 이송이면 TS600입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 산업용 대유량 연동펌프 TS600",
+    "sku": "TS600",
+    "category": "연동펌프 · 산업용 대유량",
+    "description": "최대 14.28 L/min 산업용 대유량 연동펌프. 73#/82# 튜브, PSU 하우징·스테인리스 3롤러, 86 스텝모터(홀딩 토크 8.5 N·m), ≤900 rpm, 튜브 출구압 0.2 MPa, 8.75 kg.",
+    "models": [
+     "TS600"
+    ],
+    "count": 1
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/ts600-industrial-high-flow-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "industrial-peristaltic-pump",
+   "name": "산업용 연동펌프 BJ30",
+   "name_en": "Runze Fluid BJ30 Industrial Peristaltic Pump",
+   "sub": "57 스텝모터(NEMA 23) · 0-400 rpm · 0-1700 mL/min · YZ1515X / YZ2515X / SN15 / SN25 헤드 · 3 bar",
+   "category": "연동펌프 · 스텝모터 일체형",
+   "title": "Runze Fluid 산업용 연동펌프 BJ30 — 최대 1700 mL/min NEMA 23 일체형 | 실험셋업연구소",
+   "desc": "Runze Fluid BJ30 산업용 연동펌프 — 57 스텝모터(NEMA 23), 0-400 rpm, 유량 0-1700 mL/min, 헤드 YZ1515X / YZ2515X / SN15 / SN25, 스테인리스 3·6롤러, 튜브 ID 1.6-8.0 mm, 최대 3 bar(0.3 MPa). 가격 문의.",
+   "images": [
+    "industrial-peristaltic-pump-1.jpg",
+    "industrial-peristaltic-pump-2.jpg",
+    "industrial-peristaltic-pump-3.jpg",
+    "industrial-peristaltic-pump-4.jpg",
+    "industrial-peristaltic-pump-5.jpg",
+    "industrial-peristaltic-pump-6.jpg",
+    "industrial-peristaltic-pump-7.jpg"
+   ],
+   "image_alt": "Runze Fluid 산업용 연동펌프 BJ30",
+   "answer": "BJ30은 57 스텝모터(NEMA 23)에 YZ 또는 SN 계열 펌프헤드를 직결한 산업용 연동펌프로, 튜브 굵기에 따라 0~1700 mL/min 구간을 다루며 액체가 튜브 안에만 닿아 교차오염이 없습니다.",
+   "features": [
+    "모터 <b>57 스텝모터 (= NEMA 23)</b>, 회전수 0 ~ 400 rpm, 최대 18 W",
+    "유량 <b>0 ~ 1700 mL/min</b> — 14# 부터 18# 까지 튜브로 조절합니다",
+    "펌프헤드 <b>YZ1515X · YZ2515X (ABS · 흰색/검정)</b> 또는 <b>SN15 · SN25 (PC · 투명)</b> 선택",
+    "롤러 <b>스테인리스 3롤러 / 6롤러</b> — 6롤러는 맥동이 작고 3롤러는 유량이 큽니다",
+    "<b>퀵 튜브 장착(Fast tubing)</b> 지원, 튜브 ID 1.6-8.0 mm · 두께 1.6-2.5 mm · 외경 11.4 mm 이하",
+    "압력 정격 <b>최대 3 bar (0.3 MPa)</b>, 흡입 양정 5 m · 토출 양정 8 m, 소음 65 dB",
+    "치수 175.2 × 122.1 × 106 mm, 1525 g(3롤러) / 1585 g(6롤러)"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0 ~ 1700 mL/min"
+    ],
+    [
+     "모델 (Model No.)",
+     "BJ30-YZ1515X / YZ2515X / SN15 / SN25"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "스테인리스 3롤러 / 6롤러"
+    ],
+    [
+     "헤드 재질 (Pump head)",
+     "ABS 엔지니어링 플라스틱 (YZ) · PC 엔지니어링 플라스틱 (SN)"
+    ],
+    [
+     "헤드 색상 (Pump color)",
+     "흰색 / 검정 (YZ) · 투명 (SN)"
+    ],
+    [
+     "퀵 튜브 (Fast tubing)",
+     "지원"
+    ],
+    [
+     "모터 (Motor type)",
+     "57 스텝모터 (= NEMA 23)"
+    ],
+    [
+     "회전수 (Motor speed)",
+     "0 ~ 400 rpm"
+    ],
+    [
+     "최대 출력 (Max power)",
+     "18 W"
+    ],
+    [
+     "튜브 규격 (Tubing size)",
+     "ID 1.6-8.0 mm · WT 1.6-2.5 mm · OD ≤11.4 mm"
+    ],
+    [
+     "튜브 수명 (Tubing life)",
+     "실리콘 ≥200 h · BPT 고무 ≥1000 h"
+    ],
+    [
+     "압력 정격 (Pressure)",
+     "최대 3 bar (0.3 MPa)"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0-40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "소음 (Max noise)",
+     "65 dB"
+    ],
+    [
+     "흡입 · 양정 (Suction · Head)",
+     "흡입 5 m · 양정 8 m"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "175.2 × 122.1 × 106 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "1525 g (3롤러) · 1585 g (6롤러)"
+    ]
+   ],
+   "variants": {
+    "heading": "튜브 규격별 유량 (mL/min · 5-400 rpm)",
+    "head": [
+     "튜브",
+     "YZ1515X 3롤러",
+     "YZ1515X 6롤러",
+     "SN15 3롤러",
+     "SN15 6롤러"
+    ],
+    "rows": [
+     [
+      "14# (1.6×1.6)",
+      "1.1 - 116.5",
+      "0.8 - 92.1",
+      "1.1 - 87.4",
+      "0.8 - 59.5"
+     ],
+     [
+      "16# (3.2×1.6)",
+      "4.0 - 421.3",
+      "3.0 - 334.8",
+      "4.3 - 358.3",
+      "3.2 - 220.8"
+     ],
+     [
+      "25# (4.8×1.6)",
+      "9.1 - 920.2",
+      "−",
+      "10.1 - 735.1",
+      "−"
+     ],
+     [
+      "17# (6.4×1.6)",
+      "15.6 - 1394.2",
+      "−",
+      "13.2 - 1171.3",
+      "−"
+     ],
+     [
+      "18# (8.0×1.6)",
+      "20.1 - 1627.2",
+      "−",
+      "−",
+      "−"
+     ]
+    ],
+    "note": "상온 상압에서 순수를 이송해 잰 값이며 매질과 사용 환경에 따라 실제 유량은 달라집니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/peristaltic-dosing-pump/\">YZ1515X · YZ2515X 펌프헤드</a> · <a href=\"/brands/runze/mini-peristaltic-pump/\">미니 연동펌프 BJ-RZ1030</a> · <a href=\"https://www.runzefluid.com/uploads/file/bj30-series-peristaltic-pump.pdf\" rel=\"nofollow\">BJ30 시리즈 카탈로그 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/yz1515x-yz2515x.pdf\" rel=\"nofollow\">YZ1515X · YZ2515X 헤드 자료 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=CYH5xKnUeE0\" rel=\"nofollow\">BJ30 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#산업용연동펌프",
+     "/product/"
+    ],
+    [
+     "#NEMA23",
+     "/product/"
+    ],
+    [
+     "#교차오염방지",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "펌프헤드 선택 (Pump head)",
+     "html": "<ul><li><b>YZ1515X · YZ2515X</b> — ABS 엔지니어링 플라스틱, 흰색 또는 검정. 3롤러·6롤러 선택.</li><li><b>SN15 · SN25</b> — PC 엔지니어링 플라스틱, 투명. 튜브 상태를 눈으로 확인할 수 있습니다. 같은 튜브에서 YZ 대비 유량이 조금 낮습니다.</li></ul>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<p>소형 모터와 대형 모터 구성으로 전장이 달라집니다. BJ30-SN15/SN25 는 152.7 mm / 173.7 mm, BJ30-YZ1515X/YZ2515X 는 154.2 mm / 175.2 mm 입니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/industrial-peristaltic-pump-d4.jpg\" alt=\"BJ30-SN15/SN25 및 BJ30-YZ1515X/YZ2515X 외형 치수 — 소형·대형 모터 구성\" loading=\"lazy\"><figcaption>BJ30-SN15/SN25 및 BJ30-YZ1515X/YZ2515X 외형 치수 — 소형·대형 모터 구성</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 튜브 (Peristaltic tubing)",
+     "html": "<ul><li><b>실리콘</b> — 식품 등급 · −4℃ ~ +180℃ · 비부식성 액체 · 수명 200시간 이상</li><li><b>PharMed BPT</b> — Saint-Gobain · FDA 규격 · −51℃ ~ +132℃ · 약산·약염기 · 1000시간 이상</li><li><b>Viton</b> — MasterFlex · FDA 규격 · −20℃ ~ +260℃ · 강산·강염기 · 1000시간 이상</li></ul><p>수명은 상온 20℃·무가압에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 회전수가 낮고 액성이 순할수록 길어집니다.</p>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/industrial-peristaltic-pump-d1.jpg\" alt=\"BJ30 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ30 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/industrial-peristaltic-pump-d2.jpg\" alt=\"BJ30 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ30 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/industrial-peristaltic-pump-d3.jpg\" alt=\"BJ30 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ30 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/industrial-peristaltic-pump-d5.jpg\" alt=\"BJ30 (제조사 자료)\" loading=\"lazy\"><figcaption>BJ30 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "유량",
+     "q": "BJ30은 유량이 얼마나 나오나요?",
+     "a": "0~1700 mL/min입니다. 18# 튜브(8.0×1.6 mm)에 YZ1515X 3롤러 조합이 1627.2 mL/min으로 가장 큽니다."
+    },
+    {
+     "tag": "헤드",
+     "q": "YZ 헤드와 SN 헤드는 뭐가 다른가요?",
+     "a": "YZ는 ABS 하우징이고 SN은 PC 투명 하우징이라 튜브 상태를 눈으로 볼 수 있습니다. 같은 튜브에서 SN 쪽 유량이 조금 낮습니다."
+    },
+    {
+     "tag": "롤러",
+     "q": "3롤러와 6롤러 중 어느 쪽을 골라야 하나요?",
+     "a": "유량이 필요하면 3롤러, 맥동을 줄여야 하면 6롤러입니다. 6롤러는 같은 튜브에서 유량이 20~25% 정도 낮고 25#·17#·18# 굵은 튜브는 3롤러 전용입니다."
+    },
+    {
+     "tag": "모터",
+     "q": "모터는 무엇인가요?",
+     "a": "57 스텝모터로 NEMA 23 규격과 같습니다. 0~400 rpm이고 최대 18 W입니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력 정격은 얼마인가요?",
+     "a": "최대 3 bar(0.3 MPa)입니다. 흡입 양정 5 m, 토출 양정 8 m입니다."
+    },
+    {
+     "tag": "오염",
+     "q": "펌프 내부가 오염되지 않나요?",
+     "a": "액체가 튜브 안쪽에만 닿기 때문에 펌프와 액체 사이에 교차오염이 없습니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 산업용 연동펌프 BJ30",
+    "sku": "BJ30",
+    "category": "연동펌프 · 스텝모터 일체형",
+    "description": "57 스텝모터(NEMA 23) 산업용 연동펌프. 0-400 rpm, 0-1700 mL/min, YZ1515X/YZ2515X/SN15/SN25 헤드, 스테인리스 3·6롤러, 튜브 ID 1.6-8.0 mm, 최대 3 bar.",
+    "models": [
+     "BJ30-YZ1515X",
+     "BJ30-YZ2515X",
+     "BJ30-SN15",
+     "BJ30-SN25"
+    ],
+    "count": 4
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/industrial-peristaltic-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "peristaltic-dosing-pump",
+   "name": "정량 연동펌프 헤드 YZ1515X · YZ2515X",
+   "name_en": "Runze Fluid YZ1515X / YZ2515X Peristaltic Dosing Pump Head",
+   "sub": "플립탑 퀵 튜브 · 스테인리스 3 / 6롤러 · 0-400 rpm · 0-1700 mL/min · 3 bar · 373 g",
+   "category": "연동펌프 · 펌프헤드",
+   "title": "Runze Fluid 정량 연동펌프 헤드 YZ1515X · YZ2515X — 플립탑 스테인리스 롤러 | 실험셋업연구소",
+   "desc": "Runze Fluid YZ1515X / YZ2515X 정량 연동펌프 헤드 — 플립탑 구조로 튜브 교체가 빠르고 스테인리스 3·6롤러 선택, 0-400 rpm, 0-1700 mL/min, 튜브 ID 1.6-8.0 mm, 최대 3 bar(0.3 MPa), 373 g. 스텝·DC·AC 모터 호환. 가격 문의.",
+   "images": [
+    "peristaltic-dosing-pump-1.jpg",
+    "peristaltic-dosing-pump-2.jpg",
+    "peristaltic-dosing-pump-3.jpg",
+    "peristaltic-dosing-pump-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 정량 연동펌프 헤드 YZ1515X",
+   "answer": "YZ1515X / YZ2515X는 뚜껑을 젖혀 튜브를 갈아 끼우는 플립탑 정량 연동펌프 헤드로, 스테인리스 3롤러 또는 6롤러를 골라 스텝·DC·AC 어느 모터에나 물려 씁니다.",
+   "features": [
+    "<b>플립탑(Flip-top) 구조</b> — 뚜껑을 젖혀 튜브를 빠르게 갈아 끼웁니다",
+    "<b>스테인리스 3롤러 / 6롤러</b> 선택 — 여러 튜브 규격에 자동으로 맞춰집니다",
+    "모델 <b>YZ1515X-3B / 3H / 6B / 6H</b>, <b>YZ2515X-3B / 3H / 6B / 6H</b>",
+    "<b>스텝모터 · DC모터 · AC모터</b> 어느 쪽에도 물릴 수 있고 회전수 0-400 rpm 입니다",
+    "유량 <b>0 ~ 1700 mL/min</b>, 튜브 ID 1.6-8.0 mm · 두께 1.6-2.5 mm · 외경 11.4 mm 이하",
+    "압력 정격 <b>최대 3 bar (0.3 MPa)</b>, 흡입 양정 5 m · 토출 양정 8 m",
+    "치수 122.1 × 106 × 73.5 mm, 373 g(3롤러) / 433 g(6롤러) — 헤드만으로도 가볍습니다"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0 ~ 1700 mL/min"
+    ],
+    [
+     "모델 (Model No.)",
+     "YZ1515X-3B / 3H / 6B / 6H · YZ2515X-3B / 3H / 6B / 6H"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "스테인리스 3롤러 / 6롤러"
+    ],
+    [
+     "헤드 재질 (Pump head)",
+     "ABS 엔지니어링 플라스틱"
+    ],
+    [
+     "헤드 색상 (Pump color)",
+     "흰색 / 검정"
+    ],
+    [
+     "퀵 튜브 (Fast tubing)",
+     "지원 (플립탑)"
+    ],
+    [
+     "호환 모터 (Motor)",
+     "스텝모터 · DC모터 · AC모터"
+    ],
+    [
+     "회전수 (Motor speed)",
+     "0 ~ 400 rpm"
+    ],
+    [
+     "튜브 규격 (Tubing size)",
+     "ID 1.6-8.0 mm · WT 1.6-2.5 mm · OD ≤11.4 mm"
+    ],
+    [
+     "튜브 수명 (Tubing life)",
+     "실리콘 ≥200 h · BPT 고무 ≥1000 h"
+    ],
+    [
+     "압력 정격 (Pressure)",
+     "최대 3 bar (0.3 MPa)"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0-40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "소음 (Max noise)",
+     "65 dB"
+    ],
+    [
+     "흡입 · 양정 (Suction · Head)",
+     "흡입 5 m · 양정 8 m"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "122.1 × 106 × 73.5 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "373 g (3롤러) · 433 g (6롤러)"
+    ]
+   ],
+   "variants": {
+    "heading": "튜브 규격별 유량 (mL/min · 5-400 rpm)",
+    "head": [
+     "튜브",
+     "YZ1515X 3롤러",
+     "YZ1515X 6롤러",
+     "SN15 3롤러",
+     "SN15 6롤러"
+    ],
+    "rows": [
+     [
+      "14# (1.6×1.6)",
+      "1.1 - 116.5",
+      "0.8 - 92.1",
+      "1.1 - 87.4",
+      "0.8 - 59.5"
+     ],
+     [
+      "16# (3.2×1.6)",
+      "4.0 - 421.3",
+      "3.0 - 334.8",
+      "4.3 - 358.3",
+      "3.2 - 220.8"
+     ],
+     [
+      "25# (4.8×1.6)",
+      "9.1 - 920.2",
+      "−",
+      "10.1 - 735.1",
+      "−"
+     ],
+     [
+      "17# (6.4×1.6)",
+      "15.6 - 1394.2",
+      "−",
+      "13.2 - 1171.3",
+      "−"
+     ],
+     [
+      "18# (8.0×1.6)",
+      "20.1 - 1627.2",
+      "−",
+      "−",
+      "−"
+     ]
+    ],
+    "note": "상온 상압에서 순수를 이송해 잰 값이며 매질과 사용 환경에 따라 실제 유량은 달라집니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/industrial-peristaltic-pump/\">산업용 연동펌프 BJ30</a> · <a href=\"/brands/runze/peristaltic-hose-pump/\">호스펌프 헤드 SN15 · SN25</a> · <a href=\"https://www.runzefluid.com/uploads/file/yz1515x-yz2515x-peristaltic-pump-head.pdf\" rel=\"nofollow\">YZ1515X · YZ2515X 헤드 자료 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=cDjRFqiTo6A\" rel=\"nofollow\">YZ 헤드 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#펌프헤드",
+     "/product/"
+    ],
+    [
+     "#플립탑",
+     "/product/"
+    ],
+    [
+     "#정량투입",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "모델 코드 (Model code)",
+     "html": "<p><b>YZ1515X</b> 와 <b>YZ2515X</b> 뒤에 붙는 <b>3 / 6</b> 은 롤러 수, <b>B / H</b> 는 헤드 구성 구분입니다. 예를 들어 YZ1515X-6H 는 6롤러 구성입니다.</p>"
+    },
+    {
+     "h": "외형 치수 (Dimension, unit: mm)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-dosing-pump-d3.jpg\" alt=\"YZ1515X · YZ2515X 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>YZ1515X · YZ2515X 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-dosing-pump-d4.jpg\" alt=\"YZ1515X · YZ2515X 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>YZ1515X · YZ2515X 외형 치수 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 튜브 (Peristaltic tubing)",
+     "html": "<ul><li><b>실리콘</b> — 식품 등급 · −4℃ ~ +180℃ · 비부식성 액체 · 수명 200시간 이상</li><li><b>PharMed BPT</b> — Saint-Gobain · FDA 규격 · −51℃ ~ +132℃ · 약산·약염기 · 1000시간 이상</li><li><b>Viton</b> — MasterFlex · FDA 규격 · −20℃ ~ +260℃ · 강산·강염기 · 1000시간 이상</li></ul>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-dosing-pump-d1.jpg\" alt=\"YZ 정량 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>YZ 정량 펌프헤드 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-dosing-pump-d2.jpg\" alt=\"YZ 정량 펌프헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>YZ 정량 펌프헤드 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "구조",
+     "q": "플립탑 구조가 뭔가요?",
+     "a": "헤드 뚜껑을 위로 젖혀 여는 구조입니다. 공구 없이 튜브를 빠르게 갈아 끼울 수 있습니다."
+    },
+    {
+     "tag": "모터",
+     "q": "모터가 포함되나요?",
+     "a": "펌프헤드 단품입니다. 스텝모터·DC모터·AC모터 어느 쪽에나 물릴 수 있고, 모터가 붙은 완제품이 필요하면 BJ30 구성을 봅니다."
+    },
+    {
+     "tag": "롤러",
+     "q": "3롤러와 6롤러 차이는?",
+     "a": "3롤러가 유량이 크고 6롤러가 맥동이 작습니다. 25#·17#·18# 굵은 튜브는 3롤러 구성만 지원합니다."
+    },
+    {
+     "tag": "유량",
+     "q": "유량은 얼마까지 나오나요?",
+     "a": "0~1700 mL/min입니다. 18# 튜브(8.0×1.6 mm) 3롤러에서 20.1~1627.2 mL/min이 나옵니다."
+    },
+    {
+     "tag": "튜브",
+     "q": "어떤 튜브를 쓰나요?",
+     "a": "내경 1.6~8.0 mm, 두께 1.6~2.5 mm, 외경 11.4 mm 이하입니다. 14#·16#·25#·17#·18# 규격을 씁니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력은 얼마까지 되나요?",
+     "a": "최대 3 bar(0.3 MPa)입니다."
+    },
+    {
+     "tag": "중량",
+     "q": "헤드 무게는?",
+     "a": "3롤러 373 g, 6롤러 433 g입니다. 치수는 122.1 × 106 × 73.5 mm입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 정량 연동펌프 헤드 YZ1515X · YZ2515X",
+    "sku": "YZ1515X",
+    "category": "연동펌프 · 펌프헤드",
+    "description": "플립탑 정량 연동펌프 헤드. 스테인리스 3·6롤러, 0-400 rpm, 0-1700 mL/min, 튜브 ID 1.6-8.0 mm, 최대 3 bar, 373 g, 스텝·DC·AC 모터 호환.",
+    "models": [
+     "YZ1515X-3B",
+     "YZ1515X-3H",
+     "YZ1515X-6B",
+     "YZ1515X-6H",
+     "YZ2515X-3B",
+     "YZ2515X-3H",
+     "YZ2515X-6B",
+     "YZ2515X-6H"
+    ],
+    "count": 8
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/peristaltic-dosing-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "peristaltic-hose-pump",
+   "name": "호스펌프 헤드 SN15 · SN25",
+   "name_en": "Runze Fluid SN15 / SN25 Peristaltic Hose Pump Head",
+   "sub": "투명 PC 하우징 · 스테인리스 3 / 6롤러 · 0-400 rpm · 0-1725 mL/min · 2단 구조 · 282 g",
+   "category": "연동펌프 · 펌프헤드",
+   "title": "Runze Fluid 호스펌프 헤드 SN15 · SN25 — 투명 하우징 스테인리스 롤러 | 실험셋업연구소",
+   "desc": "Runze Fluid SN15 / SN25 호스펌프 헤드 — 투명 PC 하우징으로 튜브 안 흐름을 눈으로 확인, 스테인리스 3·6롤러, 0-400 rpm, 0-1725 mL/min, 튜브 #14 #16 #25 #17 #15, 최대 2 bar, 77.1×72.5×76 mm · 282 g. 가격 문의.",
+   "images": [
+    "peristaltic-hose-pump-1.jpg",
+    "peristaltic-hose-pump-2.jpg",
+    "peristaltic-hose-pump-3.jpg",
+    "peristaltic-hose-pump-4.jpg"
+   ],
+   "image_alt": "Runze Fluid 호스펌프 헤드 SN15",
+   "answer": "SN15 / SN25는 투명 PC 하우징을 써서 튜브 안의 흐름을 눈으로 확인할 수 있는 호스펌프 헤드로, 2단 구조로 기밀을 잡고 스테인리스 3·6롤러를 골라 여러 모터에 물려 씁니다.",
+   "features": [
+    "<b>투명 PC 하우징</b> — 튜브 안의 흐름 상태를 눈으로 바로 확인합니다",
+    "<b>2단(Two-piece) 구조</b> — 기밀이 좋고 압축 간격이 고정되어 안정적입니다",
+    "<b>스테인리스 3롤러 / 6롤러</b> — 3롤러는 대유량, 6롤러는 무맥동 고정밀",
+    "표준 튜브 <b>#14 · #16 · #25 · #17 (SN15)</b>, <b>#15 (SN25)</b>",
+    "<b>스텝모터 · DC모터 · AC모터</b> 호환, 회전수 0-400 rpm, 유량 0-1725 mL/min",
+    "압력 정격 최대 2 bar(30 psi), 흡입 양정 5 m · 토출 양정 8 m, 소음 65 dB",
+    "치수 <b>77.1 × 72.5 × 76 mm</b>, 282 g(3롤러) / 332 g(6롤러) — 4×4.5 마운팅 홀, 여러 대 직렬 사용 가능"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "0 ~ 1725 mL/min"
+    ],
+    [
+     "모델 (Model No.)",
+     "SN15-3/6- #14 #16 #25 #17 · SN25-3/6- #15"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "스테인리스 3롤러 / 6롤러"
+    ],
+    [
+     "헤드 재질 (Pump head)",
+     "PC 하우징 (투명)"
+    ],
+    [
+     "퀵 튜브 (Fast tubing)",
+     "지원"
+    ],
+    [
+     "호환 모터 (Motor)",
+     "스텝모터 · DC모터 · AC모터"
+    ],
+    [
+     "회전수 (Motor speed)",
+     "0 ~ 400 rpm"
+    ],
+    [
+     "튜브 규격 (Tubing size)",
+     "ID 1.6-8.0 mm · WT 1.6-2.5 mm · OD ≤11.4 mm"
+    ],
+    [
+     "튜브 수명 (Tubing life)",
+     "실리콘 ≥200 h · BPT 고무 ≥1000 h"
+    ],
+    [
+     "압력 정격 (Pressure)",
+     "최대 2 bar (30 psi)"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0-40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "소음 (Max noise)",
+     "65 dB"
+    ],
+    [
+     "흡입 · 양정 (Suction · Head)",
+     "흡입 5 m · 양정 8 m"
+    ],
+    [
+     "치수 L×W×H (Dimension)",
+     "77.1 × 72.5 × 76 mm"
+    ],
+    [
+     "순중량 (Net weight)",
+     "282 g (3롤러) · 332 g (6롤러)"
+    ]
+   ],
+   "variants": {
+    "heading": "튜브 규격별 유량 (mL/min · 5-400 rpm)",
+    "head": [
+     "튜브 (ID×WT mm)",
+     "3롤러",
+     "6롤러"
+    ],
+    "rows": [
+     [
+      "14# (1.6×1.6)",
+      "1.1 - 87.4",
+      "0.8 - 59.5"
+     ],
+     [
+      "16# (3.2×1.6)",
+      "4.3 - 358.3",
+      "3.2 - 220.8"
+     ],
+     [
+      "25# (4.8×1.6)",
+      "10.1 - 735.1",
+      "−"
+     ],
+     [
+      "17# (6.4×1.6)",
+      "13.2 - 1171.3",
+      "−"
+     ]
+    ],
+    "note": "참고값이며 실제 유량은 매질·사용 조건·온습도·전압에 따라 달라집니다. 표의 값은 해당 회전수에서 가장 굵은 튜브로 낼 수 있는 최대 유량입니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/peristaltic-dosing-pump/\">YZ1515X · YZ2515X 펌프헤드</a> · <a href=\"/brands/runze/industrial-peristaltic-pump/\">산업용 연동펌프 BJ30</a> · <a href=\"https://www.youtube.com/watch?v=Z4PjQZFyn9Q\" rel=\"nofollow\">SN15 헤드 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#호스펌프",
+     "/product/"
+    ],
+    [
+     "#펌프헤드",
+     "/product/"
+    ],
+    [
+     "#투명하우징",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "구조 특징 (Details)",
+     "html": "<p>투명 하우징으로 튜브 상태를 확인하고, 압축 간격이 고정되어 있어 안정적입니다. 여러 대를 직렬로 이어 쓸 수 있습니다.</p><div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-hose-pump-d9.jpg\" alt=\"투명 하우징 · 고정 압축 간격 · 직렬 사용 · SN15/SN25X 외형 치수\" loading=\"lazy\"><figcaption>투명 하우징 · 고정 압축 간격 · 직렬 사용 · SN15/SN25X 외형 치수</figcaption></figure><figure><img src=\"/img/runze/peristaltic-hose-pump-d8.jpg\" alt=\"헤드 세부 구조 (제조사 자료)\" loading=\"lazy\"><figcaption>헤드 세부 구조 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 튜브 · 참고 유량 (Tubing & flow rate)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-hose-pump-d7.jpg\" alt=\"고무 튜브 규격과 3·6롤러 참고 유량표\" loading=\"lazy\"><figcaption>고무 튜브 규격과 3·6롤러 참고 유량표</figcaption></figure></div><ul><li><b>실리콘</b> — 식품 등급 · −4℃ ~ +180℃ · 비부식성 액체 · 수명 200시간 이상</li><li><b>PharMed BPT</b> — Saint-Gobain · FDA 규격 · −51℃ ~ +132℃ · 약산·약염기 · 1000시간 이상</li><li><b>Viton</b> — MasterFlex · FDA 규격 · −20℃ ~ +260℃ · 강산·강염기 · 1000시간 이상</li></ul><p>수명은 상온 20℃·무가압에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 회전수가 낮고 액성이 순할수록 길어지며, 정량 정밀도를 유지하려면 주기적으로 교체합니다.</p>"
+    },
+    {
+     "h": "장착 순서 (Installation steps)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-hose-pump-d1.jpg\" alt=\"튜브 장착 순서 · 헤드 외형 (제조사 자료)\" loading=\"lazy\"><figcaption>튜브 장착 순서 · 헤드 외형 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-hose-pump-d2.jpg\" alt=\"튜브 장착 순서 · 헤드 외형 (제조사 자료)\" loading=\"lazy\"><figcaption>튜브 장착 순서 · 헤드 외형 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-hose-pump-d6.jpg\" alt=\"튜브 장착 순서 · 헤드 외형 (제조사 자료)\" loading=\"lazy\"><figcaption>튜브 장착 순서 · 헤드 외형 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "제품 사진 (Product)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-hose-pump-d3.jpg\" alt=\"SN15 · SN25 호스펌프 헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>SN15 · SN25 호스펌프 헤드 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-hose-pump-d4.jpg\" alt=\"SN15 · SN25 호스펌프 헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>SN15 · SN25 호스펌프 헤드 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-hose-pump-d5.jpg\" alt=\"SN15 · SN25 호스펌프 헤드 (제조사 자료)\" loading=\"lazy\"><figcaption>SN15 · SN25 호스펌프 헤드 (제조사 자료)</figcaption></figure></div>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "차이",
+     "q": "SN15와 YZ1515X는 뭐가 다른가요?",
+     "a": "SN 계열은 PC 투명 하우징이라 튜브 안 흐름을 눈으로 볼 수 있고 압력 정격이 2 bar입니다. YZ 계열은 ABS 하우징에 3 bar까지 견디고 같은 튜브에서 유량이 조금 더 나옵니다."
+    },
+    {
+     "tag": "튜브",
+     "q": "어떤 튜브 번호를 쓰나요?",
+     "a": "SN15는 #14 · #16 · #25 · #17, SN25는 #15입니다. 내경 1.6~8.0 mm, 두께 1.6~2.5 mm 범위입니다."
+    },
+    {
+     "tag": "롤러",
+     "q": "3롤러와 6롤러 중 어느 쪽인가요?",
+     "a": "대유량이 필요하면 3롤러, 맥동 없이 정밀하게 보내야 하면 6롤러입니다. 25#·17# 굵은 튜브는 3롤러만 지원합니다."
+    },
+    {
+     "tag": "모터",
+     "q": "모터가 포함되나요?",
+     "a": "헤드 단품입니다. 스텝모터·DC모터·AC모터 어느 쪽에나 물릴 수 있습니다."
+    },
+    {
+     "tag": "압력",
+     "q": "압력은 얼마까지 되나요?",
+     "a": "최대 2 bar(30 psi)입니다."
+    },
+    {
+     "tag": "설치",
+     "q": "크기와 고정 방법은?",
+     "a": "77.1 × 72.5 × 76 mm, 282 g(3롤러) / 332 g(6롤러)이고 4×4.5 마운팅 홀로 고정합니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 호스펌프 헤드 SN15 · SN25",
+    "sku": "SN15",
+    "category": "연동펌프 · 펌프헤드",
+    "description": "투명 PC 하우징 호스펌프 헤드. 스테인리스 3·6롤러, 0-400 rpm, 0-1725 mL/min, 튜브 #14/#16/#25/#17/#15, 최대 2 bar, 282 g, 스텝·DC·AC 모터 호환.",
+    "models": [
+     "SN15-3",
+     "SN15-6",
+     "SN25-3",
+     "SN25-6"
+    ],
+    "count": 4
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/peristaltic-hose-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
+  },
+  {
+   "slug": "peristaltic-metering-pump",
+   "name": "지능형 정량 연동펌프 LM60A · LM60B",
+   "name_en": "Runze Fluid LM60A / LM60B Intelligent Peristaltic Pump",
+   "sub": "연속 / 정량 / 예약 / 교정 4모드 · 0.1-400 rpm 정·역 · LM60A 최대 1295 mL/min · LM60B 최대 236 mL/min",
+   "category": "연동펌프 · 컨트롤러 일체형",
+   "title": "Runze Fluid 지능형 정량 연동펌프 LM60A · LM60B — 4모드 프리셋 충전 펌프 | 실험셋업연구소",
+   "desc": "Runze Fluid LM60A / LM60B 지능형 정량 연동펌프 — 분주량·분주 시간·반복 횟수·대기 시간을 미리 넣어 반복 충전, 0.1~400 rpm 정·역, 속도 분해능 0.1 rpm, LM60A 0.027-1295 mL/min · LM60B 0-161 mL/min, 풋스위치·RS232·RS485, IP31. 가격 문의.",
+   "images": [
+    "peristaltic-metering-pump-1.jpg",
+    "peristaltic-metering-pump-2.jpg",
+    "peristaltic-metering-pump-3.jpg",
+    "peristaltic-metering-pump-4.jpg",
+    "peristaltic-metering-pump-5.jpg",
+    "peristaltic-metering-pump-6.jpg",
+    "peristaltic-metering-pump-7.jpg",
+    "peristaltic-metering-pump-8.jpg",
+    "peristaltic-metering-pump-9.jpg",
+    "peristaltic-metering-pump-10.jpg",
+    "peristaltic-metering-pump-11.jpg",
+    "peristaltic-metering-pump-12.jpg",
+    "peristaltic-metering-pump-13.jpg"
+   ],
+   "image_alt": "Runze Fluid 지능형 정량 연동펌프 LM60A",
+   "answer": "LM60A · LM60B는 분주량·분주 시간·반복 횟수·대기 시간을 미리 입력해 두면 그대로 반복 충전하는 지능형 연동펌프로, 연속·정량·예약·교정 네 가지 모드를 패널에서 고릅니다.",
+   "features": [
+    "<b>연속 · 정량 · 예약 · 교정</b> 네 가지 운전 모드",
+    "<b>분주량 · 분주 시간 · 반복 횟수 · 대기 시간(0-999999 s)</b> 을 미리 넣어 정기 충전 공정을 돌립니다",
+    "속도 <b>0.1 ~ 400 rpm 정·역</b>, 속도 분해능 <b>0.1 rpm</b>",
+    "<b>LM60A</b> — 헤드 YZ1515X / YZ2515X / SN15 / SN25, 유량 0.027 ~ 1295 mL/min, 최대 30 W, 3.5 kg(헤드 제외)",
+    "<b>LM60B</b> — 헤드 RZ1030 / RZ1030B / RZ01 / RZ02, 유량 0 ~ 161 mL/min, 최대 20 W, 1.45 kg(헤드 제외)",
+    "외부 제어 <b>풋스위치 · RS232 · RS485</b>, 한 버튼 최고속(충전·배출)",
+    "중문·영문 표시, DC24V ±10%, 0-40℃ · 상대습도 80% 미만, 보호 등급 IP31"
+   ],
+   "specs": [
+    [
+     "유량 범위 (Flow rate)",
+     "LM60A 0.027 ~ 1295 mL/min · LM60B 0 ~ 161 mL/min"
+    ],
+    [
+     "모델 (Product name)",
+     "LM60A / LM60B 지능형 연동펌프"
+    ],
+    [
+     "적용 펌프헤드 (Pump head)",
+     "LM60A: YZ1515X · YZ2515X · SN15 · SN25<br>LM60B: RZ1030 · RZ1030B · RZ01 · RZ02"
+    ],
+    [
+     "롤러 (Pump roller)",
+     "YZ/SN 스테인리스 3·6롤러 · RZ1030 POM 4롤러 · RZ1030B POM 4/8롤러 · RZ01 PPS 4롤러 · RZ02 PPS 3/6롤러"
+    ],
+    [
+     "모터 (Motor type)",
+     "스텝모터"
+    ],
+    [
+     "속도 범위 (Speed range)",
+     "0.1 ~ 400 rpm · 정역 전환"
+    ],
+    [
+     "속도 분해능 (Speed resolution)",
+     "0.1 rpm"
+    ],
+    [
+     "운전 모드 (Working mode)",
+     "교정 · 연속 · 정량 · 예약"
+    ],
+    [
+     "외부 제어 (External control)",
+     "풋스위치 · RS232 · RS485"
+    ],
+    [
+     "대기 시간 (Latency time)",
+     "0 ~ 999999 s"
+    ],
+    [
+     "간격 시간 (Interval time)",
+     "0 ~ 999999 s · 사전 설정"
+    ],
+    [
+     "분주량 · 시간 (Dispensing)",
+     "사전 설정"
+    ],
+    [
+     "최고속 (Full speed)",
+     "한 버튼 전환 (충전 · 배출)"
+    ],
+    [
+     "표시 언어 (Language)",
+     "중문 / 영문"
+    ],
+    [
+     "전원 (Power supply)",
+     "DC24V ±10%"
+    ],
+    [
+     "최대 소비전력 (Max power)",
+     "LM60A 30 W · LM60B 20 W"
+    ],
+    [
+     "사용 환경 (Environment)",
+     "0 ~ 40℃ · 상대습도 80% 미만 · 비결로"
+    ],
+    [
+     "보호 등급 (Protection)",
+     "IP31"
+    ],
+    [
+     "순중량 (Net weight)",
+     "LM60A 3.5 kg · LM60B 1.45 kg (펌프헤드 제외)"
+    ]
+   ],
+   "variants": {
+    "heading": "모델별 최대 유량 (Media: water)",
+    "head": [
+     "모델",
+     "헤드 재질 · 색상",
+     "롤러",
+     "적용 튜브",
+     "최대 유량"
+    ],
+    "rows": [
+     [
+      "LM60A-YZ1515X-3B / 3H",
+      "흰색 / 검정",
+      "3",
+      "#14 #16 #25 #17",
+      "1249 mL/min (400 rpm)"
+     ],
+     [
+      "LM60A-YZ1515X-6B / 6H",
+      "흰색 / 검정",
+      "6",
+      "#14 #16",
+      "244 mL/min (400 rpm)"
+     ],
+     [
+      "LM60A-YZ2515X-3B / 3H",
+      "흰색 / 검정",
+      "3",
+      "#15 #24",
+      "1295 mL/min (400 rpm)"
+     ],
+     [
+      "LM60A-SN15-3",
+      "투명",
+      "3",
+      "#14 #16 #25 #17",
+      "997 mL/min (300 rpm)"
+     ],
+     [
+      "LM60B-RZ1030 / RZ1030B",
+      "POM / PPS",
+      "4",
+      "ID 0.64-3.0 · WT 0.8-1.0 · OD ≤5.0 mm",
+      "128 mL/min (ID2.79×0.8) · 183 mL/min (ID3.0×1.0)"
+     ],
+     [
+      "LM60B-RZ1030B",
+      "PPS",
+      "8",
+      "ID 0.64-3.0 · WT 0.8-1.0 · OD ≤5.0 mm",
+      "81 mL/min (ID2.79×0.8) · 114 mL/min (ID3.0×1.0)"
+     ],
+     [
+      "LM60B-RZ01",
+      "PC",
+      "4",
+      "ID 0.64-3.0 · WT 0.8-1.0 · OD ≤6.4 mm",
+      "96 mL/min (ID2.79×0.8) · 152 mL/min (ID3.2×1.6)"
+     ],
+     [
+      "LM60B-RZ02",
+      "PPS",
+      "3",
+      "ID 0.64-3.0 · WT 0.8-1.0 · OD ≤6.4 mm",
+      "162 mL/min (ID2.79×0.8) · 236 mL/min (ID3.2×1.6)"
+     ],
+     [
+      "LM60B-RZ02",
+      "PPS",
+      "6",
+      "ID 0.64-3.0 · WT 0.8-1.0 · OD ≤6.4 mm",
+      "114 mL/min (ID2.79×0.8) · 183 mL/min (ID3.2×1.6)"
+     ]
+    ],
+    "note": "매질 물 기준 최대 유량입니다. 실리콘 튜브 규격은 내경×두께(mm)로 표기했습니다."
+   },
+   "buybox": [],
+   "related": "유체 이송: <a href=\"/product/\">전 제품 통합 카탈로그</a> · <a href=\"/brands/runze/\">Runze Fluid 전체</a> · <a href=\"/brands/leadfluid/pump-heads/\">리드플루이드 펌프헤드</a> · <a href=\"/brands/leadfluid/tube-silicone/\">연동펌프 실리콘 튜브</a> · <a href=\"/brands/leadfluid/tube-pharmed-bpt/\">PHARMED BPT 튜브</a> · <a href=\"/contact/\">견적·기술 문의</a> · <a href=\"/brands/runze/lm40b-micro-peristaltic-pump/\">지능형 충전 연동펌프 LM40B</a> · <a href=\"/brands/runze/peristaltic-dosing-pump/\">YZ1515X · YZ2515X 펌프헤드</a> · <a href=\"/brands/runze/peristaltic-hose-pump/\">SN15 · SN25 호스펌프 헤드</a> · <a href=\"https://www.runzefluid.com/uploads/file/lm60a-intelligent-peristaltic-pump-instruction-manual.pdf\" rel=\"nofollow\">LM60A 매뉴얼 (제조사 PDF)</a> · <a href=\"https://www.runzefluid.com/uploads/file/lm60b-intelligent-peristaltic-pump-instruction-manual.pdf\" rel=\"nofollow\">LM60B 매뉴얼 (제조사 PDF)</a> · <a href=\"https://www.youtube.com/watch?v=s9xC7UyDvfs\" rel=\"nofollow\">LM60 제조사 소개 영상</a>",
+   "keywords": [
+    [
+     "#RunzeFluid",
+     "/brands/runze/"
+    ],
+    [
+     "#실험장비카탈로그",
+     "/product/"
+    ],
+    [
+     "#연동펌프",
+     "/product/"
+    ],
+    [
+     "#정량이송",
+     "/product/"
+    ],
+    [
+     "#정량충전",
+     "/product/"
+    ],
+    [
+     "#반복분주",
+     "/product/"
+    ],
+    [
+     "#지능형연동펌프",
+     "/product/"
+    ]
+   ],
+   "sections": [
+    {
+     "h": "4가지 운전 모드 (Working mode)",
+     "html": "<ul><li><b>연속 (Continuous)</b> — 특별한 조건 없이 액체를 계속 이송합니다</li><li><b>정량 (Rationing)</b> — 지정한 부피를 한 번에 분주합니다</li><li><b>예약 (Booking)</b> — 지정한 부피를 N회 반복 분주합니다</li><li><b>교정 (Calibration)</b> — 다른 모드를 시작하기 전에 정확도를 맞춥니다</li></ul>"
+    },
+    {
+     "h": "제어 방식 · 외형 (Control mode & dimension)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-metering-pump-d13.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d14.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d15.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d16.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d17.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d18.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d19.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d20.jpg\" alt=\"LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)\" loading=\"lazy\"><figcaption>LM60A · LM60B 제어 방식과 외형 치수 (제조사 자료)</figcaption></figure></div>"
+    },
+    {
+     "h": "적용 튜브 (Peristaltic tubing)",
+     "html": "<ul><li><b>실리콘</b> — 식품 등급 · −4℃ ~ +180℃ · 비부식성 액체 · 수명 200시간 이상</li><li><b>PharMed BPT</b> — Saint-Gobain · FDA 규격 · −51℃ ~ +132℃ · 약산·약염기 · 1000시간 이상</li><li><b>Viton</b> — MasterFlex · FDA 규격 · −20℃ ~ +260℃ · 강산·강염기 · 1000시간 이상</li></ul><p>수명은 상온 20℃·무가압에서 순수를 연속 이송해 균열이 생길 때까지를 잰 값입니다. 회전수가 낮고 액성이 순할수록 길어지며, 정량 정밀도를 유지하려면 주기적으로 교체합니다.</p>"
+    },
+    {
+     "h": "제조사 자료 (Reference)",
+     "html": "<div class=\"det-imgs\"><figure><img src=\"/img/runze/peristaltic-metering-pump-d1.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d2.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d3.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d4.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d5.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d6.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d7.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d8.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d9.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d10.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d11.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure><figure><img src=\"/img/runze/peristaltic-metering-pump-d12.jpg\" alt=\"LM60A · LM60B 제조사 자료\" loading=\"lazy\"><figcaption>LM60A · LM60B 제조사 자료</figcaption></figure></div>"
+    },
+    {
+     "h": "용도 (Applications)",
+     "html": "<ul><li>정기 충전 공정 (Regular filling)</li><li>시약·원료 반복 분주</li><li>실험실 자동 계량 이송</li></ul>"
+    }
+   ],
+   "faq": [
+    {
+     "tag": "선택",
+     "q": "LM60A와 LM60B는 어떻게 고르나요?",
+     "a": "유량으로 갈립니다. LM60A는 YZ·SN 대유량 헤드로 최대 1295 mL/min, LM60B는 RZ 소형 헤드로 최대 236 mL/min입니다. 무게도 3.5 kg과 1.45 kg으로 차이가 큽니다."
+    },
+    {
+     "tag": "모드",
+     "q": "예약 모드는 무엇인가요?",
+     "a": "지정한 속도에서 지정한 부피를 N회 반복 분주하는 모드입니다. 대기 시간과 간격 시간을 0~999999초 범위에서 미리 넣어 둡니다."
+    },
+    {
+     "tag": "교정",
+     "q": "교정은 언제 하나요?",
+     "a": "다른 모드를 시작하기 전이나 펌프·튜브를 바꾼 뒤에 합니다. 분주량과 유량의 정확도를 맞추는 절차입니다."
+    },
+    {
+     "tag": "제어",
+     "q": "외부 제어는 무엇을 지원하나요?",
+     "a": "풋스위치, RS232, RS485입니다."
+    },
+    {
+     "tag": "속도",
+     "q": "역방향으로 돌릴 수 있나요?",
+     "a": "0.1~400 rpm 범위에서 정·역 모두 됩니다. 속도 분해능은 0.1 rpm입니다."
+    },
+    {
+     "tag": "헤드",
+     "q": "펌프헤드는 따로 사야 하나요?",
+     "a": "본체 중량이 헤드 제외 기준으로 표기됩니다. LM60A는 YZ1515X·YZ2515X·SN15·SN25, LM60B는 RZ1030·RZ1030B·RZ01·RZ02 중에서 골라 조합합니다."
+    },
+    {
+     "tag": "보호",
+     "q": "보호 등급은?",
+     "a": "IP31입니다. 사용 환경은 0~40℃, 상대습도 80% 미만입니다."
+    }
+   ],
+   "ld": {
+    "name": "Runze Fluid 지능형 정량 연동펌프 LM60A · LM60B",
+    "sku": "LM60A",
+    "category": "연동펌프 · 컨트롤러 일체형",
+    "description": "지능형 정량 연동펌프. 연속·정량·예약·교정 4모드, 분주량·시간·횟수·대기 시간 프리셋, 0.1~400 rpm 정역, LM60A 0.027-1295 mL/min, LM60B 0-161 mL/min, 풋스위치·RS232·RS485, IP31.",
+    "models": [
+     "LM60A-YZ1515X",
+     "LM60A-YZ2515X",
+     "LM60A-SN15",
+     "LM60B-RZ1030",
+     "LM60B-RZ1030B",
+     "LM60B-RZ01",
+     "LM60B-RZ02"
+    ],
+    "count": 9
+   },
+   "source": {
+    "url": "https://www.runzefluid.com/products/peristaltic-metering-pump.html",
+    "label": "Runze Fluid 제품 페이지"
+   }
   }
  ]
 }

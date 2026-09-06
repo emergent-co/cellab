@@ -39,6 +39,7 @@ async function get(request, env) {
        LEFT JOIN documents d ON d.id=t.document_id
        ${where}
       ORDER BY (t.status='완료') ASC, t.pinned DESC,
+               CASE WHEN t.sort_order IS NULL THEN 1 ELSE 0 END, t.sort_order,
                CASE WHEN t.due_date IS NULL OR t.due_date='' THEN 1 ELSE 0 END,
                t.due_date, t.id DESC
       LIMIT 200`).bind(...bind).all();
@@ -66,6 +67,56 @@ async function get(request, env) {
 async function post(request, env) {
   const b = await request.json().catch(() => ({}));
   const now = kstISO();
+
+  /* 목록에서 한 칸만 고칠 때 쓴다.
+     전체 저장(id 를 담은 일반 POST)을 쓰면 보내지 않은 칸 — 메모·품목·거래처·마감일 — 이
+     통째로 지워진다. 인라인 편집은 반드시 이 길로 온다. */
+  if (b.action === 'patch') {
+    if (!b.id) return json({ error: 'no_id' }, 400);
+    const set = [], bind = [];
+    if (b.title !== undefined) {
+      const title = String(b.title || '').trim();
+      if (!title) return json({ error: 'no_title', message: '할 일을 적어주세요.' }, 400);
+      set.push('title=?'); bind.push(title.slice(0, 300));
+    }
+    if (b.kind !== undefined) {
+      if (!TODO_KINDS.includes(b.kind)) return json({ error: 'bad_kind', message: '없는 종류입니다.' }, 400);
+      set.push('kind=?'); bind.push(b.kind);
+    }
+    if (b.status !== undefined) {
+      if (!STATUS.includes(b.status)) return json({ error: 'bad_status', message: '없는 상태입니다.' }, 400);
+      set.push('status=?'); bind.push(b.status);
+      set.push('done_at=?'); bind.push(b.status === '완료' ? now : null);
+    }
+    if (b.due_date !== undefined) { set.push('due_date=?'); bind.push(String(b.due_date || '').slice(0, 10) || null); }
+    if (b.memo !== undefined) { set.push('memo=?'); bind.push(String(b.memo || '').slice(0, 2000)); }
+    if (b.pinned !== undefined) { set.push('pinned=?'); bind.push(b.pinned ? 1 : 0); }
+    if (!set.length) return json({ error: 'nothing', message: '고칠 내용이 없습니다.' }, 400);
+    set.push('updated_at=?'); bind.push(now);
+    const r = await env.DB.prepare(`UPDATE todos SET ${set.join(', ')} WHERE id=?`)
+      .bind(...bind, b.id).run();
+    if (!r?.meta || r.meta.changes !== 1) return json({ error: 'not_found', message: '없는 할 일입니다.' }, 404);
+    return json({ ok: true, id: b.id });
+  }
+
+  /* 드래그로 바꾼 순서를 통째로 저장한다.
+     화면에 보이는 순서 그대로 10, 20, 30… 을 다시 매긴다 — 값이 겹치면 순서가 흔들리기 때문이다.
+     batch 라 전부 아니면 전무 — 절반만 반영돼 순서가 뒤섞이는 일이 없다. */
+  if (b.action === 'reorder') {
+    const list = (Array.isArray(b.order) ? b.order : []).slice(0, 300)
+      .map((x) => ({ id: Number(x.id) || 0, pinned: x.pinned ? 1 : 0 }))
+      .filter((x) => x.id);
+    if (!list.length) return json({ error: 'no_order', message: '바꿀 순서가 없습니다.' }, 400);
+    const seen = new Set();
+    for (const x of list) {
+      if (seen.has(x.id)) return json({ error: 'dup_id', message: '같은 할 일이 두 번 들어왔습니다.' }, 400);
+      seen.add(x.id);
+    }
+    await env.DB.batch(list.map((x, k) => env.DB.prepare(
+      'UPDATE todos SET pinned=?, sort_order=?, updated_at=? WHERE id=?')
+      .bind(x.pinned, (k + 1) * 10, now, x.id)));
+    return json({ ok: true, n: list.length });
+  }
 
   if (b.action === 'delete') {
     if (!b.id) return json({ error: 'no_id' }, 400);
