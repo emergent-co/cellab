@@ -10,6 +10,7 @@ import io, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 s = io.open(os.path.join(ROOT, 'product', 'index.html'), encoding='utf-8').read()
+s_page = s
 seg = s.split('<!--ALLPROD_START-->')[1].split('<!--ALLPROD_END-->')[0]
 CARDS = [(k.lower(), u) for k, u in
          re.findall(r'data-k="([^"]*)"[^>]*>\s*<a class="pc-im" href="([^"]*)"', seg)]
@@ -121,5 +122,79 @@ def main():
         print('   %-18s 카탈로그 %d (기대 %d+) · 헤더 %d' % (q, c, n, i))
 
 
+
+# ─────────────────────────────────────────────────────────────────────
+# 자가진단 — "제품이 있는데 검색이 안 되는" 사고를 잡는 세 가지 (2026-09-06 추가)
+# ─────────────────────────────────────────────────────────────────────
+
+# 통합 카탈로그에 일부러 안 싣는 페이지 (_build/build.py 의 ALLPROD_SKIP 과 같은 것)
+SKIP_CATALOG = {
+    '/brands/sh-scientific/rotary-tube-furnace/',
+    '/brands/sh-scientific/rotary-tube-furnace-pro/',
+}
+
+SELF_Q = """룬제 런제 runzefluid 리드플루이드 leadfluid 알리캣 알리캇 aida 아이다 가오스유니온
+헨치 hench 뉴웨어 neware 두두켐 dodochem 허페이 인시츄 삼흥에너지
+연동펌프 정량펌프 시린지펌프 기어펌프 질량유량계 mfc 유량계 배압조절기 백프레셔
+전기로 튜브전기로 박스전기로 머플로 마플로 소성로 어닐링로 진공로 로터리킬른
+챔버 항온항습기 인큐베이터 오븐 진공건조기 전해셀 코인셀 하프셀 3전극 기준전극
+백금전극 유리탄소 rde rrde 전해액 litfsi lifsi lipf6 분리막 셀가드 celgard whatman
+바인더 pvdf cmc sbr 도전재 슈퍼피 케첸블랙 글로브박스 크림퍼 펠릿프레스 압편기
+xrd 라만 xafs 광촉매 수전해 피팅 페럴 peek 밸브 흄후드 저울
+NE-000497 LB-1588 LS-1024 CH2003-50 SH-FU 프러시안 폼니켈""".split()
+
+
+def audit_self():
+    """① 카드가 제 제목·모델코드로 스스로 검색되는가
+       ② 실사용 질의가 양쪽 검색면에서 0건이 아닌가
+       ③ 상세페이지가 전부 카탈로그 카드를 갖고 있는가(린터 NOT_IN_CATALOG 와 같은 검사)"""
+    import glob
+    bad = 0
+
+    # ① 카드 자가검색
+    seg2 = s_page.split('<!--ALLPROD_START-->')[1].split('<!--ALLPROD_END-->')[0]
+    self_fail = []
+    for m in re.finditer(r'<article class="ap-card[^"]*"([^>]*)>(.*?)</article>', seg2, re.S):
+        k = (re.search(r'data-k="([^"]*)"', m.group(1)) or [None, ''])[1].lower()
+        t = re.search(r'class="pc-t"[^>]*>(.*?)</h3>', m.group(2), re.S)
+        if not t:
+            continue
+        title = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t.group(1))).strip()
+        ws = [w for w in title.lower().split() if len(w) > 1]
+        if ws and not all(k.find(w) > -1 or norm(k).find(norm(w)) > -1 for w in ws):
+            self_fail.append(title[:50])
+    print('\n[자가검색] 카드가 제 제목으로 안 나옴: %d건' % len(self_fail))
+    for x in self_fail[:8]:
+        print('   ', x)
+    bad += len(self_fail)
+
+    # ② 실사용 질의 0건
+    zero = [q for q in SELF_Q if not hit(CARDS, q) and not hit(IDX, q)]
+    print('[실사용 질의] 양쪽 0건: %d건 / %d' % (len(zero), len(SELF_Q)))
+    if zero:
+        print('    ' + ' · '.join(zero))
+    bad += len(zero)
+
+    # ③ 카탈로그 카드 없는 상세페이지
+    curls = {u.rstrip('/') + '/' for _k, u in CARDS}
+    miss = []
+    for f in glob.glob(os.path.join(ROOT, 'brands', '*', '*', 'index.html')):
+        t = io.open(f, encoding='utf-8').read()
+        if 'http-equiv="refresh"' in t or 'class="dt-name"' not in t:
+            continue
+        u = '/' + os.path.relpath(f, ROOT).replace(os.sep, '/').replace('/index.html', '') + '/'
+        if u not in curls and u not in SKIP_CATALOG:
+            miss.append(u)
+    print('[카탈로그 누락] 카드 없는 상세페이지: %d건' % len(miss))
+    for x in miss[:8]:
+        print('   ', x)
+    bad += len(miss)
+
+    print('\n자가진단 실패 합계 %d건' % bad)
+    return bad
+
+
 if __name__ == '__main__':
     main()
+    audit_self()
+

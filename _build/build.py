@@ -1167,6 +1167,7 @@ _SEARCH_SYN = [
     ['마그네틱바', '마그네틱 바', '자석바', 'stir bar', '교반자'],
     ['cmc', '카복시메틸셀룰로스', '카르복시메틸셀룰로오스'],
     ['인시츄셀', '인시추셀', 'in-situ cell', 'insitu cell'],
+    ['디스펜싱', '디스펜서', 'dispensing', 'dispenser', '분주', '정량 토출', '정량분주'],
 ]
 
 
@@ -1718,6 +1719,10 @@ def build_all_products():
             if _bans:
                 _dict_kw = [w for w in _dict_kw if not any(b in w.lower() for b in _bans)]
                 _extra = [w for w in _extra if not any(b in w.lower() for b in _bans)]
+            # 상세페이지 모델 표의 코드·품명도 카드 검색어에 싣는다.
+            # 계열 통합 페이지는 제품 수백 종이 표로만 있어 이게 없으면
+            # /product/ 에서 모델코드로 찾아도 안 나온다. (헤더 검색과 같은 규칙)
+            _tblkw = _tbl_terms(detail, cap=4000)
             keys = ' '.join(dict.fromkeys(' '.join(
                 [keys]
                 + [w.lower() for w in kws]
@@ -1725,6 +1730,7 @@ def build_all_products():
                 + [CAT_LABEL.get(cat, '').lower()]
                 + [(k + ' ' + v).lower() for k, v in specs if v and v != '상세 참조']
                 + [w.lower() for w in _extra]
+                + [_tblkw]
             ).replace('\u00b7', ' ').split()))
             if _bans:
                 keys = ' '.join(w for w in keys.split() if not any(b in w for b in _bans))
@@ -2918,6 +2924,24 @@ def build_new_research():
         print('  [warn] NEWRESEARCH 마커 못 찾음')
 
 
+def _tbl_terms(html, cap=12000):
+    """모델 표에서 모델코드·품명을 뽑아 검색어로 돌려준다.
+    표에만 실린 제품(계열 통합 페이지의 수백 종)이 검색에서 사라지는 것을 막는다.
+    첫 칸(모델코드)을 먼저 담아, 길이 상한에 잘리더라도 코드는 살아남게 한다."""
+    col0, col1, seen = [], [], set()
+    for tb in re.finditer(r'<table[^>]*class="[^"]*(?:pkg-tbl|pkg-opt|mdl-tbl)[^"]*"[^>]*>(.*?)</table>',
+                          html, re.S):
+        for tr in re.findall(r'<tr>(.*?)</tr>', tb.group(1), re.S):
+            cells = re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', tr, re.S)
+            for i, c in enumerate(cells[:2]):
+                v = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', unescape(c))).strip().lower()
+                if not v or len(v) > 60 or v in seen:
+                    continue
+                seen.add(v)
+                (col0 if i == 0 else col1).append(v)
+    return (' ' + ' '.join(col0 + col1))[:cap]
+
+
 def build_search_index():
     """전 페이지를 스캔해 사이트 검색 인덱스(/search-index.json)를 생성.
     site.js가 fetch해 수동 SEARCH_INDEX와 병합한다. 새 페이지는 빌드만 하면 검색에 잡힘."""
@@ -3011,7 +3035,11 @@ def build_search_index():
             else:
                 cat = '페이지'
             k = ' '.join(x for x in (h1, desc, kw) if x)[:400]
-            k += syn_expand(title + ' ' + k)   # 동의어는 400자 컷 뒤에 붙인다
+            # 모델 표 안의 코드·품명도 색인한다.
+            # 계열 통합 페이지는 제품 수백 종이 표로만 있어서, 이게 없으면
+            # 사이트에 버젓이 있는 모델을 코드로 검색해도 0건이 나온다.
+            k += _tbl_terms(t)
+            k += syn_expand(title + ' ' + k)   # 동의어는 컷 뒤에 붙인다
             _ck = _cardkw.get(url.rstrip('/'))
             if _ck:                            # 카탈로그 카드 검색어 병합(중복 낱말은 뺀다)
                 _have = set(k.lower().split())
