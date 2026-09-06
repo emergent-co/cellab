@@ -170,3 +170,9 @@
 /brands/hench/manual-pellet-press-yp  /brands/hench/pellet-press-yp-15/  301
 /brands/hench/cylindrical-die-hmy/  /brands/hench/cylindrical-die-hmy-7-10/  301
 /brands/hench/cylindrical-die-hmy  /brands/hench/cylindrical-die-hmy-7-10/  301
+
+# 매거진 → 블로그 명칭·경로 통합 (2026-09-06)
+# 하위 글 전부 1홉 직결. 카테고리 허브 3종은 페이지 유지(허브 목록에서 링크만 제거).
+/magazine  /blog/  301
+/magazine/  /blog/  301
+/magazine/*  /blog/:splat  301
