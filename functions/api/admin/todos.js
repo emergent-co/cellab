@@ -31,18 +31,25 @@ async function get(request, env) {
            bind.push(`%${q}%`, `%${q}%`, `%${q}%`, `%${q}%`); }
   const where = w.length ? `WHERE ${w.join(' AND ')}` : '';
 
-  const { results } = await env.DB.prepare(
-    `SELECT t.*, c.name AS contact, c.company, o.order_no, d.doc_no, d.type AS doc_type, d.access_token
+  const sql = (withOrder) => `SELECT t.*, c.name AS contact, c.company, o.order_no, d.doc_no, d.type AS doc_type, d.access_token
        FROM todos t
        LEFT JOIN customers c ON c.id=t.customer_id
        LEFT JOIN orders    o ON o.id=t.order_id
        LEFT JOIN documents d ON d.id=t.document_id
        ${where}
       ORDER BY (t.status='완료') ASC, t.pinned DESC,
-               CASE WHEN t.sort_order IS NULL THEN 1 ELSE 0 END, t.sort_order,
+               ${withOrder ? "CASE WHEN t.sort_order IS NULL THEN 1 ELSE 0 END, t.sort_order," : ''}
                CASE WHEN t.due_date IS NULL OR t.due_date='' THEN 1 ELSE 0 END,
                t.due_date, t.id DESC
-      LIMIT 200`).bind(...bind).all();
+      LIMIT 200`;
+  /* sort_order 는 나중에 붙인 칸이다. 코드를 먼저 올리고 ALTER 를 안 돌린 상태면
+     이 쿼리가 통째로 터져 할 일 목록이 안 뜬다 — 그 경우 정렬만 빼고 한 번 더 시도한다. */
+  let results;
+  try {
+    ({ results } = await env.DB.prepare(sql(true)).bind(...bind).all());
+  } catch (e) {
+    ({ results } = await env.DB.prepare(sql(false)).bind(...bind).all());
+  }
 
   const today = kstDate();
   const todos = (results || []).map((t) => {

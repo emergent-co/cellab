@@ -361,6 +361,18 @@ em.alias{font-style:normal;font-size:11.5px;font-weight:700;color:var(--navy);
 .tdm .dd.od{color:#B45309;font-weight:800}
 .tda{flex:0 0 auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
 @media(max-width:760px){.tdrow{flex-wrap:wrap}.tda{width:100%;justify-content:flex-start;margin-top:8px}}
+.tdsec{border-bottom:1px solid var(--line)}
+.tdsec:last-child{border-bottom:0}
+.tdsh{display:flex;align-items:center;gap:8px;padding:9px 15px;background:#f7f8fa;font-size:12px;font-weight:800;color:var(--mut)}
+.tdsh i{font-style:normal;background:#e6e9ef;border-radius:999px;padding:1px 8px;font-size:11px}
+.tdsh small{font-weight:600;color:#98a1ae}
+.tdempty{padding:14px 15px;font-size:12.5px;color:#98a1ae}
+.tdgrip{flex:0 0 14px;cursor:grab;color:#c2c8d2;font-size:13px;line-height:20px;margin-top:1px;user-select:none}
+.tdrow.drag{opacity:.45;background:#eef4fb}
+.tdrow[draggable=true]{cursor:default}
+.tdti{width:100%;border:1.5px solid var(--navy);border-radius:7px;padding:6px 8px;font-size:14px;font-weight:700}
+.tdm select.tdk{border:1px solid var(--line);border-radius:999px;padding:2px 7px;font-size:11px;font-weight:800;
+  color:var(--navy);background:var(--soft-blue);max-width:120px}
 
 /* ---------- 문서 발행 ---------- */
 .dc2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
@@ -4043,49 +4055,248 @@ function tdChips(){
   el.onclick = function(e){ var b=e.target.closest('.achip[data-s]'); if(!b) return; tdFilter=b.dataset.s; tdLoad(); };
 }
 
-function tdPaint(){
-  var el = $('#tdList'); if(!el) return;
-  if (!tdRows.length){ el.innerHTML = '<div class="empty">할 일이 없습니다.</div>'; return; }
-  el.innerHTML = tdRows.map(function(t){
-    var done = t.status==='완료';
-    var who = t.company || t.contact || '';
-    var acts = '';
-    if (!done && (t.kind==='견적발행' || t.kind==='거래명세서')){
-      acts += '<button class="btn pri" style="padding:8px 13px;font-size:12.5px" data-issue="'+t.id+'">'
-            + (t.kind==='거래명세서'?'거래명세서':'견적서')+' 발행 →</button>';
-    }
-    if (t.document_id) acts += '<a class="mini" href="'+esc(t.view)+'" target="_blank">문서 보기</a>';
-    acts += '<button class="mini" data-edit="'+t.id+'">수정</button>';
-    return '<div class="tdrow'+(done?' done':'')+(t.overdue?' due':'')+'">'
-      + '<button class="tdck'+(done?' on':'')+'" data-ck="'+t.id+'" aria-label="완료">'+(done?'✓':'')+'</button>'
-      + '<div class="tdb"><div class="tdt">'+esc(t.title)+'</div>'
-        + '<div class="tdm"><span class="kd">'+esc(t.kind||'기타')+'</span>'
-        + (t.status==='진행중'?'<span class="badge s1">진행중</span>':'')
-        + (who?'<span>'+esc(who)+'</span>':'')
-        + (t.order_no?'<span>'+esc(t.order_no)+'</span>':'')
-        + (t.doc_no?'<span>'+esc(t.doc_no)+'</span>':'')
-        + (t.due_date?'<span class="dd'+(t.overdue?' od':'')+'">~'+esc(t.due_date.slice(5))+'</span>':'')
-        + ((t.items&&t.items.length)?'<span>품목 '+t.items.length+'건</span>':'')
-        + '</div>'
-        + (t.memo?'<div class="tdm" style="color:var(--mut)">'+esc(t.memo)+'</div>':'')
-      + '</div>'
-      + '<div class="tda">'+acts+'</div></div>';
-  }).join('');
+/* ── 할 일 목록 ─────────────────────────────────────────────
+   목록 행에서 바로 고친다 — 제목은 눌러서, 종류는 고르는 칸으로, 완료는 왼쪽 네모.
+   순서는 끌어서 «우선 / 보통» 두 구간으로 나눈다.
 
+   미리 막아 둔 것들:
+   · 인라인 편집은 반드시 action:'patch' 로 보낸다. 전체 저장(id 를 담은 일반 POST)을 쓰면
+     보내지 않은 칸 — 메모·품목·거래처·마감일 — 이 통째로 지워진다.
+   · 고치는 중이거나 끄는 중에는 목록을 다시 그리지 않는다. 그리면 입력이 날아간다.
+   · 한글 조합 중의 Enter 는 저장으로 치지 않는다. 그러면 마지막 글자가 잘린다.
+   · 검색·필터가 걸린 목록은 «전부»가 아니다 — 그 상태로 순서를 저장하면 화면에 없는 항목과
+     어긋난다. 그래서 «미완료 + 검색어 없음» 일 때만 끌 수 있게 한다.
+   · 터치에서는 HTML5 끌기가 안 먹는다 → 행마다 «우선/보통» 버튼을 같이 둔다.
+   · 저장이 끝나기 전에는 같은 칸을 다시 못 누르게 잠근다.
+   · 순서 저장은 batch(전부 아니면 전무) — 절반만 반영돼 뒤섞이는 일이 없다. 실패하면 되돌린다. */
+var tdEditId = null, tdDragId = null, tdBusy = false;
+
+function tdCanOrder(){ return tdFilter === '미완료' && !tdKw; }
+function tdGet(id){ return tdRows.filter(function(x){ return String(x.id) === String(id); })[0]; }
+
+// 서버의 ORDER BY 와 같은 규칙 — 저장 전에 화면을 먼저 맞춰 두려고 쓴다
+function tdSortRows(){
+  tdRows.sort(function(a, b){
+    var ad = a.status === '완료' ? 1 : 0, bd = b.status === '완료' ? 1 : 0;
+    if (ad !== bd) return ad - bd;
+    var ap = a.pinned ? 1 : 0, bp = b.pinned ? 1 : 0;
+    if (ap !== bp) return bp - ap;
+    var ao = (a.sort_order == null) ? 1e9 : a.sort_order;
+    var bo = (b.sort_order == null) ? 1e9 : b.sort_order;
+    if (ao !== bo) return ao - bo;
+    return (b.id || 0) - (a.id || 0);
+  });
+}
+
+/* 한 칸만 고친다. 성공하면 화면에 들고 있는 값도 같이 고쳐, 목록을 다시 받아오지 않는다
+   (다시 받아오면 스크롤이 튀고, 옆에서 열어둔 편집이 날아간다). */
+async function tdPatch(id, fields, after){
+  if (tdBusy) return false;
+  tdBusy = true;
+  var r = await fetch('/api/admin/todos', { method:'POST', headers:AH,
+    body: JSON.stringify(Object.assign({ id: id, action: 'patch' }, fields)) })
+    .then(function(x){ return x.json(); }).catch(function(){ return {}; });
+  tdBusy = false;
+  if (!r.ok){ toast(r.message || '고치지 못했습니다'); return false; }
+  var row = tdGet(id);
+  if (row) Object.keys(fields).forEach(function(k){ row[k] = fields[k]; });
+  if (after) after();
+  admPoll(true);
+  return true;
+}
+
+function tdRowHtml(t){
+  var done = t.status === '완료';
+  var who = t.company || t.contact || '';
+  var drag = tdCanOrder() && !done;
+  var acts = '';
+  if (!done && (t.kind === '견적발행' || t.kind === '거래명세서')){
+    acts += '<button class="btn pri" style="padding:8px 13px;font-size:12.5px" data-issue="' + t.id + '">'
+          + (t.kind === '거래명세서' ? '거래명세서' : '견적서') + ' 발행 →</button>';
+  }
+  if (t.document_id) acts += '<a class="mini" href="' + esc(t.view) + '" target="_blank">문서 보기</a>';
+  if (!done) acts += '<button class="mini" data-pin="' + t.id + '">' + (t.pinned ? '보통으로' : '우선으로') + '</button>';
+  acts += '<button class="mini" data-edit="' + t.id + '">자세히</button>';
+
+  return '<div class="tdrow' + (done ? ' done' : '') + (t.overdue ? ' due' : '') + '"'
+      + ' data-id="' + t.id + '"' + (drag ? ' draggable="true"' : '') + '>'
+    + (drag ? '<span class="tdgrip" title="끌어서 순서 바꾸기">⠿</span>' : '')
+    + '<button class="tdck' + (done ? ' on' : '') + '" data-ck="' + t.id + '" aria-label="완료">' + (done ? '✓' : '') + '</button>'
+    + '<div class="tdb">'
+      + '<div class="tdt" data-t="' + t.id + '" title="눌러서 고치기">' + esc(t.title) + '</div>'
+      + '<div class="tdm">'
+        + '<select class="tdk" data-k="' + t.id + '" title="종류">'
+          + TD_KINDS.map(function(k){
+              return '<option' + (k === (t.kind || '기타') ? ' selected' : '') + '>' + esc(k) + '</option>'; }).join('')
+        + '</select>'
+        + (t.status === '진행중' ? '<span class="badge s1">진행중</span>' : '')
+        + (who ? '<span>' + esc(who) + '</span>' : '')
+        + (t.order_no ? '<span>' + esc(t.order_no) + '</span>' : '')
+        + (t.doc_no ? '<span>' + esc(t.doc_no) + '</span>' : '')
+        + (t.due_date ? '<span class="dd' + (t.overdue ? ' od' : '') + '">~' + esc(t.due_date.slice(5)) + '</span>' : '')
+        + ((t.items && t.items.length) ? '<span>품목 ' + t.items.length + '건</span>' : '')
+      + '</div>'
+      + (t.memo ? '<div class="tdm" style="color:var(--mut)">' + esc(t.memo) + '</div>' : '')
+    + '</div>'
+    + '<div class="tda">' + acts + '</div></div>';
+}
+
+function tdPaint(){
+  var el = $('#tdList'); if (!el) return;
+  if (tdEditId || tdDragId) return;         // 고치는 중·끄는 중에는 갈아끼우지 않는다
+  if (!tdRows.length){ el.innerHTML = '<div class="empty">할 일이 없습니다.</div>'; return; }
+
+  // 'open' 은 window.open 을 가린다 — 이름을 따로 쓴다
+  var openList = tdRows.filter(function(t){ return t.status !== '완료'; });
+  var doneList = tdRows.filter(function(t){ return t.status === '완료'; });
+  var sec = function(key, title, list, hint){
+    return '<div class="tdsec" data-sec="' + key + '">'
+      + '<div class="tdsh">' + esc(title) + '<i>' + list.length + '</i>'
+        + (hint ? '<small>' + esc(hint) + '</small>' : '') + '</div>'
+      + (list.length ? list.map(tdRowHtml).join('')
+                     : '<div class="tdempty">' + (tdCanOrder() ? '여기로 끌어다 놓으세요' : '없습니다') + '</div>')
+      + '</div>';
+  };
+
+  el.innerHTML =
+      sec('pin', '우선', openList.filter(function(t){ return t.pinned; }), tdCanOrder() ? '끌어서 순서를 바꿉니다' : '')
+    + sec('nor', '보통', openList.filter(function(t){ return !t.pinned; }), '')
+    + (doneList.length ? sec('done', '완료', doneList, '') : '')
+    + (tdCanOrder() ? ''
+       : '<p class="dnote">순서는 «미완료» 목록을 검색어 없이 볼 때만 바꿀 수 있습니다.</p>');
+
+  tdBind(el);
+}
+
+function tdBind(el){
+  // 완료 토글 — 순서가 바뀌므로 목록을 다시 받는다. 연타 방지로 잠근다.
   el.querySelectorAll('[data-ck]').forEach(function(b){
     b.onclick = async function(){
-      var t = tdRows.filter(function(x){ return String(x.id)===b.dataset.ck; })[0];
-      await fetch('/api/admin/todos',{method:'POST',headers:AH,
-        body:JSON.stringify({ id:b.dataset.ck, action: t && t.status==='완료' ? 'undone' : 'done' })});
+      if (b.disabled) return;
+      b.disabled = true;
+      var t = tdGet(b.dataset.ck);
+      await fetch('/api/admin/todos', { method:'POST', headers:AH,
+        body: JSON.stringify({ id: b.dataset.ck, action: (t && t.status === '완료') ? 'undone' : 'done' }) })
+        .catch(function(){});
       tdLoad(); admPoll(true);
     };
   });
+
+  // 종류 — 실패하면 고르기 전 값으로 되돌린다
+  el.querySelectorAll('[data-k]').forEach(function(s){
+    s.onchange = function(){
+      var id = s.dataset.k, prev = (tdGet(id) || {}).kind || '기타', v = s.value;
+      if (v === prev) return;
+      s.disabled = true;
+      tdPatch(id, { kind: v }, tdPaint).then(function(ok){
+        s.disabled = false;
+        if (!ok) s.value = prev;
+        else toast('종류를 ' + v + ' 로 바꿨습니다');
+      });
+    };
+  });
+
+  // 제목 — 눌러서 바로 고친다
+  el.querySelectorAll('[data-t]').forEach(function(d){
+    d.onclick = function(){
+      if (tdEditId) return;
+      var id = d.dataset.t, cur = (tdGet(id) || {}).title || '';
+      tdEditId = id;
+      d.innerHTML = '<input class="tdti" value="' + esc(cur) + '" maxlength="300">';
+      var inp = d.querySelector('.tdti');
+      var composing = false, closed = false;
+      inp.addEventListener('compositionstart', function(){ composing = true; });
+      inp.addEventListener('compositionend', function(){ composing = false; });
+      var close = function(save){
+        if (closed) return; closed = true;
+        var v = inp.value.trim();
+        tdEditId = null;
+        if (!save || !v || v === cur){ tdPaint(); return; }
+        tdPatch(id, { title: v }, tdPaint);
+      };
+      inp.onkeydown = function(e){
+        if (e.key === 'Enter'){
+          if (composing || e.isComposing) return;   // 한글 조합 확정용 Enter 는 저장이 아니다
+          e.preventDefault(); close(true);
+        } else if (e.key === 'Escape'){ e.preventDefault(); close(false); }
+      };
+      inp.onblur = function(){ close(true); };
+      inp.focus(); inp.select();
+    };
+  });
+
+  // 우선 ↔ 보통 (터치에서 끌기가 안 되는 경우의 길)
+  el.querySelectorAll('[data-pin]').forEach(function(b){
+    b.onclick = function(){
+      if (b.disabled) return;
+      var id = b.dataset.pin, cur = tdGet(id); if (!cur) return;
+      b.disabled = true;
+      tdPatch(id, { pinned: cur.pinned ? 0 : 1 }, function(){ tdSortRows(); tdPaint(); })
+        .then(function(){ b.disabled = false; });
+    };
+  });
+
   el.querySelectorAll('[data-edit]').forEach(function(b){
-    b.onclick = function(){ tdForm(tdRows.filter(function(x){ return String(x.id)===b.dataset.edit; })[0]); };
+    b.onclick = function(){ tdForm(tdGet(b.dataset.edit)); };
   });
   el.querySelectorAll('[data-issue]').forEach(function(b){
-    b.onclick = function(){ tdToIssue(tdRows.filter(function(x){ return String(x.id)===b.dataset.issue; })[0]); };
+    b.onclick = function(){ tdToIssue(tdGet(b.dataset.issue)); };
   });
+
+  if (!tdCanOrder()) return;
+  el.querySelectorAll('.tdrow[draggable=true]').forEach(function(row){
+    row.ondragstart = function(e){
+      tdDragId = row.dataset.id; row.classList.add('drag');
+      try { e.dataTransfer.setData('text/plain', row.dataset.id); e.dataTransfer.effectAllowed = 'move'; } catch (_) {}
+    };
+    row.ondragend = function(){
+      row.classList.remove('drag'); tdDragId = null; tdSaveOrder(el);
+    };
+  });
+  el.querySelectorAll('.tdsec[data-sec="pin"],.tdsec[data-sec="nor"]').forEach(function(sc){
+    sc.ondragover = function(e){
+      if (!tdDragId) return;
+      e.preventDefault();
+      var drag = el.querySelector('.tdrow.drag'); if (!drag) return;
+      var over = e.target.closest ? e.target.closest('.tdrow') : null;
+      if (over && over !== drag && sc.contains(over)){
+        var r = over.getBoundingClientRect();
+        sc.insertBefore(drag, (e.clientY < r.top + r.height / 2) ? over : over.nextSibling);
+      } else if (!sc.contains(drag)) {
+        sc.appendChild(drag);
+      }
+      var ph = sc.querySelector('.tdempty'); if (ph) ph.remove();
+    };
+    sc.ondrop = function(e){ e.preventDefault(); };
+  });
+}
+
+/* 화면에 놓인 순서를 그대로 저장한다. 먼저 화면·메모리를 맞추고 보낸 뒤,
+   실패하면 보내기 전 상태로 되돌린다 — 화면만 바뀌고 서버는 옛 순서인 상태를 남기지 않는다. */
+async function tdSaveOrder(el){
+  if (!tdCanOrder()) return;
+  var order = [];
+  el.querySelectorAll('.tdsec[data-sec="pin"] .tdrow').forEach(function(r){ order.push({ id: Number(r.dataset.id), pinned: 1 }); });
+  el.querySelectorAll('.tdsec[data-sec="nor"] .tdrow').forEach(function(r){ order.push({ id: Number(r.dataset.id), pinned: 0 }); });
+  if (!order.length) return;
+
+  var before = tdRows.map(function(t){ return { id: t.id, pinned: t.pinned, sort_order: t.sort_order }; });
+  var same = order.every(function(o, k){
+    var t = tdGet(o.id); return t && (t.pinned ? 1 : 0) === o.pinned && t.sort_order === (k + 1) * 10;
+  });
+  if (same) return;                                   // 제자리에 놓았다 — 저장할 게 없다
+
+  order.forEach(function(o, k){ var t = tdGet(o.id); if (t){ t.pinned = o.pinned; t.sort_order = (k + 1) * 10; } });
+  tdSortRows(); tdPaint();
+
+  var r = await fetch('/api/admin/todos', { method:'POST', headers:AH,
+    body: JSON.stringify({ action: 'reorder', order: order }) })
+    .then(function(x){ return x.json(); }).catch(function(){ return {}; });
+  if (!r.ok){
+    before.forEach(function(b){ var t = tdGet(b.id); if (t){ t.pinned = b.pinned; t.sort_order = b.sort_order; } });
+    tdSortRows(); tdPaint();
+    toast(r.message || '순서를 저장하지 못했습니다 — 되돌렸습니다');
+  }
 }
 
 // 할 일 → 견적서 준비 화면. 적어둔 거래처·품목을 그대로 들고 넘어간다.
